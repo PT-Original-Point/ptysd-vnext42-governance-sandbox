@@ -1,0 +1,12 @@
+{
+  "name": "ptysd-vnext42-b0-candidate2",
+  "version": "0.0.2",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/b0.test.ts",
+    "verify": "node scripts/verify.mjs",
+    "e2e": "node scripts/e2e.mjs"
+  },
+  "engines": { "node": ">=24" }
+}
