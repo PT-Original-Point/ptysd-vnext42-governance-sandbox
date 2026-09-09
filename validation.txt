@@ -1,37 +1,18 @@
-??WAL + persist-before-dispatch + deterministic hash (50.2735ms)
-??single worker + pending barrier + evidence completion (53.4708ms)
-??STOP increments epoch and permanently rejects old envelope (73.8255ms)
-??interrupt releases worker without changing epoch (63.1929ms)
-??crash restart preserves lease then expiry only reduces capability (69.7923ms)
-??worker provider credential guard (0.173ms)
-??runtime manifest disables provider write and carries no worker credentials (0.8349ms)
-??expired lease cannot be revived by heartbeat or completion (50.1624ms)
-??tests 8
-??suites 0
-??pass 8
-??fail 0
-??cancelled 0
-??skipped 0
-??todo 0
-??duration_ms 451.7653
-
-{
-  "files": 9,
-  "dependency_count": 0,
-  "secret_scan_clean": true,
-  "runtime_guard_pass": true,
-  "violations": []
-}
-
-{
-  "e2e": "PASS",
-  "task_state": "COMPLETED",
-  "state_hash": "775b174eb5cfcf4368e8609c3bfbf0a5bc39e54e28c7b09ab80be8ce4060b77c",
-  "capabilities": {
-    "provider_write": false,
-    "production": false,
-    "business_ingress": false,
-    "active_workers_max": 1,
-    "provider_secret_keys": []
-  }
-}
+CANDIDATE=5
+VERSION=0.0.5
+SOURCE_AUTHORITY=PROJECT_DATA_SOURCE
+SOURCE_POLICY=PROJECT_SOURCE_FIRST_NO_RECONSTRUCTION_WHEN_EXACT_SOURCE_PRESENT
+PLAN_SIZE=40512
+PLAN_SHA256=309a332ed781b8cbc479848c2c112bcdb26daf40eb1120320baeb035f2709199
+RECONSTRUCTION_TRANSPORT_ARTIFACT=ABSENT
+FSM_TESTS=8/8_PASS
+DEPENDENCY_COUNT=0
+SECRET_SCAN=CLEAN
+RUNTIME_GUARD=PASS
+E2E=PASS
+WP04=PASS
+WP05=PASS
+SOURCE_AUTHORITY_GATE=PASS
+B0_LOCAL_ACCEPTANCE=10/10_PASS
+FORMAL_B0_SWITCH_READY=FALSE
+BLOCKER=SHARED_PUBLICATION_CI_AND_FORMAL_GATE_NOT_YET_CREDITED

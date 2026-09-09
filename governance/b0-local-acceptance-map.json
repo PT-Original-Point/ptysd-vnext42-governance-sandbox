@@ -1,0 +1,120 @@
+{
+    "schema":  "PTYSD_B0_LOCAL_ACCEPTANCE_MAP_V1",
+    "project_id":  "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+    "source_candidate3_manifest_sha256":  "35a5b7da7fb2030ec87a1a62074bd973c8c36c51bee71d6f3ebf9e91ac895dad",
+    "exact_plan_sha256":  "309a332ed781b8cbc479848c2c112bcdb26daf40eb1120320baeb035f2709199",
+    "criteria_count":  10,
+    "local_acceptance_10_of_10_expected":  true,
+    "formal_b0_pass":  false,
+    "formal_b0_blocker":  "SHARED_PUBLICATION_CI_AND_FORMAL_GATE_NOT_YET_CREDITED",
+    "wp04":  "PINNED_CODEX_APP_SERVER_STABLE_ALLOWLIST_EXPERIMENTAL_DEFAULT_DENY",
+    "wp05":  "DETERMINISTIC_FAULT_CONFORMANCE_TRUE_LLM_NOT_REQUIRED",
+    "criteria":  [
+                     {
+                         "test_titles":  [
+                                             "WAL + persist-before-dispatch + deterministic hash"
+                                         ],
+                         "files":  [
+                                       "tests/b0.test.ts",
+                                       "schemas/task-envelope.schema.json"
+                                   ],
+                         "name":  "Task Envelope ingest",
+                         "id":  1
+                     },
+                     {
+                         "test_titles":  [
+                                             "WAL + persist-before-dispatch + deterministic hash"
+                                         ],
+                         "files":  [
+                                       "tests/b0.test.ts"
+                                   ],
+                         "name":  "persist-before-dispatch",
+                         "id":  2
+                     },
+                     {
+                         "test_titles":  [
+                                             "single worker + pending barrier + evidence completion"
+                                         ],
+                         "files":  [
+                                       "tests/b0.test.ts",
+                                       "config/runtime-manifest.json"
+                                   ],
+                         "name":  "exactly one Worker",
+                         "id":  3
+                     },
+                     {
+                         "test_titles":  [
+                                             "interrupt releases worker without changing epoch"
+                                         ],
+                         "files":  [
+                                       "tests/b0.test.ts"
+                                   ],
+                         "name":  "interrupt",
+                         "id":  4
+                     },
+                     {
+                         "test_titles":  [
+                                             "STOP increments epoch and permanently rejects old envelope"
+                                         ],
+                         "files":  [
+                                       "tests/b0.test.ts"
+                                   ],
+                         "name":  "STOP increments epoch",
+                         "id":  5
+                     },
+                     {
+                         "test_titles":  [
+                                             "crash restart preserves lease then expiry only reduces capability",
+                                             "expired lease cannot be revived by heartbeat or completion"
+                                         ],
+                         "files":  [
+                                       "tests/b0.test.ts"
+                                   ],
+                         "name":  "lease expiry blocks",
+                         "id":  6
+                     },
+                     {
+                         "test_titles":  [
+                                             "single worker + pending barrier + evidence completion"
+                                         ],
+                         "files":  [
+                                       "tests/b0.test.ts"
+                                   ],
+                         "name":  "evidence-based completion",
+                         "id":  7
+                     },
+                     {
+                         "test_titles":  [
+                                             "crash restart preserves lease then expiry only reduces capability"
+                                         ],
+                         "files":  [
+                                       "tests/b0.test.ts"
+                                   ],
+                         "name":  "crash/restart recovery",
+                         "id":  8
+                     },
+                     {
+                         "test_titles":  [
+                                             "runtime manifest disables provider write and carries no worker credentials"
+                                         ],
+                         "files":  [
+                                       "tests/b0.test.ts",
+                                       "config/runtime-manifest.json",
+                                       "governance/bootstrap-contract.json"
+                                   ],
+                         "name":  "provider write disabled from Worker",
+                         "id":  9
+                     },
+                     {
+                         "test_titles":  [
+                                             "worker provider credential guard"
+                                         ],
+                         "files":  [
+                                       "tests/b0.test.ts",
+                                       "scripts/verify.mjs"
+                                   ],
+                         "name":  "Worker secret scan clean",
+                         "id":  10
+                     }
+                 ]
+}

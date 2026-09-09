@@ -1,0 +1,43 @@
+﻿{
+    "schema":  "PTYSD_VNEXT42_B0_BOOTSTRAP_CONTRACT_V1",
+    "project_id":  "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+    "mission_revision":  "20260831T103813+0800",
+    "mission_hash":  "sha256:5f8a3eb11cc639417b70a3859198ecc2bef6bc806ee57e75b9a7619496550c20",
+    "current_phase":  "VNEXT_4_2_B0_CONSTRUCTION",
+    "hard_gate":  "B0_SWITCH_ACCEPTANCE",
+    "execution_policy_revision":  "20260908T235130+0800-EP52",
+    "execution_policy_hash":  "sha256:0ad40cca33d3de19dedd53b6983b6b48c6238424b701cc3bf12926c827414dfb",
+    "controller_contract":  "CHAT_CODEX_EXECUTION_CONTRACT_V8_1_19_CANDIDATE",
+    "authority_chain":  [
+                            "HUMAN_CURRENT_MISSION",
+                            "mission-control",
+                            "continuity-resumer",
+                            "chat-codex-horenso-controller"
+                        ],
+    "canonical_state_store":  "sqlite-wal",
+    "workflow_authority":  "supervisor-fsm",
+    "active_workers_max":  1,
+    "worker_provider_write":  false,
+    "worker_provider_credentials":  [
+
+                                    ],
+    "business_ingress":  false,
+    "production":  false,
+    "stop_semantics":  {
+                           "interrupt_epoch_required":  true,
+                           "old_envelope_rejected":  true
+                       },
+    "completion":  {
+                       "evidence_required":  true
+                   },
+    "recovery":  {
+                     "ambiguous_side_effect_readback_first":  true,
+                     "blind_retry":  false
+                 },
+    "exact_rdc_device":  "DESKTOP-1B6PD2P",
+    "governance_repo":  "wfvupu1212/ptysd-vnext42-governance-sandbox",
+    "published_candidate2_commit":  "f0162c326f070ad04d1c04a7400cdde547c0fbc5",
+    "app_server_pin_ref":  "protocol/app-server/pin.json",
+    "method_allowlist_ref":  "protocol/app-server/method-allowlist.json",
+    "construction_plan_ref":  "governance/construction-plan-source.json"
+}
