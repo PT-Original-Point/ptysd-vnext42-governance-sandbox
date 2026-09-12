@@ -1,0 +1,18 @@
+{
+  "schema_version": "factory.run.v1",
+  "run_id": "V45-Z2-SYNTHETIC-001",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "revision": 1,
+  "command_id": "V45-Z2-COMMAND-001",
+  "contract_ref": "runs/V45-Z2-SYNTHETIC-001/contract.json",
+  "state": "WAITING_RESOURCE",
+  "wait_reason": "SELF_HOSTED_RUNNER_NOT_REGISTERED",
+  "active_task_id": null,
+  "attempt_id": null,
+  "attempt_epoch": 0,
+  "latest_checkpoint_ref": null,
+  "unresolved_operation_ids": [],
+  "stop_requested": false,
+  "completed_stage_receipts": [],
+  "remaining_attempts": 3
+}
