@@ -1,0 +1,21 @@
+{
+  "schema": "factory.receipt.v1",
+  "event_id": "V45-Z3Z6-DETERMINISTIC-TESTS-001",
+  "run_id": "V45-Z2-SYNTHETIC-001",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "event_type": "DETERMINISTIC_SAFETY_TESTS_VERIFIED",
+  "scope": [
+    "command dedupe",
+    "expected revision fence",
+    "attempt epoch fence",
+    "sticky STOP",
+    "stale attempt receipt rejection",
+    "post-STOP effect rejection",
+    "operation id payload mismatch rejection"
+  ],
+  "tests_passed": 6,
+  "tests_failed": 0,
+  "execution_environment": "trusted_chat_controller_isolated_node",
+  "formal_self_hosted_runner_credit": false,
+  "effects": 0
+}
