@@ -1,0 +1,19 @@
+{
+  "schema": "factory.receipt.v1",
+  "event_id": "V45-Z2-STATIC-GATE-001",
+  "run_id": "V45-Z2-SYNTHETIC-001",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "event_type": "STATIC_GATE_VERIFIED",
+  "observed_control_commit": "4565306965b8341d4eac9c7c8ec5a0daeec8ff88",
+  "verifier": "trusted_chat_controller_local_deterministic",
+  "results": {
+    "verify_v45_bounded": "PASS_VNEXT45_BOUNDED_CONTROL_STATIC_GATE",
+    "synthetic_tests_passed": 3,
+    "synthetic_tests_failed": 0
+  },
+  "effects": 0,
+  "production": false,
+  "business_project_access": false,
+  "hosted_runner_used": false,
+  "model_used": "SYNTHETIC_NOOP"
+}

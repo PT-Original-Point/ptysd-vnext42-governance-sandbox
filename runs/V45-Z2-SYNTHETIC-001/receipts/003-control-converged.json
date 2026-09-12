@@ -1,0 +1,16 @@
+{
+  "schema": "factory.receipt.v1",
+  "event_id": "V45-Z2-CONTROL-CONVERGED-001",
+  "run_id": "V45-Z2-SYNTHETIC-001",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "event_type": "CONTROL_STATE_CONVERGED",
+  "expected_parent_commit": "6066aba6d700706f3a16c2c0b476df7c40fa53ca",
+  "new_run_revision": 2,
+  "state": "WAITING_RESOURCE",
+  "wait_reason": "SELF_HOSTED_RUNNER_NOT_REGISTERED",
+  "completed_receipts": [
+    "receipts/001-static-gate.json",
+    "receipts/002-command-frozen.json"
+  ],
+  "effects": 0
+}

@@ -1,0 +1,51 @@
+{
+  "schema_version": "factory.contract.v1",
+  "task_id": "V45-Z2-TASK-001",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "goal": "Prove the VNEXT4.5 bounded control path is statically safe before any real worker or model execution.",
+  "include": [
+    "governance/v45/control.json",
+    ".github/workflows/v45-bounded-self-hosted.yml",
+    "scripts/verify-v45-bounded.mjs",
+    "tests/v45-bounded.test.mjs"
+  ],
+  "exclude": [
+    "business projects",
+    "Production",
+    "provider writes",
+    "candidate code execution",
+    "paid resources"
+  ],
+  "affected_surfaces": ["CONTROL_REPO", "self-hosted runner routing"],
+  "requirements": [
+    "workflow_dispatch only",
+    "self-hosted approved labels only",
+    "read-only GitHub token permissions",
+    "no worker provider write credentials",
+    "synthetic no-op model profile"
+  ],
+  "acceptance": [
+    "static verifier passes",
+    "synthetic tests pass",
+    "no hosted runner label",
+    "no GitHub write permission in workflow"
+  ],
+  "dependencies": [
+    "Mission 20260913T004710+0800",
+    "EP66",
+    "repo_id 1352411536",
+    "branch v45/factory-control"
+  ],
+  "risk": "LOW_SYNTHETIC",
+  "allowed_tools": ["node", "git-read-only"],
+  "allowed_effects": [],
+  "model_profile_ref": "SYNTHETIC_NOOP",
+  "max_attempts": 3,
+  "time_budget_minutes": 20,
+  "mission_revision_id": "20260913T004710+0800",
+  "mission_hash": "sha256:8bbfb11d00690b46dfd872f9297ea4c66253f499878a2a6a160cecd51199b737",
+  "policy_revision_id": "20260913T010957+0800-EP66",
+  "policy_hash": "sha256:25ab690abfe8ddce953654f67355c01ea353343f337f96c8b3078bdafe7c77c2",
+  "contract_hash_algorithm": "sha256-canonical-json-without-contract_hash",
+  "contract_hash": "sha256:b9f839c3144ae96d55c942bcca9bc8e81dff699d18c9551f25e41a73ababe1e5"
+}

@@ -1,0 +1,31 @@
+{
+  "schema": "PTYSD_CONSTRUCTION_PLAN_SOURCE_V3",
+  "expected_title": "VNEXT-42-CONSTRUCTION-PLAN-v4.2.md",
+  "source_authority": "PROJECT_DATA_SOURCE",
+  "source_scope": "CURRENT_PROJECT_HUMAN_DIRECTED_ARTIFACT",
+  "source_resolution_policy": "PROJECT_SOURCE_FIRST_NO_RECONSTRUCTION_WHEN_EXACT_SOURCE_PRESENT",
+  "materialization_status": "EXACT_PROJECT_SOURCE_BYTES_SHA256_VERIFIED",
+  "formal_b0_credit": true,
+  "plan_file_ref": "docs/plan/VNEXT-42-CONSTRUCTION-PLAN-v4.2.md",
+  "raw_size_bytes": 40512,
+  "raw_sha256": "309a332ed781b8cbc479848c2c112bcdb26daf40eb1120320baeb035f2709199",
+  "raw_byte_identity_claimed": true,
+  "source_manifest_assertion": {
+    "title": "VNEXT-42-v4.2-MANIFEST.txt",
+    "size_bytes": 40512,
+    "sha256": "309a332ed781b8cbc479848c2c112bcdb26daf40eb1120320baeb035f2709199"
+  },
+  "provenance": [
+    "PROJECT_DATA_SOURCE_EXACT_FILE_PRESENT",
+    "PROJECT_MANIFEST_SIZE_SHA_MATCH",
+    "CANDIDATE_COPY_SIZE_SHA_MATCH"
+  ],
+  "forbidden_fallbacks_when_project_source_present": [
+    "FILE_LIBRARY_RECONSTRUCTION",
+    "PLAN_TEXT_REBUILD",
+    "GZIP_BASE64_REBUILD"
+  ],
+  "mission_change_required": false,
+  "current_b0_restart_required": false,
+  "current_b0_harness_change_allowed": false
+}

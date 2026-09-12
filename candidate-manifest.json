@@ -1,0 +1,160 @@
+{
+    "schema":  "PTYSD_VNEXT42_B0_CANDIDATE_MANIFEST_V3",
+    "candidate":  5,
+    "version":  "0.0.5",
+    "frozen_at":  "2026-09-09T13:22:29.0533713+08:00",
+    "source_candidate4_manifest_sha256":  "fb2e1c449a07b69889db71b31c76921e64087efd3f7fd8748f147e15f3516bd1",
+    "source_candidate3_manifest_sha256":  "35a5b7da7fb2030ec87a1a62074bd973c8c36c51bee71d6f3ebf9e91ac895dad",
+    "supersedes_candidate4_for_publication":  true,
+    "supersession_reason":  "CORRECT_PROJECT_SOURCE_AUTHORITY_AND_REMOVE_RECONSTRUCTION_TRANSPORT_ARTIFACT",
+    "project_id":  "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+    "mission_revision":  "20260831T103813+0800",
+    "mission_hash":  "sha256:5f8a3eb11cc639417b70a3859198ecc2bef6bc806ee57e75b9a7619496550c20",
+    "build_control_policy_revision":  "20260909T122410+0800-EP53",
+    "build_control_policy_hash":  "sha256:4664d031c552531b6fd68021bda1adfafd13f0e537db01e44929993a38911651",
+    "controller_contract":  "CHAT_CODEX_EXECUTION_CONTRACT_V8_1_19_CANDIDATE",
+    "source_authority":  "PROJECT_DATA_SOURCE",
+    "source_resolution_policy":  "PROJECT_SOURCE_FIRST_NO_RECONSTRUCTION_WHEN_EXACT_SOURCE_PRESENT",
+    "construction_plan_materialized":  true,
+    "construction_plan_raw_identity":  true,
+    "construction_plan_size_bytes":  40512,
+    "construction_plan_sha256":  "309a332ed781b8cbc479848c2c112bcdb26daf40eb1120320baeb035f2709199",
+    "reconstruction_transport_artifact_present":  false,
+    "fsm_tests":  "8/8 PASS",
+    "dependency_count":  0,
+    "secret_scan_clean":  true,
+    "runtime_guard_pass":  true,
+    "e2e":  "PASS",
+    "e2e_state_hash":  "775b174eb5cfcf4368e8609c3bfbf0a5bc39e54e28c7b09ab80be8ce4060b77c",
+    "codex_app_server_version":  "0.153.4",
+    "codex_binary_sha256":  "e5aa76d19c7c94e2e9ef9b707d590206a73ac0e97c8ddc8382181242494bef75",
+    "stable_method_count":  99,
+    "allowed_method_count":  8,
+    "wp04":  "PASS_PINNED_CODEX_APP_SERVER_STABLE_ALLOWLIST_EXPERIMENTAL_DEFAULT_DENY",
+    "wp05":  "PASS_DETERMINISTIC_FAULT_CONFORMANCE_TRUE_LLM_NOT_REQUIRED",
+    "source_authority_gate":  "PASS_PROJECT_DATA_SOURCE_FIRST",
+    "b0_local_acceptance":  "10/10 PASS",
+    "provider_write_enabled":  false,
+    "worker_provider_credential_count":  0,
+    "business_ingress":  false,
+    "production":  false,
+    "formal_b0_switch_ready":  false,
+    "blocker":  "SHARED_PUBLICATION_CI_AND_FORMAL_GATE_NOT_YET_CREDITED",
+    "files":  [
+                  {
+                      "path":  "config/runtime-manifest.json",
+                      "size":  333,
+                      "sha256":  "b78df5e0576e21050769cdadb90bd4e79e12daefe2f9d6c391ad754eeb129039"
+                  },
+                  {
+                      "path":  "docs/plan/VNEXT-42-CONSTRUCTION-PLAN-v4.2.md",
+                      "size":  40512,
+                      "sha256":  "309a332ed781b8cbc479848c2c112bcdb26daf40eb1120320baeb035f2709199"
+                  },
+                  {
+                      "path":  "governance/b0-local-acceptance-map.json",
+                      "size":  5909,
+                      "sha256":  "cd295c596c3ec4496757f743385942e7f4507af29e166da7542097022d4675f5"
+                  },
+                  {
+                      "path":  "governance/bootstrap-contract.json",
+                      "size":  2016,
+                      "sha256":  "f578f458fa0d755e3578e5d583f394cd86e8a3e56b3b58d3fbe05b2228e2e5d9"
+                  },
+                  {
+                      "path":  "governance/construction-plan-source.json",
+                      "size":  1230,
+                      "sha256":  "7ad79c5c8b9c41cd0fa5e5dbe91255f2a177c5b3b3511b86eee0ab77f6dbcedb"
+                  },
+                  {
+                      "path":  "package.json",
+                      "size":  824,
+                      "sha256":  "d9667eeadd4b2077cce1bf1479416ce9436d8fb9aa4c84d658243ab0192f7cd7"
+                  },
+                  {
+                      "path":  "protocol/app-server/method-allowlist.json",
+                      "size":  902,
+                      "sha256":  "7a6430744eb7c68100441fc4c36bb4e3483837d40b4a9ea3266be009cfa63bab"
+                  },
+                  {
+                      "path":  "protocol/app-server/pin.json",
+                      "size":  1084,
+                      "sha256":  "6b5b738afbbb8b3e397a09fb97ac9f7e5cc0acadff9c6be612f085b284153b0c"
+                  },
+                  {
+                      "path":  "protocol/app-server/stable-methods.txt",
+                      "size":  1857,
+                      "sha256":  "f60d20eade2dd056c1adecd842cd07a997a84b051233b9075c6a6cb5a2e0d5c5"
+                  },
+                  {
+                      "path":  "README.md",
+                      "size":  105,
+                      "sha256":  "648d922b8485bfb04cb3bda98c329bc23143d16bd5379cb67cce43c1835885b4"
+                  },
+                  {
+                      "path":  "schemas/task-envelope.schema.json",
+                      "size":  800,
+                      "sha256":  "1e1c55e60b8b407eb995e241ad343e88bc95ec1166e5fe177343f64694f7f9d6"
+                  },
+                  {
+                      "path":  "scripts/e2e.mjs",
+                      "size":  1213,
+                      "sha256":  "af02e58ba044925e71aa06962bfb3163bb703559753900d07f8c393376ba9caa"
+                  },
+                  {
+                      "path":  "scripts/verify.mjs",
+                      "size":  1897,
+                      "sha256":  "61bd25bb8c7a40c6d5ff60191dbdcc73f35d756d94bfbb5834237e05f0ff6f03"
+                  },
+                  {
+                      "path":  "scripts/verify-appserver-pin.mjs",
+                      "size":  2936,
+                      "sha256":  "e8fe8dcc3667046f900853bdbb0cd76e39abecaaa100a135293ea2f716ae5561"
+                  },
+                  {
+                      "path":  "scripts/verify-b0-contracts.mjs",
+                      "size":  4503,
+                      "sha256":  "51529b8c1ca6aae31a1c30d1b86c672a047cb2cd9d634679aeab6476381752cc"
+                  },
+                  {
+                      "path":  "scripts/verify-b0-local.mjs",
+                      "size":  2806,
+                      "sha256":  "4c7893c9291972335bd6d6f935039dddeff85c1d5887c3839e63aa273172b962"
+                  },
+                  {
+                      "path":  "scripts/verify-plan-materialization.mjs",
+                      "size":  2329,
+                      "sha256":  "bb6b6afabe9d4ddc924521940772c1ed9099cd1b7503f5dbecfd87eb4f9d0128"
+                  },
+                  {
+                      "path":  "scripts/verify-source-authority.mjs",
+                      "size":  1752,
+                      "sha256":  "079490bb69ad64d89c46298abc8b35eec7c9dc25de6942375edf48f4d29f376b"
+                  },
+                  {
+                      "path":  "src/core.ts",
+                      "size":  8841,
+                      "sha256":  "6a78ef95113f5eefc046b163d4430b9ba871d1948578ac163d34375657719e7b"
+                  },
+                  {
+                      "path":  "src/missionctl.ts",
+                      "size":  1168,
+                      "sha256":  "908bbe0603839340335e4937f5314be7f1dda1b16e418aaf260de4af1471cc78"
+                  },
+                  {
+                      "path":  "tests/b0.test.ts",
+                      "size":  4286,
+                      "sha256":  "ca7e249968aef3de5fbd250fb16c0402f021fb41acaa3e6f2696e5707275e24d"
+                  },
+                  {
+                      "path":  "tests/envelope-e2e.json",
+                      "size":  317,
+                      "sha256":  "0b0eed7779a9ccf0372f13b56e2a0a2606088993d8c00cd0c3568b6323a91f2a"
+                  },
+                  {
+                      "path":  "validation.txt",
+                      "size":  548,
+                      "sha256":  "f7f59196f4822817c09a8ea61daca28d7f96bbe3c34d8189a8d6cf76765e034c"
+                  }
+              ]
+}

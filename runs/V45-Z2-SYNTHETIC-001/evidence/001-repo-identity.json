@@ -1,0 +1,15 @@
+{
+  "schema": "factory.evidence.v1",
+  "evidence_id": "V45-Z2-REPO-IDENTITY-001",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "repository_id": 1352411536,
+  "owner": "PT-Original-Point",
+  "observed_name": "ptysd-vnext42-governance-sandbox",
+  "target_name": "ptysd-vnext45-governance-sandbox",
+  "visibility": "public",
+  "authenticated_user": "t14210184",
+  "permission": "admin",
+  "rename_capability": "NOT_EXPOSED_BY_CONNECTED_GITHUB_SURFACE",
+  "canonical_identity_rule": "repository_id_is_stable_across_name_change",
+  "replacement_repo_created": false
+}
