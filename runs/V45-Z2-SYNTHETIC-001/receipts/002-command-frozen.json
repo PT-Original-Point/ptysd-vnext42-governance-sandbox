@@ -1,0 +1,12 @@
+{
+  "schema": "factory.receipt.v1",
+  "event_id": "V45-Z2-COMMAND-FROZEN-001",
+  "run_id": "V45-Z2-SYNTHETIC-001",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "event_type": "COMMAND_FROZEN",
+  "command_id": "V45-Z2-COMMAND-001",
+  "command_ref": "runs/V45-Z2-SYNTHETIC-001/command.json",
+  "command_sha256": "a03865a4284ab92e166a1ffd04ee5843da5e50b49476a4bb0ce958242f3126a7",
+  "policy_revision_id": "20260913T010957+0800-EP66",
+  "effects": 0
+}
