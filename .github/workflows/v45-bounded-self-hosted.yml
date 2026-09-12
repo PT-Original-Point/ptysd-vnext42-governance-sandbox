@@ -34,4 +34,4 @@ jobs:
         run: node scripts/verify-v45-bounded.mjs
       - name: Run deterministic V4.5 bounded tests
         shell: pwsh
-        run: node --test tests/v45-bounded.test.mjs tests/v45-state-core.test.mjs
+        run: node --test tests/v45-bounded.test.mjs tests/v45-state-core.test.mjs tests/v45-runner-bootstrap.test.mjs

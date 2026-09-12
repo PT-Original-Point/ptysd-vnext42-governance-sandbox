@@ -2,11 +2,11 @@
   "schema_version": "factory.run.v1",
   "run_id": "V45-Z2-SYNTHETIC-001",
   "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
-  "revision": 2,
+  "revision": 3,
   "command_id": "V45-Z2-COMMAND-001",
   "contract_ref": "runs/V45-Z2-SYNTHETIC-001/contract.json",
   "state": "WAITING_RESOURCE",
-  "wait_reason": "SELF_HOSTED_RUNNER_NOT_REGISTERED",
+  "wait_reason": "SELF_HOSTED_RUNNER_REGISTRATION_TOKEN_REQUIRED",
   "active_task_id": null,
   "attempt_id": null,
   "attempt_epoch": 0,
@@ -15,7 +15,10 @@
   "stop_requested": false,
   "completed_stage_receipts": [
     "receipts/001-static-gate.json",
-    "receipts/002-command-frozen.json"
+    "receipts/002-command-frozen.json",
+    "receipts/004-provider-command-received.json",
+    "receipts/005-z3-z6-deterministic-tests.json",
+    "receipts/006-runner-bootstrap-prepared.json"
   ],
   "evidence_refs": [
     "evidence/001-repo-identity.json"

@@ -1,0 +1,21 @@
+{
+  "schema": "factory.receipt.v1",
+  "event_id": "V45-Z2-RUNNER-BOOTSTRAP-PREPARED-001",
+  "run_id": "V45-Z2-SYNTHETIC-001",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "event_type": "RUNNER_BOOTSTRAP_PREPARED",
+  "runner_release": "actions/runner@v2.337.0",
+  "asset": "actions-runner-win-x64-2.337.0.zip",
+  "asset_sha256": "1150692afa94e71f872017e254ea55b6eece1eece3fe7e3a6d4c93d0a1b85cfc",
+  "runner_name": "PTYSD-V45-CONTROL-01",
+  "required_custom_label": "ptysd-governance-v45",
+  "service_mode": true,
+  "registration_token_source": "GITHUB_TIME_LIMITED_HUMAN_AUTHORIZED",
+  "registration_token_available_to_controller": false,
+  "registration_script_ref": "scripts/register-v45-runner.ps1",
+  "static_gate": "PASS_V45_RUNNER_BOOTSTRAP_STATIC_GATE",
+  "hosted_runner_fallback": false,
+  "destructive_replace": false,
+  "formal_runner_acceptance": false,
+  "wait_reason": "SELF_HOSTED_RUNNER_REGISTRATION_TOKEN_REQUIRED"
+}
