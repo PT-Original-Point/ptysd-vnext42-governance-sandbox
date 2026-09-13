@@ -108,7 +108,7 @@ try{
   $networkService=(New-Object Security.Principal.SecurityIdentifier('S-1-5-20')).Translate([Security.Principal.NTAccount]).Value
   $pssc=Join-Path $ConfigRoot 'PTYSD.HostGuard.V45.pssc'
   $roles=@{$networkService=@{RoleCapabilities='PTYSDHostGuard'}}
-  New-PSSessionConfigurationFile -Path $pssc -SessionType RestrictedRemoteServer -LanguageMode NoLanguage -RunAsVirtualAccount -RunAsVirtualAccountGroups @($hyperv,$ReceiptGroup) -TranscriptDirectory $TranscriptRoot -RoleDefinitions $roles
+  New-PSSessionConfigurationFile -Path $pssc -SessionType RestrictedRemoteServer -LanguageMode NoLanguage -ExecutionPolicy Bypass -RunAsVirtualAccount -RunAsVirtualAccountGroups @($hyperv,$ReceiptGroup) -TranscriptDirectory $TranscriptRoot -RoleDefinitions $roles
   if(-not(Test-PSSessionConfigurationFile -Path $pssc)){throw 'PSSC_VALIDATION_FAILED'}
   $sddl='O:NSG:BAD:P(A;;GA;;;NS)(A;;GA;;;BA)S:P'
   Register-PSSessionConfiguration -Name $Endpoint -Path $pssc -AccessMode Local -SecurityDescriptorSddl $sddl -Force -NoServiceRestart|Out-Null;$endpointCreated=$true

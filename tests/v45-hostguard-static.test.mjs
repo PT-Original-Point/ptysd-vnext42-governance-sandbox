@@ -33,6 +33,11 @@ test('installer preserves privilege separation and local-only remoting',()=>{
   }
 });
 
+test('installer pins execution policy only inside the JEA PSSC',()=>{
+  assert.match(installText,/New-PSSessionConfigurationFile[^\n]+-SessionType RestrictedRemoteServer[^\n]+-LanguageMode NoLanguage[^\n]+-ExecutionPolicy Bypass/);
+  assert.equal(installText.includes('Set-ExecutionPolicy'),false);
+});
+
 test('normal runner is not promoted to Hyper-V Administrators',()=>{
   assert.equal(installText.includes("Add-LocalGroupMember -Group 'Hyper-V Administrators'"),false);
   assert.match(installText,/RunAsVirtualAccount/);
