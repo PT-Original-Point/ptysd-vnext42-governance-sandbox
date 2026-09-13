@@ -1,0 +1,20 @@
+{
+  "schema":"factory.evidence.v1",
+  "evidence_id":"V45-Z5-EVIDENCE-OPENCODE-CONFIG-RESOLUTION-PASS-003",
+  "project_id":"CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "run_id":"V45-Z5-MODEL-001",
+  "source_control_commit":"67ff8d78b49448f4f109d6e173471192c05a81f3",
+  "worker":"ptysd@ptysd-worker-01",
+  "opencode_version":"1.18.30",
+  "validation_method":"OPENCODE_CONFIG_CONTENT plus opencode debug config --pure",
+  "resolved":{"plugin":[],"model":"opencode/muse-spark-1.3-contributor-free","small_model":"opencode/muse-spark-1.3-contributor-free","permission":{"*":"deny","read":"allow","glob":"allow","grep":"allow","edit":"allow"},"username":"ptysd"},
+  "external_plugins_disabled":true,
+  "automatic_update_disabled_for_validation":true,
+  "shell_permission":false,
+  "network_tool_permission":false,
+  "inference_dispatched":false,
+  "guest_workspace_mutation":false,
+  "credential_count":0,
+  "remaining_human_only_gate":"OPEN_CODE_ZEN_API_KEY_AND_ZERO_COST_ACCOUNT_GUARD_REQUIRED",
+  "verification_state":"PASS_PREPARATION_ONLY"
+}

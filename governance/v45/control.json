@@ -1,6 +1,6 @@
 {
   "schema":"PTYSD_GITHUB_ACTIONS_BOUNDED_V1",
-  "control_version":16,
+  "control_version":17,
   "project_id":"CHATGPT_GLOBAL_SKILL_GOVERNANCE",
   "mission_revision_id":"20260913T004710+0800",
   "mission_hash":"sha256:8bbfb11d00690b46dfd872f9297ea4c66253f499878a2a6a160cecd51199b737",
@@ -46,6 +46,9 @@
   "z5_auth_credentials_count":0,
   "z5_model_entitlement":"UNQUALIFIED_NO_AUTH",
   "z5_guest_workspace_prepared":false,
+  "z5_host_workspace_prepared":true,
+  "z5_locked_config_resolution":"PASS",
+  "z5_inference_dispatch_allowed":false,
   "hosted_runner_allowed":false,
   "provider_write_credentials_on_worker_allowed":false,
   "production_allowed":false,
