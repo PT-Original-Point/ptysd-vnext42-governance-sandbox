@@ -1,0 +1,9 @@
+{
+  "schema": "v45.z3.cas_probe.v1",
+  "probe_id": "V45-Z3-CAS-PROBE-001",
+  "expected_parent": "b2f11bd55fd3150b91423d82212820302a68e8b1",
+  "writer_id": "WRITER_A",
+  "value": "A_WINS",
+  "business_effects": 0,
+  "production_effects": 0
+}
