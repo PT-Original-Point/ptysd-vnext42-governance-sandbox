@@ -1,0 +1,14 @@
+{
+  "schema":"factory.evidence.v1",
+  "evidence_id":"V45-Z4-EVIDENCE-BRANCH-ALIGNMENT-REPAIR-023",
+  "project_id":"CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "run_id":"V45-Z4-WIP-001",
+  "classification":"CONTROL_MAIN_ALIGNMENT_REPAIR_REQUIRED",
+  "control_head_before":"41d280d3357b13c0707777afe36fc7d15a851241",
+  "main_head_before":"778abdcd53fdaffc8cfaffc5d12c4887ad579733",
+  "authoritative_tree_source":"41d280d3357b13c0707777afe36fc7d15a851241",
+  "repair_rule":"create descendant-of-both merge commit using authoritative control tree; update refs non-force; exact readback",
+  "force_update_allowed":false,
+  "business_project_effect":false,
+  "production_effect":false
+}
