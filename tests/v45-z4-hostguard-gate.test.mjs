@@ -13,6 +13,7 @@ const fix=JSON.parse(fs.readFileSync('runs/V45-Z4-WIP-001/evidence/006-hostguard
 const executionPolicy=JSON.parse(fs.readFileSync('runs/V45-Z4-WIP-001/evidence/007-hostguard-execution-policy-blocker-and-repair-package.json','utf8'));
 const executionPolicyPrestate=JSON.parse(fs.readFileSync('runs/V45-Z4-WIP-001/evidence/008-hostguard-execution-policy-prestate-fix.json','utf8'));
 const hypervDependency=JSON.parse(fs.readFileSync('runs/V45-Z4-WIP-001/evidence/009-hostguard-hyperv-dependency-blocker-and-repair-package.json','utf8'));
+const runtimeDependencies=JSON.parse(fs.readFileSync('runs/V45-Z4-WIP-001/evidence/010-hostguard-runtime-dependencies-blocker-and-repair-package.json','utf8'));
 
 test('Z4 records the real privilege boundary instead of pretending VM absence',()=>{
   assert.equal(host.runner_executor,'NT AUTHORITY\\NETWORK SERVICE');
@@ -22,10 +23,10 @@ test('Z4 records the real privilege boundary instead of pretending VM absence',(
   assert.equal(host.conclusion,'HOSTGUARD_REQUIRED_DO_NOT_ELEVATE_RUNNER');
 });
 
-test('JEA authorization and script loading are repaired and Z4 now waits only on the Hyper-V module dependency gate',()=>{
+test('JEA authorization script loading and Hyper-V dependency are repaired; Z4 waits only on complete runtime dependencies',()=>{
   assert.equal(jea.powershell_package_result,'PASS_V45_HOSTGUARD_POWERSHELL51_PACKAGE');
   assert.equal(jea.static_tests_fail,0);
-  assert.equal(control.control_version,11);
+  assert.equal(control.control_version,12);
   assert.equal(control.z4_hostguard_install_required,false);
   assert.equal(control.z4_hostguard_human_install_result,'HOSTGUARD_JEA_INSTALLED');
   assert.equal(control.z4_hostguard_access_reconcile_required,false);
@@ -34,16 +35,18 @@ test('JEA authorization and script loading are repaired and Z4 now waits only on
   assert.equal(control.z4_hostguard_execution_policy_reconcile_required,false);
   assert.equal(control.z4_hostguard_execution_policy_human_result,'HOSTGUARD_JEA_EXECUTION_POLICY_RECONCILED');
   assert.equal(control.z4_hostguard_execution_policy_after,'Bypass');
-  assert.equal(control.z4_hostguard_provider_readback,'BLOCKED_HYPERV_DEPENDENCY');
-  assert.equal(control.z4_hostguard_post_execution_policy_readback_result,'JEA_SESSION_AND_HOSTGUARD_MODULE_LOAD_PASSED_HYPERV_CMDLET_UNRESOLVED');
-  assert.equal(control.z4_hostguard_hyperv_dependency_blocker,'HOSTGUARD_MANIFEST_MISSING_HYPERV_REQUIRED_MODULE');
-  assert.equal(control.z4_hostguard_hyperv_dependency_reconcile_required,true);
-  assert.equal(control.z4_hostguard_hyperv_dependency_reconcile_package_validation,'PASS');
-  assert.equal(control.wait_reason,'HOSTGUARD_HYPERV_DEPENDENCY_ADMIN_RECONCILE_REQUIRED');
-  assert.equal(run.wait_reason,'HOSTGUARD_HYPERV_DEPENDENCY_ADMIN_RECONCILE_REQUIRED');
+  assert.equal(control.z4_hostguard_hyperv_dependency_reconcile_required,false);
+  assert.equal(control.z4_hostguard_hyperv_dependency_human_result,'HOSTGUARD_HYPERV_DEPENDENCY_RECONCILED');
+  assert.equal(control.z4_hostguard_provider_readback,'BLOCKED_RUNTIME_DEPENDENCIES');
+  assert.equal(control.z4_hostguard_post_hyperv_readback_result,'JEA_SESSION_HOSTGUARD_HYPERV_PASSED_CIMCMDLETS_UNRESOLVED');
+  assert.equal(control.z4_hostguard_runtime_dependencies_blocker,'HOSTGUARD_MANIFEST_MISSING_CIMCMDLETS_AND_NETTCPIP_REQUIRED_MODULES');
+  assert.equal(control.z4_hostguard_runtime_dependencies_reconcile_required,true);
+  assert.equal(control.z4_hostguard_runtime_dependencies_reconcile_package_validation,'PASS');
+  assert.equal(control.wait_reason,'HOSTGUARD_RUNTIME_DEPENDENCIES_ADMIN_RECONCILE_REQUIRED');
+  assert.equal(run.wait_reason,'HOSTGUARD_RUNTIME_DEPENDENCIES_ADMIN_RECONCILE_REQUIRED');
   assert.equal(run.state,'WAITING_RESOURCE');
-  assert.equal(run.revision,9);
-  assert.ok(run.evidence_refs.includes('evidence/009-hostguard-hyperv-dependency-blocker-and-repair-package.json'));
+  assert.equal(run.revision,10);
+  assert.ok(run.evidence_refs.includes('evidence/010-hostguard-runtime-dependencies-blocker-and-repair-package.json'));
   assert.equal(access.classification,'INSTALL_CONFIRMED_FUNCTIONAL_ACCEPTANCE_BLOCKED');
   assert.equal(reconcile.provider_smoke_conclusion,'success');
   assert.equal(preflight.side_effect_classification,'SIDE_EFFECT_NOT_APPLIED');
@@ -51,15 +54,21 @@ test('JEA authorization and script loading are repaired and Z4 now waits only on
   assert.equal(executionPolicy.root_cause,'PSSC_DEFAULT_EXECUTION_POLICY_RESTRICTED');
   assert.equal(executionPolicyPrestate.side_effect_classification,'SIDE_EFFECT_NOT_APPLIED');
   assert.equal(executionPolicyPrestate.runtime_semantics_observed_omitted_key_effective,'Restricted');
-  assert.equal(hypervDependency.human_execution_policy_reconcile_result,'HOSTGUARD_JEA_EXECUTION_POLICY_RECONCILED');
-  assert.equal(hypervDependency.provider_functional_acceptance_result,'JEA_SESSION_AND_HOSTGUARD_MODULE_LOAD_PASSED_HYPERV_CMDLET_UNRESOLVED');
   assert.equal(hypervDependency.root_cause,'HOSTGUARD_MANIFEST_MISSING_HYPERV_REQUIRED_MODULE');
   assert.equal(hypervDependency.package_smoke_conclusion,'success');
-  assert.equal(hypervDependency.required_module,'Hyper-V');
-  assert.equal(hypervDependency.hyperv_module_loaded,true);
-  assert.equal(hypervDependency.get_vm_resolved,true);
-  assert.equal(hypervDependency.jea_get_vm_exposed_to_caller,false);
-  assert.equal(hypervDependency.next_gate,'HOSTGUARD_HYPERV_DEPENDENCY_ADMIN_RECONCILE_REQUIRED');
+  assert.equal(runtimeDependencies.human_hyperv_dependency_reconcile_result,'HOSTGUARD_HYPERV_DEPENDENCY_RECONCILED');
+  assert.equal(runtimeDependencies.provider_functional_acceptance_result,'JEA_SESSION_HOSTGUARD_HYPERV_PASSED_CIMCMDLETS_UNRESOLVED');
+  assert.equal(runtimeDependencies.root_cause,'HOSTGUARD_MANIFEST_MISSING_CIMCMDLETS_AND_NETTCPIP_REQUIRED_MODULES');
+  assert.equal(runtimeDependencies.package_smoke_conclusion,'success');
+  assert.deepEqual(runtimeDependencies.required_modules,['Hyper-V','CimCmdlets','NetTCPIP']);
+  assert.equal(runtimeDependencies.hyperv_module_loaded,true);
+  assert.equal(runtimeDependencies.cimcmdlets_module_loaded,true);
+  assert.equal(runtimeDependencies.nettcpip_module_loaded,true);
+  assert.equal(runtimeDependencies.get_vm_resolved,true);
+  assert.equal(runtimeDependencies.get_cim_instance_resolved,true);
+  assert.equal(runtimeDependencies.test_net_connection_resolved,true);
+  assert.equal(runtimeDependencies.jea_direct_dependency_cmdlets_exposed_to_caller,false);
+  assert.equal(runtimeDependencies.next_gate,'HOSTGUARD_RUNTIME_DEPENDENCIES_ADMIN_RECONCILE_REQUIRED');
 });
 
 test('Z4 remains isolated from business paid VM firewall runner and global execution-policy effects',()=>{
@@ -74,7 +83,9 @@ test('Z4 remains isolated from business paid VM firewall runner and global execu
   assert.equal(executionPolicyPrestate.vm_mutation_observed,false);assert.equal(executionPolicyPrestate.firewall_mutation_observed,false);
   assert.equal(hypervDependency.vm_mutation,false);assert.equal(hypervDependency.firewall_mutation,false);
   assert.equal(hypervDependency.runner_privilege_elevation,false);assert.equal(hypervDependency.global_execution_policy_mutation,false);
-  assert.equal(hypervDependency.business_project_effect,false);assert.equal(hypervDependency.production_effect,false);
+  assert.equal(runtimeDependencies.vm_mutation,false);assert.equal(runtimeDependencies.firewall_mutation,false);
+  assert.equal(runtimeDependencies.runner_privilege_elevation,false);assert.equal(runtimeDependencies.global_execution_policy_mutation,false);
+  assert.equal(runtimeDependencies.business_project_effect,false);assert.equal(runtimeDependencies.production_effect,false);
   assert.equal(control.production_allowed,false);
   assert.equal(control.business_project_access_allowed,false);
   assert.equal(control.zero_incremental_paid_cost_required,true);
