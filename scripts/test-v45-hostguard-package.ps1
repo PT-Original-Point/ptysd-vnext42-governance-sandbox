@@ -17,8 +17,12 @@ New-Item -ItemType Directory -Force -Path $tmp|Out-Null
 try{
   $pssc=Join-Path $tmp 'test.pssc'
   $roles=@{'NT AUTHORITY\NETWORK SERVICE'=@{RoleCapabilities='PTYSDHostGuard'}}
-  New-PSSessionConfigurationFile -Path $pssc -SessionType RestrictedRemoteServer -LanguageMode NoLanguage -RunAsVirtualAccount -RunAsVirtualAccountGroups @('BUILTIN\Hyper-V Administrators') -TranscriptDirectory $tmp -RoleDefinitions $roles
+  New-PSSessionConfigurationFile -Path $pssc -SessionType RestrictedRemoteServer -LanguageMode NoLanguage -ExecutionPolicy Bypass -RunAsVirtualAccount -RunAsVirtualAccountGroups @('BUILTIN\Hyper-V Administrators') -TranscriptDirectory $tmp -RoleDefinitions $roles
   if(-not(Test-PSSessionConfigurationFile -Path $pssc)){throw 'PSSC_TEST_FAILED'}
+  $psscData=Import-PowerShellDataFile -Path $pssc
+  if([string]$psscData.ExecutionPolicy -ne 'Bypass'){throw "PSSC_EXECUTION_POLICY_INVALID=$($psscData.ExecutionPolicy)"}
+  if([string]$psscData.SessionType -ne 'RestrictedRemoteServer'){throw "PSSC_SESSION_TYPE_INVALID=$($psscData.SessionType)"}
+  if([string]$psscData.LanguageMode -ne 'NoLanguage'){throw "PSSC_LANGUAGE_MODE_INVALID=$($psscData.LanguageMode)"}
 
   $copySrc=Join-Path $tmp 'copy-src';$copyDst=Join-Path $tmp 'copy-dst'
   New-Item -ItemType Directory -Force -Path (Join-Path $copySrc 'RoleCapabilities'),$copyDst|Out-Null
