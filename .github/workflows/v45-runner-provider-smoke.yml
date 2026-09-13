@@ -18,19 +18,21 @@ jobs:
     timeout-minutes: 15
     steps:
       - name: Verify exact runner identity
-        shell: powershell
+        shell: cmd
         run: |
-          if ($env:RUNNER_NAME -ne 'PTYSD-V45-CONTROL-01') { throw "RUNNER_NAME_MISMATCH actual=$env:RUNNER_NAME" }
-          if ($env:RUNNER_OS -ne 'Windows') { throw "RUNNER_OS_MISMATCH actual=$env:RUNNER_OS" }
-          Write-Host 'V45_RUNNER_PROVIDER_SMOKE=IDENTITY_PASS'
+          if not "%RUNNER_NAME%"=="PTYSD-V45-CONTROL-01" exit /b 11
+          if /I not "%RUNNER_OS%"=="Windows" exit /b 12
+          echo V45_RUNNER_PROVIDER_SMOKE=IDENTITY_PASS
       - name: Checkout trusted governance commit
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
           persist-credentials: false
           fetch-depth: 1
       - name: Run deterministic V4.5 gates
-        shell: powershell
+        shell: cmd
         run: |
           node scripts/verify-v45-bounded.mjs
+          if errorlevel 1 exit /b 21
           node --test tests/v45-bounded.test.mjs tests/v45-state-core.test.mjs tests/v45-runner-bootstrap.test.mjs
-          Write-Host 'V45_RUNNER_PROVIDER_SMOKE=PASS'
+          if errorlevel 1 exit /b 22
+          echo V45_RUNNER_PROVIDER_SMOKE=PASS
