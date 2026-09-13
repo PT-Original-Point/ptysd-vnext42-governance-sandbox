@@ -1,9 +1,11 @@
-# PTYSD VNEXT4.5 governance factory
+# PTYSD VNext Governance Sandbox
 
-Canonical GitHub repository identity: `repo_id=1352411536` under `PT-Original-Point`.
+Private-by-policy governance sandbox for staged construction and synthetic validation only.
 
-This repository is the human-approved sole governance construction and synthetic test target for VNEXT4.5. The provider-visible repository name is still `ptysd-vnext42-governance-sandbox` because the currently connected GitHub administration surface does not expose repository rename; the approved target name is `ptysd-vnext45-governance-sandbox`. Repository ID, not the mutable name, is the stable identity.
+This repository is **not** a business project repository and **not** a production deployment target.
 
-Current V4.5 construction branch: `v45/factory-control`.
+Current V4.5 bounded construction uses only the approved self-hosted Windows runner and keeps GitHub Hosted Runner, business projects, Production writes, and provider write credentials on worker outside scope.
 
-Hard boundaries: governance project only; no business project data; no Production; no GitHub Hosted Runner; no paid or unknown-cost fallback; worker receives no provider write credentials.
+Canonical identity is stable repository ID `1352411536`; repository display rename is hygiene only and may remain pending provider capability.
+
+See `docs/plan/VNEXT4.5-EXECUTION-BASELINE.md` for the approved V4.5 construction baseline and `runs/` for durable bounded run evidence.
