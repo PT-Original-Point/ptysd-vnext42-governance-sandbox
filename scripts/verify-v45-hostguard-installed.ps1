@@ -13,9 +13,11 @@ if($svc.Status -ne 'Running'){throw "WINRM_NOT_RUNNING state=$($svc.Status)"}
 
 $listen5985=@(Get-NetTCPConnection -State Listen -LocalPort 5985 -ErrorAction SilentlyContinue)
 $listen5986=@(Get-NetTCPConnection -State Listen -LocalPort 5986 -ErrorAction SilentlyContinue)
-if($listen5985.Count -lt 1){throw 'LOOPBACK_LISTENER_MISSING'}
-if(@($listen5985|Where-Object{$_.LocalAddress -ne '127.0.0.1'}).Count -ne 0){throw ('NON_LOOPBACK_5985_LISTENER='+(@($listen5985|ForEach-Object{$_.LocalAddress}) -join ','))}
+if($listen5985.Count -lt 1){throw 'WINRM_5985_LISTENER_MISSING'}
 if($listen5986.Count -ne 0){throw 'UNEXPECTED_5986_LISTENER'}
+
+$profiles=@(Get-NetFirewallProfile -PolicyStore ActiveStore -ErrorAction Stop)
+if(@($profiles|Where-Object{(-not [bool]$_.Enabled)-or([string]$_.DefaultInboundAction -ne 'Block')}).Count -ne 0){throw 'FIREWALL_DEFAULT_INBOUND_NOT_BLOCKED'}
 
 $enabledRules=@()
 $inbound=@(Get-NetFirewallRule -PolicyStore ActiveStore -Direction Inbound -Enabled True -ErrorAction Stop)
@@ -37,8 +39,9 @@ if(([string]$status.vm_id).ToLowerInvariant() -ne $ExpectedVmId){throw "STATUS_V
   Caller=$caller
   Endpoint=$Endpoint
   WinRM=$svc.Status.ToString()
-  Listener='127.0.0.1:5985'
+  HttpSysListenAddresses=@($listen5985|ForEach-Object{$_.LocalAddress}|Sort-Object -Unique)
   InboundFirewallRules5985Or5986=0
+  FirewallProfiles=@($profiles|Select-Object Name,Enabled,DefaultInboundAction,DefaultOutboundAction)
   Host=$status.host
   VmName=$status.vm_name
   VmId=$status.vm_id
@@ -47,4 +50,4 @@ if(([string]$status.vm_id).ToLowerInvariant() -ne $ExpectedVmId){throw "STATUS_V
   Ssh22Reachable=$status.ssh22_reachable
   JeaRunAs=$status.run_as
   BootIdentity=$status.boot_identity
-}|ConvertTo-Json -Depth 5
+}|ConvertTo-Json -Depth 6
