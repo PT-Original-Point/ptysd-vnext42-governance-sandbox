@@ -9,6 +9,13 @@ try {
   $profiles=@([pscustomobject]@{Error=$_.Exception.Message})
 }
 
+$firewallProfiles=@()
+try {
+  $firewallProfiles=@(Get-NetFirewallProfile -PolicyStore ActiveStore -ErrorAction Stop | Select-Object Name,Enabled,DefaultInboundAction,DefaultOutboundAction)
+} catch {
+  $firewallProfiles=@([pscustomobject]@{Error=$_.Exception.Message})
+}
+
 $listeners=@()
 try {
   foreach($port in $ports){
@@ -52,6 +59,7 @@ try {
   Identity=[Security.Principal.WindowsIdentity]::GetCurrent().Name
   WinRM=[pscustomobject]@{State=$svc.State;StartMode=$svc.StartMode}
   NetworkProfiles=$profiles
+  FirewallProfiles=$firewallProfiles
   ListeningSockets=$listeners
   FirewallReadable=$firewallReadable
   FirewallError=$firewallError
