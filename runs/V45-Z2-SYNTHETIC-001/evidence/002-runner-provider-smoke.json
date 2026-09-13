@@ -1,0 +1,22 @@
+{
+  "schema": "factory.evidence.v1",
+  "evidence_id": "V45-Z2-EVIDENCE-RUNNER-PROVIDER-SMOKE-002",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "run_id": "V45-Z2-SYNTHETIC-001",
+  "source_type": "GITHUB_ACTIONS_PROVIDER_READBACK",
+  "provider_run_id": 34728846059,
+  "provider_job_id": 103647801665,
+  "provider_head_sha": "f48c4ed379076aef97d422ec84b4063fe53ea3d6",
+  "runner_name": "PTYSD-V45-CONTROL-01",
+  "runner_version": "2.337.0",
+  "machine_name": "DESKTOP-1B6PD2P",
+  "checkout": "PASS",
+  "node_provision": "PASS",
+  "node_version": "24.21.0",
+  "static_gate": "PASS_VNEXT45_BOUNDED_CONTROL_STATIC_GATE",
+  "tests_total": 12,
+  "tests_pass": 12,
+  "tests_fail": 0,
+  "verification_state": "VERIFIED",
+  "readback_status": "CONFIRMED"
+}
