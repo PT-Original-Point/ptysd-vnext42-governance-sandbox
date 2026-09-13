@@ -37,16 +37,16 @@ test('Z3 stale sibling cannot overwrite the provider winner', () => {
   assert.equal(evidence.cas_final_ref_readback, cas.writer_a_commit);
 });
 
-test('Z3 closes only after evidence and Z4 becomes READY only after its resource gate clears', () => {
+test('Z3 remains closed while current Z4 truth may wait on a later independently discovered resource gate', () => {
   assert.equal(contractHash(z3contract), z3contract.contract_hash);
   assert.equal(z3run.state, 'SUCCEEDED');
   assert.equal(z3run.revision, 2);
   assert.equal(control.z3_acceptance, 'PASS');
   assert.equal(control.active_run_id, 'V45-Z4-WIP-001');
-  assert.equal(control.state, 'READY');
-  assert.equal(z4run.state, 'READY');
-  assert.equal(control.wait_reason, null);
-  assert.equal(z4run.wait_reason, null);
+  assert.equal(control.state, 'WAITING_RESOURCE');
+  assert.equal(z4run.state, 'WAITING_RESOURCE');
+  assert.equal(control.wait_reason, 'WORKER_CHANNEL_ADMIN_READONLY_PRESTATE_REQUIRED');
+  assert.equal(z4run.wait_reason, 'WORKER_CHANNEL_ADMIN_READONLY_PRESTATE_REQUIRED');
   assert.equal(contractHash(z4contract), z4contract.contract_hash);
   assert.equal(z4contract.model_profile_ref, 'SYNTHETIC_NOOP');
 });
