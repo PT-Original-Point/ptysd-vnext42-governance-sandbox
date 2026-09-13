@@ -39,4 +39,7 @@ jobs:
         run: node scripts/verify-v45-bounded.mjs
       - name: Run deterministic V4.5 bounded tests
         shell: cmd
-        run: node --test tests/v45-bounded.test.mjs tests/v45-state-core.test.mjs tests/v45-runner-bootstrap.test.mjs tests/v45-z3-provider-evidence.test.mjs
+        run: node --test tests/v45-bounded.test.mjs tests/v45-state-core.test.mjs tests/v45-runner-bootstrap.test.mjs tests/v45-z3-provider-evidence.test.mjs tests/v45-hostguard-static.test.mjs tests/v45-z4-hostguard-gate.test.mjs
+      - name: Validate HostGuard package without installing it
+        shell: cmd
+        run: powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/test-v45-hostguard-package.ps1
