@@ -39,7 +39,7 @@ jobs:
         run: node scripts/verify-v45-bounded.mjs
       - name: Run deterministic V4.5 bounded tests
         shell: cmd
-        run: node --test tests/v45-bounded.test.mjs tests/v45-state-core.test.mjs tests/v45-runner-bootstrap.test.mjs tests/v45-z3-provider-evidence.test.mjs tests/v45-hostguard-static.test.mjs tests/v45-z4-hostguard-gate.test.mjs tests/v45-hostguard-access-reconcile.test.mjs tests/v45-hostguard-execution-policy-reconcile.test.mjs tests/v45-hostguard-hyperv-dependency-reconcile.test.mjs
+        run: node --test tests/v45-bounded.test.mjs tests/v45-state-core.test.mjs tests/v45-runner-bootstrap.test.mjs tests/v45-z3-provider-evidence.test.mjs tests/v45-hostguard-static.test.mjs tests/v45-z4-hostguard-gate.test.mjs tests/v45-hostguard-access-reconcile.test.mjs tests/v45-hostguard-execution-policy-reconcile.test.mjs tests/v45-hostguard-hyperv-dependency-reconcile.test.mjs tests/v45-hostguard-runtime-dependencies-reconcile.test.mjs
       - name: Validate HostGuard package without installing it
         shell: cmd
         run: powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/test-v45-hostguard-package.ps1
@@ -58,3 +58,9 @@ jobs:
       - name: Verify Hyper-V required-module loading on Windows PowerShell 5.1
         shell: cmd
         run: powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/test-v45-hostguard-hyperv-dependency.ps1
+      - name: Parse complete HostGuard runtime dependency reconciliation package
+        shell: cmd
+        run: powershell.exe -NoProfile -ExecutionPolicy Bypass -Command "$e=$null;$t=$null;[Management.Automation.Language.Parser]::ParseFile((Resolve-Path 'scripts/reconcile-v45-hostguard-runtime-dependencies.ps1'),[ref]$t,[ref]$e)|Out-Null;if($e.Count -ne 0){$e|%%{Write-Error $_.Message};exit 34};Write-Host 'PASS_V45_HOSTGUARD_RUNTIME_DEPENDENCIES_RECONCILE_PARSE'"
+      - name: Verify complete HostGuard runtime dependencies on Windows PowerShell 5.1
+        shell: cmd
+        run: powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/test-v45-hostguard-runtime-dependencies.ps1

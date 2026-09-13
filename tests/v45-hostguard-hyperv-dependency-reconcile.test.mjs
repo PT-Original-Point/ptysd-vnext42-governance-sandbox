@@ -6,8 +6,8 @@ const manifest=fs.readFileSync('host/v45/PTYSD.HostGuard/PTYSD.HostGuard.psd1','
 const role=fs.readFileSync('host/v45/PTYSD.HostGuard/RoleCapabilities/PTYSDHostGuard.psrc','utf8');
 const repair=fs.readFileSync('scripts/reconcile-v45-hostguard-hyperv-dependency.ps1','utf8');
 
-test('HostGuard declares Hyper-V as an internal required dependency',()=>{
-  assert.match(manifest,/RequiredModules=@\('Hyper-V'\)/);
+test('HostGuard retains Hyper-V as an internal required dependency after later dependency expansion',()=>{
+  assert.match(manifest,/RequiredModules=@\('Hyper-V'(?:,'[^']+')*\)/);
   assert.match(manifest,/FunctionsToExport=@\('Get-PTYSDHostGuardStatus','Invoke-PTYSDHostPrepare','Start-PTYSDWorkerVm'\)/);
 });
 
@@ -39,9 +39,7 @@ test('repair only changes the HostGuard manifest dependency and preserves networ
 });
 
 test('repair forbids VM firewall runner and global execution-policy mutation',()=>{
-  for(const forbidden of ['Start-VM','Stop-VM','Restart-VM','Set-NetFirewallRule','New-NetFirewallRule','Remove-NetFirewallRule','Add-LocalGroupMember','Enable-PSRemoting','Set-ExecutionPolicy']) {
-    assert.equal(repair.includes(forbidden),false,`forbidden ${forbidden}`);
-  }
+  for(const forbidden of ['Start-VM','Stop-VM','Restart-VM','Set-NetFirewallRule','New-NetFirewallRule','Remove-NetFirewallRule','Add-LocalGroupMember','Enable-PSRemoting','Set-ExecutionPolicy']) assert.equal(repair.includes(forbidden),false,`forbidden ${forbidden}`);
   assert.match(repair,/VmMutation=\$false/);
   assert.match(repair,/PublicFirewallMutation=\$false/);
   assert.match(repair,/RunnerPrivilegeElevation=\$false/);
