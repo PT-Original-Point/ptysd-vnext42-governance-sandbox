@@ -15,6 +15,7 @@ const executionPolicyPrestate=JSON.parse(fs.readFileSync('runs/V45-Z4-WIP-001/ev
 const hypervDependency=JSON.parse(fs.readFileSync('runs/V45-Z4-WIP-001/evidence/009-hostguard-hyperv-dependency-blocker-and-repair-package.json','utf8'));
 const runtimeDependencies=JSON.parse(fs.readFileSync('runs/V45-Z4-WIP-001/evidence/010-hostguard-runtime-dependencies-blocker-and-repair-package.json','utf8'));
 const providerAcceptance=JSON.parse(fs.readFileSync('runs/V45-Z4-WIP-001/evidence/011-hostguard-provider-functional-acceptance.json','utf8'));
+const workerBoundary=JSON.parse(fs.readFileSync('runs/V45-Z4-WIP-001/evidence/012-worker-channel-runner-key-boundary.json','utf8'));
 
 test('Z4 records the real privilege boundary instead of pretending VM absence',()=>{
   assert.equal(host.runner_executor,'NT AUTHORITY\\NETWORK SERVICE');
@@ -24,10 +25,10 @@ test('Z4 records the real privilege boundary instead of pretending VM absence',(
   assert.equal(host.conclusion,'HOSTGUARD_REQUIRED_DO_NOT_ELEVATE_RUNNER');
 });
 
-test('HostGuard prerequisites and runtime dependencies are repaired and provider functional acceptance is PASS',()=>{
+test('HostGuard prerequisites and runtime dependencies remain repaired with provider functional acceptance PASS',()=>{
   assert.equal(jea.powershell_package_result,'PASS_V45_HOSTGUARD_POWERSHELL51_PACKAGE');
   assert.equal(jea.static_tests_fail,0);
-  assert.equal(control.control_version,13);
+  assert.equal(control.control_version,14);
   assert.equal(control.z4_hostguard_install_required,false);
   assert.equal(control.z4_hostguard_human_install_result,'HOSTGUARD_JEA_INSTALLED');
   assert.equal(control.z4_hostguard_access_reconcile_required,false);
@@ -49,11 +50,6 @@ test('HostGuard prerequisites and runtime dependencies are repaired and provider
   assert.equal(control.z4_hostguard_provider_acceptance_job_id,103675841267);
   assert.equal(control.z4_hostguard_provider_acceptance,'PASS');
   assert.equal(control.z4_hostguard_provider_acceptance_evidence,'evidence/011-hostguard-provider-functional-acceptance.json');
-  assert.equal(control.state,'READY');
-  assert.equal(control.wait_reason,null);
-  assert.equal(run.state,'READY');
-  assert.equal(run.wait_reason,null);
-  assert.equal(run.revision,11);
   assert.ok(run.evidence_refs.includes('evidence/011-hostguard-provider-functional-acceptance.json'));
 
   assert.equal(access.classification,'INSTALL_CONFIRMED_FUNCTIONAL_ACCEPTANCE_BLOCKED');
@@ -100,7 +96,36 @@ test('HostGuard prerequisites and runtime dependencies are repaired and provider
   assert.equal(providerAcceptance.readback_status,'CONFIRMED');
 });
 
-test('Z4 remains isolated from business paid VM firewall runner and global execution-policy effects',()=>{
+test('Z4 advances to the next independent worker-channel gate without regressing HostGuard acceptance',()=>{
+  assert.equal(control.z4_hostguard_provider_acceptance,'PASS');
+  assert.equal(control.z4_worker_channel_runner_probe_run_id,34739679595);
+  assert.equal(control.z4_worker_channel_runner_probe_job_id,103677142640);
+  assert.equal(control.z4_worker_channel_runner_probe_result,'BLOCKED_RUNNER_KEY_ACL');
+  assert.equal(control.z4_worker_channel_runner_probe_blocker,'NETWORK_SERVICE_ACCESS_DENIED_TO_HUMAN_BREAKGLASS_SSH_KEY');
+  assert.equal(control.z4_worker_channel_guest_command_dispatched,false);
+  assert.equal(control.z4_worker_channel_admin_readonly_probe_required,true);
+  assert.equal(control.z4_worker_channel_admin_readonly_probe_script,'scripts/probe-v45-worker-channel-admin-readonly.ps1');
+  assert.equal(control.z4_worker_channel_boundary_evidence,'evidence/012-worker-channel-runner-key-boundary.json');
+  assert.equal(control.state,'WAITING_RESOURCE');
+  assert.equal(control.wait_reason,'WORKER_CHANNEL_ADMIN_READONLY_PRESTATE_REQUIRED');
+  assert.equal(run.state,'WAITING_RESOURCE');
+  assert.equal(run.wait_reason,'WORKER_CHANNEL_ADMIN_READONLY_PRESTATE_REQUIRED');
+  assert.equal(run.revision,12);
+  assert.ok(run.evidence_refs.includes('evidence/012-worker-channel-runner-key-boundary.json'));
+
+  assert.equal(workerBoundary.runner_executor,'NT AUTHORITY\\NETWORK SERVICE');
+  assert.equal(workerBoundary.runner_probe_conclusion,'failure');
+  assert.equal(workerBoundary.runner_probe_result,'BLOCKED_RUNNER_KEY_ACL');
+  assert.equal(workerBoundary.blocker,'NETWORK_SERVICE_ACCESS_DENIED_TO_HUMAN_BREAKGLASS_SSH_KEY');
+  assert.equal(workerBoundary.guest_command_dispatched,false);
+  assert.equal(workerBoundary.side_effect_classification,'SIDE_EFFECT_NOT_APPLIED');
+  assert.equal(workerBoundary.security_boundary_conclusion,'DO_NOT_GRANT_RUNNER_ACCESS_TO_HUMAN_BREAKGLASS_SSH_KEY');
+  assert.equal(workerBoundary.next_gate,'WORKER_CHANNEL_ADMIN_READONLY_PRESTATE_REQUIRED');
+  assert.equal(workerBoundary.verification_state,'VERIFIED');
+  assert.equal(workerBoundary.readback_status,'CONFIRMED');
+});
+
+test('Z4 remains isolated from business paid VM firewall runner provider and global execution-policy effects',()=>{
   assert.equal(host.business_effects,0);assert.equal(host.production_effects,0);
   assert.equal(jea.business_effects,0);assert.equal(jea.production_effects,0);
   assert.equal(access.business_project_effect,false);assert.equal(access.production_effect,false);
@@ -118,6 +143,8 @@ test('Z4 remains isolated from business paid VM firewall runner and global execu
   assert.equal(providerAcceptance.vm_mutation,false);assert.equal(providerAcceptance.public_firewall_mutation,false);
   assert.equal(providerAcceptance.runner_privilege_elevation,false);assert.equal(providerAcceptance.global_execution_policy_mutation,false);
   assert.equal(providerAcceptance.business_project_effect,false);assert.equal(providerAcceptance.production_effect,false);
+  assert.equal(workerBoundary.guest_mutation,false);assert.equal(workerBoundary.vm_mutation,false);
+  assert.equal(workerBoundary.provider_mutation,false);assert.equal(workerBoundary.business_project_effect,false);assert.equal(workerBoundary.production_effect,false);
   assert.equal(control.production_allowed,false);
   assert.equal(control.business_project_access_allowed,false);
   assert.equal(control.zero_incremental_paid_cost_required,true);
