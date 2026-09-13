@@ -6,6 +6,8 @@ const control=JSON.parse(fs.readFileSync('governance/v45/control.json','utf8'));
 const run=JSON.parse(fs.readFileSync('runs/V45-Z4-WIP-001/run.json','utf8'));
 const host=JSON.parse(fs.readFileSync('runs/V45-Z4-WIP-001/evidence/001-host-channel-qualification.json','utf8'));
 const jea=JSON.parse(fs.readFileSync('runs/V45-Z4-WIP-001/evidence/002-jea-package-validation.json','utf8'));
+const access=JSON.parse(fs.readFileSync('runs/V45-Z4-WIP-001/evidence/003-hostguard-provider-readback-blocker.json','utf8'));
+const reconcile=JSON.parse(fs.readFileSync('runs/V45-Z4-WIP-001/evidence/004-hostguard-access-reconcile-package.json','utf8'));
 
 test('Z4 records the real privilege boundary instead of pretending VM absence',()=>{
   assert.equal(host.runner_executor,'NT AUTHORITY\\NETWORK SERVICE');
@@ -15,21 +17,35 @@ test('Z4 records the real privilege boundary instead of pretending VM absence',(
   assert.equal(host.conclusion,'HOSTGUARD_REQUIRED_DO_NOT_ELEVATE_RUNNER');
 });
 
-test('JEA HostGuard candidate is validated but not falsely claimed installed',()=>{
+test('JEA HostGuard is installed and fail-closed at the validated admin caller-access reconcile gate',()=>{
   assert.equal(jea.powershell_package_result,'PASS_V45_HOSTGUARD_POWERSHELL51_PACKAGE');
   assert.equal(jea.static_tests_fail,0);
   assert.equal(jea.hostguard_endpoint_preexisting,false);
   assert.equal(control.z4_hostguard_package_validation,'PASS');
-  assert.equal(control.z4_hostguard_install_required,true);
-  assert.equal(control.wait_reason,'HOSTGUARD_JEA_ADMIN_INSTALL_REQUIRED');
-  assert.equal(run.wait_reason,'HOSTGUARD_JEA_ADMIN_INSTALL_REQUIRED');
+  assert.equal(control.z4_hostguard_install_required,false);
+  assert.equal(control.z4_hostguard_human_install_result,'HOSTGUARD_JEA_INSTALLED');
+  assert.equal(control.z4_hostguard_provider_readback,'BLOCKED_CALLER_ACCESS');
+  assert.equal(control.z4_hostguard_access_reconcile_required,true);
+  assert.equal(control.z4_hostguard_access_reconcile_package_validation,'PASS');
+  assert.equal(control.wait_reason,'HOSTGUARD_JEA_ACCESS_ADMIN_RECONCILE_REQUIRED');
+  assert.equal(run.wait_reason,'HOSTGUARD_JEA_ACCESS_ADMIN_RECONCILE_REQUIRED');
   assert.equal(run.state,'WAITING_RESOURCE');
-  assert.equal(run.revision,2);
+  assert.equal(run.revision,4);
+  assert.ok(run.evidence_refs.includes('evidence/003-hostguard-provider-readback-blocker.json'));
+  assert.ok(run.evidence_refs.includes('evidence/004-hostguard-access-reconcile-package.json'));
+  assert.equal(access.classification,'INSTALL_CONFIRMED_FUNCTIONAL_ACCEPTANCE_BLOCKED');
+  assert.equal(access.root_cause,'ACCESSMODE_LOCAL_NETWORK_DENY_PRECEDENCE_FOR_NETWORK_SERVICE_LOOPBACK');
+  assert.equal(access.provider_readback_second_result,'JEA_ACCESS_DENIED');
+  assert.equal(reconcile.provider_smoke_conclusion,'success');
+  assert.equal(reconcile.deterministic_gate,'PASS');
+  assert.equal(reconcile.next_gate,'HOSTGUARD_JEA_ACCESS_ADMIN_RECONCILE_REQUIRED');
 });
 
 test('Z4 remains isolated from business and paid effects',()=>{
   assert.equal(host.business_effects,0);assert.equal(host.production_effects,0);
   assert.equal(jea.business_effects,0);assert.equal(jea.production_effects,0);
+  assert.equal(access.business_project_effect,false);assert.equal(access.production_effect,false);
+  assert.equal(reconcile.business_project_effect,false);assert.equal(reconcile.production_effect,false);
   assert.equal(control.production_allowed,false);
   assert.equal(control.business_project_access_allowed,false);
   assert.equal(control.zero_incremental_paid_cost_required,true);

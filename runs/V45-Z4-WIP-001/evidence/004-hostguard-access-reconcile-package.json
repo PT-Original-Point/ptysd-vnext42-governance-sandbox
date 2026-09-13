@@ -1,0 +1,29 @@
+{
+  "schema":"v45.hostguard.access-reconcile-package.v1",
+  "project_id":"CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "run_id":"V45-Z4-WIP-001",
+  "host":"DESKTOP-1B6PD2P",
+  "endpoint":"PTYSD.HostGuard.V45",
+  "candidate_control_commit":"b53c5aa12ea97de8e9936f0aad9a76ab39479f44",
+  "provider_smoke_branch":"v45/z4-hostguard-access-reconcile-smoke-r1",
+  "provider_smoke_commit":"5ca2bb7d73d2fce5366978f8ecc598209ce08128",
+  "provider_smoke_run_id":34733062386,
+  "provider_smoke_job_id":103659350487,
+  "provider_smoke_conclusion":"success",
+  "deterministic_gate":"PASS",
+  "powershell51_parse":"PASS_V45_HOSTGUARD_ACCESS_RECONCILE_PARSE",
+  "reconciliation_scope":[
+    "remove AccessMode Local Network_Deny_All conflict",
+    "preserve explicit NETWORK SERVICE and Administrators SDDL",
+    "require loopback-only WinRM ListeningOn precondition",
+    "require enabled firewall profiles with default inbound Block",
+    "require zero enabled inbound firewall rules for 5985/5986",
+    "rollback endpoint access mode to Local on failure"
+  ],
+  "vm_mutation":false,
+  "firewall_mutation":false,
+  "runner_privilege_elevation":false,
+  "production_effect":false,
+  "business_project_effect":false,
+  "next_gate":"HOSTGUARD_JEA_ACCESS_ADMIN_RECONCILE_REQUIRED"
+}
