@@ -11,8 +11,12 @@ test('execution-policy reconciliation is pinned to the exact host VM and endpoin
   assert.match(text,/PTYSD\.HostGuard\.V45/);
 });
 
-test('preflight accepts only the observed Restricted JEA configuration and loopback WinRM boundary',()=>{
-  assert.match(text,/PSSC_EXECUTION_POLICY_PRESTATE_UNEXPECTED/);
+test('preflight interprets an omitted PSSC execution-policy key as effective Restricted',()=>{
+  assert.match(text,/ContainsKey\('ExecutionPolicy'\)/);
+  assert.match(text,/IsNullOrWhiteSpace\(\$executionPolicyEffective\)/);
+  assert.match(text,/\$executionPolicyEffective='Restricted'/);
+  assert.match(text,/\$executionPolicyObserved='OMITTED_DEFAULT'/);
+  assert.match(text,/PSSC_EXECUTION_POLICY_PRESTATE_UNEXPECTED observed=/);
   assert.match(text,/RestrictedRemoteServer/);
   assert.match(text,/NoLanguage/);
   assert.match(text,/RunAsVirtualAccount/);
@@ -26,6 +30,8 @@ test('preflight accepts only the observed Restricted JEA configuration and loopb
 test('candidate changes only the JEA PSSC execution policy to Bypass',()=>{
   assert.match(text,/New-PSSessionConfigurationFile[^\n]+-SessionType RestrictedRemoteServer[^\n]+-LanguageMode NoLanguage[^\n]+-ExecutionPolicy Bypass/);
   assert.match(text,/PSSC_CANDIDATE_EXECUTION_POLICY_NOT_BYPASS/);
+  assert.match(text,/ExecutionPolicyBeforeObserved=\$executionPolicyObserved/);
+  assert.match(text,/ExecutionPolicyBeforeEffective=\$executionPolicyEffective/);
   assert.match(text,/ExecutionPolicyBefore='Restricted'/);
   assert.match(text,/ExecutionPolicyAfter='Bypass'/);
   assert.match(text,/GlobalExecutionPolicyMutation=\$false/);

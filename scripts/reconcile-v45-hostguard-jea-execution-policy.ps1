@@ -76,7 +76,14 @@ if($permissionPre -match 'NETWORK AccessDenied'){throw ('NETWORK_DENY_UNEXPECTED
 $current=Import-PowerShellDataFile -Path $CanonicalPssc
 if([string]$current.SessionType -ne 'RestrictedRemoteServer'){throw "PSSC_SESSIONTYPE_INVALID actual=$($current.SessionType)"}
 if([string]$current.LanguageMode -ne 'NoLanguage'){throw "PSSC_LANGUAGEMODE_INVALID actual=$($current.LanguageMode)"}
-if([string]$current.ExecutionPolicy -ne 'Restricted'){throw "PSSC_EXECUTION_POLICY_PRESTATE_UNEXPECTED actual=$($current.ExecutionPolicy)"}
+$executionPolicyExplicit=$current.ContainsKey('ExecutionPolicy')
+$executionPolicyRaw=''
+if($executionPolicyExplicit){$executionPolicyRaw=[string]$current.ExecutionPolicy}
+$executionPolicyEffective=$executionPolicyRaw
+if([string]::IsNullOrWhiteSpace($executionPolicyEffective)){$executionPolicyEffective='Restricted'}
+$executionPolicyObserved='OMITTED_DEFAULT'
+if($executionPolicyExplicit -and -not [string]::IsNullOrWhiteSpace($executionPolicyRaw)){$executionPolicyObserved=$executionPolicyRaw}
+if($executionPolicyEffective -ne 'Restricted'){throw "PSSC_EXECUTION_POLICY_PRESTATE_UNEXPECTED observed=$executionPolicyObserved effective=$executionPolicyEffective"}
 if(-not [bool]$current.RunAsVirtualAccount){throw 'PSSC_VIRTUAL_ACCOUNT_REQUIRED'}
 if([string]$current.TranscriptDirectory -ne $TranscriptRoot){throw "PSSC_TRANSCRIPT_DIRECTORY_MISMATCH actual=$($current.TranscriptDirectory)"}
 $hyperv=(New-Object Security.Principal.SecurityIdentifier('S-1-5-32-578')).Translate([Security.Principal.NTAccount]).Value
@@ -127,6 +134,8 @@ try{
     Host=$env:COMPUTERNAME
     VmName=$vm.Name
     VmId=$vm.Id.ToString()
+    ExecutionPolicyBeforeObserved=$executionPolicyObserved
+    ExecutionPolicyBeforeEffective=$executionPolicyEffective
     ExecutionPolicyBefore='Restricted'
     ExecutionPolicyAfter='Bypass'
     SessionType='RestrictedRemoteServer'
