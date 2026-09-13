@@ -11,6 +11,7 @@ const reconcile=JSON.parse(fs.readFileSync('runs/V45-Z4-WIP-001/evidence/004-hos
 const preflight=JSON.parse(fs.readFileSync('runs/V45-Z4-WIP-001/evidence/005-hostguard-access-preflight-failure.json','utf8'));
 const fix=JSON.parse(fs.readFileSync('runs/V45-Z4-WIP-001/evidence/006-hostguard-access-preflight-fix-validation.json','utf8'));
 const executionPolicy=JSON.parse(fs.readFileSync('runs/V45-Z4-WIP-001/evidence/007-hostguard-execution-policy-blocker-and-repair-package.json','utf8'));
+const executionPolicyPrestate=JSON.parse(fs.readFileSync('runs/V45-Z4-WIP-001/evidence/008-hostguard-execution-policy-prestate-fix.json','utf8'));
 
 test('Z4 records the real privilege boundary instead of pretending VM absence',()=>{
   assert.equal(host.runner_executor,'NT AUTHORITY\\NETWORK SERVICE');
@@ -20,9 +21,10 @@ test('Z4 records the real privilege boundary instead of pretending VM absence',(
   assert.equal(host.conclusion,'HOSTGUARD_REQUIRED_DO_NOT_ELEVATE_RUNNER');
 });
 
-test('JEA caller access is reconciled and Z4 now waits only on the validated PSSC execution-policy gate',()=>{
+test('JEA caller access is reconciled and Z4 waits on the repaired PSSC execution-policy admin gate',()=>{
   assert.equal(jea.powershell_package_result,'PASS_V45_HOSTGUARD_POWERSHELL51_PACKAGE');
   assert.equal(jea.static_tests_fail,0);
+  assert.equal(control.control_version,10);
   assert.equal(control.z4_hostguard_package_validation,'PASS');
   assert.equal(control.z4_hostguard_install_required,false);
   assert.equal(control.z4_hostguard_human_install_result,'HOSTGUARD_JEA_INSTALLED');
@@ -32,12 +34,18 @@ test('JEA caller access is reconciled and Z4 now waits only on the validated PSS
   assert.equal(control.z4_hostguard_interactive_loopback_readback_result,'AUTHORIZATION_PASSED_MODULE_LOAD_BLOCKED');
   assert.equal(control.z4_hostguard_execution_policy_blocker,'PSSC_DEFAULT_EXECUTION_POLICY_RESTRICTED');
   assert.equal(control.z4_hostguard_execution_policy_reconcile_required,true);
-  assert.equal(control.z4_hostguard_execution_policy_reconcile_package_validation,'PASS');
+  assert.equal(control.z4_hostguard_execution_policy_reconcile_previous_package_validation,'SUPERSEDED_EXPLICIT_KEY_PRESTATE_ASSUMPTION');
+  assert.equal(control.z4_hostguard_execution_policy_human_attempt_result,'PSSC_EXECUTION_POLICY_PRESTATE_UNEXPECTED_EMPTY');
+  assert.equal(control.z4_hostguard_execution_policy_human_attempt_side_effect,'SIDE_EFFECT_NOT_APPLIED');
+  assert.equal(control.z4_hostguard_execution_policy_prestate_observed,'OMITTED_DEFAULT');
+  assert.equal(control.z4_hostguard_execution_policy_prestate_effective,'Restricted');
+  assert.equal(control.z4_hostguard_execution_policy_reconcile_package_validation,'PASS_OMITTED_DEFAULT_EFFECTIVE_RESTRICTED');
   assert.equal(control.wait_reason,'HOSTGUARD_JEA_EXECUTION_POLICY_ADMIN_RECONCILE_REQUIRED');
   assert.equal(run.wait_reason,'HOSTGUARD_JEA_EXECUTION_POLICY_ADMIN_RECONCILE_REQUIRED');
   assert.equal(run.state,'WAITING_RESOURCE');
-  assert.equal(run.revision,7);
+  assert.equal(run.revision,8);
   assert.ok(run.evidence_refs.includes('evidence/007-hostguard-execution-policy-blocker-and-repair-package.json'));
+  assert.ok(run.evidence_refs.includes('evidence/008-hostguard-execution-policy-prestate-fix.json'));
   assert.equal(access.classification,'INSTALL_CONFIRMED_FUNCTIONAL_ACCEPTANCE_BLOCKED');
   assert.equal(reconcile.provider_smoke_conclusion,'success');
   assert.equal(preflight.side_effect_classification,'SIDE_EFFECT_NOT_APPLIED');
@@ -45,9 +53,15 @@ test('JEA caller access is reconciled and Z4 now waits only on the validated PSS
   assert.equal(executionPolicy.human_access_reconcile_result,'HOSTGUARD_JEA_ACCESS_RECONCILED');
   assert.equal(executionPolicy.provider_readback_interactive_loopback_result,'AUTHORIZATION_PASSED_MODULE_LOAD_BLOCKED');
   assert.equal(executionPolicy.root_cause,'PSSC_DEFAULT_EXECUTION_POLICY_RESTRICTED');
-  assert.equal(executionPolicy.package_smoke_conclusion,'success');
-  assert.equal(executionPolicy.formal_smoke_conclusion,'success');
-  assert.equal(executionPolicy.next_gate,'HOSTGUARD_JEA_EXECUTION_POLICY_ADMIN_RECONCILE_REQUIRED');
+  assert.equal(executionPolicyPrestate.side_effect_classification,'SIDE_EFFECT_NOT_APPLIED');
+  assert.equal(executionPolicyPrestate.failure_before_endpoint_mutation,true);
+  assert.equal(executionPolicyPrestate.runtime_semantics_observed_omitted_key_explicit,false);
+  assert.equal(executionPolicyPrestate.runtime_semantics_observed_omitted_key_raw,'');
+  assert.equal(executionPolicyPrestate.runtime_semantics_observed_omitted_key_effective,'Restricted');
+  assert.equal(executionPolicyPrestate.runtime_semantics_observed_explicit_bypass,'Bypass');
+  assert.equal(executionPolicyPrestate.runtime_semantics_smoke_conclusion,'success');
+  assert.equal(executionPolicyPrestate.formal_smoke_conclusion,'success');
+  assert.equal(executionPolicyPrestate.next_gate,'HOSTGUARD_JEA_EXECUTION_POLICY_ADMIN_RECONCILE_REQUIRED');
 });
 
 test('Z4 remains isolated from business paid VM firewall and runner privilege effects',()=>{
@@ -63,6 +77,11 @@ test('Z4 remains isolated from business paid VM firewall and runner privilege ef
   assert.equal(executionPolicy.global_execution_policy_mutation,false);
   assert.equal(executionPolicy.business_project_effect,false);
   assert.equal(executionPolicy.production_effect,false);
+  assert.equal(executionPolicyPrestate.vm_mutation_observed,false);
+  assert.equal(executionPolicyPrestate.firewall_mutation_observed,false);
+  assert.equal(executionPolicyPrestate.runner_privilege_elevation_observed,false);
+  assert.equal(executionPolicyPrestate.business_project_effect,false);
+  assert.equal(executionPolicyPrestate.production_effect,false);
   assert.equal(control.production_allowed,false);
   assert.equal(control.business_project_access_allowed,false);
   assert.equal(control.zero_incremental_paid_cost_required,true);
