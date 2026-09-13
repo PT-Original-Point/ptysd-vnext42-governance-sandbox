@@ -1,0 +1,14 @@
+{
+  "schema":"factory.evidence.v1",
+  "evidence_id":"V45-Z4-EVIDENCE-POST-RECOVERY-STATE-SUMMARY-024",
+  "project_id":"CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "run_id":"V45-Z4-WIP-001",
+  "z4_result":"PASS",
+  "run_revision":20,
+  "run_state":"SUCCEEDED",
+  "remote_wip_commit":"8768a83495561b4c7ccbcdada04f5ab560755178",
+  "byte_exact_recovery":true,
+  "actual_rpo_data_loss_bytes":0,
+  "next_stage":"Z5",
+  "next_gate":"ZERO_INCREMENTAL_COST_MODELPROFILE_QUALIFICATION"
+}

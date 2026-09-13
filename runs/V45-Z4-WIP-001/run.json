@@ -2,10 +2,10 @@
   "schema_version":"factory.run.v1",
   "run_id":"V45-Z4-WIP-001",
   "project_id":"CHATGPT_GLOBAL_SKILL_GOVERNANCE",
-  "revision":19,
+  "revision":20,
   "command_id":"V45-Z4-COMMAND-001",
   "contract_ref":"runs/V45-Z4-WIP-001/contract.json",
-  "state":"RUNNING",
+  "state":"SUCCEEDED",
   "wait_reason":null,
   "active_task_id":"V45-Z4-REMOTE-WIP-RECOVERY-001",
   "attempt_id":null,
@@ -13,7 +13,7 @@
   "latest_checkpoint_ref":"github://PT-Original-Point/ptysd-vnext42-governance-sandbox/refs/heads/wip/v45-z4-wip-001-e0-cp001@8768a83495561b4c7ccbcdada04f5ab560755178",
   "unresolved_operation_ids":[],
   "stop_requested":false,
-  "completed_stage_receipts":["receipts/020-remote-wip-checkpoint-durable.json"],
-  "evidence_refs":["evidence/001-host-channel-qualification.json","evidence/002-jea-package-validation.json","evidence/003-hostguard-provider-readback-blocker.json","evidence/004-hostguard-access-reconcile-package.json","evidence/005-hostguard-access-preflight-failure.json","evidence/006-hostguard-access-preflight-fix-validation.json","evidence/007-hostguard-execution-policy-blocker-and-repair-package.json","evidence/008-hostguard-execution-policy-prestate-fix.json","evidence/009-hostguard-hyperv-dependency-blocker-and-repair-package.json","evidence/010-hostguard-runtime-dependencies-blocker-and-repair-package.json","evidence/011-hostguard-provider-functional-acceptance.json","evidence/012-worker-channel-runner-key-boundary.json","evidence/013-worker-channel-knownhosts-prestate-failure-and-fix.json","evidence/014-worker-channel-rdc-prestate-host-pin-unavailable.json","evidence/015-rdc-openssh-toolchain-fallback.json","evidence/016-host-vm-liveness-before-hostkey-gate.json","evidence/017-oob-hostkey-pin-and-admin-readonly-pass.json","evidence/018-restricted-worker-bridge-established.json","evidence/019-remote-wip-checkpoint-durable.json"],
+  "completed_stage_receipts":["receipts/020-remote-wip-checkpoint-durable.json","receipts/022-z4-pass.json"],
+  "evidence_refs":["evidence/001-host-channel-qualification.json","evidence/002-jea-package-validation.json","evidence/003-hostguard-provider-readback-blocker.json","evidence/004-hostguard-access-reconcile-package.json","evidence/005-hostguard-access-preflight-failure.json","evidence/006-hostguard-access-preflight-fix-validation.json","evidence/007-hostguard-execution-policy-blocker-and-repair-package.json","evidence/008-hostguard-execution-policy-prestate-fix.json","evidence/009-hostguard-hyperv-dependency-blocker-and-repair-package.json","evidence/010-hostguard-runtime-dependencies-blocker-and-repair-package.json","evidence/011-hostguard-provider-functional-acceptance.json","evidence/012-worker-channel-runner-key-boundary.json","evidence/013-worker-channel-knownhosts-prestate-failure-and-fix.json","evidence/014-worker-channel-rdc-prestate-host-pin-unavailable.json","evidence/015-rdc-openssh-toolchain-fallback.json","evidence/016-host-vm-liveness-before-hostkey-gate.json","evidence/017-oob-hostkey-pin-and-admin-readonly-pass.json","evidence/018-restricted-worker-bridge-established.json","evidence/019-remote-wip-checkpoint-durable.json","evidence/021-byte-exact-recovery-pass.json"],
   "remaining_attempts":3
 }
