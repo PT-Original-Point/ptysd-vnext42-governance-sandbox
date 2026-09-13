@@ -63,3 +63,13 @@ test('probe reports exact trust source and explicit zero-effect boundaries',()=>
   }
   assert.match(script,/PASS_V45_WORKER_CHANNEL_ADMIN_READONLY_PRESTATE/);
 });
+
+test('RDC SYSTEM context can fall back to the fixed Git for Windows OpenSSH toolchain',()=>{
+  assert.match(script,/OpenSshCandidates/);
+  assert.match(script,/WINDOWS_OPENSSH/);
+  assert.match(script,/GIT_FOR_WINDOWS_OPENSSH/);
+  assert.match(script,/C:\\Program Files\\Git\\usr\\bin\\ssh\.exe/);
+  assert.match(script,/C:\\Program Files\\Git\\usr\\bin\\ssh-keygen\.exe/);
+  assert.match(script,/OPENSSH_TOOLCHAIN_UNAVAILABLE_OR_FINGERPRINT_UNREADABLE/);
+  assert.match(script,/OpenSshToolchain=\$OpenSsh\.Name/);
+});

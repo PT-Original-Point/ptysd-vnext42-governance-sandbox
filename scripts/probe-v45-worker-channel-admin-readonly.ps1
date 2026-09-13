@@ -26,10 +26,26 @@ foreach($path in @($PrivateKey,$PublicKey)){
   if((Get-Item -LiteralPath $path -ErrorAction Stop).Length -le 0){throw "REQUIRED_SSH_MATERIAL_EMPTY path=$path"}
 }
 
-$keygen=Get-Command ssh-keygen.exe -ErrorAction Stop
-$fingerprintText=(& $keygen.Source -lf $PublicKey -E sha256 2>&1 | Out-String).Trim()
-if($LASTEXITCODE -ne 0){throw "SSH_PUBLIC_KEY_FINGERPRINT_READ_FAILED exit=$LASTEXITCODE"}
-if($fingerprintText -notmatch [regex]::Escape($ExpectedFingerprint)){throw 'SSH_PUBLIC_KEY_FINGERPRINT_MISMATCH'}
+$OpenSshCandidates=@(
+  [pscustomobject]@{Name='WINDOWS_OPENSSH';Ssh='C:\Windows\System32\OpenSSH\ssh.exe';Keygen='C:\Windows\System32\OpenSSH\ssh-keygen.exe'},
+  [pscustomobject]@{Name='GIT_FOR_WINDOWS_OPENSSH';Ssh='C:\Program Files\Git\usr\bin\ssh.exe';Keygen='C:\Program Files\Git\usr\bin\ssh-keygen.exe'}
+)
+$OpenSsh=$null
+$fingerprintText=$null
+foreach($candidate in $OpenSshCandidates){
+  if(-not(Test-Path -LiteralPath $candidate.Ssh -PathType Leaf)){continue}
+  if(-not(Test-Path -LiteralPath $candidate.Keygen -PathType Leaf)){continue}
+  $candidateFingerprint=(& $candidate.Keygen -lf $PublicKey -E sha256 2>&1 | Out-String).Trim()
+  $candidateExit=$LASTEXITCODE
+  if($candidateExit -ne 0){continue}
+  if($candidateFingerprint -notmatch [regex]::Escape($ExpectedFingerprint)){continue}
+  $OpenSsh=$candidate
+  $fingerprintText=$candidateFingerprint
+  break
+}
+if($null -eq $OpenSsh){throw 'OPENSSH_TOOLCHAIN_UNAVAILABLE_OR_FINGERPRINT_UNREADABLE'}
+$keygen=$OpenSsh.Keygen
+$ssh=$OpenSsh.Ssh
 
 $KnownHosts=$null
 $HostKeyAlias=$null
@@ -37,14 +53,14 @@ foreach($candidate in $KnownHostsCandidates){
   if(-not(Test-Path -LiteralPath $candidate -PathType Leaf)){continue}
   if((Get-Item -LiteralPath $candidate -ErrorAction Stop).Length -le 0){continue}
 
-  $null=& $keygen.Source -F $ExpectedGuestIp -f $candidate 2>$null
+  $null=& $keygen -F $ExpectedGuestIp -f $candidate 2>$null
   if($LASTEXITCODE -eq 0){
     $KnownHosts=$candidate
     $HostKeyAlias=$null
     break
   }
 
-  $null=& $keygen.Source -F $ExpectedGuestHostname -f $candidate 2>$null
+  $null=& $keygen -F $ExpectedGuestHostname -f $candidate 2>$null
   if($LASTEXITCODE -eq 0){
     $KnownHosts=$candidate
     $HostKeyAlias=$ExpectedGuestHostname
@@ -78,7 +94,6 @@ if command -v ptysd-workerctl >/dev/null 2>&1; then printf 'WORKERCTL='; command
 if command -v loginctl >/dev/null 2>&1; then printf 'LINGER='; loginctl show-user ptysd -p Linger --value 2>/dev/null || echo UNKNOWN; else echo 'LINGER=UNKNOWN'; fi
 '@
 
-$ssh=Get-Command ssh.exe -ErrorAction Stop
 $sshArgs=@(
   '-4',
   '-o','BatchMode=yes',
@@ -99,7 +114,7 @@ $sshArgs+=@(
   $remote
 )
 
-$raw=@(& $ssh.Source @sshArgs 2>&1)
+$raw=@(& $ssh @sshArgs 2>&1)
 $exitCode=$LASTEXITCODE
 if($exitCode -ne 0){
   $safeError=($raw | ForEach-Object {[string]$_}) -join ' | '
@@ -139,6 +154,9 @@ if([string]$values['BOOT_ID'] -notmatch '^[0-9a-fA-F-]{36}$'){throw "GUEST_BOOT_
   Workerctl=$values['WORKERCTL']
   Linger=$values['LINGER']
   SshPublicKeyFingerprint=$ExpectedFingerprint
+  OpenSshToolchain=$OpenSsh.Name
+  SshBinary=$ssh
+  SshKeygenBinary=$keygen
   KnownHostsSource=$KnownHosts
   HostKeyAlias=$HostKeyAlias
   KnownHostsSha256=$knownHostsHash
