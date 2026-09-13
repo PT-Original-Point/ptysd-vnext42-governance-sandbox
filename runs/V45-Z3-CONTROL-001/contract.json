@@ -1,0 +1,56 @@
+{
+  "schema_version": "factory.contract.v1",
+  "contract_id": "V45-Z3-CONTRACT-001",
+  "task_id": "V45-Z3-DURABLE-INTAKE-CAS-001",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "goal": "Prove durable command dedupe, provider ref preservation, stale concurrent control-write rejection, and crash-after-acceptance recovery without business effects.",
+  "include": [
+    "synthetic command dedupe",
+    "governance-only control ref conflict probe",
+    "provider ref readback",
+    "fresh-session recovery from remote accepted command"
+  ],
+  "exclude": [
+    "Production",
+    "business Projects",
+    "business repositories",
+    "real model execution",
+    "paid resources",
+    "destructive history rewrite",
+    "provider business writes"
+  ],
+  "affected_surfaces": [
+    "CONTROL_REPO_GOVERNANCE_SANDBOX"
+  ],
+  "requirements": [
+    "same command_id plus same payload is idempotent",
+    "same command_id plus different payload is rejected",
+    "two sibling stale writers cannot both advance one test ref",
+    "accepted command and provider refs remain recoverable from GitHub after controller loss"
+  ],
+  "acceptance": [
+    "deterministic command dedupe tests pass",
+    "provider conflict probe accepts one sibling and rejects the stale sibling",
+    "provider same-source readback confirms winning ref and rejected writer did not overwrite it",
+    "remote accepted command can be recovered without local state or manual handoff"
+  ],
+  "dependencies": [
+    "V45-Z2-SYNTHETIC-001:SUCCEEDED"
+  ],
+  "risk": "LOW_SYNTHETIC_GOVERNANCE_ONLY",
+  "allowed_tools": [
+    "GitHub connector on repo_id=1352411536",
+    "deterministic Node tests"
+  ],
+  "allowed_effects": [
+    "create governance-only synthetic test refs/commits/issues in repo_id=1352411536"
+  ],
+  "model_profile_ref": "SYNTHETIC_NOOP",
+  "max_attempts": 3,
+  "time_budget_minutes": 50,
+  "mission_revision_id": "20260913T004710+0800",
+  "mission_hash": "sha256:8bbfb11d00690b46dfd872f9297ea4c66253f499878a2a6a160cecd51199b737",
+  "policy_revision_id": "20260913T010957+0800-EP66",
+  "policy_hash": "sha256:25ab690abfe8ddce953654f67355c01ea353343f337f96c8b3078bdafe7c77c2",
+  "contract_hash": "sha256:9ec2aca7c49084fef2e5547dcbc3385652188df53dd7995fee4ea13ff07d0405"
+}
