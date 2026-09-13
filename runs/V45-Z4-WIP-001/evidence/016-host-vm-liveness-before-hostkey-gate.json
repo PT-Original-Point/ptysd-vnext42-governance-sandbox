@@ -1,0 +1,22 @@
+{
+  "schema":"factory.evidence.v1",
+  "evidence_id":"V45-Z4-EVIDENCE-HOST-VM-LIVENESS-BEFORE-HOSTKEY-GATE-016",
+  "project_id":"CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "run_id":"V45-Z4-WIP-001",
+  "source_type":"RDC_DIRECT_HOST_READBACK",
+  "source_commit":"d01c4aa0a4ea0ecc17dabc1e87b73c5c1a0f6798",
+  "observed_at_utc":"2026-09-13T09:36:50.0395561Z",
+  "rdc_device_id":"2b8d674b-4166-4efc-9c64-0667fecba29e",
+  "host":"DESKTOP-1B6PD2P",
+  "vm_name":"PTYSD-WORKER-01",
+  "vm_id":"881f7819-baa9-4a4e-8cca-8f6f18fb89a9",
+  "vm_state":"Running",
+  "expected_guest_ip":"172.31.253.10",
+  "tcp22_reachable":true,
+  "hyperv_reported_adapter_ips":[],
+  "trusted_host_pin_available":false,
+  "guest_command_dispatched":false,
+  "next_gate":"OUT_OF_BAND_GUEST_SSH_HOST_KEY_ATTESTATION_REQUIRED",
+  "readback_effects":{"guest_mutation":false,"vm_mutation":false,"provider_mutation":false,"business_project_effect":false,"production_effect":false},
+  "verification_state":"VERIFIED"
+}
