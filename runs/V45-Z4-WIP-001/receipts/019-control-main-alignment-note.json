@@ -1,0 +1,11 @@
+{
+  "schema":"factory.receipt.v1",
+  "receipt_id":"V45-Z4-RECEIPT-CONTROL-MAIN-ALIGNMENT-019",
+  "project_id":"CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "run_id":"V45-Z4-WIP-001",
+  "reason":"main and control received identical revision-18 materialization through separate provider commits; reconcile to one shared merge head",
+  "control_premerge_head":"d591f66211dcc80a14741c0c971cb2ac782e6124",
+  "main_premerge_head":"47153b6d0a86a2b1a998da954c95d5a3b4341801",
+  "premerge_tree_sha":"218d01818d4d15d03cac6847a1b3afb68ddbc262",
+  "content_equivalent":true
+}
