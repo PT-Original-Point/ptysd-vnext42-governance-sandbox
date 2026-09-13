@@ -1,0 +1,17 @@
+{
+  "schema":"factory.evidence.v1",
+  "evidence_id":"V45-Z6-EVIDENCE-ENTRY-PRESTATE-001",
+  "project_id":"CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "run_id":"V45-Z6-SAFETY-001",
+  "source_control_commit":"eb25f670ca1be9597af27e3aab88a100f2be0c11",
+  "z5_result":"PASS",
+  "z5_receipt":"runs/V45-Z5-MODEL-001/receipts/010-z5-pass.json",
+  "attempt_epoch":1,
+  "synthetic_only":true,
+  "production_allowed":false,
+  "business_project_access_allowed":false,
+  "real_provider_write_allowed":false,
+  "provider_write_credential_on_worker_allowed":false,
+  "next_atomic_gate":"Z6A_STOP_DEATH",
+  "verification_state":"READY"
+}

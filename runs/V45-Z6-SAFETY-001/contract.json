@@ -1,0 +1,23 @@
+{
+  "schema_version":"factory.contract.v1",
+  "contract_id":"V45-Z6-CONTRACT-001",
+  "task_id":"V45-Z6-STOP-ZOMBIE-ACK-001",
+  "project_id":"CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "goal":"Prove bounded STOP/zombie/epoch/ACK-loss safety using synthetic worker and provider only.",
+  "include":["separate STOP intake","persisted stop receipt before termination","new-effect permit block after STOP","four death proofs for the exercised process-group path","stale epoch rejection before mutations","synthetic provider independent effect counter","ACK-loss exact provider readback","same operation identity reconciliation"],
+  "exclude":["Production","business Projects","business repositories","paid APIs","real provider writes","distributed lock","general workflow runtime","container installation solely for test","Codex"],
+  "affected_surfaces":["CONTROL_REPO_GOVERNANCE_SANDBOX","PTYSD-WORKER-01_SYNTHETIC_ONLY","LOCALHOST_SYNTHETIC_PROVIDER_ONLY"],
+  "requirements":["Z5 PASS","one active controller","no OpenCode process needed","no provider write credential on worker","STOP not queued behind long worker","stale epoch cannot mutate progress/checkpoint/effect state","ACK loss reconciled by provider readback without redispatch"],
+  "acceptance":["STOP latency <=60 seconds","main PID absent","child PID absent","process group empty","synthetic worker listener closed","post-STOP effect permit rejected","epoch 0 rejected while current epoch is 1 with state hashes unchanged","provider applies exact operation once","first provider ACK intentionally discarded","exact provider readback confirms applied effect_count=1","same operation with different payload rejected","all core subtests PASS before Z7"],
+  "subtests":[{"id":"Z6A","name":"STOP_DEATH","timebox_minutes":40},{"id":"Z6B","name":"STALE_EPOCH","timebox_minutes":30},{"id":"Z6C","name":"ACK_LOSS_EXACTLY_ONCE","timebox_minutes":40}],
+  "dependencies":["V45-Z5-MODEL-001:SUCCEEDED"],
+  "risk":"LOW_SYNTHETIC_SAFETY_VALIDATION",
+  "allowed_tools":["GitHub connector on repo_id=1352411536","Remote Desktop Commander on DESKTOP-1B6PD2P","existing PTYSD-WORKER-01","Python standard library on worker"],
+  "allowed_effects":["governance-only control/evidence writes","synthetic files/processes/listeners under ptysd home and localhost on approved worker VM"],
+  "max_attempts":3,
+  "time_budget_minutes":110,
+  "mission_revision_id":"20260913T004710+0800",
+  "mission_hash":"sha256:8bbfb11d00690b46dfd872f9297ea4c66253f499878a2a6a160cecd51199b737",
+  "policy_revision_id":"20260913T010957+0800-EP66",
+  "policy_hash":"sha256:25ab690abfe8ddce953654f67355c01ea353343f337f96c8b3078bdafe7c77c2"
+}
