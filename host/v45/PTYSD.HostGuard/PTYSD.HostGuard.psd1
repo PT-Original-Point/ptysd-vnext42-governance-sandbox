@@ -7,6 +7,7 @@
   Copyright='(c) PTYSD Governance'
   Description='VNEXT4.5 least-privilege HostGuard for one fixed Hyper-V worker VM.'
   PowerShellVersion='5.1'
+  RequiredModules=@('Hyper-V')
   FunctionsToExport=@('Get-PTYSDHostGuardStatus','Invoke-PTYSDHostPrepare','Start-PTYSDWorkerVm')
   CmdletsToExport=@()
   VariablesToExport=@()
