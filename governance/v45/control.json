@@ -1,6 +1,6 @@
 {
   "schema":"PTYSD_GITHUB_ACTIONS_BOUNDED_V1",
-  "control_version":20,
+  "control_version":21,
   "project_id":"CHATGPT_GLOBAL_SKILL_GOVERNANCE",
   "mission_revision_id":"20260913T004710+0800",
   "mission_hash":"sha256:8bbfb11d00690b46dfd872f9297ea4c66253f499878a2a6a160cecd51199b737",
@@ -55,6 +55,7 @@
   "z5_pre_auth_fail_closed_validation":"PASS_EXIT44_NO_WORKSPACE_NO_INFERENCE",
   "z5_direct_credential_surface_audit":"NO_EXISTING_CREDENTIAL_CHAT_CAPABILITY_EXHAUSTED",
   "z5_human_gate":"OPEN_CODE_ZEN_API_KEY_BOOTSTRAP_REQUIRED",
+  "z5_human_gate_helper":"READY_ON_WINDOWS_DESKTOP_AND_CANONICAL_CONTROL_DIR",
   "z5_secret_handling":"DO_NOT_PASTE_API_KEY_IN_CHAT",
   "z5_known_upstream_issue":"anomalyco/opencode#47192_OPEN_API_KEY_PATH_HTTP500_RISK",
   "z5_inference_dispatch_allowed":false,
