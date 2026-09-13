@@ -36,3 +36,8 @@ test('normal runner is not promoted to Hyper-V Administrators',()=>{
   assert.match(installText,/RunAsVirtualAccount/);
   assert.match(installText,/RunAsVirtualAccountGroups/);
 });
+
+test('staged module wildcard copy expands by Path and never LiteralPath',()=>{
+  assert.ok(installText.includes("Copy-Item -Path (Join-Path $stage '*') -Destination $ModuleTarget -Recurse -Force"));
+  assert.equal(installText.includes("Copy-Item -LiteralPath (Join-Path $stage '*')"),false);
+});
