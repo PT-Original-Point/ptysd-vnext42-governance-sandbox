@@ -1,0 +1,10 @@
+{
+  "schema":"factory.receipt.v1",
+  "receipt_id":"V45-Z4-RECEIPT-REMOTE-WIP-CHECKPOINT-DURABLE-020",
+  "project_id":"CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "run_id":"V45-Z4-WIP-001",
+  "attempt_epoch":0,
+  "checkpoint_id":"checkpoint-001",
+  "remote_ref":"github://PT-Original-Point/ptysd-vnext42-governance-sandbox/refs/heads/wip/v45-z4-wip-001-e0-cp001@8768a83495561b4c7ccbcdada04f5ab560755178",
+  "result":"CHECKPOINT_DURABLE"
+}

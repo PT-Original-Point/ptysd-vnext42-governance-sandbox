@@ -1,0 +1,23 @@
+{
+  "schema":"factory.evidence.v1",
+  "evidence_id":"V45-Z4-EVIDENCE-REMOTE-WIP-CHECKPOINT-DURABLE-019",
+  "project_id":"CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "run_id":"V45-Z4-WIP-001",
+  "attempt_epoch":0,
+  "source_control_commit":"fed571412c17c96947395c6342658a87f4185107",
+  "remote_wip_ref":"refs/heads/wip/v45-z4-wip-001-e0-cp001",
+  "remote_wip_commit":"8768a83495561b4c7ccbcdada04f5ab560755178",
+  "remote_wip_tree":"2d4cf94e15bda94e09515869eaadbec4078a6b1f",
+  "manifest_blob_sha":"663c486b69e23ef50a193301e62dce16b3bb1883",
+  "payload_blob_sha":"4f78f59fe4d3b459ee6f48192cc8465387053961",
+  "payload_sha256":"8ef994f99ef2ca847bef1e24ff112f5e43ec929334869801e34d7bb3db3f7a34",
+  "payload_bytes":51,
+  "provider_ref_readback_match":true,
+  "provider_manifest_readback_match":true,
+  "provider_payload_readback_match":true,
+  "checkpoint_confirmed_utc":"2026-09-13T12:05:13.8259964Z",
+  "worker_dispatch_utc":"2026-09-13T12:00:32.677Z",
+  "worker_return_utc":"2026-09-13T12:00:32.993Z",
+  "worker_had_provider_write_credential":false,
+  "verification_state":"CHECKPOINT_DURABLE"
+}
