@@ -1,0 +1,22 @@
+{
+  "schema": "factory.receipt.v1",
+  "event_id": "V45-Z3-CAS-STALE-WRITER-REJECTED-001",
+  "run_id": "V45-Z3-CONTROL-001",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "event_type": "CAS_STALE_SIBLING_REJECTED",
+  "probe_branch": "v45/z3-cas-probe",
+  "expected_parent": "b2f11bd55fd3150b91423d82212820302a68e8b1",
+  "writer_a_commit": "70e360ccad13e18d55e4fac91d7cd447b8b086f2",
+  "writer_b_commit": "4e40772b288dbe2a58f501157b5043bb4b083a30",
+  "writer_a_update": "SUCCESS",
+  "writer_b_update": "REJECTED_422_NON_FAST_FORWARD",
+  "final_ref_sha": "70e360ccad13e18d55e4fac91d7cd447b8b086f2",
+  "final_blob_sha": "00fac8340067b44e1c7032fbaa3817537a829926",
+  "final_writer": "WRITER_A",
+  "final_value": "A_WINS",
+  "same_source_readback": "CONFIRMED",
+  "fence_semantics": "NON_FORCE_FAST_FORWARD_STALE_SIBLING_FENCE",
+  "limitation": "The connected update_ref surface does not expose an exact-old-ref CAS parameter; this test proves stale sibling overwrite rejection for two candidates from the same expected parent under force=false.",
+  "business_effects": 0,
+  "production_effects": 0
+}
