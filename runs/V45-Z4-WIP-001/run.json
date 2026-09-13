@@ -2,7 +2,7 @@
   "schema_version":"factory.run.v1",
   "run_id":"V45-Z4-WIP-001",
   "project_id":"CHATGPT_GLOBAL_SKILL_GOVERNANCE",
-  "revision":12,
+  "revision":13,
   "command_id":"V45-Z4-COMMAND-001",
   "contract_ref":"runs/V45-Z4-WIP-001/contract.json",
   "state":"WAITING_RESOURCE",
@@ -14,6 +14,6 @@
   "unresolved_operation_ids":[],
   "stop_requested":false,
   "completed_stage_receipts":[],
-  "evidence_refs":["evidence/001-host-channel-qualification.json","evidence/002-jea-package-validation.json","evidence/003-hostguard-provider-readback-blocker.json","evidence/004-hostguard-access-reconcile-package.json","evidence/005-hostguard-access-preflight-failure.json","evidence/006-hostguard-access-preflight-fix-validation.json","evidence/007-hostguard-execution-policy-blocker-and-repair-package.json","evidence/008-hostguard-execution-policy-prestate-fix.json","evidence/009-hostguard-hyperv-dependency-blocker-and-repair-package.json","evidence/010-hostguard-runtime-dependencies-blocker-and-repair-package.json","evidence/011-hostguard-provider-functional-acceptance.json","evidence/012-worker-channel-runner-key-boundary.json"],
+  "evidence_refs":["evidence/001-host-channel-qualification.json","evidence/002-jea-package-validation.json","evidence/003-hostguard-provider-readback-blocker.json","evidence/004-hostguard-access-reconcile-package.json","evidence/005-hostguard-access-preflight-failure.json","evidence/006-hostguard-access-preflight-fix-validation.json","evidence/007-hostguard-execution-policy-blocker-and-repair-package.json","evidence/008-hostguard-execution-policy-prestate-fix.json","evidence/009-hostguard-hyperv-dependency-blocker-and-repair-package.json","evidence/010-hostguard-runtime-dependencies-blocker-and-repair-package.json","evidence/011-hostguard-provider-functional-acceptance.json","evidence/012-worker-channel-runner-key-boundary.json","evidence/013-worker-channel-knownhosts-prestate-failure-and-fix.json"],
   "remaining_attempts":3
 }
