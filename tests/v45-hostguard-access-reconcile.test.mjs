@@ -11,10 +11,18 @@ test('reconciliation is pinned to the exact HostGuard host, VM and endpoint',()=
   assert.match(text,/PTYSD\.HostGuard\.V45/);
 });
 
+test('reconciliation reads listener through the WSMan resource API, not a nonexistent ListeningOn child path',()=>{
+  assert.match(text,/Get-WSManInstance -ResourceURI 'winrm\/config\/listener' -Enumerate/);
+  assert.match(text,/\$listener\.ListeningOn/);
+  assert.equal(text.includes("$listener.PSPath+'\\ListeningOn'"),false);
+  assert.equal(text.includes('Get-Item -Path ($listener.PSPath'),false);
+});
+
 test('reconciliation requires loopback-only WSMan listener and blocked inbound firewall',()=>{
-  assert.match(text,/Address=IP:127\.0\.0\.1/);
+  assert.match(text,/IP:127\.0\.0\.1/);
   assert.match(text,/WINRM_LISTENING_ON_NOT_LOOPBACK_ONLY/);
   assert.match(text,/127\.0\.0\.1','::1'/);
+  assert.match(text,/WINRM_LISTENER_PORT_INVALID/);
   assert.match(text,/FIREWALL_DEFAULT_INBOUND_NOT_BLOCKED/);
   assert.match(text,/WINRM_PORT_INBOUND_RULE_PRESENT_MANUAL_REVIEW/);
 });
