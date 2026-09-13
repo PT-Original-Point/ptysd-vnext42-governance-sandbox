@@ -28,7 +28,13 @@ foreach($r in $inbound){
 }
 if($enabledRules.Count -ne 0){throw 'WINRM_INBOUND_FIREWALL_RULE_PRESENT'}
 
-$status=Invoke-Command -ComputerName localhost -ConfigurationName $Endpoint -ScriptBlock { Get-PTYSDHostGuardStatus } -ErrorAction Stop
+$session=$null
+try{
+  $session=New-PSSession -ComputerName localhost -ConfigurationName $Endpoint -EnableNetworkAccess -ErrorAction Stop
+  $status=Invoke-Command -Session $session -ScriptBlock { Get-PTYSDHostGuardStatus } -ErrorAction Stop
+} finally {
+  if($null -ne $session){Remove-PSSession -Session $session -ErrorAction SilentlyContinue}
+}
 if($status.schema -ne 'v45.hostguard.status.v1'){throw "STATUS_SCHEMA_MISMATCH actual=$($status.schema)"}
 if($status.host -ne $ExpectedHost){throw "STATUS_HOST_MISMATCH actual=$($status.host)"}
 if($status.vm_name -ne $ExpectedVmName){throw "STATUS_VM_NAME_MISMATCH actual=$($status.vm_name)"}
@@ -38,6 +44,7 @@ if(([string]$status.vm_id).ToLowerInvariant() -ne $ExpectedVmId){throw "STATUS_V
   Result='HOSTGUARD_PROVIDER_READBACK_PASS'
   Caller=$caller
   Endpoint=$Endpoint
+  LoopbackToken='InteractiveViaEnableNetworkAccess'
   WinRM=$svc.Status.ToString()
   HttpSysListenAddresses=@($listen5985|ForEach-Object{$_.LocalAddress}|Sort-Object -Unique)
   InboundFirewallRules5985Or5986=0
