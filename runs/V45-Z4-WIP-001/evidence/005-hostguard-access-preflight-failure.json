@@ -1,0 +1,21 @@
+{
+  "schema":"v45.hostguard.access-preflight.v1",
+  "project_id":"CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "run_id":"V45-Z4-WIP-001",
+  "host":"DESKTOP-1B6PD2P",
+  "human_reconcile_source_commit":"dcbc2aae490b2e2e3c210859f27d7cff73de5764",
+  "human_result":"WSMAN_PROVIDER_LISTENINGON_CHILD_NOT_FOUND",
+  "failed_before_endpoint_mutation":true,
+  "side_effect_classification":"SIDE_EFFECT_NOT_APPLIED",
+  "set_pssessionconfiguration_dispatched":false,
+  "winrm_restart_dispatched":false,
+  "vm_mutation_observed":false,
+  "firewall_mutation_observed":false,
+  "runner_privilege_elevation_observed":false,
+  "root_cause":"LISTENINGON_IS_WSMAN_LISTENER_RESOURCE_PROPERTY_NOT_A_PROVIDER_CHILD_PATH",
+  "official_read_api":"Get-WSManInstance -ResourceURI winrm/config/listener",
+  "runner_readonly_probe_run_id":34733972479,
+  "runner_readonly_probe_job_id":103661900288,
+  "runner_readonly_probe_result":"ACCESS_DENIED_EXPECTED_PRIVILEGE_BOUNDARY",
+  "next_gate":"HOSTGUARD_JEA_ACCESS_PREFLIGHT_FIX_REQUIRED"
+}
