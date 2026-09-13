@@ -1,0 +1,21 @@
+{
+  "schema":"factory.remote_wip_manifest.v1",
+  "project_id":"CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "run_id":"V45-Z4-WIP-001",
+  "attempt_epoch":0,
+  "checkpoint_id":"checkpoint-001",
+  "source_control_commit":"fed571412c17c96947395c6342658a87f4185107",
+  "guest":"ptysd@ptysd-worker-01",
+  "worker_pid":1905,
+  "payload_path":"/home/ptysd/.local/state/ptysd-v45-z4/workspace/payload.txt",
+  "payload_sha256":"8ef994f99ef2ca847bef1e24ff112f5e43ec929334869801e34d7bb3db3f7a34",
+  "payload_bytes":51,
+  "worker_manifest_sha256":"8ef994f99ef2ca847bef1e24ff112f5e43ec929334869801e34d7bb3db3f7a34",
+  "trusted_exporter_sha256":"8ef994f99ef2ca847bef1e24ff112f5e43ec929334869801e34d7bb3db3f7a34",
+  "worker_alive_at_manifest":true,
+  "worker_dispatch_utc":"2026-09-13T12:00:32.677Z",
+  "worker_return_utc":"2026-09-13T12:00:32.993Z",
+  "trusted_export_captured_utc":"2026-09-13T12:02:49.6950076Z",
+  "coherent_snapshot":true,
+  "provider_write_credential_on_worker":false
+}
