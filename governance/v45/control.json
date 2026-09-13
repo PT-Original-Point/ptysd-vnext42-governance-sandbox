@@ -1,6 +1,6 @@
 {
   "schema":"PTYSD_GITHUB_ACTIONS_BOUNDED_V1",
-  "control_version":18,
+  "control_version":19,
   "project_id":"CHATGPT_GLOBAL_SKILL_GOVERNANCE",
   "mission_revision_id":"20260913T004710+0800",
   "mission_hash":"sha256:8bbfb11d00690b46dfd872f9297ea4c66253f499878a2a6a160cecd51199b737",
@@ -52,6 +52,7 @@
   "z5_locked_config_resolution":"PASS_GRANULAR_EDIT_ONLY",
   "z5_post_auth_runner_ref":"scripts/z5-run-opencode-synthetic.sh",
   "z5_post_auth_runner_sha256":"9524ea42f5352fe4d709dbd220041369c6fc3f7240b2cb4dbc118829ac95a1f3",
+  "z5_pre_auth_fail_closed_validation":"PASS_EXIT44_NO_WORKSPACE_NO_INFERENCE",
   "z5_known_upstream_issue":"anomalyco/opencode#47192_OPEN_API_KEY_PATH_HTTP500_RISK",
   "z5_inference_dispatch_allowed":false,
   "hosted_runner_allowed":false,

@@ -1,0 +1,21 @@
+{
+  "schema":"factory.evidence.v1",
+  "evidence_id":"V45-Z5-EVIDENCE-PREAUTH-FAIL-CLOSED-PASS-005",
+  "project_id":"CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "run_id":"V45-Z5-MODEL-001",
+  "source_control_commit":"501260978d794a7814a76c8f17bb2d4506f81b0d",
+  "observed_utc":"2026-09-13T14:34:25.2321984Z",
+  "runner_ref":"scripts/z5-run-opencode-synthetic.sh",
+  "runner_sha256":"9524ea42f5352fe4d709dbd220041369c6fc3f7240b2cb4dbc118829ac95a1f3",
+  "execution_mode":"STREAMED_TO_GUEST_SH_WITHOUT_PERSISTING_SCRIPT",
+  "expected_gate":"OPENCODE_ZEN_AUTH_REQUIRED",
+  "observed_exit_code":44,
+  "observed_marker":"Z5_FAIL=OPENCODE_ZEN_AUTH_REQUIRED",
+  "z5_base_exists_after":false,
+  "z5_workspace_exists_after":false,
+  "inference_dispatched":false,
+  "provider_request_dispatched":false,
+  "guest_workspace_mutation":false,
+  "result":"PASS_FAIL_CLOSED_BEFORE_WORKSPACE_OR_INFERENCE",
+  "next_gate":"OPEN_CODE_ZEN_API_KEY_REQUIRED"
+}

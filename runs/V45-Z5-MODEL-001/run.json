@@ -2,7 +2,7 @@
   "schema_version":"factory.run.v1",
   "run_id":"V45-Z5-MODEL-001",
   "project_id":"CHATGPT_GLOBAL_SKILL_GOVERNANCE",
-  "revision":4,
+  "revision":5,
   "command_id":"V45-Z5-COMMAND-001",
   "contract_ref":"runs/V45-Z5-MODEL-001/contract.json",
   "state":"WAITING_RESOURCE",
@@ -14,6 +14,6 @@
   "unresolved_operation_ids":[],
   "stop_requested":false,
   "completed_stage_receipts":[],
-  "evidence_refs":["evidence/001-modelprofile-prequalification.json","evidence/002-synthetic-workspace-prepared-host-only.json","evidence/003-opencode-config-resolution-pass.json","evidence/004-zero-cost-runtime-guard-ready.json"],
+  "evidence_refs":["evidence/001-modelprofile-prequalification.json","evidence/002-synthetic-workspace-prepared-host-only.json","evidence/003-opencode-config-resolution-pass.json","evidence/004-zero-cost-runtime-guard-ready.json","evidence/005-preauth-fail-closed-pass.json"],
   "remaining_attempts":3
 }
