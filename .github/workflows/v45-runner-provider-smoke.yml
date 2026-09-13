@@ -45,3 +45,6 @@ jobs:
       - name: Qualify Z4 worker channel read-only
         shell: cmd
         run: powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/qualify-v45-z4-host.ps1
+      - name: Qualify JEA HostGuard prerequisites read-only
+        shell: cmd
+        run: powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/qualify-v45-jea-prereq.ps1
