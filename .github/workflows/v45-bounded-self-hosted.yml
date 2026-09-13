@@ -29,9 +29,14 @@ jobs:
         with:
           persist-credentials: false
           fetch-depth: 1
+      - name: Provision Node 24
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: '24'
+          cache: ''
       - name: Verify bounded V4.5 control contract
-        shell: pwsh
+        shell: cmd
         run: node scripts/verify-v45-bounded.mjs
       - name: Run deterministic V4.5 bounded tests
-        shell: pwsh
+        shell: cmd
         run: node --test tests/v45-bounded.test.mjs tests/v45-state-core.test.mjs tests/v45-runner-bootstrap.test.mjs

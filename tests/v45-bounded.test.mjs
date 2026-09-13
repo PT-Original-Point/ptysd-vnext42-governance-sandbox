@@ -5,13 +5,12 @@ import crypto from 'node:crypto';
 
 const control = JSON.parse(fs.readFileSync('governance/v45/control.json', 'utf8'));
 const run = JSON.parse(fs.readFileSync('runs/V45-Z2-SYNTHETIC-001/run.json', 'utf8'));
+const receipt = JSON.parse(fs.readFileSync('runs/V45-Z2-SYNTHETIC-001/receipts/007-runner-provider-smoke-pass.json', 'utf8'));
 const contract = JSON.parse(fs.readFileSync('runs/V45-Z2-SYNTHETIC-001/contract.json', 'utf8'));
 
 function canonical(value) {
   if (Array.isArray(value)) return value.map(canonical);
-  if (value && typeof value === 'object') {
-    return Object.fromEntries(Object.keys(value).sort().map(k => [k, canonical(value[k])]));
-  }
+  if (value && typeof value === 'object') return Object.fromEntries(Object.keys(value).sort().map(k => [k, canonical(value[k])]));
   return value;
 }
 
@@ -22,13 +21,17 @@ function contractHash(c) {
   return 'sha256:' + crypto.createHash('sha256').update(raw).digest('hex');
 }
 
-test('Z2 control is fail-closed until the approved self-hosted runner exists', () => {
-  assert.equal(control.state, 'WAITING_RESOURCE');
-  assert.equal(control.wait_reason, 'SELF_HOSTED_RUNNER_NOT_REGISTERED');
-  assert.equal(run.state, 'WAITING_RESOURCE');
-  assert.equal(run.attempt_epoch, 0);
-  assert.equal(run.active_task_id, null);
-  assert.deepEqual(run.unresolved_operation_ids, []);
+test('Z2 runner acceptance is provider-proven and the control advances to Z3', () => {
+  assert.equal(run.state, 'SUCCEEDED');
+  assert.equal(run.revision, 4);
+  assert.equal(control.state, 'READY');
+  assert.equal(control.active_run_id, 'V45-Z3-CONTROL-001');
+  assert.equal(control.runner_acceptance, 'PASS');
+  assert.equal(receipt.conclusion, 'success');
+  assert.equal(receipt.workflow_run_id, 34728846059);
+  assert.equal(receipt.runner_name, 'PTYSD-V45-CONTROL-01');
+  assert.equal(receipt.deterministic_tests, 12);
+  assert.equal(receipt.deterministic_failures, 0);
 });
 
 test('Z2 contract is synthetic and cannot create external effects', () => {

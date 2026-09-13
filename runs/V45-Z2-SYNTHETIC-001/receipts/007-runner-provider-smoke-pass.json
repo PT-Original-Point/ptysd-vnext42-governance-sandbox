@@ -1,0 +1,29 @@
+{
+  "schema": "factory.receipt.v1",
+  "event_id": "V45-Z2-RUNNER-PROVIDER-SMOKE-PASS-001",
+  "run_id": "V45-Z2-SYNTHETIC-001",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "event_type": "RUNNER_PROVIDER_SMOKE_PASS",
+  "provider": "GitHub Actions",
+  "workflow_run_id": 34728846059,
+  "job_id": 103647801665,
+  "head_branch": "v45/runner-smoke-z2",
+  "head_sha": "f48c4ed379076aef97d422ec84b4063fe53ea3d6",
+  "conclusion": "success",
+  "runner_name": "PTYSD-V45-CONTROL-01",
+  "runner_version": "2.337.0",
+  "machine_name": "DESKTOP-1B6PD2P",
+  "token_permissions": [
+    "contents:read",
+    "metadata:read"
+  ],
+  "checkout_action_sha": "11d5960a326750d5838078e36cf38b85af677262",
+  "setup_node_action_sha": "820762786026740c76f36085b0efc47a31fe5020",
+  "node_version": "24.21.0",
+  "deterministic_tests": 12,
+  "deterministic_failures": 0,
+  "hosted_runner_fallback": false,
+  "production_writes": 0,
+  "business_project_writes": 0,
+  "paid_resource_creations": 0
+}
