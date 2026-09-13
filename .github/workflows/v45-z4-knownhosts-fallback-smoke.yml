@@ -1,0 +1,39 @@
+name: VNEXT4.5 Z4 known-host fallback smoke
+
+on:
+  push:
+    branches:
+      - v45/z4-knownhosts-fallback-fix
+
+permissions:
+  contents: read
+
+jobs:
+  validate-knownhost-fallback:
+    runs-on: [self-hosted, windows, ptysd-governance-v45]
+    timeout-minutes: 20
+    steps:
+      - name: Verify exact runner identity
+        shell: cmd
+        run: |
+          if not "%RUNNER_NAME%"=="PTYSD-V45-CONTROL-01" exit /b 11
+          if /I not "%RUNNER_OS%"=="Windows" exit /b 12
+      - name: Checkout exact candidate without retaining credentials
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+      - name: Provision Node 24
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: '24'
+          cache: ''
+      - name: Run worker-channel deterministic contract tests
+        shell: cmd
+        run: node --test tests/v45-worker-channel-admin-probe.test.mjs tests/v45-z4-hostguard-gate.test.mjs tests/v45-z3-provider-evidence.test.mjs
+      - name: Parse repaired admin probe on Windows PowerShell 5.1
+        shell: cmd
+        run: powershell.exe -NoProfile -ExecutionPolicy Bypass -Command "$e=$null;$t=$null;[Management.Automation.Language.Parser]::ParseFile((Resolve-Path 'scripts/probe-v45-worker-channel-admin-readonly.ps1'),[ref]$t,[ref]$e)|Out-Null;if($e.Count -ne 0){$e|%%{Write-Error $_.Message};exit 41};Write-Host 'PASS_V45_WORKER_CHANNEL_KNOWNHOSTS_FALLBACK_PARSE'"
+      - name: Assert repair remains fail-closed
+        shell: cmd
+        run: powershell.exe -NoProfile -ExecutionPolicy Bypass -Command "$s=Get-Content -Raw 'scripts/probe-v45-worker-channel-admin-readonly.ps1';foreach($bad in @('ssh-keyscan','StrictHostKeyChecking=no','StrictHostKeyChecking=accept-new','UserKnownHostsFile=NUL','UserKnownHostsFile=/dev/null')){if($s.Contains($bad)){throw ('FORBIDDEN_TRUST_BYPASS='+$bad)}};foreach($good in @('C:\PTYSD\h03-build\v21\ptysd-worker-known_hosts','C:\Users\x\.ssh\known_hosts','C:\Users\x\.ssh\known_hosts.old','SSH_HOST_KEY_PIN_UNAVAILABLE','StrictHostKeyChecking=yes')){if(-not $s.Contains($good)){throw ('REQUIRED_GUARD_MISSING='+$good)}};Write-Host 'PASS_V45_WORKER_CHANNEL_KNOWNHOSTS_FAIL_CLOSED'"
