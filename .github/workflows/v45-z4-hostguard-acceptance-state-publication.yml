@@ -1,0 +1,51 @@
+name: VNEXT4.5 Z4 HostGuard acceptance state publication
+
+on:
+  push:
+    branches:
+      - v45/z4-hostguard-acceptance-state-publication
+
+permissions:
+  contents: read
+
+jobs:
+  validate-publication:
+    runs-on: [self-hosted, windows, ptysd-governance-v45]
+    timeout-minutes: 15
+    steps:
+      - name: Verify exact runner identity
+        shell: cmd
+        run: |
+          if not "%RUNNER_NAME%"=="PTYSD-V45-CONTROL-01" exit /b 11
+          if /I not "%RUNNER_OS%"=="Windows" exit /b 12
+      - name: Checkout exact candidate without retaining credentials
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+      - name: Provision Node 24
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: '24'
+          cache: ''
+      - name: Verify bounded V4.5 control contract
+        shell: cmd
+        run: node scripts/verify-v45-bounded.mjs
+      - name: Run all deterministic V4.5 gates
+        shell: cmd
+        run: node --test tests/v45-bounded.test.mjs tests/v45-state-core.test.mjs tests/v45-runner-bootstrap.test.mjs tests/v45-z3-provider-evidence.test.mjs tests/v45-hostguard-static.test.mjs tests/v45-z4-hostguard-gate.test.mjs tests/v45-hostguard-access-reconcile.test.mjs tests/v45-hostguard-execution-policy-reconcile.test.mjs tests/v45-hostguard-hyperv-dependency-reconcile.test.mjs tests/v45-hostguard-runtime-dependencies-reconcile.test.mjs
+      - name: Validate HostGuard package
+        shell: cmd
+        run: powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/test-v45-hostguard-package.ps1
+      - name: Verify JEA omitted-default execution-policy semantics
+        shell: cmd
+        run: powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/test-v45-hostguard-execution-policy-prestate.ps1
+      - name: Verify Hyper-V invariant on expanded dependency set
+        shell: cmd
+        run: powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/test-v45-hostguard-hyperv-dependency.ps1
+      - name: Verify complete HostGuard runtime dependencies
+        shell: cmd
+        run: powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/test-v45-hostguard-runtime-dependencies.ps1
+      - name: Parse all bounded reconciliation scripts
+        shell: cmd
+        run: powershell.exe -NoProfile -ExecutionPolicy Bypass -Command "$files=@('scripts/reconcile-v45-hostguard-jea-access.ps1','scripts/reconcile-v45-hostguard-jea-execution-policy.ps1','scripts/reconcile-v45-hostguard-hyperv-dependency.ps1','scripts/reconcile-v45-hostguard-runtime-dependencies.ps1');foreach($f in $files){$e=$null;$t=$null;[Management.Automation.Language.Parser]::ParseFile((Resolve-Path $f),[ref]$t,[ref]$e)|Out-Null;if($e.Count -ne 0){$e|%%{Write-Error $_.Message};exit 41}};Write-Host 'PASS_V45_Z4_HOSTGUARD_ACCEPTANCE_STATE_PUBLICATION'"
