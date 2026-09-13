@@ -23,26 +23,34 @@ function Get-EnabledWinRmPortRules {
 }
 
 function Get-HostGuardListenerState {
-  $listeners=@(Get-ChildItem WSMan:\localhost\Listener -ErrorAction Stop)
+  $listeners=@(Get-WSManInstance -ResourceURI 'winrm/config/listener' -Enumerate -ErrorAction Stop)
   if($listeners.Count -ne 1){throw "WINRM_LISTENER_COUNT_INVALID count=$($listeners.Count)"}
   $listener=$listeners[0]
-  if(-not($listener.Keys -contains 'Address=IP:127.0.0.1')){throw ('WINRM_LISTENER_ADDRESS_NOT_LOOPBACK keys='+($listener.Keys -join ','))}
-  if(-not($listener.Keys -contains 'Transport=HTTP')){throw ('WINRM_LISTENER_TRANSPORT_INVALID keys='+($listener.Keys -join ','))}
-  $listeningItem=Get-Item -Path ($listener.PSPath+'\ListeningOn') -ErrorAction Stop
+  $address=[string]$listener.Address
+  $transport=[string]$listener.Transport
+  $port=[int]$listener.Port
+  $enabled=[string]$listener.Enabled
+  if($address -ne 'IP:127.0.0.1'){throw "WINRM_LISTENER_ADDRESS_NOT_LOOPBACK address=$address"}
+  if($transport -ine 'HTTP'){throw "WINRM_LISTENER_TRANSPORT_INVALID transport=$transport"}
+  if($port -ne 5985){throw "WINRM_LISTENER_PORT_INVALID port=$port"}
+  if($enabled -ine 'true'){throw "WINRM_LISTENER_NOT_ENABLED enabled=$enabled"}
   $addresses=@()
-  foreach($v in @($listeningItem.Value)){
-    foreach($a in @(([string]$v) -split '\s*,\s*')){if(-not [string]::IsNullOrWhiteSpace($a)){$addresses+=$a.Trim()}}
+  foreach($v in @($listener.ListeningOn)){
+    foreach($a in @(([string]$v) -split '\s*,\s*')){
+      if(-not [string]::IsNullOrWhiteSpace($a)){$addresses+=$a.Trim()}
+    }
   }
   if($addresses.Count -eq 0){throw 'WINRM_LISTENING_ON_EMPTY'}
   $nonLoopback=@($addresses|Where-Object{$_ -notin @('127.0.0.1','::1')})
   if($nonLoopback.Count -ne 0){throw ('WINRM_LISTENING_ON_NOT_LOOPBACK_ONLY='+($nonLoopback -join ','))}
-  [pscustomobject]@{Keys=@($listener.Keys);ListeningOn=@($addresses)}
+  [pscustomobject]@{Address=$address;Transport=$transport;Port=$port;Enabled=$enabled;ListeningOn=@($addresses)}
 }
 
 $id=[Security.Principal.WindowsIdentity]::GetCurrent();$principal=New-Object Security.Principal.WindowsPrincipal($id)
 if(-not $principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)){throw 'ADMIN_SHELL_REQUIRED'}
 if($env:COMPUTERNAME -ne $ExpectedHost){throw "HOST_ID_MISMATCH expected=$ExpectedHost actual=$env:COMPUTERNAME"}
 Import-Module Hyper-V -ErrorAction Stop
+Import-Module Microsoft.WSMan.Management -ErrorAction Stop
 $vm=Get-VM -Name $ExpectedVmName -ErrorAction Stop
 if($vm.Id -ne $ExpectedVmId){throw "VM_ID_MISMATCH expected=$ExpectedVmId actual=$($vm.Id)"}
 if(-not(Test-Path -LiteralPath $Root)){throw 'HOSTGUARD_ROOT_MISSING'}
@@ -88,7 +96,9 @@ try{
     PermissionBefore=$permissionPre
     PermissionAfter=$permissionPost
     AccessModeRemoteUsedOnlyToRemoveNetworkDeny=$true
-    ListenerKeys=$listenerPost.Keys
+    ListenerAddress=$listenerPost.Address
+    ListenerTransport=$listenerPost.Transport
+    ListenerPort=$listenerPost.Port
     ListeningOn=$listenerPost.ListeningOn
     PublicFirewallMutation=$false
     RunnerPrivilegeElevation=$false
