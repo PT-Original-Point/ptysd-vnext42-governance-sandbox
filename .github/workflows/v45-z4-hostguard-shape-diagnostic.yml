@@ -19,28 +19,6 @@ jobs:
           if not "%RUNNER_NAME%"=="PTYSD-V45-CONTROL-01" exit /b 11
           if /I not "%RUNNER_OS%"=="Windows" exit /b 12
       - name: Inspect HostGuard remoting object shape
-        shell: powershell
-        run: |
-          $ErrorActionPreference='Stop'
-          $s=$null
-          try {
-            $s=New-PSSession -ComputerName localhost -ConfigurationName PTYSD.HostGuard.V45 -EnableNetworkAccess -ErrorAction Stop
-            $r=Invoke-Command -Session $s -ScriptBlock { Get-PTYSDHostGuardStatus } -ErrorAction Stop
-            Write-Host ('OBJECT_COUNT=' + @($r).Count)
-            $i=0
-            foreach($item in @($r)) {
-              Write-Host ('ITEM_INDEX=' + $i)
-              Write-Host ('TYPE_NAMES=' + (($item.PSObject.TypeNames) -join '|'))
-              foreach($p in $item.PSObject.Properties) {
-                $value=''
-                try { $value=[string]$p.Value } catch { $value='<VALUE_READ_ERROR>' }
-                Write-Host ('PROPERTY=' + $p.Name + ';MEMBER=' + $p.MemberType + ';TYPE=' + $p.TypeNameOfValue + ';VALUE=' + $value)
-              }
-              Write-Host ('ITEM_JSON=' + ($item | ConvertTo-Json -Compress -Depth 6))
-              $i++
-            }
-            Write-Host 'PASS_V45_HOSTGUARD_SHAPE_DIAGNOSTIC'
-          }
-          finally {
-            if($null -ne $s){Remove-PSSession -Session $s -ErrorAction SilentlyContinue}
-          }
+        shell: cmd
+        run: >-
+          powershell.exe -NoProfile -ExecutionPolicy Bypass -Command "$ErrorActionPreference='Stop';$s=$null;try{$s=New-PSSession -ComputerName localhost -ConfigurationName PTYSD.HostGuard.V45 -EnableNetworkAccess -ErrorAction Stop;$r=Invoke-Command -Session $s -ScriptBlock { Get-PTYSDHostGuardStatus } -ErrorAction Stop;Write-Host ('OBJECT_COUNT='+@($r).Count);$i=0;foreach($item in @($r)){Write-Host ('ITEM_INDEX='+$i);Write-Host ('TYPE_NAMES='+(($item.PSObject.TypeNames)-join '|'));foreach($p in $item.PSObject.Properties){$value='';try{$value=[string]$p.Value}catch{$value='<VALUE_READ_ERROR>'};Write-Host ('PROPERTY='+$p.Name+';MEMBER='+$p.MemberType+';TYPE='+$p.TypeNameOfValue+';VALUE='+$value)};Write-Host ('ITEM_JSON='+($item|ConvertTo-Json -Compress -Depth 6));$i++};Write-Host 'PASS_V45_HOSTGUARD_SHAPE_DIAGNOSTIC'}finally{if($null -ne $s){Remove-PSSession -Session $s -ErrorAction SilentlyContinue}}"
