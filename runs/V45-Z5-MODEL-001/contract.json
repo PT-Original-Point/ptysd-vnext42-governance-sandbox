@@ -1,0 +1,23 @@
+{
+  "schema_version":"factory.contract.v1",
+  "contract_id":"V45-Z5-CONTRACT-001",
+  "task_id":"V45-Z5-REAL-MODEL-MINIMAL-LOOP-001",
+  "project_id":"CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "goal":"Qualify one legal zero-incremental-cost ModelProfile and prove one tiny synthetic OpenCode coding loop without paid fallback.",
+  "include":["OpenCode v1.18.30 exact pinned binary","current OpenCode Zen model catalog readback","inference-only authentication qualification","tiny synthetic workspace","fixed deterministic tests","candidate content hash","quota and no-extra-billing evidence"],
+  "exclude":["Production","business Projects","business repositories","paid APIs","paid model fallback","ChatGPT cookies/private interfaces","account rotation to evade quotas","GitHub provider write credentials on worker","Codex"],
+  "affected_surfaces":["CONTROL_REPO_GOVERNANCE_SANDBOX","PTYSD-WORKER-01_SYNTHETIC_ONLY","OPENCODE_ZEN_READONLY_QUALIFICATION"],
+  "requirements":["Z4 PASS","OpenCode exact version and asset digest verified","exact model present in current provider catalog","actual account entitlement and inference credential verified before inference","zero incremental paid cost path verified","fallback_allowed=false","worker receives no GitHub provider write credential"],
+  "acceptance":["real OpenCode completes one tiny synthetic change","only the qualified exact model is used","fixed test suite passes","candidate hash is recorded","quota source is recorded","no extra-billing path is evidenced","no paid fallback is enabled"],
+  "dependencies":["V45-Z4-WIP-001:SUCCEEDED"],
+  "risk":"LOW_SYNTHETIC_MODEL_QUALIFICATION_WITH_STRICT_ZERO_COST_GATE",
+  "allowed_tools":["GitHub connector on repo_id=1352411536","Remote Desktop Commander on DESKTOP-1B6PD2P","existing PTYSD-WORKER-01","OpenCode v1.18.30 after ModelProfile qualification"],
+  "allowed_effects":["governance-only control/evidence writes","exact OpenCode binary installation on approved worker VM","synthetic workspace changes after entitlement PASS"],
+  "model_profile_ref":"runs/V45-Z5-MODEL-001/model-profile.candidate.json",
+  "max_attempts":3,
+  "time_budget_minutes":40,
+  "mission_revision_id":"20260913T004710+0800",
+  "mission_hash":"sha256:8bbfb11d00690b46dfd872f9297ea4c66253f499878a2a6a160cecd51199b737",
+  "policy_revision_id":"20260913T010957+0800-EP66",
+  "policy_hash":"sha256:25ab690abfe8ddce953654f67355c01ea353343f337f96c8b3078bdafe7c77c2"
+}
