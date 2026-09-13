@@ -1,0 +1,20 @@
+{
+  "schema": "factory.command.v1",
+  "command_id": "V45-Z3-COMMAND-001",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "provider": "github_issue",
+  "provider_issue_number": 7,
+  "provider_issue_url": "https://github.com/PT-Original-Point/ptysd-vnext42-governance-sandbox/issues/7",
+  "request": {
+    "goal": "Z3 durable intake and stale-writer proof",
+    "mode": "SYNTHETIC_NOOP",
+    "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+    "scope": "CONTROL_REPO_GOVERNANCE_SANDBOX"
+  },
+  "request_sha256": "sha256:2e308dc0895ec446b11c4210d5ed91010bd0739eec16b4040b6a899e4311a950",
+  "provider_state_readback": "open",
+  "provider_readback_match": true,
+  "accepted_at": "2026-09-13T00:56:02Z",
+  "business_effects": 0,
+  "production_effects": 0
+}

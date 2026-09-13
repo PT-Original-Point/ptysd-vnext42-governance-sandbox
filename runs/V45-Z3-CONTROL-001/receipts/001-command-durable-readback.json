@@ -1,0 +1,19 @@
+{
+  "schema": "factory.receipt.v1",
+  "event_id": "V45-Z3-COMMAND-DURABLE-READBACK-001",
+  "run_id": "V45-Z3-CONTROL-001",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "event_type": "COMMAND_DURABLE_READBACK",
+  "command_id": "V45-Z3-COMMAND-001",
+  "request_sha256": "sha256:2e308dc0895ec446b11c4210d5ed91010bd0739eec16b4040b6a899e4311a950",
+  "provider": "GitHub Issue",
+  "provider_issue_number": 7,
+  "provider_issue_url": "https://github.com/PT-Original-Point/ptysd-vnext42-governance-sandbox/issues/7",
+  "provider_state": "open",
+  "same_source_readback": "CONFIRMED",
+  "readback_matches_command_id": true,
+  "readback_matches_request_sha256": true,
+  "recovery_basis": "provider issue number plus frozen request digest; no chat history or local worktree required",
+  "business_effects": 0,
+  "production_effects": 0
+}
