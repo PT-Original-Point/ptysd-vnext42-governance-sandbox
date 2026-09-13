@@ -1,0 +1,18 @@
+{
+  "schema":"factory.stage_receipt.v1",
+  "receipt_id":"V45-Z4-RECEIPT-PASS-022",
+  "project_id":"CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "run_id":"V45-Z4-WIP-001",
+  "stage":"Z4",
+  "result":"PASS",
+  "remote_wip_ref":"github://PT-Original-Point/ptysd-vnext42-governance-sandbox/refs/heads/wip/v45-z4-wip-001-e0-cp001@8768a83495561b4c7ccbcdada04f5ab560755178",
+  "acceptance":{"deterministic_worker_bytes":true,"snapshot_manifest_matches_worker_bytes":true,"remote_wip_exact_provider_readback":true,"worker_proven_dead_before_recovery":true,"clean_recovery_byte_exact":true,"actual_rpo_recorded":true,"provider_write_credential_on_worker":false},
+  "payload_sha256":"8ef994f99ef2ca847bef1e24ff112f5e43ec929334869801e34d7bb3db3f7a34",
+  "payload_bytes":51,
+  "actual_rpo_data_loss_bytes":0,
+  "checkpoint_age_at_failure_seconds":156.1559722,
+  "recovery_verified_utc":"2026-09-13T13:04:29.2844516Z",
+  "next_gate":"Z5_ZERO_INCREMENTAL_COST_MODELPROFILE_QUALIFICATION",
+  "production_effect":false,
+  "business_project_effect":false
+}
