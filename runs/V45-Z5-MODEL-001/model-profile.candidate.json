@@ -12,15 +12,16 @@
   "auth_method":"OpenCode Zen API key via OpenCode credential store",
   "allowed_automation_use":"SYNTHETIC_Z5_ONLY_UNTIL_FORMAL_PROMOTION",
   "catalog_presence":"PASS_LIVE_2026-09-13",
-  "pricing_label":"CONTRIBUTOR_FREE",
+  "public_pricing":"FREE_INPUT_OUTPUT_CACHE_READ",
+  "public_free_availability":"LIMITED_TIME",
   "account_credentials_count":0,
   "account_entitlement":"UNQUALIFIED_NO_AUTH",
   "quota_source":"ACCOUNT_READBACK_REQUIRED",
-  "auto_reload_disabled":"NOT_VERIFIED",
-  "provider_spend_guard":"NOT_VERIFIED",
+  "auto_reload_disabled":"NOT_VERIFIED_ACCOUNT_SPECIFIC",
+  "provider_spend_guard":"NOT_VERIFIED_ACCOUNT_SPECIFIC",
   "zero_incremental_paid_cost_required":true,
   "paid_fallback_allowed":false,
   "fallback_allowed":false,
   "inference_dispatch_allowed":false,
-  "qualification_result":"WAITING_MODEL_ENTITLEMENT"
+  "qualification_result":"WAITING_MODEL_ENTITLEMENT_AND_ZERO_COST_ACCOUNT_GUARD"
 }

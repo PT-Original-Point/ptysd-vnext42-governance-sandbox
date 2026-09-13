@@ -1,0 +1,28 @@
+{
+  "schema":"factory.evidence.v1",
+  "evidence_id":"V45-Z5-EVIDENCE-SYNTHETIC-WORKSPACE-PREPARED-HOST-ONLY-002",
+  "project_id":"CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "run_id":"V45-Z5-MODEL-001",
+  "source_control_commit":"a4e7f5112b7d375161a18c9c17f0c644ea674e96",
+  "preparation_scope":"HOST_TEMP_AND_CONTROL_REPO_ONLY_NO_GUEST_WORKSPACE_MUTATION",
+  "host_temp_root":"C:\\Windows\\Temp\\ptysd-v45-z5-prep\\workspace",
+  "config_json_parse":"PASS",
+  "initial_fixed_test_exit":1,
+  "initial_fixed_test_expected_fail":true,
+  "initial_fixed_test_observation":"FAIL expected='HELLO_FROM_OPENCODE\\n' actual='PENDING\\n'",
+  "files":[
+    {"path":"opencode.json","bytes":290,"sha256":"1caac3737d4c3605bc99e9c19b1a1efd2dd2b577e5518446298154650794fa37"},
+    {"path":"src/message.txt","bytes":8,"sha256":"45fc7ab706e6fb509993b6fcae9d4d423c96f8e840c8f64c1a61f5c817c8a870"},
+    {"path":"TASK.md","bytes":251,"sha256":"f62e741df0539960a7e701650758fd2158104e3f3dd3cdaa6c93cbd590ca9428"},
+    {"path":"tests/test_message.py","bytes":292,"sha256":"ac639b3bbc49d2d30d404fad3552e5516be5a34849c584b871e4de567af491c8"}
+  ],
+  "opencode_config":{"model":"opencode/muse-spark-1.3-contributor-free","small_model":"opencode/muse-spark-1.3-contributor-free","default_permission":"deny","allowed_tools":["read","glob","grep","edit"],"shell_allowed":false,"network_tools_allowed":false},
+  "auth_probe":{"opencode_auth_list_credentials":0,"empty_invalid_post_http":401,"inference_dispatched":false},
+  "official_zen_docs":{"pricing_url":"https://opencode.ai/docs/zen","muse_spark_1_3_contributor_free_public_price":"Free","free_availability":"LIMITED_TIME","zen_api_key_required":true,"auto_reload_can_charge":true,"auto_reload_can_be_disabled":true,"account_specific_guard_readback":"NOT_AVAILABLE_WITHOUT_HUMAN_ACCOUNT_AUTH"},
+  "guest_workspace_mutation":false,
+  "inference_dispatched":false,
+  "paid_fallback_enabled":false,
+  "business_project_effect":false,
+  "production_effect":false,
+  "next_gate":"OPEN_CODE_ZEN_API_KEY_AND_ZERO_COST_ACCOUNT_GUARD_REQUIRED"
+}
