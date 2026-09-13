@@ -1,0 +1,32 @@
+name: VNEXT4.5 Z4 WinRM firewall reconciliation
+
+on:
+  push:
+    branches:
+      - v45/z4-winrm-firewall-reconcile
+
+permissions:
+  contents: read
+
+concurrency:
+  group: factory-governance-primary
+  cancel-in-progress: false
+
+jobs:
+  reconcile-winrm-firewall:
+    runs-on: [self-hosted, windows, ptysd-governance-v45]
+    timeout-minutes: 10
+    steps:
+      - name: Verify exact runner identity
+        shell: cmd
+        run: |
+          if not "%RUNNER_NAME%"=="PTYSD-V45-CONTROL-01" exit /b 11
+          if /I not "%RUNNER_OS%"=="Windows" exit /b 12
+      - name: Checkout trusted probe
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+      - name: Inventory WinRM firewall read-only
+        shell: cmd
+        run: powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/qualify-v45-winrm-firewall.ps1
