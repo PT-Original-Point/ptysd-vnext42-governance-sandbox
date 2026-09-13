@@ -1,0 +1,19 @@
+{
+  "schema":"factory.evidence.v1",
+  "evidence_id":"V45-Z4-EVIDENCE-OOB-HOSTKEY-PIN-AND-ADMIN-READONLY-PASS-017",
+  "project_id":"CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "run_id":"V45-Z4-WIP-001",
+  "source_type":"HYPERV_LOCAL_CONSOLE_OOB_ATTESTATION_PLUS_RDC_CANONICAL_PROBE",
+  "source_commit":"6583d0f03809db25c3bebbab2ee679665362455f",
+  "observed_at_utc":"2026-09-13T11:15:33.3949428Z",
+  "rdc_device_id":"2b8d674b-4166-4efc-9c64-0667fecba29e",
+  "host":"DESKTOP-1B6PD2P",
+  "vm_name":"PTYSD-WORKER-01",
+  "vm_id":"881f7819-baa9-4a4e-8cca-8f6f18fb89a9",
+  "oob_attestation":{"method":"HYPERV_LOCAL_CONSOLE_LIVE_ISO_READONLY_MOUNT","original_root_device":"/dev/mapper/ubuntu--vg-ubuntu--lv","mount_options":"ro,noload","host_key_path":"/etc/ssh/ssh_host_ed25519_key.pub","host_key_type":"ssh-ed25519","host_key_fingerprint_sha256":"SHA256:SeyJgCy4IpHhwh9IWxUNWbHsUQIYw8ki5oL3OHMoInA","host_public_key":"AAAAC3NzaC1lZDI1NTE5AAAAIEHXrpfKDRYuGK4QlCIRyjkHi06iB/AUNhrJwuDAYgMu"},
+  "host_pin":{"known_hosts_path":"C:\\PTYSD\\h03-build\\v21\\ptysd-worker-known_hosts","known_hosts_bytes":96,"known_hosts_sha256":"579e2eeef3b0a325c00db2b45d3c0a8d3303eddbc7ea4d1d9d18d0b57f751bcd","ssh_keygen_readback":"256 SHA256:SeyJgCy4IpHhwh9IWxUNWbHsUQIYw8ki5oL3OHMoInA 172.31.253.10 (ED25519)","fingerprint_match":true},
+  "probe":{"result":"PASS_V45_WORKER_CHANNEL_ADMIN_READONLY_PRESTATE","guest_ip":"172.31.253.10","guest_user":"ptysd","guest_hostname":"ptysd-worker-01","guest_boot_id":"b6962c05-4cd6-4752-992f-50a9e39c9d9a","kernel":"6.8.0-139-generic","systemd":"systemd 255 (255.4-1ubuntu8.17)","cgroup_v2":true,"podman":"ABSENT","git":"git version 2.43.0","node":"ABSENT","opencode":"ABSENT","workerctl":"ABSENT","linger":"no","openssh_toolchain":"GIT_FOR_WINDOWS_OPENSSH"},
+  "readback_effects":{"guest_mutation":false,"provider_mutation":false,"business_project_effect":false,"production_effect":false},
+  "next_gate":"DEDICATED_RESTRICTED_WORKER_BRIDGE_ESTABLISHMENT",
+  "verification_state":"VERIFIED"
+}
