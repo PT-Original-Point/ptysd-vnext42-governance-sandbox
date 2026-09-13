@@ -1,0 +1,14 @@
+{
+  "schema":"factory.receipt.v1",
+  "receipt_id":"V45-Z4-RECEIPT-BRIDGE-018",
+  "project_id":"CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "run_id":"V45-Z4-WIP-001",
+  "expected_revision":18,
+  "attempt_epoch":0,
+  "result":"RESTRICTED_WORKER_BRIDGE_ESTABLISHED",
+  "bridge_key_fingerprint_sha256":"SHA256:7hqF3r9NKJ78vxYQ6bwZFUCVkJeM+6cH0Yl0cwW7/2U",
+  "workerctl_sha256":"9354999e26eaecd26c54a5455eec1af9cd1d5bff1cd8dc4d3d4b6bf5253faed3",
+  "forced_command_enforced":true,
+  "arbitrary_shell_denied":true,
+  "provider_write_credential_on_worker":false
+}
