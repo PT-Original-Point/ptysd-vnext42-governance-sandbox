@@ -52,7 +52,7 @@ try{
     foreach($pair in @(@($admins,'FullControl'),@($system,'FullControl'),@($hg.SID,'Modify'))){$rule=New-Object Security.AccessControl.FileSystemAccessRule($pair[0],$pair[1],'ContainerInherit,ObjectInherit','None','Allow');$acl.AddAccessRule($rule)|Out-Null}
     Set-Acl -LiteralPath $dir -AclObject $acl
   }
-  New-Item -ItemType Directory -Force -Path $ModuleTarget|Out-Null;Copy-Item -LiteralPath (Join-Path $stage '*') -Destination $ModuleTarget -Recurse -Force;$moduleCopied=$true
+  New-Item -ItemType Directory -Force -Path $ModuleTarget|Out-Null;Copy-Item -Path (Join-Path $stage '*') -Destination $ModuleTarget -Recurse -Force;$moduleCopied=$true
   Set-Service WinRM -StartupType Automatic;Start-Service WinRM
   $listener=New-Item -Path WSMan:\localhost\Listener -Transport HTTP -Address 'IP:127.0.0.1' -ErrorAction Stop;$listenerCreated=$true
   $hyperv=(New-Object Security.Principal.SecurityIdentifier('S-1-5-32-578')).Translate([Security.Principal.NTAccount]).Value
