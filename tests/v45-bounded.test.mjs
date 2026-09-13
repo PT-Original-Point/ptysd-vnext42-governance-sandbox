@@ -21,12 +21,11 @@ function contractHash(c) {
   return 'sha256:' + crypto.createHash('sha256').update(raw).digest('hex');
 }
 
-test('Z2 runner acceptance is provider-proven and the control advances to Z3', () => {
+test('Z2 runner acceptance remains provider-proven after later phase advance', () => {
   assert.equal(run.state, 'SUCCEEDED');
   assert.equal(run.revision, 4);
-  assert.equal(control.state, 'READY');
-  assert.equal(control.active_run_id, 'V45-Z3-CONTROL-001');
   assert.equal(control.runner_acceptance, 'PASS');
+  assert.equal(control.runner_name, 'PTYSD-V45-CONTROL-01');
   assert.equal(receipt.conclusion, 'success');
   assert.equal(receipt.workflow_run_id, 34728846059);
   assert.equal(receipt.runner_name, 'PTYSD-V45-CONTROL-01');
