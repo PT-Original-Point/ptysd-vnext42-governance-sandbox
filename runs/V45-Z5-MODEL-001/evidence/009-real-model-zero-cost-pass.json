@@ -1,0 +1,18 @@
+{
+  "schema":"factory.evidence.v1",
+  "evidence_id":"V45-Z5-EVIDENCE-REAL-MODEL-ZERO-COST-PASS-009",
+  "project_id":"CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "run_id":"V45-Z5-MODEL-001",
+  "observed_utc":"2026-09-13T16:45:30.6867773Z",
+  "worker":"ptysd@ptysd-worker-01",
+  "opencode_version":"1.18.30",
+  "model":"opencode/muse-spark-1.3-contributor-free",
+  "first_real_inference":{"result":"HARNESS_PERMISSION_PATTERN_MISMATCH","step_finish_count":6,"observed_total_cost":0,"log_sha256":"76c46c1cf9224b1d34e6287b0b2f14e754343c6a2bb7c94e6adea05fd1457051","log_bytes":12454,"candidate_mutated":false,"repair":"replace path-fragile granular edit allow with isolated-workspace edit allow plus exact post-run file-set verification"},
+  "final_clean_inference":{"exit_code":0,"step_finish_count":5,"observed_total_cost":0,"tools":["read:completed","read:completed","edit:completed","read:completed"],"tool_errors":0,"fixed_test":"PASS_Z5_SYNTHETIC_MESSAGE","workspace_file_set":["TASK.md","opencode.json","src/message.txt","tests/test_message.py"],"workspace_file_set_exact":true,"task_sha256":"f62e741df0539960a7e701650758fd2158104e3f3dd3cdaa6c93cbd590ca9428","config_sha256":"1caac3737d4c3605bc99e9c19b1a1efd2dd2b577e5518446298154650794fa37","test_sha256":"ac639b3bbc49d2d30d404fad3552e5516be5a34849c584b871e4de567af491c8","candidate_sha256":"37525f39e69d24ae9b56357af10c72cdcc0950664a4b4f7d90f464381aab81f4","candidate_bytes":20,"run_log_sha256":"ea3716d507cf7bb97a3b74586f93c4a934b9a73020c0fabcef5c5e07d8f87a5c","run_log_bytes":9436},
+  "zero_incremental_paid_cost_verified":true,
+  "paid_fallback_used":false,
+  "provider_write_credential_on_worker":false,
+  "production_effect":false,
+  "business_project_effect":false,
+  "verification_state":"PASS_Z5_REAL_MODEL_MINIMAL_LOOP"
+}

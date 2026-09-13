@@ -1,0 +1,15 @@
+{
+  "schema":"factory.evidence.v1",
+  "evidence_id":"V45-Z5-EVIDENCE-AUTH-AND-CONCURRENCY-RECOVERY-008",
+  "project_id":"CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "run_id":"V45-Z5-MODEL-001",
+  "source_control_commit":"2157ab9618eaabf5a10562d7f1cefb9196258649",
+  "observed_utc":"2026-09-13T16:45:30.6867773Z",
+  "worker":"ptysd@ptysd-worker-01",
+  "credential_readback":{"auth_file_exists":true,"auth_file_mode":"0600","auth_file_bytes":123,"auth_json_valid":true,"provider_opencode_present":true,"auth_type":"api","auth_fields":["key","type"],"secret_value_read":false,"secret_value_logged":false},
+  "recovered_races":[{"kind":"STALE_COMPLETED_LOGIN_PROCESS_HELD_OPENCODE_DB","pid":3502,"terminated":true,"db_lock_cleared":true},{"kind":"CONCURRENT_Z5_AUTH_GATE_WATCH_COMPETED_FOR_WORKSPACE","last_run_utc":"2026-09-13T16:38:50.116851Z","watch_disabled":true,"workspace_rebuilt_from_known_good_prestate":true}],
+  "timeout_attempts_before_clean_run":{"count":2,"inference_event_log_bytes":0,"candidate_mutated":false,"classification":"NO_NEW_MODEL_RESULT_DUE_TO_DB_LOCK_OR_CONCURRENT_CONTROLLER"},
+  "production_effect":false,
+  "business_project_effect":false,
+  "verification_state":"PASS_SINGLE_CONTROLLER_AND_AUTH_PRESTATE_RESTORED"
+}

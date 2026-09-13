@@ -102,7 +102,7 @@ cat > "$WORK/opencode.json" <<'EOF'
     "read": "allow",
     "glob": "allow",
     "grep": "allow",
-    "edit": {"*": "deny", "src/message.txt": "allow"}
+    "edit": "allow"
   }
 }
 EOF
@@ -123,6 +123,9 @@ OPENCODE_DISABLE_AUTOUPDATE=1 timeout 240s "$OPENCODE" run \
 test "$(sha256sum TASK.md | awk '{print $1}')" = "$TASK_HASH" || fail TASK_FILE_CHANGED 48
 test "$(sha256sum tests/test_message.py | awk '{print $1}')" = "$TEST_HASH" || fail TEST_FILE_CHANGED 49
 test "$(sha256sum opencode.json | awk '{print $1}')" = "$CFG_HASH" || fail CONFIG_FILE_CHANGED 50
+EXPECTED_FILES=$(printf '%s\n' TASK.md opencode.json src/message.txt tests/test_message.py | LC_ALL=C sort)
+ACTUAL_FILES=$(find . -type f -printf '%P\n' | LC_ALL=C sort)
+test "$ACTUAL_FILES" = "$EXPECTED_FILES" || fail WORKSPACE_FILE_SET_CHANGED 52
 
 RUN_COST="$($PYTHON - "$LOG" <<'PY'
 import json, sys
