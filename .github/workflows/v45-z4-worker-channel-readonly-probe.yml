@@ -1,0 +1,24 @@
+name: VNEXT4.5 Z4 worker channel readonly probe
+
+on:
+  push:
+    branches:
+      - v45/z4-worker-channel-readonly-probe
+
+permissions:
+  contents: read
+
+jobs:
+  probe-worker-channel:
+    runs-on: [self-hosted, windows, ptysd-governance-v45]
+    timeout-minutes: 10
+    steps:
+      - name: Verify exact runner identity
+        shell: cmd
+        run: |
+          if not "%RUNNER_NAME%"=="PTYSD-V45-CONTROL-01" exit /b 11
+          if /I not "%RUNNER_OS%"=="Windows" exit /b 12
+      - name: Probe existing pinned SSH channel without guest mutation
+        shell: cmd
+        run: >-
+          powershell.exe -NoProfile -ExecutionPolicy Bypass -Command "$ErrorActionPreference='Stop';$key='C:\Users\x\.ssh\ptysd_worker_ed25519';$pub='C:\Users\x\.ssh\ptysd_worker_ed25519.pub';$kh='C:\PTYSD\h03-build\v21\ptysd-worker-known_hosts';$expected='SHA256:dZDmWE3PnF5vYOaoAsF0N2f1DIlw3E6hIWRWf70G6Gg';if(-not(Test-Path -LiteralPath $key -PathType Leaf)){throw 'SSH_PRIVATE_KEY_UNAVAILABLE_TO_RUNNER'};if(-not(Test-Path -LiteralPath $pub -PathType Leaf)){throw 'SSH_PUBLIC_KEY_UNAVAILABLE_TO_RUNNER'};if(-not(Test-Path -LiteralPath $kh -PathType Leaf)){throw 'SSH_KNOWN_HOSTS_UNAVAILABLE_TO_RUNNER'};$keygen=Get-Command ssh-keygen.exe -ErrorAction Stop;$raw=(& $keygen.Source -lf $pub -E sha256|Out-String).Trim();if($raw -notmatch [regex]::Escape($expected)){throw 'SSH_PUBLIC_KEY_FINGERPRINT_MISMATCH'};Write-Host ('SSH_PUBLIC_KEY_FINGERPRINT='+$expected);Write-Host ('KNOWN_HOSTS_BYTES='+(Get-Item -LiteralPath $kh -ErrorAction Stop).Length);$ssh=Get-Command ssh.exe -ErrorAction Stop;& $ssh.Source '-4' '-o' 'BatchMode=yes' '-o' 'PasswordAuthentication=no' '-o' 'KbdInteractiveAuthentication=no' '-o' 'StrictHostKeyChecking=yes' '-o' ('UserKnownHostsFile='+$kh) '-o' ('IdentityFile='+$key) '-o' 'IdentitiesOnly=yes' '-o' 'ConnectTimeout=5' '-o' 'ConnectionAttempts=1' 'ptysd@172.31.253.10' 'printf "PTYSD_WORKER_CHANNEL_OK\n"; id -un; hostname; cat /proc/sys/kernel/random/boot_id';if($LASTEXITCODE -ne 0){throw ('SSH_READONLY_PROBE_FAILED exit='+$LASTEXITCODE)};Write-Host 'PASS_V45_Z4_WORKER_CHANNEL_READONLY_PROBE'"
