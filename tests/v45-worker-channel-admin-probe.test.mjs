@@ -11,7 +11,21 @@ test('admin readonly worker probe is pinned to the exact approved host and histo
   assert.match(script,/ExpectedGuestHostname='ptysd-worker-01'/);
   assert.match(script,/C:\\Users\\x\\\.ssh\\ptysd_worker_ed25519/);
   assert.match(script,/C:\\PTYSD\\h03-build\\v21\\ptysd-worker-known_hosts/);
+  assert.match(script,/C:\\Users\\x\\\.ssh\\known_hosts/);
+  assert.match(script,/C:\\Users\\x\\\.ssh\\known_hosts\.old/);
   assert.match(script,/SHA256:dZDmWE3PnF5vYOaoAsF0N2f1DIlw3E6hIWRWf70G6Gg/);
+});
+
+test('known-host selection uses only pre-existing pins and fails closed if none match',()=>{
+  assert.match(script,/KnownHostsCandidates/);
+  assert.match(script,/ssh-keygen\.exe/);
+  assert.match(script,/-F \$ExpectedGuestIp -f \$candidate/);
+  assert.match(script,/-F \$ExpectedGuestHostname -f \$candidate/);
+  assert.match(script,/SSH_HOST_KEY_PIN_UNAVAILABLE/);
+  assert.match(script,/HostKeyAlias=/);
+  for(const forbidden of ['ssh-keyscan','StrictHostKeyChecking=no','StrictHostKeyChecking=accept-new','UserKnownHostsFile=NUL','UserKnownHostsFile=/dev/null']){
+    assert.equal(script.includes(forbidden),false,`forbidden ${forbidden}`);
+  }
 });
 
 test('SSH transport is fail-closed and password or host-key bypass is disabled',()=>{
@@ -24,9 +38,6 @@ test('SSH transport is fail-closed and password or host-key bypass is disabled',
     "'ConnectTimeout=5'",
     "'ConnectionAttempts=1'"
   ]) assert.ok(script.includes(required),`missing ${required}`);
-  assert.equal(script.includes('StrictHostKeyChecking=no'),false);
-  assert.equal(script.includes('UserKnownHostsFile=NUL'),false);
-  assert.equal(script.includes('UserKnownHostsFile=/dev/null'),false);
 });
 
 test('guest payload is inventory-only and contains no mutation or secret-read path',()=>{
@@ -35,7 +46,7 @@ test('guest payload is inventory-only and contains no mutation or secret-read pa
     const re=new RegExp(`(^|[^A-Za-z0-9_-])${word.replace(/[.*+?^${}()|[\\]\\]/g,'\\$&')}([^A-Za-z0-9_-]|$)`,'i');
     assert.equal(re.test(script),false,`forbidden guest mutator ${word}`);
   }
-  for(const forbidden of ['authorized_keys','ssh-keyscan','ssh-keygen -R','Start-VM','Stop-VM','Restart-VM','Set-VM','New-VM','Set-NetFirewallRule','New-NetFirewallRule','Remove-NetFirewallRule']){
+  for(const forbidden of ['authorized_keys','ssh-keygen -R','Start-VM','Stop-VM','Restart-VM','Set-VM','New-VM','Set-NetFirewallRule','New-NetFirewallRule','Remove-NetFirewallRule']){
     assert.equal(script.includes(forbidden),false,`forbidden ${forbidden}`);
   }
   assert.match(script,/cat \/proc\/sys\/kernel\/random\/boot_id/);
@@ -46,8 +57,8 @@ test('guest payload is inventory-only and contains no mutation or secret-read pa
   assert.match(script,/WORKERCTL=/);
 });
 
-test('probe reports explicit zero-effect boundaries',()=>{
-  for(const marker of ['GuestMutation=$false','VmMutation=$false','ProviderMutation=$false','BusinessProjectEffect=$false','ProductionEffect=$false']){
+test('probe reports exact trust source and explicit zero-effect boundaries',()=>{
+  for(const marker of ['KnownHostsSource=$KnownHosts','HostKeyAlias=$HostKeyAlias','GuestMutation=$false','VmMutation=$false','ProviderMutation=$false','BusinessProjectEffect=$false','ProductionEffect=$false']){
     assert.ok(script.includes(marker),`missing ${marker}`);
   }
   assert.match(script,/PASS_V45_WORKER_CHANNEL_ADMIN_READONLY_PRESTATE/);

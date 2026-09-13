@@ -9,15 +9,19 @@ $ExpectedGuestUser='ptysd'
 $ExpectedGuestHostname='ptysd-worker-01'
 $PrivateKey='C:\Users\x\.ssh\ptysd_worker_ed25519'
 $PublicKey='C:\Users\x\.ssh\ptysd_worker_ed25519.pub'
-$KnownHosts='C:\PTYSD\h03-build\v21\ptysd-worker-known_hosts'
 $ExpectedFingerprint='SHA256:dZDmWE3PnF5vYOaoAsF0N2f1DIlw3E6hIWRWf70G6Gg'
+$KnownHostsCandidates=@(
+  'C:\PTYSD\h03-build\v21\ptysd-worker-known_hosts',
+  'C:\Users\x\.ssh\known_hosts',
+  'C:\Users\x\.ssh\known_hosts.old'
+)
 
 $id=[Security.Principal.WindowsIdentity]::GetCurrent()
 $principal=New-Object Security.Principal.WindowsPrincipal($id)
 if(-not $principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)){throw 'ADMIN_SHELL_REQUIRED'}
 if($env:COMPUTERNAME -ne $ExpectedHost){throw "HOST_ID_MISMATCH expected=$ExpectedHost actual=$env:COMPUTERNAME"}
 
-foreach($path in @($PrivateKey,$PublicKey,$KnownHosts)){
+foreach($path in @($PrivateKey,$PublicKey)){
   if(-not(Test-Path -LiteralPath $path -PathType Leaf)){throw "REQUIRED_SSH_MATERIAL_UNAVAILABLE path=$path"}
   if((Get-Item -LiteralPath $path -ErrorAction Stop).Length -le 0){throw "REQUIRED_SSH_MATERIAL_EMPTY path=$path"}
 }
@@ -26,6 +30,31 @@ $keygen=Get-Command ssh-keygen.exe -ErrorAction Stop
 $fingerprintText=(& $keygen.Source -lf $PublicKey -E sha256 2>&1 | Out-String).Trim()
 if($LASTEXITCODE -ne 0){throw "SSH_PUBLIC_KEY_FINGERPRINT_READ_FAILED exit=$LASTEXITCODE"}
 if($fingerprintText -notmatch [regex]::Escape($ExpectedFingerprint)){throw 'SSH_PUBLIC_KEY_FINGERPRINT_MISMATCH'}
+
+$KnownHosts=$null
+$HostKeyAlias=$null
+foreach($candidate in $KnownHostsCandidates){
+  if(-not(Test-Path -LiteralPath $candidate -PathType Leaf)){continue}
+  if((Get-Item -LiteralPath $candidate -ErrorAction Stop).Length -le 0){continue}
+
+  $null=& $keygen.Source -F $ExpectedGuestIp -f $candidate 2>$null
+  if($LASTEXITCODE -eq 0){
+    $KnownHosts=$candidate
+    $HostKeyAlias=$null
+    break
+  }
+
+  $null=& $keygen.Source -F $ExpectedGuestHostname -f $candidate 2>$null
+  if($LASTEXITCODE -eq 0){
+    $KnownHosts=$candidate
+    $HostKeyAlias=$ExpectedGuestHostname
+    break
+  }
+}
+
+if([string]::IsNullOrWhiteSpace($KnownHosts)){
+  throw ('SSH_HOST_KEY_PIN_UNAVAILABLE candidates='+($KnownHostsCandidates -join ';'))
+}
 
 $knownHostsHash=(Get-FileHash -LiteralPath $KnownHosts -Algorithm SHA256 -ErrorAction Stop).Hash.ToLowerInvariant()
 $knownHostsBytes=(Get-Item -LiteralPath $KnownHosts -ErrorAction Stop).Length
@@ -60,7 +89,12 @@ $sshArgs=@(
   '-o',("IdentityFile=$PrivateKey"),
   '-o','IdentitiesOnly=yes',
   '-o','ConnectTimeout=5',
-  '-o','ConnectionAttempts=1',
+  '-o','ConnectionAttempts=1'
+)
+if(-not [string]::IsNullOrWhiteSpace($HostKeyAlias)){
+  $sshArgs+=@('-o',("HostKeyAlias=$HostKeyAlias"))
+}
+$sshArgs+=@(
   ("$ExpectedGuestUser@$ExpectedGuestIp"),
   $remote
 )
@@ -105,6 +139,8 @@ if([string]$values['BOOT_ID'] -notmatch '^[0-9a-fA-F-]{36}$'){throw "GUEST_BOOT_
   Workerctl=$values['WORKERCTL']
   Linger=$values['LINGER']
   SshPublicKeyFingerprint=$ExpectedFingerprint
+  KnownHostsSource=$KnownHosts
+  HostKeyAlias=$HostKeyAlias
   KnownHostsSha256=$knownHostsHash
   KnownHostsBytes=$knownHostsBytes
   GuestMutation=$false

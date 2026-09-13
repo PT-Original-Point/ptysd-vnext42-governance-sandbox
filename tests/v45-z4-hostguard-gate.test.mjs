@@ -16,6 +16,7 @@ const hypervDependency=JSON.parse(fs.readFileSync('runs/V45-Z4-WIP-001/evidence/
 const runtimeDependencies=JSON.parse(fs.readFileSync('runs/V45-Z4-WIP-001/evidence/010-hostguard-runtime-dependencies-blocker-and-repair-package.json','utf8'));
 const providerAcceptance=JSON.parse(fs.readFileSync('runs/V45-Z4-WIP-001/evidence/011-hostguard-provider-functional-acceptance.json','utf8'));
 const workerBoundary=JSON.parse(fs.readFileSync('runs/V45-Z4-WIP-001/evidence/012-worker-channel-runner-key-boundary.json','utf8'));
+const knownHostsFix=JSON.parse(fs.readFileSync('runs/V45-Z4-WIP-001/evidence/013-worker-channel-knownhosts-prestate-failure-and-fix.json','utf8'));
 
 test('Z4 records the real privilege boundary instead of pretending VM absence',()=>{
   assert.equal(host.runner_executor,'NT AUTHORITY\\NETWORK SERVICE');
@@ -96,7 +97,7 @@ test('HostGuard prerequisites and runtime dependencies remain repaired with prov
   assert.equal(providerAcceptance.readback_status,'CONFIRMED');
 });
 
-test('Z4 advances to the next independent worker-channel gate without regressing HostGuard acceptance',()=>{
+test('Z4 advances to the worker-channel admin prestate gate and records the missing legacy known-host path safely',()=>{
   assert.equal(control.z4_hostguard_provider_acceptance,'PASS');
   assert.equal(control.z4_worker_channel_runner_probe_run_id,34739679595);
   assert.equal(control.z4_worker_channel_runner_probe_job_id,103677142640);
@@ -110,8 +111,9 @@ test('Z4 advances to the next independent worker-channel gate without regressing
   assert.equal(control.wait_reason,'WORKER_CHANNEL_ADMIN_READONLY_PRESTATE_REQUIRED');
   assert.equal(run.state,'WAITING_RESOURCE');
   assert.equal(run.wait_reason,'WORKER_CHANNEL_ADMIN_READONLY_PRESTATE_REQUIRED');
-  assert.equal(run.revision,12);
+  assert.equal(run.revision,13);
   assert.ok(run.evidence_refs.includes('evidence/012-worker-channel-runner-key-boundary.json'));
+  assert.ok(run.evidence_refs.includes('evidence/013-worker-channel-knownhosts-prestate-failure-and-fix.json'));
 
   assert.equal(workerBoundary.runner_executor,'NT AUTHORITY\\NETWORK SERVICE');
   assert.equal(workerBoundary.runner_probe_conclusion,'failure');
@@ -123,6 +125,20 @@ test('Z4 advances to the next independent worker-channel gate without regressing
   assert.equal(workerBoundary.next_gate,'WORKER_CHANNEL_ADMIN_READONLY_PRESTATE_REQUIRED');
   assert.equal(workerBoundary.verification_state,'VERIFIED');
   assert.equal(workerBoundary.readback_status,'CONFIRMED');
+
+  assert.equal(knownHostsFix.human_attempt_result,'REQUIRED_SSH_MATERIAL_UNAVAILABLE');
+  assert.equal(knownHostsFix.missing_path,'C:\\PTYSD\\h03-build\\v21\\ptysd-worker-known_hosts');
+  assert.equal(knownHostsFix.ssh_dispatched,false);
+  assert.equal(knownHostsFix.guest_command_dispatched,false);
+  assert.equal(knownHostsFix.side_effect_classification,'SIDE_EFFECT_NOT_APPLIED');
+  assert.equal(knownHostsFix.server_host_key_fingerprint_recovered_from_project_sources,false);
+  assert.equal(knownHostsFix.trust_on_first_use,false);
+  assert.equal(knownHostsFix.ssh_keyscan_allowed,false);
+  assert.equal(knownHostsFix.strict_host_key_checking,'yes');
+  assert.equal(knownHostsFix.provider_smoke_run_id,34740592712);
+  assert.equal(knownHostsFix.provider_smoke_job_id,103679519346);
+  assert.equal(knownHostsFix.provider_smoke_conclusion,'success');
+  assert.equal(knownHostsFix.next_gate,'WORKER_CHANNEL_ADMIN_READONLY_PRESTATE_REQUIRED');
 });
 
 test('Z4 remains isolated from business paid VM firewall runner provider and global execution-policy effects',()=>{
@@ -145,6 +161,8 @@ test('Z4 remains isolated from business paid VM firewall runner provider and glo
   assert.equal(providerAcceptance.business_project_effect,false);assert.equal(providerAcceptance.production_effect,false);
   assert.equal(workerBoundary.guest_mutation,false);assert.equal(workerBoundary.vm_mutation,false);
   assert.equal(workerBoundary.provider_mutation,false);assert.equal(workerBoundary.business_project_effect,false);assert.equal(workerBoundary.production_effect,false);
+  assert.equal(knownHostsFix.guest_mutation,false);assert.equal(knownHostsFix.vm_mutation,false);
+  assert.equal(knownHostsFix.provider_mutation,false);assert.equal(knownHostsFix.business_project_effect,false);assert.equal(knownHostsFix.production_effect,false);
   assert.equal(control.production_allowed,false);
   assert.equal(control.business_project_access_allowed,false);
   assert.equal(control.zero_incremental_paid_cost_required,true);
