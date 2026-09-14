@@ -1,0 +1,37 @@
+{
+  "schema": "v46.authority_recovery_search_receipt.v1",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "observed_at": "2026-09-14T19:03:31+08:00",
+  "candidate_branch_prestate": "efaf76e566bfcb7202e00e623d3ec4971aad0962",
+  "formal_control_ref": "refs/heads/v45/factory-control",
+  "formal_control_commit": "d6782c6254f3fe24183804fed07e2c71c00065e6",
+  "formal_control_version": 28,
+  "directory_exact_get": "NOT_FOUND",
+  "mission_projection": {
+    "revision": "20260913T004710+0800",
+    "hash": "sha256:8bbfb11d00690b46dfd872f9297ea4c66253f499878a2a6a160cecd51199b737",
+    "canonical_body_recovered": false,
+    "hash_recomputed_from_body": false
+  },
+  "policy_projection": {
+    "revision": "20260913T010957+0800-EP66",
+    "hash": "sha256:25ab690abfe8ddce953654f67355c01ea353343f337f96c8b3078bdafe7c77c2",
+    "canonical_body_recovered": false,
+    "hash_recomputed_from_body": false
+  },
+  "searches_performed": [
+    "exact Project Directory get via fixed adapter",
+    "exact formal control commit/tree/provider readback",
+    "same-project uploaded historical sources by exact Mission revision/hash",
+    "same-project uploaded historical sources by exact Policy revision/hash"
+  ],
+  "search_result": "ONLY_PROJECTIONS_OR_OLDER_AUTHORITY_REVISIONS_FOUND",
+  "older_authority_substitution_allowed": false,
+  "recovery_classification": "CANONICAL_AUTHORITY_BODY_NOT_RECOVERED",
+  "formal_publication_allowed": false,
+  "required_human_gate": "V46-HG-001-AUTHORITY-RECOVERY",
+  "production_mutation": false,
+  "business_project_mutation": false,
+  "paid_fallback": false,
+  "notes": "This receipt records a bounded read-only recovery attempt. It does not elevate historical artifacts, File Library results, chat text, or hash projections into Current Mission or Current Execution Policy authority."
+}
