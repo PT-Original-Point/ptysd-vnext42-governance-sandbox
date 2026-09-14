@@ -1,0 +1,19 @@
+{
+  "schema":"V46_TRUSTED_RELEASE_MANIFEST_CANDIDATE_V1",
+  "project_id":"CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "status":"CANDIDATE_NOT_ENFORCED",
+  "control_repository_id":1352411536,
+  "control_ref":"refs/heads/v45/factory-control",
+  "trusted_artifacts":[
+    {"path":".github/workflows/v45-bounded-self-hosted.yml","git_blob_sha":"96eaa3e3a95c6d2a7821ee298659b43da8656db5","role":"bounded transport workflow"},
+    {"path":"scripts/v45-state-core.mjs","git_blob_sha":"d6e40cfafff679b953408bfdac11fb0416baa0db","role":"run/epoch/effect state helper"},
+    {"path":"docs/plan/VNEXT4.6-EXECUTION-BASELINE.md","git_blob_sha":"24707dce87a016a6e30cbe8416be0370ceff270d","role":"human-approved exact baseline receipt on main"}
+  ],
+  "runner_requirements":{"labels":["self-hosted","windows","ptysd-governance-v45"],"runner_name":"PTYSD-V45-CONTROL-01","runner_version":"2.337.0","runner_group":"UNKNOWN"},
+  "workflow_permissions_required":"contents:read unless an explicitly fenced trusted exporter step is separately authorized",
+  "candidate_code_may_modify_manifest":false,
+  "candidate_code_may_modify_expected_digest":false,
+  "production_allowed":false,
+  "activation_blockers":["repository visibility is public","rulesets are empty","branch protection unreadable via current integration","runner group/repository allowlist unverified"],
+  "verdict":"NOT_ENFORCED_BLOCKED"
+}
