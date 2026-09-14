@@ -13,6 +13,7 @@ permissions:
 
 concurrency:
   group: factory-v46-shadow-${{ github.repository_id }}
+  queue: max
   cancel-in-progress: false
 
 jobs:
@@ -31,6 +32,6 @@ jobs:
         with:
           node-version: '24'
           cache: ''
-      - name: Run candidate bounded driver tests only
+      - name: Run candidate bounded driver and transport tests only
         shell: cmd
-        run: node --test tests/v46-driver.test.mjs
+        run: node --test tests/v46-driver.test.mjs tests/v46-transport-stop.test.mjs
