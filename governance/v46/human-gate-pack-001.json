@@ -3,12 +3,16 @@
   "gate_id":"V46-HG-001-AUTHORITY-RECOVERY",
   "project_id":"CHATGPT_GLOBAL_SKILL_GOVERNANCE",
   "created_at":"2026-09-14T16:51:53+08:00",
-  "reason":"Formal construction is blocked at WP46-04 because the canonical prior Mission/Policy bodies are unavailable and the installed Project Directory adapter exposes read-only resolve/get operations.",
-  "completed_before_gate":{"v46_baseline_adopted":true,"z6":"PASS","wp46_02_candidate":"PASS","wp46_03_qualification":"PASS_WITH_EXTERNAL_TRUST_GATE","shadow_integrated_tests":"24/24 PASS"},
+  "updated_at":"2026-09-14T19:03:31+08:00",
+  "reason":"Formal construction is blocked at WP46-04 because bounded recovery did not recover the canonical prior Mission/Policy bodies and the installed fixed Project Directory adapter still exposes read-only resolve/get operations.",
+  "fresh_formal_state":{"control_commit":"d6782c6254f3fe24183804fed07e2c71c00065e6","control_version":28,"z6":"PASS","next_gate":"R1-G0_DIRECTORY_RESERVED_EARLY_BINDING","directory_exact_get":"NOT_FOUND"},
+  "completed_before_gate":{"v46_baseline_adopted":true,"z6":"PASS","wp46_02_candidate":"PASS","wp46_03_qualification":"PASS_WITH_EXTERNAL_TRUST_GATE","wp46_05a_shadow":"PASS_PREWORK_ONLY","wp46_06a_shadow":"5/5 PASS_PREWORK_ONLY","wp46_06b_shadow":"5/5 PASS_PREWORK_ONLY","wp46_07_shadow":"4/4 PASS_PREWORK_ONLY","wp46_08a_shadow":"8/8 PASS_PREWORK_ONLY","wp46_08b_shadow":"7/7 PASS_PREWORK_ONLY","shadow_integrated_tests":"39/39 PASS"},
+  "authority_recovery_receipt":"governance/v46/authority-recovery-search-receipt.json",
+  "integrated_regression_receipt":"governance/v46/integrated-regression-39pass.json",
   "requested_human_authorizations":[
     {
       "id":"HG1_MISSION_RECOVERY",
-      "action":"If the prior canonical Mission body remains unrecoverable, approve the exact V4.6 Mission recovery candidate as a new human-authorized Current Mission revision.",
+      "action":"Because the prior canonical Mission body remains unrecovered after bounded exact search, approve the exact V4.6 Mission recovery candidate as a new human-authorized Current Mission revision.",
       "artifact":"governance/v46/current-mission.recovery-candidate.json",
       "sha256":"967c9948e066363566fbeb19ae6dc2a197c63275dafe992c9e6487a758e404d3",
       "does_not_authorize":["Production","new cost","N=2 promotion","other Project mutation"]
