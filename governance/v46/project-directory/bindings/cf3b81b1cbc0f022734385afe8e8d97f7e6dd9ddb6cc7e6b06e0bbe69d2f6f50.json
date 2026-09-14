@@ -1,0 +1,13 @@
+{
+  "schema": "PROJECT_NAME_BINDING_OFF_HOST_PROJECTION_V1",
+  "projection_role": "OFF_HOST_READBACK_PROJECTION_NOT_MUTATION_AUTHORITY",
+  "normalized_name": "全自動軟體工廠",
+  "normalized_name_sha256": "cf3b81b1cbc0f022734385afe8e8d97f7e6dd9ddb6cc7e6b06e0bbe69d2f6f50",
+  "binding_name": "全自動軟體工廠",
+  "canonical_project_name": "全自動軟體工廠",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "binding_status": "RESERVED",
+  "binding_revision": 1,
+  "record_path": "governance/v46/project-directory/records/CHATGPT_GLOBAL_SKILL_GOVERNANCE.json",
+  "authorization_gate": "V46-HG-001-AUTHORITY-RECOVERY/HG3_DIRECTORY_WRITE_SURFACE"
+}
