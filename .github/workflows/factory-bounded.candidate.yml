@@ -1,0 +1,36 @@
+name: VNEXT4.6 bounded factory candidate (shadow only)
+
+on:
+  workflow_dispatch:
+    inputs:
+      command_ref:
+        description: Immutable admitted command locator for shadow verification only
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: factory-v46-shadow-${{ github.repository_id }}
+  cancel-in-progress: false
+
+jobs:
+  validate-candidate:
+    if: ${{ github.ref_name == 'v46/directory-candidate' }}
+    runs-on: [self-hosted, windows, ptysd-governance-v45]
+    timeout-minutes: 20
+    steps:
+      - name: Checkout exact candidate ref without retaining credentials
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+      - name: Provision Node 24
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: '24'
+          cache: ''
+      - name: Run candidate bounded driver tests only
+        shell: cmd
+        run: node --test tests/v46-driver.test.mjs
