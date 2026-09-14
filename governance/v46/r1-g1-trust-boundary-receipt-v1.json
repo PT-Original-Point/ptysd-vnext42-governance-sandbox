@@ -1,0 +1,133 @@
+{
+  "schema": "V46_R1_G1_TRUST_BOUNDARY_RECEIPT_V1",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "gate": "R1-G1_CONTROL_REPO_SELF_HOSTED_RUNNER_TRUST_BOUNDARY",
+  "generated_at": "2026-09-14T22:41:42.7578404+08:00",
+  "conclusion": "PASS",
+  "verification_state": "VERIFIED",
+  "readback_status": "CONFIRMED",
+  "human_authorization": {
+    "keep_public_repository": true,
+    "zero_incremental_paid_cost": true,
+    "repository_id": 1352411536,
+    "restricted_runner_group_and_exact_trusted_workflow": true,
+    "runner_move_out_of_unrestricted_repository_scope": true,
+    "trust_anchor_and_control_ref_protection": true,
+    "production_allowed": false,
+    "business_project_access_allowed": false,
+    "n2_allowed": false
+  },
+  "repository": {
+    "full_name": "PT-Original-Point/ptysd-vnext42-governance-sandbox",
+    "repository_id": 1352411536,
+    "visibility": "public"
+  },
+  "runner_group": {
+    "id": 3,
+    "name": "PTYSD-V46-CONTROL-TRUSTED",
+    "visibility": "selected",
+    "default": false,
+    "allows_public_repositories": true,
+    "restricted_to_workflows": true,
+    "selected_repository_ids": [1352411536],
+    "selected_workflows": [
+      "PT-Original-Point/ptysd-vnext42-governance-sandbox/.github/workflows/v45-bounded-self-hosted.yml@refs/heads/v46/trust-anchor"
+    ]
+  },
+  "runner": {
+    "name": "PTYSD-V45-CONTROL-01",
+    "organization_runner_id": 9,
+    "repository_runner_count_after": 0,
+    "organization_url": "https://github.com/PT-Original-Point",
+    "status": "online",
+    "busy": false,
+    "labels": ["self-hosted", "Windows", "X64", "ptysd-governance-v45"],
+    "service_account": "NT AUTHORITY\\NETWORK SERVICE"
+  },
+  "trust_anchor": {
+    "ref": "refs/heads/v46/trust-anchor",
+    "head_sha": "db826ce5a07e2d17a23f040215988c2a59fddc7d",
+    "protected": true,
+    "enforce_admins": true,
+    "allow_force_pushes": false,
+    "allow_deletions": false,
+    "lock_branch": true,
+    "workflow_blob_sha": "d53fbca67a38f901cf0a60f15de9a9969ac09e0b",
+    "verifier_blob_sha": "2074d35b8bac247ccc79a93f7060a01f806c0ef4"
+  },
+  "control_ref_protection": {
+    "ref": "refs/heads/v45/factory-control",
+    "pre_completion_head_sha": "310dda65c72f7c32d8025754ccd19211494ed808",
+    "protected": true,
+    "enforce_admins": true,
+    "allow_force_pushes": false,
+    "allow_deletions": false,
+    "lock_branch": false
+  },
+  "historical_push_trigger_hardening": {
+    "branch": "v45/runner-smoke-z2",
+    "commit": "6de279a2cdf5e127f64986d7b5bea5a5665feaec",
+    "workflow_blob_sha": "e82d3fb0dce62403a7b7bbeedb8b906c44880f51",
+    "trigger": "workflow_dispatch_only"
+  },
+  "negative_isolation_test": {
+    "workflow": ".github/workflows/v45-runner-provider-smoke.yml",
+    "run_id": 34855134249,
+    "job_id": 104012625296,
+    "head_sha": "6de279a2cdf5e127f64986d7b5bea5a5665feaec",
+    "runner_was_online_and_idle": true,
+    "job_remained_unassigned_during_bounded_observation": true,
+    "runner_name_observed": "",
+    "runner_group_name_observed": "",
+    "final_conclusion": "cancelled",
+    "classification": "NON_SELECTED_WORKFLOW_CANNOT_ACQUIRE_RESTRICTED_RUNNER"
+  },
+  "positive_isolation_test": {
+    "workflow": ".github/workflows/v45-bounded-self-hosted.yml",
+    "mode": "r1-g1-trust-boundary",
+    "run_id": 34857033220,
+    "job_id": 104019144928,
+    "head_sha": "db826ce5a07e2d17a23f040215988c2a59fddc7d",
+    "conclusion": "success",
+    "runner_name": "PTYSD-V45-CONTROL-01",
+    "runner_group_name": "ptysd-v46-control-trusted",
+    "runner_identity_marker": "R1_G1_RESTRICTED_RUNNER_IDENTITY=PASS",
+    "static_verifier_marker": "R1_G1_TRUST_BOUNDARY_STATIC=PASS",
+    "github_token_permissions": ["contents:read", "metadata:read"],
+    "persist_credentials": false
+  },
+  "diagnostic_non_acceptance_run": {
+    "run_id": 34856075087,
+    "job_id": 104015865489,
+    "routing_to_restricted_runner": "PASS",
+    "static_verifier": "PASS",
+    "overall_conclusion": "failure",
+    "classification": "UNRELATED_STALE_HISTORICAL_CURRENT_STATE_ASSERTIONS",
+    "used_for_gate_acceptance": false
+  },
+  "continuity_precondition": {
+    "active_run_id": "V45-Z6-SAFETY-001",
+    "run_state": "SUCCEEDED",
+    "run_revision": 6,
+    "attempt_id": "V45-Z6C-ATTEMPT-001",
+    "attempt_epoch": 2,
+    "stop_requested": false,
+    "unresolved_operation_ids": []
+  },
+  "temporary_provider_admin_oauth": {
+    "identity": "t14210184",
+    "organization_role": "admin",
+    "purpose": "R1-G1_ONLY",
+    "logout_result": "PASS",
+    "temporary_auth_directory_removed": true,
+    "temporary_cli_directory_removed": true,
+    "temporary_browser_tasks_removed": true
+  },
+  "effects": {
+    "production_effects": 0,
+    "business_project_effects": 0,
+    "paid_service_effects": 0,
+    "n2_effects": 0
+  },
+  "next_gate": "R1-G2_NO_FORCE_CONTROL_CAS"
+}
