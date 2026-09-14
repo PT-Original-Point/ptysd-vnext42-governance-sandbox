@@ -1,0 +1,45 @@
+{
+  "schema": "v46.prework.evidence.v1",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "observed_at": "2026-09-14T18:55:00+08:00",
+  "candidate_branch": "v46/directory-candidate",
+  "candidate_head_before_evidence": "7b87ef3a9be3ea617b0167d65cff10e3061efae0",
+  "scope": ["WP46-08A_SHADOW_PREWORK", "WP46-08B_SHADOW_PREWORK"],
+  "shadow_only": true,
+  "formal_wp_status": "NOT_PASSED_DUE_TO_UNMET_PREREQUISITES",
+  "blocked_prerequisites": [
+    "WP46-04 formal Mission/Policy authority publication",
+    "WP46-05B formal Directory RESERVED binding",
+    "WP46-07 formal model/cost/data qualification after authority publication"
+  ],
+  "new_artifacts": [
+    "scripts/v46-bounded-driver.mjs",
+    "tests/v46-driver.test.mjs",
+    "scripts/v46-transport-guard.mjs",
+    "tests/v46-transport-stop.test.mjs",
+    ".github/workflows/factory-bounded.candidate.yml"
+  ],
+  "local_container_tests": {
+    "v46_driver": {"passed": 8, "failed": 0},
+    "v46_transport_stop": {"passed": 7, "failed": 0}
+  },
+  "prior_candidate_regression": {"passed": 24, "failed": 0, "head": "03593ad8d255e3a4ff39ebeeee2a2ad852349130"},
+  "transport_contract": {
+    "actions_is_transport_only": true,
+    "business_attempt_epoch_from_transport": false,
+    "queue_mode": "max",
+    "queue_pending_limit": 100,
+    "cancel_in_progress": false,
+    "stop_independent_of_transport_attempt": true,
+    "duplicate_transport_deduped": true,
+    "outage_or_throttle_action": "WAIT_AND_READ_CANONICAL"
+  },
+  "github_primary_sources": [
+    "https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax",
+    "https://docs.github.com/en/actions/reference/limits"
+  ],
+  "production_mutation": false,
+  "business_project_access": false,
+  "paid_fallback": false,
+  "promotion_claimed": false
+}
