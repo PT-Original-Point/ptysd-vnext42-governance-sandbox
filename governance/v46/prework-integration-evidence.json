@@ -1,0 +1,16 @@
+{
+  "schema":"V46_PREWORK_INTEGRATION_EVIDENCE_V1",
+  "project_id":"CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "candidate_branch":"refs/heads/v46/directory-candidate",
+  "tested_head":"03593ad8d255e3a4ff39ebeeee2a2ad852349130",
+  "test_command":"node --test tests/v46-*.test.mjs",
+  "tests":24,
+  "pass":24,
+  "fail":0,
+  "cancelled":0,
+  "skipped":0,
+  "covered_prework":["WP46-02_DIRECTORY_CANDIDATE","WP46-03_TRUST_QUALIFICATION","WP46-04_AUTHORITY_FAIL_CLOSED","WP46-05A_CONTROL_RACE_SHADOW_EVIDENCE_STATIC_BINDING","WP46-06A_EFFECT_IDENTITY_SHADOW","WP46-06B_RECEIPT_IDENTITY_SHADOW","WP46-07_MODEL_PROFILE_SHADOW"],
+  "formal_gates_passed_by_this_evidence":[],
+  "reason":"Integrated candidate tests prove internal shadow consistency only; formal prerequisites and external provider authority remain required.",
+  "production_mutation":false
+}
