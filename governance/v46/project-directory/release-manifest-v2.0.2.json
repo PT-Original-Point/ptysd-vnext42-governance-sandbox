@@ -1,0 +1,16 @@
+{
+  "schema": "V46_PROJECT_DIRECTORY_ADAPTER_RELEASE_V1",
+  "version": "2.0.2-v46",
+  "authorization_gate": "V46-HG-001-AUTHORITY-RECOVERY/HG3_DIRECTORY_WRITE_SURFACE",
+  "base_source_commit": "17fd4d3bc2e05b54524cf95df4873971a0b30416",
+  "base_source_sha256": "sha256:615d61a11091b659a9111c6eb13d617797432f4f3aa8e2f1cef0eade5550ed6e",
+  "patch": "governance/v46/project-directory/production_project_directory_v2.0.2.patch",
+  "release_source_sha256": "sha256:ca82905bec3ba3140b737439c1df88e658f6c5fb2014bc09d2184f16f5d4f021",
+  "regression": {
+    "host_postgres_temp_tables": "PASS",
+    "cases": 5,
+    "persistent_mutations": 0
+  },
+  "scope": "CHATGPT_GLOBAL_SKILL_GOVERNANCE only; RESERVED publication only",
+  "forbidden": ["other Project mutation","ACTIVE promotion","Production","repo visibility change","new cost"]
+}

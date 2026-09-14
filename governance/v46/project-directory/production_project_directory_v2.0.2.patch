@@ -1,0 +1,9 @@
+--- production_project_directory_v2.py	v2.0.1-v46
++++ production_project_directory_v2.py	v2.0.2-v46
+@@
+-VERSION = "2.0.1-v46"
++VERSION = "2.0.2-v46"
+@@ self_test
+-            conn.rollback()
++            # No explicit rollback inside psycopg Transaction context. All test tables are TEMP ON COMMIT DROP,
++            # so successful context exit commits only temporary-table work and leaves persistent rows unchanged.
