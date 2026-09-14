@@ -1,0 +1,34 @@
+{
+  "schema":"V46_HUMAN_GATE_PACK_V1",
+  "gate_id":"V46-HG-001-AUTHORITY-RECOVERY",
+  "project_id":"CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "created_at":"2026-09-14T16:51:53+08:00",
+  "reason":"Formal construction is blocked at WP46-04 because the canonical prior Mission/Policy bodies are unavailable and the installed Project Directory adapter exposes read-only resolve/get operations.",
+  "completed_before_gate":{"v46_baseline_adopted":true,"z6":"PASS","wp46_02_candidate":"PASS","wp46_03_qualification":"PASS_WITH_EXTERNAL_TRUST_GATE","shadow_integrated_tests":"24/24 PASS"},
+  "requested_human_authorizations":[
+    {
+      "id":"HG1_MISSION_RECOVERY",
+      "action":"If the prior canonical Mission body remains unrecoverable, approve the exact V4.6 Mission recovery candidate as a new human-authorized Current Mission revision.",
+      "artifact":"governance/v46/current-mission.recovery-candidate.json",
+      "sha256":"967c9948e066363566fbeb19ae6dc2a197c63275dafe992c9e6487a758e404d3",
+      "does_not_authorize":["Production","new cost","N=2 promotion","other Project mutation"]
+    },
+    {
+      "id":"HG2_POLICY_PUBLICATION",
+      "action":"Approve the exact minimal V4.6 Execution Policy candidate for publication only after Mission authority is recovered/published and same-source hash readback succeeds.",
+      "artifact":"governance/v46/minimal-execution-policy.candidate.json",
+      "sha256":"577a61538bc1c1ba6852c50fa00f315c596d618cc68578ff93a6cf52b987bb41",
+      "does_not_authorize":["Production","paid fallback","hosted runner fallback","business project access","worker provider-write credentials"]
+    },
+    {
+      "id":"HG3_DIRECTORY_WRITE_SURFACE",
+      "action":"Authorize a versioned Project Directory connector/adapter update that adds transactional CAS write capability needed for this Project's RESERVED publication and authority refs, while preserving exact-name uniqueness and existing read contract.",
+      "scope":"This Project only for the first migration; no mutation of other Project records; RESERVED only until later promotion; off-host exact readback required; no fuzzy/recent/memory fallback.",
+      "implementation_constraints":["versioned skill/connector change","regression tests before install","same-source readback","zero incremental paid cost","no scan of host storage","rollback by forward revision","do not mark ACTIVE in this gate"],
+      "does_not_authorize":["changing repo visibility","deleting legacy Directory data","other Project migration","Production"]
+    }
+  ],
+  "not_requested_yet":["repository visibility/trust-boundary change","independent DR storage/key choice","N=2 coding slots","Production final authorization"],
+  "approval_phrase":"批准 V46-HG-001 全部三項授權",
+  "status":"WAITING_HUMAN_APPROVAL"
+}
