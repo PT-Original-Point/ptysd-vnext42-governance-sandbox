@@ -1,9 +1,7 @@
 name: VNEXT4.5 self-hosted runner provider smoke
 
 on:
-  push:
-    branches:
-      - v45/runner-smoke-z2
+  workflow_dispatch:
 
 permissions:
   contents: read
