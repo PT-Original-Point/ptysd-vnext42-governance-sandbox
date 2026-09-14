@@ -1,0 +1,91 @@
+{
+  "schema": "V46_R1_G1_TRUST_BOUNDARY_PRESTATE_V1",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "gate": "R1-G1_CONTROL_REPO_SELF_HOSTED_RUNNER_TRUST_BOUNDARY",
+  "prestate_control_commit": "d67b7a6b328ec22aa5193a04d21304ecd4b9ea0f",
+  "prestate_control_version": 29,
+  "verdict": "BLOCKED_HUMAN_RESERVED_TRUST_BOUNDARY",
+  "repository": {
+    "id": 1352411536,
+    "full_name": "PT-Original-Point/ptysd-vnext42-governance-sandbox",
+    "visibility": "public",
+    "default_branch": "main",
+    "control_branch": "v45/factory-control",
+    "control_branch_protected": false,
+    "rulesets": [],
+    "admin_branch_protection_endpoint": "UNAVAILABLE_403_INTEGRATION",
+    "fork_count": 0,
+    "allow_forking": true
+  },
+  "current_trusted_workflow": {
+    "path": ".github/workflows/v45-bounded-self-hosted.yml",
+    "blob_sha": "96eaa3e3a95c6d2a7821ee298659b43da8656db5",
+    "trigger": "workflow_dispatch_only",
+    "permissions": "contents_read_only",
+    "runner_labels": ["self-hosted", "windows", "ptysd-governance-v45"],
+    "checkout_action_sha": "11d5960a326750d5838078e36cf38b85af677262",
+    "setup_node_action_sha": "820762786026740c76f36085b0efc47a31fe5020",
+    "checkout_persist_credentials": false,
+    "references_secrets": false,
+    "static_verifier_path": "scripts/verify-v45-bounded.mjs",
+    "static_verifier_blob_sha": "a269dd13a2a605cb558579e8af6bbd0fba246e55",
+    "workflow_digest_lock_provider_enforced": false
+  },
+  "runner": {
+    "name": "PTYSD-V45-CONTROL-01",
+    "machine": "DESKTOP-1B6PD2P",
+    "version": "2.337.0",
+    "persistent": true,
+    "service_start_mode": "Auto",
+    "service_account": "NT AUTHORITY\\NETWORK SERVICE",
+    "pool_name": "Default",
+    "registered_repository": "https://github.com/PT-Original-Point/ptysd-vnext42-governance-sandbox",
+    "listener_live_readback": true,
+    "governance_secret_acl_grants_network_service": false
+  },
+  "historical_exposure": {
+    "branch_still_exists": "v45/runner-smoke-z2",
+    "branch_protected": false,
+    "push_triggered_self_hosted_workflow_present": true,
+    "workflow_path": ".github/workflows/v45-runner-provider-smoke.yml",
+    "workflow_blob_sha": "bb2457fdf47baf0652c1e8024879d07b1772a949",
+    "trigger_branch": "v45/runner-smoke-z2"
+  },
+  "official_platform_constraints": {
+    "public_repo_self_hosted_runner_guidance": "GITHUB_RECOMMENDS_PRIVATE_REPOSITORIES_FOR_SELF_HOSTED_RUNNERS",
+    "github_free_private_repositories": "UNLIMITED",
+    "self_hosted_runner_actions_usage_charge": "FREE_EXCLUDING_OWN_HARDWARE_COST",
+    "runner_groups_on_github_free_organizations": "AVAILABLE",
+    "runner_group_selected_workflows_can_pin_full_sha": true,
+    "public_repo_branch_protection_on_github_free": "AVAILABLE",
+    "private_repo_branch_protection_on_github_free": "NOT_AVAILABLE_WITHOUT_PRO_TEAM_OR_ENTERPRISE"
+  },
+  "zero_cost_hardening_candidate": {
+    "strategy": "KEEP_PUBLIC_BUT_RESTRICT_SELF_HOSTED_EXECUTION_TO_EXACT_TRUSTED_WORKFLOW",
+    "actions": [
+      "create an organization runner group restricted to repository id 1352411536",
+      "restrict runner group to PT-Original-Point/ptysd-vnext42-governance-sandbox/.github/workflows/v45-bounded-self-hosted.yml pinned to a full trusted commit SHA",
+      "move PTYSD-V45-CONTROL-01 out of Default into the restricted runner group",
+      "add public-repository branch protection or ruleset for the control/trust-anchor refs without granting candidate bypass",
+      "prove historical or non-selected workflows cannot acquire the runner",
+      "re-read runner group, workflow digest, branch/ruleset state and negative scheduling evidence before PASS"
+    ],
+    "incremental_paid_cost_expected": 0,
+    "requires_human_authorization": true,
+    "reason": "runner-group and repository protection changes alter a major trust boundary"
+  },
+  "alternative_hardening_candidate": {
+    "strategy": "PRIVATE_CONTROL_REPO",
+    "incremental_paid_cost_for_repository_on_github_free": 0,
+    "caveat": "GitHub Free private repositories do not provide the same branch protection/ruleset availability; equivalent controls would still need proof or a paid plan, which is forbidden"
+  },
+  "preserved_boundaries": [
+    "ZERO_INCREMENTAL_PAID_COST_REQUIRED",
+    "NO_PRODUCTION",
+    "NO_BUSINESS_PROJECT_ACCESS",
+    "NO_WORKER_PROVIDER_WRITE_CREDENTIALS",
+    "CODING_PARALLELISM_ACTIVE_1",
+    "NO_REPO_VISIBILITY_CHANGE_WITHOUT_HUMAN_APPROVAL"
+  ],
+  "next_action": "WAIT_FOR_EXPLICIT_HUMAN_TRUST_BOUNDARY_AUTHORIZATION_THEN_APPLY_EXACT_ZERO_COST_HARDENING_AND_RUN_NEGATIVE_ISOLATION_TEST"
+}
