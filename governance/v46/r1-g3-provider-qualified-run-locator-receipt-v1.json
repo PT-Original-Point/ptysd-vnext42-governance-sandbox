@@ -1,0 +1,60 @@
+{
+  "schema": "V46_R1_G3_PROVIDER_QUALIFIED_RUN_LOCATOR_RECEIPT_V1",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "gate": "R1-G3_PROVIDER_QUALIFIED_RUN_LOCATOR",
+  "conclusion": "PASS",
+  "verification_state": "VERIFIED",
+  "directory": {
+    "status": "FOUND",
+    "project_status": "RESERVED",
+    "runtime_type": "GITHUB_ACTIONS_BOUNDED",
+    "directory_revision": 1,
+    "active_run_id": "V45-Z6-SAFETY-001",
+    "active_run_ref": "github://1352411536/runs/V45-Z6-SAFETY-001?control_ref=refs/heads/v45/factory-control"
+  },
+  "locator": {
+    "provider": "github",
+    "repository_id": 1352411536,
+    "run_path": "runs/V45-Z6-SAFETY-001",
+    "control_ref": "refs/heads/v45/factory-control",
+    "contains_repository_name": false,
+    "contains_self_referential_commit_sha": false
+  },
+  "provider_resolution": {
+    "repository_id": 1352411536,
+    "resolved_full_name": "PT-Original-Point/ptysd-vnext42-governance-sandbox",
+    "resolved_repository_name": "ptysd-vnext42-governance-sandbox",
+    "resolved_control_sha": "5db696bc52dd824352fc97b8c2029dbd26435564",
+    "run_blob_sha": "2dd124744d8bb6beca93df0f9d18ae0dc38d9c77",
+    "resolved_run_id": "V45-Z6-SAFETY-001",
+    "resolved_run_state": "SUCCEEDED",
+    "resolved_run_revision": 6,
+    "resolved_attempt_id": "V45-Z6C-ATTEMPT-001",
+    "resolved_attempt_epoch": 2,
+    "unresolved_operation_ids": [],
+    "stop_requested": false
+  },
+  "rename_independence_probe": {
+    "stale_or_target_name": "PT-Original-Point/ptysd-vnext45-governance-sandbox",
+    "stale_name_lookup": "EXPECTED_404",
+    "repository_id_lookup": "PASS",
+    "repository_id_lookup_resolved_current_name": "PT-Original-Point/ptysd-vnext42-governance-sandbox",
+    "locator_resolution_depends_on_repository_name": false,
+    "classification": "PROVIDER_QUALIFIED_ID_SURVIVES_NAME_DRIFT"
+  },
+  "identity_readback": {
+    "mission_revision": "20260914T194247+0800",
+    "mission_hash": "sha256:5f1f97971b5aec75454a03ffbad8a8a9036240e830facb4e6efc5ed538260b7b",
+    "policy_revision": "20260914T194247+0800-EP67",
+    "policy_hash": "sha256:9e38810fee31514af2194a83aaca981bcb7ba0376cc6752aa7cf9b3419d1b67a",
+    "controller_contract_version": "CHAT_EXECUTION_POLICY_CONTRACT_V9_1_CANDIDATE"
+  },
+  "effects": {
+    "repository_rename_performed": false,
+    "production_effects": 0,
+    "business_project_effects": 0,
+    "paid_service_effects": 0,
+    "n2_effects": 0
+  },
+  "next_gate": "R1-G4_ACTIONS_QUEUE_TRANSPORT_ATTEMPT_SEPARATION"
+}
