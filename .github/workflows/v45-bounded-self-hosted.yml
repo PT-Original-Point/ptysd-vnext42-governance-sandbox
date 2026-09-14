@@ -21,7 +21,9 @@ concurrency:
 jobs:
   z2-noop:
     if: ${{ inputs.mode == 'z2-noop' }}
-    runs-on: [self-hosted, windows, ptysd-governance-v45]
+    runs-on:
+      group: PTYSD-V46-CONTROL-TRUSTED
+      labels: ptysd-governance-v45
     timeout-minutes: 20
     steps:
       - name: Checkout exact workflow ref without retaining credentials
