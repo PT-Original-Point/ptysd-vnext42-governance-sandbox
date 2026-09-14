@@ -10,7 +10,7 @@ from typing import Any
 import psycopg
 from psycopg.errors import UniqueViolation
 
-VERSION = "2.0.0-v46"
+VERSION = "2.0.1-v46"
 ROOT = Path(r"C:\Users\x\governance-durable-prod-v1")
 FIRST_MIGRATION_PROJECT = "CHATGPT_GLOBAL_SKILL_GOVERNANCE"
 HG3_GATE = "V46-HG-001-AUTHORITY-RECOVERY/HG3_DIRECTORY_WRITE_SURFACE"
@@ -84,10 +84,11 @@ def get_project(conn: psycopg.Connection, project_id: str) -> dict[str, Any]:
     if row is None:
         return {"status": "NOT_FOUND", "project_id": project_id}
     payload = dict(zip(columns, row))
+    project_status = payload.pop("status", None)
     for key, value in list(payload.items()):
         if hasattr(value, "isoformat"):
             payload[key] = value.isoformat()
-    return {"status": "FOUND", **payload}
+    return {"status": "FOUND", "project_status": project_status, **payload}
 
 
 def schema_status(conn: psycopg.Connection) -> dict[str, Any]:
@@ -226,7 +227,7 @@ def self_test() -> int:
             assert first["status"] == "RESERVED", first
             assert resolve_exact(conn, record["project_name"])["project_id"] == FIRST_MIGRATION_PROJECT
             got = get_project(conn, FIRST_MIGRATION_PROJECT)
-            assert got["status"] == "FOUND" and got["status"] == "FOUND"
+            assert got["status"] == "FOUND" and got["project_status"] == "RESERVED"
             second = reserve_record(conn, record)
             assert second["status"] == "CAS_CONFLICT", second
             other = dict(record); other["project_id"] = "OTHER"
