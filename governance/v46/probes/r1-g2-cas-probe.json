@@ -1,0 +1,7 @@
+{
+  "schema": "V46_R1_G2_CAS_PROBE_V1",
+  "probe": "RACE",
+  "writer": "C1",
+  "expected_parent": "d93732d1a895f819677eac073587b213460a32ce",
+  "retry_on_stale": false
+}
