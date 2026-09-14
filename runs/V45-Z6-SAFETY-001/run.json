@@ -2,11 +2,11 @@
   "schema_version":"factory.run.v1",
   "run_id":"V45-Z6-SAFETY-001",
   "project_id":"CHATGPT_GLOBAL_SKILL_GOVERNANCE",
-  "revision":2,
+  "revision":3,
   "command_id":"V45-Z6-COMMAND-001",
   "contract_ref":"runs/V45-Z6-SAFETY-001/contract.json",
-  "state":"WAITING_RESOURCE",
-  "wait_reason":"RECOVERY_ATTEMPT_002_READY",
+  "state":"RUNNING",
+  "wait_reason":null,
   "active_task_id":"V45-Z6A-STOP-DEATH-001",
   "attempt_id":"V45-Z6A-ATTEMPT-002",
   "attempt_epoch":2,
@@ -14,6 +14,6 @@
   "unresolved_operation_ids":[],
   "stop_requested":false,
   "completed_stage_receipts":[],
-  "evidence_refs":["evidence/001-z6-entry-prestate.json","evidence/002-attempt001-liveness-readback.json"],
+  "evidence_refs":["evidence/001-z6-entry-prestate.json","evidence/002-attempt001-liveness-readback.json","evidence/003-z6a-attempt002-dispatch-readback.json"],
   "remaining_attempts":2
 }
