@@ -1,0 +1,43 @@
+{
+  "schema": "CHATGPT_EXECUTION_POLICY_V3",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "mission_revision_id": "20260914T194247+0800",
+  "mission_hash": "sha256:5f1f97971b5aec75454a03ffbad8a8a9036240e830facb4e6efc5ed538260b7b",
+  "policy_revision_id": "20260914T194247+0800-EP67",
+  "controller_contract_version": "CHAT_EXECUTION_POLICY_CONTRACT_V9_1_CANDIDATE",
+  "payload": {
+    "active_module": "vnext4_6_single_slot_factory_construction",
+    "atomic_unit_kind": "bounded_stage",
+    "module_acceptance": "R1_G0_TO_G6_THEN_Z7_WITH_PROVIDER_READBACK",
+    "known_good_path": "GITHUB_ACTIONS_BOUNDED_PLUS_PROVIDERGUARD_PLUS_HYPERV_UBUNTU_ROOTLESS_PODMAN_OPENCODE",
+    "fallback_paths": [],
+    "allowed_tool_classes": ["github","remote_desktop_commander","project_directory","web_read","file_read"],
+    "forbidden_tool_classes": ["production","business_project","paid_service","hosted_runner","worker_provider_write_credentials"],
+    "max_retry_per_path": 1,
+    "max_broad_search_rounds": 2,
+    "max_no_progress_operations": 5,
+    "max_stage_estimated_minutes": 60,
+    "max_no_progress_wall_minutes": 30,
+    "max_tool_batch_operations": 3,
+    "progress_visibility_policy": "EVENT_DRIVEN",
+    "side_branch_policy": "QUEUE_ONLY",
+    "shared_mutation_policy": "PROVIDER_OR_BACKEND_PERMIT_AT_DISPATCH",
+    "side_effect_recovery_policy": "CONTINUITY_READBACK_FIRST",
+    "human_authorization_policy": "EXACT_SCOPE_DIRECT_HUMAN",
+    "routing_policy": "DIRECT_NATIVE_CAPABILITY_PRECEDENCE",
+    "canonical_execution_locator_policy": "PROJECT_DIRECTORY_ACTIVE_RUN_ID_OR_REF",
+    "remote_checkpoint_policy": "PROVIDER_READBACK_REQUIRED",
+    "stale_attempt_policy": "BACKEND_FENCE_WHEN_PRESENT",
+    "runner_policy": "PROJECT_SPECIFIC",
+    "approved_v46_candidate_sha256": "sha256:577a61538bc1c1ba6852c50fa00f315c596d618cc68578ff93a6cf52b987bb41",
+    "approved_v46_candidate": {
+      "schema":"V46_EXECUTION_POLICY_CANDIDATE_V1","project_id":"CHATGPT_GLOBAL_SKILL_GOVERNANCE","status":"CANDIDATE_NOT_PUBLISHED","authority_prerequisite":"RECOVER_AND_COMPARE_CANONICAL_CURRENT_MISSION_AND_POLICY_BODIES","architecture":"A_LEAN_BOUNDED_FACTORY","runtime_type":"GITHUB_ACTIONS_BOUNDED","coding_parallelism_active":1,"coding_parallelism_target":"2_AFTER_EXPLICIT_SCALE_GATE","controller_route":"CHAT_FIRST","codex_route":"LAST_MILE_ONLY_WITH_EXPLICIT_SAME_SCOPE_OPT_IN","worker_runtime":"HYPERV_UBUNTU_PLUS_ROOTLESS_PODMAN","primary_coding_worker":"OPENCODE_NATIVE_HTTP_API_OR_EXISTING_NATIVE_CLI_ADAPTER_UNTIL_HTTP_PROMOTED","provider_effect_boundary":"PROVIDERGUARD_ONLY","shared_mutation":"FRESH_PRESTATE_THEN_PERMIT_THEN_DISPATCH_ONCE_THEN_SAME_SOURCE_READBACK","control_ref_update":"NO_FORCE_SINGLE_PARENT_EXPECTED_HEAD_OR_EQUIVALENT","unknown_effect":"READBACK_FIRST_NO_BLIND_RETRY","stop":"STICKY_BLOCK_NEW_EFFECTS_AND_REQUIRE_OS_PROVIDER_READBACK","zero_incremental_paid_cost_required":true,"paid_fallback_allowed":false,"hosted_runner_allowed":false,"provider_write_credentials_on_worker_allowed":false,"business_project_access_allowed":false,"production_allowed":false,"production_final_authorization":"HUMAN_RESERVED","data_policy":{"muse_spark_1_3_contributor_free":"PUBLIC_OR_SYNTHETIC_ONLY","private_confidential_personal_secret":"FORBIDDEN_ON_TRAINING_TIER"},"model_profile":"MUST_BE_FRESH_AND_EXACT_ZERO_COST_BEFORE_DISPATCH","directory":"EXACT_NAME_ONLY_NO_FUZZY_RECENT_MEMORY_FALLBACK","canonical_control":"ONE_CONTROL_REF_NO_SECOND_RUNTIME_STORE","candidate_dependencies":"DELETE_GATE_REQUIRED_BEFORE_CORE_ADOPTION","self_promotion":"FORBIDDEN","human_reserved":["MISSION_OR_PHASE_CHANGE","REPO_VISIBILITY_OR_MAJOR_TRUST_BOUNDARY_CHANGE","NEW_COST","OAUTH_OR_MFA","LEGAL_FINANCE_IDENTITY","PRODUCTION_FINAL_AUTHORIZATION","MAJOR_IRREVERSIBLE_HIGH_RISK"],"publication_allowed":false,"publication_blocker":"CANONICAL_CURRENT_MISSION_AND_POLICY_BODIES_UNAVAILABLE"
+    }
+  },
+  "authorized_by": "HUMAN",
+  "authorization_gate": "V46-HG-001-AUTHORITY-RECOVERY/HG2_POLICY_PUBLICATION",
+  "supersedes": "20260913T010957+0800-EP66",
+  "source_candidate_ref": "governance/v46/minimal-execution-policy.candidate.json@7e832eed9d9206d58ac4a3571fe9ba3a8345aeb6",
+  "source_candidate_sha256": "sha256:577a61538bc1c1ba6852c50fa00f315c596d618cc68578ff93a6cf52b987bb41",
+  "policy_hash": "sha256:9e38810fee31514af2194a83aaca981bcb7ba0376cc6752aa7cf9b3419d1b67a"
+}
