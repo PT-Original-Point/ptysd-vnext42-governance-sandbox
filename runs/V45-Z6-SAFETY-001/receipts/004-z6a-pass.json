@@ -1,0 +1,16 @@
+{
+  "schema":"factory.receipt.v1",
+  "receipt_id":"V45-Z6-RECEIPT-Z6A-PASS-004",
+  "project_id":"CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "run_id":"V45-Z6-SAFETY-001",
+  "task_id":"V45-Z6A-STOP-DEATH-001",
+  "attempt_id":"V45-Z6A-ATTEMPT-002",
+  "attempt_epoch":2,
+  "result":"PASS",
+  "accepted_at":"2026-09-14T15:54:00+08:00",
+  "evidence_refs":["evidence/003-z6a-attempt002-dispatch-readback.json","evidence/004-z6a-stop-death-pass.json"],
+  "next_task_id":"V45-Z6B-STALE-EPOCH-001",
+  "production_mutation":false,
+  "business_project_access":false,
+  "real_provider_write":false
+}
