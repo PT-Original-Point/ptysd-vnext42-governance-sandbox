@@ -1,0 +1,1 @@
+Direct ref race pending; contents-API sequential writes are not used as CAS proof.
