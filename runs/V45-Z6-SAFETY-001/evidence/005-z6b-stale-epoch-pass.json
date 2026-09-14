@@ -1,0 +1,22 @@
+{
+  "schema":"factory.evidence.v1",
+  "evidence_id":"V45-Z6-EVIDENCE-Z6B-PASS-005",
+  "project_id":"CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "run_id":"V45-Z6-SAFETY-001",
+  "task_id":"V45-Z6B-STALE-EPOCH-001",
+  "attempt_id":"V45-Z6B-ATTEMPT-001",
+  "attempt_epoch":2,
+  "observed_at":"2026-09-14T16:05:10+08:00",
+  "state_core_blob_sha":"d6e40cfafff679b953408bfdac11fb0416baa0db",
+  "state_hash_before":"sha256:7b1ba31497c0f362c5815312ddaab28c315355f15a6d8f1a19e3189a457f53ff",
+  "state_hash_after":"sha256:7b1ba31497c0f362c5815312ddaab28c315355f15a6d8f1a19e3189a457f53ff",
+  "transition_epoch_1":"STALE_EPOCH",
+  "transition_epoch_0":"STALE_EPOCH",
+  "receipt_epoch_1":"STALE_ATTEMPT_RECEIPT",
+  "receipt_epoch_0":"STALE_ATTEMPT_RECEIPT",
+  "all_state_hashes_unchanged":true,
+  "production_mutation":false,
+  "business_project_access":false,
+  "real_provider_write":false,
+  "verification_state":"PASS"
+}
