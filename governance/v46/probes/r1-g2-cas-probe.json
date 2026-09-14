@@ -1,7 +1,8 @@
 {
   "schema": "V46_R1_G2_CAS_PROBE_V1",
-  "probe": "RACE",
-  "writer": "C1",
-  "expected_parent": "d93732d1a895f819677eac073587b213460a32ce",
-  "retry_on_stale": false
+  "probe": "ACK_LOSS_READBACK",
+  "writer": "C3",
+  "expected_parent": "0dc8437523a3dbadafea34faf113a45e40afe486",
+  "classification_rule": "TREAT_ACK_AS_UNAVAILABLE_THEN_READBACK",
+  "retry_on_ambiguous_ack": false
 }
