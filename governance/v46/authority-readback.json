@@ -1,0 +1,17 @@
+{
+  "schema":"V46_AUTHORITY_READBACK_V1",
+  "project_id":"CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "human_project_name":"全自動軟體工廠",
+  "wp_id":"WP46-04",
+  "status":"BLOCKED_MISSING_CANONICAL_MISSION_AND_POLICY_BODIES",
+  "project_directory":{"resolve_exact_name":"NOT_FOUND","get_project":"NOT_FOUND","canonical_status":"UNPROVISIONED"},
+  "control_source":{"repository_id":1352411536,"control_ref":"refs/heads/v45/factory-control","observed_control_sha":"d6782c6254f3fe24183804fed07e2c71c00065e6","control_version":28,"z6_acceptance":"PASS","next_gate":"R1-G0_DIRECTORY_RESERVED_EARLY_BINDING"},
+  "mission_observation":{"revision_id":"20260913T004710+0800","declared_hash":"sha256:8bbfb11d00690b46dfd872f9297ea4c66253f499878a2a6a160cecd51199b737","canonical_body_ref":null,"canonical_body_available":false,"hash_recomputed":false,"authority_claim":"REVISION_AND_HASH_ONLY_FROM_CONTROL_PROJECTION_NOT_BODY_AUTHORITY"},
+  "policy_observation":{"revision_id":"20260913T010957+0800-EP66","declared_hash":"sha256:25ab690abfe8ddce953654f67355c01ea353343f337f96c8b3078bdafe7c77c2","canonical_body_ref":null,"canonical_body_available":false,"hash_recomputed":false,"authority_claim":"REVISION_AND_HASH_ONLY_FROM_CONTROL_PROJECTION_NOT_BODY_AUTHORITY"},
+  "v46_adoption":{"human_approved":true,"approved_source_sha256":"14b6c13038c53f027ea7f8316637fa4a212cfcdeea3721f3b6a75d14d51ef236","receipt_ref":"main:docs/plan/VNEXT4.6-EXECUTION-BASELINE.md","receipt_blob_sha":"24707dce87a016a6e30cbe8416be0370ceff270d","receipt_commit":"0c2724c65d6ea75b7e8dcc417a7720032e9e947d","scope":"CONSTRUCTION_SPEC_ONLY_NOT_MISSION_OR_POLICY_PUBLICATION"},
+  "search_evidence":{"current_control_tree_has_dedicated_mission_body":false,"current_control_tree_has_dedicated_policy_body":false,"code_search_by_mission_revision":"NO_RESULT","code_search_by_policy_revision":"NO_RESULT"},
+  "publication_allowed":false,
+  "reason":"V4.6 requires comparing and recomputing the real Current Mission/Policy bodies before publication; hashes alone cannot reconstruct authority.",
+  "safe_next":"prepare minimal policy candidate and exact human/provider recovery gate; do not publish or mark WP46-04 PASS",
+  "production_allowed":false
+}
