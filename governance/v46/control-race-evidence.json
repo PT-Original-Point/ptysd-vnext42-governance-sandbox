@@ -1,0 +1,22 @@
+{
+  "schema":"V46_CONTROL_RACE_EVIDENCE_V1",
+  "project_id":"CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "wp_id":"WP46-05A",
+  "status":"SHADOW_PREWORK_PASS_FORMAL_GATE_BLOCKED",
+  "formal_r1_g2_status":"NOT_PASSED",
+  "formal_blockers":["WP46-04_NOT_PASSED","CONTROL_REPO_PROTECTION_NOT_QUALIFIED"],
+  "sandbox_branch":"refs/heads/v46/cas-race-sandbox",
+  "base_candidate_sha":"0bcf6937a1ca8466d2e54ec034f2b7f2673b436a",
+  "stale_sibling_candidate_sha":"8f1be38f33fe3383bd85c6d77dc77291b1a1144b",
+  "stale_sibling_nonforce_update":"REJECTED_422_NOT_FAST_FORWARD",
+  "ancestor_reset_target_sha":"0bcf6937a1ca8466d2e54ec034f2b7f2673b436a",
+  "ancestor_nonforce_update":"REJECTED_422_NOT_FAST_FORWARD",
+  "missing_object_nonforce_update":"REJECTED_422_OBJECT_DOES_NOT_EXIST",
+  "atomic_commit":{"parent_sha":"64829974d970d34b2b1ed337f3d288c600fcfe20","commit_sha":"669bd6db6e89cdf519b7679a66dc5bf9ffad01cd","state_blob_sha":"93b586884b256bf9e57a8cdaee742e6c56fce88c","receipt_blob_sha":"ac0b8d21119c3b2adea16cae8ff5effc9df29584","transaction_id":"V46-CAS-ACKLOSS-001","force":false},
+  "ack_loss_test_mode":"SIMULATED_CLIENT_RESPONSE_DISCARD; acceptance based only on fresh ref/file readback, not the update call response",
+  "readback":{"head_sha":"669bd6db6e89cdf519b7679a66dc5bf9ffad01cd","state_transaction_id":"V46-CAS-ACKLOSS-001","receipt_transaction_id":"V46-CAS-ACKLOSS-001","same_commit":true,"classification":"CONFIRMED"},
+  "provider_semantics_proven":["non-force rejects non-descendant stale candidate","non-force rejects ancestor rollback","missing object rejected","state and receipt can be committed atomically then confirmed by same-source readback"],
+  "not_proven":["protection against a privileged force-push/reset actor","ruleset enforcement","branch deletion protection","full expectedHeadOid CAS under every admin capability"],
+  "notes":"The sandbox branch contains setup commits produced by the contents API; they are not counted as CAS proof. Only the direct ref rejection/readback observations above are used.",
+  "production_allowed":false
+}
