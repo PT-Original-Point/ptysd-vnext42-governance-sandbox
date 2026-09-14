@@ -1,0 +1,16 @@
+{
+  "schema":"factory.receipt.v1",
+  "receipt_id":"V45-Z6-RECEIPT-Z6C-PASS-006",
+  "project_id":"CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "run_id":"V45-Z6-SAFETY-001",
+  "task_id":"V45-Z6C-ACK-LOSS-EXACTLY-ONCE-001",
+  "attempt_id":"V45-Z6C-ATTEMPT-001",
+  "attempt_epoch":2,
+  "result":"PASS",
+  "accepted_at":"2026-09-14T16:13:24+08:00",
+  "evidence_refs":["evidence/006-z6c-ack-loss-exactly-once-pass.json"],
+  "next_gate":"R1-G0_DIRECTORY_RESERVED_EARLY_BINDING",
+  "production_mutation":false,
+  "business_project_access":false,
+  "real_provider_write":false
+}
