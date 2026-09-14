@@ -1,0 +1,31 @@
+{
+  "schema": "v46.integrated_regression_receipt.v1",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "tested_at": "2026-09-14T19:03:31+08:00",
+  "tested_candidate_commit": "cf3931ffdf7e762c74a9440f5184022c54dadfac",
+  "execution_surface": "DESKTOP-1B6PD2P",
+  "node_path": "C:\\Program Files\\nodejs\\node.exe",
+  "node_version_observed_by_rdc": "24.19.0",
+  "command_class": "LOCAL_CANDIDATE_REGRESSION",
+  "test_pattern": "tests/v46-*.test.mjs",
+  "tests": 39,
+  "passed": 39,
+  "failed": 0,
+  "cancelled": 0,
+  "skipped": 0,
+  "covered_prework": [
+    "authority fail-closed",
+    "Directory RESERVED/stable locator",
+    "bounded driver",
+    "logical effect identity",
+    "model/data/zero-cost guard",
+    "receipt identity",
+    "transport queue/STOP",
+    "trust boundary"
+  ],
+  "formal_gate_promotion": false,
+  "formal_blocker": "V46-HG-001-AUTHORITY-RECOVERY",
+  "production_mutation": false,
+  "business_project_mutation": false,
+  "paid_fallback": false
+}
