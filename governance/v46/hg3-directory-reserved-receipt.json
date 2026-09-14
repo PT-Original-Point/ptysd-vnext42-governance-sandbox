@@ -1,0 +1,54 @@
+{
+  "schema": "V46_HG3_DIRECTORY_RESERVED_RECEIPT_V1",
+  "gate_id": "V46-HG-001-AUTHORITY-RECOVERY/HG3_DIRECTORY_WRITE_SURFACE",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "project_name": "全自動軟體工廠",
+  "result": "PASS_RESERVED_ONLY",
+  "adapter": {
+    "version": "2.0.2-v46",
+    "installed_sha256": "sha256:ca82905bec3ba3140b737439c1df88e658f6c5fb2014bc09d2184f16f5d4f021",
+    "release_manifest_commit_parent": "1170b6959bdf3b762edbcd8b1620cc1999ae6d2a",
+    "postgres_temp_regression": "5/5 PASS",
+    "persistent_test_mutations": 0,
+    "schema_migration": "PASS_ADDITIVE_ONLY"
+  },
+  "regression_history": [
+    "2.0.0-v46 rejected before install: get_project project status shadowed API status",
+    "2.0.1-v46 rejected before install: explicit rollback forbidden inside psycopg Transaction context",
+    "2.0.2-v46 passed real PostgreSQL TEMP-table regression before install"
+  ],
+  "directory_transaction": {
+    "fresh_prestate_name": "NOT_FOUND",
+    "fresh_prestate_project_id": "NOT_FOUND",
+    "dispatch_count": 1,
+    "write_result": "RESERVED",
+    "directory_revision": 1,
+    "binding_revision": 1,
+    "same_source_name_readback": "FOUND_RESERVED",
+    "same_source_project_readback": "FOUND_RESERVED"
+  },
+  "authority_refs": {
+    "mission_revision_id": "20260914T194247+0800",
+    "mission_hash": "sha256:5f1f97971b5aec75454a03ffbad8a8a9036240e830facb4e6efc5ed538260b7b",
+    "execution_policy_revision": "20260914T194247+0800-EP67",
+    "execution_policy_hash": "sha256:9e38810fee31514af2194a83aaca981bcb7ba0376cc6752aa7cf9b3419d1b67a",
+    "active_run_id": "V45-Z6-SAFETY-001",
+    "active_run_ref": "github://1352411536/runs/V45-Z6-SAFETY-001?control_ref=refs/heads/v45/factory-control"
+  },
+  "off_host_projection": {
+    "commit": "0a33776e36ca597c2f1624416704de82025b4f6f",
+    "binding_readback": "PASS",
+    "record_readback": "PASS",
+    "projection_role": "OFF_HOST_READBACK_PROJECTION_NOT_MUTATION_AUTHORITY"
+  },
+  "preserved_boundaries": {
+    "status": "RESERVED",
+    "active_promotion": false,
+    "production": false,
+    "paid_fallback": false,
+    "n2": false,
+    "business_project_access": false,
+    "repo_visibility_changed": false,
+    "other_project_record_mutations": 0
+  }
+}
