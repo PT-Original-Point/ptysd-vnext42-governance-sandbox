@@ -1,0 +1,21 @@
+{
+  "schema":"V46_CONTROL_REBASE_R1G0_RECEIPT_V1",
+  "project_id":"CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "prestate_control_commit":"d6782c6254f3fe24183804fed07e2c71c00065e6",
+  "prestate_control_version":28,
+  "poststate_control_version":29,
+  "mission_revision_id":"20260914T194247+0800",
+  "mission_hash":"sha256:5f1f97971b5aec75454a03ffbad8a8a9036240e830facb4e6efc5ed538260b7b",
+  "policy_revision_id":"20260914T194247+0800-EP67",
+  "policy_hash":"sha256:9e38810fee31514af2194a83aaca981bcb7ba0376cc6752aa7cf9b3419d1b67a",
+  "directory_status":"RESERVED",
+  "directory_revision":1,
+  "directory_local_readback":"PASS",
+  "directory_off_host_readback":"PASS",
+  "control_update_contract":"single-parent + force=false + same-source readback",
+  "r1_g0":"PASS_RESERVED_EARLY_BINDING",
+  "r1_g3":"PASS_PROVIDER_QUALIFIED_LOCATOR_RESERVED_STAGE",
+  "next_gate":"R1-G1_CONTROL_REPO_SELF_HOSTED_RUNNER_TRUST_BOUNDARY",
+  "preserved":["Z3_PASS","Z4_PASS","Z5_PASS","Z6_PASS","one coding slot","zero incremental paid cost","no Production","no business project access","no worker provider-write credentials"],
+  "not_authorized":["repo visibility change","independent DR storage/key choice","N=2","Production"]
+}
