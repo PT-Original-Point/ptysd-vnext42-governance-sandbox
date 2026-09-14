@@ -1,0 +1,29 @@
+{
+  "record_type": "MISSION_REVISION",
+  "schema": "MISSION_CONTRACT_V2_RECOVERY_PUBLICATION",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "mission_revision_id": "20260914T194247+0800",
+  "effective_at": "2026-09-14T19:42:47+08:00",
+  "status": "FINALIZED",
+  "authorized_by": "HUMAN",
+  "authorization_gate": "V46-HG-001-AUTHORITY-RECOVERY/HG1_MISSION_RECOVERY",
+  "supersedes": "20260913T004710+0800",
+  "change_reason": "V4.6 human-authorized recovery after the prior canonical Mission body could not be recovered",
+  "canonicalization_version": "HUMAN_TEXT_V1",
+  "mission_hash": "sha256:5f1f97971b5aec75454a03ffbad8a8a9036240e830facb4e6efc5ed538260b7b",
+  "payload": {
+    "final_strategic_goal": "讓人類以一句高階意圖啟動後，系統能以可追溯規格、有限自主施工、獨立驗證、可恢復控制面與明確的人類保留 Gate，持續產出生產級軟體；正常流程盡量不需人工搬運交接，且在 crash、STOP、重試、模型或 provider 異常時 fail closed。",
+    "success_criteria": "Project Directory 可由人類名稱精確唯一解析，Host 離線仍能定位同 Project/run；Current Mission/Policy/controller/run identity 可 fresh-read 並一致對帳；Git canonical control 保持單一 authority，no-force、stale fencing、STOP/readback/effect identity 成立；worker 與 provider-write credentials 分離，Production/business project 預設不可達；模型/研究/eval/CI/storage 只使用當下已證零新增付費且資料政策允許的路徑，無 paid fallback；remote WIP 與跨故障域最小控制面 restore 經實際 drill；單槽從 accepted contract 到 verify/export/readback 的 bounded end-to-end 成立；獨立 verifier 與 candidate 隔離，任何 promotion 都依 exact artifact/provider readback；故障矩陣、Chat 消失、STOP、stale executor、ACK loss、重複事件可在不重送未知 effect 下恢復；Production 最終發布仍由人類保留批准",
+    "current_phase": "VNEXT4_6_SINGLE_SLOT_FACTORY_CONSTRUCTION",
+    "phase_acceptance": "先完成安全、可恢復、零新增付費的單槽工廠與 R1-G0..G6，再進 Z7；N=2 只能在單槽總驗收後走獨立 scale gate。",
+    "next_phase": "Z7",
+    "next_business_event": "WP46-04_AUTHORITY_RECOVERY_AND_R1_G0_G6_BEFORE_Z7",
+    "forbidden_until_phase_complete": "N2_OR_N3_CODING_PROMOTION；WHOLE_EXECUTION_PLANE_REPLACEMENT；PAID_MODEL_FALLBACK；AUTO_PRODUCTION_APPROVAL；UNBOUNDED_GENERIC_DAG_OR_DISTRIBUTED_SCHEDULER",
+    "governance_invariants": "ZERO_INCREMENTAL_PAID_COST_REQUIRED；CODING_PARALLELISM_ACTIVE_1；NO_FORCE_CANONICAL_REF_UPDATE；NO_SECOND_CANONICAL_RUNTIME_STORE；NO_WORKER_PROVIDER_WRITE_CREDENTIALS；NO_BUSINESS_PROJECT_ACCESS_BY_DEFAULT；NO_AUTOMATIC_PRODUCTION_FINAL_AUTHORIZATION；UNKNOWN_EFFECT_READBACK_FIRST_NO_BLIND_RETRY；EXACT_PROJECT_IDENTITY_NO_FUZZY_RECENT_MEMORY_FALLBACK；NEW_CORE_DEPENDENCY_REQUIRES_DELETE_GATE；HUMAN_RESERVED=MISSION_OR_PHASE_CHANGE,NEW_COST,REPO_VISIBILITY_OR_MAJOR_TRUST_BOUNDARY_CHANGE,OAUTH_MFA_IDENTITY_LEGAL_FINANCE,PRODUCTION_FINAL_AUTHORIZATION,MAJOR_IRREVERSIBLE_HIGH_RISK",
+    "non_goals": "N2_OR_N3_CODING_PROMOTION；WHOLE_EXECUTION_PLANE_REPLACEMENT；PAID_MODEL_FALLBACK；AUTO_PRODUCTION_APPROVAL；UNBOUNDED_GENERIC_DAG_OR_DISTRIBUTED_SCHEDULER"
+  },
+  "source_candidate_ref": "governance/v46/current-mission.recovery-candidate.json@7e832eed9d9206d58ac4a3571fe9ba3a8345aeb6",
+  "source_candidate_sha256": "sha256:967c9948e066363566fbeb19ae6dc2a197c63275dafe992c9e6487a758e404d3",
+  "source_mapping": "V46_RECOVERY_CANDIDATE_TO_HUMAN_TEXT_V1_MECHANICAL",
+  "routing_authority": "NONE"
+}
