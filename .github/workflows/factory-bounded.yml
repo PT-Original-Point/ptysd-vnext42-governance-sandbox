@@ -1,0 +1,55 @@
+name: VNEXT4.6 formal bounded driver candidate
+
+on:
+  workflow_dispatch:
+    inputs:
+      control_sha:
+        description: Exact immutable control commit to verify
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: factory-governance-primary
+  queue: max
+  cancel-in-progress: false
+
+jobs:
+  bounded-driver-acceptance:
+    runs-on:
+      group: PTYSD-V46-CONTROL-TRUSTED
+      labels: ptysd-governance-v45
+    timeout-minutes: 20
+    steps:
+      - name: Verify exact restricted runner identity
+        shell: cmd
+        run: |
+          if not "%RUNNER_NAME%"=="PTYSD-V45-CONTROL-01" exit /b 41
+          if /I not "%RUNNER_OS%"=="Windows" exit /b 42
+      - name: Checkout exact immutable control commit without credentials
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ inputs.control_sha }}
+          persist-credentials: false
+          fetch-depth: 1
+      - name: Provision Node 24
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: '24'
+          cache: ''
+      - name: Verify exact checked out commit
+        shell: cmd
+        run: |
+          for /f %%i in ('git rev-parse HEAD') do set ACTUAL_SHA=%%i
+          if /I not "%ACTUAL_SHA%"=="${{ inputs.control_sha }}" exit /b 43
+          echo EXACT_CONTROL_SHA=PASS
+      - name: Run bounded driver and identity admission regression
+        shell: cmd
+        run: >-
+          node --test
+          tests/v46-effect-identity.test.mjs
+          tests/v46-receipt-identity.test.mjs
+          tests/v46-profile-gates.test.mjs
+          tests/v46-driver.test.mjs
