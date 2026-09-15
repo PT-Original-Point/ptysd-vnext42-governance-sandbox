@@ -11,9 +11,61 @@ const ALLOWED = new Map([
   ['STOPPING', new Set(['STOPPED','QUARANTINED'])],
 ]);
 
+function canonicalJson(value, stack = new Set()) {
+  if (value === null) return null;
+  const type = typeof value;
+  if (type === 'string' || type === 'boolean') return value;
+  if (type === 'number') {
+    if (!Number.isFinite(value)) throw new Error('INVALID_JSON_VALUE');
+    return value;
+  }
+  if (type !== 'object') throw new Error('INVALID_JSON_VALUE');
+  if (stack.has(value)) throw new Error('INVALID_JSON_CYCLE');
+  stack.add(value);
+  try {
+    if (Array.isArray(value)) return value.map(v => canonicalJson(v, stack));
+    const proto = Object.getPrototypeOf(value);
+    if (proto !== Object.prototype && proto !== null) throw new Error('INVALID_JSON_OBJECT');
+    return Object.fromEntries(Object.keys(value).sort().map(k => [k, canonicalJson(value[k], stack)]));
+  } finally {
+    stack.delete(value);
+  }
+}
+
 export function stableHash(value) {
-  const canonical = v => Array.isArray(v) ? v.map(canonical) : (v && typeof v === 'object') ? Object.fromEntries(Object.keys(v).sort().map(k => [k, canonical(v[k])])) : v;
-  return 'sha256:' + crypto.createHash('sha256').update(JSON.stringify(canonical(value))).digest('hex');
+  const canonical = canonicalJson(value);
+  return 'sha256:' + crypto.createHash('sha256').update(JSON.stringify(canonical)).digest('hex');
+}
+
+function requiredString(value, field) {
+  if (typeof value !== 'string' || value.trim() === '') throw new Error(`INVALID_OPERATION_${field.toUpperCase()}`);
+  return value;
+}
+
+export function operationEffectIdentity(operation) {
+  if (!operation || typeof operation !== 'object' || Array.isArray(operation)) throw new Error('INVALID_OPERATION');
+  requiredString(operation.operation_id, 'operation_id');
+  const kind = requiredString(operation.kind, 'kind');
+  const provider = requiredString(operation.provider, 'provider');
+  const target = requiredString(operation.target, 'target');
+  if (!Object.hasOwn(operation, 'precondition')) throw new Error('INVALID_OPERATION_PRECONDITION');
+  if (!Object.hasOwn(operation, 'payload')) throw new Error('INVALID_OPERATION_PAYLOAD');
+  if (operation.precondition !== null && (typeof operation.precondition !== 'object' || Array.isArray(operation.precondition))) {
+    throw new Error('INVALID_OPERATION_PRECONDITION');
+  }
+  return {
+    material: {kind, provider, target, precondition: canonicalJson(operation.precondition), payload: canonicalJson(operation.payload)},
+    digest: stableHash({kind, provider, target, precondition: operation.precondition, payload: operation.payload}),
+  };
+}
+
+export function assertEffectPermit(run, operation) {
+  if (!run || !operation) throw new Error('INVALID_EFFECT_PERMIT');
+  if (operation.run_id !== run.run_id) throw new Error('RUN_MISMATCH');
+  if (!Number.isInteger(operation.attempt_epoch) || operation.attempt_epoch !== run.attempt_epoch) throw new Error('STALE_EFFECT_PERMIT');
+  if (run.stop_requested) throw new Error('STOP_BLOCKS_NEW_EFFECT');
+  if (TERMINAL.has(run.state)) throw new Error('TERMINAL_RUN');
+  return true;
 }
 
 export function admitCommand(index, command) {
@@ -62,9 +114,16 @@ export function acceptAttemptReceipt(run, receipt) {
 }
 
 export function recordOperation(ops, operation) {
-  const digest = stableHash(operation.payload);
+  const {digest: effectIdentityDigest} = operationEffectIdentity(operation);
+  const payloadDigest = stableHash(operation.payload);
   const existing = ops[operation.operation_id];
-  if (!existing) return {...ops, [operation.operation_id]: {...operation, payload_digest: digest}};
-  if (existing.payload_digest !== digest) throw new Error('OPERATION_ID_PAYLOAD_MISMATCH');
+  if (!existing) {
+    return {...ops, [operation.operation_id]: {...structuredClone(operation), payload_digest: payloadDigest, effect_identity_digest: effectIdentityDigest}};
+  }
+  if (!existing.effect_identity_digest) throw new Error('LEGACY_OPERATION_IDENTITY_INCOMPLETE');
+  if (existing.effect_identity_digest !== effectIdentityDigest) {
+    if (existing.payload_digest !== payloadDigest) throw new Error('OPERATION_ID_PAYLOAD_MISMATCH');
+    throw new Error('OPERATION_ID_INTENT_MISMATCH');
+  }
   return ops;
 }
