@@ -1,0 +1,37 @@
+{
+  "schema": "factory.research_sources.v1",
+  "research_id": "R-WP46-10A-001",
+  "sources": [
+    {
+      "source_id": "S1",
+      "ref": "github://1352411536/governance/v46/model-profiles.json@f1f504c8928c930293c8fae4f026fd7baa322334",
+      "sha256": "sha256:10f579d15560caf1d7b4014ee97a36c8376f639077025b75d4b6f30a177b5341",
+      "blob_sha": "b2df9b4d7a6a8a48bae17d546a603eaf4724440b",
+      "evidence_class": "CANONICAL_PROVIDER_PROFILE",
+      "used_for": ["channel inventory","data class policy","TTL/dynamic refresh"]
+    },
+    {
+      "source_id": "S2",
+      "ref": "github://1352411536/governance/v46/wp46-07-model-cost-profile-dependency-revalidation-receipt-v1.json@f1f504c8928c930293c8fae4f026fd7baa322334",
+      "sha256": "sha256:8e720c2a35e5c2d216e44cc7043453e03b2a27774f224543ddb37b5b3fb90f4b",
+      "blob_sha": "701010256a3d67bb4265054994ed62df21937aab",
+      "evidence_class": "CANONICAL_RECEIPT",
+      "used_for": ["zero-cost historical qualification","F24/F39 behavior"]
+    },    {
+      "source_id": "S3",
+      "ref": "github://1352411536/governance/v46/wp46-09-b1-official-cli-bakeoff-receipt-v2.json@f1f504c8928c930293c8fae4f026fd7baa322334",
+      "sha256": "sha256:3a2ce71d92a8418888e1a79790f755dc06ff8f164d526816566ade181338859a",
+      "blob_sha": "b85c65bef7cdcef9a0e9ad78574f5a2c39e03dda",
+      "evidence_class": "CANONICAL_RECEIPT",
+      "used_for": ["WP46-09 delete-gate result","no core adoption"]
+    },
+    {
+      "source_id": "S4",
+      "ref": "github://1352411536/governance/v46/wp46-08c-r1-gate-mapping-delete-benefit-baseline-v1.json@f1f504c8928c930293c8fae4f026fd7baa322334",
+      "sha256": "sha256:8ee4a42672f00324bd6ee756761ca2ab236719873924d040b29f2590dbebcae7",
+      "blob_sha": "6e15c555a9352bd56acb2b0ab5738413fb648772",
+      "evidence_class": "CANONICAL_BASELINE",
+      "used_for": ["hard DELETE_GATE policy","lean mainline constraint"]
+    }
+  ]
+}

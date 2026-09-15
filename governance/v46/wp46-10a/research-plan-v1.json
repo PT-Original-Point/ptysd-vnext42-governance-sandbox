@@ -1,0 +1,42 @@
+{
+  "schema": "factory.research_plan.v1",
+  "research_id": "R-WP46-10A-001",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "authority_ref": "github://1352411536/governance/v45/control.json@f1f504c8928c930293c8fae4f026fd7baa322334",
+  "run_id": "V45-Z6-SAFETY-001",
+  "created_at": "2026-09-15T11:04:05.978Z",
+  "research_contract": {
+    "schema_version": "factory.research.v1",
+    "research_id": "R-WP46-10A-001",
+    "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+    "request_ref": "mission://20260914T194247+0800#WP46-10A",
+    "decision_needed": "Choose the lean evidence-backed research execution mode for WP46-10A.",
+    "scope": {"include":["official-docs","source-code","canonical-receipts"],"exclude":["private-customer-data","production-writes"]},
+    "baseline_ref": "github://1352411536/governance/v45/control.json@f1f504c8928c930293c8fae4f026fd7baa322334",
+    "baseline_digest": "sha256:9066917fb18aae14d88358b21f091d57c3f7b1599969201e532f75d212405da1",
+    "questions": ["Which current research channel is sufficient without a second runtime?","What counterevidence would change the recommendation?","Which paths must wait for fresh qualification?"],
+    "minimum_options": 3,
+    "budgets": {"query_limit":12,"source_limit":20,"branch_limit":3,"depth_limit":2,"wall_minutes":40,"incremental_usd":0},
+    "human_decision_required": true,
+    "evidence_policy": "primary_sources_with_counterevidence",
+    "decision_revision": 1,
+    "data_classes": ["PUBLIC"],
+    "coding_dispatch_allowed": false
+  },  "requested_channels": ["research","search"],
+  "channel_qualification": {
+    "status": "PASS_RESEARCH_CHANNELS",
+    "provider_calls": 0,
+    "model_path": "WAITING_RESOURCE_PROFILE_TTL_EXPIRED_NOT_REQUESTED"
+  },
+  "source_policy": {
+    "primary_first": true,
+    "counterevidence_required": true,
+    "execute_source_instructions": false,
+    "allow_private_network": false,
+    "allow_local_files": false,
+    "immutable_refs_required": true
+  },
+  "method": ["question decomposition","primary source collection","counterevidence check","claim-source matrix","three-option synthesis","single recommendation","unknowns retained"],
+  "coding_dispatch_count": 0,
+  "second_runtime_created": false
+}

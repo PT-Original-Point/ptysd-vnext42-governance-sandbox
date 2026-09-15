@@ -1,0 +1,50 @@
+{
+  "schema": "factory.research_report.v1",
+  "research_id": "R-WP46-10A-001",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "authority_ref": "github://1352411536/governance/v45/control.json@f1f504c8928c930293c8fae4f026fd7baa322334",
+  "observed_at": "2026-09-15T11:04:05.978Z",
+  "decision_state": "PENDING_HUMAN",
+  "coding_dispatch_count": 0,
+  "incremental_usd": 0,
+  "recommendation_id": "A",
+  "claim_refs": ["C1","C2","C3","C4"],
+  "unknowns": [
+    "Controller-side research/search availability must be re-read in each future execution session.",
+    "The model profile is expired at this observation time and cannot be used until freshly requalified.",
+    "No claim is made that controller-only research can continue when ChatGPT itself is offline."
+  ],
+  "options": [
+    {
+      "option_id": "A",
+      "summary": "Use the existing controller-only research/search channels with immutable canonical sources and the new thin Research Contract validator.",
+      "recommended": true,
+      "claim_refs": ["C1","C3","C4"],
+      "counterevidence": ["Controller research capability is session-dependent, so unavailable tooling must become WAITING_RESOURCE rather than an automatic provider switch."],
+      "adds": ["thin research contract validator","research plan/report/claims/source artifacts"],
+      "deletes": [],
+      "risk": "LOWEST_ADDITIVE_SURFACE"
+    },    {
+      "option_id": "B",
+      "summary": "Use only self-hosted deterministic corpus evaluation and forbid live external retrieval.",
+      "recommended": false,
+      "claim_refs": ["C1"],
+      "counterevidence": ["This minimizes external exposure but cannot discover upstream changes that are absent from the local corpus."],
+      "adds": ["local corpus snapshot discipline"],
+      "deletes": ["live retrieval for the affected research tranche"],
+      "risk": "STALE_EXTERNAL_EVIDENCE"
+    },
+    {
+      "option_id": "C",
+      "summary": "Use OpenCode model-assisted research only after a fresh zero-cost/public-data ModelProfile qualification.",
+      "recommended": false,
+      "claim_refs": ["C2"],
+      "counterevidence": ["The current recorded profile is expired; dynamic requalification is mandatory and no paid fallback is allowed."],
+      "adds": ["fresh model qualification before each dispatch","model inference dependency"],
+      "deletes": [],
+      "risk": "RESOURCE_AND_DATA_POLICY_SENSITIVITY"
+    }
+  ],
+  "recommendation": "Adopt Option A for WP46-10A: keep research in the existing controller and canonical run, store immutable claim-source mappings, and fail closed to WAITING_RESOURCE when a requested tool is not qualified.",
+  "next_decision_question": "Approve this research-contract shape for implementation admission, request more research, modify constraints, or reject all options."
+}

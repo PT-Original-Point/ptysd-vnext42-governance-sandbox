@@ -1,0 +1,37 @@
+{
+  "schema": "factory.research_claims.v1",
+  "research_id": "R-WP46-10A-001",
+  "claims": [
+    {
+      "claim_id": "C1",
+      "statement": "The canonical channel inventory marks research and search as controller-only and forbids incremental paid fallback.",
+      "source_refs": ["S1"],
+      "support_summary": "model-profiles.json records research/search scope CONTROLLER_ONLY with incremental_paid_cost_allowed=false and paid_fallback_allowed=false.",
+      "evidence_level": "CANONICAL_PROVIDER_PROFILE",
+      "counterevidence": ["Controller tool availability is session-dependent; if absent, the run must wait rather than silently switch to an API."]
+    },
+    {
+      "claim_id": "C2",
+      "statement": "The OpenCode model path requires dynamic refresh and its recorded qualification has a 900-second TTL.",
+      "source_refs": ["S1","S2"],
+      "support_summary": "The selected ModelProfile records dynamic_refresh_required=true, ttl_seconds=900 and zero-cost historical qualification.",
+      "evidence_level": "CANONICAL_PROFILE_PLUS_RECEIPT",
+      "counterevidence": ["The prior zero-cost result is historical evidence only; it does not authorize a model dispatch after TTL expiry."]
+    },    {
+      "claim_id": "C3",
+      "statement": "WP46-09 found no deletion benefit for OpenSpec or Spec Kit and retained the existing Task Contract.",
+      "source_refs": ["S3"],
+      "support_summary": "The canonical WP46-09 receipt records NOT_MET_BY_OPENSPEC_OR_SPECKIT and KEEP_EXISTING_TASK_CONTRACT_NO_CORE_ADOPTION.",
+      "evidence_level": "CANONICAL_RECEIPT",
+      "counterevidence": ["OpenSpec did provide useful structural validation, but it did not replace the semantic verifier or another named live surface."]
+    },
+    {
+      "claim_id": "C4",
+      "statement": "New core dependencies remain blocked when no named deletion or replacement is proven.",
+      "source_refs": ["S4","S3"],
+      "support_summary": "The Z7 delete-benefit baseline defines the hard no-deletion-proof/no-core-adoption rule and WP46-09 applied it.",
+      "evidence_level": "CANONICAL_BASELINE_PLUS_RECEIPT",
+      "counterevidence": ["A future candidate can be reconsidered if a later bakeoff proves concrete deletion benefit without creating a second authority."]
+    }
+  ]
+}

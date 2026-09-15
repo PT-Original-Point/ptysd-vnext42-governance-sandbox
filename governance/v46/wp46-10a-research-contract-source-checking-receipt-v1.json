@@ -1,0 +1,75 @@
+{
+  "schema": "V46_WP46_10A_RESEARCH_CONTRACT_SOURCE_CHECKING_RECEIPT_V1",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "wp_id": "WP46-10A",
+  "title": "RESEARCH_CONTRACT_AND_SOURCE_CHECKING",
+  "result": "PASS_RESEARCH_CONTRACT_SOURCE_CHECKING",
+  "observed_at": "2026-09-15T11:17:05.9356509Z",
+  "control_parent_sha": "f1f504c8928c930293c8fae4f026fd7baa322334",
+  "control_version_before": 50,
+  "control_version_after": 51,
+  "authority": {
+    "mission_revision_id": "20260914T194247+0800",
+    "mission_hash": "sha256:5f1f97971b5aec75454a03ffbad8a8a9036240e830facb4e6efc5ed538260b7b",
+    "policy_revision_id": "20260914T194247+0800-EP67",
+    "policy_hash": "sha256:9e38810fee31514af2194a83aaca981bcb7ba0376cc6752aa7cf9b3419d1b67a",
+    "active_run_id": "V45-Z6-SAFETY-001",
+    "attempt_epoch": 2,
+    "canonical_next_gate_before": "WP46-10A"
+  },
+  "research": {
+    "research_id": "R-WP46-10A-001",
+    "same_runtime": "GITHUB_ACTIONS_BOUNDED_V1",
+    "compiled_contract_schema": "factory.contract.v1",
+    "second_runtime_created": false,
+    "decision_state": "PENDING_HUMAN",
+    "coding_dispatch_count": 0,
+    "provider_model_requests": 0,
+    "incremental_usd": 0
+  },  "channel_qualification": {
+    "research": "PASS_CONTROLLER_ONLY_ZERO_INCREMENTAL_PAID",
+    "search": "PASS_CONTROLLER_ONLY_ZERO_INCREMENTAL_PAID",
+    "model": "WAITING_RESOURCE_PROFILE_TTL_EXPIRED_NOT_REQUESTED",
+    "paid_fallback_used": false
+  },
+  "artifacts": {
+    "plan": {"path":"governance/v46/wp46-10a/research-plan-v1.json","sha256":"46220de4c290001d1854d4a0405f8e5cba99a32f6db89b21a767c287b4ded4c9"},
+    "sources": {"path":"governance/v46/wp46-10a/research-sources-v1.json","sha256":"58e7281c8dd6c6db8dbaf91c5dcde12ff9413fc48a5a7f9812c52c190b4ca2c6"},
+    "claims": {"path":"governance/v46/wp46-10a/research-claims-v1.json","sha256":"cc8fa4b94ee6ebd5ef3616204a7e610be8f21b7bc4d06698804823a052dabe78"},
+    "report": {"path":"governance/v46/wp46-10a/research-report-v1.json","sha256":"826647a3aaac114477cc1f05cbbb9c0c2c66b850d5e1575f6ea00f78da409fa6"},
+    "validator": {"path":"scripts/v46-research-contract.mjs","sha256":"af119340ed31a28c74cafce16594e813785e48ebfd5c356e39038e259a12402c"},
+    "tests": {"path":"tests/v46-research-contract.test.mjs","sha256":"39a13c52b2720517ecb3455f7dcdb7cfa44a3a478517ac15b5575c2a08f75a2e"},
+    "combined_artifact_digest": "sha256:67dd618c61b023c64400727b86c3aa39b9a8f6e115c32d1e869a1711d6d030e5"
+  },
+  "verification": {
+    "node_version": "v24.19.0",
+    "cumulative_test_result": "PASS_44_OF_44",
+    "test_output_sha256": "fbd072ea5bfea5d42b93c20f759f79e499f3a579e8fcf89aa0e5ef333d67a151",
+    "v46_f24": "PASS_PRIVATE_DATA_FAIL_CLOSED_ZERO_PROVIDER_CALLS",
+    "v46_f25": "PASS_MALICIOUS_SOURCE_NO_FILE_READ_NO_PRIVATE_EGRESS_NO_INSTRUCTION_EXECUTION",
+    "fabricated_citation_negative": "PASS_REJECTED",
+    "mutable_source_ref_negative": "PASS_REJECTED",
+    "single_recommendation_gate": "PASS"
+  },  "report": {
+    "option_count": 3,
+    "recommendation_id": "A",
+    "recommendation": "EXISTING_CONTROLLER_ONLY_RESEARCH_SEARCH_WITH_THIN_RESEARCH_CONTRACT",
+    "unknown_count": 3,
+    "source_count": 4,
+    "claim_count": 4
+  },
+  "forbidden_effects": {
+    "production_writes": 0,
+    "business_project_writes": 0,
+    "paid_requests": 0,
+    "private_data_provider_dispatches": 0,
+    "coding_worker_dispatches": 0,
+    "provider_write_credentials_on_worker": 0
+  },
+  "acceptance": {
+    "cross_session_readback_ready": true,
+    "decision_before_coding": true,
+    "decision_pending_human": true
+  },
+  "next_wp": "WP46-10B"
+}
