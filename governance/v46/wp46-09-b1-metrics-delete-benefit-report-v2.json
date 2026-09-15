@@ -1,0 +1,44 @@
+{
+  "schema": "V46_WP46_09_B1_METRICS_DELETE_BENEFIT_V2",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "input_id": "B1-RETRY-POLICY-001",
+  "frozen_input_sha256": "ad381ea25c34249acb7059c0e2fc3f52d9579389eb1af7cf75e148562990c2a1",
+  "sentinel_sha256": "64dd529156ef787269bd4a54dace2093759f201823dbb6b56adc8208f7ebe3c4",
+  "prepatch_exit": {"existing": 1, "openspec": 1, "speckit": 1},
+  "postpatch_exit": {"existing": 0, "openspec": 0, "speckit": 0},
+  "postpatch_code_sha256": "3f1587be0c591c7cdf5d167e163bd178a47ded16e4724c0f97cc6cf004b1cb94",
+  "postpatch_test_sha256": "262c43bee43980823210e774df9fe01ebe524006ee7e8090385991148157995b",
+  "postpatch_test_duration_ms": {
+    "existing": 64.4886,
+    "openspec": 63.5785,
+    "speckit": 65.5865
+  },
+  "official_tool_checks": {
+    "openspec_version": "1.13.0",
+    "openspec_validate": "PASS",
+    "openspec_missing_scenario_negative": "EXPECTED_FAIL",
+    "speckit_version": "1.0.7.dev0",
+    "speckit_setup_plan": "PASS",
+    "speckit_setup_tasks": "PASS"
+  },  "workspace_metrics": {
+    "existing": {"files": 4, "bytes": 2046, "extra_files": 0},
+    "openspec": {"files": 12, "bytes": 6373, "extra_files": 8},
+    "speckit": {"files": 38, "bytes": 233980, "extra_files": 34},
+    "openspec_tool": {"files": 2604, "bytes": 11962469},
+    "speckit_source": {"files": 686, "bytes": 14639765},
+    "speckit_python_env": {"files": 1409, "bytes": 17703891}
+  },
+  "delete_benefit": {
+    "existing": {"named_deleted_surfaces": [], "deletion_credit": 0, "new_core_dependencies": 0},
+    "openspec": {"named_deleted_surfaces": [], "deletion_credit": 0, "new_core_dependencies": 1},
+    "speckit": {"named_deleted_surfaces": [], "deletion_credit": 0, "new_core_dependencies": 1}
+  },
+  "verifier": {
+    "script_sha256": "fe8f690092981553db48fd53519d6f8f794788cb46d2afb5041d8e3cdc84886a",
+    "test_sha256": "3c9b1f55a916d75d1f66c8dddb2a05f9d58af2868fc991da9ed9db4f8d5d0fb1",
+    "candidate_semantic_tests": "6_OF_6_PASS",
+    "historical_semantic_tests_revalidated": "14_OF_14_PASS"
+  },
+  "verdict": "KEEP_EXISTING_TASK_CONTRACT_NO_CORE_ADOPTION",
+  "delete_gate": "NOT_MET_BY_OPENSPEC_OR_SPECKIT"
+}
