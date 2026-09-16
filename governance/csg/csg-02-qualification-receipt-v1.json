@@ -1,0 +1,17 @@
+{
+  "schema":"CSG_02_QUALIFICATION_RECEIPT_V1",
+  "project_id":"CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "wp_id":"CSG-02",
+  "result":"PASS_REMOTE_WIP_QUALIFIED",
+  "canonical_acceptance":false,
+  "source_commit":"8682ee5e219fd1853461ecd5bc80a52b16dcdc06",
+  "source_ref":"refs/heads/queue/csg-continuity-repair-20260916",
+  "base_canonical_control":"066f6675ea566da07de8a1ae68d98afe635aff94",
+  "tests":{"verifier":{"pass":24,"fail":0,"total":24},"schema_documents":{"pass":7,"fail":0,"total":7},"published_commit_retest":true},
+  "source_hashes":{"validator_sha256":"5a36d5e65033625fb14cc0af806b95a4f9f68cc41735f541dade08c7a38b5d1b","test_sha256":"c8ae97dcdcaeb12c38f5c935545635c0de2e52f30b608b08cdb5cde4d5bc1c09","expected_set_sha256":"b62cdcbbbeb3bb5c1fd5cf596cbe36d1d5e43e0d6dc9c128c102896eed1cd31a","package_lock_sha256":"1ea30461451dd63d4eb060cd0d960c193d8296b57b6db6bc121c09243a0fbd9c","canonicalize_lib_sha256":"c1d0195af2a0748454b06af8f218e5c90415c19d39154d0058fee8229c12d859"},
+  "dependency_provenance":{"package":"canonicalize","version":"5.0.0","upstream_tag":"v5.0.0","upstream_commit":"7d97c70c79c9f52070e6c24c38a92f0dd9b32a57","upstream_lib_git_blob":"700a51183c0bbd57c8fb2a0e08a9c2cee7c381c3","installed_lib_git_blob":"700a51183c0bbd57c8fb2a0e08a9c2cee7c381c3","match":true},
+  "complexity":{"before_active_LOC":2199,"added_active_LOC":0,"removed_active_LOC":0,"after_active_LOC":2199,"candidate_validator_nonblank_LOC":36,"test_nonblank_LOC":42,"config_nonblank_LOC":119,"classification":"UNACTIVATED_QUEUE_CANDIDATE"},
+  "negative_coverage":["DUPLICATE_KEY","NAN","UNKNOWN_SCHEMA","UNKNOWN_KEY","ILLEGAL_NULL","GITOID_DIGEST_MIX","BAD_PAYLOAD_DIGEST","MISSION_CANONICALIZATION_DRIFT","SELF_BUNDLE_REFERENCE","PATH_ESCAPE","MISSING_IDEMPOTENCY_KEY","WEAK_NOT_APPLIED_NEGATIVE_PROOF","EXPECTED_SET_MUTATION","VERIFIER_MUTATION","UNSAFE_INTEGER"],
+  "constraints":["NO_CANONICAL_CONTROL_MUTATION","NO_DIRECTORY_MUTATION","NO_MISSION_OR_POLICY_MUTATION","NO_PRODUCTION","NO_BUSINESS_PROJECT_ACCESS","NO_PAID_FALLBACK","NO_N2_OR_HIGHER_DISPATCH","NO_HG47_TRUST_CROSSING"],
+  "next_legal_transition":"CSG-03A_PROVIDER_CAS_QUALIFICATION"
+}
