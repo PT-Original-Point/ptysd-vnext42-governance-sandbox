@@ -1,0 +1,13 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://ptysd.invalid/schemas/csg/csg.evidence.v1.schema.json",
+  "title":"CSG EvidenceRecord","type":"object","additionalProperties":false,
+  "required":["schema_version","evidence_id","project_id","subject","category","expected_set_ref","verifier_ref","result","observed_by","observed_at","source_refs","retention_until","archive_ref","data_classification","source_ancestry","supersedes_ref","payload_digest"],
+  "properties":{
+    "schema_version":{"const":"csg.evidence.v1"},"evidence_id":{"type":"string","minLength":1,"maxLength":128},"project_id":{"type":"string","minLength":1,"maxLength":128},
+    "subject":{"type":"object","additionalProperties":false,"required":["unit_id","source_commit","contract_digest"],"properties":{"unit_id":{"type":"string","minLength":1,"maxLength":128},"source_commit":{"type":"object","additionalProperties":false,"required":["algorithm","hex"],"properties":{"algorithm":{"enum":["sha1","sha256"]},"hex":{"type":"string","minLength":40,"maxLength":64}}},"contract_digest":{"type":"string","minLength":71,"maxLength":71}}},
+    "category":{"enum":["TEST","PROVIDER_READBACK","AUTHORIZATION","INCIDENT","DR","MIGRATION"]},"expected_set_ref":{"type":"object"},"verifier_ref":{"type":"object"},"result":{"enum":["PASS","FAIL","PARTIAL","UNVERIFIED"]},"observed_by":{"type":"string","minLength":1,"maxLength":128},"observed_at":{"type":"string"},
+    "source_refs":{"type":"array","minItems":1,"maxItems":64,"items":{"type":"object","additionalProperties":false,"required":["immutable_ref","digest","size","media_type"],"properties":{"immutable_ref":{"type":"object"},"digest":{"type":"string","minLength":71,"maxLength":71},"size":{"type":"integer","minimum":0},"media_type":{"type":"string","minLength":1,"maxLength":128}}}},
+    "retention_until":{"type":["string","null"]},"archive_ref":{"type":["object","null"]},"data_classification":{"enum":["PUBLIC","INTERNAL","CONFIDENTIAL"]},"source_ancestry":{"type":"array","maxItems":64,"items":{"type":"string","maxLength":256}},"supersedes_ref":{"type":["object","null"]},"payload_digest":{"type":"string","minLength":71,"maxLength":71}
+  }
+}
