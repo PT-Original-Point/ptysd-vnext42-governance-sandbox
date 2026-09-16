@@ -1,0 +1,18 @@
+test_client_clock_cannot_override_provider_time (test_recovery_owner_policy.T.test_client_clock_cannot_override_provider_time) ... ok
+test_live_job_adoption_preserves_attempt_no_redispatch (test_recovery_owner_policy.T.test_live_job_adoption_preserves_attempt_no_redispatch) ... ok
+test_live_owner_continues_without_generation_bump (test_recovery_owner_policy.T.test_live_owner_continues_without_generation_bump) ... ok
+test_old_mission_late_quarantined (test_recovery_owner_policy.T.test_old_mission_late_quarantined) ... ok
+test_pending_expired_owner_enters_recovery_only_no_deadlock (test_recovery_owner_policy.T.test_pending_expired_owner_enters_recovery_only_no_deadlock) ... ok
+test_read_does_not_claim (test_recovery_owner_policy.T.test_read_does_not_claim) ... ok
+test_rebase_blocks_writer (test_recovery_owner_policy.T.test_rebase_blocks_writer) ... ok
+test_stale_attempt_quarantined (test_recovery_owner_policy.T.test_stale_attempt_quarantined) ... ok
+test_stop_blocks_writer (test_recovery_owner_policy.T.test_stop_blocks_writer) ... ok
+test_transport_identity_is_not_owner_identity (test_recovery_owner_policy.T.test_transport_identity_is_not_owner_identity) ... ok
+test_two_sessions_generation_is_monotonic (test_recovery_owner_policy.T.test_two_sessions_generation_is_monotonic) ... ok
+test_worker_completed_controller_gone_readback_only (test_recovery_owner_policy.T.test_worker_completed_controller_gone_readback_only) ... ok
+test_zombie_sender_quarantined (test_recovery_owner_policy.T.test_zombie_sender_quarantined) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.001s
+
+OK
