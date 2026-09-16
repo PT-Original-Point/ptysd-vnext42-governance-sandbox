@@ -1,0 +1,12 @@
+test_expired_or_ephemeral_url_not_accepted_as_locator (tests.csg.test_remote_wip.RemoteWipTests.test_expired_or_ephemeral_url_not_accepted_as_locator) ... ok
+test_lfs_pointer_without_object_is_rejected (tests.csg.test_remote_wip.RemoteWipTests.test_lfs_pointer_without_object_is_rejected) ... ok
+test_provider_success_without_readback_not_qualified (tests.csg.test_remote_wip.RemoteWipTests.test_provider_success_without_readback_not_qualified) ... ok
+test_remote_ahead_never_autoaccepts (tests.csg.test_remote_wip.RemoteWipTests.test_remote_ahead_never_autoaccepts) ... ok
+test_source_only_manifest_is_rejected (tests.csg.test_remote_wip.RemoteWipTests.test_source_only_manifest_is_rejected) ... ok
+test_truncated_raw_blob_rejected (tests.csg.test_remote_wip.RemoteWipTests.test_truncated_raw_blob_rejected) ... ok
+test_valid_manifest_requires_source_and_raw_report (tests.csg.test_remote_wip.RemoteWipTests.test_valid_manifest_requires_source_and_raw_report) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.001s
+
+OK
