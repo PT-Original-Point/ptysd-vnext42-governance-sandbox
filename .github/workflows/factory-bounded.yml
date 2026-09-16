@@ -16,14 +16,12 @@ on:
 permissions:
   contents: read
 
-concurrency:
-  group: factory-governance-primary
-  queue: max
-  cancel-in-progress: false
-
 jobs:
   bounded-driver-acceptance:
     if: ${{ github.event_name == 'workflow_dispatch' }}
+    concurrency:
+      group: factory-governance-primary
+      cancel-in-progress: false
     runs-on:
       group: PTYSD-V46-CONTROL-TRUSTED
       labels: ptysd-governance-v45
@@ -62,6 +60,9 @@ jobs:
 
   csg-trusted-verifier:
     if: ${{ github.event_name == 'pull_request_target' }}
+    concurrency:
+      group: csg-trusted-verifier
+      cancel-in-progress: false
     runs-on:
       group: PTYSD-V46-CONTROL-TRUSTED
       labels: ptysd-governance-v45
