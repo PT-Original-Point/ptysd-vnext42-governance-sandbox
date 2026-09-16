@@ -1,0 +1,13 @@
+{
+  "schema": "CSG_DIRECTORY_ALIAS_INDEX_V1",
+  "normalization_version": "PYTHON_UNICODE_NFKC_CASEFOLD_COLLAPSE_WS_V1",
+  "source_directory_revision": 3,
+  "aliases": [
+    {
+      "raw_alias": "全自動軟體工廠",
+      "normalized_alias": "全自動軟體工廠",
+      "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+      "project_path": "directory/projects/CHATGPT_GLOBAL_SKILL_GOVERNANCE.json"
+    }
+  ]
+}
