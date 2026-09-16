@@ -1,0 +1,20 @@
+{
+  "schema":"CSG_03B_VERIFIER_QUALIFIED_AWAITING_CANONICAL_PROTECTION_V3",
+  "project_id":"CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "wp_id":"CSG-03B",
+  "result":"VERIFIER_PROVIDER_QUALIFIED_CANONICAL_PROTECTION_PENDING",
+  "canonical_acceptance":false,
+  "human_authorization":{"gate":"HG47-TRUST","authorized":true,"scope":"repo PT-Original-Point/ptysd-vnext42-governance-sandbox; refs/heads/v45/factory-control and necessary verifier/writer trust root only; no Production, business projects, paid services, or worker provider-write credentials"},
+  "canonical":{"control_ref":"refs/heads/v45/factory-control","control_sha":"066f6675ea566da07de8a1ae68d98afe635aff94","mutated_by_csg03b":false},
+  "runner_group":{"name":"PTYSD-V46-CONTROL-TRUSTED","workflow_access":"SELECTED_WORKFLOWS","selected_workflow_count_after_human_update":3,"main_workflow_allowed":true},
+  "false_pass_incident":{"run_id":35063839172,"run_number":7,"original_conclusion":"success","root_cause":"WINDOWS_CLI_ENTRYPOINT_GUARD_DID_NOT_EXECUTE","detail":"import.meta.url file URL did not equal hand-built file:// Windows path, so direct CLI execution exited 0 without verifier body","classification":"INVALIDATED_FALSE_PASS"},
+  "trust_root_repairs":[{"pr":27,"merge_sha":"1765ebf4f8eaf4aac49877ed714d04f14a4ae8b0","effect":"fix Windows CLI entrypoint and add cwd-independent regression test"},{"pr":28,"merge_sha":"052a19febe6dccb91fe2e91d116ff9f099f21832","effect":"separate trusted-verifier concurrency from formal bounded-driver concurrency"}],
+  "current_trust_root":{"main_sha":"052a19febe6dccb91fe2e91d116ff9f099f21832","workflow_path":".github/workflows/factory-bounded.yml","verifier_path":"governance/csg/trust-root/csg-trusted-pr-verifier.mjs","token_permissions":"contents:read; metadata:read","runner_name":"PTYSD-V45-CONTROL-01","runner_group":"ptysd-v46-control-trusted"},
+  "positive_provider_acceptance":{"pr":24,"head_sha":"b7bee316285b46b2e04527b9b4b03f36fbdd7a40","run_id":35065566755,"run_number":11,"conclusion":"success","trusted_source_sha":"052a19febe6dccb91fe2e91d116ff9f099f21832","verifier_output":{"result":"PASS","path":"governance/csg/smoke/csg-03b-smoke-v1.json"}},
+  "negative_provider_acceptance":{"pr":26,"head_sha":"0ccb433cdd24399d62b823a90c88261fdd0efdfb","run_id":35065744133,"run_number":12,"conclusion":"failure","trusted_source_sha":"052a19febe6dccb91fe2e91d116ff9f099f21832","verifier_output":{"result":"FAIL","code":"TRUST_ROOT_OR_AUTHORITY_CHANGE_FORBIDDEN","path":".github/workflows/factory-bounded.yml"},"exit_code":2},
+  "stale_run_resolution":{"run_8":35064193189,"final":"completed_success_stale_bootstrap_evidence_not_acceptance","manual_cancel_required":false},
+  "remaining_gate":{"name":"CANONICAL_BRANCH_NON_BYPASS","requirements":["Require pull request before merging for v45/factory-control","Require status check csg-trusted-verifier from GitHub Actions","Do not permit normal admin bypass","Force push disabled","Deletion disabled","After provider readback, raw Chat update_ref to canonical must be rejected"]},
+  "connector_capability":{"branch_protection_write":false,"branch_protection_read_current_connection":"403_RESOURCE_NOT_ACCESSIBLE_BY_INTEGRATION"},
+  "next_legal_transition":"HUMAN_GITHUB_UI_CANONICAL_PROTECTION_UPDATE_THEN_PROVIDER_NEGATIVE_RAW_WRITE_TEST",
+  "scope_constraints":["NO_PRODUCTION","NO_BUSINESS_PROJECT","NO_PAID_FALLBACK","NO_WORKER_PROVIDER_WRITE_CREDENTIALS"]
+}
