@@ -1,5 +1,6 @@
 import {execFileSync} from 'node:child_process';
 import path from 'node:path';
+import {pathToFileURL} from 'node:url';
 
 const OID=/^[0-9a-f]{40}$/;
 const TRUST_ROOT=[
@@ -41,7 +42,8 @@ export function verifyRepositoryCandidate({repo,baseOid,headOid,baseRef}){
   if(status)fail('WORKTREE_NOT_CLEAN');
   return {...direct,worktreeClean:true};
 }
-if(import.meta.url===`file://${process.argv[1]?.replaceAll('\\','/')}`){
+const cliEntry=process.argv[1]?pathToFileURL(path.resolve(process.argv[1])).href:'';
+if(import.meta.url===cliEntry){
   const [repo,baseOid,headOid,baseRef]=process.argv.slice(2);
   try{const out=verifyRepositoryCandidate({repo:path.resolve(repo),baseOid,headOid,baseRef});process.stdout.write(JSON.stringify({result:'PASS',...out})+'\n');}
   catch(e){process.stderr.write(JSON.stringify({result:'FAIL',code:e.code||'ERROR',message:e.message})+'\n');process.exit(2);}
