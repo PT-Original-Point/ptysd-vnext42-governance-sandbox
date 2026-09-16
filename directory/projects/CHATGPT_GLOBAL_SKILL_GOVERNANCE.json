@@ -1,0 +1,23 @@
+{
+  "schema": "CSG_DIRECTORY_SHADOW_PROJECT_V1",
+  "shadow_authority": false,
+  "source": "PROJECT_DIRECTORY_SAME_SOURCE_READBACK",
+  "source_directory_revision": 3,
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "project_name": "全自動軟體工廠",
+  "project_status": "RESERVED",
+  "runtime_type": "GITHUB_ACTIONS_BOUNDED",
+  "active_run_id": "V47-CONSTRUCTION-001",
+  "active_run_ref": "github://1352411536/runs/V47-CONSTRUCTION-001?control_ref=refs/heads/v45/factory-control",
+  "controller_contract_version": "CHAT_EXECUTION_POLICY_CONTRACT_V9_1_CANDIDATE",
+  "current_mission_revision": "20260916T001525+0800",
+  "current_mission_hash": "sha256:22433b31a85a57ef0874bfa2e5d75f43aa4c5b1ffa48784bf6a7e2e0cf1c7a44",
+  "current_mission_ref": "github://1352411536/governance/v47/current-mission.json@10474f110b5b18d7d7b52e621f05904cad5dd5f8",
+  "current_execution_policy_revision": "20260916T001525+0800-EP68",
+  "current_execution_policy_hash": "sha256:fc905c2658719d370167e6a199c31a2562fc630a67ef150b650af320eed4929f",
+  "current_execution_policy_ref": "github://1352411536/governance/v47/current-execution-policy.json@10474f110b5b18d7d7b52e621f05904cad5dd5f8",
+  "current_phase": "VNEXT4_7_R1_CONSTRUCTION",
+  "next_hard_gate": "W47-06",
+  "evidence_ledger_ref": null,
+  "learning_ledger_ref": null
+}
