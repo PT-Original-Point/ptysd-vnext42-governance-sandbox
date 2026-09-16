@@ -1,0 +1,18 @@
+{
+  "schema":"CSG_03B_TRUST_REPAIR_PROGRESS_V3",
+  "project_id":"CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "wp_id":"CSG-03B",
+  "result":"IN_PROGRESS_STALE_BOOTSTRAP_RUN_BLOCKS_POST_FIX_PROVIDER_RETEST",
+  "canonical_acceptance":false,
+  "human_gate":"HG47-TRUST_AUTHORIZED",
+  "canonical_control":{"ref":"refs/heads/v45/factory-control","sha":"066f6675ea566da07de8a1ae68d98afe635aff94"},
+  "runner_group":{"name":"PTYSD-V46-CONTROL-TRUSTED","workflow_access_update":"HUMAN_CONFIRMED_UPDATED","main_workflow_allowed":true},
+  "false_pass":{"negative_pr":26,"run_id":35063839172,"run_number":7,"observed_conclusion":"success","classification":"FALSE_PASS","root_cause":"WINDOWS_CLI_ENTRYPOINT_GUARD_DID_NOT_EXECUTE","detail":"manual file URL construction produced file://C:/... while import.meta.url is file:///C:/..."},
+  "trust_root_repair":{"branch":"trust/csg-03b-cli-entrypoint-fix-20260916","tested_head":"d28201ffc7903b6e82931b9c05a769cbc587b27f","bootstrap_pr":27,"merged_main_sha":"1765ebf4f8eaf4aac49877ed714d04f14a4ae8b0","fix":"pathToFileURL(path.resolve(process.argv[1])).href","regression_test":"tests/csg/csg-trusted-pr-verifier-cli.test.mjs"},
+  "remote_exact_bytes_tests":{"cli_regression":"PASS_1_OF_1","positive_smoke":{"result":"PASS","exit":0,"head":"b7bee316285b46b2e04527b9b4b03f36fbdd7a40"},"negative_tamper":{"result":"TRUST_ROOT_OR_AUTHORITY_CHANGE_FORBIDDEN","exit":2,"head":"0ccb433cdd24399d62b823a90c88261fdd0efdfb"}},
+  "provider_retest":{"positive_pr":24,"reopened":true,"new_run_id":35064248363,"new_run_number":9,"status":"pending","negative_pr":26,"reopened_after_fix":false},
+  "blocking_run":{"run_id":35064193189,"run_number":8,"source_pr":27,"head":"d28201ffc7903b6e82931b9c05a769cbc587b27f","status":"queued","job":"csg-trusted-verifier","reason":"obsolete bootstrap PR run occupies shared factory-governance-primary concurrency before run 9"},
+  "runner_local":{"service":"RUNNING_AUTOMATIC","listener_pid":22836,"worker_present":false},
+  "next_legal_transition":"DRAIN_OR_CANCEL_STALE_RUN_35064193189_WITHOUT_BROADENING_TRUST_THEN_COMPLETE_RUN9_AND_REOPEN_PR26",
+  "prohibitions":["NO_CANONICAL_CONTROL_MUTATION","NO_PRODUCTION","NO_BUSINESS_PROJECT","NO_PAID_SERVICE","NO_WORKER_PROVIDER_WRITE_CREDENTIALS","NO_FALSE_PASS"]
+}
