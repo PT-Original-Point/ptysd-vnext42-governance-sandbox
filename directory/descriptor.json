@@ -1,0 +1,17 @@
+{
+  "schema": "CSG_DIRECTORY_SHADOW_DESCRIPTOR_V1",
+  "descriptor_version": 1,
+  "authority_mode": "SHADOW_NON_AUTHORITATIVE",
+  "repository_id": 1352411536,
+  "repository_full_name": "PT-Original-Point/ptysd-vnext42-governance-sandbox",
+  "root_ref": "refs/heads/queue/csg-continuity-repair-20260916",
+  "alias_index_path": "directory/aliases/index.json",
+  "project_path_template": "directory/projects/{project_id}.json",
+  "normalization_version": "PYTHON_UNICODE_NFKC_CASEFOLD_COLLAPSE_WS_V1",
+  "lookup_mode": "EXACT_ALIAS_INDEX_NO_REPOSITORY_SCAN",
+  "source_directory_revision": 3,
+  "freshness_policy": "READ_ONLY_IF_LIVE_REVISION_UNAVAILABLE_BLOCK_IF_LIVE_REVISION_DIFFERS",
+  "mutation_authority": false,
+  "production_authority": false,
+  "business_project_authority": false
+}
