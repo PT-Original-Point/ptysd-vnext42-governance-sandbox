@@ -1,0 +1,18 @@
+test_accept_requires_remote_evidence_effects (test_barrier_policy.T.test_accept_requires_remote_evidence_effects) ... ok
+test_accept_returns_clean_and_next_permit (test_barrier_policy.T.test_accept_returns_clean_and_next_permit) ... ok
+test_begin_requires_clean_checkpoint_readback (test_barrier_policy.T.test_begin_requires_clean_checkpoint_readback) ... ok
+test_checkpoint_down_blocks_accept (test_barrier_policy.T.test_checkpoint_down_blocks_accept) ... ok
+test_checkpoint_down_blocks_begin (test_barrier_policy.T.test_checkpoint_down_blocks_begin) ... ok
+test_crash_after_tests_before_accept_stays_started (test_barrier_policy.T.test_crash_after_tests_before_accept_stays_started) ... ok
+test_direct_tool_bypass_requires_mutation_permit (test_barrier_policy.T.test_direct_tool_bypass_requires_mutation_permit) ... ok
+test_missing_readback_blocks_even_clean_barrier (test_barrier_policy.T.test_missing_readback_blocks_even_clean_barrier) ... ok
+test_rebase_blocks_new_unit (test_barrier_policy.T.test_rebase_blocks_new_unit) ... ok
+test_recovery_only_owner_blocks_new_unit (test_barrier_policy.T.test_recovery_only_owner_blocks_new_unit) ... ok
+test_stop_blocks_new_unit_but_recovery_read_allowed (test_barrier_policy.T.test_stop_blocks_new_unit_but_recovery_read_allowed) ... ok
+test_ui_claim_pass_cannot_accept (test_barrier_policy.T.test_ui_claim_pass_cannot_accept) ... ok
+test_unresolved_effect_blocks_next_unit (test_barrier_policy.T.test_unresolved_effect_blocks_next_unit) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.000s
+
+OK
