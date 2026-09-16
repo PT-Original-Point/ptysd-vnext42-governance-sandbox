@@ -1,0 +1,9 @@
+{
+  "schema": "CSG_ADMISSION_CAPABILITY_V1",
+  "authorization_gate": "HUMAN_PROJECT_ADMISSION_EXACT_SCOPE",
+  "project_ids": ["CHATGPT_GLOBAL_SKILL_GOVERNANCE"],
+  "operations": ["reserve", "bind", "retire"],
+  "fixture_only": true,
+  "grants_production": false,
+  "grants_business_project_access": false
+}
