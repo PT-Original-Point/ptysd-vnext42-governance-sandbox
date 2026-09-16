@@ -1,0 +1,15 @@
+{
+  "schema":"CSG_04B_QUALIFICATION_RECEIPT_V1",
+  "project_id":"CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "wp_id":"CSG-04B",
+  "result":"QUALIFIED_CANDIDATE_PASS",
+  "canonical_acceptance":false,
+  "candidate_commit":"64ff1b4573ae55b065b5794aee09d29db0095bb0",
+  "current_production_adapter":{"path":"C:/Users/x/governance-durable-prod-v1/production_project_directory.py","version":"2.1.0-v47","still_hardcoded_to_first_migration_project":true,"mutated":false},
+  "candidate_contract":{"authorization":"EXACT_PROJECT_CAPABILITY_PLUS_HUMAN_PROJECT_ADMISSION_EXACT_SCOPE","states":["RESERVED","BOUND","RETIRED"],"ordinary_unit_requires":"BOUND_WITH_ANCHOR","normalization":"PYTHON_UNICODE_NFKC_CASEFOLD_COLLAPSE_WS_V1","cas":"EXPECTED_DIRECTORY_REVISION","reserve_reentrant":true,"bind_reentrant_same_anchor":true},
+  "tests":{"total":12,"pass":12,"fail":0,"cases":["RESERVE_BIND_PERMIT","RESERVE_REENTRANT","SAME_NORMALIZED_NAME_ONE_WINNER","UNICODE_NFKC_CASEFOLD_COLLISION","WRONG_PROJECT_CAPABILITY_DENY","HUMAN_GATE_REQUIRED","ANCHOR_REQUIRED","STALE_REVISION_REJECT","CRASH_RESERVE_BIND_RECOVERY","BOUND_RETRY_IDEMPOTENT","EXACT_GET_NO_CROSS_PROJECT_LEAK","RETIRE_CAPABILITY_AND_REVISION"]},
+  "exact_blob_shas":{"directory/lib/admission_policy.py":"ff45a170e1535fbbd1e5e8d7c3a7059e81d073ac","directory/capabilities/governance-admission-capability.fixture.json":"9f753e0ba89fd28aa19bcaba8436ee049e509ed1","tests/csg/test_admission_policy.py":"e0d99cac727fecc21cd7e24a76d77705f9afc6f7"},
+  "migration_boundary":"PRODUCTION_POSTGRES_ADAPTER_INTEGRATION_DEFERRED_TO_GOVERNANCE_SHADOW_AND_CUTOVER_WORK_PACKAGES",
+  "scope_constraints":["NO_PRODUCTION","NO_BUSINESS_PROJECT","NO_DIRECTORY_AUTHORITY_CUTOVER","NO_PAID_FALLBACK","NO_MISSION_MUTATION","NO_POLICY_MUTATION"],
+  "next_legal_transition":"CSG-05"
+}
