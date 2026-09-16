@@ -1,0 +1,1 @@
+{"name":"@ptysd/csg-schema-candidate","version":"0.0.1","private":true,"type":"module","dependencies":{"canonicalize":"5.0.0"},"engines":{"node":">=22"}}
