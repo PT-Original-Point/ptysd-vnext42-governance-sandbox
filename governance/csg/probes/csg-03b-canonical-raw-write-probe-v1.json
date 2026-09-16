@@ -1,0 +1,12 @@
+{
+  "schema":"CSG_03B_CANONICAL_RAW_WRITE_PROBE_V1",
+  "project_id":"CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "wp_id":"CSG-03B",
+  "purpose":"PROBE_ONLY_NO_ACCEPTANCE",
+  "canonical_acceptance":false,
+  "base_control_sha":"066f6675ea566da07de8a1ae68d98afe635aff94",
+  "expected_provider_result":"REJECT_DIRECT_CANONICAL_REF_UPDATE",
+  "scope":["governance/csg/probes"],
+  "forbidden":["PRODUCTION","BUSINESS_PROJECT","PAID_SERVICE","WORKER_PROVIDER_WRITE_CREDENTIALS","MISSION_MUTATION","POLICY_MUTATION"],
+  "if_unexpectedly_applied":"FAIL_CSG_03B_AND_RECONCILE_BY_PROVIDER_READBACK_BEFORE_ANY_FURTHER_SHARED_MUTATION"
+}
