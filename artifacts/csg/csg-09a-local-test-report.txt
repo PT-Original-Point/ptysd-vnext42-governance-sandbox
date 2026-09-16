@@ -1,0 +1,106 @@
+TAP version 13
+# Subtest: provider-derived shadow qualifies but remains non-authoritative
+ok 1 - provider-derived shadow qualifies but remains non-authoritative
+  ---
+  duration_ms: 4.924894
+  type: 'test'
+  ...
+# Subtest: 171 of 175 remains explicit and cannot become full pass
+ok 2 - 171 of 175 remains explicit and cannot become full pass
+  ---
+  duration_ms: 1.743263
+  type: 'test'
+  ...
+# Subtest: W47-04 run contract is exposed as transition contract not W47-06 permit
+ok 3 - W47-04 run contract is exposed as transition contract not W47-06 permit
+  ---
+  duration_ms: 0.819414
+  type: 'test'
+  ...
+# Subtest: old Z6 candidate cannot take over newer exact canonical oid
+ok 4 - old Z6 candidate cannot take over newer exact canonical oid
+  ---
+  duration_ms: 0.777786
+  type: 'test'
+  ...
+# Subtest: control plane advance during read fails closed
+ok 5 - control plane advance during read fails closed
+  ---
+  duration_ms: 3.497182
+  type: 'test'
+  ...
+# Subtest: queue advance during read fails closed
+ok 6 - queue advance during read fails closed
+  ---
+  duration_ms: 0.342325
+  type: 'test'
+  ...
+# Subtest: wrong checkpoint digest fails closed
+ok 7 - wrong checkpoint digest fails closed
+  ---
+  duration_ms: 0.340715
+  type: 'test'
+  ...
+# Subtest: wrong checkpoint path fails closed
+ok 8 - wrong checkpoint path fails closed
+  ---
+  duration_ms: 0.194031
+  type: 'test'
+  ...
+# Subtest: legacy reader census unresolved blocks cutover without blocking shadow read
+ok 9 - legacy reader census unresolved blocks cutover without blocking shadow read
+  ---
+  duration_ms: 0.98364
+  type: 'test'
+  ...
+# Subtest: active legacy reader blocks cutover
+ok 10 - active legacy reader blocks cutover
+  ---
+  duration_ms: 0.891063
+  type: 'test'
+  ...
+# Subtest: shadow does not change active owner
+ok 11 - shadow does not change active owner
+  ---
+  duration_ms: 0.464995
+  type: 'test'
+  ...
+# Subtest: legacy control and run are projections of same shadow payload
+ok 12 - legacy control and run are projections of same shadow payload
+  ---
+  duration_ms: 0.404715
+  type: 'test'
+  ...
+# Subtest: scope and unresolved effects are preserved
+ok 13 - scope and unresolved effects are preserved
+  ---
+  duration_ms: 0.692705
+  type: 'test'
+  ...
+# Subtest: exact W47-06 contract plus zero-reader proof removes only migration blockers
+ok 14 - exact W47-06 contract plus zero-reader proof removes only migration blockers
+  ---
+  duration_ms: 0.40396
+  type: 'test'
+  ...
+# Subtest: owner mutation is rejected
+ok 15 - owner mutation is rejected
+  ---
+  duration_ms: 0.278554
+  type: 'test'
+  ...
+# Subtest: exact provider observation rebuilds the committed shadow byte identically
+ok 16 - exact provider observation rebuilds the committed shadow byte identically
+  ---
+  duration_ms: 5.289432
+  type: 'test'
+  ...
+1..16
+# tests 16
+# suites 0
+# pass 16
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 311.150981
