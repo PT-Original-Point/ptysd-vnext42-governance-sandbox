@@ -1,0 +1,16 @@
+{
+  "schema":"CSG_05_QUALIFICATION_RECEIPT_V1",
+  "project_id":"CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "wp_id":"CSG-05",
+  "result":"PASS",
+  "canonical_acceptance":false,
+  "source":{"repository_id":1352411536,"repository_full_name":"PT-Original-Point/ptysd-vnext42-governance-sandbox","remote_ref":"refs/heads/queue/csg-05-source-20260916","commit":"08bda2126f858938410e9ca37625e650846917dc","tree":"e203ba79b6f503c5895fcf60d32eb49794994f6a"},
+  "manifest":{"path":"artifacts/csg/csg-05-remote-wip-manifest-v1.json","publisher_commit":"36455e594a929c23f487266b596f627998eeeb5e","git_blob_sha":"68328122cae89b321b5d1dfb7017526b042af3f1","sha256":"e60ec49be282f2c0f651b74d8ca31f6ec6554946e884e2a64017ff81eaad3894","size":1839},
+  "artifacts":[{"path":"directory/lib/remote_wip_qualifier.py","git_blob_sha":"3727a7c835a016f6c4b8151ced5d7d35585f7229","sha256":"acfe6ff510f11d55eacc708fd4e6c54776e9f2dccf1ae398a997aefedce90bc2","size":3789,"provider_blob_readback":true},{"path":"tests/csg/test_remote_wip.py","git_blob_sha":"143de7af7ebe4a01d1dbc7a9dbe7e13b4db14c9b","sha256":"df159455cc02a766d3231d19d14ed13095ba6017db393856bcc61e06e8e77ba4","size":3091,"provider_blob_readback":true},{"path":"artifacts/csg/csg-05-local-test-report.txt","git_blob_sha":"6d47b218bb5efa290de7bad3f3b63850cea1f29c","sha256":"d38945bc6a8ba3d13498e624e4cdfddcd68ca8939c0a758d88e400622205e27e","size":1066,"provider_blob_readback":true}],
+  "tests":{"total":7,"pass":7,"fail":0,"negative_cases":["RAW_BLOB_TRUNCATED","EXPIRED_OR_EPHEMERAL_URL","LFS_OBJECT_MISSING","SUCCESS_WITHOUT_READBACK","REMOTE_AHEAD_NO_AUTO_ACCEPT","SOURCE_WITHOUT_RAW_REPORT"]},
+  "readback":{"provider":"GitHub","source_ref_head":"08bda2126f858938410e9ca37625e650846917dc","all_required_artifacts_read":true,"git_object_readback":true,"same_source":true},
+  "acceptance_classification":"DURABLE_WIP_NOT_ACCEPTED",
+  "secret_scan":"PASS_FIXED_PATTERNS_NO_MATCH",
+  "scope_constraints":["NO_PRODUCTION","NO_BUSINESS_PROJECT","NO_PAID_FALLBACK","NO_CANONICAL_ACCEPTANCE_FROM_REMOTE_AHEAD"],
+  "next_legal_transition":"CSG-06A"
+}

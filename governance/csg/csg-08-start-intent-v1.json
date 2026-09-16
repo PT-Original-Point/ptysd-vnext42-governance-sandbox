@@ -1,0 +1,12 @@
+{
+  "schema":"CSG_08_START_INTENT_V1",
+  "project_id":"CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "wp_id":"CSG-08",
+  "prestate_queue_head":"36a6577ed0ea7b609e598b867c73388ff9017b59",
+  "previous_checkpoint_seq":3,
+  "previous_checkpoint_digest":"sha256:ca6046063cb80be0c73a41f0a983c16b57b2028fdac3339ed36db8669dae8fe2",
+  "owner_generation":2,
+  "barrier_target":"ACTIVE_UNIT",
+  "next_action":"PUBLISH_ATOMIC_STARTED_CHECKPOINT",
+  "scope_constraints":["NO_PRODUCTION","NO_BUSINESS_PROJECT","NO_PAID_FALLBACK","NO_CANONICAL_CUTOVER"]
+}

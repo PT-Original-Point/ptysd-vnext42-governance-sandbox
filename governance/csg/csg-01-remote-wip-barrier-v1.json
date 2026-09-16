@@ -1,0 +1,43 @@
+{
+  "schema": "CSG_REMOTE_WIP_BARRIER_V1",
+  "wp_id": "CSG-01",
+  "result": "PASS_REMOTE_WIP_QUEUE_BARRIER",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "canonical_acceptance": false,
+  "queue_ref": "refs/heads/queue/csg-continuity-repair-20260916",
+  "base_control_ref": "refs/heads/v45/factory-control",
+  "base_control_sha": "066f6675ea566da07de8a1ae68d98afe635aff94",
+  "baseline_receipt": {
+    "path": "governance/csg/csg-00-baseline-observed-v1.json",
+    "local_sha256_before_publication": "9f13d255ecb6ed4ac1ead401fc89a5a5baa9dd84ca8b7d17a294ec119cdf0949",
+    "publication_commit": "a935439aa9deeb7e7e4f5f38c295bc6246311e61",
+    "same_source_readback": "PASS"
+  },
+  "design_input": {
+    "name": "CROSS-SESSION-DURABLE-GOVERNANCE-CONSTRUCTION-SPEC-vNEXT.md",
+    "sha256": "6893ace4f5e4bb0f7d0432c11308548b2e37095cd873fbec75dfdc5c47e59131",
+    "bytes": 160691,
+    "lines": 1879,
+    "authority": "DESIGN_INPUT_NOT_CANONICAL_STATE",
+    "remote_body_publication_required_before_design_file_is_used_as_cross_session_source": true
+  },
+  "transport": {
+    "writer": "CHAT_GITHUB_CONNECTOR",
+    "worker_provider_write_credentials_used": false,
+    "force_update_used": false,
+    "canonical_control_mutated": false,
+    "directory_mutated": false,
+    "mission_mutated": false,
+    "policy_mutated": false
+  },
+  "execution_constraints": [
+    "QUEUE_ONLY_UNACCEPTED_WIP",
+    "NO_PRODUCTION",
+    "NO_BUSINESS_PROJECT_ACCESS",
+    "NO_PAID_FALLBACK",
+    "NO_N2_OR_HIGHER_DISPATCH",
+    "NO_HOST_VM_TRUST_MUTATION_WITHOUT_HG47_TRUST"
+  ],
+  "acceptance_scope": "CSG-01 establishes a provider-readable queue transport and durable receipt path. It does not promote the design file, alter W47-06, or create a canonical checkpoint.",
+  "next_legal_transition": "CSG-02_LOCAL_CANDIDATE_WITH_REMOTE_SOURCE_BEFORE_ACCEPTANCE"
+}

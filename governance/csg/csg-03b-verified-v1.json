@@ -1,0 +1,17 @@
+{
+  "schema":"CSG_03B_VERIFIED_V1",
+  "project_id":"CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "wp_id":"CSG-03B",
+  "result":"PASS",
+  "canonical_acceptance":false,
+  "human_gate":"HG47-TRUST",
+  "canonical":{"ref":"refs/heads/v45/factory-control","sha_before":"066f6675ea566da07de8a1ae68d98afe635aff94","sha_after":"066f6675ea566da07de8a1ae68d98afe635aff94","unchanged":true},
+  "protection":{"protected":true,"required_status_check":"csg-trusted-verifier","enforcement_level":"everyone","force_push_expected_disabled":true,"deletion_expected_disabled":true},
+  "positive_provider_acceptance":{"pr":24,"run_number":11,"run_id":35065566755,"conclusion":"success","trusted_source_sha":"052a19febe6dccb91fe2e91d116ff9f099f21832","verifier_result":"PASS"},
+  "negative_provider_acceptance":{"pr":26,"run_number":12,"run_id":35065744133,"conclusion":"failure","trusted_source_sha":"052a19febe6dccb91fe2e91d116ff9f099f21832","verifier_code":"TRUST_ROOT_OR_AUTHORITY_CHANGE_FORBIDDEN","exit_code":2},
+  "raw_write_negative":{"update_ref_attempt":"BLOCKED_BY_OPENAI_SAFETY_LAYER_NOT_PROVIDER_EVIDENCE","contents_api_attempt":{"status":409,"message":"Changes must be made through a pull request. Required status check csg-trusted-verifier is expected."},"provider_result":"REJECTED_DIRECT_CANONICAL_WRITE"},
+  "trust_root":{"main_sha":"052a19febe6dccb91fe2e91d116ff9f099f21832","workflow":".github/workflows/factory-bounded.yml","verifier":"governance/csg/trust-root/csg-trusted-pr-verifier.mjs","token_permissions":["contents:read","metadata:read"],"runner":"PTYSD-V45-CONTROL-01","runner_group":"ptysd-v46-control-trusted"},
+  "incident_closed":{"false_pass_run_number":7,"root_cause":"WINDOWS_CLI_ENTRYPOINT_GUARD_DID_NOT_EXECUTE","fixed":true,"regression_verified":true},
+  "scope_constraints":["NO_PRODUCTION","NO_BUSINESS_PROJECT","NO_PAID_FALLBACK","NO_WORKER_PROVIDER_WRITE_CREDENTIALS","NO_MISSION_MUTATION","NO_POLICY_MUTATION"],
+  "next_legal_transition":"CSG-04A"
+}

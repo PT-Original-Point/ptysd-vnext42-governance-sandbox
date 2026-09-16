@@ -1,0 +1,15 @@
+{
+  "schema":"CSG_07B_QUALIFICATION_RECEIPT_V1",
+  "project_id":"CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "wp_id":"CSG-07B",
+  "result":"PASS",
+  "canonical_acceptance":false,
+  "barrier_policy":{"remote_exact_tests":13,"remote_exact_pass":13,"remote_exact_fail":0,"policy_blob":"bb15046029eef6fef3a0d5f7bd1d21b12c9102f6","test_blob":"f4f4e40ff3e9efa0dbf752290bb4b7432a41294e"},
+  "crash_canary":{"started_commit":"2db47b34ea705079d42838bbb04dc851ce6ce191","started_checkpoint_seq":2,"started_event":"ATOMIC_STARTED","started_barrier":"ACTIVE_UNIT","started_cold_readback":true,"accepted_commit":"2e53d24e103a1498ace74d6fff6599f7b227be86","accepted_checkpoint_seq":3,"accepted_event":"ATOMIC_ACCEPTED","accepted_barrier":"CLEAN","accepted_readback":true},
+  "safety_proof":{"test_pass_without_acceptance_remained_started":true,"next_unit_forbidden_while_active":true,"acceptance_required_remote_wip_evidence_effects":true,"checkpoint_backend_failure_blocks_transition":true,"ui_claim_cannot_override":true,"direct_tool_bypass_denied_without_permit":true,"unresolved_effect_blocks_next_unit":true,"recovery_readback_remains_allowed":true},
+  "queue_ref":"refs/heads/queue/csg-continuity-repair-20260916",
+  "queue_head_after_accept":"2e53d24e103a1498ace74d6fff6599f7b227be86",
+  "canonical_control_unchanged":"066f6675ea566da07de8a1ae68d98afe635aff94",
+  "scope_constraints":["NO_PRODUCTION","NO_BUSINESS_PROJECT","NO_PAID_FALLBACK","NO_CANONICAL_CUTOVER"],
+  "next_legal_transition":"CSG-08"
+}

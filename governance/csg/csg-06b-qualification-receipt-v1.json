@@ -1,0 +1,12 @@
+{
+  "schema":"CSG_06B_QUALIFICATION_RECEIPT_V1",
+  "project_id":"CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "wp_id":"CSG-06B",
+  "result":"PASS",
+  "canonical_acceptance":false,
+  "policy":{"read_does_not_claim":true,"identity_dimensions":["principal_id","owner_generation","attempt_id","attempt_epoch","transport_id"],"pending_mode":"RECOVERY_ONLY","recovery_only_allows":["READBACK","CLASSIFY_EFFECT","WRITE_RECOVERY_RECEIPT"],"recovery_only_forbids":["DISPATCH","NEW_ATOMIC_UNIT","CANONICAL_ACCEPT"],"live_job_adoption":"PRESERVE_ATTEMPT_NO_REDISPATCH","stale_receipts":"QUARANTINE_EVIDENCE"},
+  "tests":{"local_total":13,"local_pass":13,"local_fail":0,"cases":["PROVIDER_TIME_LEASE","LIVE_JOB_ADOPT_NO_REDISPATCH","LIVE_OWNER_CONTINUES","OLD_MISSION_QUARANTINE","EXPIRED_PENDING_RECOVERY_ONLY","READ_NO_CLAIM","REBASE_BLOCK","STALE_ATTEMPT_QUARANTINE","STOP_BLOCK","TRANSPORT_NOT_OWNER","TWO_SESSION_SAME_NEXT_GENERATION","COMPLETED_JOB_READBACK_ONLY","ZOMBIE_OWNER_QUARANTINE"]},
+  "provider_fence":{"ref":"refs/heads/probe/csg-06b-owner-fence-20260916","parent":"8266a0c677f7c4c55e41cab420afe8e8003c407a","session_a_commit":"bf84242e0a476b138f40f63143fcbbcb55c67410","session_b_commit":"c093e379175bc6bb44bee91ba6ec7c648998fef3","session_a":"ACCEPTED","session_b":"REJECTED_422_NON_FAST_FORWARD","same_generation":1,"same_parent":true,"readback_head":"bf84242e0a476b138f40f63143fcbbcb55c67410"},
+  "scope_constraints":["NO_PRODUCTION","NO_BUSINESS_PROJECT","NO_PAID_FALLBACK","NO_CANONICAL_CUTOVER","NO_NEW_LEASE_SERVICE"],
+  "next_legal_transition":"CSG-07A"
+}

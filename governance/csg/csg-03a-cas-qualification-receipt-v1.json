@@ -1,0 +1,15 @@
+{
+  "schema":"CSG_03A_CAS_QUALIFICATION_RECEIPT_V1",
+  "project_id":"CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "wp_id":"CSG-03A",
+  "result":"PASS_PROVIDER_TOPOLOGY_CAS_EQUIVALENT_PENDING_NONBYPASS",
+  "canonical_acceptance":false,
+  "implementation_choice":"EXACT_DIRECT_PARENT_PROPOSAL_PLUS_FORCE_FALSE_PROVIDER_FAST_FORWARD_FENCE",
+  "connector_capability":{"graphql_updateRefs_beforeOid_exposed":false,"fake_expectedOid_parameter_used":false},
+  "synthetic_probe":{"ref":"refs/heads/queue/csg-cas-probe-20260916","before_oid":"49f785e58e5eaa2e3bc1b4139e408310ae6c6718","proposal_c1":"04b54e87f70c7b0dd023dbef4d14787945c75718","proposal_c2":"3e256d325491fce9207ede874cd08417d26e6f3b","c1_direct_parent_verified":true,"c1_update":"SUCCESS","c2_same_parent_update":"REJECTED_422_NON_FAST_FORWARD","post_ackloss_readback":"04b54e87f70c7b0dd023dbef4d14787945c75718","invalid_tree_oid":"REJECTED_422_TREE_SHA_DOES_NOT_EXIST"},
+  "local_contract":{"source_commit":"c2488d3fa67b3c547cc071423c67a89070bfb617","tests":{"pass":5,"fail":0,"total":5,"published_commit_retest":true},"candidate_nonblank_LOC":20,"test_nonblank_LOC":12},
+  "safety_argument":["EVERY_PROPOSAL_COMMIT_HAS_EXACT_BEFORE_OID_AS_DIRECT_PARENT","FORCE_ALWAYS_FALSE","TWO_SIBLINGS_FROM_SAME_PARENT_CANNOT_BOTH_FAST_FORWARD_THE_SAME_REF","ACKLOSS_IS_CLASSIFIED_ONLY_BY_EXACT_REF_READBACK","RAW_BYPASS_MUST_BE_CLOSED_BY_CSG_03B"],
+  "limitations":["NO_EXPLICIT_BEFOREOID_ARGUMENT_IN_CURRENT_CHAT_GITHUB_CONNECTOR","SAFETY_DEPENDS_ON_TRUSTED_GUARD_ENFORCING_DIRECT_PARENT_AND_BASE_TREE_DISCIPLINE","CSG_03B_REQUIRED_BEFORE_ANY_CANONICAL_ACTIVATION"],
+  "constraints":["NO_CANONICAL_CONTROL_MUTATION","NO_DIRECTORY_MUTATION","NO_PRODUCTION","NO_BUSINESS_PROJECT_ACCESS","NO_PAID_FALLBACK","NO_N2_OR_HIGHER_DISPATCH"],
+  "next_legal_transition":"CSG-03B_NONBYPASS_AND_VERIFIER_ISOLATION"
+}

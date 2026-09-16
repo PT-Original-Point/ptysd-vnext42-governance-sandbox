@@ -1,0 +1,12 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://ptysd.invalid/schemas/csg/csg.pointer.v1.schema.json",
+  "title":"CSG CanonicalControl","type":"object","additionalProperties":false,
+  "required":["schema_version","project_id","binding_id","binding_generation","checkpoint_seq","checkpoint_path","checkpoint_digest","previous_control_oid","transition_id","reader_compatibility"],
+  "properties":{
+    "schema_version":{"const":"csg.pointer.v1"},"project_id":{"type":"string","minLength":1,"maxLength":128},"binding_id":{"type":"string","minLength":1,"maxLength":128},
+    "binding_generation":{"type":"integer","minimum":1,"maximum":9007199254740991},"checkpoint_seq":{"type":"integer","minimum":1,"maximum":9007199254740991},"checkpoint_path":{"type":"string","minLength":1,"maxLength":512},
+    "checkpoint_digest":{"type":"string","minLength":71,"maxLength":71},"previous_control_oid":{"type":"object","additionalProperties":false,"required":["algorithm","hex"],"properties":{"algorithm":{"enum":["sha1","sha256"]},"hex":{"type":"string","minLength":40,"maxLength":64}}},
+    "transition_id":{"type":"string","minLength":1,"maxLength":128},"reader_compatibility":{"type":"object","additionalProperties":false,"required":["min_schema","max_schema"],"properties":{"min_schema":{"const":"csg.checkpoint.v1"},"max_schema":{"const":"csg.checkpoint.v1"}}}
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "schema":"CSG_06A_QUALIFICATION_RECEIPT_V1",
+  "project_id":"CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "wp_id":"CSG-06A",
+  "result":"PASS",
+  "canonical_acceptance":false,
+  "canary_ref":"refs/heads/queue/csg-continuity-repair-20260916",
+  "parent":"52011f429a33e59861df477d62096716a15da1af",
+  "bundle_commit":"ddfecfde7af467ef500e4184c51da13d99a3d8b9",
+  "bundle_tree":"9716c03f14ae7ba68a660098a54fd98150796372",
+  "atomic_objects":{"continuity/current.json":"59cb9cc84995d12e2b01f4b30897fa6db9747df7","checkpoints/csg/000001.json":"3e7530b4bee4ad6bfa2b4d388db3d309eeacd23c","evidence/csg/csg-06a-000001.json":"37d806a917832953ed2312657997079e81b3b5ff"},
+  "checkpoint_payload_digest":"sha256:39201b2d9920953e491394b226f27e3f20a61578a2129dab814dd41525bc814d",
+  "evidence_payload_digest":"sha256:433fa5b28d3aded3144a4f452691577f0b26aa7af57f9e3818c86e9713b5028e",
+  "tests":{"local_cross_object":7,"local_cross_object_pass":7,"provider_same_commit_readback":true,"half_object_rejected":true,"duplicate_seq_rejected":true,"immutable_overwrite_rejected":true,"self_reference_cycle_rejected":true,"future_commit_reference_rejected":true,"parent_mismatch_rejected":true},
+  "response_lost_simulation":{"mutation_ack_ignored_for_acceptance":true,"acceptance_source":"GITHUB_REF_SAME_SOURCE_READBACK","observed_ref_head":"ddfecfde7af467ef500e4184c51da13d99a3d8b9","redispatch_required":false},
+  "authority":"NON_CANONICAL_QUEUE_CANARY",
+  "canonical_control_unchanged":"066f6675ea566da07de8a1ae68d98afe635aff94",
+  "scope_constraints":["NO_PRODUCTION","NO_BUSINESS_PROJECT","NO_PAID_FALLBACK","NO_CANONICAL_CUTOVER"],
+  "next_legal_transition":"CSG-06B"
+}

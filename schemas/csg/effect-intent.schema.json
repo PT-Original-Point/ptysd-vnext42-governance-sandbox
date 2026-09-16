@@ -1,0 +1,13 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://ptysd.invalid/schemas/csg/csg.effect-intent.v1.schema.json",
+  "title":"CSG EffectIntent","type":"object","additionalProperties":false,
+  "required":["schema_version","project_id","operation_id","logical_action_key","originating_transition_id","effect_kind","provider","target","request_digest","payload_ref","idempotency","precondition","authorization_ref","mission_anchor","policy_anchor","created_by_owner_generation","attempt_id","provider_profile_ref","dispatch_deadline","created_at"],
+  "properties":{
+    "schema_version":{"const":"csg.effect-intent.v1"},"project_id":{"type":"string","minLength":1,"maxLength":128},"operation_id":{"type":"string","minLength":1,"maxLength":128},"logical_action_key":{"type":"string","minLength":1,"maxLength":512},"originating_transition_id":{"type":"string","minLength":1,"maxLength":128},
+    "effect_kind":{"type":"string","minLength":1,"maxLength":64},"provider":{"type":"string","minLength":1,"maxLength":64},"target":{"type":"object"},"request_digest":{"type":"string","minLength":71,"maxLength":71},"payload_ref":{"type":"object"},
+    "idempotency":{"type":"object","additionalProperties":false,"required":["mode","key_ref","scope","valid_until"],"properties":{"mode":{"enum":["PROVIDER","APPLICATION","NONE"]},"key_ref":{"type":["object","null"]},"scope":{"type":"string","minLength":1,"maxLength":256},"valid_until":{"type":"string"}}},
+    "precondition":{"type":"object","additionalProperties":false,"required":["kind","expected_revision","prestate_ref"],"properties":{"kind":{"enum":["CAS","ETAG","REVISION","NONE"]},"expected_revision":{"type":["string","null"],"maxLength":256},"prestate_ref":{"type":["object","null"]}}},
+    "authorization_ref":{"type":"object"},"mission_anchor":{"type":"object"},"policy_anchor":{"type":"object"},"created_by_owner_generation":{"type":"integer","minimum":1,"maximum":9007199254740991},"attempt_id":{"type":"string","minLength":1,"maxLength":128},"provider_profile_ref":{"type":"object"},"dispatch_deadline":{"type":"string"},"created_at":{"type":"string"}
+  }
+}

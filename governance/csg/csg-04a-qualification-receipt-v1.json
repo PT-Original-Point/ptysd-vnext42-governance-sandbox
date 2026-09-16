@@ -1,0 +1,19 @@
+{
+  "schema":"CSG_04A_QUALIFICATION_RECEIPT_V1",
+  "project_id":"CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "wp_id":"CSG-04A",
+  "result":"PASS",
+  "canonical_acceptance":false,
+  "candidate_commit":"b17c88c6fe30a5d72fa913f98b86f7ab701e37d2",
+  "source_directory_revision":3,
+  "live_directory_revision_readback":3,
+  "authority":"SHADOW_NON_AUTHORITATIVE",
+  "off_host_lookup":{"provider":"GitHub","rdc_required":false,"reads":["directory/descriptor.json","directory/aliases/index.json","directory/projects/CHATGPT_GLOBAL_SKILL_GOVERNANCE.json"],"result":"FOUND","project_id":"CHATGPT_GLOBAL_SKILL_GOVERNANCE","freshness_mode":"UNVERIFIED_OFFHOST_READ_ONLY_WHEN_LIVE_DIRECTORY_UNAVAILABLE"},
+  "tests":{"local_total":8,"local_pass":8,"local_fail":0,"cases":["KNOWN_NAME_ONE_TO_ONE","NOT_FOUND_NO_PROJECT_LOAD","WRONG_REPOSITORY_REJECTED","TAMPERED_DESCRIPTOR_REJECTED","NORMALIZED_UNICODE_COLLISION_REJECTED","RAW_ALIAS_COLLISION_REJECTED","STALE_SHADOW_BLOCKED","OFFHOST_READ_ONLY_FOUND"]},
+  "exact_blob_shas":{"directory/descriptor.json":"5d787f3aeb675324646edf31ed524bfa1b3a6cdc","directory/aliases/index.json":"0cbfeee4c1f1fb508da58f25e881a11e261eff7f","directory/projects/CHATGPT_GLOBAL_SKILL_GOVERNANCE.json":"43ada6ec00396c753be5703731595c697a84cfbe","directory/lib/shadow-directory.mjs":"3eaae405630c1760c0a1db0d0dd81af24fd1cad3","tests/csg/directory-shadow.test.mjs":"78758d38c897b66463d09b7a57ea03e7c6cc28a4"},
+  "normalization_contract":"PYTHON_UNICODE_NFKC_CASEFOLD_COLLAPSE_WS_V1",
+  "lookup_mode":"EXACT_ALIAS_INDEX_NO_REPOSITORY_SCAN",
+  "mutation_authority":false,
+  "scope_constraints":["NO_PRODUCTION","NO_BUSINESS_PROJECT","NO_PAID_FALLBACK","NO_DIRECTORY_AUTHORITY_CUTOVER","NO_MISSION_MUTATION","NO_POLICY_MUTATION"],
+  "next_legal_transition":"CSG-04B"
+}

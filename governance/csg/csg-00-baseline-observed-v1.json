@@ -1,0 +1,85 @@
+{
+  "schema": "CSG_BASELINE_OBSERVATION_V1",
+  "wp_id": "CSG-00",
+  "result": "PASS_READ_ONLY_BASELINE",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "observed_at": "2026-09-16T10:57:00+08:00",
+  "canonical_acceptance": false,
+  "directory": {
+    "project_status": "RESERVED",
+    "directory_revision": 3,
+    "runtime_type": "GITHUB_ACTIONS_BOUNDED",
+    "active_run_id": "V47-CONSTRUCTION-001",
+    "active_run_ref": "github://1352411536/runs/V47-CONSTRUCTION-001?control_ref=refs/heads/v45/factory-control",
+    "next_hard_gate": "W47-06",
+    "evidence_ledger_ref": null,
+    "learning_ledger_ref": null
+  },
+  "mission": {
+    "revision": "20260916T001525+0800",
+    "hash": "sha256:22433b31a85a57ef0874bfa2e5d75f43aa4c5b1ffa48784bf6a7e2e0cf1c7a44",
+    "ref": "github://1352411536/governance/v47/current-mission.json@10474f110b5b18d7d7b52e621f05904cad5dd5f8"
+  },
+  "policy": {
+    "revision": "20260916T001525+0800-EP68",
+    "hash": "sha256:fc905c2658719d370167e6a199c31a2562fc630a67ef150b650af320eed4929f",
+    "ref": "github://1352411536/governance/v47/current-execution-policy.json@10474f110b5b18d7d7b52e621f05904cad5dd5f8",
+    "controller_contract_version": "CHAT_EXECUTION_POLICY_CONTRACT_V9_1_CANDIDATE"
+  },
+  "control": {
+    "repository_id": 1352411536,
+    "repository": "PT-Original-Point/ptysd-vnext42-governance-sandbox",
+    "ref": "refs/heads/v45/factory-control",
+    "head": "066f6675ea566da07de8a1ae68d98afe635aff94",
+    "control_version": 53,
+    "next_gate": "W47-06"
+  },
+  "run": {
+    "run_id": "V47-CONSTRUCTION-001",
+    "revision": 3,
+    "state": "RUNNING",
+    "active_task_id": "W47-06",
+    "attempt_id": "V47-W47-06-ATTEMPT-001",
+    "attempt_epoch": 1,
+    "latest_checkpoint_ref": null,
+    "unresolved_operation_ids": [],
+    "stop_requested": false
+  },
+  "execution_observation": {
+    "github_actions_in_progress": 0,
+    "w47_06_host_vm_mutation_performed_by_csg00": false,
+    "hg47_trust_assumed": false
+  },
+  "w47_05_regression": {
+    "full_repository_pass": 171,
+    "full_repository_fail": 4,
+    "full_repository_total": 175,
+    "classification": "PRE_EXISTING_STALE_CURRENT_CONTROL_ASSERTIONS_AFTER_LEGITIMATE_V47_REBASE",
+    "exact_assertion_ids": "UNVERIFIED"
+  },
+  "csg_plan": {
+    "file": "CROSS-SESSION-DURABLE-GOVERNANCE-CONSTRUCTION-SPEC-vNEXT.md",
+    "sha256": "6893ace4f5e4bb0f7d0432c11308548b2e37095cd873fbec75dfdc5c47e59131",
+    "bytes": 160691,
+    "lines": 1879,
+    "secret_pattern_scan": "PASS_NO_MATCHES_FOR_FIXED_TOKEN_PATTERNS"
+  },
+  "race_readback": {
+    "directory_revision_first": 3,
+    "directory_revision_second": 3,
+    "control_head_first": "066f6675ea566da07de8a1ae68d98afe635aff94",
+    "control_head_second": "066f6675ea566da07de8a1ae68d98afe635aff94",
+    "result": "STABLE"
+  },
+  "scope_constraints": [
+    "NO_CANONICAL_CONTROL_MUTATION_IN_CSG00",
+    "NO_MISSION_OR_POLICY_MUTATION",
+    "NO_DIRECTORY_MUTATION",
+    "NO_PRODUCTION",
+    "NO_BUSINESS_PROJECT_ACCESS",
+    "NO_PAID_FALLBACK",
+    "NO_N2_OR_HIGHER_DISPATCH",
+    "NO_HOST_VM_TRUST_MUTATION_WITHOUT_HG47_TRUST"
+  ],
+  "next_legal_transition": "CSG-01_REMOTE_WIP_QUEUE_ONLY"
+}
