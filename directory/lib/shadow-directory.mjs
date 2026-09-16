@@ -35,9 +35,11 @@ export function resolveExactShadow({ name, descriptor, index, projectLoader, exp
   const maps = buildAliasMaps(index);
   const binding = maps.raw.get(name);
   if (!binding) return { status: 'NOT_FOUND', project: null, freshness: 'NOT_APPLICABLE', reads: ['descriptor', 'alias_index'] };
+
   if (liveDirectoryRevision !== null && liveDirectoryRevision !== descriptor.source_directory_revision) {
     return { status: 'STALE_SHADOW', project: null, freshness: 'STALE', reads: ['descriptor', 'alias_index'] };
   }
+
   const project = projectLoader(binding.project_path);
   if (!project || project.schema !== EXPECTED_PROJECT_SCHEMA) throw new Error('PROJECT_RECORD_SCHEMA_INVALID');
   if (project.shadow_authority !== false) throw new Error('PROJECT_RECORD_AUTHORITY_INVALID');
@@ -45,6 +47,7 @@ export function resolveExactShadow({ name, descriptor, index, projectLoader, exp
   if (project.source_directory_revision !== descriptor.source_directory_revision || index.source_directory_revision !== descriptor.source_directory_revision) {
     throw new Error('SHADOW_REVISION_INCONSISTENT');
   }
+
   return {
     status: 'FOUND',
     project,
