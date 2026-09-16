@@ -1,0 +1,47 @@
+{
+  "schema": "CSG_REMOTE_WIP_MANIFEST_V1",
+  "repository_id": 1352411536,
+  "repository_full_name": "PT-Original-Point/ptysd-vnext42-governance-sandbox",
+  "remote_ref": "refs/heads/queue/csg-05-source-20260916",
+  "source_commit": "08bda2126f858938410e9ca37625e650846917dc",
+  "source_tree": "e203ba79b6f503c5895fcf60d32eb49794994f6a",
+  "acceptance_state": "DURABLE_WIP_NOT_ACCEPTED",
+  "artifacts": [
+    {
+      "path": "directory/lib/remote_wip_qualifier.py",
+      "git_blob_sha": "3727a7c835a016f6c4b8151ced5d7d35585f7229",
+      "size": 3789,
+      "sha256": "acfe6ff510f11d55eacc708fd4e6c54776e9f2dccf1ae398a997aefedce90bc2",
+      "kind": "SOURCE",
+      "retention": "GIT_OBJECT_REACHABLE_FROM_REMOTE_REF",
+      "locator": {"type": "GITHUB_REPO_PATH_AT_COMMIT"}
+    },
+    {
+      "path": "tests/csg/test_remote_wip.py",
+      "git_blob_sha": "143de7af7ebe4a01d1dbc7a9dbe7e13b4db14c9b",
+      "size": 3091,
+      "sha256": "df159455cc02a766d3231d19d14ed13095ba6017db393856bcc61e06e8e77ba4",
+      "kind": "TEST_SOURCE",
+      "retention": "GIT_OBJECT_REACHABLE_FROM_REMOTE_REF",
+      "locator": {"type": "GITHUB_REPO_PATH_AT_COMMIT"}
+    },
+    {
+      "path": "artifacts/csg/csg-05-local-test-report.txt",
+      "git_blob_sha": "6d47b218bb5efa290de7bad3f3b63850cea1f29c",
+      "size": 1066,
+      "sha256": "d38945bc6a8ba3d13498e624e4cdfddcd68ca8939c0a758d88e400622205e27e",
+      "kind": "RAW_TEST_REPORT",
+      "retention": "GIT_OBJECT_REACHABLE_FROM_REMOTE_REF",
+      "locator": {"type": "GITHUB_REPO_PATH_AT_COMMIT"}
+    }
+  ],
+  "readback": {
+    "provider": "GitHub",
+    "same_source": true,
+    "all_required_artifacts_read": true,
+    "observed_ref_head": "08bda2126f858938410e9ca37625e650846917dc"
+  },
+  "secret_scan": "PASS_FIXED_PATTERNS_NO_MATCH",
+  "lfs_required": false,
+  "canonical_acceptance": false
+}
