@@ -1,0 +1,14 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+const text=readFileSync(new URL('../../governance/csg/trust-template/csg-trusted-verifier.template.yml',import.meta.url),'utf8');
+test('01 trigger is pull_request to canonical branch',()=>{assert.match(text,/pull_request:/);assert.match(text,/v45\/factory-control/);});
+test('02 permissions are contents read only',()=>{assert.match(text,/permissions:\s*\n\s*contents: read/);assert.doesNotMatch(text,/contents: write|actions: write|checks: write|statuses: write/);});
+test('03 checkout action is immutable pinned',()=>{const hits=[...text.matchAll(/actions\/checkout@([0-9a-f]{40})/g)];assert.equal(hits.length,2);});
+test('04 setup-node action is immutable pinned',()=>assert.match(text,/actions\/setup-node@[0-9a-f]{40}/));
+test('05 both checkouts drop credentials',()=>assert.equal((text.match(/persist-credentials: false/g)||[]).length,2));
+test('06 trusted source uses workflow_sha',()=>{assert.match(text,/ref: \$\{\{ github\.workflow_sha \}\}/);assert.match(text,/TRUSTED_SHA/);});
+test('07 candidate is data-only checkout',()=>{assert.match(text,/path: candidate/);assert.doesNotMatch(text,/node candidate[\\/]|npm .*candidate|powershell .*candidate|cmd .*candidate/);});
+test('08 only trusted verifier is executed',()=>assert.match(text,/node trusted\/scripts\/csg-trusted-pr-verifier\.mjs/));
+test('09 no secret or token references appear',()=>assert.doesNotMatch(text,/secrets\.|github\.token|GITHUB_TOKEN|Authorization/i));
+test('10 candidate head and base SHA are provider event values',()=>{assert.match(text,/github\.event\.pull_request\.base\.sha/);assert.match(text,/github\.event\.pull_request\.head\.sha/);});
