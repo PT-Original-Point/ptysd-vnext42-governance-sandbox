@@ -1,0 +1,14 @@
+{
+  "schema":"CSG_07A_QUALIFICATION_RECEIPT_V1",
+  "project_id":"CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "wp_id":"CSG-07A",
+  "result":"PASS",
+  "canonical_acceptance":false,
+  "provider_profile":{"provider":"GitHub","path":"governance/csg/provider-profiles/github-effect-profile.v1.json","commit":"0a00e379296595c8006978047a4d91dabdf255d6","blob_sha":"28bd60b68b68bbaa52372f5b98cdf4ba2351c821","query_capability":"EXACT_SAME_SOURCE","not_found_alone":"AMBIGUOUS","forbidden_or_unauthorized":"AMBIGUOUS","recovery_dispatch":"FORBIDDEN"},
+  "tests":{"remote_exact_total":13,"remote_exact_pass":13,"remote_exact_fail":0,"cases":["ACK_LOST_CONFIRMED_NO_RESEND","NOT_FOUND_NOT_NOT_APPLIED","403_INCONCLUSIVE","NO_QUERY_AMBIGUOUS","QUALIFIED_NEGATIVE_PROOF","KEY_EXPIRED_NO_NEW_ID","LATE_REQUEST_AMBIGUOUS","INFLIGHT_AMBIGUOUS","WRONG_TARGET_FAIL_CLOSED","PARTIAL_NO_RETRY","STOP_READBACK_NO_DISPATCH","HANDOFF_IDENTITY_STABLE","HANDOFF_KEY_CHANGE_DETECTED"]},
+  "provider_ack_loss_evidence":{"source_wp":"CSG-06A","ref":"refs/heads/queue/csg-continuity-repair-20260916","proposal_commit":"ddfecfde7af467ef500e4184c51da13d99a3d8b9","mutation_ack_ignored_for_acceptance":true,"same_source_readback_head":"ddfecfde7af467ef500e4184c51da13d99a3d8b9","classification":"CONFIRMED","redispatch":false},
+  "negative_proof_required":["finality","absence_basis","late_request_excluded","retention_valid","no_inflight_request"],
+  "stable_identity":["operation_id","logical_action_key","idempotency_key"],
+  "scope_constraints":["NO_PRODUCTION","NO_BUSINESS_PROJECT","NO_PAID_FALLBACK","NO_RECOVERY_DISPATCH"],
+  "next_legal_transition":"CSG-07B"
+}
