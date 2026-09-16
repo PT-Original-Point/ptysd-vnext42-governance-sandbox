@@ -16,4 +16,4 @@ process:
 mcp:
   commands:
     - channel: main
-      command: '"C:\Program Files\nodejs\node.exe" "C:\ProgramData\PTYSD\MCP\FactoryMCP\src\index.mjs"'
+      command: '"C:/Program Files/nodejs/node.exe" "C:/ProgramData/PTYSD/MCP/FactoryMCP/src/index.mjs"'
