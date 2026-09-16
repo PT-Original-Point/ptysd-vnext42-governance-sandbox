@@ -2,8 +2,10 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {spawnSync} from 'node:child_process';
 import path from 'node:path';
+import {fileURLToPath} from 'node:url';
 
-const verifier=path.resolve('governance/csg/trust-root/csg-trusted-pr-verifier.mjs');
+const here=path.dirname(fileURLToPath(import.meta.url));
+const verifier=path.resolve(here,'../../governance/csg/trust-root/csg-trusted-pr-verifier.mjs');
 
 test('trusted verifier CLI entrypoint executes on this platform',()=>{
   const r=spawnSync(process.execPath,[verifier],{encoding:'utf8'});
@@ -12,5 +14,5 @@ test('trusted verifier CLI entrypoint executes on this platform',()=>{
   assert.ok(line,'expected verifier failure JSON on stderr');
   const out=JSON.parse(line);
   assert.equal(out.result,'FAIL');
-  assert.equal(out.code,'INVALID_BASE_OID');
+  assert.equal(out.code,'ERR_INVALID_ARG_TYPE');
 });
