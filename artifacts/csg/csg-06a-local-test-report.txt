@@ -1,0 +1,12 @@
+test_cycle (test_checkpoint_bundle.T.test_cycle) ... ok
+test_duplicate_seq (test_checkpoint_bundle.T.test_duplicate_seq) ... ok
+test_future_self_commit (test_checkpoint_bundle.T.test_future_self_commit) ... ok
+test_half_object_missing_evidence_link (test_checkpoint_bundle.T.test_half_object_missing_evidence_link) ... ok
+test_immutable_overwrite (test_checkpoint_bundle.T.test_immutable_overwrite) ... ok
+test_parent_mismatch (test_checkpoint_bundle.T.test_parent_mismatch) ... ok
+test_positive (test_checkpoint_bundle.T.test_positive) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.004s
+
+OK
