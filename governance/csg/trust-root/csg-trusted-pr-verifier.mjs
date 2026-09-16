@@ -3,6 +3,7 @@ import path from 'node:path';
 
 const OID=/^[0-9a-f]{40}$/;
 const TRUST_ROOT=[
+  '.github/workflows/factory-bounded.yml',
   '.github/workflows/csg-trusted-verifier.yml',
   'governance/csg/trust-root/',
   'governance/csg/trust-template/'
