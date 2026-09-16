@@ -1,0 +1,12 @@
+{
+  "schema":"CSG_03B_TRUST_GATE_REQUEST_V1",
+  "project_id":"CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "gate":"HG47-TRUST",
+  "wp_id":"CSG-03B",
+  "status":"WAITING_EXACT_HUMAN_TRUST_AUTHORIZATION",
+  "current_observed":{"canonical_ref":"refs/heads/v45/factory-control","branch_protected":true,"required_status_checks_enforcement":"off","required_checks":[],"repository_rulesets":[],"chat_github_connection_permissions":{"admin":true,"push":true,"maintain":true},"connector_protection_write_action_exposed":false},
+  "minimum_target_properties":["NORMAL_CANDIDATE_ACTOR_CANNOT_RAW_UPDATE_CANONICAL_REF","REQUIRED_TRUSTED_VERIFIER_CHECK_ENFORCED","CANDIDATE_CANNOT_MODIFY_RULESET_OR_REQUIRED_CHECK_DEFINITION","RECOVERY_CHANNEL_SEPARATE_AND_SCOPED","NO_FORCE_CANONICAL_REF_UPDATE","PROVIDER_READBACK_AFTER_TRUST_CHANGE"],
+  "proposed_scope":"Only governance canonical control trust boundary for repo_id 1352411536 and ref refs/heads/v45/factory-control; no Production or business Project authority.",
+  "mutation_not_performed":true,
+  "reason":"Human exact trust authorization is required by CSG-03B and current Chat GitHub connector exposes protection/ruleset reads but no protection/ruleset write action."
+}

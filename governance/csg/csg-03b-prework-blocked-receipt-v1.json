@@ -1,0 +1,13 @@
+{
+  "schema":"CSG_03B_PREWORK_BLOCKED_RECEIPT_V1",
+  "project_id":"CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "wp_id":"CSG-03B",
+  "result":"PREWORK_PASS_GATE_BLOCKED",
+  "canonical_acceptance":false,
+  "observed_trust_findings":["REQUIRED_STATUS_CHECKS_NOT_ENFORCED","NO_TRUSTED_REQUIRED_CHECK","NO_REPOSITORY_RULESET","NORMAL_ACTOR_RAW_PUSH_CAPABLE","NORMAL_ACTOR_ADMIN_CAPABLE","VERIFIER_TRUST_ROOT_NOT_PINNED","RECOVERY_CHANNEL_NOT_SCOPED"],
+  "local_tests":{"pass":7,"fail":0,"total":7},
+  "source_hashes":{"evaluator_sha256":"c053e294419d5c3add0744dd336a5c87b3c5adafe74151a5342798719e461aad","tests_sha256":"a908c9e325d35e8b3a310a7e50ad6db4183f2a17ce731c6ea4ad7f796a55a39d"},
+  "complexity":{"before_active_LOC":2199,"added_active_LOC":0,"removed_active_LOC":0,"after_active_LOC":2199,"candidate_nonblank_LOC":17,"test_nonblank_LOC":12,"classification":"UNACTIVATED_QUEUE_CANDIDATE"},
+  "blocker":{"code":"HG47_TRUST_AND_PROVIDER_ADMIN_CHANNEL_REQUIRED","human_gate_required":true,"connector_capability_block":true},
+  "next_legal_transition":"WAIT_HG47_TRUST_OR_PROTECTION_WRITE_CHANNEL; NO_CSG_04A_OR_CSG_05_ACCEPTANCE_BEFORE_CSG_03B_PASS"
+}
