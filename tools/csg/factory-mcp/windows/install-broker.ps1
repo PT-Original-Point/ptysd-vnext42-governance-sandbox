@@ -20,7 +20,7 @@ foreach ($name in @($brokerTask,$tunnelTask,$probeTask)) {
 }
 if (Test-Path -LiteralPath $install) { throw 'INSTALL_ROOT_ALREADY_EXISTS' }
 
-$required = @('package.json','package-lock.json','src\index.mjs','src\invoke-hostguard.ps1','broker\hostguard-broker.ps1','tests\protocol-smoke.mjs','tests\live-status-smoke.mjs','tests\tunnel-preflight-negative.ps1','windows\qualify-tunnel.ps1','windows\run-tunnel.ps1','windows\factory-mcp-tunnel.template.yaml')
+$required = @('package.json','package-lock.json','src\index.mjs','src\invoke-hostguard.ps1','broker\hostguard-broker.ps1','tests\protocol-smoke.mjs','tests\live-status-smoke.mjs','tests\tunnel-preflight-negative.ps1','tests\credential-ingest-smoke.ps1','windows\qualify-tunnel.ps1','windows\import-tunnel-credentials.ps1','windows\run-tunnel.ps1','windows\factory-mcp-tunnel.template.yaml')
 foreach ($rel in $required) {
   if (-not (Test-Path -LiteralPath (Join-Path $SourceRoot $rel))) { throw ('SOURCE_FILE_MISSING:' + $rel) }
 }
@@ -42,6 +42,7 @@ try {
   }
   Copy-Item -LiteralPath $runtimeExe.FullName -Destination (Join-Path $tunnel 'tunnel-client.exe') -Force
   Copy-Item -LiteralPath (Join-Path $SourceRoot 'windows\run-tunnel.ps1') -Destination (Join-Path $base 'run-factory-mcp-tunnel.ps1') -Force
+  Copy-Item -LiteralPath (Join-Path $SourceRoot 'windows\import-tunnel-credentials.ps1') -Destination (Join-Path $base 'import-factory-mcp-credentials.ps1') -Force
   Copy-Item -LiteralPath (Join-Path $SourceRoot 'windows\factory-mcp-tunnel.template.yaml') -Destination (Join-Path $base 'config\factory-mcp-tunnel.template.yaml') -Force
 
   Push-Location $install
@@ -52,6 +53,8 @@ try {
     if ($LASTEXITCODE -ne 0) { throw 'FACTORY_MCP_PROTOCOL_SMOKE_FAILED' }
     & powershell.exe -NoProfile -NonInteractive -ExecutionPolicy Bypass -File (Join-Path $install 'tests\tunnel-preflight-negative.ps1')
     if ($LASTEXITCODE -ne 0) { throw 'TUNNEL_PREFLIGHT_NEGATIVE_FAILED' }
+    & powershell.exe -NoProfile -NonInteractive -ExecutionPolicy Bypass -File (Join-Path $install 'tests\credential-ingest-smoke.ps1')
+    if ($LASTEXITCODE -ne 0) { throw 'CREDENTIAL_INGEST_SMOKE_FAILED' }
   } finally { Pop-Location }
 
   & icacls.exe $install /inheritance:r /grant:r 'SYSTEM:(OI)(CI)F' 'BUILTIN\Administrators:(OI)(CI)F' 'NT AUTHORITY\NETWORK SERVICE:(OI)(CI)RX' | Out-Null
@@ -65,6 +68,7 @@ try {
   & icacls.exe (Join-Path $base 'config') /inheritance:r /grant:r 'SYSTEM:(OI)(CI)F' 'BUILTIN\Administrators:(OI)(CI)F' 'NT AUTHORITY\NETWORK SERVICE:(OI)(CI)R' | Out-Null
   & icacls.exe $tunnel /inheritance:r /grant:r 'SYSTEM:(OI)(CI)F' 'BUILTIN\Administrators:(OI)(CI)F' 'NT AUTHORITY\NETWORK SERVICE:(OI)(CI)RX' | Out-Null
   & icacls.exe (Join-Path $base 'run-factory-mcp-tunnel.ps1') /inheritance:r /grant:r 'SYSTEM:F' 'BUILTIN\Administrators:F' 'NT AUTHORITY\NETWORK SERVICE:RX' | Out-Null
+  & icacls.exe (Join-Path $base 'import-factory-mcp-credentials.ps1') /inheritance:r /grant:r 'SYSTEM:F' 'BUILTIN\Administrators:F' | Out-Null
 
   $brokerAction = New-ScheduledTaskAction -Execute 'powershell.exe' -Argument ('-NoProfile -NonInteractive -ExecutionPolicy Bypass -File "'+(Join-Path $install 'broker\hostguard-broker.ps1')+'"')
   $brokerTrigger = New-ScheduledTaskTrigger -AtStartup
