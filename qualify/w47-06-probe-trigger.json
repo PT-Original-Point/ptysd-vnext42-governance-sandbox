@@ -1,1 +1,1 @@
-{"schema":"w47.qualification-trigger.v1","task_id":"W47-06","mode":"READ_ONLY_RUNTIME_PROBE","source_control_sha":"735d3d6647defe177d3286f54b4eb32047ef8329"}
+{"schema":"w47.qualification-trigger.v1","task_id":"W47-06","mode":"READ_ONLY_RUNTIME_PROBE_LABEL_ROUTE","source_control_sha":"735d3d6647defe177d3286f54b4eb32047ef8329","trigger_seq":2}
