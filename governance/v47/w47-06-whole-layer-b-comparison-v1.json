@@ -1,0 +1,59 @@
+{
+  "schema": "v47.whole-layer-b-comparison.v1",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "task_id": "W47-06",
+  "attempt_id": "V47-W47-06-ATTEMPT-001",
+  "attempt_epoch": 1,
+  "trigger": {
+    "baseline_active_maintenance_nonblank_loc": 2199,
+    "review_threshold_nonblank_loc": 2200,
+    "policy": "DELETE_FIRST_OR_TRIGGER_WHOLE_LAYER_B_COMPARISON",
+    "candidate_runtime_nonblank_loc": 92
+  },
+  "candidate_c": {
+    "architecture": "C_GIT_CANONICAL_BOUNDED_MUSE_FLEET",
+    "scope": "CELL_PLAN_COMPILER_PLUS_RUNTIME_ATTESTATION_ONLY",
+    "reuses": [
+      "W47-05 compiled task graph and path validation",
+      "existing Hyper-V worker boundary",
+      "existing rootless Podman target",
+      "existing HostGuard and ProviderGuard authority boundaries"
+    ],
+    "does_not_add": [
+      "database",
+      "queue service",
+      "listener",
+      "credential topology",
+      "second scheduler",
+      "generic workflow engine"
+    ]
+  },
+  "challenger_b": {
+    "name": "Gas City",
+    "source_commit": "8f3b31751b62b6642b132f8f9990f93aa337a9d5",
+    "observed_capabilities": [
+      "runtime providers",
+      "work routing",
+      "supervisor/reconcile loop",
+      "multi-project rig scoping",
+      "container image references"
+    ],
+    "same_scope_deletion_test": {
+      "can_replace_hyperv_worker_boundary": false,
+      "can_eliminate_fixed_image_pin": false,
+      "can_eliminate_mount_and_cgroup_enforcement": false,
+      "can_eliminate_no_socket_and_no_host_network_checks": false,
+      "can_eliminate_runtime_attestation": false,
+      "would_add_broader_runtime_supervisor_store_surface": true,
+      "actual_required_scope_deleted": 0
+    }
+  },
+  "decision": "RETAIN_THIN_C_FOR_W47_06",
+  "decision_basis": "The whole-layer challenger is broader orchestration infrastructure, but it does not remove the exact W47-06 isolation responsibilities. Installing it here would stack a supervisor/runtime/store layer while the Hyper-V/rootless-Podman boundary and runtime attestation would still be required.",
+  "deletion_credit": 0,
+  "legacy_sandbox_launcher_retirement": "DEFER_UNTIL_W47_06_RUNTIME_ACCEPTANCE_PROVES_REPLACEMENT",
+  "gas_city_install_performed": false,
+  "production_effect": false,
+  "business_project_effect": false,
+  "paid_effect": false
+}
