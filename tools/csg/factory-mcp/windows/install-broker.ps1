@@ -8,8 +8,11 @@ $ErrorActionPreference = 'Stop'
 $base = 'C:\ProgramData\PTYSD\MCP'
 $install = Join-Path $base 'FactoryMCP'
 $tunnel = Join-Path $base 'tunnel\v0.0.14'
+$doctorClient = Join-Path $base 'tunnel\full\v0.0.14'
 $runtimeStaging = Join-Path $base 'staging\v0.0.14\runtime'
+$fullStaging = Join-Path $base 'staging\v0.0.14\client'
 $expectedRuntimeExeSha256 = '09eac072d392b8d27b7aea8cbc146ab3738934961278b6b69cb23513607a08d7'
+$expectedDoctorExeSha256 = 'fcc85a69ec0ad82518e4f8964f60c45e31787957782a0fc9c1b0c44e82d61b9b'
 $brokerTask = 'PTYSD-FactoryMCP-HostGuard-Broker-V47'
 $tunnelTask = 'PTYSD-FactoryMCP-Tunnel-V47'
 $probeTask = 'PTYSD-FactoryMCP-Live-Probe-Temp'
@@ -25,15 +28,25 @@ foreach ($rel in $required) {
   if (-not (Test-Path -LiteralPath (Join-Path $SourceRoot $rel))) { throw ('SOURCE_FILE_MISSING:' + $rel) }
 }
 if (-not (Test-Path -LiteralPath $runtimeStaging)) { throw 'RUNTIME_STAGING_MISSING' }
+if (-not (Test-Path -LiteralPath $fullStaging)) { throw 'FULL_CLIENT_STAGING_MISSING' }
 $runtimeExe = Get-ChildItem -LiteralPath $runtimeStaging -Recurse -Filter 'tunnel-client-runtime.exe' -File | Select-Object -First 1
+$doctorExe = Get-ChildItem -LiteralPath $fullStaging -Recurse -Filter 'tunnel-client.exe' -File | Select-Object -First 1
 if (-not $runtimeExe) { throw 'RUNTIME_EXE_MISSING' }
+if (-not $doctorExe) { throw 'DOCTOR_EXE_MISSING' }
 $runtimeExeSha = (Get-FileHash -LiteralPath $runtimeExe.FullName -Algorithm SHA256).Hash.ToLowerInvariant()
+$doctorExeSha = (Get-FileHash -LiteralPath $doctorExe.FullName -Algorithm SHA256).Hash.ToLowerInvariant()
 if ($expectedRuntimeExeSha256 -eq 'REPLACE_RUNTIME_EXE_SHA256') { throw 'INSTALLER_RUNTIME_EXE_SHA_NOT_PINNED' }
+if ($expectedDoctorExeSha256 -eq 'REPLACE_DOCTOR_EXE_SHA256') { throw 'INSTALLER_DOCTOR_EXE_SHA_NOT_PINNED' }
 if ($runtimeExeSha -ne $expectedRuntimeExeSha256) { throw 'RUNTIME_EXE_SHA256_MISMATCH' }
+if ($doctorExeSha -ne $expectedDoctorExeSha256) { throw 'DOCTOR_EXE_SHA256_MISMATCH' }
+& $runtimeExe.FullName run --help *> $null
+if ($LASTEXITCODE -ne 0) { throw 'RUNTIME_RUN_HELP_FAILED' }
+& $doctorExe.FullName doctor --help *> $null
+if ($LASTEXITCODE -ne 0) { throw 'DOCTOR_HELP_FAILED' }
 
 $createdTasks = @()
 try {
-  New-Item -ItemType Directory -Force -Path $install,(Join-Path $install 'queue\inbox'),(Join-Path $install 'queue\processing'),(Join-Path $install 'queue\outbox'),(Join-Path $install 'state'),(Join-Path $base 'qualification'),(Join-Path $base 'config'),(Join-Path $base 'secrets'),(Join-Path $base 'logs'),(Join-Path $base 'state'),$tunnel | Out-Null
+  New-Item -ItemType Directory -Force -Path $install,(Join-Path $install 'queue\inbox'),(Join-Path $install 'queue\processing'),(Join-Path $install 'queue\outbox'),(Join-Path $install 'state'),(Join-Path $base 'qualification'),(Join-Path $base 'config'),(Join-Path $base 'secrets'),(Join-Path $base 'logs'),(Join-Path $base 'state'),$tunnel,$doctorClient | Out-Null
   foreach ($rel in $required) {
     $src = Join-Path $SourceRoot $rel
     $dst = Join-Path $install $rel
@@ -41,6 +54,7 @@ try {
     Copy-Item -LiteralPath $src -Destination $dst -Force
   }
   Copy-Item -LiteralPath $runtimeExe.FullName -Destination (Join-Path $tunnel 'tunnel-client.exe') -Force
+  Copy-Item -LiteralPath $doctorExe.FullName -Destination (Join-Path $doctorClient 'tunnel-client.exe') -Force
   Copy-Item -LiteralPath (Join-Path $SourceRoot 'windows\run-tunnel.ps1') -Destination (Join-Path $base 'run-factory-mcp-tunnel.ps1') -Force
   Copy-Item -LiteralPath (Join-Path $SourceRoot 'windows\import-tunnel-credentials.ps1') -Destination (Join-Path $base 'import-factory-mcp-credentials.ps1') -Force
   Copy-Item -LiteralPath (Join-Path $SourceRoot 'windows\factory-mcp-tunnel.template.yaml') -Destination (Join-Path $base 'config\factory-mcp-tunnel.template.yaml') -Force
@@ -67,6 +81,7 @@ try {
   & icacls.exe (Join-Path $base 'secrets') /inheritance:r /grant:r 'SYSTEM:(OI)(CI)F' 'BUILTIN\Administrators:(OI)(CI)F' 'NT AUTHORITY\NETWORK SERVICE:(OI)(CI)R' | Out-Null
   & icacls.exe (Join-Path $base 'config') /inheritance:r /grant:r 'SYSTEM:(OI)(CI)F' 'BUILTIN\Administrators:(OI)(CI)F' 'NT AUTHORITY\NETWORK SERVICE:(OI)(CI)R' | Out-Null
   & icacls.exe $tunnel /inheritance:r /grant:r 'SYSTEM:(OI)(CI)F' 'BUILTIN\Administrators:(OI)(CI)F' 'NT AUTHORITY\NETWORK SERVICE:(OI)(CI)RX' | Out-Null
+  & icacls.exe $doctorClient /inheritance:r /grant:r 'SYSTEM:(OI)(CI)F' 'BUILTIN\Administrators:(OI)(CI)F' 'NT AUTHORITY\NETWORK SERVICE:(OI)(CI)RX' | Out-Null
   & icacls.exe (Join-Path $base 'run-factory-mcp-tunnel.ps1') /inheritance:r /grant:r 'SYSTEM:F' 'BUILTIN\Administrators:F' 'NT AUTHORITY\NETWORK SERVICE:RX' | Out-Null
   & icacls.exe (Join-Path $base 'import-factory-mcp-credentials.ps1') /inheritance:r /grant:r 'SYSTEM:F' 'BUILTIN\Administrators:F' | Out-Null
 
@@ -111,6 +126,7 @@ try {
     broker_task=(Get-ScheduledTask -TaskName $brokerTask).State.ToString()
     tunnel_task=(Get-ScheduledTask -TaskName $tunnelTask).State.ToString()
     runtime_exe_sha256=(Get-FileHash -LiteralPath (Join-Path $tunnel 'tunnel-client.exe') -Algorithm SHA256).Hash.ToLowerInvariant()
+    doctor_exe_sha256=(Get-FileHash -LiteralPath (Join-Path $doctorClient 'tunnel-client.exe') -Algorithm SHA256).Hash.ToLowerInvariant()
     broker_health=$healthObj
     live_probe=$probe
   } | ConvertTo-Json -Depth 8 -Compress
