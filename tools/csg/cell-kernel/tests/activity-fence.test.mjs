@@ -1,0 +1,15 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { createActivityFence, restoreActivityFence } from '../activity-fence.mjs';
+const make=()=>createActivityFence({cell_id:'cell1',attempt_id:'attempt1',attempt_epoch:7});
+test('claim increments revision and active lease count; settle decrements only count',()=>{const f=make();const t=f.claim_activity('tool1');assert.equal(t.activity_revision,1);assert.equal(t.active_lease_count,1);const s=f.settle_activity(t.token);assert.equal(s.activity_revision,1);assert.equal(s.active_lease_count,0);});
+test('concurrent claim invalidates completion candidate',()=>{const f=make();const c=f.begin_completion();const t=f.claim_activity('late');f.settle_activity(t.token);assert.throws(()=>f.commit_completion(c),/COMPLETION_REVISION_CHANGED/);});
+test('active lease blocks completion commit',()=>{const f=make();f.claim_activity('tool1');const c=f.begin_completion();assert.throws(()=>f.commit_completion(c),/ACTIVE_LEASES_PRESENT/);});
+test('unresolved effect blocks completion',()=>{const f=make();const c=f.begin_completion();assert.throws(()=>f.commit_completion(c,{unresolved_effect_refs:['effect1']}),/UNRESOLVED_EFFECTS_PRESENT/);});
+test('current attempt and epoch are mandatory fences',()=>{const f=make();assert.throws(()=>f.claim_activity('x',{attempt_id:'old'}),/STALE_ATTEMPT/);assert.throws(()=>f.begin_completion({attempt_epoch:8}),/STALE_EPOCH/);const c=f.begin_completion();assert.throws(()=>f.commit_completion(c,{attempt_epoch:8}),/STALE_EPOCH/);});
+test('completion then late token terminal rejects',()=>{const f=make();const t=f.claim_activity('tool1');f.settle_activity(t.token);const c=f.begin_completion();const done=f.commit_completion(c);assert.equal(done.state,'COMPLETED');assert.throws(()=>f.settle_activity(t.token),/LATE_ACTIVITY_AFTER_COMPLETION/);assert.throws(()=>f.claim_activity('late'),/COMPLETION_TERMINAL/);});
+test('double settle rejects and never underflows lease count',()=>{const f=make();const t=f.claim_activity('tool1');f.settle_activity(t.token);assert.throws(()=>f.settle_activity(t.token),/LEASE_ALREADY_SETTLED/);assert.equal(f.status().active_lease_count,0);});
+test('crash after begin before commit restores RECOVERY_REQUIRED not COMPLETED',()=>{const f=make();const c=f.begin_completion();assert.ok(c.candidate_id);const restored=restoreActivityFence(f.snapshot());assert.equal(restored.status().state,'RECOVERY_REQUIRED');assert.throws(()=>restored.commit_completion(c),/RECOVERY_REQUIRED/);});
+test('crash without pending completion remains ACTIVE',()=>{const f=make();const restored=restoreActivityFence(f.snapshot());assert.equal(restored.status().state,'ACTIVE');});
+test('completed snapshot restores terminal completed state',()=>{const f=make();const c=f.begin_completion();f.commit_completion(c);const r=restoreActivityFence(f.snapshot());assert.equal(r.status().state,'COMPLETED');assert.throws(()=>r.begin_completion(),/COMPLETION_TERMINAL/);});
+test('snapshot lease count mismatch fails closed',()=>{const f=make();const s=f.snapshot();s.active_lease_count=1;assert.throws(()=>restoreActivityFence(s),/LEASE_COUNT_MISMATCH/);});
