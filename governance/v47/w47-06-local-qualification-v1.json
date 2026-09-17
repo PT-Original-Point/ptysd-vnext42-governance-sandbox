@@ -1,0 +1,46 @@
+{
+  "schema": "V47_W47_06_LOCAL_QUALIFICATION_V1",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "run_id": "V47-CONSTRUCTION-001",
+  "wp_id": "W47-06",
+  "attempt_id": "V47-W47-06-ATTEMPT-001",
+  "attempt_epoch": 1,
+  "result": "PASS_LOCAL_PREPARATION_RUNTIME_ACCEPTANCE_NOT_CLAIMED",
+  "observed_at": "2026-09-17T06:27:38Z",
+  "artifacts": {
+    "adapter": {
+      "path": "scripts/v47-cell-adapter.mjs",
+      "sha256": "sha256:25b058ad03d141d0593c5d4cfb84bd0c571cf7a016ae53c6003f1d08e4fbfce0",
+      "nonblank_loc": 92
+    },
+    "profile": {
+      "path": "config/v47/cell-profile.json",
+      "sha256": "sha256:5ba8e0f970e23ba72face521b4a591c34d960205c5f7761199276767bb93270b",
+      "qualification_state": "BLOCKED_IMAGE_PIN"
+    },
+    "tests": {
+      "path": "tests/v47/isolation.test.mjs",
+      "sha256": "sha256:5958da4f70f47f38889bda659fab5f488073fd5f88d8df20ea0cd7dec3f23fb6",
+      "pass": 8,
+      "fail": 0
+    },
+    "whole_layer_b_comparison": {
+      "path": "governance/v47/w47-06-whole-layer-b-comparison-v1.json",
+      "sha256": "sha256:52ecc87d5b26fe344bdf8e5da780d27b12995825e4e65763b5bcd87834018df3"
+    }
+  },
+  "runtime_acceptance": {
+    "claimed": false,
+    "same_source_host_vm_container_mount_cgroup": false,
+    "base_image_digest_resolved": false,
+    "reason": "HG47_TRUST_EXACT_HOST_VM_EXECUTION_AND_QUALIFIED_EXECUTION_ROUTE_REQUIRED"
+  },
+  "forbidden_effects": {
+    "production": 0,
+    "business_projects": 0,
+    "paid_services": 0,
+    "n2_or_higher": 0,
+    "new_listener": 0,
+    "new_credential_topology": 0
+  }
+}
