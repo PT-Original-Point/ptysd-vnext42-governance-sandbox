@@ -1,0 +1,32 @@
+name: W47-06 temporary runtime probe
+
+on:
+  push:
+    branches:
+      - w47-06-isolated-cell-20260917-r1
+    paths:
+      - qualify/w47-06-probe-trigger.json
+
+permissions:
+  contents: read
+
+concurrency:
+  group: w47-06-runtime-probe
+  cancel-in-progress: false
+
+jobs:
+  probe:
+    runs-on:
+      group: PTYSD-V46-CONTROL-TRUSTED
+      labels: ptysd-governance-v45
+    timeout-minutes: 10
+    steps:
+      - name: Checkout exact probe commit without credentials
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+          fetch-depth: 1
+      - name: Run fixed read-only worker runtime probe
+        shell: powershell
+        run: ./tests/v47/w47-06-runtime-probe.ps1
