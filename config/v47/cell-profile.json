@@ -1,0 +1,8 @@
+{
+  "schema_version": "v47.cell.profile.v1",
+  "profile_id": "V47-ISOLATED-CELL-001",
+  "qualification_state": "BLOCKED_IMAGE_PIN",
+  "base_image_digest": null,
+  "cell_root": "/home/ptysd/.local/state/ptysd-v47/cells/{cell_id}",
+  "tmpfs_mib": 64
+}
