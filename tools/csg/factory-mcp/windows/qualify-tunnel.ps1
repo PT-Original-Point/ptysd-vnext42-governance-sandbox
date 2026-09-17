@@ -2,10 +2,12 @@
 param([string]$Root='C:\ProgramData\PTYSD\MCP')
 Set-StrictMode -Version Latest
 $ErrorActionPreference='Stop'
-$exe=Join-Path $Root 'tunnel\v0.0.14\tunnel-client.exe'
+$runtimeExe=Join-Path $Root 'tunnel\v0.0.14\tunnel-client.exe'
+$doctorExe=Join-Path $Root 'tunnel\full\v0.0.14\tunnel-client.exe'
 $profile=Join-Path $Root 'config\factory-mcp-tunnel.yaml'
 $key=Join-Path $Root 'secrets\control-plane-api-key.txt'
-$expectedExeSha='09eac072d392b8d27b7aea8cbc146ab3738934961278b6b69cb23513607a08d7'
+$expectedRuntimeSha='09eac072d392b8d27b7aea8cbc146ab3738934961278b6b69cb23513607a08d7'
+$expectedDoctorSha='fcc85a69ec0ad82518e4f8964f60c45e31787957782a0fc9c1b0c44e82d61b9b'
 if(-not (Test-Path -LiteralPath $profile)){throw 'TUNNEL_PROFILE_MISSING'}
 $raw=Get-Content -LiteralPath $profile -Raw
 $idMatches=[regex]::Matches($raw,'(?m)^\s*tunnel_id:\s*(tunnel_[0-9a-f]{32})\s*$')
@@ -25,9 +27,13 @@ foreach($rule in (Get-Acl -LiteralPath $key).Access){
   if($sid -notin $allowed){throw ('CONTROL_PLANE_KEY_ACL_TOO_BROAD:'+ $sid)}
   if($sid -eq 'S-1-5-20' -and (($rule.FileSystemRights -band [Security.AccessControl.FileSystemRights]::ReadData) -ne 0)){$networkRead=$true}
 }
-if(-not $networkRead){throw 'CONTROL_PLANE_KEY_NETWORK_SERVICE_READ_MISSING'}if(-not (Test-Path -LiteralPath $exe)){throw 'TUNNEL_CLIENT_MISSING'}
-$exeSha=(Get-FileHash -LiteralPath $exe -Algorithm SHA256).Hash.ToLowerInvariant()
-if($exeSha -ne $expectedExeSha){throw 'TUNNEL_CLIENT_SHA256_MISMATCH'}
-& $exe doctor --profile-file $profile --explain *> $null
+if(-not $networkRead){throw 'CONTROL_PLANE_KEY_NETWORK_SERVICE_READ_MISSING'}
+if(-not (Test-Path -LiteralPath $runtimeExe)){throw 'TUNNEL_RUNTIME_CLIENT_MISSING'}
+if(-not (Test-Path -LiteralPath $doctorExe)){throw 'TUNNEL_DOCTOR_CLIENT_MISSING'}
+$runtimeSha=(Get-FileHash -LiteralPath $runtimeExe -Algorithm SHA256).Hash.ToLowerInvariant()
+$doctorSha=(Get-FileHash -LiteralPath $doctorExe -Algorithm SHA256).Hash.ToLowerInvariant()
+if($runtimeSha -ne $expectedRuntimeSha){throw 'TUNNEL_RUNTIME_CLIENT_SHA256_MISMATCH'}
+if($doctorSha -ne $expectedDoctorSha){throw 'TUNNEL_DOCTOR_CLIENT_SHA256_MISMATCH'}
+& $doctorExe doctor --profile-file $profile --explain *> $null
 if($LASTEXITCODE -ne 0){throw 'TUNNEL_DOCTOR_FAILED'}
-[ordered]@{result='PASS';tunnel_id=$idMatches[0].Groups[1].Value;health='LOOPBACK_EPHEMERAL';exe_sha256=$exeSha;key_present=$true;doctor='PASS'} | ConvertTo-Json -Compress
+[ordered]@{result='PASS';tunnel_id=$idMatches[0].Groups[1].Value;health='LOOPBACK_EPHEMERAL';runtime_exe_sha256=$runtimeSha;doctor_exe_sha256=$doctorSha;key_present=$true;doctor='PASS'} | ConvertTo-Json -Compress
