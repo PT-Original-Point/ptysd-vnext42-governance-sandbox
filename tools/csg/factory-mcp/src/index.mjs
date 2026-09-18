@@ -20,7 +20,7 @@ const operationInput = z.object({
   runId: z.string().regex(idPattern),
   taskId: z.string().regex(idPattern),
   attemptId: z.string().regex(idPattern),
-  attemptEpoch: z.number().int().min(0).max(2147483647),
+  attemptEpoch: z.number().int().min(1).max(2147483647),
 });
 
 function mockHostGuard(operation, args = {}) {

@@ -86,6 +86,12 @@ try {
   });
   assert.ok(invalid.result?.isError || invalid.error, 'invalid input must fail closed');
 
+  const staleEpoch = await send('tools/call', {
+    name: 'worker_start',
+    arguments: { ...op, attemptEpoch: 0 },
+  });
+  assert.ok(staleEpoch.result?.isError || staleEpoch.error, 'attemptEpoch=0 must fail closed');
+
   console.log('FACTORY_MCP_PROTOCOL_SMOKE=PASS');
 } finally {
   child.kill();

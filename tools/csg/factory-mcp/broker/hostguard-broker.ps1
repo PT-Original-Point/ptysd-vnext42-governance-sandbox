@@ -65,7 +65,7 @@ function Process-Request {
     if ($req.schema -ne 'v47.factory-mcp.hostguard.request.v1') { throw 'REQUEST_SCHEMA_INVALID' }
     if ($req.request_id -ne $requestId) { throw 'REQUEST_ID_MISMATCH' }
     if ($req.operation -notin @('status','prepare','start')) { throw 'OPERATION_INVALID' }
-    if ([int64]$req.attempt_epoch -lt 0 -or [int64]$req.attempt_epoch -gt 2147483647) { throw 'ATTEMPT_EPOCH_INVALID' }
+    if ([int64]$req.attempt_epoch -lt 1 -or [int64]$req.attempt_epoch -gt 2147483647) { throw 'ATTEMPT_EPOCH_INVALID' }
     if ($req.operation -ne 'status') {
       if (-not (Test-Id $req.run_id) -or -not (Test-Id $req.task_id) -or -not (Test-Id $req.attempt_id)) { throw 'ID_INVALID' }
     }
