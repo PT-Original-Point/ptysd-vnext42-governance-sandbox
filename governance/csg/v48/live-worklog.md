@@ -312,3 +312,26 @@ Therefore no additional shared/runtime mutation is legal in this session that co
 ### Next legal transition
 
 Remain on `V48-D9`. Resume qualification only when `OFFICIAL_STDIO_CONFORMANCE_RUNNER_AVAILABLE_OR_EQUIVALENT_OFFICIAL_PATH_VERIFIED` becomes true. D10 remains forbidden. Do not create a synthetic PASS, new runner, hosted-runner bypass, listener shim, or second conformance authority.
+
+
+### PR #72 acceptance and local-saturation seal
+
+- PR #72 candidate `e48c5e0d69fdb8803463b045c1b8d23ed14a4d0c` had exact direct parent `1585784c316025a0ee5ac2a459e6dc5531682041`.
+- Required `csg-trusted-verifier` job `105467627319` / workflow run `35302416693` completed `SUCCESS`.
+- `bounded-driver-acceptance` was `SKIPPED`; no runtime-protocol PASS is inferred from that.
+- Final pre-merge readback found canonical branch unchanged at the expected base and PR #72 mergeable.
+- PR #72 merged as canonical `a88f2f823e00c05dfab9cf51d64268ecfaf2a66a`.
+- Immediate same-source readback confirmed:
+  - `governance/csg/current.json` remains checkpoint 35 / `V48-D9-BLOCKED-035`
+  - `d9-local-qualification-saturation-v1.json` is canonical
+  - dual-era `protocol-smoke.mjs` remains 88 physical / 81 nonblank lines
+  - D10 has not started
+- Current authoritative local conclusion: no further legal local/shared mutation can truthfully clear D9 under EP69 and checkpoint 35.
+- Remaining legal continuation is:
+  1. read-only watch for an official stdio conformance runner or a genuinely supported equivalent official extension point;
+  2. fresh-session/app-definition readback for L3 schema convergence.
+- Existing daily software-factory ecosystem monitor already includes MCP conformance #258 hard-watch, so no duplicate monitor is created.
+
+### Durable parked condition
+
+`V48-D9` remains the sole active atomic unit. Resume only through `V48_D9_RESUME_OFFICIAL_STDIO_CONFORMANCE_QUALIFICATION` when its missing upstream/equivalent condition is actually satisfied. Until then: no D10, no synthetic PASS, no Worker/Host start, no hosted-runner bypass, no new listener, no new credential topology, no paid fallback, and no Production/business mutation.
