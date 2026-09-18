@@ -429,3 +429,15 @@ Execute the exact trusted capsule through the existing bounded-driver `workflow_
 - Mandatory negatives PASS: framework/source PASS cannot rescue candidate FAIL; verifier/expected-case/anchor tampering rejects; zero tests and all-skipped reject.
 - Browser acceptance contract is preserved for future browser-scoped candidates (Playwright deterministic primary; DevTools diagnostics-only); D10 itself has no browser-scoped acceptance artifact.
 - DEL-03 receives zero deletion credit: D5 and D10 are PASS, but the V46 driver dependency still exists. No normal-route activation, Host/Worker dispatch, Production/business mutation, paid fallback, listener, credential topology, or new canonical store.
+
+
+### V48-D11 bounded AdvisorPacket + quota guard shadow qualification
+
+- Added shadow-only `tools/csg/cell-kernel/advisor-guard.mjs`; it does not replace D8 generic model/data/secret/paid policy.
+- Preserved V4.7 objective trigger vocabulary T1-T7; subjective difficulty/code size/token size/worker confidence/high-model preference cannot trigger escalation.
+- Deterministic qualification: 21/21 PASS, 0 fail, 0 skipped on Node v22.16.0.
+- Default Sol budget is one call per root task; a second call requires explicit conflicting-evidence reconciliation; a third call is hard denied.
+- Unknown quota -> `CONSERVE`; 429 -> `WAITING_ADVISOR_RESOURCE`; API-key paid route, Zen paid fallback and non-zero incremental cost are denied before dispatch.
+- AdvisorPacket is allowlisted and bounded; requested output is PLAN|CORRECTION|STOP; Sol/Astra authority is fixed READ_ONLY with edit/shell/provider-write/promotion false.
+- No real Advisor provider call was executed in D11 qualification. DEL-09 remains zero credit because research/model callers have not been fully migrated.
+- No normal-route activation, Host VM start, Worker dispatch, Production/business mutation, paid fallback, listener, credential topology, or new canonical store.
