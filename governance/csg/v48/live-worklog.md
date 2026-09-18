@@ -419,3 +419,13 @@ Execute the exact trusted capsule through the existing bounded-driver `workflow_
 - The trust boundary was not weakened. The D9 project-specific Inspector regression was extracted into canonical-allowed `tools/csg/factory-mcp/tests/official-inspector-equivalence.mjs`.
 - The replacement regression is 62 nonblank LOC versus the deleted legacy transport harness at 81 nonblank LOC, so DEL-06 now yields net -19 qualification-test LOC while keeping the exact 3-tool / identity / fence regression surface.
 - Runtime source remains byte-identical to run #70; no Host/Worker/Production/business/paid/listener/credential mutation was introduced.
+
+
+### V48-D10 verifier modernization shadow qualification
+
+- Added shadow-only `tools/csg/cell-kernel/verifier-binding.mjs` implementing `VerifierBindingReceipt` over exact candidate commit/tree/worktree/cwd/contract/verifier digest.
+- Verifier digest is a composite binding over verifier source, expected cases, and anchor so a candidate cannot self-modify the verifier/fixture/anchor and retain the same admitted identity.
+- Deterministic local qualification on Node v22.16.0: 12/12 PASS, 0 fail, 0 skipped.
+- Mandatory negatives PASS: framework/source PASS cannot rescue candidate FAIL; verifier/expected-case/anchor tampering rejects; zero tests and all-skipped reject.
+- Browser acceptance contract is preserved for future browser-scoped candidates (Playwright deterministic primary; DevTools diagnostics-only); D10 itself has no browser-scoped acceptance artifact.
+- DEL-03 receives zero deletion credit: D5 and D10 are PASS, but the V46 driver dependency still exists. No normal-route activation, Host/Worker dispatch, Production/business mutation, paid fallback, listener, credential topology, or new canonical store.
