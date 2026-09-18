@@ -276,3 +276,39 @@ This refactor changes test evidence only. It adds no dependency, runtime listene
 ### Next single action
 
 Publish the slimmer dual-era protocol smoke as one direct-parent candidate with this evidence. Require trusted verifier PASS, merge only after a fresh canonical precheck, then keep D9 blocked until official stdio conformance L4 is actually available.
+
+
+### PR #71 acceptance and D9 local-qualification saturation
+
+- PR #71 candidate `d6f689f59e24897364a46a850b950f78d5a0eef9` passed the required trusted verifier and merged as canonical `1585784c316025a0ee5ac2a459e6dc5531682041`.
+- Same-source readback confirms `protocol-smoke.mjs` is now 88 physical / 81 nonblank lines and contains both the 2025 legacy path and the 2026-07-28 modern stdio probe vector.
+- CSG remains checkpoint 35 / `V48-D9-BLOCKED-035`; no D9 acceptance transition occurred.
+
+Current local qualification surface is now saturated under the active policy:
+
+- application/fence hardening is canonical: `attemptEpoch >= 1` in repository source/wrapper/broker
+- public Factory MCP tool surface remains exactly 3
+- duplicate runtime version authority was removed; package metadata is the server version authority
+- source-level alignment with official `@modelcontextprotocol/server@2.0.0` modern stdio path is PASS
+- dependency upgrade for 2026 stdio is rejected as unnecessary churn
+- local conformance-adapter workaround is rejected because no supported official scenario/RunContext library API exists
+- retained protocol smoke is slimmer and now carries a modern runtime vector without increasing maintained test LOC
+- current ChatGPT session definition still advertises `attemptEpoch.minimum=0`; L3 is therefore still `STALE_OR_MISMATCHED` in this loaded session
+- official conformance #258 remains the L4 blocker; the official server runner has no verified native stdio path
+- runtime execution of the new dual-era smoke is still unavailable in the current container because exact npm dependencies are absent and the registry path is unavailable
+
+Execution-venue audit under EP69:
+
+- hosted runner is explicitly forbidden
+- Host VM execution is not default-authorized
+- Worker dispatch is not default-authorized and checkpoint 35 forbids it
+- adding an HTTP listener/shim is forbidden
+- adding a credential topology is forbidden
+- paid fallback is forbidden
+- the currently exposed Factory MCP interface has no raw protocol-test or package-install operation, and its mutation operations are not legal under checkpoint 35
+
+Therefore no additional shared/runtime mutation is legal in this session that could truthfully clear D9. The remaining legal work is read-only upstream monitoring and a future fresh-session/app-definition readback for L3; only an official stdio conformance runner or a genuinely supported equivalent official extension point can satisfy L4.
+
+### Next legal transition
+
+Remain on `V48-D9`. Resume qualification only when `OFFICIAL_STDIO_CONFORMANCE_RUNNER_AVAILABLE_OR_EQUIVALENT_OFFICIAL_PATH_VERIFIED` becomes true. D10 remains forbidden. Do not create a synthetic PASS, new runner, hosted-runner bypass, listener shim, or second conformance authority.
