@@ -17,17 +17,17 @@ jobs:
   qualify:
     concurrency:
       group: v48-host-powershell-source-qualification
-      cancel-in-progress: false
-    runs-on:
-      group: PTYSD-V46-CONTROL-TRUSTED
-      labels: ptysd-governance-v45
+      cancel-in-progress: true
+    runs-on: windows-latest
     timeout-minutes: 20
     steps:
-      - name: Verify trusted runner identity
-        shell: cmd
+      - name: Verify isolated GitHub-hosted Windows runner
+        shell: powershell
         run: |
-          if not "%RUNNER_NAME%"=="PTYSD-V45-CONTROL-01" exit /b 41
-          if /I not "%RUNNER_OS%"=="Windows" exit /b 42
+          if ($env:RUNNER_OS -ne 'Windows') { throw 'RUNNER_OS_NOT_WINDOWS' }
+          if ($env:RUNNER_ENVIRONMENT -ne 'github-hosted') { throw 'RUNNER_NOT_GITHUB_HOSTED' }
+          if ($env:RUNNER_NAME -eq 'PTYSD-V45-CONTROL-01') { throw 'PRIVILEGED_TRUSTED_RUNNER_FORBIDDEN_FOR_CANDIDATE_TESTS' }
+          Write-Host 'V48_SOURCE_QUALIFICATION_ISOLATION=PASS'
       - name: Checkout exact candidate
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
