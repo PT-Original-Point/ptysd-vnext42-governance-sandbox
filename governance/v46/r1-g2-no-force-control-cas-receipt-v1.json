@@ -1,0 +1,58 @@
+{
+  "schema": "V46_R1_G2_NO_FORCE_CONTROL_CAS_RECEIPT_V1",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "gate": "R1-G2_NO_FORCE_CONTROL_CAS",
+  "conclusion": "PASS",
+  "verification_state": "VERIFIED",
+  "control_head_before": "d93732d1a895f819677eac073587b213460a32ce",
+  "probe_branch": "refs/heads/v46/r1-g2-cas-probe",
+  "race": {
+    "H": "d93732d1a895f819677eac073587b213460a32ce",
+    "C1": "0dc8437523a3dbadafea34faf113a45e40afe486",
+    "C2": "7714551111353e25d3f3083746f5a85c3fec23eb",
+    "parent_C1": "d93732d1a895f819677eac073587b213460a32ce",
+    "parent_C2": "d93732d1a895f819677eac073587b213460a32ce",
+    "winner": "C1",
+    "winner_force": false,
+    "loser_result": "HTTP_422_UPDATE_IS_NOT_A_FAST_FORWARD",
+    "head_after_race": "0dc8437523a3dbadafea34faf113a45e40afe486",
+    "loser_classification": "STALE_WRITER",
+    "loser_retry_count": 0
+  },
+  "aba_reverse_probe": {
+    "from": "0dc8437523a3dbadafea34faf113a45e40afe486",
+    "attempted_to": "d93732d1a895f819677eac073587b213460a32ce",
+    "force": false,
+    "result": "HTTP_422_UPDATE_IS_NOT_A_FAST_FORWARD",
+    "classification": "BACKWARD_REF_MOVE_REJECTED",
+    "canonical_control_force_pushes_allowed": false,
+    "canonical_control_deletions_allowed": false
+  },
+  "ack_loss_readback_probe": {
+    "C3": "c061f6431574e2c53023f8ab0472250816e4e98b",
+    "parent_C3": "0dc8437523a3dbadafea34faf113a45e40afe486",
+    "probe_blob_sha": "41afd53befecd964ea2699a795bd325f5e4f2a12",
+    "force": false,
+    "ack_classification_for_test": "TREAT_ACK_AS_UNAVAILABLE",
+    "same_source_ref_readback": "c061f6431574e2c53023f8ab0472250816e4e98b",
+    "same_source_blob_readback": "41afd53befecd964ea2699a795bd325f5e4f2a12",
+    "classification": "COMMITTED_BY_READBACK_NO_RETRY",
+    "retry_count": 0
+  },
+  "required_control_write_contract": {
+    "single_parent_direct_parent_required": true,
+    "normal_ref_update_force": false,
+    "force_with_lease_normal_path_allowed": false,
+    "post_write_same_source_readback_required": true,
+    "stale_writer_rebuild_required_before_any_new_attempt": true,
+    "ambiguous_ack_readback_first": true,
+    "backward_or_history_replacement_allowed": false
+  },
+  "effects": {
+    "production_effects": 0,
+    "business_project_effects": 0,
+    "paid_service_effects": 0,
+    "n2_effects": 0
+  },
+  "next_gate": "R1-G3_PROVIDER_QUALIFIED_RUN_LOCATOR"
+}

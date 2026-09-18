@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import {admitCommand, applyTransition, requestStop, acceptAttemptReceipt, recordOperation} from '../scripts/v45-state-core.mjs';
 
 const run = {run_id:'R1',revision:1,state:'READY',attempt_epoch:0,stop_requested:false};
+const operation = {operation_id:'O1',run_id:'R1',attempt_epoch:0,kind:'WRITE',provider:'synthetic',target:'resource://one',precondition:{revision:1},payload:{x:1}};
 
 test('same command id+digest dedupes and changed payload is rejected',()=>{
   const c={command_id:'C1',request_sha256:'h1'};
@@ -35,8 +36,8 @@ test('stale attempt receipts and post-stop effects are rejected',()=>{
   assert.throws(()=>acceptAttemptReceipt(s,{run_id:'R1',attempt_epoch:0,external_effect_requested:true}),/STOP_BLOCKS_NEW_EFFECT/);
 });
 
-test('operation id is idempotent only for same payload',()=>{
-  const a=recordOperation({}, {operation_id:'O1',payload:{x:1}});
-  assert.equal(recordOperation(a,{operation_id:'O1',payload:{x:1}}),a);
-  assert.throws(()=>recordOperation(a,{operation_id:'O1',payload:{x:2}}),/OPERATION_ID_PAYLOAD_MISMATCH/);
+test('operation id is idempotent only for same full intent',()=>{
+  const a=recordOperation({}, operation);
+  assert.equal(recordOperation(a,{...operation}),a);
+  assert.throws(()=>recordOperation(a,{...operation,payload:{x:2}}),/OPERATION_ID_PAYLOAD_MISMATCH/);
 });

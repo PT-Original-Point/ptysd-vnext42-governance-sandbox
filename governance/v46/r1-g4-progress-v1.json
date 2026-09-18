@@ -1,0 +1,53 @@
+{
+  "schema": "V46_R1_G4_PROGRESS_V1",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "gate": "R1-G4_ACTIONS_QUEUE_TRANSPORT_ATTEMPT_SEPARATION",
+  "conclusion": "IN_PROGRESS_HUMAN_TRUST_BOUNDARY_GATE_REQUIRED",
+  "transport_attempt_separation": {
+    "workflow_run_id": 34857033220,
+    "workflow_run_number": 3,
+    "head_sha": "db826ce5a07e2d17a23f040215988c2a59fddc7d",
+    "transport_attempt_before": 1,
+    "transport_attempt_after_rerun": 2,
+    "rerun_final_status": "completed",
+    "rerun_final_conclusion": "success",
+    "latest_rerun_job_id": 104024438448,
+    "business_run_id": "V45-Z6-SAFETY-001",
+    "business_run_revision_after": 6,
+    "business_attempt_id_after": "V45-Z6C-ATTEMPT-001",
+    "business_attempt_epoch_after": 2,
+    "business_state_after": "SUCCEEDED",
+    "business_identity_changed_by_provider_rerun": false,
+    "classification": "PASS_PROVIDER_RERUN_IS_TRANSPORT_ONLY"
+  },
+  "queue_max": {
+    "required_by_v46_gate": true,
+    "current_trusted_workflow_has_queue_max": false,
+    "repository_code_search_queue_max_matches": 0,
+    "actual_repository_parser_test": "PENDING",
+    "actual_repository_behavior_test": "PENDING",
+    "reason": "THE_ONLY_RUNNER_IS_RESTRICTED_TO_THE_LOCKED_TRUSTED_WORKFLOW; A REAL QUEUE_MAX TEST REQUIRES A TEMPORARY EXACT-WORKFLOW TRUST-BOUNDARY CHANGE AND PROVIDER ADMIN OAUTH",
+    "proposed_bounded_probe": {
+      "temporary_branch": "v46/r1-g4-queue-probe",
+      "temporary_workflow": ".github/workflows/v46-r1-g4-queue-max-probe.yml",
+      "runner_group": "PTYSD-V46-CONTROL-TRUSTED",
+      "temporary_selected_workflow_addition_only": true,
+      "concurrency_group": "v46-r1-g4-queue-max-probe",
+      "queue": "max",
+      "cancel_in_progress": false,
+      "dispatch_count": 3,
+      "expected_observation": "ONE_RUNNING_PLUS_AT_LEAST_TWO_SIMULTANEOUSLY_PENDING_WITHOUT_CANCELLATION",
+      "cleanup": "REMOVE_TEMPORARY_SELECTED_WORKFLOW_AND_DELETE_TEMPORARY_BRANCH_AFTER_READBACK"
+    }
+  },
+  "human_gate_scope_requested": {
+    "purpose": "R1-G4_QUEUE_MAX_ACTUAL_REPOSITORY_PROBE_ONLY",
+    "zero_incremental_paid_cost": true,
+    "production_allowed": false,
+    "business_project_access_allowed": false,
+    "n2_allowed": false,
+    "permanent_runner_group_expansion_allowed": false,
+    "temporary_probe_must_be_removed_after_test": true
+  },
+  "next_action": "WAIT_FOR_EXPLICIT_HUMAN_AUTHORIZATION_THEN_REQUEST_FRESH_GITHUB_DEVICE_OAUTH_IN_BRAVE"
+}

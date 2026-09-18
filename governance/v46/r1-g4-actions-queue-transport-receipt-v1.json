@@ -1,0 +1,66 @@
+{
+  "schema": "V46_R1_G4_ACTIONS_QUEUE_TRANSPORT_RECEIPT_V1",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "mission_revision_id": "20260914T194247+0800",
+  "mission_hash": "sha256:5f1f97971b5aec75454a03ffbad8a8a9036240e830facb4e6efc5ed538260b7b",
+  "policy_revision_id": "20260914T194247+0800-EP67",
+  "policy_hash": "sha256:9e38810fee31514af2194a83aaca981bcb7ba0376cc6752aa7cf9b3419d1b67a",
+  "human_authorization": "批准 R1-G4 零成本暫時 queue:max 驗證：只允許建立臨時 probe workflow／branch，暫時加入 PTYSD-V46-CONTROL-TRUSTED exact selected workflow，完成三路 queue:max 實測後立即移除並恢復原 trust boundary；不改 Production、不付費、不動業務 Project、不啟用 N=2。",
+  "transport_attempt_separation": {
+    "workflow_run_id": 34857033220,
+    "transport_run_attempt_before": 1,
+    "transport_run_attempt_after": 2,
+    "canonical_business_attempt_id": "V45-Z6C-ATTEMPT-001",
+    "canonical_attempt_epoch": 2,
+    "result": "PASS_TRANSPORT_ONLY_BUSINESS_ATTEMPT_UNCHANGED"
+  },
+  "queue_probe": {
+    "temporary_branch": "refs/heads/v46/r1-g4-queue-probe",
+    "temporary_head": "7c8b550794561a924e13c966da56889ae6aba65f",
+    "workflow_path": ".github/workflows/v45-bounded-self-hosted.yml",
+    "workflow_blob": "aba89962ec0fead22b2da6cdecf2eb8941742a1d",
+    "runner_group": "PTYSD-V46-CONTROL-TRUSTED",
+    "runner_name": "PTYSD-V45-CONTROL-01",
+    "runner_id": 9,
+    "run_ids": [34863680070, 34863683625, 34863687244],
+    "job_ids": [104042030862, 104042041532, 104042055001],
+    "simultaneous_readback": "PASS_ONE_IN_PROGRESS_TWO_QUEUED_NO_CANCELLATION",
+    "terminal_results": ["success", "success", "success"],
+    "result": "PASS_QUEUE_BACKLOG_AND_SEQUENTIAL_SINGLE_RUNNER_EXECUTION"
+  },
+  "provider_reconciliation": {
+    "initial_new_workflow_dispatch_path": "UNAVAILABLE_404_BECAUSE_WORKFLOW_NOT_REGISTERED_ON_DEFAULT_BRANCH",
+    "pivot": "REUSED_REGISTERED_WORKFLOW_PATH_ON_TEMP_BRANCH",
+    "runner_group_patch_cleared_selected_repository_mapping": true,
+    "classification": "SIDE_EFFECT_PARTIAL_RECOVERED_BY_SAME_SOURCE_READBACK",
+    "selected_repository_restored_before_valid_probe": true,
+    "repository_id": 1352411536,
+    "diagnostic_trusted_run_id": 34862875609,
+    "diagnostic_trusted_run_result": "cancelled",
+    "stale_runner_listener_restarted": true,
+    "service": "actions.runner.PT-Original-Point.PTYSD-V45-CONTROL-01",
+    "post_restart": "RUNNING_AUTOMATIC_BROKER_SESSION_LISTENING"
+  },
+  "restoration": {
+    "selected_workflows": ["PT-Original-Point/ptysd-vnext42-governance-sandbox/.github/workflows/v45-bounded-self-hosted.yml@refs/heads/v46/trust-anchor"],
+    "selected_repositories": [1352411536],
+    "runner_group_id": 3,
+    "runner_online_idle_after_probe": true,
+    "temporary_branch_deleted": true,
+    "temporary_branch_readback": "EXPECTED_404",
+    "oauth_logged_out": true,
+    "oauth_auth_dir_removed": true,
+    "temporary_gh_tool_removed": true,
+    "brave_oauth_task_removed": true
+  },
+  "forbidden_effects": {
+    "production": 0,
+    "paid_service": 0,
+    "business_project": 0,
+    "n2": 0,
+    "hosted_runner": 0,
+    "worker_provider_write_credentials": 0
+  },
+  "acceptance": "PASS",
+  "next_gate": "R1-G5_INDEPENDENT_BACKUP_RESTORE_QUALIFICATION"
+}
