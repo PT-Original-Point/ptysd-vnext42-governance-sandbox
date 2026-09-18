@@ -1,0 +1,82 @@
+name: Factory MCP host PowerShell candidate CI
+
+on:
+  push:
+    branches:
+      - hotfix/factory-mcp-host-powershell-20260918
+    paths:
+      - "tools/csg/factory-mcp/**"
+      - ".github/workflows/factory-mcp-host-powershell-ci.yml"
+  pull_request:
+    paths:
+      - "tools/csg/factory-mcp/**"
+      - ".github/workflows/factory-mcp-host-powershell-ci.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout exact candidate
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+
+      - name: Provision Node 24
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: "24"
+          cache: ""
+
+      - name: Parse PowerShell transport and upgrade scripts
+        shell: powershell
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $paths = @(
+            'tools/csg/factory-mcp/src/invoke-hostguard.ps1',
+            'tools/csg/factory-mcp/broker/hostguard-broker.ps1',
+            'tools/csg/factory-mcp/windows/upgrade-host-powershell.ps1'
+          )
+          foreach ($path in $paths) {
+            $tokens = $null
+            $errors = $null
+            [Management.Automation.Language.Parser]::ParseFile(
+              (Resolve-Path $path),
+              [ref]$tokens,
+              [ref]$errors
+            ) | Out-Null
+            if ($errors.Count -ne 0) {
+              $errors | ForEach-Object { Write-Error $_.Message }
+              throw "POWERSHELL_PARSE_FAILED:$path"
+            }
+          }
+          Write-Host 'FACTORY_MCP_POWERSHELL_PARSE=PASS'
+
+      - name: Install locked Factory MCP dependencies
+        shell: cmd
+        working-directory: tools/csg/factory-mcp
+        run: npm.cmd ci --ignore-scripts --no-audit --no-fund
+
+      - name: Run Factory MCP protocol smoke
+        shell: cmd
+        working-directory: tools/csg/factory-mcp
+        run: npm.cmd test
+
+      - name: Verify host execution source boundary
+        shell: powershell
+        run: |
+          $index = Get-Content tools/csg/factory-mcp/src/index.mjs -Raw
+          $broker = Get-Content tools/csg/factory-mcp/broker/hostguard-broker.ps1 -Raw
+          $upgrade = Get-Content tools/csg/factory-mcp/windows/upgrade-host-powershell.ps1 -Raw
+          if ($index -notmatch "registerTool\(\s*'host_powershell'") { throw 'HOST_POWERSHELL_TOOL_MISSING' }
+          if ($broker -notmatch "WindowsIdentity.*GetCurrent") { throw 'EXECUTION_IDENTITY_READBACK_MISSING' }
+          if ($upgrade -notmatch 'NT AUTHORITY\\SYSTEM') { throw 'SYSTEM_EXECUTION_ACCEPTANCE_MISSING' }
+          if ($broker -notmatch "script_sha256") { throw 'SCRIPT_DIGEST_RECEIPT_MISSING' }
+          if ($broker -notmatch "exec-receipts") { throw 'EXEC_RECEIPT_DIRECTORY_MISSING' }
+          if ($upgrade -notmatch "Restore-Backup") { throw 'ROLLBACK_MISSING' }
+          if ($upgrade -notmatch "SourceRef") { throw 'IMMUTABLE_SOURCE_REF_MISSING' }
+          Write-Host 'FACTORY_MCP_HOST_EXEC_BOUNDARY=PASS'

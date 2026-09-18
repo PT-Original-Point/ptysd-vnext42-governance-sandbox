@@ -57,7 +57,7 @@ try {
   const listed = await send('tools/list', {});
   assert.equal(listed.error, undefined);
   const names = listed.result.tools.map((t) => t.name).sort();
-  assert.deepEqual(names, ['factory_status', 'worker_prepare', 'worker_start']);
+  assert.deepEqual(names, ['factory_status', 'host_powershell', 'worker_prepare', 'worker_start']);
 
   const status = await send('tools/call', { name: 'factory_status', arguments: {} });
   assert.equal(status.error, undefined);
@@ -79,6 +79,23 @@ try {
   assert.equal(start.error, undefined);
   const startPayload = JSON.parse(start.result.content[0].text);
   assert.equal(startPayload.result, 'STARTED');
+
+  const powershell = await send('tools/call', {
+    name: 'host_powershell',
+    arguments: {
+      ...op,
+      script: "Write-Output 'PTYSD_HOST_POWERSHELL_TEST_OK'",
+      timeoutSeconds: 30,
+    },
+  });
+  assert.equal(powershell.error, undefined);
+  assert.equal(powershell.result?.isError, undefined);
+  const powershellPayload = JSON.parse(powershell.result.content[0].text);
+  assert.equal(powershellPayload.result, 'COMPLETED');
+  assert.equal(powershellPayload.exit_code, 0);
+  assert.equal(powershellPayload.run_as, 'NT AUTHORITY\\SYSTEM');
+  assert.match(powershellPayload.stdout, /PTYSD_HOST_POWERSHELL_TEST_OK/);
+  assert.equal(powershellPayload.timed_out, false);
 
   const invalid = await send('tools/call', {
     name: 'worker_start',
