@@ -441,3 +441,12 @@ Execute the exact trusted capsule through the existing bounded-driver `workflow_
 - AdvisorPacket is allowlisted and bounded; requested output is PLAN|CORRECTION|STOP; Sol/Astra authority is fixed READ_ONLY with edit/shell/provider-write/promotion false.
 - No real Advisor provider call was executed in D11 qualification. DEL-09 remains zero credit because research/model callers have not been fully migrated.
 - No normal-route activation, Host VM start, Worker dispatch, Production/business mutation, paid fallback, listener, credential topology, or new canonical store.
+
+
+### V48-D12 N=1 pre-publication qualification
+
+- Re-ran an N=1 synthetic end-to-end test against exact accepted D3/D4-D5/D6/D7/D10/D11 kernel source hashes and the canonical W47-06 execution contract.
+- Repository-layout test `tools/csg/cell-kernel/tests/n1-e2e.test.mjs`: 6/6 PASS, 0 fail, 0 skipped on Node v22.16.0; SHA-256 `96cb74dbd0596d2256bae021150337d49f8adf302c74d02229d78ca01f516e0b`.
+- Covered no cross-project leak, no worker provider-write credential, exact candidate/tree binding, STOP visibility, stale epoch reject, ACK-loss idempotence, completion fence, recovery_required, bounded status/context, and zero incremental paid cost.
+- Current W47-06 authority remains worker/VM unauthorized; the test proves the gate stays false and does not start Host/Worker.
+- D12 is not accepted yet. Provider publication is deliberately the trusted GitHub PR merge performed by the Main Controller; same-source GitHub readback is required after merge before checkpoint advancement.
