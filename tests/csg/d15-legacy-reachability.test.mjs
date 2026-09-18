@@ -12,7 +12,7 @@ const names=[
   ['v46','model','profile','guard.mjs'].join('-'),
   ['v46','research','contract.mjs'].join('-'),
 ];
-const deleted=names.map(name=>path.join(repo,'scripts',name));
+const deleted=[...names.map(name=>path.join(repo,'scripts',name)),path.join(repo,'config','runtime-manifest.json')];
 const textExt=/\.(?:mjs|js|cjs|ts|tsx|py|ps1|sh|yml|yaml|json)$/i;
 function walk(dir,out=[]){
   if(!fs.existsSync(dir)) return out;
@@ -31,7 +31,7 @@ test('D15 retired legacy runtime files are absent and have no operational reader
     for(const file of walk(path.join(repo,root))){
       if(file===new URL(import.meta.url).pathname) continue;
       const body=fs.readFileSync(file,'utf8');
-      for(const name of names) if(body.includes(name)) hits.push(`${path.relative(repo,file)} -> ${name}`);
+      for(const name of [...names,'runtime-manifest.json']) if(body.includes(name)) hits.push(`${path.relative(repo,file)} -> ${name}`);
     }
   }
   assert.deepEqual(hits,[]);
