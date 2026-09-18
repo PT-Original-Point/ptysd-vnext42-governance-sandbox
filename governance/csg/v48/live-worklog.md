@@ -192,3 +192,25 @@ Decision from source audit:
 ### Next single action
 
 Persist the source-compatibility evidence through a one-commit direct-parent PR. If trusted verification passes, merge it, then continue D9 with the next legal proof target: refine the modern-runtime test vector and search for a provider-native execution route that can run the exact pinned packages without adding a workflow/listener/credential surface.
+
+### PR #68 acceptance and worklog projection reconciliation
+
+- PR #68 candidate head `44ad92fdd317d7bafaeb0ce70dad7bd8f22886d4` passed `csg-trusted-verifier` job `105458960336` / workflow run `35299497820`.
+- PR #68 merged at canonical commit `75b44aae12231f12cf2b11462226da9a093dda68`.
+- Same-source readback confirmed the upstream-source compatibility evidence is canonical; CSG pointer remains checkpoint 35 / `V48-D9-BLOCKED-035`.
+- During continuity hygiene review, the pre-existing projected worklog at `governance/csg/worklog/*` was found still rendered from checkpoint 25. The projector's `classifyProjection()` semantics therefore treat it as stale relative to current checkpoint 35 even though its stored `stale` field reflects the time it was originally rendered.
+- This repair does not make the worklog authoritative. It only regenerates the existing projection from canonical checkpoint events 11–35 so human-visible status again matches canonical CSG.
+- The detailed D9 notes in this file remain a non-canonical construction log; `governance/csg/worklog/*` remains the deterministic checkpoint projection.
+
+### Worklog projection repair target
+
+- source checkpoint seq: 35
+- source checkpoint digest: `sha256:3dd8d6d6e1b78cf47a810222e1df008564d09af5cb05c3f22f8e75f31a112e5a`
+- projected state: `V48-D9 / BLOCKED / ACTIVE_UNIT`
+- next legal transition: `V48_D9_RESUME_OFFICIAL_STDIO_CONFORMANCE_QUALIFICATION`
+- rendered markdown SHA-256: `sha256:0ed4a56de595bb8226b6cf76fae1a69240033236fe18530da7fef58919972d8f`
+- no Mission/Policy/checkpoint/control mutation.
+
+### Next single action
+
+Publish the regenerated worklog projection plus this reconciliation evidence as one direct-parent commit, require trusted verifier PASS, then merge with fresh canonical precheck.
