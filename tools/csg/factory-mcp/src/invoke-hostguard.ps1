@@ -1,7 +1,7 @@
 [CmdletBinding()]
 param(
   [Parameter(Mandatory=$true)]
-  [ValidateSet('status','prepare','start')]
+  [ValidateSet('status','prepare','start','powershell')]
   [string]$Operation,
 
   [ValidatePattern('^[A-Z0-9][A-Z0-9._-]{0,79}$')]
@@ -14,7 +14,13 @@ param(
   [string]$AttemptId,
 
   [ValidateRange(1,2147483647)]
-  [int]$AttemptEpoch = 1
+  [int]$AttemptEpoch = 1,
+
+  [ValidatePattern('^[A-Za-z0-9+/=]+$')]
+  [string]$ScriptBase64,
+
+  [ValidateRange(1,300)]
+  [int]$TimeoutSeconds = 60
 )
 
 Set-StrictMode -Version Latest
@@ -28,16 +34,21 @@ if (-not (Test-Path -LiteralPath $outbox)) { throw 'BROKER_OUTBOX_MISSING' }
 if ($Operation -ne 'status' -and (-not $RunId -or -not $TaskId -or -not $AttemptId)) {
   throw 'REQUIRED_ID_MISSING'
 }
+if ($Operation -eq 'powershell' -and -not $ScriptBase64) {
+  throw 'POWERSHELL_SCRIPT_REQUIRED'
+}
 
 $requestId = [Guid]::NewGuid().ToString('N')
 $request = [ordered]@{
-  schema = 'v47.factory-mcp.hostguard.request.v1'
+  schema = 'v48.factory-mcp.hostguard.request.v2'
   request_id = $requestId
   operation = $Operation
   run_id = if ($RunId) { $RunId } else { $null }
   task_id = if ($TaskId) { $TaskId } else { $null }
   attempt_id = if ($AttemptId) { $AttemptId } else { $null }
   attempt_epoch = $AttemptEpoch
+  script_b64 = if ($Operation -eq 'powershell') { $ScriptBase64 } else { $null }
+  timeout_seconds = if ($Operation -eq 'powershell') { $TimeoutSeconds } else { $null }
   requested_at_utc = [DateTime]::UtcNow.ToString('o')
 }
 
@@ -47,7 +58,7 @@ $responsePath = Join-Path $outbox ($requestId + '.json')
 [IO.File]::WriteAllText($tempRequest, ($request | ConvertTo-Json -Depth 4 -Compress), (New-Object Text.UTF8Encoding($false)))
 Move-Item -LiteralPath $tempRequest -Destination $finalRequest -Force
 
-$deadline = [DateTime]::UtcNow.AddSeconds(45)
+$deadline = [DateTime]::UtcNow.AddSeconds([Math]::Max(45, $TimeoutSeconds + 15))
 do {
   if (Test-Path -LiteralPath $responsePath) { break }
   Start-Sleep -Milliseconds 100
@@ -59,7 +70,7 @@ try {
 } finally {
   Remove-Item -LiteralPath $responsePath -Force -ErrorAction SilentlyContinue
 }
-if ($response.schema -ne 'v47.factory-mcp.hostguard.response.v1') { throw 'BROKER_RESPONSE_SCHEMA_INVALID' }
+if ($response.schema -ne 'v48.factory-mcp.hostguard.response.v2') { throw 'BROKER_RESPONSE_SCHEMA_INVALID' }
 if ($response.request_id -ne $requestId) { throw 'BROKER_RESPONSE_ID_MISMATCH' }
 if (-not $response.ok) { throw ('BROKER_' + [string]$response.error_code) }
-$response.result | ConvertTo-Json -Depth 8 -Compress
+$response.result | ConvertTo-Json -Depth 10 -Compress

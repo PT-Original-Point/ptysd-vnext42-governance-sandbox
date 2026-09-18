@@ -5,6 +5,7 @@ import {evaluatePolicyRequest} from '../tools/csg/cell-kernel/production-kernel.
 import {evaluateAdvisorPermit} from '../tools/csg/cell-kernel/advisor-guard.mjs';
 import './v46-model-profile-guard.test.mjs';
 import './v46-research-contract.test.mjs';
+import './csg/v48-host-powershell-governance.test.mjs';
 
 const registry=JSON.parse(fs.readFileSync(new URL('../governance/v46/model-profiles.json',import.meta.url),'utf8'));
 test('registry keeps one exact zero-cost PUBLIC/SYNTHETIC profile without secret material',()=>{

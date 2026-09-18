@@ -30,6 +30,11 @@ const operationInput = z.object({
   attemptEpoch: z.number().int().min(1).max(2147483647),
 });
 
+const hostPowerShellInput = operationInput.extend({
+  script: z.string().min(1).max(8192),
+  timeoutSeconds: z.number().int().min(1).max(300).default(60),
+});
+
 function mockHostGuard(operation, args = {}) {
   if (operation === 'status') {
     return {
@@ -43,6 +48,29 @@ function mockHostGuard(operation, args = {}) {
       run_as: 'TEST\\PTYSDFactoryMCP',
     };
   }
+
+  if (operation === 'powershell') {
+    return {
+      schema: 'v48.factory-mcp.host-exec.result.v1',
+      operation: 'powershell',
+      result: 'COMPLETED',
+      run_id: args.runId,
+      task_id: args.taskId,
+      attempt_id: args.attemptId,
+      attempt_epoch: args.attemptEpoch,
+      run_as: 'NT AUTHORITY\\SYSTEM',
+      exit_code: 0,
+      timed_out: false,
+      stdout: 'PTYSD_HOST_POWERSHELL_TEST_OK\n',
+      stderr: '',
+      stdout_bytes: 31,
+      stderr_bytes: 0,
+      stdout_truncated: false,
+      stderr_truncated: false,
+      script_sha256: 'TEST_ONLY',
+    };
+  }
+
   return {
     schema: 'v45.hostguard.receipt.v1',
     operation,
@@ -79,10 +107,19 @@ async function runHostGuard(operation, args = {}) {
     );
   }
 
+  if (operation === 'powershell') {
+    psArgs.push(
+      '-ScriptBase64', Buffer.from(args.script, 'utf8').toString('base64'),
+      '-TimeoutSeconds', String(args.timeoutSeconds ?? 60),
+    );
+  }
+
   try {
     const { stdout } = await execFileAsync(POWERSHELL, psArgs, {
       windowsHide: true,
-      timeout: 45000,
+      timeout: operation === 'powershell'
+        ? Math.max(45000, ((args.timeoutSeconds ?? 60) + 15) * 1000)
+        : 45000,
       maxBuffer: 1024 * 1024,
       env: process.env,
     });
@@ -91,7 +128,16 @@ async function runHostGuard(operation, args = {}) {
     return JSON.parse(text);
   } catch (error) {
     const code = error?.code ? String(error.code) : 'UNKNOWN';
-    throw new Error(`HOSTGUARD_CALL_FAILED:${operation}:${code}`);
+    const rawStderr =
+      typeof error?.stderr === 'string'
+        ? error.stderr
+        : Buffer.isBuffer(error?.stderr)
+          ? error.stderr.toString('utf8')
+          : '';
+    const stderrTail = rawStderr.replace(/\\s+/g, ' ').trim().slice(-512);
+    throw new Error(
+      `HOSTGUARD_CALL_FAILED:${operation}:${code}${stderrTail ? `:STDERR:${stderrTail}` : ''}`,
+    );
   }
 }
 
@@ -104,7 +150,7 @@ function createServer() {
     { name: 'ptysd-factory-mcp', version: VERSION },
     {
       instructions:
-        'Governed PTYSD host control. No shell, filesystem, provider credentials, or arbitrary command execution is exposed. Use factory_status before bounded worker operations.',
+        'Governed PTYSD host control. factory_status/worker_prepare/worker_start retain their prior bounded semantics. host_powershell executes caller-supplied PowerShell through the existing SYSTEM broker and therefore has full local host authority. Avoid printing credentials or access tokens; prefer commands that return bounded business evidence.',
     },
   );
 
@@ -154,6 +200,23 @@ function createServer() {
       },
     },
     async (args) => textResult(await runHostGuard('start', args)),
+  );
+
+  server.registerTool(
+    'host_powershell',
+    {
+      description:
+        'Execute caller-supplied Windows PowerShell on DESKTOP-1B6PD2P through the existing SYSTEM broker. Returns bounded stdout/stderr, exit code, timeout state, execution identity and script digest. This tool has full local host authority and may access local files, processes, network/provider CLIs and credentials available to SYSTEM. Do not print secret values or bearer tokens.',
+      inputSchema: hostPowerShellInput,
+      annotations: {
+        title: 'Host PowerShell',
+        readOnlyHint: false,
+        destructiveHint: true,
+        idempotentHint: false,
+        openWorldHint: true,
+      },
+    },
+    async (args) => textResult(await runHostGuard('powershell', args)),
   );
 
   return server;

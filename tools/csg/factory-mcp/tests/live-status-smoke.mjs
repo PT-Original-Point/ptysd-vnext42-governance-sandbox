@@ -40,7 +40,7 @@ try {
   assert.equal(init.error, undefined);
   notify('notifications/initialized');
   const listed = await send('tools/list', {});
-  assert.deepEqual(listed.result.tools.map((t) => t.name).sort(), ['factory_status','worker_prepare','worker_start']);
+  assert.deepEqual(listed.result.tools.map((t) => t.name).sort(), ['factory_status','host_powershell','worker_prepare','worker_start']);
   const status = await send('tools/call', { name: 'factory_status', arguments: {} });
   assert.equal(status.error, undefined);
   assert.equal(status.result.isError, undefined);
@@ -48,7 +48,47 @@ try {
   assert.equal(payload.host, 'DESKTOP-1B6PD2P');
   assert.equal(payload.vm_name, 'PTYSD-WORKER-01');
   assert.equal(payload.vm_id, '881f7819-baa9-4a4e-8cca-8f6f18fb89a9');
-  await writeFile(outPath, `${JSON.stringify({ result: 'PASS', host: payload.host, vm_name: payload.vm_name, vm_id: payload.vm_id, vm_state: payload.vm_state })}\n`, 'utf8');
+
+  const op = {
+    runId: 'FACTORY-MCP-HOTFIX-20260918',
+    taskId: 'HOST-POWERSHELL-LIVE-SMOKE',
+    attemptId: 'ATTEMPT-001',
+    attemptEpoch: 1,
+  };
+  const powershell = await send('tools/call', {
+    name: 'host_powershell',
+    arguments: {
+      ...op,
+      script: "Write-Output 'PTYSD_HOST_POWERSHELL_OK'",
+      timeoutSeconds: 30,
+    },
+  });
+  assert.equal(powershell.error, undefined);
+  if (powershell.result?.isError) {
+    const detail = (powershell.result.content ?? [])
+      .map((item) => (item?.type === 'text' ? item.text : ''))
+      .filter(Boolean)
+      .join(' | ')
+      .slice(0, 1200);
+    console.error(`HOST_POWERSHELL_MCP_ERROR=${detail || 'NO_DETAIL'}`);
+    throw new Error('HOST_POWERSHELL_MCP_CALL_FAILED');
+  }
+  const psPayload = JSON.parse(powershell.result.content[0].text);
+  assert.equal(psPayload.result, 'COMPLETED');
+  assert.equal(psPayload.exit_code, 0);
+  assert.equal(psPayload.timed_out, false);
+  assert.equal(psPayload.run_as, 'NT AUTHORITY\\SYSTEM');
+  assert.match(psPayload.stdout, /PTYSD_HOST_POWERSHELL_OK/);
+
+  await writeFile(outPath, `${JSON.stringify({
+    result: 'PASS',
+    host: payload.host,
+    vm_name: payload.vm_name,
+    vm_id: payload.vm_id,
+    vm_state: payload.vm_state,
+    host_powershell: 'PASS',
+    host_powershell_run_as: psPayload.run_as,
+  })}\n`, 'utf8');
 } finally {
   child.kill();
 }

@@ -1,0 +1,31 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+
+const read=p=>fs.readFileSync(new URL('../'+p,import.meta.url),'utf8');
+test('governed SYSTEM host PowerShell is retained as fourth Factory MCP tool with V4.8 fence',()=>{
+  const pkg=JSON.parse(read('tools/csg/factory-mcp/package.json'));
+  const index=read('tools/csg/factory-mcp/src/index.mjs');
+  const wrapper=read('tools/csg/factory-mcp/src/invoke-hostguard.ps1');
+  const broker=read('tools/csg/factory-mcp/broker/hostguard-broker.ps1');
+  const helper=read('tools/csg/factory-mcp/broker/host-powershell-exec.ps1');
+  const inspector=read('tools/csg/factory-mcp/tests/official-inspector-equivalence.mjs');
+  const upgrade=read('tools/csg/factory-mcp/windows/upgrade-host-powershell.ps1');
+  assert.equal(pkg.version,'0.2.1');
+  assert.match(index,/registerTool\(\s*'host_powershell'/);
+  assert.match(index,/attemptEpoch:\s*z\.number\(\)\.int\(\)\.min\(1\)/);
+  assert.doesNotMatch(index,/attemptEpoch:\s*z\.number\(\)\.int\(\)\.min\(0\)/);
+  assert.match(wrapper,/ValidateSet\('status','prepare','start','powershell'\)/);
+  assert.match(wrapper,/ValidateRange\(1,2147483647\)/);
+  assert.doesNotMatch(wrapper,/ValidateRange\(0,2147483647\)/);
+  assert.match(broker,/operation -notin @\('status','prepare','start','powershell'\)/);
+  assert.match(broker,/attempt_epoch -lt 1/);
+  assert.doesNotMatch(broker,/attempt_epoch -lt 0/);
+  assert.match(broker,/host-powershell-exec\.ps1/);
+  assert.match(broker,/exec-receipts/);
+  assert.match(helper,/Diagnostics\.ProcessStartInfo/);
+  assert.match(upgrade,/Invoke-SystemHostExecSelfTest/);
+  assert.match(upgrade,/Restore-Backup/);
+  assert.match(inspector,/\['factory_status','worker_prepare','worker_start','host_powershell'\]/);
+  assert.match(inspector,/attemptEpoch\?\.minimum, 1/);
+});
