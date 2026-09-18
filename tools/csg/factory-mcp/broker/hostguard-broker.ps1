@@ -26,7 +26,9 @@ foreach ($path in @($execTemp,$execReceipts)) {
   }
 }
 if (-not (Test-Path -LiteralPath $modulePath)) { throw 'HOSTGUARD_MODULE_MISSING' }
+if (-not (Test-Path -LiteralPath $hostExecHelperPath)) { throw 'HOST_EXEC_HELPER_MISSING' }
 Import-Module $modulePath -Force -ErrorAction Stop
+. $hostExecHelperPath
 
 $createdNew = $false
 $mutex = New-Object Threading.Mutex($true, 'Global\PTYSDFactoryMCPHostGuardBrokerV47', [ref]$createdNew)
@@ -56,38 +58,6 @@ function Test-Id([object]$Value) {
   return ($null -ne $Value -and [string]$Value -match $idPattern)
 }
 
-function Get-Sha256Hex {
-  param([Parameter(Mandatory)][byte[]]$Bytes)
-  $sha = [Security.Cryptography.SHA256]::Create()
-  try {
-    return ([BitConverter]::ToString($sha.ComputeHash($Bytes))).Replace('-','').ToLowerInvariant()
-  } finally {
-    $sha.Dispose()
-  }
-}
-
-function Read-BoundedUtf8File {
-  param([Parameter(Mandatory)][string]$Path,[Parameter(Mandatory)][int]$Limit)
-  if (-not (Test-Path -LiteralPath $Path)) {
-    return [ordered]@{ text=''; bytes=0; truncated=$false; sha256=Get-Sha256Hex -Bytes ([byte[]]@()) }
-  }
-  [byte[]]$all = [IO.File]::ReadAllBytes($Path)
-  $count = $all.Length
-  $take = [Math]::Min($count,$Limit)
-  if ($take -gt 0) {
-    [byte[]]$view = New-Object byte[] $take
-    [Array]::Copy($all,0,$view,0,$take)
-  } else {
-    [byte[]]$view = @()
-  }
-  return [ordered]@{
-    text = [Text.Encoding]::UTF8.GetString($view)
-    bytes = $count
-    truncated = ($count -gt $Limit)
-    sha256 = Get-Sha256Hex -Bytes $all
-  }
-}
-
 function Invoke-BrokerPowerShell {
   param(
     [Parameter(Mandatory)]$Request,
@@ -113,87 +83,53 @@ function Invoke-BrokerPowerShell {
     throw 'POWERSHELL_SCRIPT_SIZE_INVALID'
   }
 
-  $scriptText = [Text.Encoding]::UTF8.GetString($scriptBytes)
-  if ([Text.Encoding]::UTF8.GetByteCount($scriptText) -ne $scriptBytes.Length) {
-    throw 'POWERSHELL_SCRIPT_UTF8_INVALID'
+  $raw = Invoke-PTYSDHostPowerShellExec -ScriptBytes $scriptBytes -TimeoutSeconds $timeout -ExecTemp $execTemp -RequestId $RequestId -MaxOutputBytes $maxOutputBytes
+
+  $receipt = [ordered]@{
+    schema='v48.factory-mcp.host-exec.receipt.v2'
+    request_id=$RequestId
+    operation='powershell'
+    run_id=[string]$Request.run_id
+    task_id=[string]$Request.task_id
+    attempt_id=[string]$Request.attempt_id
+    attempt_epoch=[int]$Request.attempt_epoch
+    run_as=[string]$raw.run_as
+    executable=[string]$raw.executable
+    script_sha256=[string]$raw.script_sha256
+    timeout_seconds=[int]$raw.timeout_seconds
+    exit_code=[int]$raw.exit_code
+    timed_out=[bool]$raw.timed_out
+    stdout_bytes=[int64]$raw.stdout_bytes
+    stderr_bytes=[int64]$raw.stderr_bytes
+    stdout_sha256=[string]$raw.stdout_sha256
+    stderr_sha256=[string]$raw.stderr_sha256
+    started_at_utc=[string]$raw.started_at_utc
+    finished_at_utc=[string]$raw.finished_at_utc
   }
+  $receiptPath = Join-Path $execReceipts ($RequestId + '.json')
+  Write-AtomicJson -Path $receiptPath -Value $receipt
 
-  $scriptHash = Get-Sha256Hex -Bytes $scriptBytes
-  $scriptPath = Join-Path $execTemp ($RequestId + '.ps1')
-  $stdoutPath = Join-Path $execTemp ($RequestId + '.stdout')
-  $stderrPath = Join-Path $execTemp ($RequestId + '.stderr')
-  $startedAt = [DateTime]::UtcNow
-  $timedOut = $false
-  $exitCode = -1
-
-  try {
-    [IO.File]::WriteAllBytes($scriptPath,$scriptBytes)
-    $process = Start-Process -FilePath 'powershell.exe' -ArgumentList @(
-      '-NoProfile',
-      '-NonInteractive',
-      '-ExecutionPolicy','Bypass',
-      '-File',('"' + $scriptPath + '"')
-    ) -RedirectStandardOutput $stdoutPath -RedirectStandardError $stderrPath -WindowStyle Hidden -PassThru
-
-    if (-not $process.WaitForExit($timeout * 1000)) {
-      $timedOut = $true
-      try { $process.Kill() } catch {}
-      try { $process.WaitForExit(5000) | Out-Null } catch {}
-      $exitCode = -1
-    } else {
-      $exitCode = [int]$process.ExitCode
-    }
-
-    $stdout = Read-BoundedUtf8File -Path $stdoutPath -Limit $maxOutputBytes
-    $stderr = Read-BoundedUtf8File -Path $stderrPath -Limit $maxOutputBytes
-    $finishedAt = [DateTime]::UtcNow
-
-    $receipt = [ordered]@{
-      schema='v48.factory-mcp.host-exec.receipt.v1'
-      request_id=$RequestId
-      operation='powershell'
-      run_id=[string]$Request.run_id
-      task_id=[string]$Request.task_id
-      attempt_id=[string]$Request.attempt_id
-      attempt_epoch=[int]$Request.attempt_epoch
-      run_as=[Security.Principal.WindowsIdentity]::GetCurrent().Name
-      script_sha256=$scriptHash
-      timeout_seconds=$timeout
-      exit_code=$exitCode
-      timed_out=$timedOut
-      stdout_bytes=$stdout.bytes
-      stderr_bytes=$stderr.bytes
-      stdout_sha256=$stdout.sha256
-      stderr_sha256=$stderr.sha256
-      started_at_utc=$startedAt.ToString('o')
-      finished_at_utc=$finishedAt.ToString('o')
-    }
-    $receiptPath = Join-Path $execReceipts ($RequestId + '.json')
-    Write-AtomicJson -Path $receiptPath -Value $receipt
-
-    return [ordered]@{
-      schema='v48.factory-mcp.host-exec.result.v1'
-      operation='powershell'
-      result=if($timedOut){'TIMED_OUT'}else{'COMPLETED'}
-      request_id=$RequestId
-      run_id=[string]$Request.run_id
-      task_id=[string]$Request.task_id
-      attempt_id=[string]$Request.attempt_id
-      attempt_epoch=[int]$Request.attempt_epoch
-      run_as=[Security.Principal.WindowsIdentity]::GetCurrent().Name
-      exit_code=$exitCode
-      timed_out=$timedOut
-      stdout=$stdout.text
-      stderr=$stderr.text
-      stdout_bytes=$stdout.bytes
-      stderr_bytes=$stderr.bytes
-      stdout_truncated=$stdout.truncated
-      stderr_truncated=$stderr.truncated
-      script_sha256=$scriptHash
-      receipt_path=$receiptPath
-    }
-  } finally {
-    Remove-Item -LiteralPath $scriptPath,$stdoutPath,$stderrPath -Force -ErrorAction SilentlyContinue
+  return [ordered]@{
+    schema='v48.factory-mcp.host-exec.result.v2'
+    operation='powershell'
+    result=if([bool]$raw.timed_out){'TIMED_OUT'}else{'COMPLETED'}
+    request_id=$RequestId
+    run_id=[string]$Request.run_id
+    task_id=[string]$Request.task_id
+    attempt_id=[string]$Request.attempt_id
+    attempt_epoch=[int]$Request.attempt_epoch
+    run_as=[string]$raw.run_as
+    executable=[string]$raw.executable
+    exit_code=[int]$raw.exit_code
+    timed_out=[bool]$raw.timed_out
+    stdout=[string]$raw.stdout
+    stderr=[string]$raw.stderr
+    stdout_bytes=[int64]$raw.stdout_bytes
+    stderr_bytes=[int64]$raw.stderr_bytes
+    stdout_truncated=[bool]$raw.stdout_truncated
+    stderr_truncated=[bool]$raw.stderr_truncated
+    script_sha256=[string]$raw.script_sha256
+    receipt_path=$receiptPath
   }
 }
 
@@ -243,7 +179,9 @@ function Process-Request {
   } catch {
     $response.ok = $false
     $response.result = $null
-    $response.error_code = switch -Regex ($_.Exception.Message) {
+    $safeMessage = [string]$_.Exception.Message
+    if ($safeMessage.Length -gt 512) { $safeMessage = $safeMessage.Substring(0,512) }
+    $response.error_code = switch -Regex ($safeMessage) {
       '^HOST_ID_MISMATCH' { 'HOST_ID_MISMATCH'; break }
       '^VM_ID_MISMATCH' { 'VM_ID_MISMATCH'; break }
       '^VM_STATE_NOT_STARTABLE' { 'VM_STATE_NOT_STARTABLE'; break }
@@ -256,6 +194,17 @@ function Process-Request {
       '^ID_INVALID' { 'ID_INVALID'; break }
       default { 'REQUEST_REJECTED' }
     }
+    $diagnostic = [ordered]@{
+      schema='v48.factory-mcp.broker.error.v1'
+      request_id=$requestId
+      operation=if($req -and $req.operation){[string]$req.operation}else{'UNKNOWN'}
+      error_code=[string]$response.error_code
+      exception_type=$_.Exception.GetType().FullName
+      message=$safeMessage
+      run_as=[Security.Principal.WindowsIdentity]::GetCurrent().Name
+      recorded_at_utc=[DateTime]::UtcNow.ToString('o')
+    }
+    try { Write-AtomicJson -Path $lastError -Value $diagnostic } catch {}
   }
 
   Write-AtomicJson -Path $responsePath -Value $response
