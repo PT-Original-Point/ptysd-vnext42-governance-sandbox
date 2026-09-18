@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
+import {spawnSync} from 'node:child_process';
 import {stableHash} from '../scripts/v45-state-core.mjs';
 import {receiptIdentityDigest} from '../scripts/v46-receipt-admission.mjs';
 import {PHASES, MAX_TASKS, MAX_ATTEMPTS, validateBoundedContract, validateAcceptedCommand, wakeBoundedDriver, reconstructBoundedRun} from '../scripts/v46-bounded-driver.mjs';
@@ -183,4 +184,58 @@ test('candidate workflow is dispatch-only, read-only and exact-SHA bound', () =>
   assert.match(yml, /group: PTYSD-V46-CONTROL-TRUSTED/);
   assert.doesNotMatch(yml, /contents: write|actions: write|pull-requests: write|secrets\./);
   assert.doesNotMatch(yml, /^\s*(push|pull_request|schedule):/m);
+});
+
+
+test('V48-D9 official Inspector modern stdio equivalence matrix', {timeout:600000}, () => {
+  const factoryDir = path.resolve('tools/csg/factory-mcp');
+  const npm = process.platform === 'win32' ? 'npm.cmd' : 'npm';
+  const npx = process.platform === 'win32' ? 'npx.cmd' : 'npx';
+  const run = (command,args,timeout=180000) => {
+    const out = spawnSync(command,args,{cwd:factoryDir,env:{...process.env,npm_config_yes:'true'},encoding:'utf8',timeout,maxBuffer:8*1024*1024});
+    assert.equal(out.error, undefined, `spawn failed: ${out.error?.message ?? ''}`);
+    assert.equal(out.signal, null, `unexpected signal: ${out.signal}`);
+    return {status:out.status,stdout:out.stdout??'',stderr:out.stderr??''};
+  };
+  const parse = (out,label) => {
+    try { return JSON.parse(out.stdout.trim()); }
+    catch { assert.fail(`${label}: non-JSON stdout: ${out.stdout}\nstderr: ${out.stderr}`); }
+  };
+  const install = run(npm,['ci','--ignore-scripts','--no-audit','--no-fund'],240000);
+  assert.equal(install.status,0,`npm ci failed\n${install.stderr}`);
+  const inspect = args => run(npx,['--yes','@modelcontextprotocol/inspector@2.7.0','--cli','--protocol-era','modern','-e','NODE_ENV=test','-e','PTYSD_FACTORY_MCP_TEST_MODE=1','node','src/index.mjs',...args,'--format','json']);
+  const initRun = inspect(['--method','initialize']);
+  assert.equal(initRun.status,0,`initialize failed\n${initRun.stderr}`);
+  const init = parse(initRun,'initialize').result;
+  assert.equal(init.protocolVersion,'2026-07-28');
+  assert.equal(init.serverInfo?.name,'ptysd-factory-mcp');
+  assert.equal(init.serverInfo?.version,JSON.parse(fs.readFileSync(path.join(factoryDir,'package.json'),'utf8')).version);
+  const projections=[];
+  for(let i=0;i<3;i++){
+    const out=inspect(['--method','tools/list','--strict']);
+    assert.equal(out.status,0,`tools/list #${i+1} failed\n${out.stderr}`);
+    const tools=parse(out,`tools/list #${i+1}`).result?.tools;
+    assert.ok(Array.isArray(tools));
+    projections.push(tools.map(t=>({name:t.name,inputSchema:t.inputSchema})));
+  }
+  assert.deepEqual(projections[1],projections[0]);
+  assert.deepEqual(projections[2],projections[0]);
+  assert.deepEqual(projections[0].map(t=>t.name),['factory_status','worker_prepare','worker_start']);
+  assert.equal(projections[0].length,3);
+  for(const tool of projections[0].filter(t=>t.name!=='factory_status')) assert.equal(tool.inputSchema?.properties?.attemptEpoch?.minimum,1);
+  const call = args => inspect(['--method','tools/call','--tool-name','worker_start','--tool-args-json',JSON.stringify(args)]);
+  for(const [label,args] of [
+    ['missing identity',{}],
+    ['invalid runId',{runId:'bad value with spaces',taskId:'W47-06',attemptId:'V47-W47-06-ATTEMPT-001',attemptEpoch:1}],
+    ['stale epoch',{runId:'V47-CONSTRUCTION-001',taskId:'W47-06',attemptId:'V47-W47-06-ATTEMPT-001',attemptEpoch:0}],
+  ]){
+    const out=call(args);
+    assert.equal(out.status,5,`${label} must fail closed\n${out.stderr}`);
+    assert.equal(parse(out,label).result?.isError,true);
+  }
+  const valid=call({runId:'V47-CONSTRUCTION-001',taskId:'W47-06',attemptId:'V47-W47-06-ATTEMPT-001',attemptEpoch:1});
+  assert.equal(valid.status,0,`valid identity failed\n${valid.stderr}`);
+  const payload=JSON.parse(parse(valid,'valid identity').result?.content?.[0]?.text??'null');
+  assert.equal(payload.result,'STARTED');
+  assert.equal(payload.attempt_epoch,1);
 });
