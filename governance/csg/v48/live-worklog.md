@@ -450,3 +450,13 @@ Execute the exact trusted capsule through the existing bounded-driver `workflow_
 - Covered no cross-project leak, no worker provider-write credential, exact candidate/tree binding, STOP visibility, stale epoch reject, ACK-loss idempotence, completion fence, recovery_required, bounded status/context, and zero incremental paid cost.
 - Current W47-06 authority remains worker/VM unauthorized; the test proves the gate stays false and does not start Host/Worker.
 - D12 is not accepted yet. Provider publication is deliberately the trusted GitHub PR merge performed by the Main Controller; same-source GitHub readback is required after merge before checkpoint advancement.
+
+
+### V48-D12 N=1 provider publication readback confirmed
+
+- Trusted PR #86 structural verifier run `35320714100` / job `105522366160` completed SUCCESS.
+- Provider publication merged as GitHub commit `b8ddcaaf5ebcae548e39f0b04b09b7c7f13f52e1`, tree `d2a814153b665bffcd9d8da7bc782b9e1aea1c69`, with exact base `01153d8...` and candidate `03c614c...` parents.
+- Same-source branch readback equals the merge SHA; qualification test blob `c649a193...` and evidence blob `79747063...` are present on canonical.
+- N=1 acceptance matrix is PASS: project isolation, zero worker provider-write credentials, exact candidate/tree, STOP, stale epoch, ACK-loss idempotence, completion fence, recovery_required, bounded projection, and zero incremental paid cost.
+- Active maintained LOC remains 2199 because D12 added test/evidence only. N2/Host/Worker/Production remain unstarted.
+- Candidate checkpoint: `V48-D12-ACCEPTED-039`; next is the conditional D13 whole-layer bakeoff trigger evaluation.
