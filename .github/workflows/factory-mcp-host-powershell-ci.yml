@@ -74,7 +74,7 @@ jobs:
           $upgrade = Get-Content tools/csg/factory-mcp/windows/upgrade-host-powershell.ps1 -Raw
           if ($index -notmatch "registerTool\(\s*'host_powershell'") { throw 'HOST_POWERSHELL_TOOL_MISSING' }
           if ($broker -notmatch "WindowsIdentity.*GetCurrent") { throw 'EXECUTION_IDENTITY_READBACK_MISSING' }
-          if ($upgrade -notmatch "NT AUTHORITY\\\\SYSTEM") { throw 'SYSTEM_EXECUTION_ACCEPTANCE_MISSING' }
+          if ($upgrade -notmatch 'NT AUTHORITY\\SYSTEM') { throw 'SYSTEM_EXECUTION_ACCEPTANCE_MISSING' }
           if ($broker -notmatch "script_sha256") { throw 'SCRIPT_DIGEST_RECEIPT_MISSING' }
           if ($broker -notmatch "exec-receipts") { throw 'EXEC_RECEIPT_DIRECTORY_MISSING' }
           if ($upgrade -notmatch "Restore-Backup") { throw 'ROLLBACK_MISSING' }
