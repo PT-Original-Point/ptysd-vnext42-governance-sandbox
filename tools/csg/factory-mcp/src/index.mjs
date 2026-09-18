@@ -1,4 +1,5 @@
 import { execFile } from 'node:child_process';
+import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { promisify } from 'node:util';
 import { McpServer } from '@modelcontextprotocol/server';
@@ -6,7 +7,13 @@ import { serveStdio } from '@modelcontextprotocol/server/stdio';
 import * as z from 'zod/v4';
 
 const execFileAsync = promisify(execFile);
-const VERSION = '0.1.0';
+const PACKAGE_METADATA = JSON.parse(
+  readFileSync(new URL('../package.json', import.meta.url), 'utf8'),
+);
+const VERSION = PACKAGE_METADATA.version;
+if (typeof VERSION !== 'string' || VERSION.length === 0) {
+  throw new Error('INVALID_PACKAGE_VERSION');
+}
 const WRAPPER = fileURLToPath(new URL('./invoke-hostguard.ps1', import.meta.url));
 const POWERSHELL = process.env.PTYSD_FACTORY_MCP_POWERSHELL || 'powershell.exe';
 const TEST_MODE = process.env.PTYSD_FACTORY_MCP_TEST_MODE === '1';
