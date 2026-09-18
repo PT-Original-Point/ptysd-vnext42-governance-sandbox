@@ -384,3 +384,16 @@ Persist this corrected escape-path candidate, then seek a legal execution venue 
 ### Next single action
 
 Execute the exact trusted capsule through the existing bounded-driver `workflow_dispatch`, then same-source read back the run, job and logs. Only a real runtime result may change D9 L4.
+
+
+### D9 runtime run #64 failure classified and repaired
+
+- Human-triggered workflow run `35311169750` / run #64 successfully reached `PTYSD-V45-CONTROL-01` after stale run #33 was cancelled.
+- Runner identity, exact checkout of `41b9e5391eaab6cc6eab23d8be76718dde8d55b0`, Node 24 provisioning, and exact-SHA verification all PASS.
+- Regression result: 53 tests total, 52 PASS, 1 FAIL.
+- The only failure occurred before Inspector runtime execution: Node 24 on Windows returned `spawnSync npm.cmd EINVAL` while attempting `npm ci`.
+- Therefore this run does **not** prove Inspector incompatibility. Side-effect classification is `SIDE_EFFECT_NOT_APPLIED` for the Inspector probe itself.
+- Repair candidate `5d503c222e403efd2ef21abb74afd5fd6810ce5c` replaces direct `.cmd` spawning with `process.execPath + npm-cli.js/npx-cli.js`.
+- PR #78 trusted verifier run `35312059241`, job `105495948218`, completed `SUCCESS`; PR #78 was then closed unmerged.
+- D9 remains checkpoint 35 / `V48-D9-BLOCKED-035`. D10 remains forbidden.
+- Next exact runtime input: `control_sha=5d503c222e403efd2ef21abb74afd5fd6810ce5c`.
