@@ -69,7 +69,7 @@ try {
   assert.equal(psPayload.result, 'COMPLETED');
   assert.equal(psPayload.exit_code, 0);
   assert.equal(psPayload.timed_out, false);
-  assert.equal(psPayload.run_as, 'NT AUTHORITY\\\\SYSTEM');
+  assert.equal(psPayload.run_as, 'NT AUTHORITY\\SYSTEM');
   assert.match(psPayload.stdout, /PTYSD_HOST_POWERSHELL_OK/);
 
   await writeFile(outPath, `${JSON.stringify({
