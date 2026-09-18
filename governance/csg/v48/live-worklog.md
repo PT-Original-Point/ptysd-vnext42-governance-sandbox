@@ -397,3 +397,17 @@ Execute the exact trusted capsule through the existing bounded-driver `workflow_
 - PR #78 trusted verifier run `35312059241`, job `105495948218`, completed `SUCCESS`; PR #78 was then closed unmerged.
 - D9 remains checkpoint 35 / `V48-D9-BLOCKED-035`. D10 remains forbidden.
 - Next exact runtime input: `control_sha=5d503c222e403efd2ef21abb74afd5fd6810ce5c`.
+
+
+### D9 runtime run #67 reached Inspector; CLI target ordering repaired
+
+- Human-triggered workflow run `35312871823` / run #67 reached `PTYSD-V45-CONTROL-01` and checked out exact control SHA `5d503c222e403efd2ef21abb74afd5fd6810ce5c`.
+- Runner identity, checkout, Node 24 and exact-SHA verification all PASS.
+- Regression result remained 53 total / 52 PASS / 1 FAIL.
+- The prior Windows `npm.cmd EINVAL` defect is fixed: Inspector 2.7.0 was installed/launched far enough to return its own CLI error.
+- New failure: `No servers found in config file`.
+- Official Inspector v2 source/docs confirm the root cause: under `--cli`, the ad-hoc target must precede Inspector options; with `--`, target is before the separator and Inspector options are after it. The previous candidate put options first, so v2 silently dropped the target and fell back to the empty catalog.
+- Repair candidate `d0f2ce1e6ace27199815090861f6f08d33b59958` corrects only this ordering.
+- PR #80 trusted verifier run `35313129241`, job `105499076222`, completed `SUCCESS`; PR #80 was closed unmerged.
+- D9 remains checkpoint 35 / `V48-D9-BLOCKED-035`; D10 remains forbidden.
+- Next exact runtime input: `control_sha=d0f2ce1e6ace27199815090861f6f08d33b59958`.
