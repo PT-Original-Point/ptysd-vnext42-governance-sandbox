@@ -411,3 +411,18 @@ Execute the exact trusted capsule through the existing bounded-driver `workflow_
 - PR #80 trusted verifier run `35313129241`, job `105499076222`, completed `SUCCESS`; PR #80 was closed unmerged.
 - D9 remains checkpoint 35 / `V48-D9-BLOCKED-035`; D10 remains forbidden.
 - Next exact runtime input: `control_sha=d0f2ce1e6ace27199815090861f6f08d33b59958`.
+
+
+### V48-D9 official Inspector equivalence PASS and DEL-06 promotion
+
+- Human-triggered workflow run `35313727736` / run #70 executed on `PTYSD-V45-CONTROL-01` and checked out exact control SHA `d0f2ce1e6ace27199815090861f6f08d33b59958`.
+- Exact-SHA gate PASS; Node 24.21.0 / npm 11.19.0.
+- `V48-D9 official Inspector modern stdio equivalence matrix` PASS using official `@modelcontextprotocol/inspector@2.7.0`, `--protocol-era modern`, negotiated `2026-07-28`, stdio.
+- Full bounded regression: 53 total / 53 PASS / 0 FAIL / 0 skipped.
+- Public Factory MCP surface remained exactly `factory_status`, `worker_prepare`, `worker_start`; mutation tool schemas reported `attemptEpoch.minimum=1`.
+- Missing identity, invalid runId and stale epoch 0 all failed closed; exact application identity succeeded only under explicit TEST_MODE. Transport session itself granted no application authority.
+- This is recorded as an **equivalent official path PASS for supported Factory MCP stdio scope**, not a false claim that the still-open `modelcontextprotocol/conformance#258` native server runner executed.
+- Run #70 candidate already omitted legacy `tools/csg/factory-mcp/tests/protocol-smoke.mjs`. Replacing that 81-nonblank-line custom transport harness with the 65-nonblank-line official Inspector regression yields a net -16 qualification-test LOC delta.
+- Factory MCP runtime `src/index.mjs` and package-lock blobs are byte-identical between canonical source and run #70. Promotion only retargets the stale package test script, installs the proven Inspector regression bytes, deletes the legacy fixture, and records evidence/checkpoint.
+- Current ChatGPT Session definition still exposes `attemptEpoch.minimum=0`; this remains a truthful `STALE_OR_MISMATCHED` observation and is deferred to the V48-D15 fresh-session acceptance gate defined by the V4.8 construction sequence. It does not override the D9 source/runtime evidence.
+- Candidate checkpoint: `V48-D9-ACCEPTED-036`; next legal unit `V48-D10`. Production/business/paid/N2/Host VM/Worker/new listener/new credential topology remain forbidden.
