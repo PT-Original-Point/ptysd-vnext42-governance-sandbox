@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 
-const read=p=>fs.readFileSync(new URL('../'+p,import.meta.url),'utf8');
+const read=p=>fs.readFileSync(new URL('../../'+p,import.meta.url),'utf8');
 test('governed SYSTEM host PowerShell is retained as fourth Factory MCP tool with V4.8 fence',()=>{
   const pkg=JSON.parse(read('tools/csg/factory-mcp/package.json'));
   const index=read('tools/csg/factory-mcp/src/index.mjs');
