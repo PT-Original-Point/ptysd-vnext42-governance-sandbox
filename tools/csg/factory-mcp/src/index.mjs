@@ -6,7 +6,7 @@ import { serveStdio } from '@modelcontextprotocol/server/stdio';
 import * as z from 'zod/v4';
 
 const execFileAsync = promisify(execFile);
-const VERSION = '0.2.0';
+const VERSION = '0.2.1';
 const WRAPPER = fileURLToPath(new URL('./invoke-hostguard.ps1', import.meta.url));
 const POWERSHELL = process.env.PTYSD_FACTORY_MCP_POWERSHELL || 'powershell.exe';
 const TEST_MODE = process.env.PTYSD_FACTORY_MCP_TEST_MODE === '1';
@@ -121,7 +121,16 @@ async function runHostGuard(operation, args = {}) {
     return JSON.parse(text);
   } catch (error) {
     const code = error?.code ? String(error.code) : 'UNKNOWN';
-    throw new Error(`HOSTGUARD_CALL_FAILED:${operation}:${code}`);
+    const rawStderr =
+      typeof error?.stderr === 'string'
+        ? error.stderr
+        : Buffer.isBuffer(error?.stderr)
+          ? error.stderr.toString('utf8')
+          : '';
+    const stderrTail = rawStderr.replace(/\\s+/g, ' ').trim().slice(-512);
+    throw new Error(
+      `HOSTGUARD_CALL_FAILED:${operation}:${code}${stderrTail ? `:STDERR:${stderrTail}` : ''}`,
+    );
   }
 }
 
