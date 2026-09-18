@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import path from 'node:path';
+import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
 
@@ -9,6 +10,7 @@ const factoryDir = path.resolve(here, '../../tools/csg/factory-mcp');
 const npm = process.platform === 'win32' ? 'npm.cmd' : 'npm';
 const npx = process.platform === 'win32' ? 'npx.cmd' : 'npx';
 const expectedTools = ['factory_status', 'worker_prepare', 'worker_start'];
+const expectedServerVersion = JSON.parse(readFileSync(path.join(factoryDir, 'package.json'), 'utf8')).version;
 
 function run(command, args, options = {}) {
   const out = spawnSync(command, args, {
@@ -56,7 +58,7 @@ test('V48-D9 official Inspector modern stdio equivalence matrix', { timeout: 600
   const init = parseJson(initRun, 'initialize').result;
   assert.equal(init.protocolVersion, '2026-07-28');
   assert.equal(init.serverInfo?.name, 'ptysd-factory-mcp');
-  assert.equal(init.serverInfo?.version, '0.1.0');
+  assert.equal(init.serverInfo?.version, expectedServerVersion);
 
   const projections = [];
   for (let i = 0; i < 3; i++) {
