@@ -246,3 +246,33 @@ No workaround was dispatched: no HTTP shim/listener, no hosted runner, no Worker
 ### Next single action
 
 Persist this no-go feasibility result through the protected direct-parent path. After merge, continue only the remaining legal D9 work: keep the official #258 blocker fresh, preserve the three-tool/epoch fence, and prepare a zero-churn modern stdio runtime probe vector for execution when an allowed environment can run the exact pinned packages. Do not promote D9 until L4 is real.
+
+
+### PR #70 acceptance and dual-era smoke slimming
+
+- PR #70 candidate `285f39bb1b1995c9bb475bef2492412b2d1f49c9` passed `csg-trusted-verifier` job `105466501602` / workflow run `35302038149` and merged as canonical `4fb2b01c788222ee95f117342be77d14c16e4184`.
+- Same-source readback confirmed `d9-equivalent-official-path-audit-v1.json` is canonical and `governance/csg/current.json` remains checkpoint 35 / `V48-D9-BLOCKED-035`.
+
+A zero-growth test-only refactor is now prepared for `tools/csg/factory-mcp/tests/protocol-smoke.mjs`:
+
+- existing test: 104 physical lines / 91 nonblank lines
+- candidate test: 88 physical lines / 81 nonblank lines
+- maintained test-code delta: `-10 nonblank LOC`
+- preserves the 2025-11-25 initialize path, exact three-tool surface, package/server version identity, mock HostGuard status identity, prepare/start happy path, invalid-ID rejection and `attemptEpoch=0` fail-closed check
+- adds a separate 2026-07-28 stdio session using the official reserved `_meta` keys:
+  - `io.modelcontextprotocol/protocolVersion`
+  - `io.modelcontextprotocol/clientInfo`
+  - `io.modelcontextprotocol/clientCapabilities`
+- adds `server/discover` verification for 2026-07-28 support and result `_meta['io.modelcontextprotocol/serverInfo']` package-version identity
+- adds three consecutive modern `tools/list` snapshots and requires deterministic ordering plus the exact three-tool set
+- adds modern-path `attemptEpoch=0` fail-closed verification
+- removes a small request/response race in the test harness by installing the pending response resolver before writing the JSON-RPC request to child stdin
+- `node --check` on the candidate = PASS
+- candidate SHA-256 from the isolated local syntax-check copy = `sha256:08dfd279db26a49ab3a936df6856b65f117fed9dad1b3e5faf9b9e42a70e8880`
+- runtime execution remains `NOT_EXECUTED` because the current container does not have the exact npm dependencies and registry DNS remains unavailable. No runtime PASS is claimed.
+
+This refactor changes test evidence only. It adds no dependency, runtime listener, credential, public MCP tool, Host/VM action, Worker dispatch, Production/business effect, or D9 promotion.
+
+### Next single action
+
+Publish the slimmer dual-era protocol smoke as one direct-parent candidate with this evidence. Require trusted verifier PASS, merge only after a fresh canonical precheck, then keep D9 blocked until official stdio conformance L4 is actually available.
