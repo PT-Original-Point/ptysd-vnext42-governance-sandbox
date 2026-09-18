@@ -50,6 +50,16 @@ function Parse-PowerShell([string]$Path) {
   }
 }
 
+function Wait-TaskNotRunning([string]$TaskName,[int]$Seconds) {
+  $deadline = [DateTime]::UtcNow.AddSeconds($Seconds)
+  do {
+    $state = (Get-ScheduledTask -TaskName $TaskName).State.ToString()
+    if ($state -ne 'Running') { return $state }
+    Start-Sleep -Milliseconds 250
+  } while ([DateTime]::UtcNow -lt $deadline)
+  throw ('TASK_STOP_TIMEOUT:' + $TaskName)
+}
+
 function Wait-BrokerReady([int]$Seconds) {
   $deadline = [DateTime]::UtcNow.AddSeconds($Seconds)
   do {
@@ -134,7 +144,8 @@ try {
 
   Stop-ScheduledTask -TaskName $tunnelTask -ErrorAction SilentlyContinue
   Stop-ScheduledTask -TaskName $brokerTask -ErrorAction SilentlyContinue
-  Start-Sleep -Seconds 1
+  [void](Wait-TaskNotRunning -TaskName $tunnelTask -Seconds 10)
+  [void](Wait-TaskNotRunning -TaskName $brokerTask -Seconds 10)
 
   foreach ($rel in $files) {
     $src = Join-Path $staging $rel

@@ -29,7 +29,7 @@ if (-not (Test-Path -LiteralPath $modulePath)) { throw 'HOSTGUARD_MODULE_MISSING
 Import-Module $modulePath -Force -ErrorAction Stop
 
 $createdNew = $false
-$mutex = New-Object Threading.Mutex($true, 'Global\PTYSDFactoryMCPHostGuardBrokerV48', [ref]$createdNew)
+$mutex = New-Object Threading.Mutex($true, 'Global\PTYSDFactoryMCPHostGuardBrokerV47', [ref]$createdNew)
 if (-not $createdNew) { throw 'BROKER_ALREADY_RUNNING' }
 
 function Write-AtomicJson {
