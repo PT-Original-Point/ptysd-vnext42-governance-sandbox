@@ -146,3 +146,49 @@ Create one Git commit containing the final four-file D9 changes with direct pare
 ### Next single action
 
 Persist this live-schema mismatch as bounded D9 evidence, then continue source-level/upstream qualification work that does not require Host VM start, Worker dispatch, new listener, new credentials, or D10.
+
+### PR #67 acceptance and canonical merge
+
+- PR #67 candidate head `1b55d4ca42e28aa5ae5d363485adcd5d7bbb7753` had exact direct parent `75070afead2d307d609e5ac7253508964db2ab60`.
+- `csg-trusted-verifier` job `105457590034` / workflow run `35299097185` completed `SUCCESS`.
+- PR #67 merged at canonical commit `0be803c1ea8cb522d338d4ee973f8e443c7e2d7f`.
+- Same-source readback confirmed `d9-live-schema-evidence-v1.json` and the worklog are canonical, while `governance/csg/current.json` remains checkpoint 35 / `V48-D9-BLOCKED-035`.
+
+### D9 upstream source compatibility audit
+
+Purpose: determine whether the Factory MCP pin itself is behind the official 2026-07-28 stdio implementation before considering an SDK upgrade.
+
+Fresh findings:
+
+- Factory MCP canonical `package.json` pins `@modelcontextprotocol/server=2.0.0` and `zod=4.6.5`.
+- Canonical `package-lock.json` resolves and integrity-pins:
+  - `@modelcontextprotocol/server@2.0.0`
+  - `@modelcontextprotocol/core@2.0.0`
+  - `zod@4.6.5`
+- At observed official TypeScript SDK head `60321700871029401a2e3bed8fdf4f02c9ec3331`, both `@modelcontextprotocol/server` and `@modelcontextprotocol/client` package manifests are version `2.0.0`.
+- Official `serveStdio` source at that head explicitly defines itself as the stdio entry point for the 2026-07-28 revision, with 2025 fallback behavior.
+- Official source handles `server/discover` in the stdio opening exchange, builds a modern instance for the probe, keeps the negotiation window unpinned until a modern request commits the era, and supports fallback to a fresh legacy instance.
+- Official protocol-era constants at the same head define `FIRST_MODERN_PROTOCOL_VERSION='2026-07-28'` and `SUPPORTED_MODERN_PROTOCOL_VERSIONS=[FIRST_MODERN_PROTOCOL_VERSION]`.
+- Official discover tests require server identity in result `_meta['io.modelcontextprotocol/serverInfo']` and verify modern-only supportedVersions.
+- Official docs explicitly map 2026 stdio serving to `serveStdio(factory)`; Factory MCP already uses `void serveStdio(createServer)`.
+- Inspector observed release head `2e90a628e6296c62e4bef942afbb43d3faa4baf4` is version `2.7.0` and itself pins official MCP client/core/server `2.0.0`; its CLI supports stdio commands, `--protocol-era legacy|auto|modern`, `tools/list`, `--strict`, and machine-readable `--format json`.
+
+Decision from source audit:
+
+- `SDK_UPGRADE_NEEDED_FOR_2026_STDIO = false` for the currently observed official server package: Factory MCP is already pinned to the official server `2.0.0` that contains the modern `serveStdio` path.
+- `SOURCE_LEVEL_2026_STDIO_ALIGNMENT = PASS`.
+- `RUNTIME_2026_NEGOTIATION = NOT_EXECUTED`.
+- Existing local protocol smoke still exercises the 2025 `initialize` path; it does not prove `server/discover` / modern per-request envelope behavior.
+- Therefore no dependency churn is justified. The next value-producing proof is an official-client/Inspector modern stdio runtime probe when the execution environment can run the pinned packages.
+- This source audit does not clear D9 L4 and does not change checkpoint 35.
+
+### Local runtime-package acquisition attempt
+
+- A bounded attempt was made to obtain the exact npm tarballs named by canonical `package-lock.json` so the protocol smoke could run in an isolated workspace.
+- Direct npm registry access from the current execution container fails DNS resolution (`Could not resolve host: registry.npmjs.org`); the artifact-download helper also could not retrieve the registry tarball through its allowed URL path.
+- No package was substituted from an unverified mirror; no integrity check was bypassed.
+- Runtime smoke remains `NOT_EXECUTED`.
+
+### Next single action
+
+Persist the source-compatibility evidence through a one-commit direct-parent PR. If trusted verification passes, merge it, then continue D9 with the next legal proof target: refine the modern-runtime test vector and search for a provider-native execution route that can run the exact pinned packages without adding a workflow/listener/credential surface.
