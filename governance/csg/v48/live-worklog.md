@@ -411,3 +411,11 @@ Execute the exact trusted capsule through the existing bounded-driver `workflow_
 - PR #80 trusted verifier run `35313129241`, job `105499076222`, completed `SUCCESS`; PR #80 was closed unmerged.
 - D9 remains checkpoint 35 / `V48-D9-BLOCKED-035`; D10 remains forbidden.
 - Next exact runtime input: `control_sha=d0f2ce1e6ace27199815090861f6f08d33b59958`.
+
+
+### D9 promotion repair after PR #82 fail-closed
+
+- PR #82 was rejected by immutable trusted verifier with `OUT_OF_SCOPE_CANONICAL_PATH:tests/v46-driver.test.mjs`; it was closed unmerged.
+- The trust boundary was not weakened. The D9 project-specific Inspector regression was extracted into canonical-allowed `tools/csg/factory-mcp/tests/official-inspector-equivalence.mjs`.
+- The replacement regression is 62 nonblank LOC versus the deleted legacy transport harness at 81 nonblank LOC, so DEL-06 now yields net -19 qualification-test LOC while keeping the exact 3-tool / identity / fence regression surface.
+- Runtime source remains byte-identical to run #70; no Host/Worker/Production/business/paid/listener/credential mutation was introduced.
