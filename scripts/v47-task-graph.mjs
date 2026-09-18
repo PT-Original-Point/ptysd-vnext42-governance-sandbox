@@ -1,5 +1,5 @@
 import {createHash} from 'node:crypto';
-import {validateBoundedContract} from './v46-bounded-driver.mjs';
+import {validateBoundedContract} from '../tools/csg/cell-kernel/legacy-contract-compat.mjs';
 
 export const V47_SCHEMA = 'factory.contract.v47';
 export const LEGACY_SCHEMA = 'factory.contract.v1';
