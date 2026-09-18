@@ -363,3 +363,24 @@ If the Inspector matrix later fails the equivalence review, the fallback is no l
 ### Next single action
 
 Persist this corrected escape-path candidate, then seek a legal execution venue for the exact pinned Inspector matrix without changing Factory MCP's three-tool public surface or adding a listener.
+
+
+### D9 trusted runtime capsule ready
+
+- The first runtime-probe PR (#75) was rejected by the immutable trusted verifier with `OUT_OF_SCOPE_CANONICAL_PATH:tests/v46-driver.test.mjs`; it was closed unmerged.
+- A replacement disposable capsule was rebuilt from `main@6444c1ce7b1bc2f1dce850a9cf7f080d53400d43` with exactly one direct-parent commit and no workflow/trust-root/Mission/Policy changes.
+- PR #76 head is `41b9e5391eaab6cc6eab23d8be76718dde8d55b0`.
+- Trusted verifier workflow run `35308735046`, job `105486157973`, completed `SUCCESS` on `PTYSD-V45-CONTROL-01` / `DESKTOP-1B6PD2P`.
+- Verifier output is `PASS` for 14 candidate paths with a clean worktree and exact direct parent.
+- The capsule carries current canonical Factory MCP exact blobs:
+  - `package.json = efd2d24f5b9d61c709ac659f0013c4d1daa3c246`
+  - `package-lock.json = 92d0f00945c2e84d7f71bfa5457c3a483ea0079e`
+  - `src/index.mjs = b46a149afaced57ee765f8688ecebf92fce1e684`
+- The embedded runtime matrix uses official `@modelcontextprotocol/inspector@2.7.0` with `--protocol-era modern`, TEST_MODE only, and no real HostGuard/VM mutation.
+- Runtime remains `NOT_EXECUTED`: under the PR event, `bounded-driver-acceptance` is intentionally skipped because it is `workflow_dispatch` only. No runtime PASS is inferred from structural verification.
+- Exact remaining execution payload is `.github/workflows/factory-bounded.yml@main` with `control_sha=41b9e5391eaab6cc6eab23d8be76718dde8d55b0`. PR #76 must not be merged.
+- D9 remains checkpoint 35 / `V48-D9-BLOCKED-035`; D10 remains forbidden and DEL-06 remains retained.
+
+### Next single action
+
+Execute the exact trusted capsule through the existing bounded-driver `workflow_dispatch`, then same-source read back the run, job and logs. Only a real runtime result may change D9 L4.
