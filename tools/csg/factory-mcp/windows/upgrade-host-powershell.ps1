@@ -138,15 +138,14 @@ function Invoke-SystemHostExecSelfTest {
 }
 
 function Restore-Backup {
-  foreach ($rel in $newFiles) {
-    Remove-Item -LiteralPath (Join-Path $install $rel) -Force -ErrorAction SilentlyContinue
-  }
-  foreach ($rel in $baselineFiles) {
+  foreach ($rel in $candidateFiles) {
     $src = Join-Path $backup $rel
+    $dst = Join-Path $install $rel
     if (Test-Path -LiteralPath $src) {
-      $dst = Join-Path $install $rel
       New-Item -ItemType Directory -Path (Split-Path $dst -Parent) -Force | Out-Null
       Copy-Item -LiteralPath $src -Destination $dst -Force
+    } elseif ($rel -in $newFiles) {
+      Remove-Item -LiteralPath $dst -Force -ErrorAction SilentlyContinue
     }
   }
 }
@@ -202,11 +201,13 @@ try {
     -OutputPath (Join-Path $qualificationRoot 'factory-mcp-host-exec-system-preflight.json') `
     -WorkRoot (Join-Path $staging 'system-host-exec-preflight')
 
-  foreach ($rel in $baselineFiles) {
+  foreach ($rel in $candidateFiles) {
     $src = Join-Path $install $rel
-    $dst = Join-Path $backup $rel
-    New-Item -ItemType Directory -Path (Split-Path $dst -Parent) -Force | Out-Null
-    Copy-Item -LiteralPath $src -Destination $dst -Force
+    if (Test-Path -LiteralPath $src) {
+      $dst = Join-Path $backup $rel
+      New-Item -ItemType Directory -Path (Split-Path $dst -Parent) -Force | Out-Null
+      Copy-Item -LiteralPath $src -Destination $dst -Force
+    }
   }
 
   Stop-ScheduledTask -TaskName $tunnelTask -ErrorAction SilentlyContinue
