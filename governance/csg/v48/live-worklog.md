@@ -460,3 +460,13 @@ Execute the exact trusted capsule through the existing bounded-driver `workflow_
 - N=1 acceptance matrix is PASS: project isolation, zero worker provider-write credentials, exact candidate/tree, STOP, stale epoch, ACK-loss idempotence, completion fence, recovery_required, bounded projection, and zero incremental paid cost.
 - Active maintained LOC remains 2199 because D12 added test/evidence only. N2/Host/Worker/Production remain unstarted.
 - Candidate checkpoint: `V48-D12-ACCEPTED-039`; next is the conditional D13 whole-layer bakeoff trigger evaluation.
+
+
+### V48-D13 whole-layer bakeoff condition evaluation
+
+- D13 trigger evaluated against the V4.8 invariant and current canonical evidence; result: `NOT_TRIGGERED`.
+- Active maintained nonblank LOC is 2199, exactly within I23 target <=2199 and below the 2200 review threshold.
+- DeleteMap has 81 LOC of actual deletion credit and `whole_layer_bakeoff_required_now=false`.
+- No second canonical store, new listener, credential topology, paid fallback, or public MCP surface growth exists in the accepted path.
+- Therefore no OpenHands/Gas City/ToolHive/sandbox-agent challenger is installed or executed. No `PATTERN_DONOR_ONLY` or promotion verdict is fabricated when the gate is not triggered.
+- Candidate checkpoint: `V48-D13-ACCEPTED-040`; next is D14 bounded-scale condition evaluation.
