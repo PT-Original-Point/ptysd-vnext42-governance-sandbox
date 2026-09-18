@@ -64,7 +64,15 @@ try {
     },
   });
   assert.equal(powershell.error, undefined);
-  assert.equal(powershell.result?.isError, undefined);
+  if (powershell.result?.isError) {
+    const detail = (powershell.result.content ?? [])
+      .map((item) => (item?.type === 'text' ? item.text : ''))
+      .filter(Boolean)
+      .join(' | ')
+      .slice(0, 1200);
+    console.error(`HOST_POWERSHELL_MCP_ERROR=${detail || 'NO_DETAIL'}`);
+    throw new Error('HOST_POWERSHELL_MCP_CALL_FAILED');
+  }
   const psPayload = JSON.parse(powershell.result.content[0].text);
   assert.equal(psPayload.result, 'COMPLETED');
   assert.equal(psPayload.exit_code, 0);
