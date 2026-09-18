@@ -155,4 +155,3 @@ function Invoke-PTYSDHostPowerShellExec {
   }
 }
 
-Export-ModuleMember -Function Get-PTYSDHostExecSha256Hex,ConvertTo-PTYSDHostExecBoundedUtf8,Invoke-PTYSDHostPowerShellExec -ErrorAction SilentlyContinue
