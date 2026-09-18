@@ -120,3 +120,29 @@ Immediately before PR creation, `v45/factory-control` still compared identical t
 ### Next single action
 
 Create one Git commit containing the final four-file D9 changes with direct parent `fc91725cc2239504158884d49b681b1a244d693a`, fast-forward only the fresh repair branch to that commit, close superseded PR #65, and open the replacement PR. No force update is permitted.
+
+### PR #66 acceptance and canonical merge
+
+- Replacement PR #66 used candidate head `1cc5ff4041e927d5545cebd20a415b4c9fd4676b`.
+- Candidate direct-parent proof: exactly one parent, `fc91725cc2239504158884d49b681b1a244d693a`; compare showed ahead_by=1 and behind_by=0 before PR.
+- `csg-trusted-verifier` job `105457055025` / workflow run `35298874255` completed `SUCCESS`.
+- `bounded-driver-acceptance` was `SKIPPED`; it is not being claimed as a runtime protocol test.
+- Final pre-merge readback showed PR head unchanged, base SHA `fc91725cc2239504158884d49b681b1a244d693a`, mergeable=true, and canonical branch still identical to the expected base.
+- Merge dispatch returned HTTP 405 `Merge already in progress`; per readback-first policy it was NOT retried.
+- Immediate same-source readback confirmed PR #66 `merged=true` at merge commit `75070afead2d307d609e5ac7253508964db2ab60`.
+- Canonical readback after merge confirms the new runtime-version source and smoke assertion are present.
+- Canonical CSG pointer remains checkpoint 35 / `V48-D9-BLOCKED-035`; D9 was not promoted and D10 was not entered.
+
+### Current-session live Factory MCP schema readback
+
+- Current ChatGPT session exposes exactly three Factory MCP tools: `factory_status`, `worker_prepare`, `worker_start`.
+- Current loaded schema for both mutation tools still advertises `attemptEpoch.minimum = 0`.
+- Canonical repository source now requires `attemptEpoch.min(1)`; therefore current-session application definition is `STALE_OR_MISMATCHED` relative to canonical source.
+- This observation is scoped to the currently loaded ChatGPT session definition. It does not prove that the server deployment is stale, because ChatGPT connector/tool definitions can be session/app-definition snapshots.
+- Read-only `factory_status` succeeded against the governed endpoint and returned exact host `DESKTOP-1B6PD2P`, VM `PTYSD-WORKER-01`, VM state `Running`, guest IP `172.31.253.10`, SSH 22 reachable, and run-as `NT AUTHORITY\\SYSTEM`.
+- The VM was already Running. No `worker_prepare` or `worker_start` call was issued in this tranche.
+- D9 L3 therefore remains UNSATISFIED until an app-definition refresh / fresh-session readback shows `attemptEpoch.minimum = 1` with the exact three-tool surface.
+
+### Next single action
+
+Persist this live-schema mismatch as bounded D9 evidence, then continue source-level/upstream qualification work that does not require Host VM start, Worker dispatch, new listener, new credentials, or D10.
