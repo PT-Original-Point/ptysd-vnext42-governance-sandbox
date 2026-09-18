@@ -13,8 +13,8 @@ param(
   [ValidatePattern('^[A-Z0-9][A-Z0-9._-]{0,79}$')]
   [string]$AttemptId,
 
-  [ValidateRange(0,2147483647)]
-  [int]$AttemptEpoch = 0
+  [ValidateRange(1,2147483647)]
+  [int]$AttemptEpoch = 1
 )
 
 Set-StrictMode -Version Latest
