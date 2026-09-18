@@ -480,3 +480,12 @@ Execute the exact trusted capsule through the existing bounded-driver `workflow_
 - coding_parallelism_active remains 1; multi-project runtime, N2+, Host VM and Worker dispatch remain inactive.
 - Therefore V4.8 final acceptance treats required scale shadow as not applicable because scale was never activated; no scale PASS is fabricated.
 - Candidate checkpoint: `V48-D14-ACCEPTED-041`; next is D15 deletion/promotion/final acceptance.
+
+
+### V48-D15 tranche A runtime PASS; source/control authority split preserved
+
+- Run #79 (`35326083675`) executed exact `3a33c715...` and failed closed at 87/89: one stale V47 test reader plus one policy-middleware test import defect. No side effect was applied.
+- Repair candidate `b4c2e04923dd668b3a45d357c13f423c7fdfb547` was then executed by run #80 (`35326530286`) on `PTYSD-V45-CONTROL-01`: exact SHA PASS, 133/133 PASS, 0 fail, 0 skipped, D15 legacy reachability PASS.
+- A non-force attempt to move protected `v45/factory-control` to the verified code candidate was rejected by GitHub because the branch requires PR + `csg-trusted-verifier`; classification = NOT_APPLIED. Protection was not bypassed or weakened.
+- D15 authority model was corrected to preserve `v45/factory-control` as operational canonical control while publishing promoted code through a separate immutable source ref/commit/tree, then binding that source in control evidence/checkpoint.
+- Tranche B source candidate is `ebfdc0773b697b6ca2d7d24047f777a01334780f`, tree `2e887c21667c9101049724aa4dde2590d74be8a6`, branch `v48-d15-production-source-candidate-r1-20260918`. It additionally retires legacy model/research generic glue and adds lean production/research-specific source. Exact runtime qualification remains pending; D15 is not accepted.
