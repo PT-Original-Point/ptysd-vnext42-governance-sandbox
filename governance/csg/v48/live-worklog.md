@@ -489,3 +489,13 @@ Execute the exact trusted capsule through the existing bounded-driver `workflow_
 - A non-force attempt to move protected `v45/factory-control` to the verified code candidate was rejected by GitHub because the branch requires PR + `csg-trusted-verifier`; classification = NOT_APPLIED. Protection was not bypassed or weakened.
 - D15 authority model was corrected to preserve `v45/factory-control` as operational canonical control while publishing promoted code through a separate immutable source ref/commit/tree, then binding that source in control evidence/checkpoint.
 - Tranche B source candidate is `ebfdc0773b697b6ca2d7d24047f777a01334780f`, tree `2e887c21667c9101049724aa4dde2590d74be8a6`, branch `v48-d15-production-source-candidate-r1-20260918`. It additionally retires legacy model/research generic glue and adds lean production/research-specific source. Exact runtime qualification remains pending; D15 is not accepted.
+
+
+### V48-D15 source publication, conservative census, fresh-session boundary
+
+- Exact runtime qualification run #82 (`35328726971`, job `105547843707`) checked out `ebfdc0773b697b6ca2d7d24047f777a01334780f`: EXACT_CONTROL_SHA=PASS, 137/137 PASS, 0 fail, 0 skipped.
+- Stable source ref `refs/heads/v48/production-source` now reads back at commit `ebfdc0773b697b6ca2d7d24047f777a01334780f`, tree `2e887c21667c9101049724aa4dde2590d74be8a6`. Operational control remains `v45/factory-control`.
+- D15 full census deliberately over-counts qualified shadow modules, both workflows, Factory MCP setup/credential/tunnel maintenance, CSG migration helper, package manifests, and even pending legacy `config/runtime-manifest.json`: 2188 nonblank LOC <= EP69 maximum 2199; headroom 11.
+- Retired source paths now include legacy V46 driver/state/admission and model/research generic glue. DEL-04 is prepared as candidate `2339c8f1f7d54ea04fd5743c9aad74d8df653c03` which deletes `config/runtime-manifest.json` and extends zero-reader reachability.
+- Current ChatGPT session still exposes Factory MCP `attemptEpoch.minimum=0` while source `index.mjs` requires `.min(1)`; classification remains STALE_OR_MISMATCHED. Therefore D15 cannot be accepted in this session.
+- Candidate checkpoint 42 records the only legal remaining gate: fresh-session live-definition minimum=1 plus cold-start/recovery with DEL-04 manifest absent. No Production/Host/Worker/N2/paid/listener/credential/trust-root/Mission/Policy mutation occurred.
