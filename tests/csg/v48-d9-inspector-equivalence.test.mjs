@@ -72,18 +72,23 @@ test('V48-D9 official Inspector modern stdio equivalence matrix', { timeout: 600
     assert.equal(tool.inputSchema?.properties?.attemptEpoch?.minimum, 1, `${tool.name} attemptEpoch minimum must be 1`);
   }
 
-  const badArgs = JSON.stringify({
-    runId: 'V47-CONSTRUCTION-001',
-    taskId: 'W47-06',
-    attemptId: 'V47-W47-06-ATTEMPT-001',
-    attemptEpoch: 0,
-  });
-  const staleRun = inspector([
+  const call = (args) => inspector([
     '--method', 'tools/call',
     '--tool-name', 'worker_start',
-    '--tool-args-json', badArgs,
+    '--tool-args-json', JSON.stringify(args),
   ]);
-  assert.equal(staleRun.status, 5, `stale epoch must be a tool error\nstdout: ${staleRun.stdout}\nstderr: ${staleRun.stderr}`);
-  const stale = parseJson(staleRun, 'stale epoch');
-  assert.equal(stale.result?.isError, true, 'stale epoch must fail closed as tool isError');
+  for (const [label, args] of [
+    ['missing identity', {}],
+    ['invalid runId', { runId: 'bad value with spaces', taskId: 'W47-06', attemptId: 'V47-W47-06-ATTEMPT-001', attemptEpoch: 1 }],
+    ['stale epoch', { runId: 'V47-CONSTRUCTION-001', taskId: 'W47-06', attemptId: 'V47-W47-06-ATTEMPT-001', attemptEpoch: 0 }],
+  ]) {
+    const rejected = call(args);
+    assert.equal(rejected.status, 5, `${label} must be a tool error\nstdout: ${rejected.stdout}\nstderr: ${rejected.stderr}`);
+    assert.equal(parseJson(rejected, label).result?.isError, true, `${label} must fail closed`);
+  }
+  const valid = call({ runId: 'V47-CONSTRUCTION-001', taskId: 'W47-06', attemptId: 'V47-W47-06-ATTEMPT-001', attemptEpoch: 1 });
+  assert.equal(valid.status, 0, `exact application identity should pass in TEST_MODE\nstdout: ${valid.stdout}\nstderr: ${valid.stderr}`);
+  const validPayload = JSON.parse(parseJson(valid, 'valid identity').result?.content?.[0]?.text ?? 'null');
+  assert.equal(validPayload.result, 'STARTED');
+  assert.equal(validPayload.attempt_epoch, 1);
 });
