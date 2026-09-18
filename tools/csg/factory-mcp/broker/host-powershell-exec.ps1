@@ -2,7 +2,7 @@ Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
 function Get-PTYSDHostExecSha256Hex {
-  param([Parameter(Mandatory)][byte[]]$Bytes)
+  param([Parameter(Mandatory)][AllowEmptyCollection()][byte[]]$Bytes)
   $sha = [Security.Cryptography.SHA256]::Create()
   try {
     return ([BitConverter]::ToString($sha.ComputeHash($Bytes))).Replace('-','').ToLowerInvariant()
