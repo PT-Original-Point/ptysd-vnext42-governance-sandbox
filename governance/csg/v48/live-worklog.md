@@ -335,3 +335,31 @@ Remain on `V48-D9`. Resume qualification only when `OFFICIAL_STDIO_CONFORMANCE_R
 ### Durable parked condition
 
 `V48-D9` remains the sole active atomic unit. Resume only through `V48_D9_RESUME_OFFICIAL_STDIO_CONFORMANCE_QUALIFICATION` when its missing upstream/equivalent condition is actually satisfied. Until then: no D10, no synthetic PASS, no Worker/Host start, no hosted-runner bypass, no new listener, no new credential topology, no paid fallback, and no Production/business mutation.
+
+
+### D9 escape-path correction: official Inspector as equivalent-official candidate
+
+The previous no-go decision was scoped too broadly. What was correctly rejected was a project-local adapter around private `modelcontextprotocol/conformance` internals. Fresh research found a materially different path that does not create a second protocol authority:
+
+- Official `modelcontextprotocol/inspector` at observed commit `2e90a628e6296c62e4bef942afbb43d3faa4baf4` publishes `@modelcontextprotocol/inspector` version `2.7.0`.
+- Its public CLI supports stdio targets, `--protocol-era modern`, `--method initialize`, `tools/list`, `tools/call`, machine-readable `--format json`, and `--strict` schema portability checks.
+- Inspector's `modern` era pins `2026-07-28`; its package pins the official v2 `@modelcontextprotocol/client/core/server` packages at `2.0.0`.
+- The official SDK documents that modern stdio negotiation uses `server/discover` and per-request metadata, which is the exact wire path D9 needs to prove.
+- Therefore this is a credible candidate for checkpoint 35's existing alternative condition `EQUIVALENT_OFFICIAL_PATH_VERIFIED`; no Mission change is needed merely to evaluate it.
+
+Exact proposed proof matrix:
+
+1. **Modern stdio negotiation** — launch Factory MCP in `NODE_ENV=test` + `PTYSD_FACTORY_MCP_TEST_MODE=1`; run Inspector CLI with `--protocol-era modern --method initialize --format json`; require negotiated `2026-07-28`, correct server identity/version, exit 0.
+2. **Three-tool surface + schema** — Inspector `tools/list --strict --format json`; require exactly `factory_status`, `worker_prepare`, `worker_start`, tool count 3, strict exit 0, and `attemptEpoch.minimum=1`.
+3. **Application fence negative** — Inspector modern `tools/call worker_start` with `attemptEpoch=0` in TEST_MODE; require fail closed with zero real HostGuard mutation.
+4. **Repeatability** — repeat the modern `tools/list` launch three times and require identical ordered projection.
+
+This path uses an official public CLI as the wire driver. It does not vendor conformance scenarios, import private bundle internals, add HTTP, add a listener, add a daemon, add credentials, or create another canonical store. Existing `protocol-smoke.mjs` remains local regression evidence only.
+
+Runtime status remains `NOT_EXECUTED` in the current execution venue: the environment cannot currently acquire/run the exact Inspector package and dependencies, while EP69/checkpoint 35 prohibit hosted-runner fallback, Host VM start, and Worker dispatch. No PASS is claimed yet.
+
+If the Inspector matrix later fails the equivalence review, the fallback is no longer "wait forever": implement native stdio support against upstream conformance issue #258 using the already-merged PR #318 RunContext/Connection seam, then submit it upstream. That route is design-feasible but is secondary to the lower-maintenance official Inspector path.
+
+### Next single action
+
+Persist this corrected escape-path candidate, then seek a legal execution venue for the exact pinned Inspector matrix without changing Factory MCP's three-tool public surface or adding a listener.
