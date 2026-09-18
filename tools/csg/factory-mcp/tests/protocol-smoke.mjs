@@ -1,6 +1,11 @@
 import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
+import { readFile } from 'node:fs/promises';
 import { createInterface } from 'node:readline';
+
+const packageMetadata = JSON.parse(
+  await readFile(new URL('../package.json', import.meta.url), 'utf8'),
+);
 
 const child = spawn(process.execPath, ['src/index.mjs'], {
   cwd: new URL('..', import.meta.url),
@@ -52,6 +57,7 @@ try {
     clientInfo: { name: 'factory-mcp-smoke', version: '1.0.0' },
   });
   assert.equal(init.error, undefined);
+  assert.equal(init.result?.serverInfo?.version, packageMetadata.version);
   notify('notifications/initialized');
 
   const listed = await send('tools/list', {});
