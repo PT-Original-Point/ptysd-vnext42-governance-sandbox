@@ -499,3 +499,13 @@ Execute the exact trusted capsule through the existing bounded-driver `workflow_
 - Retired source paths now include legacy V46 driver/state/admission and model/research generic glue. DEL-04 is prepared as candidate `2339c8f1f7d54ea04fd5743c9aad74d8df653c03` which deletes `config/runtime-manifest.json` and extends zero-reader reachability.
 - Current ChatGPT session still exposes Factory MCP `attemptEpoch.minimum=0` while source `index.mjs` requires `.min(1)`; classification remains STALE_OR_MISMATCHED. Therefore D15 cannot be accepted in this session.
 - Candidate checkpoint 42 records the only legal remaining gate: fresh-session live-definition minimum=1 plus cold-start/recovery with DEL-04 manifest absent. No Production/Host/Worker/N2/paid/listener/credential/trust-root/Mission/Policy mutation occurred.
+
+
+### V48-D15 human-authorized SYSTEM host PowerShell governance rebase
+
+- Human explicitly directed permanent retention of Factory MCP `host_powershell` as arbitrary `NT AUTHORITY\\SYSTEM` PowerShell and permanent app-specific `full_access / Allow all actions`; no provider/action allowlist downgrade is authorized.
+- New Mission revision `20260918T180000+0800` and Execution Policy `EP70` were published through PR #95 and same-source readback from `main@39b888bb7f9766bec8a57cecbac368cea210e2bb`.
+- EP70 fixes the authorized Factory MCP public surface at exactly four tools and requires `attemptEpoch>=1`, while preserving Project alignment, readback-first recovery, zero paid fallback, worker credential isolation, and Human-reserved Production approval.
+- Incident deployed source `da25444cb831b16cf8e3843780837d3b363b4f3f` cannot be adopted byte-for-byte because its identity schema permits `attemptEpoch=0`. A fused 0.2.1 candidate `ad6c010a3a477bb211fe3fba91e51162809069dd` preserves arbitrary SYSTEM PowerShell while restoring the V4.8 minimum epoch fence and official Inspector coverage.
+- Source qualification run `35333199833` is queued on the project-specific trusted Windows runner; D15 remains blocked until it passes and a fresh ChatGPT session exposes the four-tool schema.
+- HANYAO probe runs `35326130633` (queued job) and `35326270751` (pending/no jobs) remain frozen for forensic handling. No provider execution is confirmed. Recommended cleanup after durable incident evidence: cancel runs first, then delete both probe branches.
