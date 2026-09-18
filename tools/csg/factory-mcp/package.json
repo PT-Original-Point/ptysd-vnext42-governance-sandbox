@@ -1,9 +1,9 @@
 {
   "name": "@ptysd/factory-mcp",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
-  "description": "Minimal governed MCP surface for PTYSD HostGuard.",
+  "description": "PTYSD Factory MCP host control with SYSTEM-brokered PowerShell execution.",
   "engines": {
     "node": ">=20"
   },
