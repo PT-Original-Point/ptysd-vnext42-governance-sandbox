@@ -9,6 +9,8 @@ const names=[
   ['v46','bounded','driver.mjs'].join('-'),
   ['v45','state','core.mjs'].join('-'),
   ['v46','receipt','admission.mjs'].join('-'),
+  ['v46','model','profile','guard.mjs'].join('-'),
+  ['v46','research','contract.mjs'].join('-'),
 ];
 const deleted=names.map(name=>path.join(repo,'scripts',name));
 const textExt=/\.(?:mjs|js|cjs|ts|tsx|py|ps1|sh|yml|yaml|json)$/i;

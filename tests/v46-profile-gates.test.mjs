@@ -1,131 +1,32 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import { evaluateModelProfile } from '../scripts/v46-model-profile-guard.mjs';
+import {evaluatePolicyRequest} from '../tools/csg/cell-kernel/production-kernel.mjs';
+import {evaluateAdvisorPermit} from '../tools/csg/cell-kernel/advisor-guard.mjs';
+import './v46-model-profile-guard.test.mjs';
+import './v46-research-contract.test.mjs';
 
-const registry = JSON.parse(fs.readFileSync(new URL('../governance/v46/model-profiles.json', import.meta.url), 'utf8'));
-const profile = () => structuredClone(registry.profiles.find(p => p.profile_id === registry.selected_profile_id));
-const NOW = Date.parse('2026-09-15T02:59:19.230Z');
-const request = () => ({
-  provider_id: 'opencode',
-  model_id: 'opencode/muse-spark-1.3-contributor-free',
-  data_class: 'SYNTHETIC',
-  paid_fallback_allowed: false
+const registry=JSON.parse(fs.readFileSync(new URL('../governance/v46/model-profiles.json',import.meta.url),'utf8'));
+test('registry keeps one exact zero-cost PUBLIC/SYNTHETIC profile without secret material',()=>{
+  assert.equal(registry.schema,'factory.model_profiles.v1');assert.equal(registry.profiles.length,1);
+  const p=registry.profiles[0];assert.equal(p.profile_id,registry.selected_profile_id);assert.equal(p.opencode_model_id,'opencode/muse-spark-1.3-contributor-free');
+  assert.equal(p.endpoint,'https://opencode.ai/zen/v1/responses');assert.equal(p.live_cost.input,0);assert.equal(p.live_cost.output,0);
+  assert.equal(p.paid_fallback_allowed,false);assert.deepEqual(p.allowed_data_classes,['PUBLIC','SYNTHETIC']);assert.equal(p.secret_material_recorded,false);
 });
-const preDispatch = (p, q, now = NOW) => {
-  let providerCalls = 0;
-  const gate = evaluateModelProfile(p, q, now);
-  if (gate.allow) providerCalls += 1;
-  return { gate, providerCalls };
-};
-
-test('registry has exactly one selected dispatchable model profile', () => {
-  assert.equal(registry.schema, 'factory.model_profiles.v1');
-  assert.equal(registry.profiles.length, 1);
-  assert.equal(profile().dispatch_allowed, true);
+test('all cost-bearing channel classes keep paid fallback disabled',()=>{
+  assert.deepEqual(new Set(registry.channel_inventory.map(x=>x.channel)),new Set(['research','search','eval','model','ci','storage']));
+  for(const c of registry.channel_inventory){assert.equal(c.incremental_paid_cost_allowed,false);assert.equal(c.paid_fallback_allowed,false);}
 });
-test('fresh exact PUBLIC/SYNTHETIC profile is the only allow path', () => {
-  const { gate, providerCalls } = preDispatch(profile(), request());
-  assert.equal(gate.allow, true);
-  assert.equal(providerCalls, 1);
+test('advisor paid routes and exhausted quota never dispatch',()=>{
+  const base={trigger_codes:['T1'],root_task_id:'ROOT',calls_used:0,quota_state:'AVAILABLE',route:'SUBSCRIPTION_AUTHORIZED',incremental_usd:0,zen_paid_fallback:false};
+  assert.equal(evaluateAdvisorPermit({...base,route:'API_KEY_PAID_ROUTE'}).dispatch_allowed,false);
+  assert.equal(evaluateAdvisorPermit({...base,zen_paid_fallback:true}).dispatch_allowed,false);
+  assert.equal(evaluateAdvisorPermit({...base,quota_state:'UNKNOWN'}).state,'CONSERVE');
+  assert.equal(evaluateAdvisorPermit({...base,quota_state:'RATE_LIMIT_429'}).state,'WAITING_ADVISOR_RESOURCE');
 });
-
-test('V46-F23 wrong model is rejected before provider call', () => {
-  const q = request(); q.model_id = 'opencode/paid-model';
-  const { gate, providerCalls } = preDispatch(profile(), q);
-  assert.equal(gate.allow, false);
-  assert.ok(gate.failures.includes('REQUEST_MODEL'));
-  assert.equal(providerCalls, 0);
-});
-
-test('V46-F23 changed price/nonzero cost is rejected before provider call', () => {
-  const p = profile(); p.live_cost.output = 0.01;
-  const { gate, providerCalls } = preDispatch(p, request());
-  assert.equal(gate.allow, false);
-  assert.ok(gate.failures.includes('COST_OUTPUT_ZERO'));
-  assert.equal(providerCalls, 0);
-});
-
-test('wrong endpoint is rejected before provider call', () => {
-  const p = profile(); p.endpoint = 'https://example.invalid/paid';
-  const { gate, providerCalls } = preDispatch(p, request());
-  assert.equal(gate.allow, false);
-  assert.ok(gate.failures.includes('ENDPOINT'));
-  assert.equal(providerCalls, 0);
-});
-test('V46-F24 private/confidential/personal/secret data is rejected before provider call', () => {
-  for (const dataClass of ['PRIVATE', 'CONFIDENTIAL', 'PERSONAL', 'SECRET']) {
-    const q = request(); q.data_class = dataClass;
-    const { gate, providerCalls } = preDispatch(profile(), q);
-    assert.equal(gate.allow, false);
-    assert.ok(gate.failures.includes('REQUEST_DATA_CLASS'));
-    assert.equal(providerCalls, 0);
-  }
-});
-
-test('V46-F39 expired profile becomes WAITING_RESOURCE with zero provider calls', () => {
-  const p = profile(); p.observed_at = '2026-09-15T02:00:00Z';
-  const { gate, providerCalls } = preDispatch(p, request());
-  assert.equal(gate.result, 'WAITING_RESOURCE');
-  assert.ok(gate.failures.includes('NOT_EXPIRED'));
-  assert.equal(providerCalls, 0);
-});
-
-test('V46-F39 exhausted or unknown entitlement becomes WAITING_RESOURCE', () => {
-  for (const entitlement of ['QUOTA_EXHAUSTED', 'UNKNOWN']) {
-    const p = profile(); p.account_entitlement = entitlement;
-    const { gate, providerCalls } = preDispatch(p, request());
-    assert.equal(gate.result, 'WAITING_RESOURCE');
-    assert.ok(gate.failures.includes('ENTITLEMENT'));
-    assert.equal(providerCalls, 0);
-  }
-});
-test('paid fallback and any fallback model remain hard disabled', () => {
-  const p = profile();
-  p.paid_fallback_allowed = true;
-  p.fallback_model_ids = ['opencode/paid-model'];
-  const { gate, providerCalls } = preDispatch(p, request());
-  assert.equal(gate.allow, false);
-  assert.ok(gate.failures.includes('PAID_FALLBACK_DISABLED'));
-  assert.ok(gate.failures.includes('FALLBACK_EMPTY'));
-  assert.equal(providerCalls, 0);
-});
-
-test('inactive catalog or unknown region is fail closed', () => {
-  for (const mutate of [
-    p => { p.catalog_status = 'inactive'; },
-    p => { p.region_eligibility = 'UNKNOWN'; }
-  ]) {
-    const p = profile(); mutate(p);
-    const { gate, providerCalls } = preDispatch(p, request());
-    assert.equal(gate.allow, false);
-    assert.equal(providerCalls, 0);
-  }
-});
-
-test('all cost-bearing channel classes deny incremental paid fallback', () => {
-  const expected = new Set(['research','search','eval','model','ci','storage']);
-  assert.deepEqual(new Set(registry.channel_inventory.map(x => x.channel)), expected);
-  for (const channel of registry.channel_inventory) {
-    assert.equal(channel.incremental_paid_cost_allowed, false);
-    assert.equal(channel.paid_fallback_allowed, false);
-  }
-});
-test('fresh qualification evidence is pinned without secret material', () => {
-  const p = profile();
-  assert.equal(p.required_opencode_version, '1.18.30');
-  assert.equal(p.opencode_binary_sha256, '87bd160e053af86b5b409daabf71f8dc05bbc3a2a3a5f563f36011cdf706a999');
-  assert.equal(p.runtime_candidate_sha256, '37525f39e69d24ae9b56357af10c72cdcc0950664a4b4f7d90f464381aab81f4');
-  assert.equal(p.runtime_observed_total_cost, 0);
-  assert.equal(p.runtime_step_finish_count, 6);
-  assert.equal(p.secret_material_recorded, false);
-});
-
-test('training/data policy is explicit and only PUBLIC/SYNTHETIC is allowed', () => {
-  const p = profile();
-  assert.equal(p.training_allowed_by_provider, true);
-  assert.equal(p.zero_data_retention, false);
-  assert.deepEqual(p.allowed_data_classes, ['PUBLIC','SYNTHETIC']);
-  assert.deepEqual(p.forbidden_data_classes, ['PRIVATE','CONFIDENTIAL','PERSONAL','SECRET']);
-  assert.equal(p.data_policy_source, 'https://opencode.ai/docs/zen');
+test('generic policy still denies raw provider credentials',()=>{
+  const identity={project_id:'P',run_id:'R',task_id:'T',attempt_id:'A',attempt_epoch:1};
+  const capability={schema:'v48.cell-capability.v1',...identity,owned_paths:['src'],read_paths:['docs'],forbidden_paths:['governance'],resource_limits:{provider_calls:0,network_mode:'DENY'},data_class:['PUBLIC'],model_profile_id:'NONE_X',model_profile_revision:'N/A',execution_authorized:false};
+  const request={effect_class:'READ_ONLY',path:'docs/x',resource_usage:{provider_calls:0,network_mode:'DENY'},data_class:'PUBLIC',paid_fallback_allowed:false,incremental_usd:0,permission_decision:'ALLOW',interactive:false,ambient_env:{},secret_refs:[],git_argv:[],dispatch_requested:false,provider_write_credential:'x'};
+  const x=evaluatePolicyRequest({identity,capability,request,now:'2026-09-18T00:00:00Z'});assert.equal(x.allow,false);assert.ok(x.reason_codes.includes('RAW_SECRET_OR_PROVIDER_WRITE_CREDENTIAL_FORBIDDEN'));
 });

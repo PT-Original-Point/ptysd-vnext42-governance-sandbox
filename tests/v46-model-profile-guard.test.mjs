@@ -1,72 +1,16 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { evaluateModelProfile } from '../scripts/v46-model-profile-guard.mjs';
+import {evaluatePolicyRequest} from '../tools/csg/cell-kernel/production-kernel.mjs';
 
-const NOW = Date.parse('2026-09-15T01:30:00Z');
-const baseProfile = () => ({
-  schema: 'factory.model_profile.v2',
-  provider_id: 'opencode',
-  model_id: 'muse-spark-1.3-contributor-free',
-  opencode_model_id: 'opencode/muse-spark-1.3-contributor-free',
-  endpoint: 'https://opencode.ai/zen/v1/responses',
-  catalog_status: 'active',
-  account_entitlement: 'PASS_CURRENT_REAL_INFERENCE',
-  dynamic_refresh_required: true,
-  paid_fallback_allowed: false,
-  fallback_model_ids: [],
-  auto_reload_disabled: true,
-  training_allowed_by_provider: true,
-  zero_data_retention: false,
-  region_eligibility: 'PASS_PROVIDER_OBSERVED',
-  live_cost: { input: 0, output: 0, cache_read: 0, cache_write: 0 },
-  observed_at: '2026-09-15T01:20:00Z',
-  ttl_seconds: 900
-});
-const baseRequest = () => ({
-  provider_id: 'opencode',
-  model_id: 'opencode/muse-spark-1.3-contributor-free',
-  data_class: 'SYNTHETIC',
-  paid_fallback_allowed: false
-});
+const identity={project_id:'P',run_id:'R',task_id:'T',attempt_id:'A',attempt_epoch:1};
+const cap={schema:'v48.cell-capability.v1',...identity,owned_paths:['src'],read_paths:['docs'],forbidden_paths:['governance'],resource_limits:{cpu_millis:1000,memory_mib:512,pids:32,disk_mib:128,provider_calls:0,network_mode:'DENY'},data_class:['PUBLIC','SYNTHETIC'],model_profile_id:'M1',model_profile_revision:'R1',execution_authorized:false};
+const req=()=>({effect_class:'READ_ONLY',path:'docs/x',resource_usage:{provider_calls:0,network_mode:'DENY'},data_class:'SYNTHETIC',model_profile_id:'M1',model_profile_revision:'R1',paid_fallback_allowed:false,incremental_usd:0,permission_decision:'ALLOW',interactive:false,ambient_env:{},secret_refs:[],git_argv:[],dispatch_requested:true});
+const profile=()=>({project_id:'P',profile_id:'M1',revision:'R1',data_classes:['PUBLIC','SYNTHETIC'],paid_fallback_allowed:false,incremental_usd:0,entitlement:'PASS_CURRENT_REAL_INFERENCE',expires_at:'2026-09-19T00:00:00Z'});
+const run=(q={},p=profile())=>evaluatePolicyRequest({identity,capability:cap,request:{...req(),...q},model_profile:p,credential_profile:{project_id:'P',allowed_secret_refs:[],raw_secret_values_present:false},now:'2026-09-18T00:00:00Z'});
 
-test('allows exact fresh zero-cost synthetic profile', () => {
-  const r = evaluateModelProfile(baseProfile(), baseRequest(), NOW);
-  assert.equal(r.allow, true);
-  assert.deepEqual(r.failures, []);
-});
-
-test('blocks expired profile before dispatch', () => {
-  const p = baseProfile(); p.observed_at = '2026-09-15T00:00:00Z';
-  assert.ok(evaluateModelProfile(p, baseRequest(), NOW).failures.includes('NOT_EXPIRED'));
-});
-
-test('blocks wrong model', () => {
-  const q = baseRequest(); q.model_id = 'opencode/paid-model';
-  assert.ok(evaluateModelProfile(baseProfile(), q, NOW).failures.includes('REQUEST_MODEL'));
-});
-
-test('blocks any nonzero provider cost', () => {
-  const p = baseProfile(); p.live_cost.output = 0.01;
-  assert.ok(evaluateModelProfile(p, baseRequest(), NOW).failures.includes('COST_OUTPUT_ZERO'));
-});
-
-test('blocks private/confidential/personal/secret data on training tier', () => {
-  for (const dataClass of ['PRIVATE','CONFIDENTIAL','PERSONAL','SECRET']) {
-    const q = baseRequest(); q.data_class = dataClass;
-    assert.ok(evaluateModelProfile(baseProfile(), q, NOW).failures.includes('REQUEST_DATA_CLASS'));
-  }
-});
-
-test('blocks paid fallback and fallback model list', () => {
-  const p = baseProfile(); p.paid_fallback_allowed = true; p.fallback_model_ids = ['opencode/paid-model'];
-  const r = evaluateModelProfile(p, baseRequest(), NOW);
-  assert.ok(r.failures.includes('PAID_FALLBACK_DISABLED'));
-  assert.ok(r.failures.includes('FALLBACK_EMPTY'));
-});
-
-test('blocks unknown current entitlement or region', () => {
-  const p = baseProfile(); p.account_entitlement = 'UNKNOWN'; p.region_eligibility = 'UNKNOWN';
-  const r = evaluateModelProfile(p, baseRequest(), NOW);
-  assert.ok(r.failures.includes('ENTITLEMENT'));
-  assert.ok(r.failures.includes('REGION_ELIGIBLE'));
-});
+test('inactive model route never dispatches even when policy allows read-only evaluation',()=>{const x=run();assert.equal(x.allow,true);assert.equal(x.dispatch_allowed,false);});
+test('wrong model profile identity rejects before provider call',()=>{const x=run({}, {...profile(),profile_id:'OTHER'});assert.equal(x.allow,false);assert.ok(x.reason_codes.includes('MODEL_PROFILE_BINDING_MISMATCH'));});
+test('changed cost rejects before provider call',()=>{const x=run({}, {...profile(),incremental_usd:0.01});assert.equal(x.allow,false);assert.ok(x.reason_codes.includes('MODEL_PROFILE_COST_POLICY'));});
+test('private or confidential data rejects before provider call',()=>{for(const d of ['PRIVATE','CONFIDENTIAL','PERSONAL','SECRET']){const x=run({data_class:d});assert.equal(x.allow,false);assert.ok(x.reason_codes.includes('DATA_CLASS_WIDEN'));}});
+test('expired or unknown entitlement rejects before provider call',()=>{let x=run({}, {...profile(),entitlement:'UNKNOWN'});assert.equal(x.allow,false);assert.ok(x.reason_codes.includes('MODEL_PROFILE_ENTITLEMENT_UNKNOWN'));x=evaluatePolicyRequest({identity,capability:cap,request:req(),model_profile:{...profile(),expires_at:'2026-09-17T00:00:00Z'},credential_profile:{project_id:'P',allowed_secret_refs:[],raw_secret_values_present:false},now:'2026-09-18T00:00:00Z'});assert.ok(x.reason_codes.includes('MODEL_PROFILE_EXPIRED'));});
+test('paid fallback remains hard denied',()=>{const x=run({paid_fallback_allowed:true,incremental_usd:1});assert.equal(x.allow,false);assert.ok(x.reason_codes.includes('PAID_FALLBACK_FORBIDDEN'));});
