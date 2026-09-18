@@ -1,0 +1,125 @@
+name: HANYAO Google Ads gcloud read-only probe
+
+on:
+  push:
+    branches:
+      - probe/hanyao-google-ads-gcloud-20260918
+    paths:
+      - ".github/workflows/hanyao-google-ads-gcloud-readonly.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: hanyao-google-ads-gcloud-readonly
+  cancel-in-progress: false
+
+jobs:
+  probe:
+    runs-on:
+      group: PTYSD-V46-CONTROL-TRUSTED
+      labels: ptysd-governance-v45
+    timeout-minutes: 10
+    steps:
+      - name: Verify trusted runner identity
+        shell: cmd
+        run: |
+          if not "%RUNNER_NAME%"=="PTYSD-V45-CONTROL-01" exit /b 41
+          if /I not "%RUNNER_OS%"=="Windows" exit /b 42
+          echo TRUSTED_RUNNER_IDENTITY=PASS
+
+      - name: Probe existing gcloud impersonation and Google Ads SearchStream
+        shell: powershell
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $serviceAccount = 'xusen-data-manager-uploader@xusen-ads-conversion.iam.gserviceaccount.com'
+          $scope = 'https://www.googleapis.com/auth/adwords'
+          $customerId = '4801404246'
+          $apiUrl = "https://googleads.googleapis.com/v25/customers/$customerId/googleAds:searchStream"
+
+          $gcloud = Get-Command gcloud.cmd -ErrorAction SilentlyContinue
+          if (-not $gcloud) { $gcloud = Get-Command gcloud.exe -ErrorAction SilentlyContinue }
+          if (-not $gcloud) { throw 'GCLOUD_NOT_FOUND' }
+          Write-Host 'GCLOUD_FOUND=true'
+          Write-Host ('HOST_EXECUTION_IDENTITY=' + [Security.Principal.WindowsIdentity]::GetCurrent().Name)
+
+          $candidatePaths = New-Object System.Collections.Generic.List[string]
+          if ($env:CLOUDSDK_CONFIG) { $candidatePaths.Add($env:CLOUDSDK_CONFIG) }
+          $candidatePaths.Add('C:\Windows\ServiceProfiles\NetworkService\AppData\Roaming\gcloud')
+          $candidatePaths.Add('C:\Windows\System32\config\systemprofile\AppData\Roaming\gcloud')
+          foreach ($profile in @(Get-ChildItem -LiteralPath 'C:\Users' -Directory -ErrorAction SilentlyContinue)) {
+            $candidatePaths.Add((Join-Path $profile.FullName 'AppData\Roaming\gcloud'))
+          }
+
+          $unique = @($candidatePaths | Select-Object -Unique | Where-Object { Test-Path -LiteralPath $_ -ErrorAction SilentlyContinue })
+          Write-Host ('GCLOUD_CONFIG_CANDIDATES=' + $unique.Count)
+          if ($unique.Count -eq 0) { throw 'GCLOUD_CONFIG_NOT_FOUND' }
+
+          $token = $null
+          $selectedIndex = -1
+          $attempt = 0
+          foreach ($configPath in $unique) {
+            $attempt += 1
+            $env:CLOUDSDK_CONFIG = $configPath
+            $errFile = Join-Path $env:RUNNER_TEMP ("gcloud-impersonation-$attempt.stderr")
+            Remove-Item -LiteralPath $errFile -Force -ErrorAction SilentlyContinue
+            $raw = @(& $gcloud.Source auth print-access-token "--impersonate-service-account=$serviceAccount" "--scopes=$scope" --quiet 2>$errFile)
+            $exit = $LASTEXITCODE
+            $candidate = ($raw -join '').Trim()
+            $valid = ($exit -eq 0 -and $candidate.Length -ge 80 -and $candidate -notmatch '\s')
+            Write-Host ("GCLOUD_CONFIG_$attempt" + '_IMPERSONATION=' + $(if($valid){'PASS'}else{'FAIL'}))
+            if ($valid) {
+              $token = $candidate
+              $selectedIndex = $attempt
+              break
+            }
+            Remove-Item -LiteralPath $errFile -Force -ErrorAction SilentlyContinue
+          }
+
+          if (-not $token) { throw 'GOOGLE_ADS_IMPERSONATION_UNAVAILABLE_ON_RUNNER' }
+          Write-Host ('GCLOUD_IMPERSONATION=PASS')
+          Write-Host ('GCLOUD_SELECTED_CONFIG_INDEX=' + $selectedIndex)
+          Write-Host ('ACCESS_TOKEN_PRINTED=false')
+
+          $headers = @{
+            Authorization = "Bearer $token"
+            'login-customer-id' = $customerId
+          }
+          $body = @{
+            query = 'SELECT customer.id, customer.descriptive_name FROM customer LIMIT 1'
+          } | ConvertTo-Json -Compress
+
+          try {
+            $response = Invoke-WebRequest -UseBasicParsing -Method Post -Uri $apiUrl -Headers $headers -ContentType 'application/json' -Body $body
+            $parsed = $response.Content | ConvertFrom-Json
+            $chunks = @($parsed).Count
+            $rows = 0
+            foreach ($chunk in @($parsed)) {
+              if ($chunk.results) { $rows += @($chunk.results).Count }
+            }
+            Write-Host ('GOOGLE_ADS_HTTP_STATUS=' + [int]$response.StatusCode)
+            Write-Host ('GOOGLE_ADS_SEARCHSTREAM_CHUNKS=' + $chunks)
+            Write-Host ('GOOGLE_ADS_SEARCHSTREAM_ROWS=' + $rows)
+            Write-Host 'GOOGLE_ADS_READONLY_PROBE=PASS'
+          } catch {
+            $status = 'UNKNOWN'
+            $providerCode = 'UNKNOWN'
+            $providerStatus = 'UNKNOWN'
+            if ($_.Exception.Response) {
+              try { $status = [int]$_.Exception.Response.StatusCode } catch {}
+              try {
+                $stream = $_.Exception.Response.GetResponseStream()
+                $reader = New-Object IO.StreamReader($stream)
+                $payload = $reader.ReadToEnd() | ConvertFrom-Json -ErrorAction Stop
+                if ($payload.error.code) { $providerCode = [string]$payload.error.code }
+                if ($payload.error.status) { $providerStatus = [string]$payload.error.status }
+              } catch {}
+            }
+            Write-Host ('GOOGLE_ADS_HTTP_STATUS=' + $status)
+            Write-Host ('GOOGLE_ADS_PROVIDER_CODE=' + $providerCode)
+            Write-Host ('GOOGLE_ADS_PROVIDER_STATUS=' + $providerStatus)
+            throw 'GOOGLE_ADS_READONLY_PROBE_FAILED'
+          } finally {
+            $token = $null
+            Remove-Variable token -ErrorAction SilentlyContinue
+          }
