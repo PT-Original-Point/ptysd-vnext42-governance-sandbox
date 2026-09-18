@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import {validateBoundedContract} from '../../scripts/v46-bounded-driver.mjs';
+import {validateBoundedContract} from '../../tools/csg/cell-kernel/legacy-contract-compat.mjs';
 import {V47_SCHEMA,CANONICALIZER_VERSION,MAX_ACTIVE_WINDOW,compileTaskGraph,validateVersionedContract,parseContractJson,assertCandidatePromotionBinding,consumeRootBudget,assertReplanPreservesRequirements} from '../../scripts/v47-task-graph.mjs';
 
 const D='sha256:'+'a'.repeat(64), D2='sha256:'+'b'.repeat(64), G='1'.repeat(40), T='2'.repeat(40);

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { evaluatePolicyRequest } from './policy-middleware.mjs';
+import { evaluatePolicyRequest } from '../policy-middleware.mjs';
 
 const identity={project_id:'P',run_id:'R',task_id:'T',attempt_id:'A',attempt_epoch:1};
 const capability={schema:'v48.cell-capability.v1',...identity,owned_paths:['src'],read_paths:['docs'],forbidden_paths:['governance'],resource_limits:{cpu_millis:1000,memory_mib:512,pids:32,disk_mib:128,provider_calls:0,network_mode:'DENY'},data_class:['PUBLIC','SYNTHETIC'],model_profile_id:'M1',model_profile_revision:'R1',execution_authorized:false};

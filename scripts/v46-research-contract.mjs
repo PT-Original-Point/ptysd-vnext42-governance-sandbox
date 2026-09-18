@@ -1,6 +1,6 @@
 import { createHash } from 'node:crypto';
 import { evaluateModelProfile } from './v46-model-profile-guard.mjs';
-import { validateBoundedContract } from './v46-bounded-driver.mjs';
+import { validateBoundedContract } from '../tools/csg/cell-kernel/legacy-contract-compat.mjs';
 
 const ALLOWED_DATA_CLASSES = new Set(['PUBLIC', 'SYNTHETIC']);
 const MAX = Object.freeze({ queries: 24, sources: 40, branches: 4, depth: 2, wall: 60 });
