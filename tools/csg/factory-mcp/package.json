@@ -1,9 +1,9 @@
 {
   "name": "@ptysd/factory-mcp",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": true,
   "type": "module",
-  "description": "PTYSD Factory MCP host control with SYSTEM-brokered PowerShell execution.",
+  "description": "PTYSD Factory MCP host control with SYSTEM-brokered PowerShell execution and preflight self-test.",
   "engines": {
     "node": ">=20"
   },
