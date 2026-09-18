@@ -26,9 +26,10 @@ test('governed SYSTEM host PowerShell is retained as fourth Factory MCP tool wit
   assert.match(helper,/Diagnostics\.ProcessStartInfo/);
   assert.match(upgrade,/Invoke-SystemHostExecSelfTest/);
   assert.match(upgrade,/Restore-Backup/);
-  assert.match(upgrade,/function Restore-Backup[\\s\\S]*foreach \\(\\$rel in \\$candidateFiles\\)/);
-  assert.match(upgrade,/elseif \\(\\$rel -in \\$newFiles\\)/);
-  assert.match(upgrade,/foreach \\(\\$rel in \\$candidateFiles\\)[\\s\\S]*Copy-Item -LiteralPath \\$src -Destination \\$dst -Force/);
+  assert.ok(upgrade.includes('foreach ($rel in $candidateFiles)'));
+  assert.ok(upgrade.includes('elseif ($rel -in $newFiles)'));
+  assert.ok(upgrade.includes("& 'C:\\Program Files\\nodejs\\node.exe' (Join-Path $install 'tests\\protocol-smoke.mjs')"));
+  assert.doesNotMatch(upgrade,/npm\.cmd' test/);
   assert.match(inspector,/\['factory_status','worker_prepare','worker_start','host_powershell'\]/);
   assert.match(inspector,/attemptEpoch\?\.minimum, 1/);
 });

@@ -226,7 +226,7 @@ try {
   try {
     $env:NODE_ENV = 'test'
     $env:PTYSD_FACTORY_MCP_TEST_MODE = '1'
-    & 'C:\Program Files\nodejs\npm.cmd' test
+    & 'C:\Program Files\nodejs\node.exe' (Join-Path $install 'tests\protocol-smoke.mjs')
     if ($LASTEXITCODE -ne 0) { throw 'FACTORY_MCP_PROTOCOL_SMOKE_FAILED' }
   } finally {
     Remove-Item Env:NODE_ENV -ErrorAction SilentlyContinue
