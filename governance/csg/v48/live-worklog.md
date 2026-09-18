@@ -470,3 +470,13 @@ Execute the exact trusted capsule through the existing bounded-driver `workflow_
 - No second canonical store, new listener, credential topology, paid fallback, or public MCP surface growth exists in the accepted path.
 - Therefore no OpenHands/Gas City/ToolHive/sandbox-agent challenger is installed or executed. No `PATTERN_DONOR_ONLY` or promotion verdict is fabricated when the gate is not triggered.
 - Candidate checkpoint: `V48-D13-ACCEPTED-040`; next is D14 bounded-scale condition evaluation.
+
+
+### V48-D14 bounded-scale condition evaluation
+
+- D12 N=1 is PASS, but V4.7 W47-21 and W47-22 gates are not satisfied, so D14 is `DEFERRED_NOT_ACTIVATED`.
+- Canonical run `V47-CONSTRUCTION-001` revision 3 is still `RUNNING` at `active_task_id=W47-06`, with STOP=false and unresolved operations empty.
+- W47-21 expected throughput/capacity artifacts and W47-22 shadow workload/permit/capacity artifacts are absent from canonical; `HG47-SHADOW` is not authorized.
+- coding_parallelism_active remains 1; multi-project runtime, N2+, Host VM and Worker dispatch remain inactive.
+- Therefore V4.8 final acceptance treats required scale shadow as not applicable because scale was never activated; no scale PASS is fabricated.
+- Candidate checkpoint: `V48-D14-ACCEPTED-041`; next is D15 deletion/promotion/final acceptance.
