@@ -85,7 +85,7 @@ case "$CMD" in
     test "$baseline_rc" -ne 0 || fail BASELINE_NOT_FAILING 49
     test_hash="$("$GIT" hash-object "$TEST")"; pkg_hash="$("$GIT" hash-object "$PKG")"
     cat > opencode.json <<'EOF'
-{"$schema":"https://opencode.ai/config.json","model":"opencode/muse-spark-1.3-contributor-free","small_model":"opencode/muse-spark-1.3-contributor-free","agent":{"title":{"disable":true}},"compaction":{"auto":false,"prune":false},"permission":{"*":"ask","read":{"*":"deny","fixtures/v49-live-n1/src/slugify.mjs":"allow","fixtures/v49-live-n1/test/slugify.test.mjs":"allow","fixtures/v49-live-n1/package.json":"allow"},"glob":"ask","grep":"ask","edit":{"*":"deny","fixtures/v49-live-n1/src/slugify.mjs":"allow"}}}
+{"$schema":"https://opencode.ai/config.json","model":"opencode/muse-spark-1.3-contributor-free","small_model":"opencode/muse-spark-1.3-contributor-free","agent":{"title":{"disable":true}},"compaction":{"auto":false,"prune":false},"permission":{"*":"deny","read":{"*":"deny","fixtures/v49-live-n1/src/slugify.mjs":"allow","fixtures/v49-live-n1/test/slugify.test.mjs":"allow","fixtures/v49-live-n1/package.json":"allow"},"glob":"deny","grep":"deny","edit":{"*":"deny","fixtures/v49-live-n1/src/slugify.mjs":"allow"}}}
 EOF
     cfg_hash="$(sha256sum opencode.json | awk '{print $1}')"
     : > "$LOG"

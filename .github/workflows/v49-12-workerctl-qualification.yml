@@ -9,6 +9,7 @@ on:
       - v49-12-workerctl-diagnostic-r4-20260919
       - v49-12-opencode-permission-fingerprint-r5-20260919
       - v49-12-opencode-title-compaction-repair-r6-20260919
+      - v49-12-opencode-headless-deny-r7-20260919
       - v49/accepted-source
     paths:
       - "scripts/ptysd-workerctl-v49-n1.sh"
