@@ -5,6 +5,7 @@ on:
     branches:
       - v49-12-workerctl-runtime-prep-20260919
       - v49-12-workerctl-runtime-repair-r2-20260919
+      - v49-12-workerctl-controller-invoke-r3-20260919
       - v49/accepted-source
     paths:
       - "scripts/ptysd-workerctl-v49-n1.sh"
