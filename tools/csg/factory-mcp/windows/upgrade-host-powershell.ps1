@@ -101,9 +101,89 @@ function Write-AtomicJsonFile {
   Move-Item -LiteralPath $tmp -Destination $Path -Force
 }
 
+function Get-TunnelControlPlanePollStatus {
+  param([Parameter(Mandatory)][string]$BaseUrl)
+
+  $result = [ordered]@{
+    status = 'unknown'
+    mode = 'none'
+    state = $null
+    reason_code = $null
+    observed_at = $null
+    last_success_unix_seconds = $null
+  }
+
+  try {
+    $control = Invoke-RestMethod -UseBasicParsing -Method Get -Uri ($BaseUrl + '/health/control-plane') -TimeoutSec 2
+    $result.mode = 'component_endpoint'
+    if ($control.PSObject.Properties.Name -contains 'status') { $result.status = [string]$control.status }
+    if ($control.PSObject.Properties.Name -contains 'state') { $result.state = [string]$control.state }
+    if ($control.PSObject.Properties.Name -contains 'reason_code') { $result.reason_code = [string]$control.reason_code }
+    if ($control.PSObject.Properties.Name -contains 'observed_at') { $result.observed_at = [string]$control.observed_at }
+    return $result
+  } catch {
+    $statusCode = $null
+    try {
+      if ($_.Exception.Response -and $_.Exception.Response.StatusCode) {
+        $statusCode = [int]$_.Exception.Response.StatusCode
+      }
+    } catch {}
+    if ($statusCode -and $statusCode -ne 404) {
+      $result.mode = 'component_endpoint'
+      $result.status = 'error'
+      $result.reason_code = ('CONTROL_PLANE_ENDPOINT_HTTP_' + [string]$statusCode)
+      return $result
+    }
+  }
+
+  try {
+    $metrics = Invoke-WebRequest -UseBasicParsing -Method Get -Uri ($BaseUrl + '/metrics') -TimeoutSec 2
+    if ([int]$metrics.StatusCode -ne 200) {
+      $result.mode = 'metrics_compat'
+      $result.status = 'error'
+      $result.reason_code = ('METRICS_HTTP_' + [string][int]$metrics.StatusCode)
+      return $result
+    }
+    $pattern = '(?m)^commands_poll_last_successful_timestamp_seconds(?:\{[^}]*\})?\s+([0-9eE+.\-]+)\s*$'
+    $match = [regex]::Match([string]$metrics.Content, $pattern)
+    $result.mode = 'metrics_compat'
+    if (-not $match.Success) {
+      $result.reason_code = 'CONTROL_PLANE_POLL_METRIC_MISSING'
+      return $result
+    }
+    $value = [Convert]::ToDouble($match.Groups[1].Value, [Globalization.CultureInfo]::InvariantCulture)
+    $result.last_success_unix_seconds = $value
+    if ($value -gt 0) {
+      $result.status = 'ok'
+      $result.state = 'poll_success_observed'
+      try {
+        $result.observed_at = [DateTimeOffset]::FromUnixTimeSeconds([int64][Math]::Floor($value)).UtcDateTime.ToString('o')
+      } catch {}
+    } else {
+      $result.reason_code = 'NO_SUCCESSFUL_CONTROL_PLANE_POLL_OBSERVED'
+    }
+    return $result
+  } catch {
+    $result.mode = 'metrics_compat'
+    $result.status = 'error'
+    $result.reason_code = 'CONTROL_PLANE_HEALTH_UNAVAILABLE'
+    return $result
+  }
+}
+
 function Wait-TunnelReady([int]$Seconds) {
   $deadline = [DateTime]::UtcNow.AddSeconds($Seconds)
-  $last = [ordered]@{ task_state=$null; live=$false; ready=$false; control_plane_status='unknown'; control_plane_state=$null }
+  $last = [ordered]@{
+    task_state = $null
+    live = $false
+    ready = $false
+    control_plane_status = 'unknown'
+    control_plane_probe_mode = 'none'
+    control_plane_state = $null
+    control_plane_reason_code = $null
+    control_plane_observed_at = $null
+    control_plane_last_success_unix_seconds = $null
+  }
   do {
     try { $last.task_state = (Get-ScheduledTask -TaskName $tunnelTask).State.ToString() }
     catch { $last.task_state = 'MISSING' }
@@ -119,7 +199,11 @@ function Wait-TunnelReady([int]$Seconds) {
     $last.live = $false
     $last.ready = $false
     $last.control_plane_status = 'unknown'
+    $last.control_plane_probe_mode = 'none'
     $last.control_plane_state = $null
+    $last.control_plane_reason_code = $null
+    $last.control_plane_observed_at = $null
+    $last.control_plane_last_success_unix_seconds = $null
     if ($baseUrl) {
       try {
         $healthz = Invoke-WebRequest -UseBasicParsing -Method Get -Uri ($baseUrl + '/healthz') -TimeoutSec 2
@@ -129,11 +213,13 @@ function Wait-TunnelReady([int]$Seconds) {
         $readyz = Invoke-WebRequest -UseBasicParsing -Method Get -Uri ($baseUrl + '/readyz') -TimeoutSec 2
         $last.ready = ([int]$readyz.StatusCode -eq 200)
       } catch {}
-      try {
-        $control = Invoke-RestMethod -UseBasicParsing -Method Get -Uri ($baseUrl + '/health/control-plane') -TimeoutSec 2
-        if ($control.PSObject.Properties.Name -contains 'status') { $last.control_plane_status = [string]$control.status }
-        if ($control.PSObject.Properties.Name -contains 'state') { $last.control_plane_state = [string]$control.state }
-      } catch {}
+      $poll = Get-TunnelControlPlanePollStatus -BaseUrl $baseUrl
+      $last.control_plane_status = [string]$poll.status
+      $last.control_plane_probe_mode = [string]$poll.mode
+      $last.control_plane_state = $poll.state
+      $last.control_plane_reason_code = $poll.reason_code
+      $last.control_plane_observed_at = $poll.observed_at
+      $last.control_plane_last_success_unix_seconds = $poll.last_success_unix_seconds
     }
 
     if ($last.task_state -eq 'Running' -and $last.live -and $last.ready -and $last.control_plane_status -eq 'ok') {

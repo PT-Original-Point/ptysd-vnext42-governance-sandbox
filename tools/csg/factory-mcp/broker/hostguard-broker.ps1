@@ -123,6 +123,76 @@ function Get-HostExecLaneStatus {
 }
 
 
+function Get-TunnelControlPlanePollStatus {
+  param([Parameter(Mandatory)][string]$BaseUrl)
+
+  $result = [ordered]@{
+    status = 'unknown'
+    mode = 'none'
+    state = $null
+    reason_code = $null
+    observed_at = $null
+    last_success_unix_seconds = $null
+  }
+
+  try {
+    $control = Invoke-RestMethod -UseBasicParsing -Method Get -Uri ($BaseUrl + '/health/control-plane') -TimeoutSec 2
+    $result.mode = 'component_endpoint'
+    if ($control.PSObject.Properties.Name -contains 'status') { $result.status = [string]$control.status }
+    if ($control.PSObject.Properties.Name -contains 'state') { $result.state = [string]$control.state }
+    if ($control.PSObject.Properties.Name -contains 'reason_code') { $result.reason_code = [string]$control.reason_code }
+    if ($control.PSObject.Properties.Name -contains 'observed_at') { $result.observed_at = [string]$control.observed_at }
+    return $result
+  } catch {
+    $statusCode = $null
+    try {
+      if ($_.Exception.Response -and $_.Exception.Response.StatusCode) {
+        $statusCode = [int]$_.Exception.Response.StatusCode
+      }
+    } catch {}
+    if ($statusCode -and $statusCode -ne 404) {
+      $result.mode = 'component_endpoint'
+      $result.status = 'error'
+      $result.reason_code = ('CONTROL_PLANE_ENDPOINT_HTTP_' + [string]$statusCode)
+      return $result
+    }
+  }
+
+  try {
+    $metrics = Invoke-WebRequest -UseBasicParsing -Method Get -Uri ($BaseUrl + '/metrics') -TimeoutSec 2
+    if ([int]$metrics.StatusCode -ne 200) {
+      $result.mode = 'metrics_compat'
+      $result.status = 'error'
+      $result.reason_code = ('METRICS_HTTP_' + [string][int]$metrics.StatusCode)
+      return $result
+    }
+    $pattern = '(?m)^commands_poll_last_successful_timestamp_seconds(?:\{[^}]*\})?\s+([0-9eE+.\-]+)\s*$'
+    $match = [regex]::Match([string]$metrics.Content, $pattern)
+    $result.mode = 'metrics_compat'
+    if (-not $match.Success) {
+      $result.reason_code = 'CONTROL_PLANE_POLL_METRIC_MISSING'
+      return $result
+    }
+    $value = [Convert]::ToDouble($match.Groups[1].Value, [Globalization.CultureInfo]::InvariantCulture)
+    $result.last_success_unix_seconds = $value
+    if ($value -gt 0) {
+      $result.status = 'ok'
+      $result.state = 'poll_success_observed'
+      try {
+        $result.observed_at = [DateTimeOffset]::FromUnixTimeSeconds([int64][Math]::Floor($value)).UtcDateTime.ToString('o')
+      } catch {}
+    } else {
+      $result.reason_code = 'NO_SUCCESSFUL_CONTROL_PLANE_POLL_OBSERVED'
+    }
+    return $result
+  } catch {
+    $result.mode = 'metrics_compat'
+    $result.status = 'error'
+    $result.reason_code = 'CONTROL_PLANE_HEALTH_UNAVAILABLE'
+    return $result
+  }
+}
+
 function Get-TunnelLaneStatus {
   $taskState = 'MISSING'
   $lastTaskResult = $null
@@ -145,10 +215,14 @@ function Get-TunnelLaneStatus {
 
   $live = $false
   $ready = $false
-  $controlStatus = 'unknown'
-  $controlState = $null
-  $controlReason = $null
-  $controlObservedAt = $null
+  $poll = [ordered]@{
+    status = 'unknown'
+    mode = 'none'
+    state = $null
+    reason_code = $null
+    observed_at = $null
+    last_success_unix_seconds = $null
+  }
   if ($baseUrl) {
     try {
       $healthz = Invoke-WebRequest -UseBasicParsing -Method Get -Uri ($baseUrl + '/healthz') -TimeoutSec 2
@@ -158,13 +232,7 @@ function Get-TunnelLaneStatus {
       $readyz = Invoke-WebRequest -UseBasicParsing -Method Get -Uri ($baseUrl + '/readyz') -TimeoutSec 2
       $ready = ([int]$readyz.StatusCode -eq 200)
     } catch {}
-    try {
-      $control = Invoke-RestMethod -UseBasicParsing -Method Get -Uri ($baseUrl + '/health/control-plane') -TimeoutSec 2
-      if ($control.PSObject.Properties.Name -contains 'status') { $controlStatus = [string]$control.status }
-      if ($control.PSObject.Properties.Name -contains 'state') { $controlState = [string]$control.state }
-      if ($control.PSObject.Properties.Name -contains 'reason_code') { $controlReason = [string]$control.reason_code }
-      if ($control.PSObject.Properties.Name -contains 'observed_at') { $controlObservedAt = [string]$control.observed_at }
-    } catch {}
+    $poll = Get-TunnelControlPlanePollStatus -BaseUrl $baseUrl
   }
 
   return [ordered]@{
@@ -173,10 +241,12 @@ function Get-TunnelLaneStatus {
     health_url_present = [bool]$baseUrl
     live = $live
     ready = $ready
-    control_plane_status = $controlStatus
-    control_plane_state = $controlState
-    control_plane_reason_code = $controlReason
-    control_plane_observed_at = $controlObservedAt
+    control_plane_status = [string]$poll.status
+    control_plane_probe_mode = [string]$poll.mode
+    control_plane_state = $poll.state
+    control_plane_reason_code = $poll.reason_code
+    control_plane_observed_at = $poll.observed_at
+    control_plane_last_success_unix_seconds = $poll.last_success_unix_seconds
   }
 }
 
