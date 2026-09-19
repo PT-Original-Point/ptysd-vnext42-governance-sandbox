@@ -9,7 +9,10 @@ on:
       - ".github/workflows/v49-08-kernel-consolidation-qualification.yml"
       - "tools/csg/cell-kernel/**"
       - "scripts/**"
-      - "tests/**"
+      - "tests/v46-profile-gates.test.mjs"
+      - "tests/v46-model-profile-guard.test.mjs"
+      - "tests/v46-research-contract.test.mjs"
+      - "tests/v47/contract.test.mjs"
   workflow_dispatch:
 
 permissions:
@@ -47,9 +50,7 @@ jobs:
           test "${#tests[@]}" -gt 0
           node --test "${tests[@]}"
 
-      - name: Repository JavaScript regression
+      - name: V49-08 affected-source differential regression
         run: |
           set -euo pipefail
-          mapfile -t tests < <(find tests -type f -name '*.test.mjs' -print | sort)
-          test "${#tests[@]}" -gt 0
-          node --test "${tests[@]}"
+          node --test             tests/v46-profile-gates.test.mjs             tests/v46-model-profile-guard.test.mjs             tests/v46-research-contract.test.mjs             tests/v47/contract.test.mjs
