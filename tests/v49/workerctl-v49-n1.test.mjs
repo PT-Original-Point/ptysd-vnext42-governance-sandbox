@@ -66,3 +66,11 @@ test('OpenCode free-tier fingerprint repair keeps tools visible without auto-app
 test('builder prompt still forbids shell network subagents and external directories',()=>{
   for(const token of ['Do not use shell','network tools','subagents','external directories']) assert.ok(s.includes(token));
 });
+
+
+test('OpenCode free-tier repair disables internal title and automatic compaction only',()=>{
+  assert.ok(s.includes('\"agent\":{\"title\":{\"disable\":true}}'));
+  assert.ok(s.includes('\"compaction\":{\"auto\":false,\"prune\":false}'));
+  assert.ok(s.includes('\"permission\":{\"*\":\"ask\"'));
+  assert.equal(s.includes('--auto'),false);
+});
