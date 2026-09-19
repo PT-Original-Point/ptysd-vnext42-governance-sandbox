@@ -42,6 +42,25 @@ jobs:
           set -e
           test "$rc" -eq 40
           grep -q '^V49_N1_FAIL=WRONG_USER$' probe.err
+      - name: Controller-argument fallback regression
+        shell: bash
+        run: |
+          set -euo pipefail
+          set +e
+          sh scripts/ptysd-workerctl-v49-n1.sh probe > arg-probe.out 2> arg-probe.err
+          rc=$?
+          set -e
+          test "$rc" -eq 40
+          grep -q '^V49_N1_FAIL=WRONG_USER        shell: bash
+        run: |
+          set -euo pipefail
+          test ! -e scripts/ptysd-workerctl-v45-z4-synthetic.sh
+          n="$(awk 'NF{n++} END{print n+0}' scripts/ptysd-workerctl-v49-n1.sh)"
+          test "$n" -le 128
+          echo "NEW_WORKERCTL_NONBLANK=$n"
+          echo "OLD_WORKERCTL_NONBLANK=89"
+          echo "RUNTIME_DELTA=$((n-89))"
+ arg-probe.err
       - name: Delete-first census
         shell: bash
         run: |
