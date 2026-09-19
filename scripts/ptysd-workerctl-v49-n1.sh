@@ -107,7 +107,7 @@ EOF
     cd "$WORK"
     printf 'BASE_HEAD='; "$GIT" rev-parse HEAD
     printf 'STATUS='; "$GIT" status --porcelain | tr '\n' ';'; printf '\n'
-    if test -f "$LOG"; then printf 'OBSERVED_RUN_COST='; run_cost; fi
+    if test -f "$LOG"; then printf 'OBSERVED_RUN_COST='; run_cost; printf 'RUN_LOG_BASE64='; base64 -w0 "$LOG"; printf '\n'; fi
     emit_candidate ;;
   v49-n1-clean)
     guard_user
