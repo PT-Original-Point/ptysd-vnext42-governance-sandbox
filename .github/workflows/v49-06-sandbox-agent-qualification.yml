@@ -46,10 +46,14 @@ jobs:
         working-directory: sandbox-agent
         run: pnpm install --frozen-lockfile
 
+      - name: Build TypeScript workspace dependencies
+        working-directory: sandbox-agent
+        run: |
+          pnpm --filter acp-http-client build
+          pnpm --filter @sandbox-agent/cli-shared build
+
       - name: Sandbox-agent TypeScript typecheck
         working-directory: sandbox-agent
-        env:
-          SKIP_OPENAPI_GEN: '1'
         run: pnpm --filter sandbox-agent typecheck
 
       - name: Focused mock-agent session integration
