@@ -48,3 +48,8 @@ test('forced-command environment expands instead of remaining literal',()=>{
 test('controller fallback argument is bounded by the same fixed command allowlist',()=>{
   assert.ok(s.includes('CMD="${SSH_ORIGINAL_COMMAND:-${1:-}}"'));
 });
+
+test('failed builder readback exposes only the synthetic run log as base64',()=>{
+  assert.ok(s.includes("RUN_LOG_BASE64="));
+  assert.ok(s.includes('base64 -w0 "$LOG"'));
+});
