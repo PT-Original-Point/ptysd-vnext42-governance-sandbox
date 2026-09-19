@@ -53,3 +53,16 @@ test('failed builder readback exposes only the synthetic run log as base64',()=>
   assert.ok(s.includes("RUN_LOG_BASE64="));
   assert.ok(s.includes('base64 -w0 "$LOG"'));
 });
+
+test('OpenCode free-tier fingerprint repair keeps tools visible without auto-approving them',()=>{
+  assert.ok(s.includes('"permission":{"*":"ask"'));
+  assert.ok(s.includes('"glob":"ask"'));
+  assert.ok(s.includes('"grep":"ask"'));
+  assert.equal(s.includes('--auto'),false);
+  assert.ok(s.includes('"read":{"*":"deny","fixtures/v49-live-n1/src/slugify.mjs":"allow","fixtures/v49-live-n1/test/slugify.test.mjs":"allow","fixtures/v49-live-n1/package.json":"allow"}'));
+  assert.ok(s.includes('"edit":{"*":"deny","fixtures/v49-live-n1/src/slugify.mjs":"allow"}'));
+});
+
+test('builder prompt still forbids shell network subagents and external directories',()=>{
+  for(const token of ['Do not use shell','network tools','subagents','external directories']) assert.ok(s.includes(token));
+});
