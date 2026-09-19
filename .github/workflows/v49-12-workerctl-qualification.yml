@@ -1,0 +1,43 @@
+name: V49-12 workerctl replacement qualification
+
+on:
+  push:
+    branches:
+      - v49-12-workerctl-runtime-prep-20260919
+      - v49/accepted-source
+    paths:
+      - "scripts/ptysd-workerctl-v49-n1.sh"
+      - "scripts/ptysd-workerctl-v45-z4-synthetic.sh"
+      - "tests/v49/workerctl-v49-n1.test.mjs"
+      - ".github/workflows/v49-12-workerctl-qualification.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  qualify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Parse workerctl
+        run: sh -n scripts/ptysd-workerctl-v49-n1.sh
+      - name: Static governance tests
+        run: node --test tests/v49/workerctl-v49-n1.test.mjs
+      - name: Delete-first census
+        shell: bash
+        run: |
+          set -euo pipefail
+          test ! -e scripts/ptysd-workerctl-v45-z4-synthetic.sh
+          n="$(awk 'NF{n++} END{print n+0}' scripts/ptysd-workerctl-v49-n1.sh)"
+          test "$n" -le 128
+          echo "NEW_WORKERCTL_NONBLANK=$n"
+          echo "OLD_WORKERCTL_NONBLANK=89"
+          echo "RUNTIME_DELTA=$((n-89))"
