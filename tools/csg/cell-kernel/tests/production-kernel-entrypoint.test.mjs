@@ -6,14 +6,16 @@ import {fileURLToPath} from 'node:url';
 import * as kernel from '../production-kernel.mjs';
 
 const expectedExports = [
-  'ADAPTER_ABI_VERSION','ADVISOR_AUTHORITY','ADVISOR_GUARD_VERSION','EFFECT_CLASSES','INTERFACE_PRECEDENCE',
-  'MAX_ATTEMPTS','MAX_TASKS','OBJECTIVE_TRIGGER_CODES','OPENCODE_CANARY_CANDIDATE','OPENCODE_VERIFIED_PIN',
-  'PACKET_LIMITS','POLICY_MIDDLEWARE_VERSION','REQUIRED_CANARY_CASES','STATUS_VIEWS','VERIFIER_BINDING_SCHEMA',
-  'admitVerifierOutcome','assertCapabilityCurrent','buildAdvisorPacket','compileCellCapability','computeVerifierBundleDigest',
-  'createAdapterInvocation','createJobSupervisor','createVerifierBindingReceipt','evaluateAdvisorPermit',
-  'evaluateObjectiveAdvisorTriggers','evaluateOpenCodePinPromotion','evaluatePolicyRequest','fetchResearchSourceSafely',
-  'normalizeAdapterResult','projectStatus','projectStatusSafe','selectNativeAdapter','supervisorDigest',
-  'validateBoundedContract','validateResearchArtifacts','validateResearchEnvelope','validateVerifierBindingReceipt',
+  'ADAPTER_ABI_VERSION','ADVISOR_AUTHORITY','ADVISOR_GUARD_VERSION','EFFECT_CLASSES','FACTORY_SPAN_NAMES','INTERFACE_PRECEDENCE',
+  'MAX_ATTEMPTS','MAX_TASKS','OBJECTIVE_TRIGGER_CODES','OPENINFERENCE_REFERENCE','OPENCODE_CANARY_CANDIDATE','OPENCODE_VERIFIED_PIN',
+  'OTEL_GENAI_REFERENCE','PACKET_LIMITS','POLICY_MIDDLEWARE_VERSION','REQUIRED_CANARY_CASES','STATUS_VIEWS',
+  'TELEMETRY_SCHEMA','TELEMETRY_VERSION','VERIFIER_BINDING_SCHEMA',
+  'admitVerifierOutcome','assertCapabilityCurrent','buildAdvisorPacket','classifyTelemetryBatch','compileCellCapability',
+  'computeVerifierBundleDigest','createAdapterInvocation','createJobSupervisor','createTelemetrySpan','createVerifierBindingReceipt',
+  'evaluateAdvisorPermit','evaluateObjectiveAdvisorTriggers','evaluateOpenCodePinPromotion','evaluatePolicyRequest','exportTelemetrySpan',
+  'fetchResearchSourceSafely','normalizeAdapterResult','projectStatus','projectStatusSafe','redactTelemetryAttributes',
+  'selectNativeAdapter','supervisorDigest','validateBoundedContract','validateResearchArtifacts','validateResearchEnvelope',
+  'validateVerifierBindingReceipt',
 ];
 
 const repoRoot = fileURLToPath(new URL('../../../../', import.meta.url));

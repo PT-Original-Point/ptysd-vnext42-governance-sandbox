@@ -1,0 +1,52 @@
+name: V49-09 telemetry qualification
+
+on:
+  push:
+    branches:
+      - v49-09-telemetry-plane-20260919
+      - v49/accepted-source
+    paths:
+      - ".github/workflows/v49-09-telemetry-qualification.yml"
+      - "tools/csg/cell-kernel/telemetry-plane.mjs"
+      - "tools/csg/cell-kernel/production-kernel.mjs"
+      - "tools/csg/cell-kernel/tests/telemetry-plane.test.mjs"
+      - "tools/csg/cell-kernel/tests/production-kernel-entrypoint.test.mjs"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  qualify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout exact candidate
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: V49-09 telemetry differential regression
+        run: |
+          set -euo pipefail
+          node --test             tools/csg/cell-kernel/tests/telemetry-plane.test.mjs             tools/csg/cell-kernel/tests/production-kernel-entrypoint.test.mjs
+
+      - name: Cell kernel full regression
+        run: |
+          set -euo pipefail
+          mapfile -t tests < <(find tools/csg/cell-kernel/tests -type f -name '*.test.mjs' -print | sort)
+          test "${#tests[@]}" -gt 0
+          node --test "${tests[@]}"
+
+      - name: No telemetry runtime authority or daemon dependency
+        run: |
+          set -euo pipefail
+          test "$(grep -c '^import ' tools/csg/cell-kernel/telemetry-plane.mjs)" -eq 1
+          grep -q "from 'node:crypto'" tools/csg/cell-kernel/telemetry-plane.mjs
+          ! grep -Eqi 'opentelemetry/sdk|collector|sqlite|postgres|redis|daemon|canonical.*=.*telemetry' tools/csg/cell-kernel/telemetry-plane.mjs
