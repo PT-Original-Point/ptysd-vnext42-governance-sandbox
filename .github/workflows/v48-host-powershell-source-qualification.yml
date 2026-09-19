@@ -60,7 +60,12 @@ jobs:
             $tokens = $null
             $errors = $null
             [Management.Automation.Language.Parser]::ParseFile((Resolve-Path $path),[ref]$tokens,[ref]$errors) | Out-Null
-            if ($errors.Count -ne 0) { throw "POWERSHELL_PARSE_FAILED:$path" }
+            if ($errors.Count -ne 0) {
+              foreach ($parseError in $errors) {
+                Write-Host ("POWERSHELL_PARSE_DETAIL path={0} line={1} column={2} message={3}" -f $path,$parseError.Extent.StartLineNumber,$parseError.Extent.StartColumnNumber,$parseError.Message)
+              }
+              throw "POWERSHELL_PARSE_FAILED:$path"
+            }
           }
           Write-Host 'V48_HOST_POWERSHELL_PARSE=PASS'
       - name: Install exact Factory MCP dependencies
