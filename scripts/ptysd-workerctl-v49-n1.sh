@@ -64,7 +64,7 @@ PY
 }
 case "$CMD" in
   probe)
-    guard_user; echo 'PTYSD_V49_N1_BRIDGE_OK'; printf 'HOSTNAME='; hostname ;;
+    guard_user; echo 'PTYSD_V49_N1_BRIDGE_OK'; printf 'HOSTNAME='; hostname; printf 'WORKERCTL_SHA256='; sha256sum "$0" | awk '{print $1}'; printf 'WORKERCTL_OWNER='; stat -c '%U:%G' "$0"; printf 'WORKERCTL_MODE='; stat -c '%a' "$0" ;;
   v49-n1-preflight)
     model_guard
     echo 'MODEL_ID=muse-spark-1.3-contributor-free'

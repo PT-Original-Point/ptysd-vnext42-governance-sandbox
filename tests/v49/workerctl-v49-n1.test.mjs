@@ -77,3 +77,8 @@ test('OpenCode free-tier repair disables internal title and automatic compaction
   assert.ok(s.includes('\"permission\":{\"*\":\"deny\"'));
   assert.equal(s.includes('--auto'),false);
 });
+
+test('probe exposes exact deployed workerctl identity without adding a new command',()=>{
+  for(const token of ['WORKERCTL_SHA256=','WORKERCTL_OWNER=','WORKERCTL_MODE=','sha256sum "$0"',"stat -c '%U:%G'","stat -c '%a'"]) assert.ok(s.includes(token),`missing self identity token ${token}`);
+  assert.equal((s.match(/probe\)/g) ?? []).length,1);
+});
