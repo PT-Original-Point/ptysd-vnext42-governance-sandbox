@@ -1,0 +1,71 @@
+name: V49 Factory MCP trusted host diagnostic
+
+on:
+  push:
+    branches:
+      - v45/factory-control
+    paths:
+      - ".github/workflows/v49-factory-mcp-host-diagnostic.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: v49-factory-mcp-host-diagnostic
+  cancel-in-progress: false
+
+jobs:
+  trusted-host-diagnostic:
+    runs-on: [self-hosted, windows, ptysd-governance-v45]
+    timeout-minutes: 5
+    steps:
+      - name: Read Factory MCP upgrade and service state
+        shell: powershell
+        run: |
+          $ErrorActionPreference='Stop'
+          if ($env:COMPUTERNAME -ne 'DESKTOP-1B6PD2P') { throw "UNEXPECTED_HOST:$env:COMPUTERNAME" }
+          $root='C:\ProgramData\PTYSD\MCP\FactoryMCP'
+          $upgradeRoot=Join-Path $root 'state\control-lane-upgrade-8e2975'
+          $git='C:\Program Files\Git\cmd\git.exe'
+          function TaskState([string]$name) {
+            $t=Get-ScheduledTask -TaskName $name -ErrorAction SilentlyContinue
+            if(-not $t){ return [ordered]@{name=$name;exists=$false} }
+            $i=Get-ScheduledTaskInfo -TaskName $name
+            return [ordered]@{
+              name=$name
+              exists=$true
+              state=$t.State.ToString()
+              last_task_result=[int]$i.LastTaskResult
+              last_run_time=$i.LastRunTime.ToUniversalTime().ToString('o')
+            }
+          }
+          function Blob([string]$rel) {
+            $p=Join-Path $root $rel
+            if(-not(Test-Path -LiteralPath $p)){ return 'MISSING' }
+            return ((& $git hash-object -- $p 2>$null | Out-String).Trim())
+          }
+          $statusPath=Join-Path $upgradeRoot 'status.json'
+          $healthPath=Join-Path $root 'state\broker-health.json'
+          $status=if(Test-Path -LiteralPath $statusPath){Get-Content -LiteralPath $statusPath -Raw}else{'MISSING'}
+          $health=if(Test-Path -LiteralPath $healthPath){Get-Content -LiteralPath $healthPath -Raw}else{'MISSING'}
+          $diag=[ordered]@{
+            schema='v49.factory-mcp.trusted-host-diagnostic.v1'
+            host=$env:COMPUTERNAME
+            run_as=[Security.Principal.WindowsIdentity]::GetCurrent().Name
+            upgrade_task=TaskState 'PTYSD-FactoryMCP-ControlLane-Upgrade-8e2975'
+            broker_task=TaskState 'PTYSD-FactoryMCP-HostGuard-Broker-V47'
+            tunnel_task=TaskState 'PTYSD-FactoryMCP-Tunnel-V47'
+            upgrade_status_json=$status
+            broker_health_json=$health
+            installed=[ordered]@{
+              index=Blob 'src\index.mjs'
+              invoke_hostguard=Blob 'src\invoke-hostguard.ps1'
+              hostguard_broker=Blob 'broker\hostguard-broker.ps1'
+              host_exec_helper=Blob 'broker\host-powershell-exec.ps1'
+              package_json=Blob 'package.json'
+              control_lane_source_test=Blob 'tests\control-lane-source-regression.mjs'
+              control_lane_live_test=Blob 'tests\control-lane-concurrency-smoke.mjs'
+            }
+            recorded_at_utc=[DateTime]::UtcNow.ToString('o')
+          }
+          Write-Output ('V49_FACTORY_MCP_DIAG=' + ($diag|ConvertTo-Json -Depth 10 -Compress))
