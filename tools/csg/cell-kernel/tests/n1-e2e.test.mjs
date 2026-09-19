@@ -2,12 +2,14 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
-import {compileCellCapability, assertCapabilityCurrent} from '../capability.mjs';
-import {createJobSupervisor} from '../mutation-supervisor.mjs';
-import {projectStatus, STATUS_VIEWS} from '../status-projection.mjs';
-import {selectNativeAdapter, createAdapterInvocation} from '../adapter-abi.mjs';
-import {computeVerifierBundleDigest, createVerifierBindingReceipt, admitVerifierOutcome} from '../verifier-binding.mjs';
-import {evaluateObjectiveAdvisorTriggers, evaluateAdvisorPermit} from '../advisor-guard.mjs';
+import {
+  compileCellCapability, assertCapabilityCurrent,
+  createJobSupervisor,
+  projectStatus, STATUS_VIEWS,
+  selectNativeAdapter, createAdapterInvocation,
+  computeVerifierBundleDigest, createVerifierBindingReceipt, admitVerifierOutcome,
+  evaluateObjectiveAdvisorTriggers, evaluateAdvisorPermit,
+} from '../production-kernel.mjs';
 
 const contract=JSON.parse(fs.readFileSync(new URL('../../../../governance/csg/v48/w47-06-execution-contract-v1.json',import.meta.url),'utf8'));
 const D=c=>`sha256:${c.repeat(64)}`;

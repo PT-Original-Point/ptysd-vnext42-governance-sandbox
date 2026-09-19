@@ -1,0 +1,56 @@
+name: V49-08 kernel consolidation qualification
+
+on:
+  push:
+    branches:
+      - v49-08-kernel-consolidation-20260919
+      - v49/accepted-source
+    paths:
+      - ".github/workflows/v49-08-kernel-consolidation-qualification.yml"
+      - "tools/csg/cell-kernel/**"
+      - "scripts/**"
+      - "tests/v46-profile-gates.test.mjs"
+      - "tests/v46-model-profile-guard.test.mjs"
+      - "tests/v46-research-contract.test.mjs"
+      - "tests/v47/contract.test.mjs"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  qualify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout exact candidate
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: One-entrypoint and deletion census
+        run: |
+          set -euo pipefail
+          test ! -e scripts/z5-run-opencode-synthetic.sh
+          echo '=== direct cell-kernel imports in normal-route scripts ==='
+          grep -R -n --include='*.mjs' 'cell-kernel/' scripts || true
+          echo '=== production-kernel consumers ==='
+          grep -R -n --exclude-dir=.git --exclude='*.json' 'production-kernel.mjs' scripts tests tools/csg/cell-kernel/tests || true
+
+      - name: Cell kernel full regression
+        run: |
+          set -euo pipefail
+          mapfile -t tests < <(find tools/csg/cell-kernel/tests -type f -name '*.test.mjs' -print | sort)
+          test "${#tests[@]}" -gt 0
+          node --test "${tests[@]}"
+
+      - name: V49-08 affected-source differential regression
+        run: |
+          set -euo pipefail
+          node --test             tests/v46-profile-gates.test.mjs             tests/v46-model-profile-guard.test.mjs             tests/v46-research-contract.test.mjs             tests/v47/contract.test.mjs
