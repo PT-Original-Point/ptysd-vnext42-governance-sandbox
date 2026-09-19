@@ -1,0 +1,38 @@
+name: V49-12 capability reissue g2
+
+on:
+  push:
+    branches:
+      - v49-12-capability-reissue-g2-20260919
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Compile exact generation-2 capability
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import {compileCellCapability,assertCapabilityCurrent} from './tools/csg/cell-kernel/production-kernel.mjs';
+          const contract=JSON.parse(fs.readFileSync('.qualification/v49-12/contract.json','utf8'));
+          const fence=JSON.parse(fs.readFileSync('.qualification/v49-12/fence-g2.json','utf8'));
+          const cap=compileCellCapability(contract,fence);
+          assertCapabilityCurrent(cap,fence);
+          if(!cap.execution_authorized) throw new Error('EXECUTION_NOT_AUTHORIZED');
+          if(cap.fence_generation!==2) throw new Error('GENERATION_DRIFT');
+          console.log('V49_G2_CAPABILITY='+JSON.stringify(cap));
+          NODE
