@@ -46,17 +46,43 @@ jobs:
         working-directory: gascity
         env:
           GC_BEADS: file
-        run: >
-          go test ./cmd/gc
-          -run '^(TestSupervisorBootOrderIsDeterministicWithoutPriority|TestReconcileCitiesClearsInitStatusOnRuntimeFailure|TestExplicitRestartCommandsPokeControllerWithoutPeriodicTick|TestCityRuntimeRecoverUnroutedWorkRoutes|TestCmdStopWaitsForStandaloneControllerExit)$'
-          -count=1 -timeout=15m
+        run: |
+          set -euo pipefail
+          go test -v ./cmd/gc             -run '^(TestSupervisorBootOrderIsDeterministicWithoutPriority|TestReconcileCitiesClearsInitStatusOnRuntimeFailure|TestExplicitRestartCommandsPokeControllerWithoutPeriodicTick|TestCityRuntimeRecoverUnroutedWorkRoutes|TestCmdStopWaitsForStandaloneControllerExit)$'             -count=1 -timeout=15m | tee /tmp/v49-gascity-supervisor-tests.log
+          runs="$(grep -c '^=== RUN' /tmp/v49-gascity-supervisor-tests.log || true)"
+          passes="$(grep -c '^--- PASS:' /tmp/v49-gascity-supervisor-tests.log || true)"
+          echo "GASCITY_SUPERVISOR_TEST_RUNS=$runs"
+          echo "GASCITY_SUPERVISOR_TEST_PASSES=$passes"
+          test "$runs" -ge 5
+          test "$passes" -ge 5
 
       - name: Gas City stale-owner reclaim contract
         working-directory: gascity
-        run: >
-          go test ./internal/beads
-          -run '^TestBdStoreReclaimStale'
-          -count=1 -timeout=10m
+        run: |
+          set -euo pipefail
+          go test -v ./internal/beads             -run '^TestBdStoreReclaimStale'             -count=1 -timeout=10m | tee /tmp/v49-gascity-stale-owner.log
+          runs="$(grep -c '^=== RUN' /tmp/v49-gascity-stale-owner.log || true)"
+          passes="$(grep -c '^--- PASS:' /tmp/v49-gascity-stale-owner.log || true)"
+          echo "GASCITY_STALE_OWNER_TEST_RUNS=$runs"
+          echo "GASCITY_STALE_OWNER_TEST_PASSES=$passes"
+          test "$runs" -ge 2
+          test "$passes" -ge 2
+
+      - name: Static authority surface readback
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          readme = Path('gascity/README.md').read_text(encoding='utf-8')
+          controller = Path('gascity/engdocs/architecture/controller.md').read_text(encoding='utf-8')
+          beads = Path('gascity/engdocs/architecture/beads.md').read_text(encoding='utf-8')
+          assert 'Beads-backed work tracking' in readme
+          assert 'canonical long-running process is `gc supervisor run`' in controller
+          assert '[beads]' in beads and 'provider' in beads
+          print('GASCITY_OWNS_WORK_TRACKING=true')
+          print('GASCITY_OWNS_LONG_RUNNING_SUPERVISOR=true')
+          print('GASCITY_HAS_OWN_BEADS_STORE=true')
+          print('SECOND_AUTHORITY_SURFACE_IF_ADDITIVELY_INSTALLED=true')
+          PY
 
       - name: Surface census
         run: |
@@ -66,11 +92,24 @@ jobs:
               return sum(1 for line in Path(path).read_text(encoding='utf-8', errors='ignore').splitlines() if line.strip())
           baseline = nonblank('factory/tools/csg/cell-kernel/mutation-supervisor.mjs')
           baseline_test = nonblank('factory/tools/csg/cell-kernel/tests/mutation-supervisor.test.mjs')
-          roots = [Path('gascity/cmd/gc'), Path('gascity/internal')]
-          go_files = [p for root in roots for p in root.rglob('*.go')]
-          gas_loc = sum(nonblank(p) for p in go_files)
+          broad_roots = [Path('gascity/cmd/gc'), Path('gascity/internal')]
+          broad_files = [p for root in broad_roots for p in root.rglob('*.go')]
+          broad_loc = sum(nonblank(p) for p in broad_files)
+          core_roots = [
+              Path('gascity/cmd/gc'),
+              Path('gascity/internal/runtime'),
+              Path('gascity/internal/session'),
+              Path('gascity/internal/beads'),
+              Path('gascity/internal/orders'),
+              Path('gascity/internal/convergence'),
+              Path('gascity/internal/config'),
+          ]
+          core_files = sorted({p for root in core_roots for p in root.rglob('*.go') if not p.name.endswith('_test.go')})
+          core_loc = sum(nonblank(p) for p in core_files)
           print(f'BASELINE_SUPERVISOR_NONBLANK_LOC={baseline}')
           print(f'BASELINE_SUPERVISOR_TEST_NONBLANK_LOC={baseline_test}')
-          print(f'GASCITY_CMD_INTERNAL_GO_FILES={len(go_files)}')
-          print(f'GASCITY_CMD_INTERNAL_NONBLANK_LOC={gas_loc}')
+          print(f'GASCITY_CMD_INTERNAL_GO_FILES={len(broad_files)}')
+          print(f'GASCITY_CMD_INTERNAL_NONBLANK_LOC={broad_loc}')
+          print(f'GASCITY_ORCHESTRATION_CORE_NONTEST_GO_FILES={len(core_files)}')
+          print(f'GASCITY_ORCHESTRATION_CORE_NONTEST_NONBLANK_LOC={core_loc}')
           PY
