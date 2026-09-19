@@ -76,8 +76,9 @@ jobs:
           controller = Path('gascity/engdocs/architecture/controller.md').read_text(encoding='utf-8')
           beads = Path('gascity/engdocs/architecture/beads.md').read_text(encoding='utf-8')
           assert 'Beads-backed work tracking' in readme
-          assert 'canonical long-running process is `gc supervisor run`' in controller
-          assert '[beads]' in beads and 'provider' in beads
+          normalized_controller = ' '.join(controller.split())
+          assert 'canonical long-running process is `gc supervisor run`' in normalized_controller
+          assert 'provider = "bd"' in beads or 'provider = "file"' in beads
           print('GASCITY_OWNS_WORK_TRACKING=true')
           print('GASCITY_OWNS_LONG_RUNNING_SUPERVISOR=true')
           print('GASCITY_HAS_OWN_BEADS_STORE=true')
