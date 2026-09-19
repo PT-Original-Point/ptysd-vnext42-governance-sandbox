@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - v49-12-workerctl-runtime-prep-20260919
+      - v49-12-workerctl-runtime-repair-r2-20260919
       - v49/accepted-source
     paths:
       - "scripts/ptysd-workerctl-v49-n1.sh"
@@ -31,6 +32,16 @@ jobs:
         run: sh -n scripts/ptysd-workerctl-v49-n1.sh
       - name: Static governance tests
         run: node --test tests/v49/workerctl-v49-n1.test.mjs
+      - name: Forced-command expansion regression
+        shell: bash
+        run: |
+          set -euo pipefail
+          set +e
+          SSH_ORIGINAL_COMMAND=probe sh scripts/ptysd-workerctl-v49-n1.sh > probe.out 2> probe.err
+          rc=$?
+          set -e
+          test "$rc" -eq 40
+          grep -q '^V49_N1_FAIL=WRONG_USER$' probe.err
       - name: Delete-first census
         shell: bash
         run: |
