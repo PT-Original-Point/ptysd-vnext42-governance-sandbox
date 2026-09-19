@@ -15,3 +15,7 @@ export {
   ADVISOR_GUARD_VERSION,OBJECTIVE_TRIGGER_CODES,ADVISOR_AUTHORITY,PACKET_LIMITS,
   evaluateObjectiveAdvisorTriggers,evaluateAdvisorPermit,buildAdvisorPacket,
 } from './advisor-guard.mjs';
+export {
+  TELEMETRY_SCHEMA,TELEMETRY_VERSION,OTEL_GENAI_REFERENCE,OPENINFERENCE_REFERENCE,FACTORY_SPAN_NAMES,
+  redactTelemetryAttributes,createTelemetrySpan,exportTelemetrySpan,classifyTelemetryBatch,
+} from './telemetry-plane.mjs';
