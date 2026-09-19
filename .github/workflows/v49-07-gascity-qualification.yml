@@ -1,0 +1,76 @@
+name: V49-07 Gas City supervisor qualification
+
+on:
+  push:
+    branches:
+      - v49-07-gascity-qualification-20260919
+
+permissions:
+  contents: read
+
+jobs:
+  qualify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout factory accepted source
+        uses: actions/checkout@v4
+        with:
+          ref: v49/accepted-source
+          path: factory
+          persist-credentials: false
+
+      - name: Checkout Gas City exact upstream
+        uses: actions/checkout@v4
+        with:
+          repository: gastownhall/gascity
+          ref: d6e867a6f404f1c2f2f0ee7925177740225869ad
+          path: gascity
+          persist-credentials: false
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Setup Go from Gas City pin
+        uses: actions/setup-go@v6
+        with:
+          go-version-file: gascity/go.mod
+          cache-dependency-path: gascity/go.sum
+
+      - name: Current minimal supervisor regression
+        run: node --test factory/tools/csg/cell-kernel/tests/mutation-supervisor.test.mjs
+
+      - name: Gas City supervisor representative hermetic tests
+        working-directory: gascity
+        env:
+          GC_BEADS: file
+        run: >
+          go test ./cmd/gc
+          -run '^(TestSupervisorBootOrderIsDeterministicWithoutPriority|TestReconcileCitiesClearsInitStatusOnRuntimeFailure|TestExplicitRestartCommandsPokeControllerWithoutPeriodicTick|TestCityRuntimeRecoverUnroutedWorkRoutes|TestCmdStopWaitsForStandaloneControllerExit)$'
+          -count=1 -timeout=15m
+
+      - name: Gas City stale-owner reclaim contract
+        working-directory: gascity
+        run: >
+          go test ./internal/beads
+          -run '^TestBdStoreReclaimStale'
+          -count=1 -timeout=10m
+
+      - name: Surface census
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          def nonblank(path):
+              return sum(1 for line in Path(path).read_text(encoding='utf-8', errors='ignore').splitlines() if line.strip())
+          baseline = nonblank('factory/tools/csg/cell-kernel/mutation-supervisor.mjs')
+          baseline_test = nonblank('factory/tools/csg/cell-kernel/tests/mutation-supervisor.test.mjs')
+          roots = [Path('gascity/cmd/gc'), Path('gascity/internal')]
+          go_files = [p for root in roots for p in root.rglob('*.go')]
+          gas_loc = sum(nonblank(p) for p in go_files)
+          print(f'BASELINE_SUPERVISOR_NONBLANK_LOC={baseline}')
+          print(f'BASELINE_SUPERVISOR_TEST_NONBLANK_LOC={baseline_test}')
+          print(f'GASCITY_CMD_INTERNAL_GO_FILES={len(go_files)}')
+          print(f'GASCITY_CMD_INTERNAL_NONBLANK_LOC={gas_loc}')
+          PY
