@@ -37,7 +37,9 @@ $baselineFiles = @(
 )
 $newFiles = @(
   'broker/host-powershell-exec.ps1',
-  'tests/host-powershell-exec-smoke.ps1'
+  'tests/host-powershell-exec-smoke.ps1',
+  'tests/control-lane-source-regression.mjs',
+  'tests/control-lane-concurrency-smoke.mjs'
 )
 $candidateFiles = @($baselineFiles + $newFiles)
 
@@ -194,6 +196,10 @@ try {
   if ($LASTEXITCODE -ne 0) { throw 'PROTOCOL_SMOKE_NODE_CHECK_FAILED' }
   & 'C:\Program Files\nodejs\node.exe' --check (Join-Path $staging 'tests\live-status-smoke.mjs')
   if ($LASTEXITCODE -ne 0) { throw 'LIVE_SMOKE_NODE_CHECK_FAILED' }
+  & 'C:\Program Files\nodejs\node.exe' --check (Join-Path $staging 'tests\control-lane-source-regression.mjs')
+  if ($LASTEXITCODE -ne 0) { throw 'CONTROL_LANE_SOURCE_REGRESSION_NODE_CHECK_FAILED' }
+  & 'C:\Program Files\nodejs\node.exe' --check (Join-Path $staging 'tests\control-lane-concurrency-smoke.mjs')
+  if ($LASTEXITCODE -ne 0) { throw 'CONTROL_LANE_CONCURRENCY_NODE_CHECK_FAILED' }
 
   $systemSelfTest = Invoke-SystemHostExecSelfTest `
     -HelperPath (Join-Path $staging 'broker\host-powershell-exec.ps1') `
@@ -238,6 +244,16 @@ try {
   Start-ScheduledTask -TaskName $brokerTask
   $brokerHealth = Wait-BrokerReady -Seconds 20
 
+  $controlLaneOut = Join-Path $qualificationRoot 'factory-mcp-control-lane-concurrency.json'
+  Remove-Item -LiteralPath $controlLaneOut -Force -ErrorAction SilentlyContinue
+  & 'C:\Program Files\nodejs\node.exe' (Join-Path $install 'tests\control-lane-concurrency-smoke.mjs') $controlLaneOut
+  if ($LASTEXITCODE -ne 0) { throw 'FACTORY_MCP_CONTROL_LANE_CONCURRENCY_FAILED' }
+  if (-not (Test-Path -LiteralPath $controlLaneOut)) { throw 'FACTORY_MCP_CONTROL_LANE_EVIDENCE_MISSING' }
+  $controlLane = Get-Content -LiteralPath $controlLaneOut -Raw | ConvertFrom-Json -ErrorAction Stop
+  if ($controlLane.result -ne 'PASS' -or [int]$controlLane.status_latency_ms -ge 5000) {
+    throw 'FACTORY_MCP_CONTROL_LANE_NOT_PASS'
+  }
+
   Remove-Item -LiteralPath $qualificationOut -Force -ErrorAction SilentlyContinue
   & 'C:\Program Files\nodejs\node.exe' (Join-Path $install 'tests\live-status-smoke.mjs') $qualificationOut
   if ($LASTEXITCODE -ne 0) {
@@ -268,6 +284,7 @@ try {
     broker_health = $brokerHealth
     tunnel_task_state = $tunnelState
     system_host_exec_preflight = $systemSelfTest
+    control_lane_concurrency = $controlLane
     live_smoke = $live
     installed = [ordered]@{}
     backup = $backup

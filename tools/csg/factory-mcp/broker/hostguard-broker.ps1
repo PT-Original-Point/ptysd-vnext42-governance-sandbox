@@ -36,6 +36,9 @@ $createdNew = $false
 $mutex = New-Object Threading.Mutex($true, 'Global\PTYSDFactoryMCPHostGuardBrokerV47', [ref]$createdNew)
 if (-not $createdNew) { throw 'BROKER_ALREADY_RUNNING' }
 
+$script:activePowerShellJob = $null
+$script:activePowerShellContext = $null
+
 function Write-AtomicJson {
   param([Parameter(Mandatory)][string]$Path,[Parameter(Mandatory)]$Value)
   $tmp = $Path + '.tmp.' + [Guid]::NewGuid().ToString('N')
@@ -60,12 +63,69 @@ function Test-Id([object]$Value) {
   return ($null -ne $Value -and [string]$Value -match $idPattern)
 }
 
-function Invoke-BrokerPowerShell {
+function Get-LatestHostExecReceipt {
+  $latest = Get-ChildItem -LiteralPath $execReceipts -Filter '*.json' -File -ErrorAction SilentlyContinue |
+    Sort-Object LastWriteTimeUtc -Descending |
+    Select-Object -First 1
+  if (-not $latest) { return $null }
+  try {
+    return (Get-Content -LiteralPath $latest.FullName -Raw | ConvertFrom-Json -ErrorAction Stop)
+  } catch {
+    return $null
+  }
+}
+
+function Get-HostExecLaneStatus {
+  if ($script:activePowerShellJob) {
+    return [ordered]@{
+      state = 'RUNNING'
+      request_id = [string]$script:activePowerShellContext.request_id
+      run_id = [string]$script:activePowerShellContext.run_id
+      task_id = [string]$script:activePowerShellContext.task_id
+      attempt_id = [string]$script:activePowerShellContext.attempt_id
+      attempt_epoch = [int]$script:activePowerShellContext.attempt_epoch
+      started_at_utc = [string]$script:activePowerShellContext.started_at_utc
+      job_state = [string]$script:activePowerShellJob.State
+    }
+  }
+
+  $last = Get-LatestHostExecReceipt
+  if (-not $last) {
+    return [ordered]@{
+      state = 'IDLE'
+      last_request_id = $null
+      last_state = $null
+    }
+  }
+
+  $lastState = if ($last.PSObject.Properties.Name -contains 'state') { [string]$last.state } else { 'LEGACY_TERMINAL' }
+  if ($lastState -eq 'STARTED') {
+    return [ordered]@{
+      state = 'ORPHANED_UNKNOWN'
+      request_id = [string]$last.request_id
+      run_id = [string]$last.run_id
+      task_id = [string]$last.task_id
+      attempt_id = [string]$last.attempt_id
+      attempt_epoch = [int]$last.attempt_epoch
+      started_at_utc = [string]$last.started_at_utc
+    }
+  }
+
+  return [ordered]@{
+    state = 'IDLE'
+    last_request_id = [string]$last.request_id
+    last_state = $lastState
+    last_finished_at_utc = if ($last.PSObject.Properties.Name -contains 'finished_at_utc') { [string]$last.finished_at_utc } else { $null }
+  }
+}
+
+function Start-BrokerPowerShell {
   param(
     [Parameter(Mandatory)]$Request,
     [Parameter(Mandatory)][string]$RequestId
   )
 
+  if ($script:activePowerShellJob) { throw 'POWERSHELL_BUSY' }
   if (-not (Test-Id $Request.run_id) -or -not (Test-Id $Request.task_id) -or -not (Test-Id $Request.attempt_id)) {
     throw 'ID_INVALID'
   }
@@ -85,56 +145,183 @@ function Invoke-BrokerPowerShell {
     throw 'POWERSHELL_SCRIPT_SIZE_INVALID'
   }
 
-  $raw = Invoke-PTYSDHostPowerShellExec -ScriptBytes $scriptBytes -TimeoutSeconds $timeout -ExecTemp $execTemp -RequestId $RequestId -MaxOutputBytes $maxOutputBytes
-
-  $receipt = [ordered]@{
-    schema='v48.factory-mcp.host-exec.receipt.v2'
-    request_id=$RequestId
-    operation='powershell'
-    run_id=[string]$Request.run_id
-    task_id=[string]$Request.task_id
-    attempt_id=[string]$Request.attempt_id
-    attempt_epoch=[int]$Request.attempt_epoch
-    run_as=[string]$raw.run_as
-    executable=[string]$raw.executable
-    script_sha256=[string]$raw.script_sha256
-    timeout_seconds=[int]$raw.timeout_seconds
-    exit_code=[int]$raw.exit_code
-    timed_out=[bool]$raw.timed_out
-    stdout_bytes=[int64]$raw.stdout_bytes
-    stderr_bytes=[int64]$raw.stderr_bytes
-    stdout_sha256=[string]$raw.stdout_sha256
-    stderr_sha256=[string]$raw.stderr_sha256
-    started_at_utc=[string]$raw.started_at_utc
-    finished_at_utc=[string]$raw.finished_at_utc
-  }
+  $startedAt = [DateTime]::UtcNow.ToString('o')
   $receiptPath = Join-Path $execReceipts ($RequestId + '.json')
-  Write-AtomicJson -Path $receiptPath -Value $receipt
-
-  return [ordered]@{
-    schema='v48.factory-mcp.host-exec.result.v2'
-    operation='powershell'
-    result=if([bool]$raw.timed_out){'TIMED_OUT'}else{'COMPLETED'}
+  $startedReceipt = [ordered]@{
+    schema='v48.factory-mcp.host-exec.receipt.v2'
+    state='STARTED'
     request_id=$RequestId
+    operation='powershell'
     run_id=[string]$Request.run_id
     task_id=[string]$Request.task_id
     attempt_id=[string]$Request.attempt_id
     attempt_epoch=[int]$Request.attempt_epoch
-    run_as=[string]$raw.run_as
-    executable=[string]$raw.executable
-    exit_code=[int]$raw.exit_code
-    timed_out=[bool]$raw.timed_out
-    stdout=[string]$raw.stdout
-    stderr=[string]$raw.stderr
-    stdout_bytes=[int64]$raw.stdout_bytes
-    stderr_bytes=[int64]$raw.stderr_bytes
-    stdout_truncated=[bool]$raw.stdout_truncated
-    stderr_truncated=[bool]$raw.stderr_truncated
-    script_sha256=[string]$raw.script_sha256
+    run_as=[Security.Principal.WindowsIdentity]::GetCurrent().Name
+    script_sha256=Get-PTYSDHostExecSha256Hex -Bytes $scriptBytes
+    timeout_seconds=$timeout
+    exit_code=$null
+    timed_out=$false
+    stdout_bytes=$null
+    stderr_bytes=$null
+    stdout_sha256=$null
+    stderr_sha256=$null
+    started_at_utc=$startedAt
+    finished_at_utc=$null
+  }
+  Write-AtomicJson -Path $receiptPath -Value $startedReceipt
+
+  $responsePath = Join-Path $outbox ($RequestId + '.json')
+  try {
+    $job = Start-Job -ScriptBlock {
+      param($HelperPath,$EncodedScript,$Timeout,$ExecTemp,$RequestId,$MaxOutputBytes)
+      Set-StrictMode -Version Latest
+      $ErrorActionPreference = 'Stop'
+      . $HelperPath
+      try {
+        [byte[]]$bytes = [Convert]::FromBase64String($EncodedScript)
+        $raw = Invoke-PTYSDHostPowerShellExec -ScriptBytes $bytes -TimeoutSeconds $Timeout -ExecTemp $ExecTemp -RequestId $RequestId -MaxOutputBytes $MaxOutputBytes
+        [ordered]@{ ok=$true; raw=$raw } | ConvertTo-Json -Depth 10 -Compress
+      } catch {
+        [ordered]@{ ok=$false; error=[string]$_.Exception.Message } | ConvertTo-Json -Depth 4 -Compress
+      }
+    } -ArgumentList $hostExecHelperPath,$scriptB64,$timeout,$execTemp,$RequestId,$maxOutputBytes
+  } catch {
+    $failed = $startedReceipt.Clone()
+    $failed.state = 'FAILED'
+    $failed.finished_at_utc = [DateTime]::UtcNow.ToString('o')
+    Write-AtomicJson -Path $receiptPath -Value $failed
+    throw 'POWERSHELL_EXEC_LAUNCH_FAILED'
+  }
+
+  $script:activePowerShellJob = $job
+  $script:activePowerShellContext = [ordered]@{
+    request_id=$RequestId
+    response_path=$responsePath
     receipt_path=$receiptPath
+    run_id=[string]$Request.run_id
+    task_id=[string]$Request.task_id
+    attempt_id=[string]$Request.attempt_id
+    attempt_epoch=[int]$Request.attempt_epoch
+    timeout_seconds=$timeout
+    script_sha256=[string]$startedReceipt.script_sha256
+    started_at_utc=$startedAt
   }
 }
 
+function Complete-ActivePowerShellJob {
+  if (-not $script:activePowerShellJob) { return }
+  $job = $script:activePowerShellJob
+  if ([string]$job.State -in @('Running','NotStarted')) { return }
+
+  $ctx = $script:activePowerShellContext
+  $deferred = $false
+  $response = [ordered]@{
+    schema = 'v48.factory-mcp.hostguard.response.v2'
+    request_id = [string]$ctx.request_id
+    ok = $false
+    error_code = 'POWERSHELL_EXEC_ASYNC_FAILED'
+    result = $null
+    brokered_at_utc = [DateTime]::UtcNow.ToString('o')
+  }
+
+  try {
+    if ([string]$job.State -ne 'Completed') { throw 'POWERSHELL_EXEC_ASYNC_FAILED' }
+    $lines = @(Receive-Job -Job $job -ErrorAction Stop)
+    $jsonLine = $lines | Where-Object { $_ -is [string] -and $_.Trim().StartsWith('{') } | Select-Object -Last 1
+    if (-not $jsonLine) { throw 'POWERSHELL_EXEC_ASYNC_RESULT_MISSING' }
+    $payload = [string]$jsonLine | ConvertFrom-Json -ErrorAction Stop
+    if (-not [bool]$payload.ok) {
+      $safe = [string]$payload.error
+      if ($safe.Length -gt 240) { $safe = $safe.Substring(0,240) }
+      throw ('POWERSHELL_EXEC_ASYNC_CHILD_FAILED:' + $safe)
+    }
+
+    $raw = $payload.raw
+    $state = if ([bool]$raw.timed_out) { 'TIMED_OUT' } else { 'COMPLETED' }
+    $receipt = [ordered]@{
+      schema='v48.factory-mcp.host-exec.receipt.v2'
+      state=$state
+      request_id=[string]$ctx.request_id
+      operation='powershell'
+      run_id=[string]$ctx.run_id
+      task_id=[string]$ctx.task_id
+      attempt_id=[string]$ctx.attempt_id
+      attempt_epoch=[int]$ctx.attempt_epoch
+      run_as=[string]$raw.run_as
+      executable=[string]$raw.executable
+      script_sha256=[string]$raw.script_sha256
+      timeout_seconds=[int]$raw.timeout_seconds
+      exit_code=[int]$raw.exit_code
+      timed_out=[bool]$raw.timed_out
+      stdout_bytes=[int64]$raw.stdout_bytes
+      stderr_bytes=[int64]$raw.stderr_bytes
+      stdout_sha256=[string]$raw.stdout_sha256
+      stderr_sha256=[string]$raw.stderr_sha256
+      started_at_utc=[string]$raw.started_at_utc
+      finished_at_utc=[string]$raw.finished_at_utc
+    }
+    Write-AtomicJson -Path ([string]$ctx.receipt_path) -Value $receipt
+
+    $response.ok = $true
+    $response.error_code = $null
+    $response.result = [ordered]@{
+      schema='v48.factory-mcp.host-exec.result.v2'
+      operation='powershell'
+      result=$state
+      request_id=[string]$ctx.request_id
+      run_id=[string]$ctx.run_id
+      task_id=[string]$ctx.task_id
+      attempt_id=[string]$ctx.attempt_id
+      attempt_epoch=[int]$ctx.attempt_epoch
+      run_as=[string]$raw.run_as
+      executable=[string]$raw.executable
+      exit_code=[int]$raw.exit_code
+      timed_out=[bool]$raw.timed_out
+      stdout=[string]$raw.stdout
+      stderr=[string]$raw.stderr
+      stdout_bytes=[int64]$raw.stdout_bytes
+      stderr_bytes=[int64]$raw.stderr_bytes
+      stdout_truncated=[bool]$raw.stdout_truncated
+      stderr_truncated=[bool]$raw.stderr_truncated
+      script_sha256=[string]$raw.script_sha256
+      receipt_path=[string]$ctx.receipt_path
+    }
+  } catch {
+    $safeMessage = [string]$_.Exception.Message
+    if ($safeMessage.Length -gt 240) { $safeMessage = $safeMessage.Substring(0,240) }
+    $failedReceipt = [ordered]@{
+      schema='v48.factory-mcp.host-exec.receipt.v2'
+      state='FAILED'
+      request_id=[string]$ctx.request_id
+      operation='powershell'
+      run_id=[string]$ctx.run_id
+      task_id=[string]$ctx.task_id
+      attempt_id=[string]$ctx.attempt_id
+      attempt_epoch=[int]$ctx.attempt_epoch
+      run_as=[Security.Principal.WindowsIdentity]::GetCurrent().Name
+      script_sha256=[string]$ctx.script_sha256
+      timeout_seconds=[int]$ctx.timeout_seconds
+      exit_code=$null
+      timed_out=$false
+      stdout_bytes=$null
+      stderr_bytes=$null
+      stdout_sha256=$null
+      stderr_sha256=$null
+      started_at_utc=[string]$ctx.started_at_utc
+      finished_at_utc=[DateTime]::UtcNow.ToString('o')
+      error_code='POWERSHELL_EXEC_ASYNC_FAILED'
+    }
+    try { Write-AtomicJson -Path ([string]$ctx.receipt_path) -Value $failedReceipt } catch {}
+    $response.ok = $false
+    $response.error_code = 'POWERSHELL_EXEC_ASYNC_FAILED'
+    $response.result = $null
+  } finally {
+    try { Write-AtomicJson -Path ([string]$ctx.response_path) -Value $response } catch {}
+    try { Remove-Job -Job $job -Force -ErrorAction SilentlyContinue } catch {}
+    $script:activePowerShellJob = $null
+    $script:activePowerShellContext = $null
+  }
+}
 function Process-Request {
   param([Parameter(Mandatory)][IO.FileInfo]$File)
   $requestId = $File.BaseName
@@ -163,6 +350,7 @@ function Process-Request {
     switch ([string]$req.operation) {
       'status' {
         $result = Get-PTYSDHostGuardStatus
+        $result | Add-Member -NotePropertyName host_exec_lane -NotePropertyValue (Get-HostExecLaneStatus) -Force
       }
       'prepare' {
         $result = Invoke-PTYSDHostPrepare -RunId ([string]$req.run_id) -TaskId ([string]$req.task_id) -AttemptId ([string]$req.attempt_id) -AttemptEpoch ([int]$req.attempt_epoch)
@@ -171,7 +359,9 @@ function Process-Request {
         $result = Start-PTYSDWorkerVm -RunId ([string]$req.run_id) -TaskId ([string]$req.task_id) -AttemptId ([string]$req.attempt_id) -AttemptEpoch ([int]$req.attempt_epoch)
       }
       'powershell' {
-        $result = Invoke-BrokerPowerShell -Request $req -RequestId $requestId
+        Start-BrokerPowerShell -Request $req -RequestId $requestId
+        $deferred = $true
+        $result = $null
       }
     }
 
@@ -209,13 +399,16 @@ function Process-Request {
     try { Write-AtomicJson -Path $lastError -Value $diagnostic } catch {}
   }
 
-  Write-AtomicJson -Path $responsePath -Value $response
+  if (-not $deferred) {
+    Write-AtomicJson -Path $responsePath -Value $response
+  }
 }
 
 try {
   Write-Health
   $lastHealth = [DateTime]::UtcNow
   while ($true) {
+    Complete-ActivePowerShellJob
     $files = @(Get-ChildItem -LiteralPath $inbox -Filter '*.json' -File -ErrorAction SilentlyContinue | Sort-Object CreationTimeUtc | Select-Object -First 16)
     foreach ($file in $files) {
       $claimed = Join-Path $processing $file.Name

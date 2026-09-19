@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - v48-host-powershell-governed-candidate-20260918
+      - v49-factory-mcp-control-lane-r1-20260919
     paths:
       - ".github/workflows/v48-host-powershell-source-qualification.yml"
       - "tools/csg/factory-mcp/**"
@@ -64,6 +65,10 @@ jobs:
         shell: cmd
         working-directory: tools/csg/factory-mcp
         run: npm.cmd ci --ignore-scripts --no-audit --no-fund
+      - name: Check control-lane live smoke syntax
+        shell: cmd
+        working-directory: tools/csg/factory-mcp
+        run: node --check tests/control-lane-concurrency-smoke.mjs
       - name: Run local protocol smoke
         shell: cmd
         working-directory: tools/csg/factory-mcp
