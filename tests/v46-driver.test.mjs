@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {MAX_TASKS, MAX_ATTEMPTS, validateBoundedContract} from '../tools/csg/cell-kernel/legacy-contract-compat.mjs';
+import {MAX_TASKS, MAX_ATTEMPTS, validateBoundedContract} from '../tools/csg/cell-kernel/production-kernel.mjs';
 import '../tools/csg/cell-kernel/tests/mutation-supervisor.test.mjs';
 import '../tools/csg/cell-kernel/tests/d5-completion-fence.test.mjs';
 import '../tools/csg/cell-kernel/tests/status-projection.test.mjs';

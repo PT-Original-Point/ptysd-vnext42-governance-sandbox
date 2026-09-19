@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { ADVISOR_AUTHORITY, PACKET_LIMITS, evaluateObjectiveAdvisorTriggers, evaluateAdvisorPermit, buildAdvisorPacket } from './advisor-guard.mjs';
+import { ADVISOR_AUTHORITY, PACKET_LIMITS, evaluateObjectiveAdvisorTriggers, evaluateAdvisorPermit, buildAdvisorPacket } from '../advisor-guard.mjs';
 const D=c=>`sha256:${c.repeat(64)}`;
 const basePacket=()=>({trigger_code:'T1',project_id:'P',run_id:'R',root_task_id:'ROOT',task_id:'T',spec_digest:D('1'),contract_digest:D('2'),problem_statement:'problem',failing_acceptance:'acceptance',deterministic_evidence:['e1'],bounded_diff:'diff',dependency_ranked_symbols_interfaces:['src/a.mjs#f'],repair_attempts:['r1'],reviewer_disagreement:'NONE',requested_output:'CORRECTION'});
 const permit=(x={})=>evaluateAdvisorPermit({trigger_codes:['T1'],root_task_id:'ROOT',calls_used:0,quota_state:'AVAILABLE',route:'SUBSCRIPTION_AUTHORIZED',incremental_usd:0,zen_paid_fallback:false,...x});
