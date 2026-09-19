@@ -54,16 +54,17 @@ test('failed builder readback exposes only the synthetic run log as base64',()=>
   assert.ok(s.includes('base64 -w0 "$LOG"'));
 });
 
-test('headless OpenCode worker fails closed instead of waiting for permission prompts',()=>{
-  assert.ok(s.includes('"permission":{"*":"deny"'));
-  assert.ok(s.includes('"glob":"deny"'));
-  assert.ok(s.includes('"grep":"deny"'));
-  assert.equal(s.includes('"*":"ask"'),false);
-  assert.equal(s.includes('"glob":"ask"'),false);
-  assert.equal(s.includes('"grep":"ask"'),false);
+test('headless OpenCode keeps built-in tool schemas visible while unapproved actions remain ask-only',()=>{
+  assert.ok(s.includes('"permission":{"*":"ask"'));
+  assert.ok(s.includes('"glob":"ask"'));
+  assert.ok(s.includes('"grep":"ask"'));
+  assert.equal(s.includes('"glob":"deny"'),false);
+  assert.equal(s.includes('"grep":"deny"'),false);
   assert.equal(s.includes('--auto'),false);
-  assert.ok(s.includes('"read":{"*":"deny","fixtures/v49-live-n1/src/slugify.mjs":"allow","fixtures/v49-live-n1/test/slugify.test.mjs":"allow","fixtures/v49-live-n1/package.json":"allow"}'));
-  assert.ok(s.includes('"edit":{"*":"deny","fixtures/v49-live-n1/src/slugify.mjs":"allow"}'));
+  assert.equal(s.includes('--yolo'),false);
+  assert.equal(s.includes('dangerously-skip-permissions'),false);
+  assert.ok(s.includes('"read":{"*":"ask","fixtures/v49-live-n1/src/slugify.mjs":"allow","fixtures/v49-live-n1/test/slugify.test.mjs":"allow","fixtures/v49-live-n1/package.json":"allow"}'));
+  assert.ok(s.includes('"edit":{"*":"ask","fixtures/v49-live-n1/src/slugify.mjs":"allow"}'));
 });
 
 test('builder prompt still forbids shell network subagents and external directories',()=>{
@@ -71,10 +72,10 @@ test('builder prompt still forbids shell network subagents and external director
 });
 
 
-test('OpenCode free-tier repair disables internal title and automatic compaction only',()=>{
+test('OpenCode free-tier repair keeps one provider call and visible built-in tools without auto approval',()=>{
   assert.ok(s.includes('\"agent\":{\"title\":{\"disable\":true}}'));
   assert.ok(s.includes('\"compaction\":{\"auto\":false,\"prune\":false}'));
-  assert.ok(s.includes('\"permission\":{\"*\":\"deny\"'));
+  assert.ok(s.includes('\"permission\":{\"*\":\"ask\"'));
   assert.equal(s.includes('--auto'),false);
 });
 
