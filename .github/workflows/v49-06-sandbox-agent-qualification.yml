@@ -1,0 +1,61 @@
+name: V49-06 sandbox-agent qualification
+
+on:
+  push:
+    branches:
+      - v49-06-sandbox-agent-qualification-20260919
+
+permissions:
+  contents: read
+
+jobs:
+  qualify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout factory accepted source
+        uses: actions/checkout@v4
+        with:
+          ref: v49/accepted-source
+          path: factory
+          persist-credentials: false
+
+      - name: Checkout sandbox-agent exact upstream
+        uses: actions/checkout@v4
+        with:
+          repository: rivet-dev/sandbox-agent
+          ref: bbc195cc3fb5a1dd9cb05d8437442768c511e17e
+          path: sandbox-agent
+          persist-credentials: false
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.0
+          run_install: false
+
+      - name: Current adapter ABI regression
+        run: node --test factory/tools/csg/cell-kernel/tests/adapter-abi.test.mjs
+
+      - name: Install sandbox-agent workspace dependencies
+        working-directory: sandbox-agent
+        run: pnpm install --frozen-lockfile
+
+      - name: Sandbox-agent TypeScript typecheck
+        working-directory: sandbox-agent
+        env:
+          SKIP_OPENAPI_GEN: '1'
+        run: pnpm --filter sandbox-agent typecheck
+
+      - name: Focused mock-agent session integration
+        working-directory: sandbox-agent
+        env:
+          CI: '1'
+        run: >
+          pnpm --filter sandbox-agent exec vitest run tests/integration.test.ts
+          -t "creates a session, sends prompt, and persists events|restores a session on stale connection|blocks manual session/cancel and requires destroySession|surfaces ACP permission requests|setMode happy path switches to a valid mode"
