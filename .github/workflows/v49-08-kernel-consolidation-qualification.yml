@@ -1,0 +1,49 @@
+name: V49-08 kernel consolidation qualification
+
+on:
+  push:
+    branches:
+      - v49-08-kernel-consolidation-20260919
+
+permissions:
+  contents: read
+
+jobs:
+  qualify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout exact candidate
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Reference census
+        run: |
+          set -euo pipefail
+          echo '=== legacy-contract-compat refs ==='
+          grep -R -n --exclude-dir=.git --exclude='*.json' 'legacy-contract-compat' . || true
+          echo '=== z5 wrapper refs ==='
+          grep -R -n --exclude-dir=.git --exclude='*.json' 'z5-run-opencode-synthetic' . || true
+          echo '=== production-kernel refs ==='
+          grep -R -n --exclude-dir=.git --exclude='*.json' 'production-kernel.mjs' . || true
+
+      - name: Cell kernel full regression
+        run: |
+          set -euo pipefail
+          mapfile -t tests < <(find tools/csg/cell-kernel/tests -type f -name '*.test.mjs' -print | sort)
+          test "${#tests[@]}" -gt 0
+          node --test "${tests[@]}"
+
+      - name: Repository JavaScript regression
+        run: |
+          set -euo pipefail
+          mapfile -t tests < <(find tests -type f -name '*.test.mjs' -print | sort)
+          test "${#tests[@]}" -gt 0
+          node --test "${tests[@]}"
