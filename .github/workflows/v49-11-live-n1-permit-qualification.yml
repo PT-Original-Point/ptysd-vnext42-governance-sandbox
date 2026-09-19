@@ -1,0 +1,48 @@
+name: V49-11 live N1 permit qualification
+
+on:
+  push:
+    branches:
+      - v49-11-permit-qualification-20260919
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  qualify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Compile exact canary capability
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import {compileCellCapability,assertCapabilityCurrent} from './tools/csg/cell-kernel/production-kernel.mjs';
+          const contract=JSON.parse(fs.readFileSync('governance/v49/live-n1-canary-execution-contract.json','utf8'));
+          const fence=JSON.parse(fs.readFileSync('governance/v49/live-n1-canary-fence.json','utf8'));
+          const cap=compileCellCapability(contract,fence);
+          assertCapabilityCurrent(cap,fence);
+          if(!cap.execution_authorized) throw new Error('CANARY_EXECUTION_NOT_AUTHORIZED');
+          if(cap.owned_paths.join(',')!=='fixtures/v49-live-n1/src/slugify.mjs') throw new Error('OWNED_PATH_DRIFT');
+          if(cap.resource_limits.provider_calls!==1) throw new Error('PROVIDER_CALL_BUDGET_DRIFT');
+          if(cap.resource_limits.network_mode!=='LIMITED') throw new Error('NETWORK_MODE_DRIFT');
+          if(!cap.data_class.includes('PUBLIC')||!cap.data_class.includes('SYNTHETIC')) throw new Error('DATA_CLASS_DRIFT');
+          console.log('V49_CAPABILITY_JSON='+JSON.stringify(cap));
+          NODE
+      - name: Prove canary baseline is still unsolved and verifier protected
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse 141baaebb30e4e4b43a3237b8e352822bbd54b10^{tree})" = "de291ba0d7d6c6d09357471bd18653b0747a2a8a"
+          git diff --quiet 141baaebb30e4e4b43a3237b8e352822bbd54b10 -- fixtures/v49-live-n1
+          test -f fixtures/v49-live-n1/test/slugify.test.mjs
