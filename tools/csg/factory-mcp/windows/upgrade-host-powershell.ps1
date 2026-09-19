@@ -364,15 +364,6 @@ try {
   Write-AtomicJsonFile -Path $upgradeResultOut -Value $post
   $post | ConvertTo-Json -Depth 12
 } catch {
-  Stop-ScheduledTask -TaskName $tunnelTask -ErrorAction SilentlyContinue
-  Stop-ScheduledTask -TaskName $brokerTask -ErrorAction SilentlyContinue
-  try {
-    Restore-Backup
-    Remove-Item -LiteralPath $health -Force -ErrorAction SilentlyContinue
-    Start-ScheduledTask -TaskName $brokerTask -ErrorAction SilentlyContinue
-    Start-Sleep -Seconds 2
-    Start-ScheduledTask -TaskName $tunnelTask -ErrorAction SilentlyContinue
-  } catch {
   $primaryError = [string]$_.Exception.Message
   if ($primaryError.Length -gt 1200) { $primaryError = $primaryError.Substring(0,1200) }
   $rollbackReady = $null
