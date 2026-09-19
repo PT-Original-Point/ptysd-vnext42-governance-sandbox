@@ -38,3 +38,9 @@ test('unknown forced command fails closed before runtime/model activity',()=>{
   const i=s.indexOf('case "$CMD" in'), d=s.lastIndexOf("*) echo 'COMMAND_NOT_ALLOWED'");
   assert.ok(i>=0&&d>i);
 });
+
+test('forced-command environment expands instead of remaining literal',()=>{
+  assert.ok(s.includes('CMD="${SSH_ORIGINAL_COMMAND:-}"'));
+  assert.ok(s.includes('exit "${2:-1}"'));
+  assert.equal(s.includes('CMD="\\${SSH_ORIGINAL_COMMAND:-}"'),false);
+});

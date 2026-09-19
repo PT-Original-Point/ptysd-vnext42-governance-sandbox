@@ -31,6 +31,26 @@ jobs:
         run: sh -n scripts/ptysd-workerctl-v49-n1.sh
       - name: Static governance tests
         run: node --test tests/v49/workerctl-v49-n1.test.mjs
+      - name: Forced-command expansion regression
+        shell: bash
+        run: |
+          set -euo pipefail
+          set +e
+          SSH_ORIGINAL_COMMAND=probe sh scripts/ptysd-workerctl-v49-n1.sh > probe.out 2> probe.err
+          rc=$?
+          set -e
+          test "$rc" -eq 40
+          grep -q '^V49_N1_FAIL=WRONG_USER      - name: Delete-first census
+        shell: bash
+        run: |
+          set -euo pipefail
+          test ! -e scripts/ptysd-workerctl-v45-z4-synthetic.sh
+          n="$(awk 'NF{n++} END{print n+0}' scripts/ptysd-workerctl-v49-n1.sh)"
+          test "$n" -le 128
+          echo "NEW_WORKERCTL_NONBLANK=$n"
+          echo "OLD_WORKERCTL_NONBLANK=89"
+          echo "RUNTIME_DELTA=$((n-89))"
+ probe.err
       - name: Delete-first census
         shell: bash
         run: |

@@ -16,8 +16,8 @@ REMOTE="https://github.com/PT-Original-Point/ptysd-vnext42-governance-sandbox.gi
 SRC="fixtures/v49-live-n1/src/slugify.mjs"
 TEST="fixtures/v49-live-n1/test/slugify.test.mjs"
 PKG="fixtures/v49-live-n1/package.json"
-CMD="\${SSH_ORIGINAL_COMMAND:-}"
-fail(){ echo "V49_N1_FAIL=$1" >&2; exit "\${2:-1}"; }
+CMD="${SSH_ORIGINAL_COMMAND:-}"
+fail(){ echo "V49_N1_FAIL=$1" >&2; exit "${2:-1}"; }
 guard_user(){ test "$(id -un)" = "ptysd" || fail WRONG_USER 40; }
 ensure_base(){ mkdir -p "$BASE"; chmod 700 "$BASE"; }
 model_guard(){
