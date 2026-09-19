@@ -56,6 +56,10 @@ jobs:
         working-directory: sandbox-agent
         run: pnpm --filter sandbox-agent typecheck
 
+      - name: Generate upstream Cargo lockfile for Docker test image
+        working-directory: sandbox-agent
+        run: cargo generate-lockfile
+
       - name: Focused mock-agent session integration
         working-directory: sandbox-agent
         env:
