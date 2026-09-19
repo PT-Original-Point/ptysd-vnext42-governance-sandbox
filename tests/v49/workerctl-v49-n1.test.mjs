@@ -40,7 +40,11 @@ test('unknown forced command fails closed before runtime/model activity',()=>{
 });
 
 test('forced-command environment expands instead of remaining literal',()=>{
-  assert.ok(s.includes('CMD="${SSH_ORIGINAL_COMMAND:-}"'));
+  assert.ok(s.includes('CMD="${SSH_ORIGINAL_COMMAND:-${1:-}}"'));
   assert.ok(s.includes('exit "${2:-1}"'));
   assert.equal(s.includes('CMD="\\${SSH_ORIGINAL_COMMAND:-}"'),false);
+});
+
+test('controller fallback argument is bounded by the same fixed command allowlist',()=>{
+  assert.ok(s.includes('CMD="${SSH_ORIGINAL_COMMAND:-${1:-}}"'));
 });

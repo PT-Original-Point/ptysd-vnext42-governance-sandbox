@@ -5,6 +5,7 @@ on:
     branches:
       - v49-12-workerctl-runtime-prep-20260919
       - v49-12-workerctl-runtime-repair-r2-20260919
+      - v49-12-workerctl-controller-invoke-r3-20260919
       - v49/accepted-source
     paths:
       - "scripts/ptysd-workerctl-v49-n1.sh"
@@ -42,6 +43,16 @@ jobs:
           set -e
           test "$rc" -eq 40
           grep -q '^V49_N1_FAIL=WRONG_USER$' probe.err
+      - name: Controller-argument fallback regression
+        shell: bash
+        run: |
+          set -euo pipefail
+          set +e
+          sh scripts/ptysd-workerctl-v49-n1.sh probe > arg-probe.out 2> arg-probe.err
+          rc=$?
+          set -e
+          test "$rc" -eq 40
+          grep -q '^V49_N1_FAIL=WRONG_USER$' arg-probe.err
       - name: Delete-first census
         shell: bash
         run: |
