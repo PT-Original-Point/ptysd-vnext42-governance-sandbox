@@ -43,7 +43,8 @@ $newFiles = @(
   'broker/host-powershell-exec.ps1',
   'tests/host-powershell-exec-smoke.ps1',
   'tests/control-lane-source-regression.mjs',
-  'tests/control-lane-concurrency-smoke.mjs'
+  'tests/control-lane-concurrency-smoke.mjs',
+  'tests/tunnel-supervisor-source-regression.mjs'
 )
 $candidateFiles = @($baselineFiles + $newFiles)
 
@@ -102,25 +103,49 @@ function Write-AtomicJsonFile {
 
 function Wait-TunnelReady([int]$Seconds) {
   $deadline = [DateTime]::UtcNow.AddSeconds($Seconds)
-  $last = [ordered]@{
-    task_state = $null
-    live = $false
-    ready = $false
-    control_plane_status = 'unknown'
-    control_plane_state = $null
-  }
+  $last = [ordered]@{ task_state=$null; live=$false; ready=$false; control_plane_status='unknown'; control_plane_state=$null }
   do {
-    try {
-      $last.task_state = (Get-ScheduledTask -TaskName $tunnelTask).State.ToString()
-    } catch {
-      $last.task_state = 'MISSING'
-    }
+    try { $last.task_state = (Get-ScheduledTask -TaskName $tunnelTask).State.ToString() }
+    catch { $last.task_state = 'MISSING' }
 
     $baseUrl = $null
     if (Test-Path -LiteralPath $tunnelHealthUrlFile) {
       try {
         $candidate = (Get-Content -LiteralPath $tunnelHealthUrlFile -Raw -ErrorAction Stop).Trim().TrimEnd('/')
-        if ($candidate -match '^http://127\.0\.0\.1:\d{1,5}  param(
+        if ($candidate -match '^http://127\.0\.0\.1:\d{1,5}$') { $baseUrl = $candidate }
+      } catch {}
+    }
+
+    $last.live = $false
+    $last.ready = $false
+    $last.control_plane_status = 'unknown'
+    $last.control_plane_state = $null
+    if ($baseUrl) {
+      try {
+        $healthz = Invoke-WebRequest -UseBasicParsing -Method Get -Uri ($baseUrl + '/healthz') -TimeoutSec 2
+        $last.live = ([int]$healthz.StatusCode -eq 200)
+      } catch {}
+      try {
+        $readyz = Invoke-WebRequest -UseBasicParsing -Method Get -Uri ($baseUrl + '/readyz') -TimeoutSec 2
+        $last.ready = ([int]$readyz.StatusCode -eq 200)
+      } catch {}
+      try {
+        $control = Invoke-RestMethod -UseBasicParsing -Method Get -Uri ($baseUrl + '/health/control-plane') -TimeoutSec 2
+        if ($control.PSObject.Properties.Name -contains 'status') { $last.control_plane_status = [string]$control.status }
+        if ($control.PSObject.Properties.Name -contains 'state') { $last.control_plane_state = [string]$control.state }
+      } catch {}
+    }
+
+    if ($last.task_state -eq 'Running' -and $last.live -and $last.ready -and $last.control_plane_status -eq 'ok') {
+      return $last
+    }
+    Start-Sleep -Milliseconds 500
+  } while ([DateTime]::UtcNow -lt $deadline)
+  throw ('TUNNEL_READY_TIMEOUT:' + ($last | ConvertTo-Json -Compress))
+}
+
+function Invoke-SystemHostExecSelfTest {
+  param(
     [Parameter(Mandatory)][string]$HelperPath,
     [Parameter(Mandatory)][string]$SmokePath,
     [Parameter(Mandatory)][string]$OutputPath,
@@ -187,7 +212,6 @@ function Restore-Backup {
     Copy-Item -LiteralPath $runnerBackup -Destination $operationalTunnelRunner -Force
   }
 }
-
 foreach ($task in @($brokerTask,$tunnelTask)) {
   if (-not (Get-ScheduledTask -TaskName $task -ErrorAction SilentlyContinue)) {
     throw ('SCHEDULED_TASK_MISSING:' + $task)
@@ -340,6 +364,15 @@ try {
   Write-AtomicJsonFile -Path $upgradeResultOut -Value $post
   $post | ConvertTo-Json -Depth 12
 } catch {
+  Stop-ScheduledTask -TaskName $tunnelTask -ErrorAction SilentlyContinue
+  Stop-ScheduledTask -TaskName $brokerTask -ErrorAction SilentlyContinue
+  try {
+    Restore-Backup
+    Remove-Item -LiteralPath $health -Force -ErrorAction SilentlyContinue
+    Start-ScheduledTask -TaskName $brokerTask -ErrorAction SilentlyContinue
+    Start-Sleep -Seconds 2
+    Start-ScheduledTask -TaskName $tunnelTask -ErrorAction SilentlyContinue
+  } catch {
   $primaryError = [string]$_.Exception.Message
   if ($primaryError.Length -gt 1200) { $primaryError = $primaryError.Substring(0,1200) }
   $rollbackReady = $null
@@ -370,258 +403,6 @@ try {
     recorded_at_utc = [DateTime]::UtcNow.ToString('o')
   }
   try { Write-AtomicJsonFile -Path $upgradeResultOut -Value $failure } catch {}
-  throw
-} finally {
-  Remove-Item -LiteralPath $staging -Recurse -Force -ErrorAction SilentlyContinue
-}
-) { $baseUrl = $candidate }
-      } catch {}
-    }
-
-    if ($baseUrl) {
-      try {
-        $healthz = Invoke-WebRequest -UseBasicParsing -Method Get -Uri ($baseUrl + '/healthz') -TimeoutSec 2
-        $last.live = ([int]$healthz.StatusCode -eq 200)
-      } catch { $last.live = $false }
-      try {
-        $readyz = Invoke-WebRequest -UseBasicParsing -Method Get -Uri ($baseUrl + '/readyz') -TimeoutSec 2
-        $last.ready = ([int]$readyz.StatusCode -eq 200)
-      } catch { $last.ready = $false }
-      try {
-        $control = Invoke-RestMethod -UseBasicParsing -Method Get -Uri ($baseUrl + '/health/control-plane') -TimeoutSec 2
-        $last.control_plane_status = if ($control.PSObject.Properties.Name -contains 'status') { [string]$control.status } else { 'unknown' }
-        $last.control_plane_state = if ($control.PSObject.Properties.Name -contains 'state') { [string]$control.state } else { $null }
-      } catch {
-        $last.control_plane_status = 'unknown'
-        $last.control_plane_state = $null
-      }
-    }
-
-    if ($last.task_state -eq 'Running' -and $last.live -and $last.ready -and $last.control_plane_status -eq 'ok') {
-      return $last
-    }
-    Start-Sleep -Milliseconds 500
-  } while ([DateTime]::UtcNow -lt $deadline)
-
-  throw ('TUNNEL_READY_TIMEOUT:' + ($last | ConvertTo-Json -Compress))
-}
-
-function Invoke-SystemHostExecSelfTest {
-  param(
-    [Parameter(Mandatory)][string]$HelperPath,
-    [Parameter(Mandatory)][string]$SmokePath,
-    [Parameter(Mandatory)][string]$OutputPath,
-    [Parameter(Mandatory)][string]$WorkRoot
-  )
-  $taskName = 'PTYSD-FactoryMCP-HostExec-Preflight-' + [Guid]::NewGuid().ToString('N')
-  Remove-Item -LiteralPath $OutputPath -Force -ErrorAction SilentlyContinue
-  New-Item -ItemType Directory -Path $WorkRoot -Force | Out-Null
-
-  $arg = '-NoProfile -NonInteractive -ExecutionPolicy Bypass -File "' + $SmokePath +
-    '" -HelperPath "' + $HelperPath +
-    '" -OutputPath "' + $OutputPath +
-    '" -WorkRoot "' + $WorkRoot +
-    '" -ExpectedRunAs "NT AUTHORITY\SYSTEM"'
-  $action = New-ScheduledTaskAction -Execute 'powershell.exe' -Argument $arg
-  $principal = New-ScheduledTaskPrincipal -UserId 'NT AUTHORITY\SYSTEM' -LogonType ServiceAccount -RunLevel Highest
-  $settings = New-ScheduledTaskSettingsSet -StartWhenAvailable -ExecutionTimeLimit (New-TimeSpan -Minutes 2)
-
-  try {
-    Register-ScheduledTask -TaskName $taskName -Action $action -Principal $principal -Settings $settings | Out-Null
-    Start-ScheduledTask -TaskName $taskName
-    $deadline = [DateTime]::UtcNow.AddSeconds(45)
-    do {
-      Start-Sleep -Milliseconds 250
-      $state = (Get-ScheduledTask -TaskName $taskName).State.ToString()
-    } while ($state -eq 'Running' -and [DateTime]::UtcNow -lt $deadline)
-
-    if ($state -eq 'Running') { throw 'SYSTEM_HOST_EXEC_SELFTEST_TIMEOUT' }
-    $info = Get-ScheduledTaskInfo -TaskName $taskName
-    if ([int]$info.LastTaskResult -ne 0) {
-      throw ('SYSTEM_HOST_EXEC_SELFTEST_TASK_FAILED:' + [string]$info.LastTaskResult)
-    }
-    if (-not (Test-Path -LiteralPath $OutputPath)) { throw 'SYSTEM_HOST_EXEC_SELFTEST_OUTPUT_MISSING' }
-    $obj = Get-Content -LiteralPath $OutputPath -Raw | ConvertFrom-Json -ErrorAction Stop
-    if (
-      $obj.result -ne 'PASS' -or
-      $obj.run_as -ne 'NT AUTHORITY\SYSTEM' -or
-      [int]$obj.exit_code -ne 0 -or
-      $obj.timed_out -ne $false
-    ) {
-      throw 'SYSTEM_HOST_EXEC_SELFTEST_NOT_PASS'
-    }
-    return $obj
-  } finally {
-    Stop-ScheduledTask -TaskName $taskName -ErrorAction SilentlyContinue
-    Unregister-ScheduledTask -TaskName $taskName -Confirm:$false -ErrorAction SilentlyContinue
-  }
-}
-
-function Restore-Backup {
-  foreach ($rel in $candidateFiles) {
-    $src = Join-Path $backup $rel
-    $dst = Join-Path $install $rel
-    if (Test-Path -LiteralPath $src) {
-      New-Item -ItemType Directory -Path (Split-Path $dst -Parent) -Force | Out-Null
-      Copy-Item -LiteralPath $src -Destination $dst -Force
-    } elseif ($rel -in $newFiles) {
-      Remove-Item -LiteralPath $dst -Force -ErrorAction SilentlyContinue
-    }
-  }
-}
-
-foreach ($task in @($brokerTask,$tunnelTask)) {
-  if (-not (Get-ScheduledTask -TaskName $task -ErrorAction SilentlyContinue)) {
-    throw ('SCHEDULED_TASK_MISSING:' + $task)
-  }
-}
-if (-not (Test-Path -LiteralPath $install)) { throw 'FACTORY_MCP_INSTALL_MISSING' }
-
-New-Item -ItemType Directory -Force -Path $staging,$backup,$qualificationRoot | Out-Null
-
-$prestate = [ordered]@{
-  schema = 'v48.factory-mcp.host-powershell.upgrade.prestate.v1'
-  source_ref = $SourceRef.ToLowerInvariant()
-  host = $env:COMPUTERNAME
-  run_as = [Security.Principal.WindowsIdentity]::GetCurrent().Name
-  broker_task_state = (Get-ScheduledTask -TaskName $brokerTask).State.ToString()
-  tunnel_task_state = (Get-ScheduledTask -TaskName $tunnelTask).State.ToString()
-  installed = [ordered]@{}
-}
-foreach ($rel in $baselineFiles) {
-  $installedPath = Join-Path $install $rel
-  if (-not (Test-Path -LiteralPath $installedPath)) { throw ('INSTALLED_FILE_MISSING:' + $rel) }
-  $prestate.installed[$rel] = Get-FileSha256 $installedPath
-}
-
-try {
-  foreach ($rel in $candidateFiles) {
-    $uri = $repoRaw + '/' + $SourceRef + '/' + $relativeRoot + '/' + ($rel -replace '\\','/')
-    $dst = Join-Path $staging $rel
-    New-Item -ItemType Directory -Path (Split-Path $dst -Parent) -Force | Out-Null
-    Invoke-WebRequest -UseBasicParsing -Uri $uri -OutFile $dst
-    if ((Get-Item -LiteralPath $dst).Length -lt 1) { throw ('DOWNLOADED_FILE_EMPTY:' + $rel) }
-  }
-
-  Parse-PowerShell (Join-Path $staging 'src\invoke-hostguard.ps1')
-  Parse-PowerShell (Join-Path $staging 'broker\hostguard-broker.ps1')
-  Parse-PowerShell (Join-Path $staging 'broker\host-powershell-exec.ps1')
-  Parse-PowerShell (Join-Path $staging 'tests\host-powershell-exec-smoke.ps1')
-
-  & 'C:\Program Files\nodejs\node.exe' --check (Join-Path $staging 'src\index.mjs')
-  if ($LASTEXITCODE -ne 0) { throw 'INDEX_NODE_CHECK_FAILED' }
-  & 'C:\Program Files\nodejs\node.exe' --check (Join-Path $staging 'tests\protocol-smoke.mjs')
-  if ($LASTEXITCODE -ne 0) { throw 'PROTOCOL_SMOKE_NODE_CHECK_FAILED' }
-  & 'C:\Program Files\nodejs\node.exe' --check (Join-Path $staging 'tests\live-status-smoke.mjs')
-  if ($LASTEXITCODE -ne 0) { throw 'LIVE_SMOKE_NODE_CHECK_FAILED' }
-  & 'C:\Program Files\nodejs\node.exe' --check (Join-Path $staging 'tests\control-lane-source-regression.mjs')
-  if ($LASTEXITCODE -ne 0) { throw 'CONTROL_LANE_SOURCE_REGRESSION_NODE_CHECK_FAILED' }
-  & 'C:\Program Files\nodejs\node.exe' --check (Join-Path $staging 'tests\control-lane-concurrency-smoke.mjs')
-  if ($LASTEXITCODE -ne 0) { throw 'CONTROL_LANE_CONCURRENCY_NODE_CHECK_FAILED' }
-
-  $systemSelfTest = Invoke-SystemHostExecSelfTest `
-    -HelperPath (Join-Path $staging 'broker\host-powershell-exec.ps1') `
-    -SmokePath (Join-Path $staging 'tests\host-powershell-exec-smoke.ps1') `
-    -OutputPath (Join-Path $qualificationRoot 'factory-mcp-host-exec-system-preflight.json') `
-    -WorkRoot (Join-Path $staging 'system-host-exec-preflight')
-
-  foreach ($rel in $candidateFiles) {
-    $src = Join-Path $install $rel
-    if (Test-Path -LiteralPath $src) {
-      $dst = Join-Path $backup $rel
-      New-Item -ItemType Directory -Path (Split-Path $dst -Parent) -Force | Out-Null
-      Copy-Item -LiteralPath $src -Destination $dst -Force
-    }
-  }
-
-  Stop-ScheduledTask -TaskName $tunnelTask -ErrorAction SilentlyContinue
-  Stop-ScheduledTask -TaskName $brokerTask -ErrorAction SilentlyContinue
-  [void](Wait-TaskNotRunning -TaskName $tunnelTask -Seconds 10)
-  [void](Wait-TaskNotRunning -TaskName $brokerTask -Seconds 10)
-
-  foreach ($rel in $candidateFiles) {
-    $src = Join-Path $staging $rel
-    $dst = Join-Path $install $rel
-    New-Item -ItemType Directory -Path (Split-Path $dst -Parent) -Force | Out-Null
-    Copy-Item -LiteralPath $src -Destination $dst -Force
-  }
-
-  Push-Location $install
-  try {
-    $env:NODE_ENV = 'test'
-    $env:PTYSD_FACTORY_MCP_TEST_MODE = '1'
-    & 'C:\Program Files\nodejs\node.exe' (Join-Path $install 'tests\protocol-smoke.mjs')
-    if ($LASTEXITCODE -ne 0) { throw 'FACTORY_MCP_PROTOCOL_SMOKE_FAILED' }
-  } finally {
-    Remove-Item Env:NODE_ENV -ErrorAction SilentlyContinue
-    Remove-Item Env:PTYSD_FACTORY_MCP_TEST_MODE -ErrorAction SilentlyContinue
-    Pop-Location
-  }
-
-  Remove-Item -LiteralPath $health -Force -ErrorAction SilentlyContinue
-  Start-ScheduledTask -TaskName $brokerTask
-  $brokerHealth = Wait-BrokerReady -Seconds 20
-
-  $controlLaneOut = Join-Path $qualificationRoot 'factory-mcp-control-lane-concurrency.json'
-  Remove-Item -LiteralPath $controlLaneOut -Force -ErrorAction SilentlyContinue
-  & 'C:\Program Files\nodejs\node.exe' (Join-Path $install 'tests\control-lane-concurrency-smoke.mjs') $controlLaneOut
-  if ($LASTEXITCODE -ne 0) { throw 'FACTORY_MCP_CONTROL_LANE_CONCURRENCY_FAILED' }
-  if (-not (Test-Path -LiteralPath $controlLaneOut)) { throw 'FACTORY_MCP_CONTROL_LANE_EVIDENCE_MISSING' }
-  $controlLane = Get-Content -LiteralPath $controlLaneOut -Raw | ConvertFrom-Json -ErrorAction Stop
-  if ($controlLane.result -ne 'PASS' -or [int]$controlLane.status_latency_ms -ge 5000) {
-    throw 'FACTORY_MCP_CONTROL_LANE_NOT_PASS'
-  }
-
-  Remove-Item -LiteralPath $qualificationOut -Force -ErrorAction SilentlyContinue
-  & 'C:\Program Files\nodejs\node.exe' (Join-Path $install 'tests\live-status-smoke.mjs') $qualificationOut
-  if ($LASTEXITCODE -ne 0) {
-    $lastErrorPath = Join-Path $install 'state\broker-last-error.json'
-    if (Test-Path -LiteralPath $lastErrorPath) {
-      $safeDiagnostic = (Get-Content -LiteralPath $lastErrorPath -Raw).Trim()
-      if ($safeDiagnostic.Length -gt 1600) { $safeDiagnostic = $safeDiagnostic.Substring(0,1600) }
-      Write-Host ('BROKER_LAST_ERROR=' + $safeDiagnostic)
-    }
-    throw 'FACTORY_MCP_LIVE_SMOKE_FAILED'
-  }
-  if (-not (Test-Path -LiteralPath $qualificationOut)) { throw 'FACTORY_MCP_LIVE_SMOKE_EVIDENCE_MISSING' }
-  $live = Get-Content -LiteralPath $qualificationOut -Raw | ConvertFrom-Json -ErrorAction Stop
-  if ($live.result -ne 'PASS' -or $live.host_powershell -ne 'PASS' -or $live.host_powershell_run_as -ne 'NT AUTHORITY\SYSTEM') {
-    throw 'FACTORY_MCP_LIVE_SMOKE_NOT_PASS'
-  }
-
-  Start-ScheduledTask -TaskName $tunnelTask
-  Start-Sleep -Seconds 3
-  $tunnelState = (Get-ScheduledTask -TaskName $tunnelTask).State.ToString()
-
-  $post = [ordered]@{
-    schema = 'v48.factory-mcp.host-powershell.upgrade.result.v1'
-    result = 'PASS'
-    source_ref = $SourceRef.ToLowerInvariant()
-    host = $env:COMPUTERNAME
-    run_as = [Security.Principal.WindowsIdentity]::GetCurrent().Name
-    broker_health = $brokerHealth
-    tunnel_task_state = $tunnelState
-    system_host_exec_preflight = $systemSelfTest
-    control_lane_concurrency = $controlLane
-    live_smoke = $live
-    installed = [ordered]@{}
-    backup = $backup
-    recorded_at_utc = [DateTime]::UtcNow.ToString('o')
-  }
-  foreach ($rel in $candidateFiles) {
-    $post.installed[$rel] = Get-FileSha256 (Join-Path $install $rel)
-  }
-  $post | ConvertTo-Json -Depth 12
-} catch {
-  Stop-ScheduledTask -TaskName $tunnelTask -ErrorAction SilentlyContinue
-  Stop-ScheduledTask -TaskName $brokerTask -ErrorAction SilentlyContinue
-  try {
-    Restore-Backup
-    Remove-Item -LiteralPath $health -Force -ErrorAction SilentlyContinue
-    Start-ScheduledTask -TaskName $brokerTask -ErrorAction SilentlyContinue
-    Start-Sleep -Seconds 2
-    Start-ScheduledTask -TaskName $tunnelTask -ErrorAction SilentlyContinue
-  } catch {}
   throw
 } finally {
   Remove-Item -LiteralPath $staging -Recurse -Force -ErrorAction SilentlyContinue

@@ -6,6 +6,7 @@ const install = await readFile(new URL('../windows/install-broker.ps1', import.m
 const upgrade = await readFile(new URL('../windows/upgrade-host-powershell.ps1', import.meta.url), 'utf8');
 const broker = await readFile(new URL('../broker/hostguard-broker.ps1', import.meta.url), 'utf8');
 const index = await readFile(new URL('../src/index.mjs', import.meta.url), 'utf8');
+const invoke = await readFile(new URL('../src/invoke-hostguard.ps1', import.meta.url), 'utf8');
 
 assert.match(runTunnel, /while \(\$true\)/);
 assert.match(runTunnel, /tunnel-supervisor\.json/);
@@ -31,5 +32,17 @@ assert.doesNotMatch(broker, /api_token\s*=/i);
 assert.match(index, /factoryStatusInput/);
 assert.match(index, /cloudflare_identity/);
 assert.match(index, /readOnlyHint: true/);
+
+
+assert.equal((invoke.match(/\[CmdletBinding\(\)\]/g) ?? []).length, 1);
+assert.match(invoke, /\[string\]\$Probe = 'factory'/);
+assert.match(invoke, /probe = if \(\$Operation -eq 'status'\)/);
+assert.equal((broker.match(/function Get-TunnelLaneStatus/g) ?? []).length, 1);
+assert.equal((broker.match(/function Get-CloudflareIdentityReadback/g) ?? []).length, 1);
+assert.equal((broker.match(/function Process-Request/g) ?? []).length, 1);
+assert.equal((upgrade.match(/function Wait-TunnelReady/g) ?? []).length, 1);
+assert.equal((upgrade.match(/function Invoke-SystemHostExecSelfTest/g) ?? []).length, 1);
+assert.match(install, /tests\\tunnel-supervisor-source-regression\.mjs/);
+assert.match(install, /windows\\upgrade-host-powershell\.ps1/);
 
 console.log('FACTORY_MCP_TUNNEL_SUPERVISOR_SOURCE_REGRESSION=PASS');
