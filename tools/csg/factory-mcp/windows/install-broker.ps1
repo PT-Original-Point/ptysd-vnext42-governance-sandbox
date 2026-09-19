@@ -95,7 +95,7 @@ try {
   $tunnelAction = New-ScheduledTaskAction -Execute 'powershell.exe' -Argument ('-NoProfile -NonInteractive -ExecutionPolicy Bypass -File "'+(Join-Path $base 'run-factory-mcp-tunnel.ps1')+'"')
   $tunnelTrigger = New-ScheduledTaskTrigger -AtStartup
   $tunnelPrincipal = New-ScheduledTaskPrincipal -UserId 'NT AUTHORITY\NETWORK SERVICE' -LogonType ServiceAccount -RunLevel Limited
-  $tunnelSettings = New-ScheduledTaskSettingsSet -StartWhenAvailable -RestartCount 3 -RestartInterval (New-TimeSpan -Minutes 1) -ExecutionTimeLimit ([TimeSpan]::Zero)
+  $tunnelSettings = New-ScheduledTaskSettingsSet -StartWhenAvailable -RestartCount 255 -RestartInterval (New-TimeSpan -Minutes 1) -ExecutionTimeLimit ([TimeSpan]::Zero)
   Register-ScheduledTask -TaskName $tunnelTask -Action $tunnelAction -Trigger $tunnelTrigger -Principal $tunnelPrincipal -Settings $tunnelSettings | Out-Null
   $createdTasks += $tunnelTask
   Disable-ScheduledTask -TaskName $tunnelTask | Out-Null

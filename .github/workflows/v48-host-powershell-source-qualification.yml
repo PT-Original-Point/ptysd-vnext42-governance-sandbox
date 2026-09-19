@@ -52,6 +52,8 @@ jobs:
             'tools/csg/factory-mcp/broker/hostguard-broker.ps1',
             'tools/csg/factory-mcp/broker/host-powershell-exec.ps1',
             'tools/csg/factory-mcp/tests/host-powershell-exec-smoke.ps1',
+            'tools/csg/factory-mcp/windows/run-tunnel.ps1',
+            'tools/csg/factory-mcp/windows/install-broker.ps1',
             'tools/csg/factory-mcp/windows/upgrade-host-powershell.ps1'
           )
           foreach ($path in $paths) {

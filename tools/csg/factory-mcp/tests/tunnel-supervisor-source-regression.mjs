@@ -1,0 +1,35 @@
+import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
+
+const runTunnel = await readFile(new URL('../windows/run-tunnel.ps1', import.meta.url), 'utf8');
+const install = await readFile(new URL('../windows/install-broker.ps1', import.meta.url), 'utf8');
+const upgrade = await readFile(new URL('../windows/upgrade-host-powershell.ps1', import.meta.url), 'utf8');
+const broker = await readFile(new URL('../broker/hostguard-broker.ps1', import.meta.url), 'utf8');
+const index = await readFile(new URL('../src/index.mjs', import.meta.url), 'utf8');
+
+assert.match(runTunnel, /while \(\$true\)/);
+assert.match(runTunnel, /tunnel-supervisor\.json/);
+assert.match(runTunnel, /TUNNEL_CLIENT_NONZERO_EXIT/);
+assert.match(runTunnel, /Start-Sleep -Seconds \$delaySeconds/);
+assert.match(runTunnel, /run --profile-file \$profile/);
+
+assert.match(install, /RestartCount 255/);
+
+assert.match(upgrade, /function Wait-TunnelReady/);
+assert.match(upgrade, /\/health\/control-plane/);
+assert.match(upgrade, /factory-mcp-host-powershell-upgrade-result\.json/);
+assert.match(upgrade, /FAILED_ROLLED_BACK_READY/);
+assert.match(upgrade, /operationalTunnelRunner/);
+assert.match(upgrade, /Wait-TunnelReady -Seconds 120/);
+
+assert.match(broker, /function Get-TunnelLaneStatus/);
+assert.match(broker, /function Get-CloudflareIdentityReadback/);
+assert.match(broker, /https:\/\/api\.cloudflare\.com\/client\/v4\/accounts\?per_page=50/);
+assert.match(broker, /provider_verified/);
+assert.doesNotMatch(broker, /api_token\s*=/i);
+
+assert.match(index, /factoryStatusInput/);
+assert.match(index, /cloudflare_identity/);
+assert.match(index, /readOnlyHint: true/);
+
+console.log('FACTORY_MCP_TUNNEL_SUPERVISOR_SOURCE_REGRESSION=PASS');
