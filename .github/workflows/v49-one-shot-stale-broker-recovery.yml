@@ -1,0 +1,86 @@
+name: V49 one-shot exact stale broker recovery
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/v49-one-shot-stale-broker-recovery.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: v49-one-shot-stale-broker-recovery
+  cancel-in-progress: false
+
+jobs:
+  recover:
+    runs-on: [self-hosted, windows, ptysd-governance-v45]
+    timeout-minutes: 5
+    steps:
+      - name: Verify exact trusted host and recover exact stale broker lane
+        shell: powershell
+        run: |
+          $ErrorActionPreference='Stop'
+          if ($env:RUNNER_NAME -ne 'PTYSD-V45-CONTROL-01') { throw 'RUNNER_ID_MISMATCH' }
+          if ($env:COMPUTERNAME -ne 'DESKTOP-1B6PD2P') { throw 'HOST_ID_MISMATCH' }
+
+          $root='C:\ProgramData\PTYSD\MCP\FactoryMCP'
+          $health=Join-Path $root 'state\broker-health.json'
+          $receipt=Join-Path $root 'state\exec-receipts\618be0e2fc8141eeb1f8a27f25b1863b.json'
+          $brokerSource=Join-Path $root 'broker\hostguard-broker.ps1'
+          $taskName='PTYSD-FactoryMCP-HostGuard-Broker-V47'
+
+          if (-not (Test-Path -LiteralPath $health)) { throw 'BROKER_HEALTH_MISSING' }
+          if (-not (Test-Path -LiteralPath $receipt)) { throw 'EXACT_RECEIPT_MISSING' }
+          if (-not (Test-Path -LiteralPath $brokerSource)) { throw 'BROKER_SOURCE_MISSING' }
+
+          $r=Get-Content -LiteralPath $receipt -Raw | ConvertFrom-Json -ErrorAction Stop
+          if ([string]$r.request_id -ne '618be0e2fc8141eeb1f8a27f25b1863b') { throw 'REQUEST_ID_MISMATCH' }
+          if ([string]$r.run_id -ne 'HANYAO-RSA-WATCH-20260920') { throw 'RUN_ID_MISMATCH' }
+          if ([string]$r.task_id -ne 'GCLOUD-TOKEN-C1') { throw 'TASK_ID_MISMATCH' }
+          if ([string]$r.state -ne 'STARTED') { throw ('STALE_REQUEST_NOT_STARTED:'+[string]$r.state) }
+
+          $src=Get-Content -LiteralPath $brokerSource -Raw
+          if (-not $src.Contains('$script:activePowerShellJob = $null')) { throw 'INSTALLED_BROKER_NOT_SINGLE_LANE' }
+          if ($src.Contains('$script:activePowerShellJobs = @{}')) { throw 'INSTALLED_BROKER_ALREADY_MULTILANE' }
+
+          $h=Get-Content -LiteralPath $health -Raw | ConvertFrom-Json -ErrorAction Stop
+          if ([string]$h.status -ne 'READY') { throw 'BROKER_NOT_READY' }
+          $oldPid=[int]$h.pid
+          if ($oldPid -lt 1) { throw 'BROKER_PID_INVALID' }
+          $p=Get-CimInstance Win32_Process -Filter "ProcessId=$oldPid" -ErrorAction SilentlyContinue
+          if (-not $p) { throw 'BROKER_PROCESS_MISSING' }
+          if ([string]$p.CommandLine -notmatch 'hostguard-broker\.ps1') { throw 'BROKER_PROCESS_IDENTITY_MISMATCH' }
+
+          Write-Host ('RECOVERY_PRESTATE=PASS old_pid='+$oldPid+' request=618be0e2fc8141eeb1f8a27f25b1863b')
+          & "$env:SystemRoot\System32\taskkill.exe" /PID $oldPid /T /F | Out-Host
+          if ($LASTEXITCODE -ne 0) { throw ('BROKER_TREE_TERMINATION_FAILED:'+ $LASTEXITCODE) }
+
+          Start-Sleep -Milliseconds 750
+          Stop-ScheduledTask -TaskName $taskName -ErrorAction SilentlyContinue
+          Start-Sleep -Milliseconds 500
+          Start-ScheduledTask -TaskName $taskName
+
+          $deadline=[DateTime]::UtcNow.AddSeconds(30)
+          $newHealth=$null
+          do {
+            Start-Sleep -Milliseconds 250
+            if (Test-Path -LiteralPath $health) {
+              try {
+                $candidate=Get-Content -LiteralPath $health -Raw | ConvertFrom-Json -ErrorAction Stop
+                if ([string]$candidate.status -eq 'READY' -and [int]$candidate.pid -gt 0 -and [int]$candidate.pid -ne $oldPid) {
+                  $newHealth=$candidate
+                  break
+                }
+              } catch {}
+            }
+          } while ([DateTime]::UtcNow -lt $deadline)
+
+          if (-not $newHealth) { throw 'BROKER_RESTART_READBACK_TIMEOUT' }
+          $newPid=[int]$newHealth.pid
+          $newProc=Get-CimInstance Win32_Process -Filter "ProcessId=$newPid" -ErrorAction SilentlyContinue
+          if (-not $newProc -or [string]$newProc.CommandLine -notmatch 'hostguard-broker\.ps1') { throw 'NEW_BROKER_IDENTITY_INVALID' }
+
+          Write-Host ('RECOVERY_RESULT=PASS old_pid='+$oldPid+' new_pid='+$newPid+' exact_stale_request_terminated=true')
