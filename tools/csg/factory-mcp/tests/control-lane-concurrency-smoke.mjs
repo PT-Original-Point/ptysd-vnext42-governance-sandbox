@@ -42,27 +42,36 @@ try {
   const init = await send('initialize', {
     protocolVersion: '2025-11-25',
     capabilities: {},
-    clientInfo: { name: 'factory-mcp-control-lane-smoke', version: '1.0.0' },
+    clientInfo: { name: 'factory-mcp-multiproject-smoke', version: '1.0.0' },
   });
   assert.equal(init.error, undefined);
   notify('notifications/initialized');
 
-  const op = {
-    runId: 'FACTORY-MCP-CONTROL-LANE-20260919',
-    taskId: 'LONG-EXEC-CONTROL-LANE',
-    attemptId: 'ATTEMPT-001',
-    attemptEpoch: 1,
-  };
-  const longCall = send('tools/call', {
+  const callA = send('tools/call', {
     name: 'host_powershell',
     arguments: {
-      ...op,
-      script: "Start-Sleep -Seconds 6; Write-Output 'CONTROL_LANE_LONG_DONE'",
+      runId: 'FACTORY-MCP-MULTIPROJECT-A',
+      taskId: 'LONG-A',
+      attemptId: 'ATTEMPT-001',
+      attemptEpoch: 1,
+      script: "Start-Sleep -Seconds 6; Write-Output 'MULTI_A_DONE'",
       timeoutSeconds: 20,
     },
   }, 30000);
 
-  await new Promise((resolve) => setTimeout(resolve, 750));
+  const callB = send('tools/call', {
+    name: 'host_powershell',
+    arguments: {
+      runId: 'FACTORY-MCP-MULTIPROJECT-B',
+      taskId: 'LONG-B',
+      attemptId: 'ATTEMPT-001',
+      attemptEpoch: 1,
+      script: "Start-Sleep -Seconds 6; Write-Output 'MULTI_B_DONE'",
+      timeoutSeconds: 20,
+    },
+  }, 30000);
+
+  await new Promise((resolve) => setTimeout(resolve, 900));
   const t0 = Date.now();
   const during = await send('tools/call', { name: 'factory_status', arguments: {} }, 8000);
   const statusLatencyMs = Date.now() - t0;
@@ -70,30 +79,32 @@ try {
   const duringPayload = textPayload(during);
   assert.ok(statusLatencyMs < 5000, `factory_status blocked for ${statusLatencyMs} ms`);
   assert.equal(duringPayload.host_exec_lane?.state, 'RUNNING');
-  assert.ok(duringPayload.host_exec_lane?.request_id);
+  assert.ok(duringPayload.host_exec_lane?.active_count >= 2);
+  assert.equal(duringPayload.host_exec_lane?.capacity, 4);
+  const runIds = (duringPayload.host_exec_lane?.active ?? []).map((x) => x.run_id).sort();
+  assert.deepEqual(runIds, ['FACTORY-MCP-MULTIPROJECT-A','FACTORY-MCP-MULTIPROJECT-B']);
 
-  const terminal = await longCall;
-  assert.equal(terminal.error, undefined);
-  assert.equal(terminal.result?.isError, undefined);
-  const terminalPayload = textPayload(terminal);
-  assert.equal(terminalPayload.result, 'COMPLETED');
-  assert.equal(terminalPayload.exit_code, 0);
-  assert.match(terminalPayload.stdout, /CONTROL_LANE_LONG_DONE/);
-  assert.equal(terminalPayload.request_id, duringPayload.host_exec_lane.request_id);
+  const [a,b] = await Promise.all([callA,callB]);
+  for (const terminal of [a,b]) {
+    assert.equal(terminal.error, undefined);
+    assert.equal(terminal.result?.isError, undefined);
+    const payload = textPayload(terminal);
+    assert.equal(payload.result, 'COMPLETED');
+    assert.equal(payload.exit_code, 0);
+  }
 
   const after = await send('tools/call', { name: 'factory_status', arguments: {} }, 8000);
   const afterPayload = textPayload(after);
   assert.equal(afterPayload.host_exec_lane?.state, 'IDLE');
-  assert.equal(afterPayload.host_exec_lane?.last_request_id, terminalPayload.request_id);
-  assert.equal(afterPayload.host_exec_lane?.last_state, 'COMPLETED');
+  assert.equal(afterPayload.host_exec_lane?.active_count, 0);
 
   await writeFile(outPath, `${JSON.stringify({
     result: 'PASS',
     status_latency_ms: statusLatencyMs,
-    request_id: terminalPayload.request_id,
-    during_state: duringPayload.host_exec_lane.state,
+    concurrent_active_count: duringPayload.host_exec_lane.active_count,
+    capacity: duringPayload.host_exec_lane.capacity,
+    run_ids: runIds,
     after_state: afterPayload.host_exec_lane.state,
-    after_last_state: afterPayload.host_exec_lane.last_state,
   })}\n`, 'utf8');
 } finally {
   child.kill();

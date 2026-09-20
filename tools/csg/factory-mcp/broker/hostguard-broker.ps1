@@ -39,8 +39,10 @@ $createdNew = $false
 $mutex = New-Object Threading.Mutex($true, 'Global\PTYSDFactoryMCPHostGuardBrokerV47', [ref]$createdNew)
 if (-not $createdNew) { throw 'BROKER_ALREADY_RUNNING' }
 
-$script:activePowerShellJob = $null
-$script:activePowerShellContext = $null
+$script:activePowerShellJobs = @{}
+$maxConcurrentPowerShell = 4
+$maxPerRunPowerShell = 1
+$staleGraceSeconds = 15
 
 function Write-AtomicJson {
   param([Parameter(Mandatory)][string]$Path,[Parameter(Mandatory)]$Value)
@@ -78,17 +80,51 @@ function Get-LatestHostExecReceipt {
   }
 }
 
+function Get-ActivePowerShellEntries {
+  return @($script:activePowerShellJobs.GetEnumerator() | ForEach-Object { $_.Value })
+}
+
 function Get-HostExecLaneStatus {
-  if ($script:activePowerShellJob) {
+  $active = @(Get-ActivePowerShellEntries)
+  if ($active.Count -gt 0) {
+    $now = [DateTime]::UtcNow
+    $items = @(
+      $active |
+        Sort-Object { [DateTime]$_.context.started_at_utc } |
+        ForEach-Object {
+          $started = ([DateTime]$_.context.started_at_utc).ToUniversalTime()
+          $ageSeconds = [int][Math]::Max(0,[Math]::Floor(($now - $started).TotalSeconds))
+          $stale = ($ageSeconds -gt ([int]$_.context.timeout_seconds + $staleGraceSeconds))
+          [ordered]@{
+            request_id = [string]$_.context.request_id
+            run_id = [string]$_.context.run_id
+            task_id = [string]$_.context.task_id
+            attempt_id = [string]$_.context.attempt_id
+            attempt_epoch = [int]$_.context.attempt_epoch
+            started_at_utc = [string]$_.context.started_at_utc
+            timeout_seconds = [int]$_.context.timeout_seconds
+            age_seconds = $ageSeconds
+            stale = [bool]$stale
+            job_state = [string]$_.job.State
+          }
+        }
+    )
+    $oldest = $items[0]
+    $staleCount = @($items | Where-Object { $_.stale }).Count
     return [ordered]@{
       state = 'RUNNING'
-      request_id = [string]$script:activePowerShellContext.request_id
-      run_id = [string]$script:activePowerShellContext.run_id
-      task_id = [string]$script:activePowerShellContext.task_id
-      attempt_id = [string]$script:activePowerShellContext.attempt_id
-      attempt_epoch = [int]$script:activePowerShellContext.attempt_epoch
-      started_at_utc = [string]$script:activePowerShellContext.started_at_utc
-      job_state = [string]$script:activePowerShellJob.State
+      active_count = [int]$items.Count
+      stale_count = [int]$staleCount
+      capacity = [int]$maxConcurrentPowerShell
+      max_per_run = [int]$maxPerRunPowerShell
+      request_id = [string]$oldest.request_id
+      run_id = [string]$oldest.run_id
+      task_id = [string]$oldest.task_id
+      attempt_id = [string]$oldest.attempt_id
+      attempt_epoch = [int]$oldest.attempt_epoch
+      started_at_utc = [string]$oldest.started_at_utc
+      job_state = [string]$oldest.job_state
+      active = $items
     }
   }
 
@@ -96,6 +132,10 @@ function Get-HostExecLaneStatus {
   if (-not $last) {
     return [ordered]@{
       state = 'IDLE'
+      active_count = 0
+      stale_count = 0
+      capacity = [int]$maxConcurrentPowerShell
+      max_per_run = [int]$maxPerRunPowerShell
       last_request_id = $null
       last_state = $null
     }
@@ -105,6 +145,10 @@ function Get-HostExecLaneStatus {
   if ($lastState -eq 'STARTED') {
     return [ordered]@{
       state = 'ORPHANED_UNKNOWN'
+      active_count = 0
+      stale_count = 1
+      capacity = [int]$maxConcurrentPowerShell
+      max_per_run = [int]$maxPerRunPowerShell
       request_id = [string]$last.request_id
       run_id = [string]$last.run_id
       task_id = [string]$last.task_id
@@ -116,12 +160,15 @@ function Get-HostExecLaneStatus {
 
   return [ordered]@{
     state = 'IDLE'
+    active_count = 0
+    stale_count = 0
+    capacity = [int]$maxConcurrentPowerShell
+    max_per_run = [int]$maxPerRunPowerShell
     last_request_id = [string]$last.request_id
     last_state = $lastState
     last_finished_at_utc = if ($last.PSObject.Properties.Name -contains 'finished_at_utc') { [string]$last.finished_at_utc } else { $null }
   }
 }
-
 
 function Get-TunnelControlPlanePollStatus {
   param([Parameter(Mandatory)][string]$BaseUrl)
@@ -294,7 +341,10 @@ function Start-BrokerPowerShell {
     [Parameter(Mandatory)][string]$RequestId
   )
 
-  if ($script:activePowerShellJob) { throw 'POWERSHELL_BUSY' }
+  $active = @(Get-ActivePowerShellEntries)
+  if ($active.Count -ge $maxConcurrentPowerShell) { throw 'POWERSHELL_CAPACITY_EXHAUSTED' }
+  $sameRun = @($active | Where-Object { [string]$_.context.run_id -eq [string]$Request.run_id })
+  if ($sameRun.Count -ge $maxPerRunPowerShell) { throw 'POWERSHELL_RUN_BUSY' }
   if (-not (Test-Id $Request.run_id) -or -not (Test-Id $Request.task_id) -or -not (Test-Id $Request.attempt_id)) {
     throw 'ID_INVALID'
   }
@@ -362,27 +412,31 @@ function Start-BrokerPowerShell {
     throw 'POWERSHELL_EXEC_LAUNCH_FAILED'
   }
 
-  $script:activePowerShellJob = $job
-  $script:activePowerShellContext = [ordered]@{
-    request_id=$RequestId
-    response_path=$responsePath
-    receipt_path=$receiptPath
-    run_id=[string]$Request.run_id
-    task_id=[string]$Request.task_id
-    attempt_id=[string]$Request.attempt_id
-    attempt_epoch=[int]$Request.attempt_epoch
-    timeout_seconds=$timeout
-    script_sha256=[string]$startedReceipt.script_sha256
-    started_at_utc=$startedAt
+  $script:activePowerShellJobs[$RequestId] = [ordered]@{
+    job=$job
+    context=[ordered]@{
+      request_id=$RequestId
+      response_path=$responsePath
+      receipt_path=$receiptPath
+      run_id=[string]$Request.run_id
+      task_id=[string]$Request.task_id
+      attempt_id=[string]$Request.attempt_id
+      attempt_epoch=[int]$Request.attempt_epoch
+      timeout_seconds=$timeout
+      script_sha256=[string]$startedReceipt.script_sha256
+      started_at_utc=$startedAt
+    }
   }
 }
 
-function Complete-ActivePowerShellJob {
-  if (-not $script:activePowerShellJob) { return }
-  $job = $script:activePowerShellJob
+function Complete-OnePowerShellJob {
+  param([Parameter(Mandatory)][string]$RequestId)
+  if (-not $script:activePowerShellJobs.ContainsKey($RequestId)) { return }
+  $entry = $script:activePowerShellJobs[$RequestId]
+  $job = $entry.job
   if ([string]$job.State -in @('Running','NotStarted')) { return }
 
-  $ctx = $script:activePowerShellContext
+  $ctx = $entry.context
   $deferred = $false
   $response = [ordered]@{
     schema = 'v48.factory-mcp.hostguard.response.v2'
@@ -487,8 +541,13 @@ function Complete-ActivePowerShellJob {
   } finally {
     try { Write-AtomicJson -Path ([string]$ctx.response_path) -Value $response } catch {}
     try { Remove-Job -Job $job -Force -ErrorAction SilentlyContinue } catch {}
-    $script:activePowerShellJob = $null
-    $script:activePowerShellContext = $null
+    [void]$script:activePowerShellJobs.Remove($RequestId)
+  }
+}
+
+function Complete-ActivePowerShellJobs {
+  foreach ($requestId in @($script:activePowerShellJobs.Keys)) {
+    Complete-OnePowerShellJob -RequestId ([string]$requestId)
   }
 }
 function Process-Request {
@@ -588,7 +647,7 @@ try {
   Write-Health
   $lastHealth = [DateTime]::UtcNow
   while ($true) {
-    Complete-ActivePowerShellJob
+    Complete-ActivePowerShellJobs
     $files = @(Get-ChildItem -LiteralPath $inbox -Filter '*.json' -File -ErrorAction SilentlyContinue | Sort-Object CreationTimeUtc | Select-Object -First 16)
     foreach ($file in $files) {
       $claimed = Join-Path $processing $file.Name
