@@ -7,9 +7,9 @@ OPENCODE="/usr/local/bin/opencode"
 PYTHON="/usr/bin/python3"
 NODE="/usr/bin/node"
 GIT="/usr/bin/git"
-AUTH="$HOME/.local/share/opencode/auth.json"
-CATALOG="$BASE/model-catalog.txt"
-LOG="$BASE/opencode-run.jsonl"
+OCROOT="$BASE/opencode-v2"; OC_DATA="$OCROOT/data"; OC_CONFIG="$OCROOT/config"; OC_CACHE="$OCROOT/cache"; OC_STATE="$OCROOT/state"
+SERVICE_PID="$BASE/opencode-service.pid"; SERVICE_OUT="$BASE/opencode-service.out"; SERVICE_ERR="$BASE/opencode-service.err"
+CATALOG="$BASE/model-catalog.json"; LOG="$BASE/opencode-run.jsonl"; ENV="/usr/bin/env"; TIMEOUT="/usr/bin/timeout"
 BASE_COMMIT="141baaebb30e4e4b43a3237b8e352822bbd54b10"
 BASE_TREE="de291ba0d7d6c6d09357471bd18653b0747a2a8a"
 REMOTE="https://github.com/PT-Original-Point/ptysd-vnext42-governance-sandbox.git"
@@ -20,26 +20,30 @@ CMD="${SSH_ORIGINAL_COMMAND:-${1:-}}"
 fail(){ echo "V49_N1_FAIL=$1" >&2; exit "${2:-1}"; }
 guard_user(){ test "$(id -un)" = "ptysd" || fail WRONG_USER 40; }
 ensure_base(){ mkdir -p "$BASE"; chmod 700 "$BASE"; }
+oc(){ "$ENV" -u OPENCODE_API_KEY OPENCODE_DB=:memory: OPENCODE_CONFIG_DIR="$OC_CONFIG" XDG_DATA_HOME="$OC_DATA" XDG_CONFIG_HOME="$OC_CONFIG" XDG_CACHE_HOME="$OC_CACHE" XDG_STATE_HOME="$OC_STATE" OPENCODE_DISABLE_AUTOUPDATE=1 "$OPENCODE" "$@"; }
+oc10(){ "$TIMEOUT" 10s "$ENV" -u OPENCODE_API_KEY OPENCODE_DB=:memory: OPENCODE_CONFIG_DIR="$OC_CONFIG" XDG_DATA_HOME="$OC_DATA" XDG_CONFIG_HOME="$OC_CONFIG" XDG_CACHE_HOME="$OC_CACHE" XDG_STATE_HOME="$OC_STATE" OPENCODE_DISABLE_AUTOUPDATE=1 "$OPENCODE" "$@"; }
+stop_service(){ if test -f "$SERVICE_PID"; then p="$(cat "$SERVICE_PID" 2>/dev/null || true)"; test -z "$p" || kill "$p" 2>/dev/null || true; test -z "$p" || wait "$p" 2>/dev/null || true; rm -f "$SERVICE_PID"; fi; rm -f "$OC_STATE/opencode/service.json" "$OC_CONFIG/service.json"; }
+start_service(){ ensure_base; mkdir -p "$OC_DATA" "$OC_CONFIG" "$OC_CACHE" "$OC_STATE"; chmod 700 "$OCROOT" "$OC_DATA" "$OC_CONFIG" "$OC_CACHE" "$OC_STATE"; stop_service; oc serve --service --port 0 >"$SERVICE_OUT" 2>"$SERVICE_ERR" & echo $! >"$SERVICE_PID"; }
 model_guard(){
   guard_user
   test -x "$OPENCODE" || fail OPENCODE_MISSING 41
   test -x "$PYTHON" || fail PYTHON_MISSING 42
-  test "$("$OPENCODE" --version 2>/dev/null || true)" = "1.18.31" || fail OPENCODE_VERSION_MISMATCH 43
-  "$PYTHON" - "$AUTH" <<'PY' || fail OPENCODE_AUTH_REQUIRED 44
+  test -x "$ENV" && test -x "$TIMEOUT" || fail RUNTIME_HELPER_MISSING 43
+  test "$("$OPENCODE" --version 2>/dev/null || true)" = "opencode v2.0.11" || fail OPENCODE_VERSION_MISMATCH 44
+  start_service
+  i=0
+  while test "$i" -lt 10; do
+    if oc10 api model.list >"$CATALOG" 2>/dev/null && "$PYTHON" - "$CATALOG" "$MODEL" <<'PY'
 import json,sys
-d=json.load(open(sys.argv[1],encoding="utf-8"))
-raise SystemExit(0 if isinstance(d,dict) and "opencode" in d else 1)
-PY
-  ensure_base
-  OPENCODE_DISABLE_AUTOUPDATE=1 "$OPENCODE" models opencode --verbose --refresh > "$CATALOG"
-  "$PYTHON" - "$CATALOG" "$MODEL" <<'PY' || fail ZERO_COST_GUARD 45
-import json,sys
-s=open(sys.argv[1],encoding="utf-8",errors="strict").read(); h=sys.argv[2]; p=s.find(h)
-if p<0: raise SystemExit(1)
-o,_=json.JSONDecoder().raw_decode(s[s.find("{",p):]); c=o.get("cost") or {}; k=c.get("cache") or {}
-ok=o.get("id")=="muse-spark-1.3-contributor-free" and o.get("providerID")=="opencode" and o.get("status")=="active" and c.get("input")==0 and c.get("output")==0 and k.get("read")==0 and k.get("write")==0
+d=json.load(open(sys.argv[1],encoding="utf-8")); ms=d.get("data") or []; m=next((x for x in ms if x.get("providerID")=="opencode" and x.get("id")==sys.argv[2].split("/",1)[1]),None)
+cs=(m or {}).get("cost") or []; ok=bool(m) and m.get("status")=="active" and m.get("enabled") is True and bool(cs) and all(c.get("input")==0 and c.get("output")==0 and (c.get("cache") or {}).get("read")==0 and (c.get("cache") or {}).get("write")==0 for c in cs)
 raise SystemExit(0 if ok else 1)
 PY
+    then return 0; fi
+    i=$((i+1)); sleep 1
+  done
+  stop_service
+  fail ZERO_COST_GUARD 45
 }
 emit_candidate(){
   test -f "$WORK/$SRC" || fail CANDIDATE_ABSENT 61
@@ -67,12 +71,14 @@ case "$CMD" in
     guard_user; echo 'PTYSD_V49_N1_BRIDGE_OK'; printf 'HOSTNAME='; hostname; printf 'WORKERCTL_SHA256='; sha256sum "$0" | awk '{print $1}'; printf 'WORKERCTL_OWNER='; stat -c '%U:%G' "$0"; printf 'WORKERCTL_MODE='; stat -c '%a' "$0" ;;
   v49-n1-preflight)
     model_guard
+    stop_service
     echo 'MODEL_ID=muse-spark-1.3-contributor-free'
     echo 'MODEL_STATUS=active'
     echo 'ZERO_COST_GUARD=PASS'
     if test -e "$WORK"; then echo 'WORKSPACE_EXISTS=true'; else echo 'WORKSPACE_EXISTS=false'; fi ;;
   v49-n1-build)
     model_guard
+    trap 'stop_service' EXIT HUP INT TERM
     test ! -e "$WORK" || fail WORKSPACE_NOT_CLEAN 46
     "$GIT" init -q "$WORK"
     cd "$WORK"
@@ -89,7 +95,7 @@ case "$CMD" in
 EOF
     cfg_hash="$(sha256sum opencode.json | awk '{print $1}')"
     : > "$LOG"
-    OPENCODE_DISABLE_AUTOUPDATE=1 timeout 300s "$OPENCODE" --print-logs --log-level INFO run --pure --format json --model "$MODEL" "Repair only fixtures/v49-live-n1/src/slugify.mjs so the existing protected test fixtures/v49-live-n1/test/slugify.test.mjs passes. Do not modify tests, package.json, workflows, governance, host files, tools, or any other file. Do not use shell, network tools, subagents, or external directories." > "$LOG"
+    "$TIMEOUT" 300s "$ENV" -u OPENCODE_API_KEY OPENCODE_DB=:memory: OPENCODE_CONFIG_DIR="$OC_CONFIG" XDG_DATA_HOME="$OC_DATA" XDG_CONFIG_HOME="$OC_CONFIG" XDG_CACHE_HOME="$OC_CACHE" XDG_STATE_HOME="$OC_STATE" OPENCODE_DISABLE_AUTOUPDATE=1 "$OPENCODE" --print-logs run --format json --model "$MODEL" "Repair only fixtures/v49-live-n1/src/slugify.mjs so the existing protected test fixtures/v49-live-n1/test/slugify.test.mjs passes. Do not modify tests, package.json, workflows, governance, host files, tools, or any other file. Do not use shell, network tools, subagents, or external directories." > "$LOG"
     test "$(sha256sum opencode.json | awk '{print $1}')" = "$cfg_hash" || fail CONFIG_CHANGED 50
     rm -f opencode.json
     test "$("$GIT" hash-object "$TEST")" = "$test_hash" || fail TEST_CHANGED 51
@@ -111,6 +117,7 @@ EOF
     emit_candidate ;;
   v49-n1-clean)
     guard_user
+    stop_service
     test -d "$BASE" || { echo 'CLEAN_ALREADY=true'; exit 0; }
     rm -rf "$BASE"
     echo 'CLEAN=true' ;;
