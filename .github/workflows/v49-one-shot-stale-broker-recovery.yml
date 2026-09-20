@@ -16,7 +16,9 @@ concurrency:
 
 jobs:
   recover:
-    runs-on: [self-hosted, windows, ptysd-governance-v45]
+    runs-on:
+      group: PTYSD-V46-CONTROL-TRUSTED
+      labels: ptysd-governance-v45
     timeout-minutes: 5
     steps:
       - name: Verify exact trusted host and recover exact stale broker lane
@@ -54,7 +56,16 @@ jobs:
           if (-not $p) { throw 'BROKER_PROCESS_MISSING' }
           if ([string]$p.CommandLine -notmatch 'hostguard-broker\.ps1') { throw 'BROKER_PROCESS_IDENTITY_MISMATCH' }
 
-          Write-Host ('RECOVERY_PRESTATE=PASS old_pid='+$oldPid+' request=618be0e2fc8141eeb1f8a27f25b1863b')
+          $exactChild=@(
+            Get-CimInstance Win32_Process -ErrorAction SilentlyContinue |
+              Where-Object { $_.CommandLine -and [string]$_.CommandLine -match '618be0e2fc8141eeb1f8a27f25b1863b' }
+          )
+          if ($exactChild.Count -eq 0) {
+            Write-Host ('RECOVERY_RESULT=ALREADY_NOT_RUNNING broker_pid='+$oldPid+' exact_stale_request_child_present=false')
+            exit 0
+          }
+
+          Write-Host ('RECOVERY_PRESTATE=PASS old_pid='+$oldPid+' request=618be0e2fc8141eeb1f8a27f25b1863b exact_child_count='+$exactChild.Count)
           & "$env:SystemRoot\System32\taskkill.exe" /PID $oldPid /T /F | Out-Host
           if ($LASTEXITCODE -ne 0) { throw ('BROKER_TREE_TERMINATION_FAILED:'+ $LASTEXITCODE) }
 
