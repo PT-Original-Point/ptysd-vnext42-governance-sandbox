@@ -24,7 +24,7 @@ model_guard(){
   guard_user
   test -x "$OPENCODE" || fail OPENCODE_MISSING 41
   test -x "$PYTHON" || fail PYTHON_MISSING 42
-  test "$("$OPENCODE" --version 2>/dev/null || true)" = "1.18.30" || fail OPENCODE_VERSION_MISMATCH 43
+  test "$("$OPENCODE" --version 2>/dev/null || true)" = "1.18.31" || fail OPENCODE_VERSION_MISMATCH 43
   "$PYTHON" - "$AUTH" <<'PY' || fail OPENCODE_AUTH_REQUIRED 44
 import json,sys
 d=json.load(open(sys.argv[1],encoding="utf-8"))
@@ -89,7 +89,7 @@ case "$CMD" in
 EOF
     cfg_hash="$(sha256sum opencode.json | awk '{print $1}')"
     : > "$LOG"
-    OPENCODE_DISABLE_AUTOUPDATE=1 timeout 300s "$OPENCODE" run --pure --format json --model "$MODEL" "Repair only fixtures/v49-live-n1/src/slugify.mjs so the existing protected test fixtures/v49-live-n1/test/slugify.test.mjs passes. Do not modify tests, package.json, workflows, governance, host files, tools, or any other file. Do not use shell, network tools, subagents, or external directories." > "$LOG"
+    OPENCODE_DISABLE_AUTOUPDATE=1 timeout 300s "$OPENCODE" --print-logs --log-level INFO run --pure --format json --model "$MODEL" "Repair only fixtures/v49-live-n1/src/slugify.mjs so the existing protected test fixtures/v49-live-n1/test/slugify.test.mjs passes. Do not modify tests, package.json, workflows, governance, host files, tools, or any other file. Do not use shell, network tools, subagents, or external directories." > "$LOG"
     test "$(sha256sum opencode.json | awk '{print $1}')" = "$cfg_hash" || fail CONFIG_CHANGED 50
     rm -f opencode.json
     test "$("$GIT" hash-object "$TEST")" = "$test_hash" || fail TEST_CHANGED 51
