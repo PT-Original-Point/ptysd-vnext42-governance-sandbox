@@ -1,0 +1,11 @@
+status=V49_12_WORKER_BUILD_PASS
+model_id=opencode/muse-spark-1.3-contributor-free
+fresh_zero_cost_guard=PASS
+observed_run_cost=PASS:2:0
+protected_tests=PASS_4_OF_4
+candidate_sha256=71419ea1a0c59448f3446ecaf44dc9b6206a55d3e06869c42d903a7300bfaef2
+candidate_bytes=163
+worker_provider_write_credentials=0
+production_effect=false
+paid_fallback_effect=false
+blocker=null
