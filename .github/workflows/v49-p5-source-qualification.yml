@@ -65,3 +65,27 @@ jobs:
           set -euo pipefail
           test "$(git rev-parse --abbrev-ref HEAD)" != "main" || { echo DEFAULT_BRANCH_IS_NOT_CONTROL_AUTHORITY; exit 1; }
           grep -R --line-number --fixed-strings "refs/heads/v45/factory-control" tools/csg/factory-mcp >/dev/null
+
+  windows-one-shot:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Windows PowerShell parser gate
+        shell: powershell
+        run: |
+          $ErrorActionPreference = 'Stop'
+          Get-ChildItem -Path tools/csg/factory-mcp -Recurse -File -Filter *.ps1 | ForEach-Object {
+            $tokens = $null
+            $errors = $null
+            [Management.Automation.Language.Parser]::ParseFile($_.FullName,[ref]$tokens,[ref]$errors) | Out-Null
+            if ($errors.Count -gt 0) {
+              throw ('POWERSHELL_PARSE_FAILED:' + $_.FullName + ':' + (($errors | ForEach-Object { $_.Message }) -join ';'))
+            }
+          }
+      - name: Durable operation one-shot tests
+        shell: powershell
+        run: |
+          $ErrorActionPreference = 'Stop'
+          & powershell.exe -NoProfile -NonInteractive -ExecutionPolicy Bypass -File tools/csg/factory-mcp/tests/operation-claim.test.ps1
+          if ($LASTEXITCODE -ne 0) { throw 'OPERATION_CLAIM_TEST_FAILED' }
