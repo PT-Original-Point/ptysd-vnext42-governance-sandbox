@@ -224,9 +224,9 @@ function testMutationContext(context, operationKind) {
 }
 
 export async function authorizeSystemExecution(args, systemCapability, options = {}) {
-  const { operationKind = 'HOST_POWERSHELL', ...loadOptions } = options;
+  const { operationKind = 'HOST_POWERSHELL', testMode = false, ...loadOptions } = options;
   if (!OPERATION_KINDS.has(operationKind)) fail('SYSTEM_FENCE_OPERATION_KIND_DENY');
-  let context = await loadCurrentSystemExecutionFence(systemCapability, loadOptions);
+  let context = await loadCurrentSystemExecutionFence(systemCapability, { ...loadOptions, testMode });
   if (testMode) context = testMutationContext(context, operationKind);
   const fence = context.execution_fence;
 
