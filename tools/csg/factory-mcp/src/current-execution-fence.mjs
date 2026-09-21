@@ -12,6 +12,7 @@ const PROJECT_ID = 'CHATGPT_GLOBAL_SKILL_GOVERNANCE';
 const SHA256_RE = /^sha256:[0-9a-f]{64}$/;
 const OID_RE = /^[0-9a-f]{40}$/;
 const CHECKPOINT_PATH_RE = /^governance\/csg\/checkpoints\/[0-9]{6}\.json$/;
+const OPERATION_KINDS = new Set(['HOST_POWERSHELL','WORKER_PREPARE','WORKER_START']);
 
 function fail(code) {
   throw new Error(code);
@@ -73,7 +74,7 @@ function validateContext(controlOid, pointer, checkpoint, systemCapability, now 
   const fence = checkpoint?.atomic?.execution_fence;
   if (!fence || fence.schema !== 'v49.factory-mcp.execution-fence.v1') fail('SYSTEM_FENCE_CURRENT_FENCE_MISSING');
   if (fence.project_id !== PROJECT_ID) fail('SYSTEM_FENCE_PROJECT_MISMATCH');
-  if (fence.operation_kind !== 'HOST_POWERSHELL') fail('SYSTEM_FENCE_OPERATION_KIND_DENY');
+  if (!OPERATION_KINDS.has(fence.operation_kind)) fail('SYSTEM_FENCE_OPERATION_KIND_DENY');
   if (fence.task_id !== checkpoint.task_id) fail('SYSTEM_FENCE_TASK_CHECKPOINT_MISMATCH');
   if (fence.attempt_id !== checkpoint.attempt_id) fail('SYSTEM_FENCE_ATTEMPT_CHECKPOINT_MISMATCH');
   if (fence.attempt_epoch !== checkpoint.attempt_epoch) fail('SYSTEM_FENCE_EPOCH_CHECKPOINT_MISMATCH');
@@ -81,6 +82,18 @@ function validateContext(controlOid, pointer, checkpoint, systemCapability, now 
   if (fence.mission_hash !== checkpoint?.mission_anchor?.declared_hash) fail('SYSTEM_FENCE_MISSION_HASH_MISMATCH');
   if (fence.authorization_envelope_digest !== checkpoint?.authorization_mode?.envelope_ref?.digest) {
     fail('SYSTEM_FENCE_AUTHORIZATION_MISMATCH');
+  }
+  if (!Number.isInteger(fence.authorization_generation) || fence.authorization_generation < 1) {
+    fail('SYSTEM_FENCE_AUTHORIZATION_GENERATION_INVALID');
+  }
+  if (!SHA256_RE.test(fence.authorization_state_digest ?? '')) {
+    fail('SYSTEM_FENCE_AUTHORIZATION_STATE_DIGEST_INVALID');
+  }
+  if (checkpoint?.authorization_mode?.authorization_generation !== fence.authorization_generation) {
+    fail('SYSTEM_FENCE_AUTHORIZATION_GENERATION_MISMATCH');
+  }
+  if (checkpoint?.authorization_mode?.authorization_state_ref?.digest !== fence.authorization_state_digest) {
+    fail('SYSTEM_FENCE_AUTHORIZATION_STATE_MISMATCH');
   }
   if (fence.mission_revision !== systemCapability.mission_revision) fail('SYSTEM_FENCE_CAPABILITY_MISSION_MISMATCH');
   if (fence.mission_hash !== systemCapability.mission_hash) fail('SYSTEM_FENCE_CAPABILITY_MISSION_HASH_MISMATCH');
@@ -93,7 +106,11 @@ function validateContext(controlOid, pointer, checkpoint, systemCapability, now 
   if (fence.capability_generation !== systemCapability.capability_generation) {
     fail('SYSTEM_FENCE_GENERATION_STALE');
   }
-  if (!SHA256_RE.test(fence.script_sha256 ?? '')) fail('SYSTEM_FENCE_SCRIPT_DIGEST_INVALID');
+  if (fence.operation_kind === 'HOST_POWERSHELL') {
+    if (!SHA256_RE.test(fence.script_sha256 ?? '')) fail('SYSTEM_FENCE_SCRIPT_DIGEST_INVALID');
+  } else if (!SHA256_RE.test(fence.payload_sha256 ?? '')) {
+    fail('SYSTEM_FENCE_PAYLOAD_DIGEST_INVALID');
+  }
   if (!Number.isInteger(fence.timeout_seconds) || fence.timeout_seconds < 1 || fence.timeout_seconds > 300) {
     fail('SYSTEM_FENCE_TIMEOUT_INVALID');
   }
@@ -121,6 +138,8 @@ const TEST_CONTEXT = Object.freeze({
     mission_revision: '20260919T010100+0800',
     mission_hash: 'sha256:58f21a0818bd60b61929925b38ea8507d5b80c09d816a7b6f5a75d2a410d542b',
     authorization_envelope_digest: 'sha256:cb614427a0a1755d002cd035f50d33b18208bab7e5a9d8efc42dfbc7c4d99d14',
+    authorization_generation: 1,
+    authorization_state_digest: 'sha256:' + 'a'.repeat(64),
     run_id: 'CHATGPT_GLOBAL_SKILL_GOVERNANCE-QUAL-P4',
     task_id: 'GOV-HARDENING-P4',
     attempt_id: 'GOV-HARDENING-P4-ATTEMPT-001',
@@ -159,6 +178,8 @@ export async function loadCurrentSystemExecutionFence(systemCapability, { testMo
         },
         authorization_mode: {
           envelope_ref: { digest: TEST_CONTEXT.execution_fence.authorization_envelope_digest },
+          authorization_generation: TEST_CONTEXT.execution_fence.authorization_generation,
+          authorization_state_ref: { digest: TEST_CONTEXT.execution_fence.authorization_state_digest },
         },
         atomic: { execution_fence: TEST_CONTEXT.execution_fence },
       },
@@ -175,16 +196,27 @@ export async function loadCurrentSystemExecutionFence(systemCapability, { testMo
   return validateContext(headBefore, pointer, checkpoint, systemCapability);
 }
 
+function mutationPayloadSha256(operationKind, args) {
+  return sha256Text(`${operationKind}|${args.runId}|${args.taskId}|${args.attemptId}|${args.attemptEpoch}`);
+}
+
 export async function authorizeSystemExecution(args, systemCapability, options = {}) {
-  const context = await loadCurrentSystemExecutionFence(systemCapability, options);
+  const { operationKind = 'HOST_POWERSHELL', ...loadOptions } = options;
+  if (!OPERATION_KINDS.has(operationKind)) fail('SYSTEM_FENCE_OPERATION_KIND_DENY');
+  const context = await loadCurrentSystemExecutionFence(systemCapability, loadOptions);
   const fence = context.execution_fence;
 
+  if (operationKind !== fence.operation_kind) fail('SYSTEM_FENCE_OPERATION_KIND_MISMATCH');
   if (args.runId !== fence.run_id) fail('SYSTEM_FENCE_RUN_MISMATCH');
   if (args.taskId !== fence.task_id) fail('SYSTEM_FENCE_TASK_MISMATCH');
   if (args.attemptId !== fence.attempt_id) fail('SYSTEM_FENCE_ATTEMPT_MISMATCH');
   if (args.attemptEpoch !== fence.attempt_epoch) fail('SYSTEM_FENCE_EPOCH_MISMATCH');
   if ((args.timeoutSeconds ?? 60) !== fence.timeout_seconds) fail('SYSTEM_FENCE_TIMEOUT_MISMATCH');
-  if (sha256Text(args.script) !== fence.script_sha256) fail('SYSTEM_FENCE_SCRIPT_MISMATCH');
+  if (operationKind === 'HOST_POWERSHELL') {
+    if (typeof args.script !== 'string' || sha256Text(args.script) !== fence.script_sha256) fail('SYSTEM_FENCE_SCRIPT_MISMATCH');
+  } else if (mutationPayloadSha256(operationKind, args) !== fence.payload_sha256) {
+    fail('SYSTEM_FENCE_PAYLOAD_MISMATCH');
+  }
 
   return context;
 }
