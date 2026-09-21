@@ -69,32 +69,31 @@ try {
   $raceRoot = Join-Path $root 'race'
   New-Item -ItemType Directory -Path $raceRoot -Force | Out-Null
   $raceRequest = New-TestRequest -OperationId 'P5-EXACTLY-ONCE-RACE-001' -AttemptEpoch 9
-  $jobs = @(
-    Start-Job -ScriptBlock {
-      param($Helper,$ClaimsRoot,$Request,$RequestId)
-      Set-StrictMode -Version Latest
-      $ErrorActionPreference = 'Stop'
-      . $Helper
-      try {
-        [void](Acquire-PTYSDOperationDispatchClaim -Request $Request -RequestId $RequestId -ClaimsRoot $ClaimsRoot)
-        'CLAIMED'
-      } catch {
-        [string]$_.Exception.Message
-      }
-    } -ArgumentList $helper,$raceRoot,$raceRequest,('66' * 16),
-    Start-Job -ScriptBlock {
-      param($Helper,$ClaimsRoot,$Request,$RequestId)
-      Set-StrictMode -Version Latest
-      $ErrorActionPreference = 'Stop'
-      . $Helper
-      try {
-        [void](Acquire-PTYSDOperationDispatchClaim -Request $Request -RequestId $RequestId -ClaimsRoot $ClaimsRoot)
-        'CLAIMED'
-      } catch {
-        [string]$_.Exception.Message
-      }
-    } -ArgumentList $helper,$raceRoot,$raceRequest,('77' * 16)
-  )
+  $job1 = Start-Job -ScriptBlock {
+    param($Helper,$ClaimsRoot,$Request,$RequestId)
+    Set-StrictMode -Version Latest
+    $ErrorActionPreference = 'Stop'
+    . $Helper
+    try {
+      [void](Acquire-PTYSDOperationDispatchClaim -Request $Request -RequestId $RequestId -ClaimsRoot $ClaimsRoot)
+      'CLAIMED'
+    } catch {
+      [string]$_.Exception.Message
+    }
+  } -ArgumentList $helper,$raceRoot,$raceRequest,('66' * 16)
+  $job2 = Start-Job -ScriptBlock {
+    param($Helper,$ClaimsRoot,$Request,$RequestId)
+    Set-StrictMode -Version Latest
+    $ErrorActionPreference = 'Stop'
+    . $Helper
+    try {
+      [void](Acquire-PTYSDOperationDispatchClaim -Request $Request -RequestId $RequestId -ClaimsRoot $ClaimsRoot)
+      'CLAIMED'
+    } catch {
+      [string]$_.Exception.Message
+    }
+  } -ArgumentList $helper,$raceRoot,$raceRequest,('77' * 16)
+  $jobs = @($job1,$job2)
   $jobs | Wait-Job | Out-Null
   $raceResults = @($jobs | ForEach-Object { [string](Receive-Job -Job $_) })
   $jobs | Remove-Job -Force -ErrorAction SilentlyContinue
