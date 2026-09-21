@@ -84,6 +84,50 @@ function Get-ActivePowerShellEntries {
   return @($script:activePowerShellJobs.GetEnumerator() | ForEach-Object { $_.Value })
 }
 
+function Get-PowerShellEntryAgeSeconds {
+  param([Parameter(Mandatory)]$Entry)
+  $started = ([DateTime]$Entry.context.started_at_utc).ToUniversalTime()
+  return [int][Math]::Max(0,[Math]::Floor(([DateTime]::UtcNow - $started).TotalSeconds))
+}
+
+function Reconcile-OrphanedStartedReceipts {
+  foreach ($file in @(Get-ChildItem -LiteralPath $execReceipts -Filter '*.json' -File -ErrorAction SilentlyContinue)) {
+    try {
+      $receipt = Get-Content -LiteralPath $file.FullName -Raw | ConvertFrom-Json -ErrorAction Stop
+      if ([string]$receipt.state -ne 'STARTED') { continue }
+      $requestId = [string]$receipt.request_id
+      if ($script:activePowerShellJobs.ContainsKey($requestId)) { continue }
+      $started = ([DateTime]$receipt.started_at_utc).ToUniversalTime()
+      $timeout = [int]$receipt.timeout_seconds
+      $ageSeconds = [int][Math]::Max(0,[Math]::Floor(([DateTime]::UtcNow - $started).TotalSeconds))
+      if ($ageSeconds -le ($timeout + $staleGraceSeconds)) { continue }
+      $receipt.state = 'ORPHANED'
+      $receipt.timed_out = $true
+      $receipt.finished_at_utc = [DateTime]::UtcNow.ToString('o')
+      $receipt | Add-Member -NotePropertyName error_code -NotePropertyValue 'BROKER_RECEIPT_ORPHANED' -Force
+      $receipt | Add-Member -NotePropertyName side_effect_state -NotePropertyValue 'UNKNOWN_AFTER_BROKER_RESTART' -Force
+      Write-AtomicJson -Path $file.FullName -Value $receipt
+      $responsePath = Join-Path $outbox ($requestId + '.json')
+      if (-not (Test-Path -LiteralPath $responsePath)) {
+        $response = [ordered]@{
+          schema='v48.factory-mcp.hostguard.response.v2'; request_id=$requestId; ok=$true; error_code=$null
+          result=[ordered]@{
+            schema='v48.factory-mcp.host-exec.result.v2'; operation='powershell'; result='ORPHANED'; request_id=$requestId
+            run_id=[string]$receipt.run_id; task_id=[string]$receipt.task_id; attempt_id=[string]$receipt.attempt_id; attempt_epoch=[int]$receipt.attempt_epoch
+            run_as=[string]$receipt.run_as; exit_code=$null; timed_out=$true; stdout=''; stderr=''; stdout_bytes=0; stderr_bytes=0
+            stdout_truncated=$false; stderr_truncated=$false; script_sha256=[string]$receipt.script_sha256; receipt_path=$file.FullName
+            side_effect_state='UNKNOWN_AFTER_BROKER_RESTART'
+          }
+          brokered_at_utc=[DateTime]::UtcNow.ToString('o')
+        }
+        Write-AtomicJson -Path $responsePath -Value $response
+      }
+    } catch {
+      # Reconciliation is best-effort and never converts malformed evidence into current truth.
+    }
+  }
+}
+
 function Get-HostExecLaneStatus {
   $active = @(Get-ActivePowerShellEntries)
   if ($active.Count -gt 0) {
@@ -114,6 +158,9 @@ function Get-HostExecLaneStatus {
     return [ordered]@{
       state = 'RUNNING'
       active_count = [int]$items.Count
+      effective_active_count = [int]$items.Count
+      live_job_count = [int]$items.Count
+      orphan_count = 0
       stale_count = [int]$staleCount
       capacity = [int]$maxConcurrentPowerShell
       max_per_run = [int]$maxPerRunPowerShell
@@ -133,6 +180,9 @@ function Get-HostExecLaneStatus {
     return [ordered]@{
       state = 'IDLE'
       active_count = 0
+      effective_active_count = 0
+      live_job_count = 0
+      orphan_count = 0
       stale_count = 0
       capacity = [int]$maxConcurrentPowerShell
       max_per_run = [int]$maxPerRunPowerShell
@@ -142,11 +192,14 @@ function Get-HostExecLaneStatus {
   }
 
   $lastState = if ($last.PSObject.Properties.Name -contains 'state') { [string]$last.state } else { 'LEGACY_TERMINAL' }
-  if ($lastState -eq 'STARTED') {
+  if ($lastState -in @('STARTED','ORPHANED')) {
     return [ordered]@{
       state = 'ORPHANED_UNKNOWN'
       active_count = 0
-      stale_count = 1
+      effective_active_count = 0
+      live_job_count = 0
+      orphan_count = 1
+      stale_count = 0
       capacity = [int]$maxConcurrentPowerShell
       max_per_run = [int]$maxPerRunPowerShell
       request_id = [string]$last.request_id
@@ -161,6 +214,9 @@ function Get-HostExecLaneStatus {
   return [ordered]@{
     state = 'IDLE'
     active_count = 0
+    effective_active_count = 0
+    live_job_count = 0
+    orphan_count = 0
     stale_count = 0
     capacity = [int]$maxConcurrentPowerShell
     max_per_run = [int]$maxPerRunPowerShell
@@ -380,6 +436,7 @@ function Start-BrokerPowerShell {
     timeout_seconds=$timeout
     exit_code=$null
     timed_out=$false
+    side_effect_state='PENDING'
     stdout_bytes=$null
     stderr_bytes=$null
     stdout_sha256=$null
@@ -434,9 +491,36 @@ function Complete-OnePowerShellJob {
   if (-not $script:activePowerShellJobs.ContainsKey($RequestId)) { return }
   $entry = $script:activePowerShellJobs[$RequestId]
   $job = $entry.job
-  if ([string]$job.State -in @('Running','NotStarted')) { return }
-
   $ctx = $entry.context
+  if ([string]$job.State -in @('Running','NotStarted')) {
+    $ageSeconds = Get-PowerShellEntryAgeSeconds -Entry $entry
+    if ($ageSeconds -le ([int]$ctx.timeout_seconds + $staleGraceSeconds)) { return }
+    $finishedAt = [DateTime]::UtcNow.ToString('o')
+    try { Stop-Job -Job $job -ErrorAction SilentlyContinue } catch {}
+    $receipt = [ordered]@{
+      schema='v48.factory-mcp.host-exec.receipt.v2'; state='TIMED_OUT'; request_id=[string]$ctx.request_id; operation='powershell'
+      run_id=[string]$ctx.run_id; task_id=[string]$ctx.task_id; attempt_id=[string]$ctx.attempt_id; attempt_epoch=[int]$ctx.attempt_epoch
+      run_as=[Security.Principal.WindowsIdentity]::GetCurrent().Name; script_sha256=[string]$ctx.script_sha256; timeout_seconds=[int]$ctx.timeout_seconds
+      exit_code=$null; timed_out=$true; side_effect_state='UNKNOWN_AFTER_TIMEOUT'; stdout_bytes=$null; stderr_bytes=$null; stdout_sha256=$null; stderr_sha256=$null
+      started_at_utc=[string]$ctx.started_at_utc; finished_at_utc=$finishedAt; error_code='BROKER_WATCHDOG_TIMEOUT'
+    }
+    Write-AtomicJson -Path ([string]$ctx.receipt_path) -Value $receipt
+    $response = [ordered]@{
+      schema='v48.factory-mcp.hostguard.response.v2'; request_id=[string]$ctx.request_id; ok=$true; error_code=$null
+      result=[ordered]@{
+        schema='v48.factory-mcp.host-exec.result.v2'; operation='powershell'; result='TIMED_OUT'; request_id=[string]$ctx.request_id
+        run_id=[string]$ctx.run_id; task_id=[string]$ctx.task_id; attempt_id=[string]$ctx.attempt_id; attempt_epoch=[int]$ctx.attempt_epoch
+        run_as=[Security.Principal.WindowsIdentity]::GetCurrent().Name; executable=$null; exit_code=$null; timed_out=$true
+        stdout=''; stderr=''; stdout_bytes=0; stderr_bytes=0; stdout_truncated=$false; stderr_truncated=$false
+        script_sha256=[string]$ctx.script_sha256; receipt_path=[string]$ctx.receipt_path; side_effect_state='UNKNOWN_AFTER_TIMEOUT'
+      }
+      brokered_at_utc=$finishedAt
+    }
+    Write-AtomicJson -Path ([string]$ctx.response_path) -Value $response
+    try { Remove-Job -Job $job -Force -ErrorAction SilentlyContinue } catch { try { Remove-Job -Job $job -ErrorAction SilentlyContinue } catch {} }
+    [void]$script:activePowerShellJobs.Remove($RequestId)
+    return
+  }
   $deferred = $false
   $response = [ordered]@{
     schema = 'v48.factory-mcp.hostguard.response.v2'
@@ -476,6 +560,7 @@ function Complete-OnePowerShellJob {
       timeout_seconds=[int]$raw.timeout_seconds
       exit_code=[int]$raw.exit_code
       timed_out=[bool]$raw.timed_out
+      side_effect_state=if([bool]$raw.timed_out){'UNKNOWN_AFTER_TIMEOUT'}else{'OBSERVED_COMPLETED'}
       stdout_bytes=[int64]$raw.stdout_bytes
       stderr_bytes=[int64]$raw.stderr_bytes
       stdout_sha256=[string]$raw.stdout_sha256
@@ -500,6 +585,7 @@ function Complete-OnePowerShellJob {
       executable=[string]$raw.executable
       exit_code=[int]$raw.exit_code
       timed_out=[bool]$raw.timed_out
+      side_effect_state=if([bool]$raw.timed_out){'UNKNOWN_AFTER_TIMEOUT'}else{'OBSERVED_COMPLETED'}
       stdout=[string]$raw.stdout
       stderr=[string]$raw.stderr
       stdout_bytes=[int64]$raw.stdout_bytes
@@ -526,6 +612,7 @@ function Complete-OnePowerShellJob {
       timeout_seconds=[int]$ctx.timeout_seconds
       exit_code=$null
       timed_out=$false
+      side_effect_state='UNKNOWN_AFTER_EXECUTOR_FAILURE'
       stdout_bytes=$null
       stderr_bytes=$null
       stdout_sha256=$null
@@ -648,6 +735,7 @@ try {
   $lastHealth = [DateTime]::UtcNow
   while ($true) {
     Complete-ActivePowerShellJobs
+    Reconcile-OrphanedStartedReceipts
     $files = @(Get-ChildItem -LiteralPath $inbox -Filter '*.json' -File -ErrorAction SilentlyContinue | Sort-Object CreationTimeUtc | Select-Object -First 16)
     foreach ($file in $files) {
       $claimed = Join-Path $processing $file.Name
