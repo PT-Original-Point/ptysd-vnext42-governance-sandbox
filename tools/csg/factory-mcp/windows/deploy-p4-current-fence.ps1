@@ -22,14 +22,14 @@ $backup = Join-Path $base ('backup\factory-mcp-p4-' + $stamp)
 $git = 'C:\Program Files\Git\cmd\git.exe'
 $node = 'C:\Program Files\nodejs\node.exe'
 $targets = [ordered]@{
-  'src/index.mjs' = '04af14b745650755d551ec268d864e6acea08cb7'
-  'src/current-execution-fence.mjs' = 'cdece384b22b1555870204213d5630f29d536fe1'
-  'src/invoke-hostguard.ps1' = '1c70aaed4b10c32ed703388488fb69287b730996'
-  'broker/hostguard-broker.ps1' = 'cfd23344b2c7b4073a9e6cac1e50a1cdcbcc0e47'
-  'broker/current-execution-fence.ps1' = '899f0a398b6f15da1ad176d943187ca78478b4e0'
-  'config/system-capability.json' = '6cbc824c700c87c66d2be628f0d304d1f2cd8f8f'
-  'tests/protocol-smoke.mjs' = '2bbc52ff29e248c75a0b4014bed40b2146c7123a'
-  'tests/control-lane-source-regression.mjs' = 'c6723a1139774e5b8730b457e19c1e4faba1d72f'
+  'src/index.mjs' = '4118619cd8cc04fbe5f842e53d440e67ebf71f82eb03f7c328031690123b2794'
+  'src/current-execution-fence.mjs' = '0414d31f255311e4504b52964f13260de15720670d79a442b66c830007cb6fb1'
+  'src/invoke-hostguard.ps1' = '10d463561b3479020cb55930b667914600f630034dab0882174152903efcfa5f'
+  'broker/hostguard-broker.ps1' = 'e3ecfb61dd23c53493f52687f7b0e04517a74abea6c5b742b1e1c4d3c7f1e51f'
+  'broker/current-execution-fence.ps1' = '7d3a4701903a0425afc887ab23c83cddabe7a4f8b3962d9febd3c07310a8d79b'
+  'config/system-capability.json' = '132fb34aa6ac16d0e9129e9bbe5b6ffe480ac2dea8ac9e9eb16ac126a79f4f1d'
+  'tests/protocol-smoke.mjs' = '5f8f97ea3fb6c32db2de77991c2e7501cea5acc3e5f81ff79feda02fee4b88f2'
+  'tests/control-lane-source-regression.mjs' = '648afe0019f9bcb876bdc856ac481685ed71120ee88260adfeaabe323f8ec38f'
 }
 
 function Write-AtomicJson([string]$Path,$Value) {
@@ -37,10 +37,9 @@ function Write-AtomicJson([string]$Path,$Value) {
   [IO.File]::WriteAllText($tmp,($Value|ConvertTo-Json -Depth 12 -Compress),(New-Object Text.UTF8Encoding($false)))
   Move-Item -LiteralPath $tmp -Destination $Path -Force
 }
-function Get-BlobSha([string]$Path) {
-  $sha = (& $git hash-object -- $Path 2>$null | Select-Object -First 1).Trim()
-  if ($LASTEXITCODE -ne 0 -or $sha -notmatch '^[0-9a-f]{40}$') { throw 'GIT_HASH_OBJECT_FAILED' }
-  return $sha
+function Get-ContentSha256([string]$Path) {
+  if (-not (Test-Path -LiteralPath $Path)) { throw 'HASH_TARGET_MISSING' }
+  return (Get-FileHash -LiteralPath $Path -Algorithm SHA256).Hash.ToLowerInvariant()
 }
 function Parse-PowerShell([string]$Path) {
   $tokens=$null;$errors=$null
@@ -93,7 +92,7 @@ try {
     New-Item -ItemType Directory -Path (Split-Path $dst -Parent) -Force|Out-Null
     $uri=$repoRaw+'/'+$sourceRef+'/'+$relativeRoot+'/'+$rel
     Invoke-WebRequest -UseBasicParsing -Uri $uri -OutFile $dst -Headers @{'Cache-Control'='no-cache'} -TimeoutSec 15
-    if((Get-BlobSha $dst)-ne[string]$targets[$rel]){throw ('STAGING_BLOB_MISMATCH:'+$rel)}
+    if((Get-ContentSha256 $dst)-ne[string]$targets[$rel]){throw ('STAGING_BLOB_MISMATCH:'+$rel)}
   }
   foreach($rel in @('src/invoke-hostguard.ps1','broker/hostguard-broker.ps1','broker/current-execution-fence.ps1')){Parse-PowerShell (Join-Path $staging $rel)}
   foreach($rel in @('src/index.mjs','src/current-execution-fence.mjs','tests/protocol-smoke.mjs','tests/control-lane-source-regression.mjs')){& $node --check (Join-Path $staging $rel);if($LASTEXITCODE-ne0){throw ('NODE_CHECK_FAILED:'+$rel)}}
@@ -105,7 +104,7 @@ try {
   Stop-ScheduledTask -TaskName $brokerTask -ErrorAction SilentlyContinue
   Wait-TaskNotRunning $tunnelTask 15;Wait-TaskNotRunning $brokerTask 15
   foreach($rel in $targets.Keys){$src=Join-Path $staging $rel;$dst=Join-Path $install $rel;New-Item -ItemType Directory -Path (Split-Path $dst -Parent) -Force|Out-Null;Copy-Item $src $dst -Force}
-  foreach($rel in $targets.Keys){if((Get-BlobSha (Join-Path $install $rel))-ne[string]$targets[$rel]){throw ('INSTALLED_BLOB_MISMATCH:'+$rel)}}
+  foreach($rel in $targets.Keys){if((Get-ContentSha256 (Join-Path $install $rel))-ne[string]$targets[$rel]){throw ('INSTALLED_BLOB_MISMATCH:'+$rel)}}
   Remove-Item $health -Force -ErrorAction SilentlyContinue
   Start-ScheduledTask -TaskName $brokerTask
   $broker=Wait-BrokerReady 30
@@ -114,7 +113,7 @@ try {
   $tunnel=Wait-TunnelReady 120
   $deployed=$true
   $installed=[ordered]@{}
-  foreach($rel in $targets.Keys){$installed[$rel]=Get-BlobSha (Join-Path $install $rel)}
+  foreach($rel in $targets.Keys){$installed[$rel]=Get-ContentSha256 (Join-Path $install $rel)}
   Write-AtomicJson $resultPath ([ordered]@{schema='v49.factory-mcp.p4-deploy.v1';result='PASS';source_ref=$sourceRef;host=$env:COMPUTERNAME;run_as=[Security.Principal.WindowsIdentity]::GetCurrent().Name;installed=$installed;backup=$backup;broker_pid=$broker.pid;tunnel=$tunnel;recorded_at_utc=[DateTime]::UtcNow.ToString('o')})
 } catch {
   $err=[string]$_.Exception.Message
