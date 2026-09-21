@@ -62,7 +62,7 @@ const workerPayload = JSON.parse(parse(valid,'valid identity').result?.content?.
 assert.equal(workerPayload.result, 'STARTED');
 assert.equal(workerPayload.attempt_epoch, 1);
 
-const hostArgs={runId:'V47-CONSTRUCTION-001',taskId:'W47-06',attemptId:'V47-W47-06-ATTEMPT-001',attemptEpoch:1,script:"Write-Output 'OK'",timeoutSeconds:30};
+const hostArgs={runId:'CHATGPT_GLOBAL_SKILL_GOVERNANCE',taskId:'GOV-QUAL-INSPECTOR',attemptId:'GOV-P3-INSPECTOR-ATTEMPT-001',attemptEpoch:1,script:"Write-Output 'OK'",timeoutSeconds:30};
 const staleHost=run(['--method','tools/call','--tool-name','host_powershell','--tool-args-json',JSON.stringify({...hostArgs,attemptEpoch:0})]);
 assert.equal(staleHost.status,5);
 assert.equal(parse(staleHost,'stale host').result?.isError,true);
@@ -72,4 +72,6 @@ const hostPayload=JSON.parse(parse(host,'host').result?.content?.[0]?.text ?? 'n
 assert.equal(hostPayload.result,'COMPLETED');
 assert.equal(hostPayload.attempt_epoch,1);
 assert.equal(hostPayload.run_as,'NT AUTHORITY\\SYSTEM');
+assert.equal(hostPayload.project_id,'CHATGPT_GLOBAL_SKILL_GOVERNANCE');
+assert.equal(hostPayload.capability_id,'CAP-GOV-SYSTEM-V1');
 console.log('FACTORY_MCP_OFFICIAL_INSPECTOR_EQUIVALENCE=PASS');
