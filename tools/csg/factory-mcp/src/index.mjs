@@ -1,4 +1,5 @@
 import { execFile } from 'node:child_process';
+import { randomBytes } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { promisify } from 'node:util';
@@ -155,20 +156,26 @@ async function runHostGuard(operation, args = {}) {
     );
   }
 
-  if (operation === 'powershell') {
+  if (operation !== 'status') {
+    const fence = args.executionFence?.execution_fence;
     psArgs.push(
       '-ProjectId', SYSTEM_CAPABILITY.project_id,
       '-CapabilityId', SYSTEM_CAPABILITY.capability_id,
-      '-OperationId', args.executionFence.execution_fence.operation_id,
+      '-OperationId', fence.operation_id,
       '-ControlOid', args.executionFence.control_oid,
       '-CheckpointDigest', args.executionFence.checkpoint_digest,
-      '-AuthorizationEnvelopeDigest', args.executionFence.execution_fence.authorization_envelope_digest,
-      '-CapabilityGeneration', String(args.executionFence.execution_fence.capability_generation),
+      '-AuthorizationEnvelopeDigest', fence.authorization_envelope_digest,
+      '-AuthorizationGeneration', String(fence.authorization_generation),
+      '-AuthorizationStateDigest', fence.authorization_state_digest,
+      '-CapabilityGeneration', String(fence.capability_generation),
+      '-RequestId', args.requestId,
       '-CallerAttestationBase64', args.callerAttestation?.payload_b64 ?? '',
       '-CallerAttestationMac', args.callerAttestation?.mac_sha256 ?? '',
-      '-ScriptBase64', Buffer.from(args.script, 'utf8').toString('base64'),
       '-TimeoutSeconds', String(args.timeoutSeconds ?? 60),
     );
+    if (operation === 'powershell') {
+      psArgs.push('-ScriptBase64', Buffer.from(args.script, 'utf8').toString('base64'));
+    }
   }
 
   try {
@@ -200,6 +207,30 @@ async function runHostGuard(operation, args = {}) {
 
 function textResult(value) {
   return { content: [{ type: 'text', text: JSON.stringify(value) }] };
+}
+
+function assertTrustedMutationCaller(callerIdentity, transportKind) {
+  if (TEST_MODE) return;
+  if (!callerIdentity || callerIdentity.schema !== 'v49.factory-mcp.trusted-caller-identity.v1') {
+    throw new Error('TRUSTED_CALLER_REQUIRED');
+  }
+  if (callerIdentity.project_id !== SYSTEM_CAPABILITY.project_id) {
+    throw new Error('TRUSTED_CALLER_PROJECT_DENY');
+  }
+  if (transportKind !== 'https-mtls') {
+    throw new Error('TRUSTED_CALLER_TRANSPORT_REQUIRED');
+  }
+}
+
+async function runAuthorizedMutation(operation, args, callerIdentity, transportKind) {
+  const operationKind = operation === 'powershell' ? 'HOST_POWERSHELL' : operation === 'prepare' ? 'WORKER_PREPARE' : 'WORKER_START';
+  assertSystemCapabilityArgs({ ...args, timeoutSeconds: args.timeoutSeconds ?? 60 });
+  assertTrustedMutationCaller(callerIdentity, transportKind);
+  const normalizedArgs = { ...args, timeoutSeconds: args.timeoutSeconds ?? 60 };
+  const executionFence = await authorizeSystemExecution(normalizedArgs, SYSTEM_CAPABILITY, { testMode: TEST_MODE, operationKind });
+  const requestId = randomBytes(16).toString('hex');
+  const callerAttestation = TEST_MODE ? null : createBrokerCallerAttestation({ callerIdentity, executionFence, args: normalizedArgs, requestId });
+  return runHostGuard(operation, { ...normalizedArgs, executionFence, callerAttestation, requestId });
 }
 
 export function createServer({ callerIdentity = null, transportKind = 'stdio' } = {}) {
@@ -240,7 +271,7 @@ export function createServer({ callerIdentity = null, transportKind = 'stdio' } 
         openWorldHint: false,
       },
     },
-    async (args) => textResult(await runHostGuard('prepare', args)),
+    async (args) => textResult(await runAuthorizedMutation('prepare', args, callerIdentity, transportKind)),
   );
 
   server.registerTool(
@@ -256,7 +287,7 @@ export function createServer({ callerIdentity = null, transportKind = 'stdio' } 
         openWorldHint: false,
       },
     },
-    async (args) => textResult(await runHostGuard('start', args)),
+    async (args) => textResult(await runAuthorizedMutation('start', args, callerIdentity, transportKind)),
   );
 
   server.registerTool(
@@ -273,25 +304,7 @@ export function createServer({ callerIdentity = null, transportKind = 'stdio' } 
         openWorldHint: true,
       },
     },
-    async (args) => {
-      assertSystemCapabilityArgs(args);
-      if (!TEST_MODE) {
-        if (!callerIdentity || callerIdentity.schema !== 'v49.factory-mcp.trusted-caller-identity.v1') {
-          throw new Error('TRUSTED_CALLER_REQUIRED');
-        }
-        if (callerIdentity.project_id !== SYSTEM_CAPABILITY.project_id) {
-          throw new Error('TRUSTED_CALLER_PROJECT_DENY');
-        }
-        if (transportKind !== 'https-mtls') {
-          throw new Error('TRUSTED_CALLER_TRANSPORT_REQUIRED');
-        }
-      }
-      const executionFence = await authorizeSystemExecution(args, SYSTEM_CAPABILITY, { testMode: TEST_MODE });
-      const callerAttestation = TEST_MODE
-        ? null
-        : createBrokerCallerAttestation({ callerIdentity, executionFence, args });
-      return textResult(await runHostGuard('powershell', { ...args, executionFence, callerAttestation }));
-    },
+    async (args) => textResult(await runAuthorizedMutation('powershell', args, callerIdentity, transportKind)),
   );
 
   return server;
