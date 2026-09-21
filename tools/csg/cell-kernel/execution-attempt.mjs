@@ -34,6 +34,8 @@ function fence(v){
     mission_revision:reqText(v.mission_revision,'FENCE_MISSION_REVISION',256),
     mission_hash:reqDigest(v.mission_hash,'FENCE_MISSION_HASH'),
     authorization_envelope_digest:reqDigest(v.authorization_envelope_digest,'FENCE_AUTHORIZATION_ENVELOPE_DIGEST'),
+    authorization_generation:reqInt(v.authorization_generation,1,2147483647,'FENCE_AUTHORIZATION_GENERATION'),
+    authorization_state_digest:reqDigest(v.authorization_state_digest,'FENCE_AUTHORIZATION_STATE_DIGEST'),
     run_id:reqId(v.run_id,'FENCE_RUN_ID'),
     atomic_unit_id:reqId(v.atomic_unit_id,'FENCE_ATOMIC_UNIT_ID'),
     attempt_id:reqId(v.attempt_id,'FENCE_ATTEMPT_ID'),
@@ -53,7 +55,7 @@ function bind(attempt,current){
   const f=fence(current);
   for(const [k,code] of [
     ['project_id','STALE_PROJECT'],['mission_revision','STALE_MISSION_REVISION'],['mission_hash','STALE_MISSION_HASH'],
-    ['authorization_envelope_digest','STALE_AUTHORIZATION_ENVELOPE'],['run_id','STALE_RUN'],['atomic_unit_id','STALE_ATOMIC_UNIT'],
+    ['authorization_envelope_digest','STALE_AUTHORIZATION_ENVELOPE'],['authorization_generation','STALE_AUTHORIZATION_GENERATION'],['authorization_state_digest','STALE_AUTHORIZATION_STATE'],['run_id','STALE_RUN'],['atomic_unit_id','STALE_ATOMIC_UNIT'],
     ['attempt_id','STALE_ATTEMPT'],['attempt_epoch','STALE_EPOCH'],['operation_id','STALE_OPERATION'],
   ]) if(attempt[k]!==f[k])fail(code);
   return f;
@@ -81,6 +83,8 @@ export function createExecutionAttempt(spec,currentFence){
     mission_revision:reqText(spec.mission_revision,'MISSION_REVISION',256),
     mission_hash:reqDigest(spec.mission_hash,'MISSION_HASH'),
     authorization_envelope_digest:reqDigest(spec.authorization_envelope_digest,'AUTHORIZATION_ENVELOPE_DIGEST'),
+    authorization_generation:reqInt(spec.authorization_generation,1,2147483647,'AUTHORIZATION_GENERATION'),
+    authorization_state_digest:reqDigest(spec.authorization_state_digest,'AUTHORIZATION_STATE_DIGEST'),
     run_id:reqId(spec.run_id,'RUN_ID'),
     atomic_unit_id:reqId(spec.atomic_unit_id,'ATOMIC_UNIT_ID'),
     attempt_id:reqId(spec.attempt_id,'ATTEMPT_ID'),
@@ -108,7 +112,7 @@ export function createExecutionAttempt(spec,currentFence){
   };
   for(const [k,code] of [
     ['project_id','STALE_PROJECT'],['mission_revision','STALE_MISSION_REVISION'],['mission_hash','STALE_MISSION_HASH'],
-    ['authorization_envelope_digest','STALE_AUTHORIZATION_ENVELOPE'],['run_id','STALE_RUN'],['atomic_unit_id','STALE_ATOMIC_UNIT'],
+    ['authorization_envelope_digest','STALE_AUTHORIZATION_ENVELOPE'],['authorization_generation','STALE_AUTHORIZATION_GENERATION'],['authorization_state_digest','STALE_AUTHORIZATION_STATE'],['run_id','STALE_RUN'],['atomic_unit_id','STALE_ATOMIC_UNIT'],
     ['attempt_id','STALE_ATTEMPT'],['attempt_epoch','STALE_EPOCH'],['operation_id','STALE_OPERATION'],
   ]) if(x[k]!==f[k])fail(code);
   return seal(x);
@@ -213,7 +217,7 @@ export function createRetryExecutionAttempt(prior,retrySpec,currentFence){
   if(retrySpec.idempotency_key!==undefined&&retrySpec.idempotency_key!==prior.idempotency_key)fail('RETRY_IDEMPOTENCY_KEY_MISMATCH');
   const next=createExecutionAttempt({
     project_id:prior.project_id,mission_revision:prior.mission_revision,mission_hash:prior.mission_hash,
-    authorization_envelope_digest:prior.authorization_envelope_digest,run_id:prior.run_id,atomic_unit_id:prior.atomic_unit_id,
+    authorization_envelope_digest:prior.authorization_envelope_digest,authorization_generation:prior.authorization_generation,authorization_state_digest:prior.authorization_state_digest,run_id:prior.run_id,atomic_unit_id:prior.atomic_unit_id,
     attempt_id:nextAttempt,attempt_epoch:nextEpoch,operation_id:prior.operation_id,
     started_at:retrySpec.started_at,deadline:retrySpec.deadline,executor:retrySpec.executor??prior.executor,
     tool:retrySpec.tool??prior.tool,route:retrySpec.route??prior.route,mutation_class:prior.mutation_class,
