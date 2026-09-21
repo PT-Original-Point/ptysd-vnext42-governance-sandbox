@@ -26,22 +26,28 @@ export function loadTrustedCallers(path = process.env.PTYSD_FACTORY_MCP_TRUSTED_
     fail('TRUSTED_CALLER_CONFIG_READ_FAILED');
   }
   if (parsed?.schema !== 'v49.factory-mcp.trusted-callers.v1') fail('TRUSTED_CALLER_CONFIG_SCHEMA_INVALID');
+  if (parsed?.binding_mode !== 'PER_PROJECT_DEDICATED_TUNNEL') fail('TRUSTED_CALLER_BINDING_MODE_INVALID');
   if (!Number.isSafeInteger(parsed.identity_generation) || parsed.identity_generation < 1) {
     fail('TRUSTED_CALLER_IDENTITY_GENERATION_INVALID');
   }
   if (!Array.isArray(parsed.callers) || parsed.callers.length === 0) fail('TRUSTED_CALLER_CONFIG_EMPTY');
   const seen = new Set();
+  const seenTunnelBindings = new Set();
   for (const caller of parsed.callers) {
     if (!CALLER_ID_RE.test(caller?.caller_id ?? '')) fail('TRUSTED_CALLER_ID_INVALID');
     if (!PROJECT_ID_RE.test(caller?.project_id ?? '')) fail('TRUSTED_CALLER_PROJECT_INVALID');
     if (!DIGEST_RE.test(caller?.certificate_sha256 ?? '')) fail('TRUSTED_CALLER_CERT_DIGEST_INVALID');
+    if (caller?.principal_type !== 'PROJECT_DEDICATED_TUNNEL') fail('TRUSTED_CALLER_PRINCIPAL_TYPE_INVALID');
+    if (!CALLER_ID_RE.test(caller?.tunnel_binding_id ?? '')) fail('TRUSTED_CALLER_TUNNEL_BINDING_INVALID');
     if (!Number.isSafeInteger(caller?.identity_generation) || caller.identity_generation < 1) {
       fail('TRUSTED_CALLER_ENTRY_GENERATION_INVALID');
     }
     if (caller.identity_generation !== parsed.identity_generation) fail('TRUSTED_CALLER_ENTRY_GENERATION_STALE');
     if (caller.enabled !== true) continue;
     if (seen.has(caller.certificate_sha256)) fail('TRUSTED_CALLER_CERT_DUPLICATE');
+    if (seenTunnelBindings.has(caller.tunnel_binding_id)) fail('TRUSTED_CALLER_TUNNEL_BINDING_DUPLICATE');
     seen.add(caller.certificate_sha256);
+    seenTunnelBindings.add(caller.tunnel_binding_id);
   }
   return parsed;
 }
@@ -58,12 +64,16 @@ export function resolveTrustedMtlsCaller(rawCertificate, config = loadTrustedCal
     project_id: caller.project_id,
     caller_id: caller.caller_id,
     certificate_sha256,
+    principal_type: caller.principal_type,
+    tunnel_binding_id: caller.tunnel_binding_id,
     identity_generation: caller.identity_generation,
     caller_identity_digest: 'sha256:' + createHash('sha256')
       .update(JSON.stringify({
         project_id: caller.project_id,
         caller_id: caller.caller_id,
         certificate_sha256,
+        principal_type: caller.principal_type,
+        tunnel_binding_id: caller.tunnel_binding_id,
         identity_generation: caller.identity_generation,
       }))
       .digest('hex'),
@@ -110,6 +120,8 @@ export function createBrokerCallerAttestation({
     certificate_sha256: callerIdentity.certificate_sha256,
     caller_identity_digest: callerIdentity.caller_identity_digest,
     identity_generation: callerIdentity.identity_generation,
+    principal_type: callerIdentity.principal_type,
+    tunnel_binding_id: callerIdentity.tunnel_binding_id,
     authorization_generation: fence.authorization_generation,
     authorization_state_digest: fence.authorization_state_digest,
     operation_kind: fence.operation_kind,
