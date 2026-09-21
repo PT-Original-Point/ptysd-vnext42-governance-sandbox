@@ -85,10 +85,16 @@ test('HMAC caller attestation binds request id and authorization generation stat
   const root=mkdtempSync(join(tmpdir(),'ptysd-caller-'));
   try{
     const cfgPath=join(root,'trusted-callers.json');
-    const keyPath=join(root,'attestation.key');
+    const keyPath=join(root,'attestation-keyring.json');
     const keyHex='ab'.repeat(32);
+    const keyring={
+      schema:'v49.factory-mcp.caller-attestation-keyring.v1',
+      keyring_generation:1,
+      current:{key_id:'BROKER-HMAC-001',key_generation:1,key_hex:keyHex},
+      previous:[],
+    };
     writeFileSync(cfgPath,JSON.stringify(config()));
-    writeFileSync(keyPath,keyHex);
+    writeFileSync(keyPath,JSON.stringify(keyring));
     const identity=resolveTrustedMtlsCaller(cert,loadTrustedCallers(cfgPath));
     const executionFence={
       control_oid:'a'.repeat(40),
@@ -113,10 +119,10 @@ test('HMAC caller attestation binds request id and authorization generation stat
     const args={runId:'RUN-001',taskId:'TASK-001',attemptId:'ATTEMPT-001',attemptEpoch:3,timeoutSeconds:30};
     const requestId='12'.repeat(16);
     const envelope=createBrokerCallerAttestation({
-      callerIdentity:identity,executionFence,args,requestId,keyPath,
+      callerIdentity:identity,executionFence,args,requestId,keyringPath:keyPath,
       now:new Date('2026-09-21T12:00:00Z'),ttlSeconds:30,
     });
-    const claims=verifyBrokerCallerAttestationForTest(envelope,keyHex,new Date('2026-09-21T12:00:01Z'));
+    const claims=verifyBrokerCallerAttestationForTest(envelope,keyring,new Date('2026-09-21T12:00:01Z'));
     assert.equal(claims.request_id,requestId);
     assert.equal(claims.authorization_generation,7);
     assert.equal(claims.authorization_state_digest,H('f'));
