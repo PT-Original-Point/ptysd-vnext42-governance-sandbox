@@ -75,8 +75,9 @@ test('SYSTEM host capability is project scoped at server and broker without grow
     'Assert-SystemCapabilityRequest','SYSTEM_CAPABILITY_PROJECT_DENY','SYSTEM_CAPABILITY_ID_DENY',
     'SYSTEM_CAPABILITY_RUN_DENY','SYSTEM_CAPABILITY_TASK_DENY','system_capability_project_id','system_capability_id',
   ]) assert.ok(broker.includes(token), `missing broker capability token: ${token}`);
-  assert.ok(wrapper.includes("project_id = if ($Operation -eq 'powershell')"));
-  assert.ok(wrapper.includes("capability_id = if ($Operation -eq 'powershell')"));
+  assert.ok(wrapper.includes("project_id = if ($mutation)"));
+  assert.ok(wrapper.includes("capability_id = if ($mutation)"));
+  assert.ok(wrapper.includes("schema = 'v49.factory-mcp.hostguard.request.v3'"));
   const names = [...index.matchAll(/server\.registerTool\(\s*\n\s*'([^']+)'/g)].map((m) => m[1]).sort();
   assert.deepEqual(names, ['factory_status','host_powershell','worker_prepare','worker_start']);
 });
@@ -99,25 +100,73 @@ test('SYSTEM dispatch is fenced to canonical current attempt at server and broke
   assert.match(capability.authorization_envelope_digest, /^sha256:[0-9a-f]{64}$/);
   for (const token of [
     'authorizeSystemExecution',
-    "'-OperationId', args.executionFence.execution_fence.operation_id",
+    'runAuthorizedMutation',
+    "'-OperationId', fence.operation_id",
     "'-ControlOid', args.executionFence.control_oid",
     "'-CheckpointDigest', args.executionFence.checkpoint_digest",
-    "'-AuthorizationEnvelopeDigest', args.executionFence.execution_fence.authorization_envelope_digest",
-    "'-CapabilityGeneration', String(args.executionFence.execution_fence.capability_generation)",
+    "'-AuthorizationEnvelopeDigest', fence.authorization_envelope_digest",
+    "'-AuthorizationGeneration', String(fence.authorization_generation)",
+    "'-AuthorizationStateDigest', fence.authorization_state_digest",
+    "'-RequestId', args.requestId",
+    "'-CapabilityGeneration', String(fence.capability_generation)",
   ]) assert.ok(index.includes(token), `missing server fence token: ${token}`);
   for (const token of [
     'git.exe','ls-remote','refs/heads/v45/factory-control',
     'SYSTEM_FENCE_CONTROL_DRIFT','SYSTEM_FENCE_EPOCH_MISMATCH',
-    'SYSTEM_FENCE_AUTHORIZATION_MISMATCH','SYSTEM_FENCE_SCRIPT_MISMATCH',
-    'capability_generation','execution_fence',
+    'SYSTEM_FENCE_AUTHORIZATION_MISMATCH','SYSTEM_FENCE_SCRIPT_MISMATCH','SYSTEM_FENCE_PAYLOAD_MISMATCH',
+    'authorization_generation','authorization_state_digest','capability_generation','execution_fence',
   ]) assert.ok(serverFence.includes(token), `missing server current-fence token: ${token}`);
   for (const token of [
     'Get-PTYSDCurrentSystemExecutionFence','Assert-PTYSDCurrentSystemExecutionFence',
     'SYSTEM_FENCE_CONTROL_DRIFT','SYSTEM_FENCE_EPOCH_MISMATCH',
-    'SYSTEM_FENCE_AUTHORIZATION_MISMATCH','SYSTEM_FENCE_SCRIPT_MISMATCH',
-    'capability_generation','execution_fence',
+    'SYSTEM_FENCE_AUTHORIZATION_MISMATCH','SYSTEM_FENCE_SCRIPT_MISMATCH','SYSTEM_FENCE_PAYLOAD_MISMATCH',
+    'authorization_generation','authorization_state_digest','capability_generation','execution_fence',
   ]) assert.ok(brokerFence.includes(token), `missing broker current-fence token: ${token}`);
   assert.ok(broker.includes('. $systemFenceHelperPath'));
   assert.ok(broker.includes('Assert-PTYSDCurrentSystemExecutionFence -Request $Request -SystemCapability $systemCapability'));
   assert.equal(index.includes("attemptEpoch: z.number().int().min(1).max(2147483647)"), true);
+});
+
+
+test('every mutating Factory route requires trusted caller and current execution fence', () => {
+  for (const call of [
+    "runAuthorizedMutation('prepare'",
+    "runAuthorizedMutation('start'",
+    "runAuthorizedMutation('powershell'",
+  ]) assert.ok(index.includes(call), `missing gated mutation route: ${call}`);
+  for (const token of [
+    'TRUSTED_CALLER_REQUIRED',
+    'TRUSTED_CALLER_PROJECT_DENY',
+    'TRUSTED_CALLER_DEDICATED_PROJECT_BINDING_REQUIRED',
+    'TRUSTED_CALLER_TRANSPORT_REQUIRED',
+    "transportKind !== 'https-mtls'",
+  ]) assert.ok(index.includes(token), `missing trusted-caller gate: ${token}`);
+  assert.ok(broker.includes("if ($req.operation -ne 'status')"));
+  assert.ok(broker.includes('Assert-SystemCapabilityRequest -Request $req'));
+});
+
+test('broker performs durable one-shot CAS before every mutation', () => {
+  for (const token of [
+    "$operationClaims = Join-Path $state 'operation-claims'",
+    '[IO.FileMode]::CreateNew',
+    'Acquire-OperationDispatchClaim -Request $req -RequestId $requestId',
+    'OPERATION_ALREADY_DISPATCHED',
+    'authorization_generation',
+    'operation_id',
+  ]) assert.ok(broker.includes(token), `missing one-shot consume token: ${token}`);
+  const authIndex=broker.indexOf('Assert-SystemCapabilityRequest -Request $req');
+  const claimIndex=broker.indexOf('Acquire-OperationDispatchClaim -Request $req -RequestId $requestId');
+  const switchIndex=broker.indexOf("switch ([string]$req.operation)");
+  assert.ok(authIndex >= 0 && claimIndex > authIndex && switchIndex > claimIndex, 'authorization and durable consume must happen before side-effect dispatch');
+});
+
+test('trusted caller attestation is request-bound and dedicated-tunnel scoped', () => {
+  const trusted = fs.readFileSync(new URL('../src/trusted-caller.mjs', import.meta.url), 'utf8');
+  const brokerTrusted = fs.readFileSync(new URL('../broker/trusted-caller.ps1', import.meta.url), 'utf8');
+  for (const token of ['request_id','authorization_generation','authorization_state_digest','PROJECT_DEDICATED_TUNNEL','PER_PROJECT_DEDICATED_TUNNEL','tunnel_binding_id']) {
+    assert.ok(trusted.includes(token), `missing caller attestation token: ${token}`);
+  }
+  for (const token of ['TRUSTED_CALLER_REQUEST_ID_MISMATCH','TRUSTED_CALLER_AUTH_GENERATION_MISMATCH','TRUSTED_CALLER_AUTH_STATE_MISMATCH','PROJECT_DEDICATED_TUNNEL','tunnel_binding_id']) {
+    assert.ok(brokerTrusted.includes(token), `missing broker trusted-caller token: ${token}`);
+  }
 });
