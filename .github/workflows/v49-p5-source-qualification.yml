@@ -89,3 +89,36 @@ jobs:
           $ErrorActionPreference = 'Stop'
           & powershell.exe -NoProfile -NonInteractive -ExecutionPolicy Bypass -File tools/csg/factory-mcp/tests/operation-claim.test.ps1
           if ($LASTEXITCODE -ne 0) { throw 'OPERATION_CLAIM_TEST_FAILED' }
+
+  mtls-integration:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: tools/csg/factory-mcp/package-lock.json
+      - name: Reproducible dependency install
+        working-directory: tools/csg/factory-mcp
+        run: npm ci --ignore-scripts
+      - name: Generate ephemeral mTLS fixture
+        shell: bash
+        run: |
+          set -euo pipefail
+          d="$RUNNER_TEMP/p5-mtls"
+          mkdir -p "$d"
+          openssl req -x509 -newkey rsa:2048 -sha256 -nodes -days 1             -subj "/CN=PTYSD P5 Test CA"             -keyout "$d/ca.key" -out "$d/ca.crt"
+          openssl req -newkey rsa:2048 -sha256 -nodes             -subj "/CN=localhost"             -keyout "$d/server.key" -out "$d/server.csr"
+          printf '%s\n' 'subjectAltName=DNS:localhost,IP:127.0.0.1' 'extendedKeyUsage=serverAuth' > "$d/server.ext"
+          openssl x509 -req -sha256 -days 1 -in "$d/server.csr"             -CA "$d/ca.crt" -CAkey "$d/ca.key" -CAcreateserial             -extfile "$d/server.ext" -out "$d/server.crt"
+          openssl req -newkey rsa:2048 -sha256 -nodes             -subj "/CN=GOV-TUNNEL-001"             -keyout "$d/client.key" -out "$d/client.csr"
+          printf '%s\n' 'extendedKeyUsage=clientAuth' > "$d/client.ext"
+          openssl x509 -req -sha256 -days 1 -in "$d/client.csr"             -CA "$d/ca.crt" -CAkey "$d/ca.key" -CAserial "$d/ca.srl"             -extfile "$d/client.ext" -out "$d/client.crt"
+          openssl req -newkey rsa:2048 -sha256 -nodes             -subj "/CN=UNKNOWN-TUNNEL"             -keyout "$d/unknown.key" -out "$d/unknown.csr"
+          openssl x509 -req -sha256 -days 1 -in "$d/unknown.csr"             -CA "$d/ca.crt" -CAkey "$d/ca.key" -CAserial "$d/ca.srl"             -extfile "$d/client.ext" -out "$d/unknown.crt"
+          echo "P5_MTLS_FIXTURE_DIR=$d" >> "$GITHUB_ENV"
+      - name: Real HTTPS mTLS identity and revocation integration
+        working-directory: tools/csg/factory-mcp
+        run: node tests/http-mtls-integration.mjs
