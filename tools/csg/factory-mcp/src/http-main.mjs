@@ -36,7 +36,7 @@ function loadConfig() {
 }
 
 const cfg = loadConfig();
-const trustedCallers = loadTrustedCallers(cfg.trusted_callers_path);
+const startupTrustedCallers = loadTrustedCallers(cfg.trusted_callers_path);
 const tls = {
   cert: readFileSync(cfg.server_cert_path),
   key: readFileSync(cfg.server_key_path),
@@ -77,7 +77,7 @@ function writeHealth(state, extra = {}) {
     listen_host: cfg.listen_host,
     listen_port: cfg.listen_port,
     transport: 'HTTPS_MTLS_STREAMABLE_HTTP',
-    trusted_identity_generation: trustedCallers.identity_generation,
+    trusted_identity_generation: loadTrustedCallers(cfg.trusted_callers_path).identity_generation,
     pid: process.pid,
     observed_at: new Date().toISOString(),
     ...extra,
@@ -102,6 +102,7 @@ const httpsServer = createHttpsServer(tls, async (req, res) => {
       return;
     }
     const peer = req.socket.getPeerCertificate(true);
+    const trustedCallers = loadTrustedCallers(cfg.trusted_callers_path);
     const callerIdentity = resolveTrustedMtlsCaller(peer?.raw, trustedCallers);
     req.auth = {
       token: `mtls:${callerIdentity.certificate_sha256}`,
@@ -135,6 +136,7 @@ httpsServer.on('error', (error) => {
 });
 
 httpsServer.listen(cfg.listen_port, cfg.listen_host, () => {
+  if (startupTrustedCallers.binding_mode !== 'PER_PROJECT_DEDICATED_TUNNEL') fail('TRUSTED_CALLER_BINDING_MODE_INVALID');
   writeHealth('READY');
   console.error(`PTYSD Factory MCP HTTPS mTLS ready on ${cfg.listen_host}:${cfg.listen_port}`);
 });
