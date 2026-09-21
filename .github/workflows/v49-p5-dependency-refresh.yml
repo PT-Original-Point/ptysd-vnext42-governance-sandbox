@@ -1,0 +1,42 @@
+name: V49 P5 Dependency Refresh
+
+on:
+  push:
+    branches:
+      - v49-p5-trusted-caller-authgen-candidate-20260921
+    paths:
+      - ".github/workflows/v49-p5-dependency-refresh.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: v49-p5-trusted-caller-authgen-candidate-20260921
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Refresh exact safe dependency pins
+        working-directory: tools/csg/factory-mcp
+        run: npm install --package-lock-only --ignore-scripts --save-exact @hono/node-server@1.19.17 hono@4.13.8
+      - name: Verify high-severity audit gate
+        working-directory: tools/csg/factory-mcp
+        run: npm audit --omit=dev --audit-level=high
+      - name: Commit only package manifest and lockfile
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tools/csg/factory-mcp/package.json tools/csg/factory-mcp/package-lock.json
+          if git diff --cached --quiet; then
+            echo "DEPENDENCY_REFRESH_NO_CHANGE"
+            exit 0
+          fi
+          git commit -m "P5: refresh Hono security pins"
+          git push origin HEAD:v49-p5-trusted-caller-authgen-candidate-20260921
