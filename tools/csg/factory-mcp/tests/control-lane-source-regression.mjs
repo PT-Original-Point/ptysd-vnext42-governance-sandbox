@@ -78,3 +78,13 @@ test('SYSTEM host capability is project scoped at server and broker without grow
   const names = [...index.matchAll(/server\.registerTool\(\s*\n\s*'([^']+)'/g)].map((m) => m[1]).sort();
   assert.deepEqual(names, ['factory_status','host_powershell','worker_prepare','worker_start']);
 });
+
+
+test('broker error mapping returns safeMessage instead of dereferencing switch string', () => {
+  for (const token of [
+    "'^POWERSHELL_' { $safeMessage; break }",
+    "'^SYSTEM_CAPABILITY_' { $safeMessage; break }",
+    "'^REQUEST_' { $safeMessage; break }",
+  ]) assert.ok(broker.includes(token), `missing safe broker error mapping: ${token}`);
+  assert.equal(broker.includes("'^SYSTEM_CAPABILITY_' { $_.Exception.Message; break }"), false);
+});

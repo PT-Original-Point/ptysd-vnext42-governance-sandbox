@@ -782,10 +782,10 @@ function Process-Request {
       '^VM_START_READBACK_FAILED' { 'VM_START_READBACK_FAILED'; break }
       '^RECEIPT_ID_INVALID' { 'RECEIPT_ID_INVALID'; break }
       '^ATTEMPT_EPOCH_INVALID' { 'ATTEMPT_EPOCH_INVALID'; break }
-      '^POWERSHELL_' { $_.Exception.Message; break }
-      '^SYSTEM_CAPABILITY_' { $_.Exception.Message; break }
+      '^POWERSHELL_' { $safeMessage; break }
+      '^SYSTEM_CAPABILITY_' { $safeMessage; break }
       '^STATUS_PROBE_INVALID' { 'STATUS_PROBE_INVALID'; break }
-      '^REQUEST_' { $_.Exception.Message; break }
+      '^REQUEST_' { $safeMessage; break }
       '^OPERATION_INVALID' { 'OPERATION_INVALID'; break }
       '^ID_INVALID' { 'ID_INVALID'; break }
       default { 'REQUEST_REJECTED' }
