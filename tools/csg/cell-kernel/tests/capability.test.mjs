@@ -16,3 +16,17 @@ test('expiry is a hard fence',()=>{const f={...fence,now:fence.expires_at};asser
 test('capability tamper and stale post-compile fence reject',()=>{const c=compileCellCapability(contract,fence);const t=clone(c);t.read_paths=[];assert.throws(()=>assertCapabilityCurrent(t,fence),/CAPABILITY_DIGEST_MISMATCH/);assert.throws(()=>assertCapabilityCurrent(c,{...fence,fence_generation:3}),/STALE_FENCE_GENERATION/);});
 test('network and model profile scope cannot widen',()=>{let f=clone(fence);f.requested_scope={resource_limits:{...contract.resource_limits,network_mode:'LIMITED'}};assert.throws(()=>compileCellCapability(contract,f),/RESOURCE_WIDEN:network_mode/);f=clone(fence);f.requested_scope={model_profile_id:'OTHER'};assert.throws(()=>compileCellCapability(contract,f),/MODEL_PROFILE_WIDEN/);});
 test('read scope cannot escape contract roots',()=>{const f=clone(fence);f.requested_scope={read_paths:['secrets/private.txt']};assert.throws(()=>compileCellCapability(contract,f),/SCOPE_WIDEN_READ_PATHS/);});
+
+
+test('authorization protocol floor defaults legacy but can only tighten to v2',()=>{
+  const legacy=compileCellCapability(contract,fence);
+  assert.equal(legacy.authorization_min_schema,'v49.authorization-envelope.v1');
+  const strictFence=clone(fence);
+  strictFence.requested_scope={authorization_min_schema:'v49.authorization-envelope.v2'};
+  const strict=compileCellCapability(contract,strictFence);
+  assert.equal(strict.authorization_min_schema,'v49.authorization-envelope.v2');
+  const strictContract={...contract,authorization_min_schema:'v49.authorization-envelope.v2'};
+  const contractPayload=structuredClone(strictContract);
+  delete contractPayload.contract_digest;
+  assert.throws(()=>compileCellCapability(strictContract,{...fence,requested_scope:{authorization_min_schema:'v49.authorization-envelope.v1'}}),/TASK_CONTRACT_DIGEST_MISMATCH|AUTHORIZATION_SCHEMA_DOWNGRADE/);
+});
