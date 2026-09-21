@@ -1,3 +1,6 @@
 export function slugify(input) {
-  return String(input).trim().toLowerCase();
+  let s = String(input).trim().toLowerCase();
+  s = s.replace(/[^a-z0-9]+/g, '-');
+  s = s.replace(/^-+|-+$/g, '');
+  return s;
 }
