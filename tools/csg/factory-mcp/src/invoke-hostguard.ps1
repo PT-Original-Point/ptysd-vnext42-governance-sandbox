@@ -62,7 +62,7 @@ $responsePath = Join-Path $outbox ($requestId + '.json')
 [IO.File]::WriteAllText($tempRequest, ($request | ConvertTo-Json -Depth 4 -Compress), (New-Object Text.UTF8Encoding($false)))
 Move-Item -LiteralPath $tempRequest -Destination $finalRequest -Force
 
-$deadline = [DateTime]::UtcNow.AddSeconds([Math]::Max(45, $TimeoutSeconds + 15))
+$deadline = [DateTime]::UtcNow.AddSeconds([Math]::Max(45, $TimeoutSeconds + 20))
 do {
   if (Test-Path -LiteralPath $responsePath) { break }
   Start-Sleep -Milliseconds 100

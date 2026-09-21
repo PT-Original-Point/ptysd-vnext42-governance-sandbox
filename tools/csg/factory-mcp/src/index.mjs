@@ -133,7 +133,7 @@ async function runHostGuard(operation, args = {}) {
     const { stdout } = await execFileAsync(POWERSHELL, psArgs, {
       windowsHide: true,
       timeout: operation === 'powershell'
-        ? Math.max(45000, ((args.timeoutSeconds ?? 60) + 15) * 1000)
+        ? Math.max(60000, ((args.timeoutSeconds ?? 60) + 30) * 1000)
         : 45000,
       maxBuffer: 1024 * 1024,
       env: process.env,

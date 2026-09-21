@@ -22,8 +22,20 @@ test('host PowerShell has bounded multi-run lanes instead of one global lane', (
   assert.equal(broker.includes("throw 'POWERSHELL_BUSY'"), false);
 });
 
-test('stale detection is observable but ordinary broker does not gain a kill surface', () => {
-  assert.ok(broker.includes('$staleGraceSeconds = 15'));
+test('stale host jobs terminalize, orphan receipts reconcile, and capacity excludes orphans', () => {
+  for (const token of [
+    '$staleGraceSeconds = 5',
+    'BROKER_WATCHDOG_TIMEOUT',
+    "side_effect_state='UNKNOWN_AFTER_TIMEOUT'",
+    "state = 'ORPHANED'",
+    'Reconcile-OrphanedStartedReceipts',
+    '$lastReceiptReconcile = [DateTime]::MinValue',
+    'TotalSeconds -ge 5',
+    'effective_active_count',
+    'live_job_count',
+    'orphan_count',
+    'Stop-Job -Job $job',
+  ]) assert.ok(broker.includes(token), `missing timeout/orphan token: ${token}`);
   assert.ok(broker.includes('age_seconds'));
   assert.ok(broker.includes('stale = [bool]$stale'));
   assert.equal(broker.includes('Stop-Process'), false);
