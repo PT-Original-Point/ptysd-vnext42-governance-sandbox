@@ -7,13 +7,14 @@ import {
 
 const H='sha256:'+'1'.repeat(64);
 const A='sha256:'+'2'.repeat(64);
+const AS='sha256:'+'3'.repeat(64);
 const fence=(extra={})=>({
-  project_id:'P',mission_revision:'M1',mission_hash:H,authorization_envelope_digest:A,
+  project_id:'P',mission_revision:'M1',mission_hash:H,authorization_envelope_digest:A,authorization_generation:2,authorization_state_digest:AS,
   run_id:'R',atomic_unit_id:'U',attempt_id:'ATTEMPT-001',attempt_epoch:1,operation_id:'OP-001',
   now:'2026-09-21T05:40:00Z',...extra,
 });
 const spec=(extra={})=>({
-  project_id:'P',mission_revision:'M1',mission_hash:H,authorization_envelope_digest:A,
+  project_id:'P',mission_revision:'M1',mission_hash:H,authorization_envelope_digest:A,authorization_generation:2,authorization_state_digest:AS,
   run_id:'R',atomic_unit_id:'U',attempt_id:'ATTEMPT-001',attempt_epoch:1,operation_id:'OP-001',
   started_at:'2026-09-21T05:39:00Z',deadline:'2026-09-21T05:50:00Z',
   executor:'CHAT',tool:'GITHUB',route:'CONNECTOR',mutation_class:'PROVIDER_EFFECT',
@@ -31,7 +32,9 @@ test('mission, project, authorization and epoch are hard fences',()=>{
   const a=createExecutionAttempt(spec(),fence());
   for(const [patch,code] of [
     [{project_id:'Q'},'STALE_PROJECT'],[{mission_revision:'M2'},'STALE_MISSION_REVISION'],
-    [{authorization_envelope_digest:'sha256:'+'3'.repeat(64)},'STALE_AUTHORIZATION_ENVELOPE'],
+    [{authorization_envelope_digest:'sha256:'+'4'.repeat(64)},'STALE_AUTHORIZATION_ENVELOPE'],
+    [{authorization_generation:3},'STALE_AUTHORIZATION_GENERATION'],
+    [{authorization_state_digest:'sha256:'+'5'.repeat(64)},'STALE_AUTHORIZATION_STATE'],
     [{attempt_epoch:2},'STALE_EPOCH'],
   ]) assert.throws(()=>assertExecutionAttemptCurrent(a,fence(patch)),new RegExp(code));
 });
