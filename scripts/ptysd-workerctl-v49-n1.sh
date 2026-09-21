@@ -117,6 +117,7 @@ EOF
     printf 'STATUS='; "$GIT" status --porcelain | tr '\n' ';'; printf '\n'
     if test -f "$LOG"; then printf 'OBSERVED_RUN_COST='; run_cost; printf 'RUN_LOG_BASE64='; base64 -w0 "$LOG"; printf '\n'; fi
     emit_candidate ;;
+  v49-n1-review) model_guard; stop_service; ensure_base; rh="$BASE/reviewer-v49-13.sh"; rp="$rh.part"; rm -f "$rp" "$rh"; "$PYTHON" -c 'import gzip,hashlib,sys,urllib.request;u,p,g,h=sys.argv[1:];d=urllib.request.urlopen(u,timeout=60).read();assert hashlib.sha256(d).hexdigest()==g;x=gzip.decompress(d);assert hashlib.sha256(x).hexdigest()==h;open(p,"wb").write(x)' 'https://raw.githubusercontent.com/PT-Original-Point/ptysd-vnext42-governance-sandbox/af3fa354f6deed4b0f958063f133c2bdf806e2c9/scripts/ptysd-reviewer-v49-n1.sh.gz' "$rp" '23a1971ac135c97d38527ad76e35676ffd5f3ba47c36f502070d70bf08ae9de6' '6ecaa1144444bcfd29d9a4067d869d65c79c463a5d2ed7da3a5cd58e47a2ccca' || fail REVIEWER_FETCH_OR_SHA 62; mv "$rp" "$rh"; chmod 700 "$rh"; exec "$rh" "$BASE" "$NODE" "$OPENCODE" "$MODEL" "$REMOTE" '659f721786a4daab94a52cdbb6498be4a965488d' '9963719dfe3a1c6e66b24f658fc25d75a0235444' ;;
   v49-n1-clean)
     guard_user
     stop_service
