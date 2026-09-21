@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "node src/index.mjs",
-    "test": "node tests/protocol-smoke.mjs && node tests/control-lane-source-regression.mjs && node tests/tunnel-supervisor-source-regression.mjs && node --test tests/trusted-caller-source-regression.mjs ../cell-kernel/tests/authorization-envelope-v2.test.mjs ../cell-kernel/tests/execution-attempt.test.mjs ../cell-kernel/tests/policy-middleware.test.mjs",
+    "test": "node tests/protocol-smoke.mjs && node tests/control-lane-source-regression.mjs && node tests/tunnel-supervisor-source-regression.mjs && node --test tests/trusted-caller-source-regression.mjs ../cell-kernel/tests/authorization-envelope-v2.test.mjs ../cell-kernel/tests/execution-attempt.test.mjs ../cell-kernel/tests/policy-middleware.test.mjs ../cell-kernel/tests/capability.test.mjs",
     "test:inspector": "node tests/official-inspector-equivalence.mjs"
   },
   "dependencies": {
