@@ -24,7 +24,7 @@ test('host PowerShell has bounded multi-run lanes instead of one global lane', (
 
 test('stale host jobs terminalize, orphan receipts reconcile, and capacity excludes orphans', () => {
   for (const token of [
-    '$staleGraceSeconds = 15',
+    '$staleGraceSeconds = 5',
     'BROKER_WATCHDOG_TIMEOUT',
     "side_effect_state='UNKNOWN_AFTER_TIMEOUT'",
     "state = 'ORPHANED'",

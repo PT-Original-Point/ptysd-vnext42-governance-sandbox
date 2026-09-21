@@ -42,7 +42,7 @@ if (-not $createdNew) { throw 'BROKER_ALREADY_RUNNING' }
 $script:activePowerShellJobs = @{}
 $maxConcurrentPowerShell = 4
 $maxPerRunPowerShell = 1
-$staleGraceSeconds = 15
+$staleGraceSeconds = 5
 
 function Write-AtomicJson {
   param([Parameter(Mandatory)][string]$Path,[Parameter(Mandatory)]$Value)
