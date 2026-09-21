@@ -19,6 +19,12 @@ param(
   [ValidateRange(1,2147483647)]
   [int]$AttemptEpoch = 1,
 
+  [ValidatePattern('^[A-Z0-9][A-Z0-9._-]{0,127}$')]
+  [string]$ProjectId,
+
+  [ValidatePattern('^[A-Z0-9][A-Z0-9._-]{0,127}$')]
+  [string]$CapabilityId,
+
   [ValidatePattern('^[A-Za-z0-9+/=]+$')]
   [string]$ScriptBase64,
 
@@ -40,6 +46,9 @@ if ($Operation -ne 'status' -and (-not $RunId -or -not $TaskId -or -not $Attempt
 if ($Operation -eq 'powershell' -and -not $ScriptBase64) {
   throw 'POWERSHELL_SCRIPT_REQUIRED'
 }
+if ($Operation -eq 'powershell' -and (-not $ProjectId -or -not $CapabilityId)) {
+  throw 'SYSTEM_CAPABILITY_REQUIRED'
+}
 
 $requestId = [Guid]::NewGuid().ToString('N')
 $request = [ordered]@{
@@ -51,6 +60,8 @@ $request = [ordered]@{
   task_id = if ($TaskId) { $TaskId } else { $null }
   attempt_id = if ($AttemptId) { $AttemptId } else { $null }
   attempt_epoch = $AttemptEpoch
+  project_id = if ($Operation -eq 'powershell') { $ProjectId } else { $null }
+  capability_id = if ($Operation -eq 'powershell') { $CapabilityId } else { $null }
   script_b64 = if ($Operation -eq 'powershell') { $ScriptBase64 } else { $null }
   timeout_seconds = if ($Operation -eq 'powershell') { $TimeoutSeconds } else { $null }
   requested_at_utc = [DateTime]::UtcNow.ToString('o')
