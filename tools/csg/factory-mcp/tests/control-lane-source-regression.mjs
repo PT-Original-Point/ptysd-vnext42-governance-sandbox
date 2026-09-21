@@ -8,6 +8,7 @@ const wrapper = fs.readFileSync(new URL('../src/invoke-hostguard.ps1', import.me
 const capability = JSON.parse(fs.readFileSync(new URL('../config/system-capability.json', import.meta.url), 'utf8'));
 const serverFence = fs.readFileSync(new URL('../src/current-execution-fence.mjs', import.meta.url), 'utf8');
 const brokerFence = fs.readFileSync(new URL('../broker/current-execution-fence.ps1', import.meta.url), 'utf8');
+const operationClaim = fs.readFileSync(new URL('../broker/operation-claim.ps1', import.meta.url), 'utf8');
 
 test('host PowerShell has bounded multi-run lanes instead of one global lane', () => {
   for (const token of [
@@ -148,14 +149,22 @@ test('every mutating Factory route requires trusted caller and current execution
 test('broker performs durable one-shot CAS before every mutation', () => {
   for (const token of [
     "$operationClaims = Join-Path $state 'operation-claims'",
+    "$operationClaimHelperPath = Join-Path $root 'broker\\operation-claim.ps1'",
+    '. $operationClaimHelperPath',
+    'Acquire-PTYSDOperationDispatchClaim -Request $req -RequestId $requestId -ClaimsRoot $operationClaims',
+    'OPERATION_ALREADY_DISPATCHED',
+  ]) assert.ok(broker.includes(token), `missing broker one-shot consume token: ${token}`);
+  for (const token of [
     '[IO.FileMode]::CreateNew',
-    'Acquire-OperationDispatchClaim -Request $req -RequestId $requestId',
+    '[IO.FileShare]::None',
+    '$stream.Flush($true)',
     'OPERATION_ALREADY_DISPATCHED',
     'authorization_generation',
     'operation_id',
-  ]) assert.ok(broker.includes(token), `missing one-shot consume token: ${token}`);
+    'attempt_epoch',
+  ]) assert.ok(operationClaim.includes(token), `missing durable claim primitive token: ${token}`);
   const authIndex=broker.indexOf('Assert-SystemCapabilityRequest -Request $req');
-  const claimIndex=broker.indexOf('Acquire-OperationDispatchClaim -Request $req -RequestId $requestId');
+  const claimIndex=broker.indexOf('Acquire-PTYSDOperationDispatchClaim -Request $req -RequestId $requestId -ClaimsRoot $operationClaims');
   const switchIndex=broker.indexOf("switch ([string]$req.operation)");
   assert.ok(authIndex >= 0 && claimIndex > authIndex && switchIndex > claimIndex, 'authorization and durable consume must happen before side-effect dispatch');
 });
