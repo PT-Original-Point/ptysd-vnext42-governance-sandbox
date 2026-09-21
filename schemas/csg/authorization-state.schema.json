@@ -1,0 +1,21 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://ptysd.invalid/schemas/csg/authorization-state.v1.schema.json",
+  "title":"AuthorizationState",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["schema","project_id","mission_revision","mission_hash","current_authorization_id","authorization_generation","supersedes","revoked_authorization_ids","human_authorization_ref","recorded_at","state_digest"],
+  "properties":{
+    "schema":{"const":"v49.authorization-state.v1"},
+    "project_id":{"type":"string","minLength":1,"maxLength":128},
+    "mission_revision":{"type":"string","minLength":1,"maxLength":256},
+    "mission_hash":{"type":"string","pattern":"^sha256:[0-9a-f]{64}$"},
+    "current_authorization_id":{"type":"string","minLength":1,"maxLength":128},
+    "authorization_generation":{"type":"integer","minimum":1,"maximum":2147483647},
+    "supersedes":{"type":["string","null"],"maxLength":128},
+    "revoked_authorization_ids":{"type":"array","uniqueItems":true,"items":{"type":"string","minLength":1,"maxLength":128}},
+    "human_authorization_ref":{"type":"string","minLength":1,"maxLength":1024},
+    "recorded_at":{"type":"string","minLength":1,"maxLength":128},
+    "state_digest":{"type":"string","pattern":"^sha256:[0-9a-f]{64}$"}
+  }
+}
