@@ -733,9 +733,13 @@ function Process-Request {
 try {
   Write-Health
   $lastHealth = [DateTime]::UtcNow
+  $lastReceiptReconcile = [DateTime]::MinValue
   while ($true) {
     Complete-ActivePowerShellJobs
-    Reconcile-OrphanedStartedReceipts
+    if (([DateTime]::UtcNow - $lastReceiptReconcile).TotalSeconds -ge 5) {
+      Reconcile-OrphanedStartedReceipts
+      $lastReceiptReconcile = [DateTime]::UtcNow
+    }
     $files = @(Get-ChildItem -LiteralPath $inbox -Filter '*.json' -File -ErrorAction SilentlyContinue | Sort-Object CreationTimeUtc | Select-Object -First 16)
     foreach ($file in $files) {
       $claimed = Join-Path $processing $file.Name

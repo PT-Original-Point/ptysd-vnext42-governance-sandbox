@@ -29,6 +29,8 @@ test('stale host jobs terminalize, orphan receipts reconcile, and capacity exclu
     "side_effect_state='UNKNOWN_AFTER_TIMEOUT'",
     "state = 'ORPHANED'",
     'Reconcile-OrphanedStartedReceipts',
+    '$lastReceiptReconcile = [DateTime]::MinValue',
+    'TotalSeconds -ge 5',
     'effective_active_count',
     'live_job_count',
     'orphan_count',
