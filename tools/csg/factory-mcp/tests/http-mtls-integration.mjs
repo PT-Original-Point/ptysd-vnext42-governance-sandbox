@@ -87,17 +87,8 @@ async function waitReady() {
   throw new Error('HTTP_SERVER_READY_TIMEOUT:' + stderr);
 }
 
-function initialize({ cert = null, key = null } = {}) {
-  const body = JSON.stringify({
-    jsonrpc: '2.0',
-    id: 1,
-    method: 'initialize',
-    params: {
-      protocolVersion: '2025-11-25',
-      capabilities: {},
-      clientInfo: { name: 'p5-mtls-integration', version: '1.0.0' },
-    },
-  });
+function postJson(payload, { cert = null, key = null, headers = {} } = {}) {
+  const body = JSON.stringify(payload);
   return new Promise((resolve, reject) => {
     const req = httpsRequest({
       hostname: '127.0.0.1',
@@ -114,6 +105,7 @@ function initialize({ cert = null, key = null } = {}) {
         'content-type': 'application/json',
         accept: 'application/json, text/event-stream',
         'content-length': Buffer.byteLength(body),
+        ...headers,
       },
       timeout: 5000,
     }, (res) => {
@@ -131,34 +123,74 @@ function initialize({ cert = null, key = null } = {}) {
   });
 }
 
+function modernToolsList({ cert = null, key = null } = {}) {
+  return postJson({
+    jsonrpc: '2.0',
+    id: 1,
+    method: 'tools/list',
+    params: {
+      _meta: {
+        'io.modelcontextprotocol/protocolVersion': '2026-07-28',
+        'io.modelcontextprotocol/clientInfo': { name: 'p5-mtls-integration', version: '1.0.0' },
+        'io.modelcontextprotocol/clientCapabilities': {},
+      },
+    },
+  }, {
+    cert,
+    key,
+    headers: {
+      'mcp-protocol-version': '2026-07-28',
+      'mcp-method': 'tools/list',
+    },
+  });
+}
+
+function legacyInitialize({ cert, key }) {
+  return postJson({
+    jsonrpc: '2.0',
+    id: 2,
+    method: 'initialize',
+    params: {
+      protocolVersion: '2025-11-25',
+      capabilities: {},
+      clientInfo: { name: 'legacy-probe', version: '1.0.0' },
+    },
+  }, { cert, key });
+}
+
 try {
   await waitReady();
 
-  const valid = await initialize({ cert: clientCert, key: clientKey });
-  assert.equal(valid.status, 200, `valid mTLS initialize failed: ${valid.status} ${valid.body} ${stderr}`);
+  const valid = await modernToolsList({ cert: clientCert, key: clientKey });
+  assert.equal(valid.status, 200, `valid modern mTLS tools/list failed: ${valid.status} ${valid.body} ${stderr}`);
   assert.match(valid.body, /"jsonrpc"\s*:\s*"2\.0"/);
+  for (const tool of ['factory_status','host_powershell','worker_prepare','worker_start']) assert.match(valid.body, new RegExp(tool));
   assert.doesNotMatch(valid.body, /TRUSTED_CALLER_/);
+
+  const legacy = await legacyInitialize({ cert: clientCert, key: clientKey });
+  assert.equal(legacy.status, 400);
+  assert.match(legacy.body, /Unsupported protocol version|modern-only/);
 
   let noCertDenied = false;
   try {
-    const noCert = await initialize();
+    const noCert = await modernToolsList();
     noCertDenied = noCert.status === 401 || noCert.status === 403;
   } catch {
     noCertDenied = true;
   }
   assert.equal(noCertDenied, true, 'client certificate must be required by TLS');
 
-  const unknown = await initialize({ cert: unknownCert, key: unknownKey });
+  const unknown = await modernToolsList({ cert: unknownCert, key: unknownKey });
   assert.equal(unknown.status, 403);
   assert.match(unknown.body, /TRUSTED_CALLER_CERT_UNKNOWN/);
 
   writeTrusted({ generation: 2, enabled: false });
-  const revoked = await initialize({ cert: clientCert, key: clientKey });
+  const revoked = await modernToolsList({ cert: clientCert, key: clientKey });
   assert.equal(revoked.status, 403);
   assert.match(revoked.body, /TRUSTED_CALLER_CERT_UNKNOWN/);
 
   writeTrusted({ generation: 3, enabled: true, project: 'OTHER_PROJECT' });
-  const wrongProject = await initialize({ cert: clientCert, key: clientKey });
+  const wrongProject = await modernToolsList({ cert: clientCert, key: clientKey });
   assert.equal(wrongProject.status, 403);
   assert.match(wrongProject.body, /TRUSTED_CALLER_PROJECT_HTTP_BINDING_MISMATCH/);
 
