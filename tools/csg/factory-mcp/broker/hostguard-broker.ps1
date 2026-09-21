@@ -19,6 +19,7 @@ $execReceipts = Join-Path $state 'exec-receipts'
 $modulePath = 'C:\Program Files\WindowsPowerShell\Modules\PTYSD.HostGuard\PTYSD.HostGuard.psd1'
 $hostExecHelperPath = Join-Path $root 'broker\host-powershell-exec.ps1'
 $systemFenceHelperPath = Join-Path $root 'broker\current-execution-fence.ps1'
+$trustedCallerHelperPath = Join-Path $root 'broker\trusted-caller.ps1'
 $systemCapabilityPath = Join-Path $root 'config\system-capability.json'
 $idPattern = '^[A-Z0-9][A-Z0-9._-]{0,79}$'
 $maxRequestBytes = 65536
@@ -35,6 +36,7 @@ foreach ($path in @($execTemp,$execReceipts)) {
 if (-not (Test-Path -LiteralPath $modulePath)) { throw 'HOSTGUARD_MODULE_MISSING' }
 if (-not (Test-Path -LiteralPath $hostExecHelperPath)) { throw 'HOST_EXEC_HELPER_MISSING' }
 if (-not (Test-Path -LiteralPath $systemFenceHelperPath)) { throw 'SYSTEM_FENCE_HELPER_MISSING' }
+if (-not (Test-Path -LiteralPath $trustedCallerHelperPath)) { throw 'TRUSTED_CALLER_HELPER_MISSING' }
 if (-not (Test-Path -LiteralPath $systemCapabilityPath)) { throw 'SYSTEM_CAPABILITY_CONFIG_MISSING' }
 $systemCapability = Get-Content -LiteralPath $systemCapabilityPath -Raw | ConvertFrom-Json -ErrorAction Stop
 if (
@@ -52,6 +54,7 @@ if (
 Import-Module $modulePath -Force -ErrorAction Stop
 . $hostExecHelperPath
 . $systemFenceHelperPath
+. $trustedCallerHelperPath
 
 $createdNew = $false
 $mutex = New-Object Threading.Mutex($true, 'Global\PTYSDFactoryMCPHostGuardBrokerV47', [ref]$createdNew)
@@ -110,7 +113,9 @@ function Assert-SystemCapabilityRequest {
   }
   if (-not $taskOk) { throw 'SYSTEM_CAPABILITY_TASK_DENY' }
   if ([int]$Request.timeout_seconds -gt [int]$systemCapability.max_timeout_seconds) { throw 'SYSTEM_CAPABILITY_TIMEOUT_DENY' }
-  [void](Assert-PTYSDCurrentSystemExecutionFence -Request $Request -SystemCapability $systemCapability)
+  $fenceContext = Assert-PTYSDCurrentSystemExecutionFence -Request $Request -SystemCapability $systemCapability
+  $callerClaims = Assert-PTYSDTrustedCallerAttestation -Request $Request -FenceContext $fenceContext
+  return [pscustomobject]@{ fence_context=$fenceContext; caller_claims=$callerClaims }
 }
 
 function Get-LatestHostExecReceipt {
@@ -774,7 +779,11 @@ function Process-Request {
       if (-not (Test-Id $req.run_id) -or -not (Test-Id $req.task_id) -or -not (Test-Id $req.attempt_id)) { throw 'ID_INVALID' }
     }
     if ($req.operation -eq 'powershell') {
-      Assert-SystemCapabilityRequest -Request $req
+      $systemAuth = Assert-SystemCapabilityRequest -Request $req
+      $req | Add-Member -NotePropertyName caller_id -NotePropertyValue ([string]$systemAuth.caller_claims.caller_id) -Force
+      $req | Add-Member -NotePropertyName caller_identity_digest -NotePropertyValue ([string]$systemAuth.caller_claims.caller_identity_digest) -Force
+      $req | Add-Member -NotePropertyName caller_certificate_sha256 -NotePropertyValue ([string]$systemAuth.caller_claims.certificate_sha256) -Force
+      $req | Add-Member -NotePropertyName caller_identity_generation -NotePropertyValue ([int64]$systemAuth.caller_claims.identity_generation) -Force
     }
 
     switch ([string]$req.operation) {
@@ -818,6 +827,7 @@ function Process-Request {
       '^POWERSHELL_' { $safeMessage; break }
       '^SYSTEM_CAPABILITY_' { $safeMessage; break }
       '^SYSTEM_FENCE_' { $safeMessage; break }
+      '^TRUSTED_CALLER_' { $safeMessage; break }
       '^STATUS_PROBE_INVALID' { 'STATUS_PROBE_INVALID'; break }
       '^REQUEST_' { $safeMessage; break }
       '^OPERATION_INVALID' { 'OPERATION_INVALID'; break }
