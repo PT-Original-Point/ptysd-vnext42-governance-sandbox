@@ -13,8 +13,10 @@
     "test:inspector": "node tests/official-inspector-equivalence.mjs"
   },
   "dependencies": {
+    "@hono/node-server": "1.19.11",
+    "@modelcontextprotocol/node": "2.0.0",
     "@modelcontextprotocol/server": "2.0.0",
-    "zod": "4.6.5",
-    "@modelcontextprotocol/node": "2.0.0"
+    "hono": "4.12.9",
+    "zod": "4.6.5"
   }
 }
