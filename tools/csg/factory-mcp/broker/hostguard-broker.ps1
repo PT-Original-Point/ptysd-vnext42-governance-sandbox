@@ -4,9 +4,14 @@ param()
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 $mcpBase = 'C:\ProgramData\PTYSD\MCP'
-$root = Join-Path $mcpBase 'FactoryMCP'
-$tunnelTaskName = 'PTYSD-FactoryMCP-Tunnel-V47'
-$tunnelHealthUrlFile = Join-Path $mcpBase 'state\tunnel-health-url.txt'
+$root = [Environment]::GetEnvironmentVariable('PTYSD_FACTORY_MCP_ROOT','Process')
+if (-not $root) { $root = Join-Path $mcpBase 'FactoryMCP' }
+$tunnelTaskName = [Environment]::GetEnvironmentVariable('PTYSD_FACTORY_MCP_TUNNEL_TASK_NAME','Process')
+if (-not $tunnelTaskName) { $tunnelTaskName = 'PTYSD-FactoryMCP-Tunnel-V47' }
+$tunnelHealthUrlFile = [Environment]::GetEnvironmentVariable('PTYSD_FACTORY_MCP_TUNNEL_HEALTH_URL_FILE','Process')
+if (-not $tunnelHealthUrlFile) { $tunnelHealthUrlFile = Join-Path $mcpBase 'state\tunnel-health-url.txt' }
+$brokerMutexName = [Environment]::GetEnvironmentVariable('PTYSD_FACTORY_MCP_BROKER_MUTEX','Process')
+if (-not $brokerMutexName) { $brokerMutexName = 'Global\PTYSDFactoryMCPHostGuardBrokerV47' }
 $queue = Join-Path $root 'queue'
 $inbox = Join-Path $queue 'inbox'
 $processing = Join-Path $queue 'processing'
@@ -61,7 +66,7 @@ Import-Module $modulePath -Force -ErrorAction Stop
 . $operationClaimHelperPath
 
 $createdNew = $false
-$mutex = New-Object Threading.Mutex($true, 'Global\PTYSDFactoryMCPHostGuardBrokerV47', [ref]$createdNew)
+$mutex = New-Object Threading.Mutex($true, $brokerMutexName, [ref]$createdNew)
 if (-not $createdNew) { throw 'BROKER_ALREADY_RUNNING' }
 
 $script:activePowerShellJobs = @{}

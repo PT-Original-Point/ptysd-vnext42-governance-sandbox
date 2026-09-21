@@ -9,6 +9,7 @@ const capability = JSON.parse(fs.readFileSync(new URL('../config/system-capabili
 const serverFence = fs.readFileSync(new URL('../src/current-execution-fence.mjs', import.meta.url), 'utf8');
 const brokerFence = fs.readFileSync(new URL('../broker/current-execution-fence.ps1', import.meta.url), 'utf8');
 const operationClaim = fs.readFileSync(new URL('../broker/operation-claim.ps1', import.meta.url), 'utf8');
+const brokerTrustedCaller = fs.readFileSync(new URL('../broker/trusted-caller.ps1', import.meta.url), 'utf8');
 
 test('host PowerShell has bounded multi-run lanes instead of one global lane', () => {
   for (const token of [
@@ -178,4 +179,28 @@ test('trusted caller attestation is request-bound and dedicated-tunnel scoped', 
   for (const token of ['TRUSTED_CALLER_REQUEST_ID_MISMATCH','TRUSTED_CALLER_AUTH_GENERATION_MISMATCH','TRUSTED_CALLER_AUTH_STATE_MISMATCH','PROJECT_DEDICATED_TUNNEL','tunnel_binding_id']) {
     assert.ok(brokerTrusted.includes(token), `missing broker trusted-caller token: ${token}`);
   }
+});
+
+
+test('P5 parallel staging can isolate broker paths, mutex, tunnel status and trust secrets while P4 defaults remain unchanged', () => {
+  for (const token of [
+    "PTYSD_FACTORY_MCP_QUEUE_ROOT",
+    "C:\\ProgramData\\PTYSD\\MCP\\FactoryMCP\\queue",
+  ]) assert.ok(wrapper.includes(token), `missing wrapper staging token: ${token}`);
+  for (const token of [
+    "PTYSD_FACTORY_MCP_ROOT",
+    "PTYSD_FACTORY_MCP_TUNNEL_TASK_NAME",
+    "PTYSD_FACTORY_MCP_TUNNEL_HEALTH_URL_FILE",
+    "PTYSD_FACTORY_MCP_BROKER_MUTEX",
+    "C:\\ProgramData\\PTYSD\\MCP",
+    "PTYSD-FactoryMCP-Tunnel-V47",
+    "Global\\PTYSDFactoryMCPHostGuardBrokerV47",
+    "New-Object Threading.Mutex($true, $brokerMutexName",
+  ]) assert.ok(broker.includes(token), `missing broker staging token: ${token}`);
+  for (const token of [
+    "PTYSD_FACTORY_MCP_TRUSTED_CALLERS",
+    "PTYSD_FACTORY_MCP_ATTESTATION_KEYRING",
+    "C:\\ProgramData\\PTYSD\\MCP\\config\\trusted-callers.json",
+    "C:\\ProgramData\\PTYSD\\MCP\\secrets\\broker-caller-attestation-keyring.json",
+  ]) assert.ok(brokerTrustedCaller.includes(token), `missing trust-path staging token: ${token}`);
 });

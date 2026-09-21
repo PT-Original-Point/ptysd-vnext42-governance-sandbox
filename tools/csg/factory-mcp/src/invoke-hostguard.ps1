@@ -64,7 +64,8 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
-$queueRoot = 'C:\ProgramData\PTYSD\MCP\FactoryMCP\queue'
+$queueRoot = [Environment]::GetEnvironmentVariable('PTYSD_FACTORY_MCP_QUEUE_ROOT','Process')
+if (-not $queueRoot) { $queueRoot = 'C:\ProgramData\PTYSD\MCP\FactoryMCP\queue' }
 $inbox = Join-Path $queueRoot 'inbox'
 $outbox = Join-Path $queueRoot 'outbox'
 

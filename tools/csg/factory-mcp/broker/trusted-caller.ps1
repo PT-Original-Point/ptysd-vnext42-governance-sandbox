@@ -1,7 +1,9 @@
 Set-StrictMode -Version Latest
 
-$script:PTYSDTrustedCallerConfigPath = 'C:\ProgramData\PTYSD\MCP\config\trusted-callers.json'
-$script:PTYSDCallerAttestationKeyringPath = 'C:\ProgramData\PTYSD\MCP\secrets\broker-caller-attestation-keyring.json'
+$script:PTYSDTrustedCallerConfigPath = [Environment]::GetEnvironmentVariable('PTYSD_FACTORY_MCP_TRUSTED_CALLERS','Process')
+if (-not $script:PTYSDTrustedCallerConfigPath) { $script:PTYSDTrustedCallerConfigPath = 'C:\ProgramData\PTYSD\MCP\config\trusted-callers.json' }
+$script:PTYSDCallerAttestationKeyringPath = [Environment]::GetEnvironmentVariable('PTYSD_FACTORY_MCP_ATTESTATION_KEYRING','Process')
+if (-not $script:PTYSDCallerAttestationKeyringPath) { $script:PTYSDCallerAttestationKeyringPath = 'C:\ProgramData\PTYSD\MCP\secrets\broker-caller-attestation-keyring.json' }
 
 function Get-PTYSDTrustedCallerConfig {
   if (-not (Test-Path -LiteralPath $script:PTYSDTrustedCallerConfigPath)) { throw 'TRUSTED_CALLER_CONFIG_MISSING' }
