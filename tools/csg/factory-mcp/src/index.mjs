@@ -217,6 +217,9 @@ function assertTrustedMutationCaller(callerIdentity, transportKind) {
   if (callerIdentity.project_id !== SYSTEM_CAPABILITY.project_id) {
     throw new Error('TRUSTED_CALLER_PROJECT_DENY');
   }
+  if (callerIdentity.principal_type !== 'PROJECT_DEDICATED_TUNNEL' || !callerIdentity.tunnel_binding_id) {
+    throw new Error('TRUSTED_CALLER_DEDICATED_PROJECT_BINDING_REQUIRED');
+  }
   if (transportKind !== 'https-mtls') {
     throw new Error('TRUSTED_CALLER_TRANSPORT_REQUIRED');
   }
