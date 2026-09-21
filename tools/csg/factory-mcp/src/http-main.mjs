@@ -57,16 +57,23 @@ function identityFromAuthInfo(authInfo) {
   return identity;
 }
 
-const mcpHandler = createMcpHandler((ctx) =>
-  createFactoryServer({
-    callerIdentity: identityFromAuthInfo(ctx.authInfo),
-    transportKind: 'https-mtls',
-  }),
+const mcpHandler = createMcpHandler(
+  (ctx) =>
+    createFactoryServer({
+      callerIdentity: identityFromAuthInfo(ctx.authInfo),
+      transportKind: 'https-mtls',
+    }),
+  {
+    legacy: 'reject',
+    maxRequestBodySize: 1024 * 1024,
+    onerror(error) {
+      console.error(`FACTORY_HTTP_MCP_ERROR:${error?.message || 'UNKNOWN'}`);
+    },
+  },
 );
 const nodeHandler = toNodeHandler(mcpHandler, {
-  maxRequestBodySize: 1024 * 1024,
   onerror(error) {
-    console.error(`FACTORY_HTTP_MCP_ERROR:${error?.message || 'UNKNOWN'}`);
+    console.error(`FACTORY_HTTP_NODE_ADAPTER_ERROR:${error?.message || 'UNKNOWN'}`);
   },
 });
 
