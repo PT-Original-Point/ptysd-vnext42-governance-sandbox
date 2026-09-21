@@ -1,5 +1,6 @@
 import { createHash } from 'node:crypto';
-import { evaluateAuthorization } from './authorization-envelope.mjs';
+import { evaluateAuthorization, validateHumanReservationPermit } from './authorization-envelope.mjs';
+import { evaluateAuthorizationV2 } from './authorization-envelope-v2.mjs';
 
 export const POLICY_MIDDLEWARE_VERSION = 'v48.policy-middleware.v1';
 export const EFFECT_CLASSES = Object.freeze(['READ_ONLY','LOCAL_PREPARATION','LOCAL_EXECUTION','PROVIDER_EFFECT','HUMAN_RESERVED']);
@@ -135,7 +136,7 @@ function permitChecks(req, reasons) {
   }
 }
 
-export function evaluatePolicyRequest({ identity, capability, request, credential_profile = null, model_profile = null, authorization_envelope = null, current_mission = null, human_reservation_permit = null, now = new Date().toISOString() } = {}) {
+export function evaluatePolicyRequest({ identity, capability, request, credential_profile = null, model_profile = null, authorization_envelope = null, authorization_state = null, current_mission = null, human_reservation_permit = null, now = new Date().toISOString() } = {}) {
   const reasons = [];
   const nowMs = Date.parse(now);
   if (!Number.isFinite(nowMs)) return deny('INVALID_NOW');
@@ -147,13 +148,25 @@ export function evaluatePolicyRequest({ identity, capability, request, credentia
   credentialChecks(identity ?? {}, request, credential_profile, reasons);
   gitChecks(request, reasons);
   permitChecks(request, reasons);
-  const authorization = evaluateAuthorization({ envelope: authorization_envelope, current_mission, identity, request, human_reservation_permit });
+  const authorization = authorization_envelope?.schema === 'v49.authorization-envelope.v2'
+    ? evaluateAuthorizationV2({
+        envelope: authorization_envelope,
+        current_mission,
+        authorization_state,
+        identity,
+        request,
+        human_reservation_permit,
+        validate_human_reservation_permit: validateHumanReservationPermit,
+      })
+    : evaluateAuthorization({ envelope: authorization_envelope, current_mission, identity, request, human_reservation_permit });
   if (!authorization.authorized) reasons.push(...authorization.reason_codes);
   if (reasons.length) {
     return {
       ...deny(...reasons),
       middleware_version:POLICY_MIDDLEWARE_VERSION,
       authorization_id:authorization.authorization_id ?? null,
+      authorization_generation:authorization.authorization_generation ?? null,
+      authorization_state_digest:authorization.authorization_state_digest ?? null,
       authorization_decision_digest:authorization.authorization_decision_digest ?? null,
       human_authorization_required:authorization.human_reservation_required === true,
       tool_confirmation_required:reasons.includes('NONINTERACTIVE_ASK_DENY'),
@@ -169,6 +182,8 @@ export function evaluatePolicyRequest({ identity, capability, request, credentia
     identity:{ project_id:identity.project_id, run_id:identity.run_id, task_id:identity.task_id, attempt_id:identity.attempt_id, attempt_epoch:identity.attempt_epoch },
     effect_class:request.effect_class,
     authorization_id:authorization.authorization_id ?? null,
+    authorization_generation:authorization.authorization_generation ?? null,
+    authorization_state_digest:authorization.authorization_state_digest ?? null,
     authorization_decision_digest:authorization.authorization_decision_digest ?? null,
     human_authorization_required:false,
     tool_confirmation_required:false,
