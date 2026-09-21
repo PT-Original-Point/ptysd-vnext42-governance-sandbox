@@ -5,7 +5,7 @@ WORK="$BASE/repo"
 MODEL="opencode/muse-spark-1.3-contributor-free"
 OPENCODE="/usr/local/bin/opencode"
 PYTHON="/usr/bin/python3"
-NODE="/usr/bin/node"
+NODE_VER="v24.21.0"; NODE_DIR="$BASE/node-$NODE_VER-linux-x64"; NODE="$NODE_DIR/bin/node"; NODE_TGZ="$BASE/node-$NODE_VER-linux-x64.tar.gz"; NODE_URL="https://nodejs.org/dist/v24.21.0/node-v24.21.0-linux-x64.tar.gz"; NODE_SHA="6e1db87ef58b8819e5d5402eff1536491b18edd8eb7bee5ef7897876e88dc5ff"
 GIT="/usr/bin/git"
 OCROOT="$BASE/opencode-v2"; OC_DATA="$OCROOT/data"; OC_CONFIG="$OCROOT/config"; OC_CACHE="$OCROOT/cache"; OC_STATE="$OCROOT/state"
 SERVICE_PID="$BASE/opencode-service.pid"; SERVICE_OUT="$BASE/opencode-service.out"; SERVICE_ERR="$BASE/opencode-service.err"
@@ -20,6 +20,7 @@ CMD="${SSH_ORIGINAL_COMMAND:-${1:-}}"
 fail(){ echo "V49_N1_FAIL=$1" >&2; exit "${2:-1}"; }
 guard_user(){ test "$(id -un)" = "ptysd" || fail WRONG_USER 40; }
 ensure_base(){ mkdir -p "$BASE"; chmod 700 "$BASE"; }
+ensure_node(){ ensure_base; if test ! -x "$NODE"; then rm -rf "$NODE_DIR" "$NODE_TGZ" "$NODE_TGZ.part"; "$PYTHON" -c 'import hashlib,sys,urllib.request; u,p,h=sys.argv[1:]; d=urllib.request.urlopen(u,timeout=60).read(); assert hashlib.sha256(d).hexdigest()==h; open(p,"wb").write(d)' "$NODE_URL" "$NODE_TGZ.part" "$NODE_SHA" || fail NODE_FETCH_OR_SHA 56; mv "$NODE_TGZ.part" "$NODE_TGZ"; /usr/bin/tar -xzf "$NODE_TGZ" -C "$BASE" || fail NODE_EXTRACT 57; rm -f "$NODE_TGZ"; fi; test "$("$NODE" --version 2>/dev/null || true)" = "$NODE_VER" || fail NODE_VERSION_MISMATCH 58; }
 oc(){ "$ENV" -u OPENCODE_API_KEY OPENCODE_DB=:memory: OPENCODE_CONFIG_DIR="$OC_CONFIG" XDG_DATA_HOME="$OC_DATA" XDG_CONFIG_HOME="$OC_CONFIG" XDG_CACHE_HOME="$OC_CACHE" XDG_STATE_HOME="$OC_STATE" OPENCODE_DISABLE_AUTOUPDATE=1 "$OPENCODE" "$@"; }
 oc10(){ "$TIMEOUT" 10s "$ENV" -u OPENCODE_API_KEY OPENCODE_DB=:memory: OPENCODE_CONFIG_DIR="$OC_CONFIG" XDG_DATA_HOME="$OC_DATA" XDG_CONFIG_HOME="$OC_CONFIG" XDG_CACHE_HOME="$OC_CACHE" XDG_STATE_HOME="$OC_STATE" OPENCODE_DISABLE_AUTOUPDATE=1 "$OPENCODE" "$@"; }
 stop_service(){ if test -f "$SERVICE_PID"; then p="$(cat "$SERVICE_PID" 2>/dev/null || true)"; test -z "$p" || kill "$p" 2>/dev/null || true; test -z "$p" || wait "$p" 2>/dev/null || true; rm -f "$SERVICE_PID"; fi; rm -f "$OC_STATE/opencode/service.json" "$OC_CONFIG/service.json"; }
@@ -29,6 +30,7 @@ model_guard(){
   test -x "$OPENCODE" || fail OPENCODE_MISSING 41
   test -x "$PYTHON" || fail PYTHON_MISSING 42
   test -x "$ENV" && test -x "$TIMEOUT" || fail RUNTIME_HELPER_MISSING 43
+  ensure_node
   test "$("$OPENCODE" --version 2>/dev/null || true)" = "opencode v2.0.11" || fail OPENCODE_VERSION_MISMATCH 44
   start_service
   i=0
