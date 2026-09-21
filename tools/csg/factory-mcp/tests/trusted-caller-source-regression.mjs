@@ -131,3 +131,14 @@ test('HTTP entrypoint fresh-reads trusted caller config per request',()=>{
   assert.ok(occurrence>=3,'expected startup, health, and per-request trusted caller reads');
   assert.match(http,/const trustedCallers = loadTrustedCallers\(cfg\.trusted_callers_path\);\s*const callerIdentity = resolveTrustedMtlsCaller/);
 });
+
+
+test('HTTPS MCP is modern-only and authInfo is supplied by the Node adapter path',()=>{
+  const http=readFileSync(new URL('../src/http-main.mjs',import.meta.url),'utf8');
+  assert.match(http,/legacy:\s*'reject'/);
+  assert.match(http,/maxRequestBodySize:\s*1024 \* 1024/);
+  assert.match(http,/req\.auth\s*=\s*\{/);
+  assert.match(http,/identityFromAuthInfo\(ctx\.authInfo\)/);
+  const nodeHandlerBlock=http.slice(http.indexOf('const nodeHandler = toNodeHandler'),http.indexOf('function writeHealth'));
+  assert.doesNotMatch(nodeHandlerBlock,/maxRequestBodySize/);
+});
