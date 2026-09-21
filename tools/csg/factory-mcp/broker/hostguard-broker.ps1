@@ -501,6 +501,11 @@ function Start-BrokerPowerShell {
     operation='powershell'
     project_id=[string]$Request.project_id
     capability_id=[string]$Request.capability_id
+    operation_id=[string]$Request.operation_id
+    control_oid=[string]$Request.control_oid
+    checkpoint_digest=[string]$Request.checkpoint_digest
+    authorization_envelope_digest=[string]$Request.authorization_envelope_digest
+    capability_generation=[int64]$Request.capability_generation
     run_id=[string]$Request.run_id
     task_id=[string]$Request.task_id
     attempt_id=[string]$Request.attempt_id
@@ -551,6 +556,11 @@ function Start-BrokerPowerShell {
       receipt_path=$receiptPath
       project_id=[string]$Request.project_id
       capability_id=[string]$Request.capability_id
+      operation_id=[string]$Request.operation_id
+      control_oid=[string]$Request.control_oid
+      checkpoint_digest=[string]$Request.checkpoint_digest
+      authorization_envelope_digest=[string]$Request.authorization_envelope_digest
+      capability_generation=[int64]$Request.capability_generation
       run_id=[string]$Request.run_id
       task_id=[string]$Request.task_id
       attempt_id=[string]$Request.attempt_id
@@ -575,7 +585,7 @@ function Complete-OnePowerShellJob {
     try { Stop-Job -Job $job -ErrorAction SilentlyContinue } catch {}
     $receipt = [ordered]@{
       schema='v48.factory-mcp.host-exec.receipt.v2'; state='TIMED_OUT'; request_id=[string]$ctx.request_id; operation='powershell'
-      project_id=[string]$ctx.project_id; capability_id=[string]$ctx.capability_id; run_id=[string]$ctx.run_id; task_id=[string]$ctx.task_id; attempt_id=[string]$ctx.attempt_id; attempt_epoch=[int]$ctx.attempt_epoch
+      project_id=[string]$ctx.project_id; capability_id=[string]$ctx.capability_id; operation_id=[string]$ctx.operation_id; control_oid=[string]$ctx.control_oid; checkpoint_digest=[string]$ctx.checkpoint_digest; authorization_envelope_digest=[string]$ctx.authorization_envelope_digest; capability_generation=[int64]$ctx.capability_generation; run_id=[string]$ctx.run_id; task_id=[string]$ctx.task_id; attempt_id=[string]$ctx.attempt_id; attempt_epoch=[int]$ctx.attempt_epoch
       run_as=[Security.Principal.WindowsIdentity]::GetCurrent().Name; script_sha256=[string]$ctx.script_sha256; timeout_seconds=[int]$ctx.timeout_seconds
       exit_code=$null; timed_out=$true; side_effect_state='UNKNOWN_AFTER_TIMEOUT'; stdout_bytes=$null; stderr_bytes=$null; stdout_sha256=$null; stderr_sha256=$null
       started_at_utc=[string]$ctx.started_at_utc; finished_at_utc=$finishedAt; error_code='BROKER_WATCHDOG_TIMEOUT'
@@ -585,7 +595,7 @@ function Complete-OnePowerShellJob {
       schema='v48.factory-mcp.hostguard.response.v2'; request_id=[string]$ctx.request_id; ok=$true; error_code=$null
       result=[ordered]@{
         schema='v48.factory-mcp.host-exec.result.v2'; operation='powershell'; result='TIMED_OUT'; request_id=[string]$ctx.request_id
-        project_id=[string]$ctx.project_id; capability_id=[string]$ctx.capability_id; run_id=[string]$ctx.run_id; task_id=[string]$ctx.task_id; attempt_id=[string]$ctx.attempt_id; attempt_epoch=[int]$ctx.attempt_epoch
+        project_id=[string]$ctx.project_id; capability_id=[string]$ctx.capability_id; operation_id=[string]$ctx.operation_id; control_oid=[string]$ctx.control_oid; checkpoint_digest=[string]$ctx.checkpoint_digest; authorization_envelope_digest=[string]$ctx.authorization_envelope_digest; capability_generation=[int64]$ctx.capability_generation; run_id=[string]$ctx.run_id; task_id=[string]$ctx.task_id; attempt_id=[string]$ctx.attempt_id; attempt_epoch=[int]$ctx.attempt_epoch
         run_as=[Security.Principal.WindowsIdentity]::GetCurrent().Name; executable=$null; exit_code=$null; timed_out=$true
         stdout=''; stderr=''; stdout_bytes=0; stderr_bytes=0; stdout_truncated=$false; stderr_truncated=$false
         script_sha256=[string]$ctx.script_sha256; receipt_path=[string]$ctx.receipt_path; side_effect_state='UNKNOWN_AFTER_TIMEOUT'
@@ -628,6 +638,11 @@ function Complete-OnePowerShellJob {
       operation='powershell'
       project_id=[string]$ctx.project_id
       capability_id=[string]$ctx.capability_id
+      operation_id=[string]$ctx.operation_id
+      control_oid=[string]$ctx.control_oid
+      checkpoint_digest=[string]$ctx.checkpoint_digest
+      authorization_envelope_digest=[string]$ctx.authorization_envelope_digest
+      capability_generation=[int64]$ctx.capability_generation
       run_id=[string]$ctx.run_id
       task_id=[string]$ctx.task_id
       attempt_id=[string]$ctx.attempt_id
@@ -657,6 +672,11 @@ function Complete-OnePowerShellJob {
       request_id=[string]$ctx.request_id
       project_id=[string]$ctx.project_id
       capability_id=[string]$ctx.capability_id
+      operation_id=[string]$ctx.operation_id
+      control_oid=[string]$ctx.control_oid
+      checkpoint_digest=[string]$ctx.checkpoint_digest
+      authorization_envelope_digest=[string]$ctx.authorization_envelope_digest
+      capability_generation=[int64]$ctx.capability_generation
       run_id=[string]$ctx.run_id
       task_id=[string]$ctx.task_id
       attempt_id=[string]$ctx.attempt_id
@@ -685,6 +705,11 @@ function Complete-OnePowerShellJob {
       operation='powershell'
       project_id=[string]$ctx.project_id
       capability_id=[string]$ctx.capability_id
+      operation_id=[string]$ctx.operation_id
+      control_oid=[string]$ctx.control_oid
+      checkpoint_digest=[string]$ctx.checkpoint_digest
+      authorization_envelope_digest=[string]$ctx.authorization_envelope_digest
+      capability_generation=[int64]$ctx.capability_generation
       run_id=[string]$ctx.run_id
       task_id=[string]$ctx.task_id
       attempt_id=[string]$ctx.attempt_id
