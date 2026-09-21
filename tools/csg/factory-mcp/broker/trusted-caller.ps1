@@ -1,7 +1,7 @@
 Set-StrictMode -Version Latest
 
 $script:PTYSDTrustedCallerConfigPath = 'C:\ProgramData\PTYSD\MCP\config\trusted-callers.json'
-$script:PTYSDCallerAttestationKeyPath = 'C:\ProgramData\PTYSD\MCP\secrets\broker-caller-attestation.key'
+$script:PTYSDCallerAttestationKeyringPath = 'C:\ProgramData\PTYSD\MCP\secrets\broker-caller-attestation-keyring.json'
 
 function Get-PTYSDTrustedCallerConfig {
   if (-not (Test-Path -LiteralPath $script:PTYSDTrustedCallerConfigPath)) { throw 'TRUSTED_CALLER_CONFIG_MISSING' }
@@ -14,13 +14,56 @@ function Get-PTYSDTrustedCallerConfig {
   return $cfg
 }
 
-function Get-PTYSDCallerAttestationKey {
-  if (-not (Test-Path -LiteralPath $script:PTYSDCallerAttestationKeyPath)) { throw 'TRUSTED_CALLER_ATTESTATION_KEY_MISSING' }
-  $hex = (Get-Content -LiteralPath $script:PTYSDCallerAttestationKeyPath -Raw).Trim().ToLowerInvariant()
-  if ($hex -notmatch '^[0-9a-f]{64}$') { throw 'TRUSTED_CALLER_ATTESTATION_KEY_INVALID' }
+function Convert-PTYSDHexKey {
+  param([Parameter(Mandatory)][string]$Hex)
+  if ($Hex -notmatch '^[0-9a-f]{64}$') { throw 'TRUSTED_CALLER_ATTESTATION_KEY_INVALID' }
   $bytes = New-Object byte[] 32
-  for ($i=0; $i -lt 32; $i++) { $bytes[$i] = [Convert]::ToByte($hex.Substring($i*2,2),16) }
+  for ($i=0; $i -lt 32; $i++) { $bytes[$i] = [Convert]::ToByte($Hex.Substring($i*2,2),16) }
   return $bytes
+}
+
+function Get-PTYSDCallerAttestationKeyring {
+  if (-not (Test-Path -LiteralPath $script:PTYSDCallerAttestationKeyringPath)) { throw 'TRUSTED_CALLER_ATTESTATION_KEYRING_MISSING' }
+  try { $ring = Get-Content -LiteralPath $script:PTYSDCallerAttestationKeyringPath -Raw | ConvertFrom-Json -ErrorAction Stop }
+  catch { throw 'TRUSTED_CALLER_ATTESTATION_KEYRING_INVALID' }
+  if ([string]$ring.schema -ne 'v49.factory-mcp.caller-attestation-keyring.v1') { throw 'TRUSTED_CALLER_ATTESTATION_KEYRING_SCHEMA_INVALID' }
+  if ([int64]$ring.keyring_generation -lt 1) { throw 'TRUSTED_CALLER_ATTESTATION_KEYRING_GENERATION_INVALID' }
+  if (-not $ring.current) { throw 'TRUSTED_CALLER_ATTESTATION_CURRENT_KEY_MISSING' }
+  if ([string]$ring.current.key_id -notmatch '^[A-Z0-9][A-Z0-9._-]{0,127}$') { throw 'TRUSTED_CALLER_ATTESTATION_CURRENT_KEY_ID_INVALID' }
+  [void](Convert-PTYSDHexKey -Hex ([string]$ring.current.key_hex))
+  if ([int64]$ring.current.key_generation -ne [int64]$ring.keyring_generation) { throw 'TRUSTED_CALLER_ATTESTATION_CURRENT_GENERATION_STALE' }
+  foreach ($entry in @($ring.previous)) {
+    if ([string]$entry.key_id -notmatch '^[A-Z0-9][A-Z0-9._-]{0,127}$') { throw 'TRUSTED_CALLER_ATTESTATION_PREVIOUS_KEY_ID_INVALID' }
+    [void](Convert-PTYSDHexKey -Hex ([string]$entry.key_hex))
+    if ([int64]$entry.key_generation -ge [int64]$ring.keyring_generation) { throw 'TRUSTED_CALLER_ATTESTATION_PREVIOUS_GENERATION_INVALID' }
+    try { [void][DateTimeOffset]::Parse([string]$entry.valid_until) } catch { throw 'TRUSTED_CALLER_ATTESTATION_PREVIOUS_EXPIRY_INVALID' }
+  }
+  return $ring
+}
+
+function Get-PTYSDCallerAttestationKeyForClaims {
+  param(
+    [Parameter(Mandatory)]$Claims,
+    [Parameter(Mandatory)][DateTime]$NowUtc
+  )
+  if ([string]$Claims.attestation_key_id -notmatch '^[A-Z0-9][A-Z0-9._-]{0,127}$') { throw 'TRUSTED_CALLER_ATTESTATION_KEY_ID_INVALID' }
+  if ([int64]$Claims.attestation_key_generation -lt 1) { throw 'TRUSTED_CALLER_ATTESTATION_KEY_GENERATION_INVALID' }
+  $ring = Get-PTYSDCallerAttestationKeyring
+  if (
+    [string]$ring.current.key_id -eq [string]$Claims.attestation_key_id -and
+    [int64]$ring.current.key_generation -eq [int64]$Claims.attestation_key_generation
+  ) {
+    return (Convert-PTYSDHexKey -Hex ([string]$ring.current.key_hex))
+  }
+  $matches = @($ring.previous | Where-Object {
+    [string]$_.key_id -eq [string]$Claims.attestation_key_id -and
+    [int64]$_.key_generation -eq [int64]$Claims.attestation_key_generation
+  })
+  if ($matches.Count -ne 1) { throw 'TRUSTED_CALLER_ATTESTATION_KEY_UNKNOWN' }
+  try { $validUntil = ([DateTimeOffset]::Parse([string]$matches[0].valid_until)).UtcDateTime }
+  catch { throw 'TRUSTED_CALLER_ATTESTATION_PREVIOUS_EXPIRY_INVALID' }
+  if ($NowUtc -ge $validUntil) { throw 'TRUSTED_CALLER_ATTESTATION_ROLLOVER_EXPIRED' }
+  return (Convert-PTYSDHexKey -Hex ([string]$matches[0].key_hex))
 }
 
 function Test-PTSDFixedTimeBytes {
@@ -42,7 +85,13 @@ function Assert-PTYSDTrustedCallerAttestation {
   catch { throw 'TRUSTED_CALLER_ATTESTATION_PAYLOAD_INVALID' }
   if ($payloadBytes.Length -lt 16 -or $payloadBytes.Length -gt 16384) { throw 'TRUSTED_CALLER_ATTESTATION_PAYLOAD_SIZE_INVALID' }
 
-  $key = Get-PTYSDCallerAttestationKey
+  try { $claims = [Text.Encoding]::UTF8.GetString($payloadBytes) | ConvertFrom-Json -ErrorAction Stop }
+  catch { throw 'TRUSTED_CALLER_ATTESTATION_JSON_INVALID' }
+  if ([string]$claims.schema -ne 'v49.factory-mcp.caller-attestation.v2') { throw 'TRUSTED_CALLER_ATTESTATION_SCHEMA_INVALID' }
+  if ([string]$claims.request_id -notmatch '^[0-9a-f]{32}$') { throw 'TRUSTED_CALLER_REQUEST_ID_INVALID' }
+
+  $now = [DateTime]::UtcNow
+  $key = Get-PTYSDCallerAttestationKeyForClaims -Claims $claims -NowUtc $now
   $hmac = New-Object Security.Cryptography.HMACSHA256(,$key)
   try { [byte[]]$expectedMac = $hmac.ComputeHash($payloadBytes) } finally { $hmac.Dispose() }
   try {
@@ -51,23 +100,17 @@ function Assert-PTYSDTrustedCallerAttestation {
   } catch { throw 'TRUSTED_CALLER_ATTESTATION_MAC_INVALID' }
   if (-not (Test-PTSDFixedTimeBytes -Left $expectedMac -Right $claimedMac)) { throw 'TRUSTED_CALLER_ATTESTATION_MAC_MISMATCH' }
 
-  try { $claims = [Text.Encoding]::UTF8.GetString($payloadBytes) | ConvertFrom-Json -ErrorAction Stop }
-  catch { throw 'TRUSTED_CALLER_ATTESTATION_JSON_INVALID' }
-  if ([string]$claims.schema -ne 'v49.factory-mcp.caller-attestation.v2') { throw 'TRUSTED_CALLER_ATTESTATION_SCHEMA_INVALID' }
-  if ([string]$claims.request_id -notmatch '^[0-9a-f]{32}$') { throw 'TRUSTED_CALLER_REQUEST_ID_INVALID' }
-
   try {
     $issued = [DateTimeOffset]::Parse([string]$claims.issued_at).UtcDateTime
     $expires = [DateTimeOffset]::Parse([string]$claims.expires_at).UtcDateTime
   } catch { throw 'TRUSTED_CALLER_ATTESTATION_TIME_INVALID' }
-  $now=[DateTime]::UtcNow
   if ($issued -gt $now.AddSeconds(5) -or $expires -le $now -or ($expires-$issued).TotalSeconds -gt 60) {
     throw 'TRUSTED_CALLER_ATTESTATION_EXPIRED'
   }
 
-  $cfg=Get-PTYSDTrustedCallerConfig
+  $cfg = Get-PTYSDTrustedCallerConfig
   if ([int64]$claims.identity_generation -ne [int64]$cfg.identity_generation) { throw 'TRUSTED_CALLER_IDENTITY_GENERATION_STALE' }
-  $matches=@($cfg.callers | Where-Object {
+  $matches = @($cfg.callers | Where-Object {
     $_.enabled -eq $true -and
     [string]$_.project_id -eq [string]$claims.project_id -and
     [string]$_.caller_id -eq [string]$claims.caller_id -and
@@ -79,7 +122,9 @@ function Assert-PTYSDTrustedCallerAttestation {
   })
   if ($matches.Count -ne 1) { throw 'TRUSTED_CALLER_IDENTITY_NOT_ALLOWED' }
   if ([string]$claims.principal_type -ne 'PROJECT_DEDICATED_TUNNEL') { throw 'TRUSTED_CALLER_PRINCIPAL_TYPE_INVALID' }
-  if ([string]$claims.tunnel_binding_id -notmatch '^[A-Z0-9][A-Z0-9._-]{0,127}$FenceContext.execution_fence
+  if ([string]$claims.tunnel_binding_id -notmatch '^[A-Z0-9][A-Z0-9._-]{0,127}$') { throw 'TRUSTED_CALLER_TUNNEL_BINDING_INVALID' }
+
+  $fence = $FenceContext.execution_fence
   if (-not $fence) { throw 'TRUSTED_CALLER_EXECUTION_FENCE_REQUIRED' }
   $expectedKind = switch ([string]$Request.operation) {
     'powershell' { 'HOST_POWERSHELL'; break }
@@ -106,50 +151,11 @@ function Assert-PTYSDTrustedCallerAttestation {
   if ([int]$claims.timeout_seconds -ne [int]$Request.timeout_seconds -or [int]$claims.timeout_seconds -ne [int]$fence.timeout_seconds) { throw 'TRUSTED_CALLER_TIMEOUT_MISMATCH' }
 
   if ($expectedKind -eq 'HOST_POWERSHELL') {
-    try { [byte[]]$scriptBytes=[Convert]::FromBase64String([string]$Request.script_b64) } catch { throw 'TRUSTED_CALLER_SCRIPT_B64_INVALID' }
-    $scriptDigest='sha256:'+(Get-PTYSDHostExecSha256Hex -Bytes $scriptBytes)
+    try { [byte[]]$scriptBytes = [Convert]::FromBase64String([string]$Request.script_b64) } catch { throw 'TRUSTED_CALLER_SCRIPT_B64_INVALID' }
+    $scriptDigest = 'sha256:' + (Get-PTYSDHostExecSha256Hex -Bytes $scriptBytes)
     if ([string]$claims.script_sha256 -ne $scriptDigest -or [string]$claims.script_sha256 -ne [string]$fence.script_sha256) { throw 'TRUSTED_CALLER_SCRIPT_MISMATCH' }
   } else {
-    $payloadDigest=Get-PTYSDMutationPayloadSha256 -OperationKind $expectedKind -Request $Request
-    if ([string]$claims.payload_sha256 -ne $payloadDigest -or [string]$claims.payload_sha256 -ne [string]$fence.payload_sha256) { throw 'TRUSTED_CALLER_PAYLOAD_MISMATCH' }
-  }
-
-  return $claims
-}
-) { throw 'TRUSTED_CALLER_TUNNEL_BINDING_INVALID' }
-
-  $fence=$FenceContext.execution_fence
-  if (-not $fence) { throw 'TRUSTED_CALLER_EXECUTION_FENCE_REQUIRED' }
-  $expectedKind = switch ([string]$Request.operation) {
-    'powershell' { 'HOST_POWERSHELL'; break }
-    'prepare' { 'WORKER_PREPARE'; break }
-    'start' { 'WORKER_START'; break }
-    default { throw 'TRUSTED_CALLER_OPERATION_KIND_INVALID' }
-  }
-
-  if ([string]$claims.request_id -ne [string]$Request.request_id) { throw 'TRUSTED_CALLER_REQUEST_ID_MISMATCH' }
-  if ([string]$claims.project_id -ne [string]$Request.project_id -or [string]$claims.project_id -ne [string]$fence.project_id) { throw 'TRUSTED_CALLER_PROJECT_MISMATCH' }
-  if ([string]$claims.operation_kind -ne $expectedKind -or [string]$claims.operation_kind -ne [string]$fence.operation_kind) { throw 'TRUSTED_CALLER_OPERATION_KIND_MISMATCH' }
-  if ([string]$claims.mission_revision -ne [string]$fence.mission_revision) { throw 'TRUSTED_CALLER_MISSION_REVISION_MISMATCH' }
-  if ([string]$claims.mission_hash -ne [string]$fence.mission_hash) { throw 'TRUSTED_CALLER_MISSION_HASH_MISMATCH' }
-  if ([string]$claims.authorization_envelope_digest -ne [string]$Request.authorization_envelope_digest -or [string]$claims.authorization_envelope_digest -ne [string]$fence.authorization_envelope_digest) { throw 'TRUSTED_CALLER_AUTH_REQUEST_MISMATCH' }
-  if ([int64]$claims.authorization_generation -ne [int64]$Request.authorization_generation -or [int64]$claims.authorization_generation -ne [int64]$fence.authorization_generation) { throw 'TRUSTED_CALLER_AUTH_GENERATION_MISMATCH' }
-  if ([string]$claims.authorization_state_digest -ne [string]$Request.authorization_state_digest -or [string]$claims.authorization_state_digest -ne [string]$fence.authorization_state_digest) { throw 'TRUSTED_CALLER_AUTH_STATE_MISMATCH' }
-  if ([string]$claims.control_oid -ne [string]$Request.control_oid -or [string]$claims.control_oid -ne [string]$FenceContext.control_oid) { throw 'TRUSTED_CALLER_CONTROL_MISMATCH' }
-  if ([string]$claims.checkpoint_digest -ne [string]$Request.checkpoint_digest -or [string]$claims.checkpoint_digest -ne [string]$FenceContext.checkpoint_digest) { throw 'TRUSTED_CALLER_CHECKPOINT_MISMATCH' }
-  if ([string]$claims.operation_id -ne [string]$Request.operation_id -or [string]$claims.operation_id -ne [string]$fence.operation_id) { throw 'TRUSTED_CALLER_OPERATION_MISMATCH' }
-  if ([string]$claims.run_id -ne [string]$Request.run_id -or [string]$claims.run_id -ne [string]$fence.run_id) { throw 'TRUSTED_CALLER_RUN_MISMATCH' }
-  if ([string]$claims.task_id -ne [string]$Request.task_id -or [string]$claims.task_id -ne [string]$fence.task_id) { throw 'TRUSTED_CALLER_TASK_MISMATCH' }
-  if ([string]$claims.attempt_id -ne [string]$Request.attempt_id -or [string]$claims.attempt_id -ne [string]$fence.attempt_id) { throw 'TRUSTED_CALLER_ATTEMPT_MISMATCH' }
-  if ([int64]$claims.attempt_epoch -ne [int64]$Request.attempt_epoch -or [int64]$claims.attempt_epoch -ne [int64]$fence.attempt_epoch) { throw 'TRUSTED_CALLER_EPOCH_MISMATCH' }
-  if ([int]$claims.timeout_seconds -ne [int]$Request.timeout_seconds -or [int]$claims.timeout_seconds -ne [int]$fence.timeout_seconds) { throw 'TRUSTED_CALLER_TIMEOUT_MISMATCH' }
-
-  if ($expectedKind -eq 'HOST_POWERSHELL') {
-    try { [byte[]]$scriptBytes=[Convert]::FromBase64String([string]$Request.script_b64) } catch { throw 'TRUSTED_CALLER_SCRIPT_B64_INVALID' }
-    $scriptDigest='sha256:'+(Get-PTYSDHostExecSha256Hex -Bytes $scriptBytes)
-    if ([string]$claims.script_sha256 -ne $scriptDigest -or [string]$claims.script_sha256 -ne [string]$fence.script_sha256) { throw 'TRUSTED_CALLER_SCRIPT_MISMATCH' }
-  } else {
-    $payloadDigest=Get-PTYSDMutationPayloadSha256 -OperationKind $expectedKind -Request $Request
+    $payloadDigest = Get-PTYSDMutationPayloadSha256 -OperationKind $expectedKind -Request $Request
     if ([string]$claims.payload_sha256 -ne $payloadDigest -or [string]$claims.payload_sha256 -ne [string]$fence.payload_sha256) { throw 'TRUSTED_CALLER_PAYLOAD_MISMATCH' }
   }
 
