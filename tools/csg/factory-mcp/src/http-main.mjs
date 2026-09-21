@@ -12,6 +12,7 @@ import { loadTrustedCallers, resolveTrustedMtlsCaller } from './trusted-caller.m
 
 const DEFAULT_CONFIG_PATH = 'C:\\ProgramData\\PTYSD\\MCP\\config\\factory-mcp-http.json';
 const CONFIG_PATH = process.env.PTYSD_FACTORY_MCP_HTTP_CONFIG || DEFAULT_CONFIG_PATH;
+const PROJECT_ID_RE = /^[A-Z0-9][A-Z0-9._-]{0,127}$/;
 
 function fail(code) {
   throw new Error(code);
@@ -25,6 +26,7 @@ function loadConfig() {
     fail('FACTORY_HTTP_CONFIG_READ_FAILED');
   }
   if (cfg?.schema !== 'v49.factory-mcp.http-mtls.v1') fail('FACTORY_HTTP_CONFIG_SCHEMA_INVALID');
+  if (!PROJECT_ID_RE.test(cfg.project_id ?? '')) fail('FACTORY_HTTP_PROJECT_ID_INVALID');
   if (cfg.listen_host !== '127.0.0.1') fail('FACTORY_HTTP_LISTEN_HOST_INVALID');
   if (!Number.isSafeInteger(cfg.listen_port) || cfg.listen_port < 1024 || cfg.listen_port > 65535) {
     fail('FACTORY_HTTP_LISTEN_PORT_INVALID');
@@ -81,6 +83,7 @@ function writeHealth(state, extra = {}) {
   const body = {
     schema: 'v49.factory-mcp.http-health.v1',
     status: state,
+    project_id: cfg.project_id,
     listen_host: cfg.listen_host,
     listen_port: cfg.listen_port,
     transport: 'HTTPS_MTLS_STREAMABLE_HTTP',
@@ -111,6 +114,7 @@ const httpsServer = createHttpsServer(tls, async (req, res) => {
     const peer = req.socket.getPeerCertificate(true);
     const trustedCallers = loadTrustedCallers(cfg.trusted_callers_path);
     const callerIdentity = resolveTrustedMtlsCaller(peer?.raw, trustedCallers);
+    if (callerIdentity.project_id !== cfg.project_id) fail('TRUSTED_CALLER_PROJECT_HTTP_BINDING_MISMATCH');
     req.auth = {
       token: `mtls:${callerIdentity.certificate_sha256}`,
       clientId: callerIdentity.caller_id,
