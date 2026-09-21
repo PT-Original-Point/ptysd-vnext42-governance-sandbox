@@ -4,6 +4,8 @@ import fs from 'node:fs';
 
 const broker = fs.readFileSync(new URL('../broker/hostguard-broker.ps1', import.meta.url), 'utf8');
 const index = fs.readFileSync(new URL('../src/index.mjs', import.meta.url), 'utf8');
+const wrapper = fs.readFileSync(new URL('../src/invoke-hostguard.ps1', import.meta.url), 'utf8');
+const capability = JSON.parse(fs.readFileSync(new URL('../config/system-capability.json', import.meta.url), 'utf8'));
 
 test('host PowerShell has bounded multi-run lanes instead of one global lane', () => {
   for (const token of [
@@ -52,4 +54,27 @@ test('public Factory MCP surface stays exactly four tools', () => {
   const names = [...index.matchAll(/server\.registerTool\(\s*\n\s*'([^']+)'/g)].map((m) => m[1]).sort();
   assert.deepEqual(names, ['factory_status','host_powershell','worker_prepare','worker_start']);
   assert.equal(index.includes("'host_exec_status'"), false);
+});
+
+
+test('SYSTEM host capability is project scoped at server and broker without growing public MCP surface', () => {
+  assert.equal(capability.schema, 'v49.factory-mcp.system-capability.v1');
+  assert.equal(capability.project_id, 'CHATGPT_GLOBAL_SKILL_GOVERNANCE');
+  assert.equal(capability.capability_id, 'CAP-GOV-SYSTEM-V1');
+  assert.equal(capability.production_allowed, false);
+  assert.equal(capability.business_project_allowed, false);
+  assert.equal(capability.public_tool_count, 4);
+  for (const token of [
+    'SYSTEM_CAPABILITY_PATH','assertSystemCapabilityArgs',
+    "'-ProjectId', SYSTEM_CAPABILITY.project_id","'-CapabilityId', SYSTEM_CAPABILITY.capability_id",
+    'SYSTEM_CAPABILITY_RUN_DENY','SYSTEM_CAPABILITY_TASK_DENY',
+  ]) assert.ok(index.includes(token), `missing server capability token: ${token}`);
+  for (const token of [
+    'Assert-SystemCapabilityRequest','SYSTEM_CAPABILITY_PROJECT_DENY','SYSTEM_CAPABILITY_ID_DENY',
+    'SYSTEM_CAPABILITY_RUN_DENY','SYSTEM_CAPABILITY_TASK_DENY','system_capability_project_id','system_capability_id',
+  ]) assert.ok(broker.includes(token), `missing broker capability token: ${token}`);
+  assert.ok(wrapper.includes("project_id = if ($Operation -eq 'powershell')"));
+  assert.ok(wrapper.includes("capability_id = if ($Operation -eq 'powershell')"));
+  const names = [...index.matchAll(/server\.registerTool\(\s*\n\s*'([^']+)'/g)].map((m) => m[1]).sort();
+  assert.deepEqual(names, ['factory_status','host_powershell','worker_prepare','worker_start']);
 });

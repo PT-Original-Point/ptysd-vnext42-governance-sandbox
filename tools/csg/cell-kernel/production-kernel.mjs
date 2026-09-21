@@ -1,7 +1,13 @@
 export {compileCellCapability,assertCapabilityCurrent} from './capability.mjs';
 export {createJobSupervisor,supervisorDigest} from './mutation-supervisor.mjs';
+export {
+  EXECUTION_ATTEMPT_SCHEMA,EXECUTION_ATTEMPT_STATES,SIDE_EFFECT_STATES,READBACK_STATES,MUTATION_CLASSES,
+  createExecutionAttempt,assertExecutionAttemptCurrent,beginExecutionDispatch,recordExecutionDispatchOutcome,
+  recordExecutionReadback,createRetryExecutionAttempt,
+} from './execution-attempt.mjs';
 export {projectStatus,projectStatusSafe,STATUS_VIEWS} from './status-projection.mjs';
 export {evaluatePolicyRequest,POLICY_MIDDLEWARE_VERSION,EFFECT_CLASSES} from './policy-middleware.mjs';
+export {AUTHORIZATION_ENVELOPE_SCHEMA,HUMAN_RESERVATION_PERMIT_SCHEMA,AUTHORIZABLE_EFFECT_CLASSES,compileAuthorizationEnvelope,validateAuthorizationEnvelope,compileHumanReservationPermit,validateHumanReservationPermit,evaluateAuthorization} from './authorization-envelope.mjs';
 export {validateBoundedContract,MAX_TASKS,MAX_ATTEMPTS} from './legacy-contract-compat.mjs';
 export {validateResearchEnvelope,fetchResearchSourceSafely,validateResearchArtifacts} from './research-evidence.mjs';
 export {

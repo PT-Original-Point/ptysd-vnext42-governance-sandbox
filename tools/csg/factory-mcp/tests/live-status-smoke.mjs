@@ -50,8 +50,8 @@ try {
   assert.equal(payload.vm_id, '881f7819-baa9-4a4e-8cca-8f6f18fb89a9');
 
   const op = {
-    runId: 'FACTORY-MCP-HOTFIX-20260918',
-    taskId: 'HOST-POWERSHELL-LIVE-SMOKE',
+    runId: 'CHATGPT_GLOBAL_SKILL_GOVERNANCE',
+    taskId: 'GOV-QUAL-LIVE-SMOKE',
     attemptId: 'ATTEMPT-001',
     attemptEpoch: 1,
   };
@@ -78,7 +78,21 @@ try {
   assert.equal(psPayload.exit_code, 0);
   assert.equal(psPayload.timed_out, false);
   assert.equal(psPayload.run_as, 'NT AUTHORITY\\SYSTEM');
+  assert.equal(psPayload.project_id, 'CHATGPT_GLOBAL_SKILL_GOVERNANCE');
+  assert.equal(psPayload.capability_id, 'CAP-GOV-SYSTEM-V1');
   assert.match(psPayload.stdout, /PTYSD_HOST_POWERSHELL_OK/);
+
+  const denied = await send('tools/call', {
+    name: 'host_powershell',
+    arguments: {
+      ...op,
+      runId: 'HANYAO_ADS_LINE',
+      taskId: 'HG-LIVE-DENY',
+      script: "Write-Output 'MUST_NOT_RUN'",
+      timeoutSeconds: 30,
+    },
+  });
+  assert.ok(denied.result?.isError || denied.error, 'business project host PowerShell must fail closed');
 
   await writeFile(outPath, `${JSON.stringify({
     result: 'PASS',

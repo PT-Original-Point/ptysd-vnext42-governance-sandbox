@@ -1,0 +1,19 @@
+{
+  "schema": "v49.factory-mcp.system-capability.v1",
+  "capability_id": "CAP-GOV-SYSTEM-V1",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "mission_revision": "20260919T010100+0800",
+  "authorization_envelope_digest": "sha256:cb614427a0a1755d002cd035f50d33b18208bab7e5a9d8efc42dfbc7c4d99d14",
+  "allowed_run_id_patterns": [
+    "^CHATGPT_GLOBAL_SKILL_GOVERNANCE$",
+    "^CHATGPT_GLOBAL_SKILL_GOVERNANCE-QUAL-[A-Z0-9._-]{1,32}$"
+  ],
+  "allowed_task_id_patterns": [
+    "^GOV-[A-Z0-9._-]{1,75}$",
+    "^V49-[A-Z0-9._-]{1,75}$"
+  ],
+  "max_timeout_seconds": 300,
+  "production_allowed": false,
+  "business_project_allowed": false,
+  "public_tool_count": 4
+}

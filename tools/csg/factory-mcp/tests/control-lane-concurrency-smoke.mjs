@@ -50,8 +50,8 @@ try {
   const callA = send('tools/call', {
     name: 'host_powershell',
     arguments: {
-      runId: 'FACTORY-MCP-MULTIPROJECT-A',
-      taskId: 'LONG-A',
+      runId: 'CHATGPT_GLOBAL_SKILL_GOVERNANCE-QUAL-A',
+      taskId: 'GOV-QUAL-LONG-A',
       attemptId: 'ATTEMPT-001',
       attemptEpoch: 1,
       script: "Start-Sleep -Seconds 6; Write-Output 'MULTI_A_DONE'",
@@ -62,8 +62,8 @@ try {
   const callB = send('tools/call', {
     name: 'host_powershell',
     arguments: {
-      runId: 'FACTORY-MCP-MULTIPROJECT-B',
-      taskId: 'LONG-B',
+      runId: 'CHATGPT_GLOBAL_SKILL_GOVERNANCE-QUAL-B',
+      taskId: 'GOV-QUAL-LONG-B',
       attemptId: 'ATTEMPT-001',
       attemptEpoch: 1,
       script: "Start-Sleep -Seconds 6; Write-Output 'MULTI_B_DONE'",
@@ -82,7 +82,7 @@ try {
   assert.ok(duringPayload.host_exec_lane?.active_count >= 2);
   assert.equal(duringPayload.host_exec_lane?.capacity, 4);
   const runIds = (duringPayload.host_exec_lane?.active ?? []).map((x) => x.run_id).sort();
-  assert.deepEqual(runIds, ['FACTORY-MCP-MULTIPROJECT-A','FACTORY-MCP-MULTIPROJECT-B']);
+  assert.deepEqual(runIds, ['CHATGPT_GLOBAL_SKILL_GOVERNANCE-QUAL-A','CHATGPT_GLOBAL_SKILL_GOVERNANCE-QUAL-B']);
 
   const [a,b] = await Promise.all([callA,callB]);
   for (const terminal of [a,b]) {

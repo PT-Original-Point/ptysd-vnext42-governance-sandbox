@@ -15,6 +15,8 @@ if (typeof VERSION !== 'string' || VERSION.length === 0) {
   throw new Error('INVALID_PACKAGE_VERSION');
 }
 const WRAPPER = fileURLToPath(new URL('./invoke-hostguard.ps1', import.meta.url));
+const SYSTEM_CAPABILITY_PATH = fileURLToPath(new URL('../config/system-capability.json', import.meta.url));
+const SYSTEM_CAPABILITY = JSON.parse(readFileSync(SYSTEM_CAPABILITY_PATH, 'utf8'));
 const POWERSHELL = process.env.PTYSD_FACTORY_MCP_POWERSHELL || 'powershell.exe';
 const TEST_MODE = process.env.PTYSD_FACTORY_MCP_TEST_MODE === '1';
 
@@ -23,6 +25,24 @@ if (TEST_MODE && process.env.NODE_ENV !== 'test') {
 }
 
 const idPattern = /^[A-Z0-9][A-Z0-9._-]{0,79}$/;
+if (
+  SYSTEM_CAPABILITY.schema !== 'v49.factory-mcp.system-capability.v1' ||
+  SYSTEM_CAPABILITY.project_id !== 'CHATGPT_GLOBAL_SKILL_GOVERNANCE' ||
+  SYSTEM_CAPABILITY.capability_id !== 'CAP-GOV-SYSTEM-V1' ||
+  SYSTEM_CAPABILITY.production_allowed !== false ||
+  SYSTEM_CAPABILITY.business_project_allowed !== false ||
+  SYSTEM_CAPABILITY.public_tool_count !== 4
+) {
+  throw new Error('SYSTEM_CAPABILITY_CONFIG_INVALID');
+}
+const runPatterns = (SYSTEM_CAPABILITY.allowed_run_id_patterns ?? []).map((p) => new RegExp(p));
+const taskPatterns = (SYSTEM_CAPABILITY.allowed_task_id_patterns ?? []).map((p) => new RegExp(p));
+if (runPatterns.length === 0 || taskPatterns.length === 0) throw new Error('SYSTEM_CAPABILITY_PATTERNS_REQUIRED');
+function assertSystemCapabilityArgs(args) {
+  if (!runPatterns.some((p) => p.test(args.runId))) throw new Error('SYSTEM_CAPABILITY_RUN_DENY');
+  if (!taskPatterns.some((p) => p.test(args.taskId))) throw new Error('SYSTEM_CAPABILITY_TASK_DENY');
+  if ((args.timeoutSeconds ?? 60) > SYSTEM_CAPABILITY.max_timeout_seconds) throw new Error('SYSTEM_CAPABILITY_TIMEOUT_DENY');
+}
 const operationInput = z.object({
   runId: z.string().regex(idPattern),
   taskId: z.string().regex(idPattern),
@@ -65,6 +85,8 @@ function mockHostGuard(operation, args = {}) {
       schema: 'v48.factory-mcp.host-exec.result.v1',
       operation: 'powershell',
       result: 'COMPLETED',
+      project_id: SYSTEM_CAPABILITY.project_id,
+      capability_id: SYSTEM_CAPABILITY.capability_id,
       run_id: args.runId,
       task_id: args.taskId,
       attempt_id: args.attemptId,
@@ -124,6 +146,8 @@ async function runHostGuard(operation, args = {}) {
 
   if (operation === 'powershell') {
     psArgs.push(
+      '-ProjectId', SYSTEM_CAPABILITY.project_id,
+      '-CapabilityId', SYSTEM_CAPABILITY.capability_id,
       '-ScriptBase64', Buffer.from(args.script, 'utf8').toString('base64'),
       '-TimeoutSeconds', String(args.timeoutSeconds ?? 60),
     );
@@ -231,7 +255,10 @@ function createServer() {
         openWorldHint: true,
       },
     },
-    async (args) => textResult(await runHostGuard('powershell', args)),
+    async (args) => {
+      assertSystemCapabilityArgs(args);
+      return textResult(await runHostGuard('powershell', args));
+    },
   );
 
   return server;
