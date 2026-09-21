@@ -15,5 +15,7 @@
   "max_timeout_seconds": 300,
   "production_allowed": false,
   "business_project_allowed": false,
-  "public_tool_count": 4
+  "public_tool_count": 4,
+  "mission_hash": "sha256:58f21a0818bd60b61929925b38ea8507d5b80c09d816a7b6f5a75d2a410d542b",
+  "capability_generation": 4
 }

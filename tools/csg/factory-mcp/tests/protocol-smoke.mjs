@@ -64,18 +64,24 @@ try {
   const statusPayload = JSON.parse(status.result.content[0].text);
   assert.equal(statusPayload.vm_id, '881f7819-baa9-4a4e-8cca-8f6f18fb89a9');
 
-  const op = {
+  const workerOp = {
     runId: 'CHATGPT_GLOBAL_SKILL_GOVERNANCE',
     taskId: 'GOV-QUAL-PROTOCOL',
     attemptId: 'V47-W47-06-ATTEMPT-001',
     attemptEpoch: 1,
   };
-  const prepare = await send('tools/call', { name: 'worker_prepare', arguments: op });
+  const hostOp = {
+    runId: 'CHATGPT_GLOBAL_SKILL_GOVERNANCE-QUAL-P4',
+    taskId: 'GOV-HARDENING-P4',
+    attemptId: 'GOV-HARDENING-P4-ATTEMPT-001',
+    attemptEpoch: 1,
+  };
+  const prepare = await send('tools/call', { name: 'worker_prepare', arguments: workerOp });
   assert.equal(prepare.error, undefined);
   const preparePayload = JSON.parse(prepare.result.content[0].text);
   assert.equal(preparePayload.result, 'VERIFIED');
 
-  const start = await send('tools/call', { name: 'worker_start', arguments: op });
+  const start = await send('tools/call', { name: 'worker_start', arguments: workerOp });
   assert.equal(start.error, undefined);
   const startPayload = JSON.parse(start.result.content[0].text);
   assert.equal(startPayload.result, 'STARTED');
@@ -83,8 +89,8 @@ try {
   const powershell = await send('tools/call', {
     name: 'host_powershell',
     arguments: {
-      ...op,
-      script: "Write-Output 'PTYSD_HOST_POWERSHELL_TEST_OK'",
+      ...hostOp,
+      script: "Write-Output 'P4_CURRENT_FENCE_OK'",
       timeoutSeconds: 30,
     },
   });
@@ -102,7 +108,7 @@ try {
   const crossProjectHost = await send('tools/call', {
     name: 'host_powershell',
     arguments: {
-      ...op,
+      ...hostOp,
       runId: 'HANYAO_ADS_LINE',
       taskId: 'HG-HOST-POWERSHELL',
       script: "Write-Output 'MUST_NOT_RUN'",
@@ -113,16 +119,22 @@ try {
 
   const invalid = await send('tools/call', {
     name: 'worker_start',
-    arguments: { ...op, runId: 'bad value with spaces' },
+    arguments: { ...workerOp, runId: 'bad value with spaces' },
   });
   assert.ok(invalid.result?.isError || invalid.error, 'invalid input must fail closed');
-  const staleWorker = await send('tools/call', { name: 'worker_start', arguments: { ...op, attemptEpoch: 0 } });
+  const staleWorker = await send('tools/call', { name: 'worker_start', arguments: { ...workerOp, attemptEpoch: 0 } });
   assert.ok(staleWorker.result?.isError || staleWorker.error, 'worker stale epoch must fail closed');
   const staleHost = await send('tools/call', {
     name: 'host_powershell',
-    arguments: { ...op, attemptEpoch: 0, script: "Write-Output 'NO'", timeoutSeconds: 30 },
+    arguments: { ...hostOp, attemptEpoch: 999, script: "Write-Output 'P4_CURRENT_FENCE_OK'", timeoutSeconds: 30 },
   });
-  assert.ok(staleHost.result?.isError || staleHost.error, 'host stale epoch must fail closed');
+  assert.ok(staleHost.result?.isError || staleHost.error, 'host forged epoch must fail closed');
+
+  const wrongScript = await send('tools/call', {
+    name: 'host_powershell',
+    arguments: { ...hostOp, script: "Write-Output 'WRONG'", timeoutSeconds: 30 },
+  });
+  assert.ok(wrongScript.result?.isError || wrongScript.error, 'host script outside current fence must fail closed');
 
   console.log('FACTORY_MCP_PROTOCOL_SMOKE=PASS');
 } finally {

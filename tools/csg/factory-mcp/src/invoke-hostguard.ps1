@@ -25,6 +25,21 @@ param(
   [ValidatePattern('^[A-Z0-9][A-Z0-9._-]{0,127}$')]
   [string]$CapabilityId,
 
+  [ValidatePattern('^[A-Z0-9][A-Z0-9._-]{0,127}$')]
+  [string]$OperationId,
+
+  [ValidatePattern('^[0-9a-f]{40}$')]
+  [string]$ControlOid,
+
+  [ValidatePattern('^sha256:[0-9a-f]{64}$')]
+  [string]$CheckpointDigest,
+
+  [ValidatePattern('^sha256:[0-9a-f]{64}$')]
+  [string]$AuthorizationEnvelopeDigest,
+
+  [ValidateRange(1,2147483647)]
+  [int]$CapabilityGeneration = 1,
+
   [ValidatePattern('^[A-Za-z0-9+/=]+$')]
   [string]$ScriptBase64,
 
@@ -49,6 +64,9 @@ if ($Operation -eq 'powershell' -and -not $ScriptBase64) {
 if ($Operation -eq 'powershell' -and (-not $ProjectId -or -not $CapabilityId)) {
   throw 'SYSTEM_CAPABILITY_REQUIRED'
 }
+if ($Operation -eq 'powershell' -and (-not $OperationId -or -not $ControlOid -or -not $CheckpointDigest -or -not $AuthorizationEnvelopeDigest)) {
+  throw 'SYSTEM_EXECUTION_FENCE_REQUIRED'
+}
 
 $requestId = [Guid]::NewGuid().ToString('N')
 $request = [ordered]@{
@@ -62,6 +80,11 @@ $request = [ordered]@{
   attempt_epoch = $AttemptEpoch
   project_id = if ($Operation -eq 'powershell') { $ProjectId } else { $null }
   capability_id = if ($Operation -eq 'powershell') { $CapabilityId } else { $null }
+  operation_id = if ($Operation -eq 'powershell') { $OperationId } else { $null }
+  control_oid = if ($Operation -eq 'powershell') { $ControlOid } else { $null }
+  checkpoint_digest = if ($Operation -eq 'powershell') { $CheckpointDigest } else { $null }
+  authorization_envelope_digest = if ($Operation -eq 'powershell') { $AuthorizationEnvelopeDigest } else { $null }
+  capability_generation = if ($Operation -eq 'powershell') { $CapabilityGeneration } else { $null }
   script_b64 = if ($Operation -eq 'powershell') { $ScriptBase64 } else { $null }
   timeout_seconds = if ($Operation -eq 'powershell') { $TimeoutSeconds } else { $null }
   requested_at_utc = [DateTime]::UtcNow.ToString('o')

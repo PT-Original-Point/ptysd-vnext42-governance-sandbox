@@ -2,6 +2,7 @@ import { execFile } from 'node:child_process';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { promisify } from 'node:util';
+import { authorizeSystemExecution } from './current-execution-fence.mjs';
 import { McpServer } from '@modelcontextprotocol/server';
 import { serveStdio } from '@modelcontextprotocol/server/stdio';
 import * as z from 'zod/v4';
@@ -29,6 +30,10 @@ if (
   SYSTEM_CAPABILITY.schema !== 'v49.factory-mcp.system-capability.v1' ||
   SYSTEM_CAPABILITY.project_id !== 'CHATGPT_GLOBAL_SKILL_GOVERNANCE' ||
   SYSTEM_CAPABILITY.capability_id !== 'CAP-GOV-SYSTEM-V1' ||
+  SYSTEM_CAPABILITY.mission_revision !== '20260919T010100+0800' ||
+  SYSTEM_CAPABILITY.mission_hash !== 'sha256:58f21a0818bd60b61929925b38ea8507d5b80c09d816a7b6f5a75d2a410d542b' ||
+  SYSTEM_CAPABILITY.authorization_envelope_digest !== 'sha256:cb614427a0a1755d002cd035f50d33b18208bab7e5a9d8efc42dfbc7c4d99d14' ||
+  SYSTEM_CAPABILITY.capability_generation !== 4 ||
   SYSTEM_CAPABILITY.production_allowed !== false ||
   SYSTEM_CAPABILITY.business_project_allowed !== false ||
   SYSTEM_CAPABILITY.public_tool_count !== 4
@@ -87,6 +92,11 @@ function mockHostGuard(operation, args = {}) {
       result: 'COMPLETED',
       project_id: SYSTEM_CAPABILITY.project_id,
       capability_id: SYSTEM_CAPABILITY.capability_id,
+      operation_id: args.executionFence?.execution_fence?.operation_id ?? null,
+      control_oid: args.executionFence?.control_oid ?? null,
+      checkpoint_digest: args.executionFence?.checkpoint_digest ?? null,
+      authorization_envelope_digest: args.executionFence?.execution_fence?.authorization_envelope_digest ?? null,
+      capability_generation: args.executionFence?.execution_fence?.capability_generation ?? null,
       run_id: args.runId,
       task_id: args.taskId,
       attempt_id: args.attemptId,
@@ -148,6 +158,11 @@ async function runHostGuard(operation, args = {}) {
     psArgs.push(
       '-ProjectId', SYSTEM_CAPABILITY.project_id,
       '-CapabilityId', SYSTEM_CAPABILITY.capability_id,
+      '-OperationId', args.executionFence.execution_fence.operation_id,
+      '-ControlOid', args.executionFence.control_oid,
+      '-CheckpointDigest', args.executionFence.checkpoint_digest,
+      '-AuthorizationEnvelopeDigest', args.executionFence.execution_fence.authorization_envelope_digest,
+      '-CapabilityGeneration', String(args.executionFence.execution_fence.capability_generation),
       '-ScriptBase64', Buffer.from(args.script, 'utf8').toString('base64'),
       '-TimeoutSeconds', String(args.timeoutSeconds ?? 60),
     );
@@ -257,7 +272,8 @@ function createServer() {
     },
     async (args) => {
       assertSystemCapabilityArgs(args);
-      return textResult(await runHostGuard('powershell', args));
+      const executionFence = await authorizeSystemExecution(args, SYSTEM_CAPABILITY, { testMode: TEST_MODE });
+      return textResult(await runHostGuard('powershell', { ...args, executionFence }));
     },
   );
 
