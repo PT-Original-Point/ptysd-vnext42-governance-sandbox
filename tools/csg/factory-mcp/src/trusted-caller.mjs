@@ -7,7 +7,7 @@ const DIGEST_RE = /^sha256:[0-9a-f]{64}$/;
 const HEX_KEY_RE = /^[0-9a-f]{64}$/;
 const REQUEST_ID_RE = /^[0-9a-f]{32}$/;
 const DEFAULT_TRUSTED_CALLERS_PATH = 'C:\\ProgramData\\PTYSD\\MCP\\config\\trusted-callers.json';
-const DEFAULT_ATTESTATION_KEY_PATH = 'C:\\ProgramData\\PTYSD\\MCP\\secrets\\broker-caller-attestation.key';
+const DEFAULT_ATTESTATION_KEYRING_PATH = 'C:\\ProgramData\\PTYSD\\MCP\\secrets\\broker-caller-attestation-keyring.json';
 
 function fail(code) {
   throw new Error(code);
@@ -80,15 +80,45 @@ export function resolveTrustedMtlsCaller(rawCertificate, config = loadTrustedCal
   });
 }
 
-function readAttestationKey(path = process.env.PTYSD_FACTORY_MCP_ATTESTATION_KEY || DEFAULT_ATTESTATION_KEY_PATH) {
-  let raw;
+function validateKeyEntry(entry, codePrefix) {
+  if (!entry || !CALLER_ID_RE.test(entry.key_id ?? '')) fail(`${codePrefix}_KEY_ID_INVALID`);
+  if (!HEX_KEY_RE.test(entry.key_hex ?? '')) fail(`${codePrefix}_KEY_INVALID`);
+  if (!Number.isSafeInteger(entry.key_generation) || entry.key_generation < 1) fail(`${codePrefix}_KEY_GENERATION_INVALID`);
+  return entry;
+}
+
+export function loadCallerAttestationKeyring(path = process.env.PTYSD_FACTORY_MCP_ATTESTATION_KEYRING || DEFAULT_ATTESTATION_KEYRING_PATH) {
+  let parsed;
   try {
-    raw = readFileSync(path, 'utf8').trim().toLowerCase();
+    parsed = JSON.parse(readFileSync(path, 'utf8'));
   } catch {
-    fail('TRUSTED_CALLER_ATTESTATION_KEY_READ_FAILED');
+    fail('TRUSTED_CALLER_ATTESTATION_KEYRING_READ_FAILED');
   }
-  if (!HEX_KEY_RE.test(raw)) fail('TRUSTED_CALLER_ATTESTATION_KEY_INVALID');
-  return Buffer.from(raw, 'hex');
+  if (parsed?.schema !== 'v49.factory-mcp.caller-attestation-keyring.v1') fail('TRUSTED_CALLER_ATTESTATION_KEYRING_SCHEMA_INVALID');
+  if (!Number.isSafeInteger(parsed.keyring_generation) || parsed.keyring_generation < 1) fail('TRUSTED_CALLER_ATTESTATION_KEYRING_GENERATION_INVALID');
+  validateKeyEntry(parsed.current, 'TRUSTED_CALLER_ATTESTATION_CURRENT');
+  if (parsed.current.key_generation !== parsed.keyring_generation) fail('TRUSTED_CALLER_ATTESTATION_CURRENT_GENERATION_STALE');
+  if (!Array.isArray(parsed.previous)) fail('TRUSTED_CALLER_ATTESTATION_PREVIOUS_INVALID');
+  const seen = new Set([parsed.current.key_id]);
+  for (const entry of parsed.previous) {
+    validateKeyEntry(entry, 'TRUSTED_CALLER_ATTESTATION_PREVIOUS');
+    if (seen.has(entry.key_id)) fail('TRUSTED_CALLER_ATTESTATION_KEY_ID_DUPLICATE');
+    seen.add(entry.key_id);
+    const expiry = Date.parse(entry.valid_until ?? '');
+    if (!Number.isFinite(expiry)) fail('TRUSTED_CALLER_ATTESTATION_PREVIOUS_EXPIRY_INVALID');
+    if (entry.key_generation >= parsed.keyring_generation) fail('TRUSTED_CALLER_ATTESTATION_PREVIOUS_GENERATION_INVALID');
+  }
+  return parsed;
+}
+
+function selectCallerAttestationKey(keyring, keyId, keyGeneration, now = new Date()) {
+  if (keyring.current.key_id === keyId && keyring.current.key_generation === keyGeneration) {
+    return Buffer.from(keyring.current.key_hex, 'hex');
+  }
+  const prior = keyring.previous.find((entry) => entry.key_id === keyId && entry.key_generation === keyGeneration);
+  if (!prior) fail('TRUSTED_CALLER_ATTESTATION_KEY_UNKNOWN');
+  if (now.getTime() >= Date.parse(prior.valid_until)) fail('TRUSTED_CALLER_ATTESTATION_ROLLOVER_EXPIRED');
+  return Buffer.from(prior.key_hex, 'hex');
 }
 
 export function createBrokerCallerAttestation({
@@ -98,7 +128,7 @@ export function createBrokerCallerAttestation({
   requestId,
   now = new Date(),
   ttlSeconds = 30,
-  keyPath,
+  keyringPath,
 } = {}) {
   if (!callerIdentity || callerIdentity.schema !== 'v49.factory-mcp.trusted-caller-identity.v1') {
     fail('TRUSTED_CALLER_IDENTITY_REQUIRED');
@@ -112,9 +142,13 @@ export function createBrokerCallerAttestation({
   if (!Number.isSafeInteger(ttlSeconds) || ttlSeconds < 1 || ttlSeconds > 60) fail('TRUSTED_CALLER_ATTESTATION_TTL_INVALID');
   const issuedAt = now.toISOString();
   const expiresAt = new Date(now.getTime() + ttlSeconds * 1000).toISOString();
+  const keyring = loadCallerAttestationKeyring(keyringPath);
+  const keyEntry = keyring.current;
   const claims = {
     schema: 'v49.factory-mcp.caller-attestation.v2',
     request_id: requestId,
+    attestation_key_id: keyEntry.key_id,
+    attestation_key_generation: keyEntry.key_generation,
     project_id: callerIdentity.project_id,
     caller_id: callerIdentity.caller_id,
     certificate_sha256: callerIdentity.certificate_sha256,
@@ -142,7 +176,7 @@ export function createBrokerCallerAttestation({
     expires_at: expiresAt,
   };
   const payloadBytes = Buffer.from(JSON.stringify(claims), 'utf8');
-  const key = readAttestationKey(keyPath);
+  const key = Buffer.from(keyEntry.key_hex, 'hex');
   const mac = createHmac('sha256', key).update(payloadBytes).digest('hex');
   return Object.freeze({
     schema: 'v49.factory-mcp.caller-attestation-envelope.v2',
@@ -151,7 +185,7 @@ export function createBrokerCallerAttestation({
   });
 }
 
-export function verifyBrokerCallerAttestationForTest(envelope, keyHex, now = new Date()) {
+export function verifyBrokerCallerAttestationForTest(envelope, keyring, now = new Date()) {
   if (envelope?.schema !== 'v49.factory-mcp.caller-attestation-envelope.v2') fail('TRUSTED_CALLER_ATTESTATION_SCHEMA_INVALID');
   if (typeof envelope.payload_b64 !== 'string' || !/^[A-Za-z0-9+/=]+$/.test(envelope.payload_b64)) {
     fail('TRUSTED_CALLER_ATTESTATION_PAYLOAD_INVALID');
@@ -159,16 +193,18 @@ export function verifyBrokerCallerAttestationForTest(envelope, keyHex, now = new
   if (typeof envelope.mac_sha256 !== 'string' || !/^[0-9a-f]{64}$/.test(envelope.mac_sha256)) {
     fail('TRUSTED_CALLER_ATTESTATION_MAC_INVALID');
   }
-  if (!HEX_KEY_RE.test(keyHex ?? '')) fail('TRUSTED_CALLER_ATTESTATION_KEY_INVALID');
   const payload = Buffer.from(envelope.payload_b64, 'base64');
-  const expected = createHmac('sha256', Buffer.from(keyHex, 'hex')).update(payload).digest();
-  const claimed = Buffer.from(envelope.mac_sha256, 'hex');
-  if (claimed.length !== expected.length || !timingSafeEqual(claimed, expected)) fail('TRUSTED_CALLER_ATTESTATION_MAC_MISMATCH');
   let claims;
   try { claims = JSON.parse(payload.toString('utf8')); } catch { fail('TRUSTED_CALLER_ATTESTATION_JSON_INVALID'); }
+  if (claims?.schema !== 'v49.factory-mcp.caller-attestation.v2') fail('TRUSTED_CALLER_ATTESTATION_SCHEMA_INVALID');
+  if (!keyring || keyring.schema !== 'v49.factory-mcp.caller-attestation-keyring.v1') fail('TRUSTED_CALLER_ATTESTATION_KEYRING_SCHEMA_INVALID');
+  const key = selectCallerAttestationKey(keyring, claims.attestation_key_id, claims.attestation_key_generation, now);
+  const expected = createHmac('sha256', key).update(payload).digest();
+  const claimed = Buffer.from(envelope.mac_sha256, 'hex');
+  if (claimed.length !== expected.length || !timingSafeEqual(claimed, expected)) fail('TRUSTED_CALLER_ATTESTATION_MAC_MISMATCH');
   const expires = Date.parse(claims.expires_at ?? '');
   const issued = Date.parse(claims.issued_at ?? '');
-  if (!Number.isFinite(expires) || !Number.isFinite(issued) || now.getTime() < issued - 5000 || now.getTime() >= expires) {
+  if (!Number.isFinite(expires) || !Number.isFinite(issued) || now.getTime() < issued - 5000 || now.getTime() >= expires || expires-issued > 60000) {
     fail('TRUSTED_CALLER_ATTESTATION_EXPIRED');
   }
   return claims;
