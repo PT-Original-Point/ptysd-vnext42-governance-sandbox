@@ -1,6 +1,6 @@
 import { createHash } from 'node:crypto';
-import { evaluateAuthorization, validateHumanReservationPermit } from './authorization-envelope.mjs';
-import { evaluateAuthorizationV2 } from './authorization-envelope-v2.mjs';
+import { evaluateAuthorization } from './authorization-envelope.mjs';
+import { evaluateAuthorizationV2, AUTHORIZATION_ENVELOPE_V2_SCHEMA } from './authorization-envelope-v2.mjs';
 
 export const POLICY_MIDDLEWARE_VERSION = 'v48.policy-middleware.v1';
 export const EFFECT_CLASSES = Object.freeze(['READ_ONLY','LOCAL_PREPARATION','LOCAL_EXECUTION','PROVIDER_EFFECT','HUMAN_RESERVED']);
@@ -148,7 +148,11 @@ export function evaluatePolicyRequest({ identity, capability, request, credentia
   credentialChecks(identity ?? {}, request, credential_profile, reasons);
   gitChecks(request, reasons);
   permitChecks(request, reasons);
-  const authorization = authorization_envelope?.schema === 'v49.authorization-envelope.v2'
+  const v2Required = request.effect_class !== 'READ_ONLY' && capability?.authorization_min_schema === AUTHORIZATION_ENVELOPE_V2_SCHEMA;
+  if (v2Required && authorization_envelope?.schema !== AUTHORIZATION_ENVELOPE_V2_SCHEMA) {
+    reasons.push('AUTHORIZATION_PROTOCOL_DOWNGRADE_DENY');
+  }
+  const authorization = (v2Required || authorization_envelope?.schema === AUTHORIZATION_ENVELOPE_V2_SCHEMA)
     ? evaluateAuthorizationV2({
         envelope: authorization_envelope,
         current_mission,
@@ -156,7 +160,6 @@ export function evaluatePolicyRequest({ identity, capability, request, credentia
         identity,
         request,
         human_reservation_permit,
-        validate_human_reservation_permit: validateHumanReservationPermit,
       })
     : evaluateAuthorization({ envelope: authorization_envelope, current_mission, identity, request, human_reservation_permit });
   if (!authorization.authorized) reasons.push(...authorization.reason_codes);
