@@ -16,6 +16,7 @@ $health = Join-Path $state 'broker-health.json'
 $lastError = Join-Path $state 'broker-last-error.json'
 $execTemp = Join-Path $state 'exec-temp'
 $execReceipts = Join-Path $state 'exec-receipts'
+$operationClaims = Join-Path $state 'operation-claims'
 $modulePath = 'C:\Program Files\WindowsPowerShell\Modules\PTYSD.HostGuard\PTYSD.HostGuard.psd1'
 $hostExecHelperPath = Join-Path $root 'broker\host-powershell-exec.ps1'
 $systemFenceHelperPath = Join-Path $root 'broker\current-execution-fence.ps1'
@@ -28,7 +29,7 @@ $maxOutputBytes = 131072
 foreach ($path in @($inbox,$processing,$outbox,$state)) {
   if (-not (Test-Path -LiteralPath $path)) { throw ('BROKER_PATH_MISSING:' + $path) }
 }
-foreach ($path in @($execTemp,$execReceipts)) {
+foreach ($path in @($execTemp,$execReceipts,$operationClaims)) {
   if (-not (Test-Path -LiteralPath $path)) {
     New-Item -ItemType Directory -Path $path -Force | Out-Null
   }
@@ -116,6 +117,66 @@ function Assert-SystemCapabilityRequest {
   $fenceContext = Assert-PTYSDCurrentSystemExecutionFence -Request $Request -SystemCapability $systemCapability
   $callerClaims = Assert-PTYSDTrustedCallerAttestation -Request $Request -FenceContext $fenceContext
   return [pscustomobject]@{ fence_context=$fenceContext; caller_claims=$callerClaims }
+}
+
+function Get-OperationDispatchClaimKey {
+  param([Parameter(Mandatory)]$Request)
+  if (-not (Test-Id $Request.project_id)) { throw 'OPERATION_CLAIM_PROJECT_INVALID' }
+  if (-not (Test-Id $Request.run_id)) { throw 'OPERATION_CLAIM_RUN_INVALID' }
+  if (-not (Test-Id $Request.operation_id)) { throw 'OPERATION_CLAIM_OPERATION_INVALID' }
+  $epoch = [int64]$Request.attempt_epoch
+  if ($epoch -lt 1 -or $epoch -gt 2147483647) { throw 'OPERATION_CLAIM_EPOCH_INVALID' }
+  $authGeneration = 0
+  if ($Request.PSObject.Properties.Name -contains 'authorization_generation' -and $null -ne $Request.authorization_generation) {
+    $authGeneration = [int64]$Request.authorization_generation
+    if ($authGeneration -lt 1 -or $authGeneration -gt 2147483647) { throw 'OPERATION_CLAIM_AUTH_GENERATION_INVALID' }
+  }
+  $canonical = '{0}|{1}|{2}|{3}|{4}' -f [string]$Request.project_id,[string]$Request.run_id,$epoch,$authGeneration,[string]$Request.operation_id
+  $sha = [Security.Cryptography.SHA256]::Create()
+  try {
+    $bytes = [Text.Encoding]::UTF8.GetBytes($canonical)
+    $hex = ([BitConverter]::ToString($sha.ComputeHash($bytes))).Replace('-','').ToLowerInvariant()
+  } finally {
+    $sha.Dispose()
+  }
+  return [pscustomobject]@{ key=$hex; authorization_generation=$authGeneration; canonical=$canonical }
+}
+
+function Acquire-OperationDispatchClaim {
+  param(
+    [Parameter(Mandatory)]$Request,
+    [Parameter(Mandatory)][string]$RequestId
+  )
+  $key = Get-OperationDispatchClaimKey -Request $Request
+  $claimPath = Join-Path $operationClaims ($key.key + '.json')
+  $claim = [ordered]@{
+    schema='v49.factory-mcp.operation-dispatch-claim.v1'
+    claim_key=[string]$key.key
+    project_id=[string]$Request.project_id
+    run_id=[string]$Request.run_id
+    attempt_id=[string]$Request.attempt_id
+    attempt_epoch=[int64]$Request.attempt_epoch
+    authorization_generation=[int64]$key.authorization_generation
+    operation_id=[string]$Request.operation_id
+    request_id=$RequestId
+    state='DISPATCH_CLAIMED'
+    claimed_at_utc=[DateTime]::UtcNow.ToString('o')
+  }
+  $json = $claim | ConvertTo-Json -Depth 6 -Compress
+  [byte[]]$bytes = (New-Object Text.UTF8Encoding($false)).GetBytes($json)
+  try {
+    $stream = [IO.File]::Open($claimPath,[IO.FileMode]::CreateNew,[IO.FileAccess]::Write,[IO.FileShare]::None)
+    try {
+      $stream.Write($bytes,0,$bytes.Length)
+      $stream.Flush($true)
+    } finally {
+      $stream.Dispose()
+    }
+  } catch [IO.IOException] {
+    if (Test-Path -LiteralPath $claimPath) { throw 'OPERATION_ALREADY_DISPATCHED' }
+    throw
+  }
+  return [pscustomobject]@{ path=$claimPath; key=[string]$key.key }
 }
 
 function Get-LatestHostExecReceipt {
@@ -497,6 +558,7 @@ function Start-BrokerPowerShell {
     throw 'POWERSHELL_SCRIPT_SIZE_INVALID'
   }
 
+  $dispatchClaim = Acquire-OperationDispatchClaim -Request $Request -RequestId $RequestId
   $startedAt = [DateTime]::UtcNow.ToString('o')
   $receiptPath = Join-Path $execReceipts ($RequestId + '.json')
   $startedReceipt = [ordered]@{
@@ -828,6 +890,8 @@ function Process-Request {
       '^SYSTEM_CAPABILITY_' { $safeMessage; break }
       '^SYSTEM_FENCE_' { $safeMessage; break }
       '^TRUSTED_CALLER_' { $safeMessage; break }
+      '^OPERATION_ALREADY_DISPATCHED' { 'OPERATION_ALREADY_DISPATCHED'; break }
+      '^OPERATION_CLAIM_' { $safeMessage; break }
       '^STATUS_PROBE_INVALID' { 'STATUS_PROBE_INVALID'; break }
       '^REQUEST_' { $safeMessage; break }
       '^OPERATION_INVALID' { 'OPERATION_INVALID'; break }
