@@ -1,0 +1,1 @@
+{"name":"v49-live-n1-canary","private":true,"type":"module","scripts":{"test":"node --test test/slugify.test.mjs"}}

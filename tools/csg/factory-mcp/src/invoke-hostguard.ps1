@@ -4,6 +4,9 @@ param(
   [ValidateSet('status','prepare','start','powershell')]
   [string]$Operation,
 
+  [ValidatePattern('^[a-z0-9_-]{1,64}$')]
+  [string]$Probe = 'factory',
+
   [ValidatePattern('^[A-Z0-9][A-Z0-9._-]{0,79}$')]
   [string]$RunId,
 
@@ -43,6 +46,7 @@ $request = [ordered]@{
   schema = 'v48.factory-mcp.hostguard.request.v2'
   request_id = $requestId
   operation = $Operation
+  probe = if ($Operation -eq 'status') { $Probe } else { $null }
   run_id = if ($RunId) { $RunId } else { $null }
   task_id = if ($TaskId) { $TaskId } else { $null }
   attempt_id = if ($AttemptId) { $AttemptId } else { $null }
@@ -58,7 +62,7 @@ $responsePath = Join-Path $outbox ($requestId + '.json')
 [IO.File]::WriteAllText($tempRequest, ($request | ConvertTo-Json -Depth 4 -Compress), (New-Object Text.UTF8Encoding($false)))
 Move-Item -LiteralPath $tempRequest -Destination $finalRequest -Force
 
-$deadline = [DateTime]::UtcNow.AddSeconds([Math]::Max(45, $TimeoutSeconds + 15))
+$deadline = [DateTime]::UtcNow.AddSeconds([Math]::Max(45, $TimeoutSeconds + 20))
 do {
   if (Test-Path -LiteralPath $responsePath) { break }
   Start-Sleep -Milliseconds 100

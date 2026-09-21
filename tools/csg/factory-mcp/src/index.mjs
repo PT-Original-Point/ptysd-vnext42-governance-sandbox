@@ -30,6 +30,10 @@ const operationInput = z.object({
   attemptEpoch: z.number().int().min(1).max(2147483647),
 });
 
+const factoryStatusInput = z.object({
+  probe: z.string().regex(/^[a-z0-9_-]{1,64}$/).default('factory'),
+});
+
 const hostPowerShellInput = operationInput.extend({
   script: z.string().min(1).max(8192),
   timeoutSeconds: z.number().int().min(1).max(300).default(60),
@@ -46,6 +50,13 @@ function mockHostGuard(operation, args = {}) {
       guest_ip: '172.31.253.10',
       ssh22_reachable: false,
       run_as: 'TEST\\PTYSDFactoryMCP',
+      probe: args.probe ?? 'factory',
+      tunnel_lane: {
+        task_state: 'Running',
+        live: true,
+        ready: true,
+        control_plane_status: 'ok',
+      },
     };
   }
 
@@ -98,6 +109,10 @@ async function runHostGuard(operation, args = {}) {
     operation,
   ];
 
+  if (operation === 'status') {
+    psArgs.push('-Probe', args.probe ?? 'factory');
+  }
+
   if (operation !== 'status') {
     psArgs.push(
       '-RunId', args.runId,
@@ -118,7 +133,7 @@ async function runHostGuard(operation, args = {}) {
     const { stdout } = await execFileAsync(POWERSHELL, psArgs, {
       windowsHide: true,
       timeout: operation === 'powershell'
-        ? Math.max(45000, ((args.timeoutSeconds ?? 60) + 15) * 1000)
+        ? Math.max(60000, ((args.timeoutSeconds ?? 60) + 30) * 1000)
         : 45000,
       maxBuffer: 1024 * 1024,
       env: process.env,
@@ -150,15 +165,15 @@ function createServer() {
     { name: 'ptysd-factory-mcp', version: VERSION },
     {
       instructions:
-        'Governed PTYSD host control. factory_status/worker_prepare/worker_start retain their prior bounded semantics. host_powershell executes caller-supplied PowerShell through the existing SYSTEM broker and therefore has full local host authority. Avoid printing credentials or access tokens; prefer commands that return bounded business evidence.',
+        'Governed PTYSD host control. Use factory_status first for bounded read-only diagnostics (including factory health and supported provider-identity probes). worker_prepare/worker_start retain their prior bounded semantics. host_powershell executes caller-supplied PowerShell through the existing SYSTEM broker and therefore has full local host authority; reserve it for work that cannot be completed by bounded read-only tools or provider-native connectors. Avoid printing credentials or access tokens.',
     },
   );
 
   server.registerTool(
     'factory_status',
     {
-      description: 'Read the exact PTYSD HostGuard/worker VM status through the constrained JEA endpoint.',
-      inputSchema: z.object({}),
+      description: 'Run a bounded read-only diagnostic probe through the constrained broker. Supported probes: factory (HostGuard, host-exec lane, tunnel liveness/readiness/control-plane health) and cloudflare_identity (fixed GET-only provider identity readback; never returns tokens).',
+      inputSchema: factoryStatusInput,
       annotations: {
         title: 'Factory Status',
         readOnlyHint: true,
@@ -167,7 +182,7 @@ function createServer() {
         openWorldHint: false,
       },
     },
-    async () => textResult(await runHostGuard('status')),
+    async (args) => textResult(await runHostGuard('status', args)),
   );
 
   server.registerTool(

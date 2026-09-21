@@ -23,7 +23,7 @@ foreach ($name in @($brokerTask,$tunnelTask,$probeTask)) {
 }
 if (Test-Path -LiteralPath $install) { throw 'INSTALL_ROOT_ALREADY_EXISTS' }
 
-$required = @('package.json','package-lock.json','src\index.mjs','src\invoke-hostguard.ps1','broker\hostguard-broker.ps1','tests\protocol-smoke.mjs','tests\live-status-smoke.mjs','tests\tunnel-preflight-negative.ps1','tests\credential-ingest-smoke.ps1','windows\qualify-tunnel.ps1','windows\import-tunnel-credentials.ps1','windows\run-tunnel.ps1','windows\factory-mcp-tunnel.template.yaml')
+$required = @('package.json','package-lock.json','src\index.mjs','src\invoke-hostguard.ps1','broker\hostguard-broker.ps1','broker\host-powershell-exec.ps1','tests\protocol-smoke.mjs','tests\live-status-smoke.mjs','tests\host-powershell-exec-smoke.ps1','tests\control-lane-source-regression.mjs','tests\control-lane-concurrency-smoke.mjs','tests\tunnel-supervisor-source-regression.mjs','tests\tunnel-preflight-negative.ps1','tests\credential-ingest-smoke.ps1','windows\qualify-tunnel.ps1','windows\import-tunnel-credentials.ps1','windows\run-tunnel.ps1','windows\install-broker.ps1','windows\upgrade-host-powershell.ps1','windows\factory-mcp-tunnel.template.yaml')
 foreach ($rel in $required) {
   if (-not (Test-Path -LiteralPath (Join-Path $SourceRoot $rel))) { throw ('SOURCE_FILE_MISSING:' + $rel) }
 }
@@ -95,7 +95,7 @@ try {
   $tunnelAction = New-ScheduledTaskAction -Execute 'powershell.exe' -Argument ('-NoProfile -NonInteractive -ExecutionPolicy Bypass -File "'+(Join-Path $base 'run-factory-mcp-tunnel.ps1')+'"')
   $tunnelTrigger = New-ScheduledTaskTrigger -AtStartup
   $tunnelPrincipal = New-ScheduledTaskPrincipal -UserId 'NT AUTHORITY\NETWORK SERVICE' -LogonType ServiceAccount -RunLevel Limited
-  $tunnelSettings = New-ScheduledTaskSettingsSet -StartWhenAvailable -RestartCount 3 -RestartInterval (New-TimeSpan -Minutes 1) -ExecutionTimeLimit ([TimeSpan]::Zero)
+  $tunnelSettings = New-ScheduledTaskSettingsSet -StartWhenAvailable -RestartCount 255 -RestartInterval (New-TimeSpan -Minutes 1) -ExecutionTimeLimit ([TimeSpan]::Zero)
   Register-ScheduledTask -TaskName $tunnelTask -Action $tunnelAction -Trigger $tunnelTrigger -Principal $tunnelPrincipal -Settings $tunnelSettings | Out-Null
   $createdTasks += $tunnelTask
   Disable-ScheduledTask -TaskName $tunnelTask | Out-Null

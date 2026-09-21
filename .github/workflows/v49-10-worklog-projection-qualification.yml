@@ -1,0 +1,44 @@
+name: V49-10 worklog projection qualification
+
+on:
+  push:
+    branches:
+      - v49-10-worklog-projection-20260919
+      - v49/accepted-source
+    paths:
+      - ".github/workflows/v49-10-worklog-projection-qualification.yml"
+      - "scripts/csg-worklog-projector.mjs"
+      - "tests/csg/projection.test.mjs"
+      - "tests/csg/projection-v49.test.mjs"
+      - "tools/csg/cell-kernel/telemetry-plane.mjs"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  qualify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout exact candidate
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Deterministic projection regression
+        run: |
+          set -euo pipefail
+          node --test tests/csg/projection.test.mjs tests/csg/projection-v49.test.mjs
+      - name: Telemetry boundary regression
+        run: |
+          set -euo pipefail
+          node --test tools/csg/cell-kernel/tests/telemetry-plane.test.mjs
+      - name: Projection remains stateless and non-authoritative
+        run: |
+          set -euo pipefail
+          ! grep -Eqi 'writeFile|appendFile|sqlite|postgres|redis|daemon|PROJECTION_ONLY.*CANONICAL' scripts/csg-worklog-projector.mjs

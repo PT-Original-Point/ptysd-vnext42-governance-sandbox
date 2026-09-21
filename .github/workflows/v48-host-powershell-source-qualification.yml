@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - v48-host-powershell-governed-candidate-20260918
+      - v49-factory-mcp-control-lane-r1-20260919
+      - v49-factory-mcp-multiproject-r2-20260920
     paths:
       - ".github/workflows/v48-host-powershell-source-qualification.yml"
       - "tools/csg/factory-mcp/**"
@@ -51,19 +53,30 @@ jobs:
             'tools/csg/factory-mcp/broker/hostguard-broker.ps1',
             'tools/csg/factory-mcp/broker/host-powershell-exec.ps1',
             'tools/csg/factory-mcp/tests/host-powershell-exec-smoke.ps1',
+            'tools/csg/factory-mcp/windows/run-tunnel.ps1',
+            'tools/csg/factory-mcp/windows/install-broker.ps1',
             'tools/csg/factory-mcp/windows/upgrade-host-powershell.ps1'
           )
           foreach ($path in $paths) {
             $tokens = $null
             $errors = $null
             [Management.Automation.Language.Parser]::ParseFile((Resolve-Path $path),[ref]$tokens,[ref]$errors) | Out-Null
-            if ($errors.Count -ne 0) { throw "POWERSHELL_PARSE_FAILED:$path" }
+            if ($errors.Count -ne 0) {
+              foreach ($parseError in $errors) {
+                Write-Host ("POWERSHELL_PARSE_DETAIL path={0} line={1} column={2} message={3}" -f $path,$parseError.Extent.StartLineNumber,$parseError.Extent.StartColumnNumber,$parseError.Message)
+              }
+              throw "POWERSHELL_PARSE_FAILED:$path"
+            }
           }
           Write-Host 'V48_HOST_POWERSHELL_PARSE=PASS'
       - name: Install exact Factory MCP dependencies
         shell: cmd
         working-directory: tools/csg/factory-mcp
         run: npm.cmd ci --ignore-scripts --no-audit --no-fund
+      - name: Check control-lane live smoke syntax
+        shell: cmd
+        working-directory: tools/csg/factory-mcp
+        run: node --check tests/control-lane-concurrency-smoke.mjs
       - name: Run local protocol smoke
         shell: cmd
         working-directory: tools/csg/factory-mcp
