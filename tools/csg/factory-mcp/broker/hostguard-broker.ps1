@@ -18,6 +18,7 @@ $execTemp = Join-Path $state 'exec-temp'
 $execReceipts = Join-Path $state 'exec-receipts'
 $modulePath = 'C:\Program Files\WindowsPowerShell\Modules\PTYSD.HostGuard\PTYSD.HostGuard.psd1'
 $hostExecHelperPath = Join-Path $root 'broker\host-powershell-exec.ps1'
+$systemCapabilityPath = Join-Path $root 'config\system-capability.json'
 $idPattern = '^[A-Z0-9][A-Z0-9._-]{0,79}$'
 $maxRequestBytes = 65536
 $maxOutputBytes = 131072
@@ -32,6 +33,16 @@ foreach ($path in @($execTemp,$execReceipts)) {
 }
 if (-not (Test-Path -LiteralPath $modulePath)) { throw 'HOSTGUARD_MODULE_MISSING' }
 if (-not (Test-Path -LiteralPath $hostExecHelperPath)) { throw 'HOST_EXEC_HELPER_MISSING' }
+if (-not (Test-Path -LiteralPath $systemCapabilityPath)) { throw 'SYSTEM_CAPABILITY_CONFIG_MISSING' }
+$systemCapability = Get-Content -LiteralPath $systemCapabilityPath -Raw | ConvertFrom-Json -ErrorAction Stop
+if (
+  $systemCapability.schema -ne 'v49.factory-mcp.system-capability.v1' -or
+  $systemCapability.project_id -ne 'CHATGPT_GLOBAL_SKILL_GOVERNANCE' -or
+  $systemCapability.capability_id -ne 'CAP-GOV-SYSTEM-V1' -or
+  $systemCapability.production_allowed -ne $false -or
+  $systemCapability.business_project_allowed -ne $false -or
+  [int]$systemCapability.public_tool_count -ne 4
+) { throw 'SYSTEM_CAPABILITY_CONFIG_INVALID' }
 Import-Module $modulePath -Force -ErrorAction Stop
 . $hostExecHelperPath
 
@@ -66,6 +77,8 @@ function Write-Health {
     host = $env:COMPUTERNAME
     run_as = [Security.Principal.WindowsIdentity]::GetCurrent().Name
     powershell_exec = $true
+    system_capability_project_id = [string]$systemCapability.project_id
+    system_capability_id = [string]$systemCapability.capability_id
     recorded_at_utc = [DateTime]::UtcNow.ToString('o')
   }
   Write-AtomicJson -Path $health -Value $payload
@@ -73,6 +86,23 @@ function Write-Health {
 
 function Test-Id([object]$Value) {
   return ($null -ne $Value -and [string]$Value -match $idPattern)
+}
+
+function Assert-SystemCapabilityRequest {
+  param([Parameter(Mandatory)]$Request)
+  if ([string]$Request.project_id -ne [string]$systemCapability.project_id) { throw 'SYSTEM_CAPABILITY_PROJECT_DENY' }
+  if ([string]$Request.capability_id -ne [string]$systemCapability.capability_id) { throw 'SYSTEM_CAPABILITY_ID_DENY' }
+  $runOk = $false
+  foreach ($pattern in @($systemCapability.allowed_run_id_patterns)) {
+    if ([string]$Request.run_id -match [string]$pattern) { $runOk = $true; break }
+  }
+  if (-not $runOk) { throw 'SYSTEM_CAPABILITY_RUN_DENY' }
+  $taskOk = $false
+  foreach ($pattern in @($systemCapability.allowed_task_id_patterns)) {
+    if ([string]$Request.task_id -match [string]$pattern) { $taskOk = $true; break }
+  }
+  if (-not $taskOk) { throw 'SYSTEM_CAPABILITY_TASK_DENY' }
+  if ([int]$Request.timeout_seconds -gt [int]$systemCapability.max_timeout_seconds) { throw 'SYSTEM_CAPABILITY_TIMEOUT_DENY' }
 }
 
 function Get-LatestHostExecReceipt {
@@ -130,7 +160,7 @@ function Reconcile-OrphanedStartedReceipts {
                 schema='v48.factory-mcp.hostguard.response.v2'; request_id=$requestId; ok=$true; error_code=$null
                 result=[ordered]@{
                   schema='v48.factory-mcp.host-exec.result.v2'; operation='powershell'; result='ORPHANED'; request_id=$requestId
-                  run_id=[string]$receipt.run_id; task_id=[string]$receipt.task_id; attempt_id=[string]$receipt.attempt_id; attempt_epoch=[int]$receipt.attempt_epoch
+                  project_id=[string]$receipt.project_id; capability_id=[string]$receipt.capability_id; run_id=[string]$receipt.run_id; task_id=[string]$receipt.task_id; attempt_id=[string]$receipt.attempt_id; attempt_epoch=[int]$receipt.attempt_epoch
                   run_as=[string]$receipt.run_as; exit_code=$null; timed_out=$true; stdout=''; stderr=''; stdout_bytes=0; stderr_bytes=0
                   stdout_truncated=$false; stderr_truncated=$false; script_sha256=[string]$receipt.script_sha256; receipt_path=$file.FullName
                   side_effect_state='UNKNOWN_AFTER_BROKER_RESTART'
@@ -461,6 +491,8 @@ function Start-BrokerPowerShell {
     state='STARTED'
     request_id=$RequestId
     operation='powershell'
+    project_id=[string]$Request.project_id
+    capability_id=[string]$Request.capability_id
     run_id=[string]$Request.run_id
     task_id=[string]$Request.task_id
     attempt_id=[string]$Request.attempt_id
@@ -509,6 +541,8 @@ function Start-BrokerPowerShell {
       request_id=$RequestId
       response_path=$responsePath
       receipt_path=$receiptPath
+      project_id=[string]$Request.project_id
+      capability_id=[string]$Request.capability_id
       run_id=[string]$Request.run_id
       task_id=[string]$Request.task_id
       attempt_id=[string]$Request.attempt_id
@@ -533,7 +567,7 @@ function Complete-OnePowerShellJob {
     try { Stop-Job -Job $job -ErrorAction SilentlyContinue } catch {}
     $receipt = [ordered]@{
       schema='v48.factory-mcp.host-exec.receipt.v2'; state='TIMED_OUT'; request_id=[string]$ctx.request_id; operation='powershell'
-      run_id=[string]$ctx.run_id; task_id=[string]$ctx.task_id; attempt_id=[string]$ctx.attempt_id; attempt_epoch=[int]$ctx.attempt_epoch
+      project_id=[string]$ctx.project_id; capability_id=[string]$ctx.capability_id; run_id=[string]$ctx.run_id; task_id=[string]$ctx.task_id; attempt_id=[string]$ctx.attempt_id; attempt_epoch=[int]$ctx.attempt_epoch
       run_as=[Security.Principal.WindowsIdentity]::GetCurrent().Name; script_sha256=[string]$ctx.script_sha256; timeout_seconds=[int]$ctx.timeout_seconds
       exit_code=$null; timed_out=$true; side_effect_state='UNKNOWN_AFTER_TIMEOUT'; stdout_bytes=$null; stderr_bytes=$null; stdout_sha256=$null; stderr_sha256=$null
       started_at_utc=[string]$ctx.started_at_utc; finished_at_utc=$finishedAt; error_code='BROKER_WATCHDOG_TIMEOUT'
@@ -543,7 +577,7 @@ function Complete-OnePowerShellJob {
       schema='v48.factory-mcp.hostguard.response.v2'; request_id=[string]$ctx.request_id; ok=$true; error_code=$null
       result=[ordered]@{
         schema='v48.factory-mcp.host-exec.result.v2'; operation='powershell'; result='TIMED_OUT'; request_id=[string]$ctx.request_id
-        run_id=[string]$ctx.run_id; task_id=[string]$ctx.task_id; attempt_id=[string]$ctx.attempt_id; attempt_epoch=[int]$ctx.attempt_epoch
+        project_id=[string]$ctx.project_id; capability_id=[string]$ctx.capability_id; run_id=[string]$ctx.run_id; task_id=[string]$ctx.task_id; attempt_id=[string]$ctx.attempt_id; attempt_epoch=[int]$ctx.attempt_epoch
         run_as=[Security.Principal.WindowsIdentity]::GetCurrent().Name; executable=$null; exit_code=$null; timed_out=$true
         stdout=''; stderr=''; stdout_bytes=0; stderr_bytes=0; stdout_truncated=$false; stderr_truncated=$false
         script_sha256=[string]$ctx.script_sha256; receipt_path=[string]$ctx.receipt_path; side_effect_state='UNKNOWN_AFTER_TIMEOUT'
@@ -584,6 +618,8 @@ function Complete-OnePowerShellJob {
       state=$state
       request_id=[string]$ctx.request_id
       operation='powershell'
+      project_id=[string]$ctx.project_id
+      capability_id=[string]$ctx.capability_id
       run_id=[string]$ctx.run_id
       task_id=[string]$ctx.task_id
       attempt_id=[string]$ctx.attempt_id
@@ -611,6 +647,8 @@ function Complete-OnePowerShellJob {
       operation='powershell'
       result=$state
       request_id=[string]$ctx.request_id
+      project_id=[string]$ctx.project_id
+      capability_id=[string]$ctx.capability_id
       run_id=[string]$ctx.run_id
       task_id=[string]$ctx.task_id
       attempt_id=[string]$ctx.attempt_id
@@ -637,6 +675,8 @@ function Complete-OnePowerShellJob {
       state='FAILED'
       request_id=[string]$ctx.request_id
       operation='powershell'
+      project_id=[string]$ctx.project_id
+      capability_id=[string]$ctx.capability_id
       run_id=[string]$ctx.run_id
       task_id=[string]$ctx.task_id
       attempt_id=[string]$ctx.attempt_id
@@ -700,6 +740,9 @@ function Process-Request {
     if ($req.operation -ne 'status') {
       if (-not (Test-Id $req.run_id) -or -not (Test-Id $req.task_id) -or -not (Test-Id $req.attempt_id)) { throw 'ID_INVALID' }
     }
+    if ($req.operation -eq 'powershell') {
+      Assert-SystemCapabilityRequest -Request $req
+    }
 
     switch ([string]$req.operation) {
       'status' {
@@ -740,6 +783,7 @@ function Process-Request {
       '^RECEIPT_ID_INVALID' { 'RECEIPT_ID_INVALID'; break }
       '^ATTEMPT_EPOCH_INVALID' { 'ATTEMPT_EPOCH_INVALID'; break }
       '^POWERSHELL_' { $_.Exception.Message; break }
+      '^SYSTEM_CAPABILITY_' { $_.Exception.Message; break }
       '^STATUS_PROBE_INVALID' { 'STATUS_PROBE_INVALID'; break }
       '^REQUEST_' { $_.Exception.Message; break }
       '^OPERATION_INVALID' { 'OPERATION_INVALID'; break }

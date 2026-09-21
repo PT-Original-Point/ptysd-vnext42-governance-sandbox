@@ -65,8 +65,8 @@ try {
   assert.equal(statusPayload.vm_id, '881f7819-baa9-4a4e-8cca-8f6f18fb89a9');
 
   const op = {
-    runId: 'V47-CONSTRUCTION-001',
-    taskId: 'W47-06',
+    runId: 'CHATGPT_GLOBAL_SKILL_GOVERNANCE',
+    taskId: 'GOV-QUAL-PROTOCOL',
     attemptId: 'V47-W47-06-ATTEMPT-001',
     attemptEpoch: 1,
   };
@@ -96,6 +96,20 @@ try {
   assert.equal(powershellPayload.run_as, 'NT AUTHORITY\\SYSTEM');
   assert.match(powershellPayload.stdout, /PTYSD_HOST_POWERSHELL_TEST_OK/);
   assert.equal(powershellPayload.timed_out, false);
+  assert.equal(powershellPayload.project_id, 'CHATGPT_GLOBAL_SKILL_GOVERNANCE');
+  assert.equal(powershellPayload.capability_id, 'CAP-GOV-SYSTEM-V1');
+
+  const crossProjectHost = await send('tools/call', {
+    name: 'host_powershell',
+    arguments: {
+      ...op,
+      runId: 'HANYAO_ADS_LINE',
+      taskId: 'HG-HOST-POWERSHELL',
+      script: "Write-Output 'MUST_NOT_RUN'",
+      timeoutSeconds: 30,
+    },
+  });
+  assert.ok(crossProjectHost.result?.isError || crossProjectHost.error, 'business project SYSTEM request must fail closed');
 
   const invalid = await send('tools/call', {
     name: 'worker_start',

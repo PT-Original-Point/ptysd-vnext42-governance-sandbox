@@ -44,7 +44,8 @@ $newFiles = @(
   'tests/host-powershell-exec-smoke.ps1',
   'tests/control-lane-source-regression.mjs',
   'tests/control-lane-concurrency-smoke.mjs',
-  'tests/tunnel-supervisor-source-regression.mjs'
+  'tests/tunnel-supervisor-source-regression.mjs',
+  'config/system-capability.json'
 )
 $candidateFiles = @($baselineFiles + $newFiles)
 
