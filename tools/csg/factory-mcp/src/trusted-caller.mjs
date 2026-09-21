@@ -5,6 +5,7 @@ const PROJECT_ID_RE = /^[A-Z0-9][A-Z0-9._-]{0,127}$/;
 const CALLER_ID_RE = /^[A-Z0-9][A-Z0-9._-]{0,127}$/;
 const DIGEST_RE = /^sha256:[0-9a-f]{64}$/;
 const HEX_KEY_RE = /^[0-9a-f]{64}$/;
+const REQUEST_ID_RE = /^[0-9a-f]{32}$/;
 const DEFAULT_TRUSTED_CALLERS_PATH = 'C:\\ProgramData\\PTYSD\\MCP\\config\\trusted-callers.json';
 const DEFAULT_ATTESTATION_KEY_PATH = 'C:\\ProgramData\\PTYSD\\MCP\\secrets\\broker-caller-attestation.key';
 
@@ -84,7 +85,7 @@ export function createBrokerCallerAttestation({
   callerIdentity,
   executionFence,
   args,
-  authorizationGeneration = null,
+  requestId,
   now = new Date(),
   ttlSeconds = 30,
   keyPath,
@@ -93,19 +94,25 @@ export function createBrokerCallerAttestation({
     fail('TRUSTED_CALLER_IDENTITY_REQUIRED');
   }
   if (!executionFence?.execution_fence) fail('TRUSTED_CALLER_EXECUTION_FENCE_REQUIRED');
+  if (!REQUEST_ID_RE.test(requestId ?? '')) fail('TRUSTED_CALLER_REQUEST_ID_INVALID');
   const fence = executionFence.execution_fence;
+  if (!Number.isSafeInteger(fence.authorization_generation) || fence.authorization_generation < 1) fail('TRUSTED_CALLER_AUTH_GENERATION_INVALID');
+  if (!DIGEST_RE.test(fence.authorization_state_digest ?? '')) fail('TRUSTED_CALLER_AUTH_STATE_DIGEST_INVALID');
   if (callerIdentity.project_id !== fence.project_id) fail('TRUSTED_CALLER_PROJECT_FENCE_MISMATCH');
   if (!Number.isSafeInteger(ttlSeconds) || ttlSeconds < 1 || ttlSeconds > 60) fail('TRUSTED_CALLER_ATTESTATION_TTL_INVALID');
   const issuedAt = now.toISOString();
   const expiresAt = new Date(now.getTime() + ttlSeconds * 1000).toISOString();
   const claims = {
-    schema: 'v49.factory-mcp.caller-attestation.v1',
+    schema: 'v49.factory-mcp.caller-attestation.v2',
+    request_id: requestId,
     project_id: callerIdentity.project_id,
     caller_id: callerIdentity.caller_id,
     certificate_sha256: callerIdentity.certificate_sha256,
     caller_identity_digest: callerIdentity.caller_identity_digest,
     identity_generation: callerIdentity.identity_generation,
-    authorization_generation: authorizationGeneration,
+    authorization_generation: fence.authorization_generation,
+    authorization_state_digest: fence.authorization_state_digest,
+    operation_kind: fence.operation_kind,
     mission_revision: fence.mission_revision,
     mission_hash: fence.mission_hash,
     authorization_envelope_digest: fence.authorization_envelope_digest,
@@ -116,7 +123,8 @@ export function createBrokerCallerAttestation({
     task_id: args.taskId,
     attempt_id: args.attemptId,
     attempt_epoch: args.attemptEpoch,
-    script_sha256: fence.script_sha256,
+    script_sha256: fence.script_sha256 ?? null,
+    payload_sha256: fence.payload_sha256 ?? null,
     timeout_seconds: args.timeoutSeconds ?? 60,
     issued_at: issuedAt,
     expires_at: expiresAt,
@@ -125,14 +133,14 @@ export function createBrokerCallerAttestation({
   const key = readAttestationKey(keyPath);
   const mac = createHmac('sha256', key).update(payloadBytes).digest('hex');
   return Object.freeze({
-    schema: 'v49.factory-mcp.caller-attestation-envelope.v1',
+    schema: 'v49.factory-mcp.caller-attestation-envelope.v2',
     payload_b64: payloadBytes.toString('base64'),
     mac_sha256: mac,
   });
 }
 
 export function verifyBrokerCallerAttestationForTest(envelope, keyHex, now = new Date()) {
-  if (envelope?.schema !== 'v49.factory-mcp.caller-attestation-envelope.v1') fail('TRUSTED_CALLER_ATTESTATION_SCHEMA_INVALID');
+  if (envelope?.schema !== 'v49.factory-mcp.caller-attestation-envelope.v2') fail('TRUSTED_CALLER_ATTESTATION_SCHEMA_INVALID');
   if (typeof envelope.payload_b64 !== 'string' || !/^[A-Za-z0-9+/=]+$/.test(envelope.payload_b64)) {
     fail('TRUSTED_CALLER_ATTESTATION_PAYLOAD_INVALID');
   }
