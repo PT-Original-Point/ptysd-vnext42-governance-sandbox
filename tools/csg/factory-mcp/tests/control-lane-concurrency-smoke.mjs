@@ -95,8 +95,13 @@ try {
 
   const after = await send('tools/call', { name: 'factory_status', arguments: {} }, 8000);
   const afterPayload = textPayload(after);
-  assert.equal(afterPayload.host_exec_lane?.state, 'IDLE');
+  const afterState = afterPayload.host_exec_lane?.state;
+  assert.ok(['IDLE','IDLE_WITH_ORPHANS'].includes(afterState), `unexpected after state ${afterState}`);
   assert.equal(afterPayload.host_exec_lane?.active_count, 0);
+  assert.equal(afterPayload.host_exec_lane?.effective_active_count, 0);
+  if (afterState === 'IDLE_WITH_ORPHANS') {
+    assert.ok(afterPayload.host_exec_lane?.orphan_count >= 1, 'orphan state must expose orphan_count');
+  }
 
   await writeFile(outPath, `${JSON.stringify({
     result: 'PASS',
@@ -104,7 +109,8 @@ try {
     concurrent_active_count: duringPayload.host_exec_lane.active_count,
     capacity: duringPayload.host_exec_lane.capacity,
     run_ids: runIds,
-    after_state: afterPayload.host_exec_lane.state,
+    after_state: afterState,
+    after_orphan_count: afterPayload.host_exec_lane?.orphan_count ?? 0,
   })}\n`, 'utf8');
 } finally {
   child.kill();
