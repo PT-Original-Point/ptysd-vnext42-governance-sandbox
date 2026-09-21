@@ -1,8 +1,9 @@
 import { execFile } from 'node:child_process';
 import { readFileSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { promisify } from 'node:util';
 import { authorizeSystemExecution } from './current-execution-fence.mjs';
+import { createBrokerCallerAttestation } from './trusted-caller.mjs';
 import { McpServer } from '@modelcontextprotocol/server';
 import { serveStdio } from '@modelcontextprotocol/server/stdio';
 import * as z from 'zod/v4';
@@ -163,6 +164,8 @@ async function runHostGuard(operation, args = {}) {
       '-CheckpointDigest', args.executionFence.checkpoint_digest,
       '-AuthorizationEnvelopeDigest', args.executionFence.execution_fence.authorization_envelope_digest,
       '-CapabilityGeneration', String(args.executionFence.execution_fence.capability_generation),
+      '-CallerAttestationBase64', args.callerAttestation?.payload_b64 ?? '',
+      '-CallerAttestationMac', args.callerAttestation?.mac_sha256 ?? '',
       '-ScriptBase64', Buffer.from(args.script, 'utf8').toString('base64'),
       '-TimeoutSeconds', String(args.timeoutSeconds ?? 60),
     );
@@ -199,7 +202,7 @@ function textResult(value) {
   return { content: [{ type: 'text', text: JSON.stringify(value) }] };
 }
 
-function createServer() {
+export function createServer({ callerIdentity = null, transportKind = 'stdio' } = {}) {
   const server = new McpServer(
     { name: 'ptysd-factory-mcp', version: VERSION },
     {
@@ -272,8 +275,22 @@ function createServer() {
     },
     async (args) => {
       assertSystemCapabilityArgs(args);
+      if (!TEST_MODE) {
+        if (!callerIdentity || callerIdentity.schema !== 'v49.factory-mcp.trusted-caller-identity.v1') {
+          throw new Error('TRUSTED_CALLER_REQUIRED');
+        }
+        if (callerIdentity.project_id !== SYSTEM_CAPABILITY.project_id) {
+          throw new Error('TRUSTED_CALLER_PROJECT_DENY');
+        }
+        if (transportKind !== 'https-mtls') {
+          throw new Error('TRUSTED_CALLER_TRANSPORT_REQUIRED');
+        }
+      }
       const executionFence = await authorizeSystemExecution(args, SYSTEM_CAPABILITY, { testMode: TEST_MODE });
-      return textResult(await runHostGuard('powershell', { ...args, executionFence }));
+      const callerAttestation = TEST_MODE
+        ? null
+        : createBrokerCallerAttestation({ callerIdentity, executionFence, args });
+      return textResult(await runHostGuard('powershell', { ...args, executionFence, callerAttestation }));
     },
   );
 
@@ -289,5 +306,11 @@ process.on('unhandledRejection', (error) => {
   process.exit(1);
 });
 
-void serveStdio(createServer);
-console.error(`PTYSD Factory MCP ${VERSION} waiting on stdio`);
+const isDirectEntrypoint =
+  typeof process.argv[1] === 'string' &&
+  pathToFileURL(process.argv[1]).href === import.meta.url;
+
+if (isDirectEntrypoint) {
+  void serveStdio(() => createServer({ callerIdentity: null, transportKind: 'stdio' }));
+  console.error(`PTYSD Factory MCP ${VERSION} waiting on stdio (SYSTEM dispatch disabled without trusted mTLS caller)`);
+}
