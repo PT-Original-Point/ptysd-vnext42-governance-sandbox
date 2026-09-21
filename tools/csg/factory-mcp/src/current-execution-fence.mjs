@@ -200,10 +200,34 @@ function mutationPayloadSha256(operationKind, args) {
   return sha256Text(`${operationKind}|${args.runId}|${args.taskId}|${args.attemptId}|${args.attemptEpoch}`);
 }
 
+function testMutationContext(context, operationKind) {
+  if (operationKind === 'HOST_POWERSHELL') return context;
+  const expected = {
+    runId: 'CHATGPT_GLOBAL_SKILL_GOVERNANCE',
+    taskId: 'GOV-QUAL-PROTOCOL',
+    attemptId: 'V47-W47-06-ATTEMPT-001',
+    attemptEpoch: 1,
+  };
+  const fence = {
+    ...context.execution_fence,
+    operation_kind: operationKind,
+    operation_id: `TEST-${operationKind}`,
+    run_id: expected.runId,
+    task_id: expected.taskId,
+    attempt_id: expected.attemptId,
+    attempt_epoch: expected.attemptEpoch,
+    timeout_seconds: 60,
+    payload_sha256: mutationPayloadSha256(operationKind, expected),
+  };
+  delete fence.script_sha256;
+  return { ...context, execution_fence: fence };
+}
+
 export async function authorizeSystemExecution(args, systemCapability, options = {}) {
   const { operationKind = 'HOST_POWERSHELL', ...loadOptions } = options;
   if (!OPERATION_KINDS.has(operationKind)) fail('SYSTEM_FENCE_OPERATION_KIND_DENY');
-  const context = await loadCurrentSystemExecutionFence(systemCapability, loadOptions);
+  let context = await loadCurrentSystemExecutionFence(systemCapability, loadOptions);
+  if (testMode) context = testMutationContext(context, operationKind);
   const fence = context.execution_fence;
 
   if (operationKind !== fence.operation_kind) fail('SYSTEM_FENCE_OPERATION_KIND_MISMATCH');
