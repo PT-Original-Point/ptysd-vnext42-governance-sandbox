@@ -18,6 +18,7 @@ $execTemp = Join-Path $state 'exec-temp'
 $execReceipts = Join-Path $state 'exec-receipts'
 $modulePath = 'C:\Program Files\WindowsPowerShell\Modules\PTYSD.HostGuard\PTYSD.HostGuard.psd1'
 $hostExecHelperPath = Join-Path $root 'broker\host-powershell-exec.ps1'
+$systemFenceHelperPath = Join-Path $root 'broker\current-execution-fence.ps1'
 $systemCapabilityPath = Join-Path $root 'config\system-capability.json'
 $idPattern = '^[A-Z0-9][A-Z0-9._-]{0,79}$'
 $maxRequestBytes = 65536
@@ -33,18 +34,24 @@ foreach ($path in @($execTemp,$execReceipts)) {
 }
 if (-not (Test-Path -LiteralPath $modulePath)) { throw 'HOSTGUARD_MODULE_MISSING' }
 if (-not (Test-Path -LiteralPath $hostExecHelperPath)) { throw 'HOST_EXEC_HELPER_MISSING' }
+if (-not (Test-Path -LiteralPath $systemFenceHelperPath)) { throw 'SYSTEM_FENCE_HELPER_MISSING' }
 if (-not (Test-Path -LiteralPath $systemCapabilityPath)) { throw 'SYSTEM_CAPABILITY_CONFIG_MISSING' }
 $systemCapability = Get-Content -LiteralPath $systemCapabilityPath -Raw | ConvertFrom-Json -ErrorAction Stop
 if (
   $systemCapability.schema -ne 'v49.factory-mcp.system-capability.v1' -or
   $systemCapability.project_id -ne 'CHATGPT_GLOBAL_SKILL_GOVERNANCE' -or
   $systemCapability.capability_id -ne 'CAP-GOV-SYSTEM-V1' -or
+  $systemCapability.mission_revision -ne '20260919T010100+0800' -or
+  $systemCapability.mission_hash -ne 'sha256:58f21a0818bd60b61929925b38ea8507d5b80c09d816a7b6f5a75d2a410d542b' -or
+  $systemCapability.authorization_envelope_digest -ne 'sha256:cb614427a0a1755d002cd035f50d33b18208bab7e5a9d8efc42dfbc7c4d99d14' -or
+  [int64]$systemCapability.capability_generation -ne 4 -or
   $systemCapability.production_allowed -ne $false -or
   $systemCapability.business_project_allowed -ne $false -or
   [int]$systemCapability.public_tool_count -ne 4
 ) { throw 'SYSTEM_CAPABILITY_CONFIG_INVALID' }
 Import-Module $modulePath -Force -ErrorAction Stop
 . $hostExecHelperPath
+. $systemFenceHelperPath
 
 $createdNew = $false
 $mutex = New-Object Threading.Mutex($true, 'Global\PTYSDFactoryMCPHostGuardBrokerV47', [ref]$createdNew)
@@ -103,6 +110,7 @@ function Assert-SystemCapabilityRequest {
   }
   if (-not $taskOk) { throw 'SYSTEM_CAPABILITY_TASK_DENY' }
   if ([int]$Request.timeout_seconds -gt [int]$systemCapability.max_timeout_seconds) { throw 'SYSTEM_CAPABILITY_TIMEOUT_DENY' }
+  [void](Assert-PTYSDCurrentSystemExecutionFence -Request $Request -SystemCapability $systemCapability)
 }
 
 function Get-LatestHostExecReceipt {
@@ -493,6 +501,11 @@ function Start-BrokerPowerShell {
     operation='powershell'
     project_id=[string]$Request.project_id
     capability_id=[string]$Request.capability_id
+    operation_id=[string]$Request.operation_id
+    control_oid=[string]$Request.control_oid
+    checkpoint_digest=[string]$Request.checkpoint_digest
+    authorization_envelope_digest=[string]$Request.authorization_envelope_digest
+    capability_generation=[int64]$Request.capability_generation
     run_id=[string]$Request.run_id
     task_id=[string]$Request.task_id
     attempt_id=[string]$Request.attempt_id
@@ -543,6 +556,11 @@ function Start-BrokerPowerShell {
       receipt_path=$receiptPath
       project_id=[string]$Request.project_id
       capability_id=[string]$Request.capability_id
+      operation_id=[string]$Request.operation_id
+      control_oid=[string]$Request.control_oid
+      checkpoint_digest=[string]$Request.checkpoint_digest
+      authorization_envelope_digest=[string]$Request.authorization_envelope_digest
+      capability_generation=[int64]$Request.capability_generation
       run_id=[string]$Request.run_id
       task_id=[string]$Request.task_id
       attempt_id=[string]$Request.attempt_id
@@ -567,7 +585,7 @@ function Complete-OnePowerShellJob {
     try { Stop-Job -Job $job -ErrorAction SilentlyContinue } catch {}
     $receipt = [ordered]@{
       schema='v48.factory-mcp.host-exec.receipt.v2'; state='TIMED_OUT'; request_id=[string]$ctx.request_id; operation='powershell'
-      project_id=[string]$ctx.project_id; capability_id=[string]$ctx.capability_id; run_id=[string]$ctx.run_id; task_id=[string]$ctx.task_id; attempt_id=[string]$ctx.attempt_id; attempt_epoch=[int]$ctx.attempt_epoch
+      project_id=[string]$ctx.project_id; capability_id=[string]$ctx.capability_id; operation_id=[string]$ctx.operation_id; control_oid=[string]$ctx.control_oid; checkpoint_digest=[string]$ctx.checkpoint_digest; authorization_envelope_digest=[string]$ctx.authorization_envelope_digest; capability_generation=[int64]$ctx.capability_generation; run_id=[string]$ctx.run_id; task_id=[string]$ctx.task_id; attempt_id=[string]$ctx.attempt_id; attempt_epoch=[int]$ctx.attempt_epoch
       run_as=[Security.Principal.WindowsIdentity]::GetCurrent().Name; script_sha256=[string]$ctx.script_sha256; timeout_seconds=[int]$ctx.timeout_seconds
       exit_code=$null; timed_out=$true; side_effect_state='UNKNOWN_AFTER_TIMEOUT'; stdout_bytes=$null; stderr_bytes=$null; stdout_sha256=$null; stderr_sha256=$null
       started_at_utc=[string]$ctx.started_at_utc; finished_at_utc=$finishedAt; error_code='BROKER_WATCHDOG_TIMEOUT'
@@ -577,7 +595,7 @@ function Complete-OnePowerShellJob {
       schema='v48.factory-mcp.hostguard.response.v2'; request_id=[string]$ctx.request_id; ok=$true; error_code=$null
       result=[ordered]@{
         schema='v48.factory-mcp.host-exec.result.v2'; operation='powershell'; result='TIMED_OUT'; request_id=[string]$ctx.request_id
-        project_id=[string]$ctx.project_id; capability_id=[string]$ctx.capability_id; run_id=[string]$ctx.run_id; task_id=[string]$ctx.task_id; attempt_id=[string]$ctx.attempt_id; attempt_epoch=[int]$ctx.attempt_epoch
+        project_id=[string]$ctx.project_id; capability_id=[string]$ctx.capability_id; operation_id=[string]$ctx.operation_id; control_oid=[string]$ctx.control_oid; checkpoint_digest=[string]$ctx.checkpoint_digest; authorization_envelope_digest=[string]$ctx.authorization_envelope_digest; capability_generation=[int64]$ctx.capability_generation; run_id=[string]$ctx.run_id; task_id=[string]$ctx.task_id; attempt_id=[string]$ctx.attempt_id; attempt_epoch=[int]$ctx.attempt_epoch
         run_as=[Security.Principal.WindowsIdentity]::GetCurrent().Name; executable=$null; exit_code=$null; timed_out=$true
         stdout=''; stderr=''; stdout_bytes=0; stderr_bytes=0; stdout_truncated=$false; stderr_truncated=$false
         script_sha256=[string]$ctx.script_sha256; receipt_path=[string]$ctx.receipt_path; side_effect_state='UNKNOWN_AFTER_TIMEOUT'
@@ -620,6 +638,11 @@ function Complete-OnePowerShellJob {
       operation='powershell'
       project_id=[string]$ctx.project_id
       capability_id=[string]$ctx.capability_id
+      operation_id=[string]$ctx.operation_id
+      control_oid=[string]$ctx.control_oid
+      checkpoint_digest=[string]$ctx.checkpoint_digest
+      authorization_envelope_digest=[string]$ctx.authorization_envelope_digest
+      capability_generation=[int64]$ctx.capability_generation
       run_id=[string]$ctx.run_id
       task_id=[string]$ctx.task_id
       attempt_id=[string]$ctx.attempt_id
@@ -649,6 +672,11 @@ function Complete-OnePowerShellJob {
       request_id=[string]$ctx.request_id
       project_id=[string]$ctx.project_id
       capability_id=[string]$ctx.capability_id
+      operation_id=[string]$ctx.operation_id
+      control_oid=[string]$ctx.control_oid
+      checkpoint_digest=[string]$ctx.checkpoint_digest
+      authorization_envelope_digest=[string]$ctx.authorization_envelope_digest
+      capability_generation=[int64]$ctx.capability_generation
       run_id=[string]$ctx.run_id
       task_id=[string]$ctx.task_id
       attempt_id=[string]$ctx.attempt_id
@@ -677,6 +705,11 @@ function Complete-OnePowerShellJob {
       operation='powershell'
       project_id=[string]$ctx.project_id
       capability_id=[string]$ctx.capability_id
+      operation_id=[string]$ctx.operation_id
+      control_oid=[string]$ctx.control_oid
+      checkpoint_digest=[string]$ctx.checkpoint_digest
+      authorization_envelope_digest=[string]$ctx.authorization_envelope_digest
+      capability_generation=[int64]$ctx.capability_generation
       run_id=[string]$ctx.run_id
       task_id=[string]$ctx.task_id
       attempt_id=[string]$ctx.attempt_id
@@ -784,6 +817,7 @@ function Process-Request {
       '^ATTEMPT_EPOCH_INVALID' { 'ATTEMPT_EPOCH_INVALID'; break }
       '^POWERSHELL_' { $safeMessage; break }
       '^SYSTEM_CAPABILITY_' { $safeMessage; break }
+      '^SYSTEM_FENCE_' { $safeMessage; break }
       '^STATUS_PROBE_INVALID' { 'STATUS_PROBE_INVALID'; break }
       '^REQUEST_' { $safeMessage; break }
       '^OPERATION_INVALID' { 'OPERATION_INVALID'; break }

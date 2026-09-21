@@ -6,6 +6,8 @@ const broker = fs.readFileSync(new URL('../broker/hostguard-broker.ps1', import.
 const index = fs.readFileSync(new URL('../src/index.mjs', import.meta.url), 'utf8');
 const wrapper = fs.readFileSync(new URL('../src/invoke-hostguard.ps1', import.meta.url), 'utf8');
 const capability = JSON.parse(fs.readFileSync(new URL('../config/system-capability.json', import.meta.url), 'utf8'));
+const serverFence = fs.readFileSync(new URL('../src/current-execution-fence.mjs', import.meta.url), 'utf8');
+const brokerFence = fs.readFileSync(new URL('../broker/current-execution-fence.ps1', import.meta.url), 'utf8');
 
 test('host PowerShell has bounded multi-run lanes instead of one global lane', () => {
   for (const token of [
@@ -87,4 +89,35 @@ test('broker error mapping returns safeMessage instead of dereferencing switch s
     "'^REQUEST_' { $safeMessage; break }",
   ]) assert.ok(broker.includes(token), `missing safe broker error mapping: ${token}`);
   assert.equal(broker.includes("'^SYSTEM_CAPABILITY_' { $_.Exception.Message; break }"), false);
+});
+
+
+test('SYSTEM dispatch is fenced to canonical current attempt at server and broker', () => {
+  assert.equal(capability.capability_generation, 4);
+  assert.equal(capability.mission_revision, '20260919T010100+0800');
+  assert.match(capability.mission_hash, /^sha256:[0-9a-f]{64}$/);
+  assert.match(capability.authorization_envelope_digest, /^sha256:[0-9a-f]{64}$/);
+  for (const token of [
+    'authorizeSystemExecution',
+    "'-OperationId', args.executionFence.execution_fence.operation_id",
+    "'-ControlOid', args.executionFence.control_oid",
+    "'-CheckpointDigest', args.executionFence.checkpoint_digest",
+    "'-AuthorizationEnvelopeDigest', args.executionFence.execution_fence.authorization_envelope_digest",
+    "'-CapabilityGeneration', String(args.executionFence.execution_fence.capability_generation)",
+  ]) assert.ok(index.includes(token), `missing server fence token: ${token}`);
+  for (const token of [
+    'git.exe','ls-remote','refs/heads/v45/factory-control',
+    'SYSTEM_FENCE_CONTROL_DRIFT','SYSTEM_FENCE_EPOCH_MISMATCH',
+    'SYSTEM_FENCE_AUTHORIZATION_MISMATCH','SYSTEM_FENCE_SCRIPT_MISMATCH',
+    'capability_generation','execution_fence',
+  ]) assert.ok(serverFence.includes(token), `missing server current-fence token: ${token}`);
+  for (const token of [
+    'Get-PTYSDCurrentSystemExecutionFence','Assert-PTYSDCurrentSystemExecutionFence',
+    'SYSTEM_FENCE_CONTROL_DRIFT','SYSTEM_FENCE_EPOCH_MISMATCH',
+    'SYSTEM_FENCE_AUTHORIZATION_MISMATCH','SYSTEM_FENCE_SCRIPT_MISMATCH',
+    'capability_generation','execution_fence',
+  ]) assert.ok(brokerFence.includes(token), `missing broker current-fence token: ${token}`);
+  assert.ok(broker.includes('. $systemFenceHelperPath'));
+  assert.ok(broker.includes('Assert-PTYSDCurrentSystemExecutionFence -Request $Request -SystemCapability $systemCapability'));
+  assert.equal(index.includes("attemptEpoch: z.number().int().min(1).max(2147483647)"), true);
 });
