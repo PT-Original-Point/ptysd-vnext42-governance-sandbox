@@ -34,6 +34,10 @@ test('stale host jobs terminalize, orphan receipts reconcile, and capacity exclu
     'effective_active_count',
     'live_job_count',
     'orphan_count',
+    'broker_records',
+    'pending_receipt_count',
+    'IDLE_WITH_ORPHANS',
+    '$script:receiptSummary',
     'Stop-Job -Job $job',
   ]) assert.ok(broker.includes(token), `missing timeout/orphan token: ${token}`);
   assert.ok(broker.includes('age_seconds'));
