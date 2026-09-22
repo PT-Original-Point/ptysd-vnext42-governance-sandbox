@@ -1,0 +1,10 @@
+{
+  "schema": "CSG_03B_SMOKE_V1",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "base_control_sha": "066f6675ea566da07de8a1ae68d98afe635aff94",
+  "purpose": "TRUSTED_VERIFIER_PROVIDER_SMOKE_ONLY",
+  "canonical_acceptance": false,
+  "side_effects": [],
+  "production": false,
+  "business_project": false
+}
