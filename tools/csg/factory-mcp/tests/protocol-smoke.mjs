@@ -122,8 +122,8 @@ try {
     arguments: { ...workerOp, runId: 'bad value with spaces' },
   });
   assert.ok(invalid.result?.isError || invalid.error, 'invalid input must fail closed');
-  const staleWorker = await send('tools/call', { name: 'worker_start', arguments: { ...workerOp, attemptEpoch: 0 } });
-  assert.ok(staleWorker.result?.isError || staleWorker.error, 'worker stale epoch must fail closed');
+  const staleWorker = await send('tools/call', { name: 'worker_start', arguments: { ...workerOp, attemptEpoch: 999 } });
+  assert.ok(staleWorker.result?.isError || staleWorker.error, 'worker positive-but-stale epoch must fail closed');
   const staleHost = await send('tools/call', {
     name: 'host_powershell',
     arguments: { ...hostOp, attemptEpoch: 999, script: "Write-Output 'P4_CURRENT_FENCE_OK'", timeoutSeconds: 30 },

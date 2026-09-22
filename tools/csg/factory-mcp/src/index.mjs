@@ -1,8 +1,10 @@
 import { execFile } from 'node:child_process';
+import { randomBytes } from 'node:crypto';
 import { readFileSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { promisify } from 'node:util';
 import { authorizeSystemExecution } from './current-execution-fence.mjs';
+import { createBrokerCallerAttestation } from './trusted-caller.mjs';
 import { McpServer } from '@modelcontextprotocol/server';
 import { serveStdio } from '@modelcontextprotocol/server/stdio';
 import * as z from 'zod/v4';
@@ -154,18 +156,26 @@ async function runHostGuard(operation, args = {}) {
     );
   }
 
-  if (operation === 'powershell') {
+  if (operation !== 'status') {
+    const fence = args.executionFence?.execution_fence;
     psArgs.push(
       '-ProjectId', SYSTEM_CAPABILITY.project_id,
       '-CapabilityId', SYSTEM_CAPABILITY.capability_id,
-      '-OperationId', args.executionFence.execution_fence.operation_id,
+      '-OperationId', fence.operation_id,
       '-ControlOid', args.executionFence.control_oid,
       '-CheckpointDigest', args.executionFence.checkpoint_digest,
-      '-AuthorizationEnvelopeDigest', args.executionFence.execution_fence.authorization_envelope_digest,
-      '-CapabilityGeneration', String(args.executionFence.execution_fence.capability_generation),
-      '-ScriptBase64', Buffer.from(args.script, 'utf8').toString('base64'),
+      '-AuthorizationEnvelopeDigest', fence.authorization_envelope_digest,
+      '-AuthorizationGeneration', String(fence.authorization_generation),
+      '-AuthorizationStateDigest', fence.authorization_state_digest,
+      '-CapabilityGeneration', String(fence.capability_generation),
+      '-RequestId', args.requestId,
+      '-CallerAttestationBase64', args.callerAttestation?.payload_b64 ?? '',
+      '-CallerAttestationMac', args.callerAttestation?.mac_sha256 ?? '',
       '-TimeoutSeconds', String(args.timeoutSeconds ?? 60),
     );
+    if (operation === 'powershell') {
+      psArgs.push('-ScriptBase64', Buffer.from(args.script, 'utf8').toString('base64'));
+    }
   }
 
   try {
@@ -199,7 +209,34 @@ function textResult(value) {
   return { content: [{ type: 'text', text: JSON.stringify(value) }] };
 }
 
-function createServer() {
+function assertTrustedMutationCaller(callerIdentity, transportKind) {
+  if (TEST_MODE) return;
+  if (!callerIdentity || callerIdentity.schema !== 'v49.factory-mcp.trusted-caller-identity.v1') {
+    throw new Error('TRUSTED_CALLER_REQUIRED');
+  }
+  if (callerIdentity.project_id !== SYSTEM_CAPABILITY.project_id) {
+    throw new Error('TRUSTED_CALLER_PROJECT_DENY');
+  }
+  if (callerIdentity.principal_type !== 'PROJECT_DEDICATED_TUNNEL' || !callerIdentity.tunnel_binding_id) {
+    throw new Error('TRUSTED_CALLER_DEDICATED_PROJECT_BINDING_REQUIRED');
+  }
+  if (transportKind !== 'https-mtls') {
+    throw new Error('TRUSTED_CALLER_TRANSPORT_REQUIRED');
+  }
+}
+
+async function runAuthorizedMutation(operation, args, callerIdentity, transportKind) {
+  const operationKind = operation === 'powershell' ? 'HOST_POWERSHELL' : operation === 'prepare' ? 'WORKER_PREPARE' : 'WORKER_START';
+  assertSystemCapabilityArgs({ ...args, timeoutSeconds: args.timeoutSeconds ?? 60 });
+  assertTrustedMutationCaller(callerIdentity, transportKind);
+  const normalizedArgs = { ...args, timeoutSeconds: args.timeoutSeconds ?? 60 };
+  const executionFence = await authorizeSystemExecution(normalizedArgs, SYSTEM_CAPABILITY, { testMode: TEST_MODE, operationKind });
+  const requestId = randomBytes(16).toString('hex');
+  const callerAttestation = TEST_MODE ? null : createBrokerCallerAttestation({ callerIdentity, executionFence, args: normalizedArgs, requestId });
+  return runHostGuard(operation, { ...normalizedArgs, executionFence, callerAttestation, requestId });
+}
+
+export function createServer({ callerIdentity = null, transportKind = 'stdio' } = {}) {
   const server = new McpServer(
     { name: 'ptysd-factory-mcp', version: VERSION },
     {
@@ -237,7 +274,7 @@ function createServer() {
         openWorldHint: false,
       },
     },
-    async (args) => textResult(await runHostGuard('prepare', args)),
+    async (args) => textResult(await runAuthorizedMutation('prepare', args, callerIdentity, transportKind)),
   );
 
   server.registerTool(
@@ -253,7 +290,7 @@ function createServer() {
         openWorldHint: false,
       },
     },
-    async (args) => textResult(await runHostGuard('start', args)),
+    async (args) => textResult(await runAuthorizedMutation('start', args, callerIdentity, transportKind)),
   );
 
   server.registerTool(
@@ -270,11 +307,7 @@ function createServer() {
         openWorldHint: true,
       },
     },
-    async (args) => {
-      assertSystemCapabilityArgs(args);
-      const executionFence = await authorizeSystemExecution(args, SYSTEM_CAPABILITY, { testMode: TEST_MODE });
-      return textResult(await runHostGuard('powershell', { ...args, executionFence }));
-    },
+    async (args) => textResult(await runAuthorizedMutation('powershell', args, callerIdentity, transportKind)),
   );
 
   return server;
@@ -289,5 +322,11 @@ process.on('unhandledRejection', (error) => {
   process.exit(1);
 });
 
-void serveStdio(createServer);
-console.error(`PTYSD Factory MCP ${VERSION} waiting on stdio`);
+const isDirectEntrypoint =
+  typeof process.argv[1] === 'string' &&
+  pathToFileURL(process.argv[1]).href === import.meta.url;
+
+if (isDirectEntrypoint) {
+  void serveStdio(() => createServer({ callerIdentity: null, transportKind: 'stdio' }));
+  console.error(`PTYSD Factory MCP ${VERSION} waiting on stdio (SYSTEM dispatch disabled without trusted mTLS caller)`);
+}

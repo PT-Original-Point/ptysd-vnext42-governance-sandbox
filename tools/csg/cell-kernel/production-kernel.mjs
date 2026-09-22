@@ -7,7 +7,28 @@ export {
 } from './execution-attempt.mjs';
 export {projectStatus,projectStatusSafe,STATUS_VIEWS} from './status-projection.mjs';
 export {evaluatePolicyRequest,POLICY_MIDDLEWARE_VERSION,EFFECT_CLASSES} from './policy-middleware.mjs';
-export {AUTHORIZATION_ENVELOPE_SCHEMA,HUMAN_RESERVATION_PERMIT_SCHEMA,AUTHORIZABLE_EFFECT_CLASSES,compileAuthorizationEnvelope,validateAuthorizationEnvelope,compileHumanReservationPermit,validateHumanReservationPermit,evaluateAuthorization} from './authorization-envelope.mjs';
+export {
+  AUTHORIZATION_ENVELOPE_V2_SCHEMA as AUTHORIZATION_ENVELOPE_SCHEMA,
+  AUTHORIZATION_STATE_SCHEMA,
+  HUMAN_RESERVATION_PERMIT_V2_SCHEMA as HUMAN_RESERVATION_PERMIT_SCHEMA,
+  AUTHORIZABLE_EFFECT_CLASSES_V2 as AUTHORIZABLE_EFFECT_CLASSES,
+  AUTHORIZATION_STATE_STATUSES,
+  compileAuthorizationEnvelopeV2 as compileAuthorizationEnvelope,
+  validateAuthorizationEnvelopeV2 as validateAuthorizationEnvelope,
+  compileAuthorizationState,validateAuthorizationState,advanceAuthorizationState,suspendAuthorizationState,
+  compileHumanReservationPermitV2 as compileHumanReservationPermit,
+  validateHumanReservationPermitV2 as validateHumanReservationPermit,
+  evaluateAuthorizationV2 as evaluateAuthorization,
+} from './authorization-envelope-v2.mjs';
+export {
+  AUTHORIZATION_ENVELOPE_SCHEMA as LEGACY_AUTHORIZATION_ENVELOPE_SCHEMA,
+  HUMAN_RESERVATION_PERMIT_SCHEMA as LEGACY_HUMAN_RESERVATION_PERMIT_SCHEMA,
+  compileAuthorizationEnvelope as compileLegacyAuthorizationEnvelope,
+  validateAuthorizationEnvelope as validateLegacyAuthorizationEnvelope,
+  compileHumanReservationPermit as compileLegacyHumanReservationPermit,
+  validateHumanReservationPermit as validateLegacyHumanReservationPermit,
+  evaluateAuthorization as evaluateLegacyAuthorization,
+} from './authorization-envelope.mjs';
 export {validateBoundedContract,MAX_TASKS,MAX_ATTEMPTS} from './legacy-contract-compat.mjs';
 export {validateResearchEnvelope,fetchResearchSourceSafely,validateResearchArtifacts} from './research-evidence.mjs';
 export {

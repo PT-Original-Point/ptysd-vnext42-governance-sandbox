@@ -1,0 +1,22 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://ptysd.invalid/schemas/csg/human-reservation-permit.v2.schema.json",
+  "title":"HumanReservationPermitV2",
+  "type":"object","additionalProperties":false,
+  "required":["schema","permit_id","permit_generation","project_id","mission_revision","mission_hash","action_id","authorization_id","authorization_generation","authorization_state_digest","human_authorization_ref","issued_at","permit_digest"],
+  "properties":{
+    "schema":{"const":"v49.human-reservation-permit.v2"},
+    "permit_id":{"type":"string","minLength":1,"maxLength":128},
+    "permit_generation":{"type":"integer","minimum":1,"maximum":2147483647},
+    "project_id":{"type":"string","minLength":1,"maxLength":128},
+    "mission_revision":{"type":"string","minLength":1,"maxLength":256},
+    "mission_hash":{"type":"string","pattern":"^sha256:[0-9a-f]{64}$"},
+    "action_id":{"type":"string","minLength":1,"maxLength":128},
+    "authorization_id":{"type":"string","minLength":1,"maxLength":128},
+    "authorization_generation":{"type":"integer","minimum":1,"maximum":2147483647},
+    "authorization_state_digest":{"type":"string","pattern":"^sha256:[0-9a-f]{64}$"},
+    "human_authorization_ref":{"type":"string","minLength":1,"maxLength":1024},
+    "issued_at":{"type":"string","minLength":1,"maxLength":128},
+    "permit_digest":{"type":"string","pattern":"^sha256:[0-9a-f]{64}$"}
+  }
+}

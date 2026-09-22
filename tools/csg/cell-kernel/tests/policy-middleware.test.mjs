@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { evaluatePolicyRequest } from '../policy-middleware.mjs';
 import { compileAuthorizationEnvelope,compileHumanReservationPermit } from '../authorization-envelope.mjs';
+import { compileAuthorizationEnvelopeV2,compileAuthorizationState,advanceAuthorizationState } from '../authorization-envelope-v2.mjs';
 
 const identity={project_id:'P',run_id:'R',task_id:'T',attempt_id:'A',attempt_epoch:1};
 const capability={schema:'v48.cell-capability.v1',...identity,owned_paths:['src'],read_paths:['docs'],forbidden_paths:['governance'],resource_limits:{cpu_millis:1000,memory_mib:512,pids:32,disk_mib:128,provider_calls:0,network_mode:'DENY'},data_class:['PUBLIC','SYNTHETIC'],model_profile_id:'M1',model_profile_revision:'R1',execution_authorized:false};
@@ -65,4 +66,44 @@ test('exact reservation permit is distinct from envelope and authorizes only exa
   const permit=compileHumanReservationPermit({permit_id:'PERMIT-001',project_id:'P',mission_revision:'M1',mission_hash:authMission.hash,action_id:'CODEX_LAST_MILE',human_authorization_ref:'canonical://human/codex',issued_at:'2026-09-21T05:32:00Z'},authMission);
   const x=evalReq({effect_class:'HUMAN_RESERVED',path:undefined,action_id:'CODEX_LAST_MILE',authorization_scope_tag:'CURRENT_MISSION_PLAN'},{authorization_envelope:envelope,current_mission:authMission,human_reservation_permit:permit});
   assert.equal(x.allow,true); assert.equal(x.human_authorization_required,false);
+});
+
+
+test('v2 cutover denies v1 authorization downgrade on mutation',()=>{
+  const legacy=compileAuthorizationEnvelope(authSource,authMission);
+  const cap={...capability,authorization_min_schema:'v49.authorization-envelope.v2'};
+  const x=evaluatePolicyRequest({
+    identity,capability:cap,
+    request:{...request(),effect_class:'LOCAL_EXECUTION',path:'src/x',action_id:'BUILD_TEST',authorization_scope_tag:'CURRENT_MISSION_PLAN'},
+    model_profile:model(),credential_profile:cred(),authorization_envelope:legacy,current_mission:authMission,now:'2026-09-18T00:00:00Z',
+  });
+  assert.equal(x.allow,false);
+  assert.ok(x.reason_codes.includes('AUTHORIZATION_PROTOCOL_DOWNGRADE_DENY'));
+});
+
+test('v2 cutover accepts current generation-aware envelope and state',()=>{
+  const initial=compileAuthorizationState({
+    project_id:'P',mission_revision:'M1',mission_hash:authMission.hash,status:'ACTIVE',
+    current_authorization_id:'AUTH-001',authorization_generation:1,previous_state_digest:null,supersedes:null,
+    revoked_authorization_ids:[],human_authorization_ref:'canonical://human/1',recorded_at:'2026-09-21T05:30:00Z',
+  },authMission);
+  const state=advanceAuthorizationState(initial,initial.state_digest,{
+    project_id:'P',mission_revision:'M1',mission_hash:authMission.hash,status:'ACTIVE',
+    current_authorization_id:'AUTH-002',authorization_generation:2,previous_state_digest:initial.state_digest,supersedes:'AUTH-001',
+    revoked_authorization_ids:['AUTH-001'],human_authorization_ref:'canonical://human/2',recorded_at:'2026-09-21T05:31:00Z',
+  },authMission);
+  const envelope=compileAuthorizationEnvelopeV2({
+    authorization_id:'AUTH-002',authorization_generation:2,supersedes:'AUTH-001',
+    project_id:'P',mission_revision:'M1',mission_hash:authMission.hash,valid_until_mission_revision:'M1',
+    scope_tags:['CURRENT_MISSION_PLAN'],allowed_mutation_classes:['LOCAL_EXECUTION'],forbidden_actions:[],human_reservations:[],
+    human_authorization_ref:'canonical://human/2',issued_at:'2026-09-21T05:31:00Z',revoked_at:null,revocation_ref:null,
+  },authMission);
+  const cap={...capability,authorization_min_schema:'v49.authorization-envelope.v2'};
+  const x=evaluatePolicyRequest({
+    identity,capability:cap,
+    request:{...request(),effect_class:'LOCAL_EXECUTION',path:'src/x',action_id:'BUILD_TEST',authorization_scope_tag:'CURRENT_MISSION_PLAN'},
+    model_profile:model(),credential_profile:cred(),authorization_envelope:envelope,authorization_state:state,current_mission:authMission,now:'2026-09-18T00:00:00Z',
+  });
+  assert.equal(x.allow,true);
+  assert.equal(x.authorization_generation,2);
 });

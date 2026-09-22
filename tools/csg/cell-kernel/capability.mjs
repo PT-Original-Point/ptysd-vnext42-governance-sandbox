@@ -6,6 +6,7 @@ const ID_RE=/^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$/;
 const WIN_RESERVED=/^(con|prn|aux|nul|com[1-9]|lpt[1-9])(?:\..*)?$/i;
 const CONTRACT_SCHEMA='v48.w47-06.execution-input.v1';
 const CAPABILITY_SCHEMA='v48.cell-capability.v1';
+const AUTHORIZATION_SCHEMA_RANK=new Map([['v49.authorization-envelope.v1',1],['v49.authorization-envelope.v2',2]]);
 
 const fail=(code,detail='')=>{throw new Error(detail?`${code}:${detail}`:code);};
 const stable=v=>Array.isArray(v)?v.map(stable):(v&&typeof v==='object'?Object.fromEntries(Object.keys(v).sort().map(k=>[k,stable(v[k])])):v);
@@ -45,6 +46,12 @@ function shrinkResources(requested,limit){
   if(networkRank(r.network_mode)>networkRank(limit.network_mode))fail('RESOURCE_WIDEN:network_mode'); out.network_mode=r.network_mode;
   return out;
 }
+function shrinkAuthorizationSchema(requested,allowed='v49.authorization-envelope.v1'){
+  const allowedRank=AUTHORIZATION_SCHEMA_RANK.get(allowed), requestedSchema=requested??allowed, requestedRank=AUTHORIZATION_SCHEMA_RANK.get(requestedSchema);
+  if(!allowedRank||!requestedRank)fail('INVALID_AUTHORIZATION_MIN_SCHEMA');
+  if(requestedRank<allowedRank)fail('AUTHORIZATION_SCHEMA_DOWNGRADE');
+  return requestedSchema;
+}
 function shrinkData(requested,allowed){
   if(!Array.isArray(allowed)||!allowed.length)fail('INVALID_DATA_CLASS'); const a=new Set(allowed);
   const r=requested??allowed; if(!Array.isArray(r)||!r.length)fail('INVALID_DATA_CLASS');
@@ -71,7 +78,8 @@ export function compileCellCapability(taskContract,currentFence){
   const dataClass=shrinkData(scope.data_class,taskContract.data_class);
   if(scope.model_profile_id!==undefined&&scope.model_profile_id!==taskContract.model_profile_id)fail('MODEL_PROFILE_WIDEN');
   const seed={contract_digest:taskContract.contract_digest,task_id:taskContract.task_id,attempt_id:taskContract.attempt_id,attempt_epoch:taskContract.attempt_epoch,fence_generation:fenceGeneration,expires_at:currentFence.expires_at};
-  const capability={schema:CAPABILITY_SCHEMA,project_id:taskContract.project_id,run_id:taskContract.run_id,root_task_id:taskContract.root_task_id,task_id:taskContract.task_id,attempt_id:taskContract.attempt_id,attempt_epoch:taskContract.attempt_epoch,spec_digest:taskContract.spec_digest,contract_digest:taskContract.contract_digest,base_commit:taskContract.base_commit,base_tree:taskContract.base_tree,owned_paths:owned,read_paths:read,forbidden_paths:forbidden,resource_limits:resources,model_profile_id:taskContract.model_profile_id,model_profile_revision:taskContract.model_profile_revision,data_class:dataClass,sandbox_profile:taskContract.sandbox_profile,expires_at:currentFence.expires_at,fence_generation:fenceGeneration,opaque_capability_id:`cap_${digest(seed).slice(7,39)}`,execution_authorized:taskContract.worker_dispatch_authorized===true&&taskContract.host_vm_execution_authorized===true&&taskContract.trust_gate_state==='SATISFIED'};
+  const authorizationMinSchema=shrinkAuthorizationSchema(scope.authorization_min_schema,taskContract.authorization_min_schema??'v49.authorization-envelope.v1');
+  const capability={schema:CAPABILITY_SCHEMA,project_id:taskContract.project_id,run_id:taskContract.run_id,root_task_id:taskContract.root_task_id,task_id:taskContract.task_id,attempt_id:taskContract.attempt_id,attempt_epoch:taskContract.attempt_epoch,spec_digest:taskContract.spec_digest,contract_digest:taskContract.contract_digest,base_commit:taskContract.base_commit,base_tree:taskContract.base_tree,owned_paths:owned,read_paths:read,forbidden_paths:forbidden,resource_limits:resources,model_profile_id:taskContract.model_profile_id,model_profile_revision:taskContract.model_profile_revision,data_class:dataClass,sandbox_profile:taskContract.sandbox_profile,authorization_min_schema:authorizationMinSchema,expires_at:currentFence.expires_at,fence_generation:fenceGeneration,opaque_capability_id:`cap_${digest(seed).slice(7,39)}`,execution_authorized:taskContract.worker_dispatch_authorized===true&&taskContract.host_vm_execution_authorized===true&&taskContract.trust_gate_state==='SATISFIED'};
   return {...capability,capability_digest:digest(capability)};
 }
 

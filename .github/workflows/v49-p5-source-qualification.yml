@@ -1,0 +1,148 @@
+name: V49 P5 Source Qualification
+
+on:
+  push:
+    branches:
+      - v49-p5-trusted-caller-authgen-candidate-20260921
+    paths:
+      - "tools/csg/factory-mcp/**"
+      - "tools/csg/cell-kernel/**"
+      - "schemas/csg/**"
+      - ".github/workflows/v49-p5-source-qualification.yml"
+  pull_request:
+    branches:
+      - v49/accepted-source
+    paths:
+      - "tools/csg/factory-mcp/**"
+      - "tools/csg/cell-kernel/**"
+      - "schemas/csg/**"
+      - ".github/workflows/v49-p5-source-qualification.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: v49-p5-source-qualification-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  qualify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: tools/csg/factory-mcp/package-lock.json
+      - name: Reproducible dependency install
+        working-directory: tools/csg/factory-mcp
+        run: npm ci --ignore-scripts
+      - name: JavaScript syntax gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          while IFS= read -r file; do
+            node --check "$file"
+          done < <(find tools/csg/factory-mcp/src tools/csg/factory-mcp/tests tools/csg/cell-kernel -type f -name '*.mjs' -print | sort)
+      - name: P5 regression suite
+        working-directory: tools/csg/factory-mcp
+        run: npm test
+      - name: Lockfile exactness
+        working-directory: tools/csg/factory-mcp
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f package-lock.json
+          node -e "const p=require('./package.json');const l=require('./package-lock.json');for(const [k,v] of Object.entries(p.dependencies||{})){if(l.packages?.['']?.dependencies?.[k]!==v)throw new Error('LOCK_MISMATCH:'+k)}"
+      - name: Production dependency audit
+        working-directory: tools/csg/factory-mcp
+        run: npm audit --omit=dev --audit-level=high
+      - name: Default branch authority regression
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse --abbrev-ref HEAD)" != "main" || { echo DEFAULT_BRANCH_IS_NOT_CONTROL_AUTHORITY; exit 1; }
+          grep -R --line-number --fixed-strings "refs/heads/v45/factory-control" tools/csg/factory-mcp >/dev/null
+
+  windows-one-shot:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: tools/csg/factory-mcp/package-lock.json
+      - name: Reproducible dependency install
+        working-directory: tools/csg/factory-mcp
+        run: npm ci --ignore-scripts
+      - name: Windows PowerShell parser gate
+        shell: powershell
+        run: |
+          $ErrorActionPreference = 'Stop'
+          Get-ChildItem -Path tools/csg/factory-mcp -Recurse -File -Filter *.ps1 | ForEach-Object {
+            $tokens = $null
+            $errors = $null
+            [Management.Automation.Language.Parser]::ParseFile($_.FullName,[ref]$tokens,[ref]$errors) | Out-Null
+            if ($errors.Count -gt 0) {
+              throw ('POWERSHELL_PARSE_FAILED:' + $_.FullName + ':' + (($errors | ForEach-Object { $_.Message }) -join ';'))
+            }
+          }
+      - name: Durable operation one-shot tests
+        shell: powershell
+        run: |
+          $ErrorActionPreference = 'Stop'
+          & powershell.exe -NoProfile -NonInteractive -ExecutionPolicy Bypass -File tools/csg/factory-mcp/tests/operation-claim.test.ps1
+          if ($LASTEXITCODE -ne 0) { throw 'OPERATION_CLAIM_TEST_FAILED' }
+      - name: Windows HTTPS mTLS staging harness
+        shell: powershell
+        working-directory: tools/csg/factory-mcp
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $env:P5_MTLS_FIXTURE_DIR = Join-Path $env:RUNNER_TEMP ('p5-mtls-windows-' + $PID)
+          node tests/windows-mtls-staging.mjs
+          if ($LASTEXITCODE -ne 0) { throw 'WINDOWS_MTLS_STAGING_HARNESS_FAILED' }
+      - name: Transparent trusted-caller all-mutation canary
+        shell: powershell
+        working-directory: tools/csg/factory-mcp
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $env:P5_TRUSTED_CANARY_DIR = Join-Path $env:RUNNER_TEMP ('p5-trusted-caller-' + $PID)
+          node tests/trusted-caller-live-canary.mjs
+          if ($LASTEXITCODE -ne 0) { throw 'TRUSTED_CALLER_LIVE_CANARY_FAILED' }
+
+  mtls-integration:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: tools/csg/factory-mcp/package-lock.json
+      - name: Reproducible dependency install
+        working-directory: tools/csg/factory-mcp
+        run: npm ci --ignore-scripts
+      - name: Generate ephemeral mTLS fixture
+        shell: bash
+        run: |
+          set -euo pipefail
+          d="$RUNNER_TEMP/p5-mtls"
+          mkdir -p "$d"
+          openssl req -x509 -newkey rsa:2048 -sha256 -nodes -days 1             -subj "/CN=PTYSD P5 Test CA"             -keyout "$d/ca.key" -out "$d/ca.crt"
+          openssl req -newkey rsa:2048 -sha256 -nodes             -subj "/CN=localhost"             -keyout "$d/server.key" -out "$d/server.csr"
+          printf '%s\n' 'subjectAltName=DNS:localhost,IP:127.0.0.1' 'extendedKeyUsage=serverAuth' > "$d/server.ext"
+          openssl x509 -req -sha256 -days 1 -in "$d/server.csr"             -CA "$d/ca.crt" -CAkey "$d/ca.key" -CAcreateserial             -extfile "$d/server.ext" -out "$d/server.crt"
+          openssl req -newkey rsa:2048 -sha256 -nodes             -subj "/CN=GOV-TUNNEL-001"             -keyout "$d/client.key" -out "$d/client.csr"
+          printf '%s\n' 'extendedKeyUsage=clientAuth' > "$d/client.ext"
+          openssl x509 -req -sha256 -days 1 -in "$d/client.csr"             -CA "$d/ca.crt" -CAkey "$d/ca.key" -CAserial "$d/ca.srl"             -extfile "$d/client.ext" -out "$d/client.crt"
+          openssl req -newkey rsa:2048 -sha256 -nodes             -subj "/CN=UNKNOWN-TUNNEL"             -keyout "$d/unknown.key" -out "$d/unknown.csr"
+          openssl x509 -req -sha256 -days 1 -in "$d/unknown.csr"             -CA "$d/ca.crt" -CAkey "$d/ca.key" -CAserial "$d/ca.srl"             -extfile "$d/client.ext" -out "$d/unknown.crt"
+          echo "P5_MTLS_FIXTURE_DIR=$d" >> "$GITHUB_ENV"
+      - name: Real HTTPS mTLS identity and revocation integration
+        working-directory: tools/csg/factory-mcp
+        run: node tests/http-mtls-integration.mjs

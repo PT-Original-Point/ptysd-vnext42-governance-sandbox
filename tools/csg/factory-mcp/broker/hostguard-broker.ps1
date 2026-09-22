@@ -4,9 +4,14 @@ param()
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 $mcpBase = 'C:\ProgramData\PTYSD\MCP'
-$root = Join-Path $mcpBase 'FactoryMCP'
-$tunnelTaskName = 'PTYSD-FactoryMCP-Tunnel-V47'
-$tunnelHealthUrlFile = Join-Path $mcpBase 'state\tunnel-health-url.txt'
+$root = [Environment]::GetEnvironmentVariable('PTYSD_FACTORY_MCP_ROOT','Process')
+if (-not $root) { $root = Join-Path $mcpBase 'FactoryMCP' }
+$tunnelTaskName = [Environment]::GetEnvironmentVariable('PTYSD_FACTORY_MCP_TUNNEL_TASK_NAME','Process')
+if (-not $tunnelTaskName) { $tunnelTaskName = 'PTYSD-FactoryMCP-Tunnel-V47' }
+$tunnelHealthUrlFile = [Environment]::GetEnvironmentVariable('PTYSD_FACTORY_MCP_TUNNEL_HEALTH_URL_FILE','Process')
+if (-not $tunnelHealthUrlFile) { $tunnelHealthUrlFile = Join-Path $mcpBase 'state\tunnel-health-url.txt' }
+$brokerMutexName = [Environment]::GetEnvironmentVariable('PTYSD_FACTORY_MCP_BROKER_MUTEX','Process')
+if (-not $brokerMutexName) { $brokerMutexName = 'Global\PTYSDFactoryMCPHostGuardBrokerV47' }
 $queue = Join-Path $root 'queue'
 $inbox = Join-Path $queue 'inbox'
 $processing = Join-Path $queue 'processing'
@@ -16,9 +21,12 @@ $health = Join-Path $state 'broker-health.json'
 $lastError = Join-Path $state 'broker-last-error.json'
 $execTemp = Join-Path $state 'exec-temp'
 $execReceipts = Join-Path $state 'exec-receipts'
+$operationClaims = Join-Path $state 'operation-claims'
 $modulePath = 'C:\Program Files\WindowsPowerShell\Modules\PTYSD.HostGuard\PTYSD.HostGuard.psd1'
 $hostExecHelperPath = Join-Path $root 'broker\host-powershell-exec.ps1'
 $systemFenceHelperPath = Join-Path $root 'broker\current-execution-fence.ps1'
+$trustedCallerHelperPath = Join-Path $root 'broker\trusted-caller.ps1'
+$operationClaimHelperPath = Join-Path $root 'broker\operation-claim.ps1'
 $systemCapabilityPath = Join-Path $root 'config\system-capability.json'
 $idPattern = '^[A-Z0-9][A-Z0-9._-]{0,79}$'
 $maxRequestBytes = 65536
@@ -27,7 +35,7 @@ $maxOutputBytes = 131072
 foreach ($path in @($inbox,$processing,$outbox,$state)) {
   if (-not (Test-Path -LiteralPath $path)) { throw ('BROKER_PATH_MISSING:' + $path) }
 }
-foreach ($path in @($execTemp,$execReceipts)) {
+foreach ($path in @($execTemp,$execReceipts,$operationClaims)) {
   if (-not (Test-Path -LiteralPath $path)) {
     New-Item -ItemType Directory -Path $path -Force | Out-Null
   }
@@ -35,6 +43,8 @@ foreach ($path in @($execTemp,$execReceipts)) {
 if (-not (Test-Path -LiteralPath $modulePath)) { throw 'HOSTGUARD_MODULE_MISSING' }
 if (-not (Test-Path -LiteralPath $hostExecHelperPath)) { throw 'HOST_EXEC_HELPER_MISSING' }
 if (-not (Test-Path -LiteralPath $systemFenceHelperPath)) { throw 'SYSTEM_FENCE_HELPER_MISSING' }
+if (-not (Test-Path -LiteralPath $trustedCallerHelperPath)) { throw 'TRUSTED_CALLER_HELPER_MISSING' }
+if (-not (Test-Path -LiteralPath $operationClaimHelperPath)) { throw 'OPERATION_CLAIM_HELPER_MISSING' }
 if (-not (Test-Path -LiteralPath $systemCapabilityPath)) { throw 'SYSTEM_CAPABILITY_CONFIG_MISSING' }
 $systemCapability = Get-Content -LiteralPath $systemCapabilityPath -Raw | ConvertFrom-Json -ErrorAction Stop
 if (
@@ -52,9 +62,11 @@ if (
 Import-Module $modulePath -Force -ErrorAction Stop
 . $hostExecHelperPath
 . $systemFenceHelperPath
+. $trustedCallerHelperPath
+. $operationClaimHelperPath
 
 $createdNew = $false
-$mutex = New-Object Threading.Mutex($true, 'Global\PTYSDFactoryMCPHostGuardBrokerV47', [ref]$createdNew)
+$mutex = New-Object Threading.Mutex($true, $brokerMutexName, [ref]$createdNew)
 if (-not $createdNew) { throw 'BROKER_ALREADY_RUNNING' }
 
 $script:activePowerShellJobs = @{}
@@ -110,7 +122,9 @@ function Assert-SystemCapabilityRequest {
   }
   if (-not $taskOk) { throw 'SYSTEM_CAPABILITY_TASK_DENY' }
   if ([int]$Request.timeout_seconds -gt [int]$systemCapability.max_timeout_seconds) { throw 'SYSTEM_CAPABILITY_TIMEOUT_DENY' }
-  [void](Assert-PTYSDCurrentSystemExecutionFence -Request $Request -SystemCapability $systemCapability)
+  $fenceContext = Assert-PTYSDCurrentSystemExecutionFence -Request $Request -SystemCapability $systemCapability
+  $callerClaims = Assert-PTYSDTrustedCallerAttestation -Request $Request -FenceContext $fenceContext
+  return [pscustomobject]@{ fence_context=$fenceContext; caller_claims=$callerClaims }
 }
 
 function Get-LatestHostExecReceipt {
@@ -165,7 +179,7 @@ function Reconcile-OrphanedStartedReceipts {
             $responsePath = Join-Path $outbox ($requestId + '.json')
             if (-not (Test-Path -LiteralPath $responsePath)) {
               $response = [ordered]@{
-                schema='v48.factory-mcp.hostguard.response.v2'; request_id=$requestId; ok=$true; error_code=$null
+                schema='v49.factory-mcp.hostguard.response.v3'; request_id=$requestId; ok=$true; error_code=$null
                 result=[ordered]@{
                   schema='v48.factory-mcp.host-exec.result.v2'; operation='powershell'; result='ORPHANED'; request_id=$requestId
                   project_id=[string]$receipt.project_id; capability_id=[string]$receipt.capability_id; run_id=[string]$receipt.run_id; task_id=[string]$receipt.task_id; attempt_id=[string]$receipt.attempt_id; attempt_epoch=[int]$receipt.attempt_epoch
@@ -505,6 +519,8 @@ function Start-BrokerPowerShell {
     control_oid=[string]$Request.control_oid
     checkpoint_digest=[string]$Request.checkpoint_digest
     authorization_envelope_digest=[string]$Request.authorization_envelope_digest
+    authorization_generation=[int64]$Request.authorization_generation
+    authorization_state_digest=[string]$Request.authorization_state_digest
     capability_generation=[int64]$Request.capability_generation
     run_id=[string]$Request.run_id
     task_id=[string]$Request.task_id
@@ -560,6 +576,8 @@ function Start-BrokerPowerShell {
       control_oid=[string]$Request.control_oid
       checkpoint_digest=[string]$Request.checkpoint_digest
       authorization_envelope_digest=[string]$Request.authorization_envelope_digest
+      authorization_generation=[int64]$Request.authorization_generation
+      authorization_state_digest=[string]$Request.authorization_state_digest
       capability_generation=[int64]$Request.capability_generation
       run_id=[string]$Request.run_id
       task_id=[string]$Request.task_id
@@ -592,7 +610,7 @@ function Complete-OnePowerShellJob {
     }
     Write-AtomicJson -Path ([string]$ctx.receipt_path) -Value $receipt
     $response = [ordered]@{
-      schema='v48.factory-mcp.hostguard.response.v2'; request_id=[string]$ctx.request_id; ok=$true; error_code=$null
+      schema='v49.factory-mcp.hostguard.response.v3'; request_id=[string]$ctx.request_id; ok=$true; error_code=$null
       result=[ordered]@{
         schema='v48.factory-mcp.host-exec.result.v2'; operation='powershell'; result='TIMED_OUT'; request_id=[string]$ctx.request_id
         project_id=[string]$ctx.project_id; capability_id=[string]$ctx.capability_id; operation_id=[string]$ctx.operation_id; control_oid=[string]$ctx.control_oid; checkpoint_digest=[string]$ctx.checkpoint_digest; authorization_envelope_digest=[string]$ctx.authorization_envelope_digest; capability_generation=[int64]$ctx.capability_generation; run_id=[string]$ctx.run_id; task_id=[string]$ctx.task_id; attempt_id=[string]$ctx.attempt_id; attempt_epoch=[int]$ctx.attempt_epoch
@@ -609,7 +627,7 @@ function Complete-OnePowerShellJob {
   }
   $deferred = $false
   $response = [ordered]@{
-    schema = 'v48.factory-mcp.hostguard.response.v2'
+    schema = 'v49.factory-mcp.hostguard.response.v3'
     request_id = [string]$ctx.request_id
     ok = $false
     error_code = 'POWERSHELL_EXEC_ASYNC_FAILED'
@@ -750,7 +768,7 @@ function Process-Request {
   $responsePath = Join-Path $outbox ($requestId + '.json')
   $deferred = $false
   $response = [ordered]@{
-    schema = 'v48.factory-mcp.hostguard.response.v2'
+    schema = 'v49.factory-mcp.hostguard.response.v3'
     request_id = $requestId
     ok = $false
     error_code = 'INVALID_REQUEST'
@@ -762,7 +780,7 @@ function Process-Request {
     if ($requestId -notmatch '^[0-9a-f]{32}$') { throw 'REQUEST_ID_INVALID' }
     if ($File.Length -gt $maxRequestBytes) { throw 'REQUEST_TOO_LARGE' }
     $req = Get-Content -LiteralPath $File.FullName -Raw | ConvertFrom-Json -ErrorAction Stop
-    if ($req.schema -ne 'v48.factory-mcp.hostguard.request.v2') { throw 'REQUEST_SCHEMA_INVALID' }
+    if ($req.schema -ne 'v49.factory-mcp.hostguard.request.v3') { throw 'REQUEST_SCHEMA_INVALID' }
     if ($req.request_id -ne $requestId) { throw 'REQUEST_ID_MISMATCH' }
     if ($req.operation -notin @('status','prepare','start','powershell')) { throw 'OPERATION_INVALID' }
     if ($req.operation -eq 'status') {
@@ -773,8 +791,14 @@ function Process-Request {
     if ($req.operation -ne 'status') {
       if (-not (Test-Id $req.run_id) -or -not (Test-Id $req.task_id) -or -not (Test-Id $req.attempt_id)) { throw 'ID_INVALID' }
     }
-    if ($req.operation -eq 'powershell') {
-      Assert-SystemCapabilityRequest -Request $req
+    $dispatchClaim = $null
+    if ($req.operation -ne 'status') {
+      $systemAuth = Assert-SystemCapabilityRequest -Request $req
+      $req | Add-Member -NotePropertyName caller_id -NotePropertyValue ([string]$systemAuth.caller_claims.caller_id) -Force
+      $req | Add-Member -NotePropertyName caller_identity_digest -NotePropertyValue ([string]$systemAuth.caller_claims.caller_identity_digest) -Force
+      $req | Add-Member -NotePropertyName caller_certificate_sha256 -NotePropertyValue ([string]$systemAuth.caller_claims.certificate_sha256) -Force
+      $req | Add-Member -NotePropertyName caller_identity_generation -NotePropertyValue ([int64]$systemAuth.caller_claims.identity_generation) -Force
+      $dispatchClaim = Acquire-PTYSDOperationDispatchClaim -Request $req -RequestId $requestId -ClaimsRoot $operationClaims
     }
 
     switch ([string]$req.operation) {
@@ -799,6 +823,13 @@ function Process-Request {
         $result = $null
       }
     }
+    if ($req.operation -ne 'status' -and -not $deferred -and $null -ne $result) {
+      $result | Add-Member -NotePropertyName project_id -NotePropertyValue ([string]$req.project_id) -Force
+      $result | Add-Member -NotePropertyName operation_id -NotePropertyValue ([string]$req.operation_id) -Force
+      $result | Add-Member -NotePropertyName authorization_generation -NotePropertyValue ([int64]$req.authorization_generation) -Force
+      $result | Add-Member -NotePropertyName authorization_state_digest -NotePropertyValue ([string]$req.authorization_state_digest) -Force
+      $result | Add-Member -NotePropertyName dispatch_claim_key -NotePropertyValue ([string]$dispatchClaim.key) -Force
+    }
 
     $response.ok = $true
     $response.error_code = $null
@@ -818,6 +849,9 @@ function Process-Request {
       '^POWERSHELL_' { $safeMessage; break }
       '^SYSTEM_CAPABILITY_' { $safeMessage; break }
       '^SYSTEM_FENCE_' { $safeMessage; break }
+      '^TRUSTED_CALLER_' { $safeMessage; break }
+      '^OPERATION_ALREADY_DISPATCHED' { 'OPERATION_ALREADY_DISPATCHED'; break }
+      '^OPERATION_CLAIM_' { $safeMessage; break }
       '^STATUS_PROBE_INVALID' { 'STATUS_PROBE_INVALID'; break }
       '^REQUEST_' { $safeMessage; break }
       '^OPERATION_INVALID' { 'OPERATION_INVALID'; break }
