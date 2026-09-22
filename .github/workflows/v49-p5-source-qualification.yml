@@ -71,6 +71,14 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: tools/csg/factory-mcp/package-lock.json
+      - name: Reproducible dependency install
+        working-directory: tools/csg/factory-mcp
+        run: npm ci --ignore-scripts
       - name: Windows PowerShell parser gate
         shell: powershell
         run: |
@@ -89,6 +97,14 @@ jobs:
           $ErrorActionPreference = 'Stop'
           & powershell.exe -NoProfile -NonInteractive -ExecutionPolicy Bypass -File tools/csg/factory-mcp/tests/operation-claim.test.ps1
           if ($LASTEXITCODE -ne 0) { throw 'OPERATION_CLAIM_TEST_FAILED' }
+      - name: Windows HTTPS mTLS staging harness
+        shell: powershell
+        working-directory: tools/csg/factory-mcp
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $env:P5_MTLS_FIXTURE_DIR = Join-Path $env:RUNNER_TEMP ('p5-mtls-windows-' + $PID)
+          node tests/windows-mtls-staging.mjs
+          if ($LASTEXITCODE -ne 0) { throw 'WINDOWS_MTLS_STAGING_HARNESS_FAILED' }
 
   mtls-integration:
     runs-on: ubuntu-latest
