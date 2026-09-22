@@ -129,6 +129,7 @@ function modernToolCall(port, ca, name, args, { cert, key }) {
     headers: {
       'mcp-protocol-version': '2026-07-28',
       'mcp-method': 'tools/call',
+      'mcp-name': name,
     },
   });
 }
