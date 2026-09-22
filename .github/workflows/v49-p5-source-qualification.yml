@@ -105,6 +105,14 @@ jobs:
           $env:P5_MTLS_FIXTURE_DIR = Join-Path $env:RUNNER_TEMP ('p5-mtls-windows-' + $PID)
           node tests/windows-mtls-staging.mjs
           if ($LASTEXITCODE -ne 0) { throw 'WINDOWS_MTLS_STAGING_HARNESS_FAILED' }
+      - name: Transparent trusted-caller all-mutation canary
+        shell: powershell
+        working-directory: tools/csg/factory-mcp
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $env:P5_TRUSTED_CANARY_DIR = Join-Path $env:RUNNER_TEMP ('p5-trusted-caller-' + $PID)
+          node tests/trusted-caller-live-canary.mjs
+          if ($LASTEXITCODE -ne 0) { throw 'TRUSTED_CALLER_LIVE_CANARY_FAILED' }
 
   mtls-integration:
     runs-on: ubuntu-latest
