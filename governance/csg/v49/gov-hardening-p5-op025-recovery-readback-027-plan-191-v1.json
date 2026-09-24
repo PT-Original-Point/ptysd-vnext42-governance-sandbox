@@ -1,0 +1,390 @@
+{
+  "schema": "vnext5.r3.op025.recovery-readback-candidate-plan.v1",
+  "classification": "LOCAL_NONCANONICAL_CANDIDATE_NOT_ACCEPTED_SOURCE",
+  "current_atomic_unit": "R3-07-OP025-RECOVERY-READBACK-TRANSITION-CANDIDATE",
+  "recorded_at_utc": "2026-09-24T00:06:26Z",
+  "canonical_base": {
+    "ref": "refs/heads/v45/factory-control",
+    "commit": "209e0ad9040a08965a49109e18f783cfd9c7c7f4",
+    "checkpoint_seq": 190,
+    "checkpoint_path": "governance/csg/checkpoints/000190.json",
+    "checkpoint_digest": "sha256:7925c06ea87b9cd98cdd8b45fb8fe0766a99abd6cb520a76890749afce02dd2e"
+  },
+  "proposed_transition": {
+    "checkpoint_seq": 191,
+    "transition_id": "GOV-HARDENING-P5-OP025-RECOVERY-READBACK-191",
+    "attempt_id": "GOV-HARDENING-P5-ATTEMPT-068",
+    "attempt_epoch": 68,
+    "operation_id": "GOV-HARDENING-P5-OP025-RECEIPT-READBACK-027",
+    "operation_kind": "HOST_POWERSHELL",
+    "script_path": "governance/csg/v49/scripts/gov-hardening-p5-op025-receipt-readback-027.ps1",
+    "script_sha256": "sha256:92573521a5a4c7165884613397153b0116af0d0e6e982978a8434a9a057ef1d9",
+    "dispatchable": false,
+    "execution_fence_state": "NOT_ARMED_JIT_REQUIRED",
+    "execution_fence_in_checkpoint": null,
+    "execution_fence_property_present": true,
+    "later_jit_fence_identity": {
+      "required_before_operation027_dispatch": true,
+      "dispatchable_from_checkpoint_191": false,
+      "checkpoint_191_execution_fence": null,
+      "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+      "mission_anchor": {
+        "ref": "github://1352411536/governance/v49/current-mission.json@c57dd50c9c27b217fbd6dd2e4b38c7f7a3ddcd18",
+        "revision": "20260919T010100+0800",
+        "declared_hash": "sha256:58f21a0818bd60b61929925b38ea8507d5b80c09d816a7b6f5a75d2a410d542b",
+        "canonicalization_version": "HUMAN_TEXT_V1"
+      },
+      "policy_anchor": {
+        "ref": "github://1352411536/governance/v49/current-execution-policy.json@c57dd50c9c27b217fbd6dd2e4b38c7f7a3ddcd18",
+        "revision": "20260919T010100+0800-EP71",
+        "declared_hash": "sha256:0dc535adfcf8c0bf1c12b1ff5e5191f5b74f267143403a41d77d626889eba861",
+        "canonicalization_version": "HUMAN_TEXT_V1"
+      },
+      "authorization_envelope_digest": "sha256:cb614427a0a1755d002cd035f50d33b18208bab7e5a9d8efc42dfbc7c4d99d14",
+      "capability_generation": 4,
+      "operation_id": "GOV-HARDENING-P5-OP025-RECEIPT-READBACK-027",
+      "attempt_id": "GOV-HARDENING-P5-ATTEMPT-068",
+      "attempt_epoch": 68,
+      "script_sha256": "sha256:92573521a5a4c7165884613397153b0116af0d0e6e982978a8434a9a057ef1d9",
+      "exact_identity_match_required": true
+    }
+  },
+  "inherited_authority_baseline": {
+    "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+    "project_directory_binding_id": "CSG-GOVERNANCE-BINDING-V2",
+    "project_directory_binding_generation": 2,
+    "mission_anchor": {
+      "ref": "github://1352411536/governance/v49/current-mission.json@c57dd50c9c27b217fbd6dd2e4b38c7f7a3ddcd18",
+      "revision": "20260919T010100+0800",
+      "declared_hash": "sha256:58f21a0818bd60b61929925b38ea8507d5b80c09d816a7b6f5a75d2a410d542b",
+      "canonicalization_version": "HUMAN_TEXT_V1"
+    },
+    "policy_anchor": {
+      "ref": "github://1352411536/governance/v49/current-execution-policy.json@c57dd50c9c27b217fbd6dd2e4b38c7f7a3ddcd18",
+      "revision": "20260919T010100+0800-EP71",
+      "declared_hash": "sha256:0dc535adfcf8c0bf1c12b1ff5e5191f5b74f267143403a41d77d626889eba861",
+      "canonicalization_version": "HUMAN_TEXT_V1"
+    },
+    "authorization_envelope_digest": "sha256:cb614427a0a1755d002cd035f50d33b18208bab7e5a9d8efc42dfbc7c4d99d14",
+    "capability_generation": 4,
+    "source_authorization_mode": {
+      "mode": "DURABLE_AUTHORIZATION_ENVELOPE",
+      "envelope_ref": {
+        "kind": "BUNDLE_OBJECT",
+        "path": "governance/csg/v49/authorization-envelope-current.json",
+        "digest": "sha256:cb614427a0a1755d002cd035f50d33b18208bab7e5a9d8efc42dfbc7c4d99d14"
+      },
+      "do_not_reask_for": [
+        "REVERSIBLE_BOUNDED_PLAN_INTERNAL_REPAIRS",
+        "QUALIFIED_ACCEPTED_SOURCE_DEPLOYMENTS_WITH_EXACT_FENCE_READBACK_ROLLBACK",
+        "GOVERNANCE_HARDENING_WITHIN_CURRENT_MISSION"
+      ],
+      "human_reserved": [
+        "MISSION_CHANGE",
+        "PRODUCTION_FINAL_AUTHORIZATION",
+        "NEW_COST_OR_PAID_FALLBACK",
+        "LEGAL_OR_FINANCIAL_OR_SIGNATURE",
+        "OAUTH_OR_MFA",
+        "MAJOR_IRREVERSIBLE_OR_HIGH_RISK",
+        "TRULY_MISSING_REAL_WORLD_INFO",
+        "CODEX_LAST_MILE"
+      ],
+      "barrier": "ACTIVE_UNIT",
+      "recorded_at": "2026-09-22T13:08:00Z",
+      "evidence_refs": [
+        {
+          "kind": "BUNDLE_OBJECT",
+          "path": "governance/csg/v49/gov-hardening-p5-trusted-caller-live-canary-003-outer-parse-unknown-174-v1.json",
+          "digest": "sha256:97d98c0d24adf7a3617c0231d3d862ac002f541b02c70086afc2a29d12cbb62e"
+        },
+        {
+          "kind": "BUNDLE_OBJECT",
+          "path": "governance/csg/v49/scripts/gov-hardening-p5-trusted-caller-live-canary-003-readback-013.ps1",
+          "digest": "sha256:b461c8aa386182543d96cd6bc907828dfd2280fe7b3eb1620b6f49538002736f"
+        },
+        {
+          "kind": "BUNDLE_OBJECT",
+          "path": "governance/csg/v49/gov-hardening-p5-trusted-caller-receipt-reconciliation-175-v1.json",
+          "digest": "sha256:34e65b1b06666a09769d31ae6b1e92acae7129cd838c9aa30c7a609a21503104"
+        },
+        {
+          "kind": "BUNDLE_OBJECT",
+          "path": "governance/csg/v49/scripts/gov-hardening-p5-trusted-caller-receipt-readback-014.ps1",
+          "digest": "sha256:f9b6ed4c98bf6427074d0254493e57e6e75e3010db5fbbb793d6c024591483c4"
+        },
+        {
+          "kind": "BUNDLE_OBJECT",
+          "path": "governance/csg/v49/gov-hardening-p5-trusted-caller-readback-014-diagnostic-invalid-176-v1.json",
+          "digest": "sha256:abdbe77bc6d781ed8165d753c6072a8994730e1f05fb3fdbdf46460cebc5c563"
+        },
+        {
+          "kind": "BUNDLE_OBJECT",
+          "path": "governance/csg/v49/scripts/gov-hardening-p5-trusted-caller-receipt-readback-015.ps1",
+          "digest": "sha256:9cfab96b5de113abfa8adfe2f43947720fe6a7b4a1ae88bfa3eabef381333a8c"
+        },
+        {
+          "kind": "BUNDLE_OBJECT",
+          "path": "governance/csg/v49/gov-hardening-p5-trusted-caller-canary-003-reconciled-177-v1.json",
+          "digest": "sha256:5090b1472178b37239cd1736987e6dc370e37403ff20cd3d02a29feb5d4a70d2"
+        },
+        {
+          "kind": "BUNDLE_OBJECT",
+          "path": "governance/csg/v49/gov-hardening-p5-transparent-trusted-caller-ci-qualified-178-v1.json",
+          "digest": "sha256:036531fb9febc03a00814934b055252a8952129d97074d89326521c5797cd4a1"
+        },
+        {
+          "kind": "BUNDLE_OBJECT",
+          "path": "governance/csg/v49/scripts/gov-hardening-p5-trusted-caller-live-canary-004.ps1",
+          "digest": "sha256:21a30c6e8ed084b0e99cddf7e12169d7b958a82f7646bda62cb950fb1343c15b"
+        },
+        {
+          "kind": "BUNDLE_OBJECT",
+          "path": "governance/csg/v49/gov-hardening-p5-trusted-caller-live-canary-004-pass-179-v1.json",
+          "digest": "sha256:2ed9452b05cc9d3030c4fd50e09e5ea9eacbd6aab262265a5475359371de9354"
+        },
+        {
+          "kind": "BUNDLE_OBJECT",
+          "path": "governance/csg/v49/gov-hardening-p5-dedicated-tunnel-capability-probe-plan-180-v1.json",
+          "digest": "sha256:2f4d5b6352a881c66934ac9cc25e9daeadadf06ee40847127a2d2e4d99336364"
+        },
+        {
+          "kind": "BUNDLE_OBJECT",
+          "path": "governance/csg/v49/scripts/gov-hardening-p5-dedicated-tunnel-capability-readback-016.ps1",
+          "digest": "sha256:7f31ed0f5be557a5cbfb00d3b1567dc04e7a004af54d7592906f5d2869a12dc9"
+        },
+        {
+          "kind": "BUNDLE_OBJECT",
+          "path": "governance/csg/v49/gov-hardening-p5-dedicated-tunnel-capability-reconcile-181-v1.json",
+          "digest": "sha256:4d7854d11d43d246e7cf8897b06c2d74205db79d4736cdef42071549e8c9ed88"
+        },
+        {
+          "kind": "BUNDLE_OBJECT",
+          "path": "governance/csg/v49/scripts/gov-hardening-p5-dedicated-tunnel-capability-readback-017.ps1",
+          "digest": "sha256:00a94d94ac88d97261db5eef9d8ccd7dc913d9ede8ce2ab66d65bbb95b372644"
+        },
+        {
+          "kind": "BUNDLE_OBJECT",
+          "path": "governance/csg/v49/gov-hardening-p5-dedicated-tunnel-capability-readback-017-result-v1.json",
+          "digest": "sha256:14ca310e05273176c75ccfc610a10c5191dab644800259ba343d91ec14005191"
+        },
+        {
+          "kind": "BUNDLE_OBJECT",
+          "path": "governance/csg/v49/scripts/gov-hardening-p5-dedicated-tunnel-cli-capability-readback-018.ps1",
+          "digest": "sha256:711c7b2f971ee7f034ce6ba9a67c63c9cd9d7ff3974edc2dc26fff0f6ad12562"
+        },
+        {
+          "kind": "BUNDLE_OBJECT",
+          "path": "governance/csg/v49/gov-hardening-p5-tunnel-cli-capability-018-outer-parse-unknown-183-v1.json",
+          "digest": "sha256:01ac65a552608ce646645887a2c91729dad5ed3032b43652571b58abb748418a"
+        },
+        {
+          "kind": "BUNDLE_OBJECT",
+          "path": "governance/csg/v49/scripts/gov-hardening-p5-dedicated-tunnel-cli-capability-receipt-readback-019.ps1",
+          "digest": "sha256:9965d5282a0c7a0e1f2ea5cbd628c281c08a5530c1d959e85c15cd35465f7743"
+        },
+        {
+          "kind": "BUNDLE_OBJECT",
+          "path": "governance/csg/v49/gov-hardening-p5-tunnel-cli-capability-018-receipt-reconciled-184-v1.json",
+          "digest": "sha256:3a8e96400c1b7c0d1563a5e7503402ad47893a798aee97e147a7227a03d89702"
+        },
+        {
+          "kind": "BUNDLE_OBJECT",
+          "path": "governance/csg/v49/scripts/gov-hardening-p5-tunnel-cli-capability-stderr-readback-020.ps1",
+          "digest": "sha256:1c962280e9911b21bf6122b046983bd28550d363caed25a2e996b3a758ef94e1"
+        },
+        {
+          "kind": "BUNDLE_OBJECT",
+          "path": "governance/csg/v49/gov-hardening-p5-tunnel-cli-capability-020-stderr-not-in-receipt-185-v1.json",
+          "digest": "sha256:17cdbf7bf69013bb0904231a4810d29cb833ab698fb75147942d7c1bfcfbd2da"
+        },
+        {
+          "kind": "BUNDLE_OBJECT",
+          "path": "governance/csg/v49/scripts/gov-hardening-p5-exec-artifact-locator-readback-021.ps1",
+          "digest": "sha256:97e959b6f92d39d45ab7c3b6bea4b341c287ebbcd56aaec4a1e4a4814450e5ab"
+        },
+        {
+          "kind": "BUNDLE_OBJECT",
+          "path": "governance/csg/v49/gov-hardening-p5-exec-artifact-locator-021-parser-fail-186-v1.json",
+          "digest": "sha256:def207bd6d8d7e65d7ee765beee915307b09375fb656379689068bb4b2d34a2f"
+        },
+        {
+          "kind": "BUNDLE_OBJECT",
+          "path": "governance/csg/v49/scripts/gov-hardening-p5-exec-artifact-locator-readback-022.ps1",
+          "digest": "sha256:2fd2fcb926cd5c389d86ece360eb3a28c7e468b7826a89229fcd1af97d2cf817"
+        },
+        {
+          "kind": "BUNDLE_OBJECT",
+          "path": "governance/csg/v49/gov-hardening-p5-exec-artifact-locator-022-pass-187-v1.json",
+          "digest": "sha256:75b71e262f240757772a921fe4619890d59e4cebfa47d22003971f8dc19e4021"
+        },
+        {
+          "kind": "BUNDLE_OBJECT",
+          "path": "governance/csg/v49/scripts/gov-hardening-p5-host-powershell-exec-source-readback-023.ps1",
+          "digest": "sha256:54d6bd6850b6dbcc43bcadbe55e6b2d1ea309c11832bd358ca01b974afc1abfe"
+        },
+        {
+          "kind": "BUNDLE_OBJECT",
+          "path": "governance/csg/v49/gov-hardening-p5-host-powershell-exec-source-readback-023-pass-188-v1.json",
+          "digest": "sha256:33e9728aa9c2d14b0a2ac41a51ca88b2df98aa4d1c0c35469af5998eaa84d48b"
+        },
+        {
+          "kind": "BUNDLE_OBJECT",
+          "path": "governance/csg/v49/scripts/gov-hardening-p5-hostguard-broker-source-readback-024.ps1",
+          "digest": "sha256:1b2e3d485928b90e0a4eb38c34d5a823ee1c7be3a3f85bf80e1bdf641fae4c72"
+        },
+        {
+          "kind": "BUNDLE_OBJECT",
+          "path": "governance/csg/v49/gov-hardening-p5-hostguard-broker-source-readback-024-pass-189-v1.json",
+          "digest": "sha256:dab467cb91bd713baced62e3540e16d7c21248d15a4bf921f98838496853f905"
+        },
+        {
+          "kind": "BUNDLE_OBJECT",
+          "path": "governance/csg/v49/scripts/gov-hardening-p5-tunnel-cli-capability-probe-025.ps1",
+          "digest": "sha256:26c8e830f9c57f4bd1f483dfb60c13e8843be739a29dd2d776057f0eb2398b09"
+        }
+      ]
+    },
+    "authority_reuse_as_new_permit": false
+  },
+  "event": {
+    "type": "ATOMIC_STARTED",
+    "reason_code": "OP025_HISTORICAL_OUTCOME_UNKNOWN_READBACK_ONLY_RECOVERY",
+    "schema_note": "The immutable base validator event enum excludes RECOVERY_READBACK_REARMED. This candidate uses the allowed ATOMIC_STARTED type and exact recovery-only reason; it makes no PASS claim."
+  },
+  "recovery_scope": {
+    "historical_operation_id": "GOV-HARDENING-P5-TUNNEL-CLI-CAPABILITY-PROBE-025",
+    "historical_script_sha256": "sha256:26c8e830f9c57f4bd1f483dfb60c13e8843be739a29dd2d776057f0eb2398b09",
+    "target_runtime": "C:\\ProgramData\\PTYSD\\MCP\\tunnel\\v0.0.14\\tunnel-client.exe",
+    "receipt_directory": "C:\\ProgramData\\PTYSD\\MCP\\FactoryMCP\\state\\exec-receipts",
+    "outbox_directory": "C:\\ProgramData\\PTYSD\\MCP\\FactoryMCP\\queue\\outbox",
+    "receipt_search": {
+      "nonrecursive": true,
+      "maximum_files": 1500,
+      "maximum_file_bytes": 1048576,
+      "exact_operation_id_first": true,
+      "parse_only_exact_matches": true,
+      "outbox_lookup": "exact request_id filename only"
+    },
+    "output_fields": {
+      "historical_execution_outcome": [
+        "PROVEN_COMPLETED",
+        "PROVEN_FAILED",
+        "PROVEN_TIMED_OUT",
+        "PROVEN_ORPHANED",
+        "AMBIGUOUS",
+        "NO_RECEIPT_FOUND",
+        "MALFORMED_EVIDENCE"
+      ],
+      "current_target_state": [
+        "VERIFIED",
+        "NOT_VERIFIED"
+      ],
+      "runtime_present": "boolean",
+      "runtime_sha256": "sha256 hex or null",
+      "op025_redispatch_performed": false,
+      "runtime_expected_sha256_pinned": "boolean"
+    },
+    "output_policy": {
+      "no_raw_stdout": true,
+      "no_raw_stderr": true,
+      "no_secrets": true,
+      "no_file_mutation": true,
+      "live_cli_probe_performed": false
+    },
+    "expected_receipt_identity": {
+      "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+      "operation_id": "GOV-HARDENING-P5-TUNNEL-CLI-CAPABILITY-PROBE-025",
+      "run_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE-QUAL-P5",
+      "task_id": "GOV-HARDENING-P5",
+      "attempt_id": "GOV-HARDENING-P5-ATTEMPT-067",
+      "attempt_epoch": 67,
+      "control_oid": "209e0ad9040a08965a49109e18f783cfd9c7c7f4",
+      "checkpoint_digest": "sha256:7925c06ea87b9cd98cdd8b45fb8fe0766a99abd6cb520a76890749afce02dd2e",
+      "authorization_envelope_digest": "sha256:cb614427a0a1755d002cd035f50d33b18208bab7e5a9d8efc42dfbc7c4d99d14",
+      "capability_generation": 4,
+      "script_sha256": "26c8e830f9c57f4bd1f483dfb60c13e8843be739a29dd2d776057f0eb2398b09"
+    },
+    "missing_or_mismatching_required_identity": "MALFORMED_EVIDENCE",
+    "schema_and_operation_class_policy": {
+      "schema_field": "If present, require a bounded nonempty string receipt schema identifier; null, nonstring, malformed, or nonreceipt values are MALFORMED_EVIDENCE.",
+      "schema_version_if_present": "Require a bounded nonempty string when the field is present; null, nonstring, empty, or malformed values are MALFORMED_EVIDENCE.",
+      "operation_kind_if_present": "HOST_POWERSHELL",
+      "operation_class_if_present": "HOST_POWERSHELL",
+      "malformed_present_optional_identity_metadata": "MALFORMED_EVIDENCE",
+      "schema_or_class_is_not_a_substitute_for_required_identity": true
+    },
+    "current_target_verification": {
+      "expected_known_good_runtime_sha256": null,
+      "expected_digest_source": "NONE_INDEPENDENTLY_PINNED_IN_THIS_CANDIDATE",
+      "verified_requires_exact_expected_digest_match": true,
+      "absent_expected_digest_result": "NOT_VERIFIED",
+      "mismatched_expected_digest_result": "NOT_VERIFIED",
+      "report_runtime_present_and_observed_sha256": true
+    },
+    "negative_regression_cases": [
+      {
+        "id": "RUNTIME_NO_PINNED_DIGEST",
+        "expected": "NOT_VERIFIED",
+        "reports_runtime_present": true,
+        "reports_observed_sha256": true
+      },
+      {
+        "id": "SAME_PATH_REPLACED_BYTES",
+        "expected": "NOT_VERIFIED",
+        "reports_runtime_present": true,
+        "reports_observed_sha256": true
+      },
+      {
+        "id": "MISSING_REQUIRED_OP025_RECEIPT_IDENTITY",
+        "expected": "MALFORMED_EVIDENCE"
+      },
+      {
+        "id": "MISMATCHED_REQUIRED_OP025_RECEIPT_IDENTITY",
+        "expected": "MALFORMED_EVIDENCE"
+      },
+      {
+        "id": "PRESENT_OPTIONAL_RECEIPT_METADATA_WITH_NULL_OR_WRONG_TYPE",
+        "expected": "MALFORMED_EVIDENCE"
+      },
+      {
+        "id": "DISPATCH_WITH_NULL_EXECUTION_FENCE",
+        "expected": "REJECTED_UNTIL_LATER_JIT_ARMED_CHECKPOINT"
+      }
+    ]
+  },
+  "controls": {
+    "pr296_classification": "SUPERSEDED_CANDIDATE_DO_NOT_MERGE",
+    "pr296_head": "04788cc9dc8f58786238ab0f2f7379f86a5b9fa4",
+    "pr296_base": "209e0ad9040a08965a49109e18f783cfd9c7c7f4",
+    "pr296_pass_shaped_op025_file_is_not_a_receipt": true,
+    "canonical_history_edits": false,
+    "accepted_source_promotion": false,
+    "production_or_business_access": false,
+    "remote_mutation_count": 0,
+    "host_dispatch_count": 0
+  },
+  "local_state": {
+    "historical_execution_outcome": "UNKNOWN",
+    "current_target_state": "NOT_VERIFIED",
+    "trusted_verifier_result": "NOT_QUALIFIED",
+    "factory_pre_dispatch_state": "NOT_RUN_NOT_CANONICAL",
+    "recovery_dispatch_state": "NOT_DISPATCHED",
+    "canonical_merge_state": "NOT_SUBMITTED_NOT_MERGED",
+    "background_continuation_verified": false
+  },
+  "next_executable_non_human_action": "Run protected structural verification and exact-head semantic review on the revised noncanonical candidate; do not merge, arm CP192, or dispatch operation027 until semantic PASS and canonical gates.",
+  "required_protected_verifier_checks": [
+    "exact base/head and direct parent",
+    "fixed allowed path set",
+    "strict JSON bytes and duplicate-key rejection",
+    "checkpoint schema and payload digest",
+    "pointer/checkpoint digest",
+    "Project and Directory binding identity",
+    "Mission and Policy immutable anchors",
+    "attempt epoch progression",
+    "operation kind and script SHA-256",
+    "forbidden operation025 redispatch",
+    "four-file consistency plus exact allowed candidate artifacts",
+    "candidate cannot modify verifier or expected set"
+  ]
+}
