@@ -1,0 +1,66 @@
+{
+  "schema_version": "factory.contract.v1",
+  "contract_id": "V50-R3-CONTRACT-001",
+  "task_id": "R3-P0-01-CANONICAL-CONTINUITY-REBASE",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "goal": "Prepare a local noncanonical VNEXT5.0-R3 continuity-first run/control candidate while preserving the finalized strategic goal, Production gate, cost policy, and Human-reserved boundaries.",
+  "include": [
+    "P0-00 continuity-first work freeze and no snapshot churn without evidence delta",
+    "P0-01 minimal Mission/Policy/run/control rebase candidate preparation",
+    "P0-02 durable active_run_ref design and exact provider readback only after required review/permit",
+    "P0-03 five Factory MCP orphan records read-only reconciliation",
+    "P0-04 fresh authorization and attempt fencing only after P0-01 through P0-03 gates",
+    "P0-05 through P0-09 bounded continuity and recovery qualification"
+  ],
+  "exclude": [
+    "Production final approval",
+    "business Project access or admission",
+    "new cost or paid fallback",
+    "worker provider-write credentials",
+    "Mission strategic-goal change",
+    "OP025 redispatch",
+    "CP192 or JIT fence arm",
+    "operation027 dispatch",
+    "Host mutation during this P0-01 candidate preparation",
+    "force update or canonical ref publication during this unit"
+  ],
+  "affected_surfaces": [
+    "LOCAL_NONCANONICAL_CANDIDATE_ONLY",
+    "GITHUB_CONTROL_AND_PROJECT_DIRECTORY_READ_ONLY_BASELINE"
+  ],
+  "requirements": [
+    "Directory ref governance/project-directory exact head f22a9eb9e75d6b2d89dc9b950109910af8d290bb",
+    "Control ref v45/factory-control exact head 209e0ad9040a08965a49109e18f783cfd9c7c7f4",
+    "CP190 pointer and payload digest exact-match before deriving CP191 candidate",
+    "V49 Mission and EP71 source anchors remain immutable inputs",
+    "No R3 run, attempt authority, or remote WIP may be fabricated from V49 identities",
+    "Factory orphan evidence remains external until same-source Factory MCP readback"
+  ],
+  "acceptance": [
+    "Candidate Mission and Policy hashes recompute with HUMAN_TEXT_V1 JCS",
+    "Candidate run and contract carry the proposed V50-R3 identities but remain noncanonical",
+    "CP191 candidate directly references CP190 and expected control parent",
+    "Candidate pointer names CP191 with its recomputed payload digest",
+    "Final Mission, Production, cost, and Human-reserved constraints remain unchanged",
+    "No canonical ref, Host, OP025, CP192, operation027, or Production mutation occurs"
+  ],
+  "dependencies": [
+    "P0-00_FREEZE_NONCONTINUITY_WORK"
+  ],
+  "risk": "BOUNDED_PREPRODUCTION_NONCANONICAL_CANDIDATE_PREPARATION",
+  "allowed_tools": [
+    "GitHub provider read-only exact revision readback",
+    "Factory MCP read-only readback when a direct authorized tool is available",
+    "local file read/write for noncanonical candidate",
+    "isolated local structural validation"
+  ],
+  "allowed_effects": [
+    "LOCAL_NONCANONICAL_CANDIDATE_BYTES_ONLY"
+  ],
+  "max_attempts": 1,
+  "time_budget_policy": "ONE_BOUNDED_ATOMIC_UNIT",
+  "mission_revision_id": "20260926T220900+0800",
+  "mission_hash": "sha256:3cd12c504e42247f52b2f8200ee590a7d1e6e1f0e58c15063cb9551ebf9a38a5",
+  "policy_revision_id": "20260926T220900+0800-EP72",
+  "policy_hash": "sha256:ce3abb44889a495d9a228e9117a22cc741807e033049a51346762110e7609cd2"
+}
