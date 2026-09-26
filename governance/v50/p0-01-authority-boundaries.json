@@ -1,7 +1,7 @@
 {
   "schema": "r3.p0-01-authority-boundaries.v1",
   "classification": "LOCAL_NONCANONICAL_CANDIDATE_EVIDENCE",
-  "observed_at_utc": "2026-09-26T16:04:35.000Z",
+  "observed_at_utc": "2026-09-26T17:00:32.000Z",
   "user_authorization_scope": "Prepare bounded VNEXT5.0-R3 P0 continuity/MCP candidate bytes; preserve final Mission, Production Gate, cost policy, and Human-reserved boundaries.",
   "canonical_publication_performed": false,
   "host_mutation_performed": false,
