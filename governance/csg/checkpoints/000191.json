@@ -1,0 +1,122 @@
+{
+  "schema_version": "csg.checkpoint.v1",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "checkpoint_seq": 191,
+  "transition_id": "V50-R3-P0-01-CANDIDATE-REBASE-191",
+  "previous_checkpoint_ref": {
+    "kind": "EXTERNAL_IMMUTABLE",
+    "provider": "GitHub",
+    "repository_id_or_resource_id": "1352411536",
+    "revision": "209e0ad9040a08965a49109e18f783cfd9c7c7f4",
+    "path": "governance/csg/checkpoints/000190.json",
+    "digest": "sha256:7925c06ea87b9cd98cdd8b45fb8fe0766a99abd6cb520a76890749afce02dd2e"
+  },
+  "migration_anchor": null,
+  "event": {
+    "type": "MISSION_REBASE",
+    "reason_code": "LOCAL_NONCANONICAL_CONTINUITY_FIRST_REBASE_CANDIDATE",
+    "subject_id": "V50-R3-001"
+  },
+  "mission_anchor": {
+    "ref": "github://1352411536/governance/v50/current-mission.json@e2f63f82bb0553bb0921430f12319e4fa94aa97a",
+    "revision": "20260926T220900+0800",
+    "declared_hash": "sha256:3cd12c504e42247f52b2f8200ee590a7d1e6e1f0e58c15063cb9551ebf9a38a5",
+    "canonicalization_version": "HUMAN_TEXT_V1"
+  },
+  "policy_anchor": {
+    "ref": "github://1352411536/governance/v50/current-execution-policy.json@e2f63f82bb0553bb0921430f12319e4fa94aa97a",
+    "revision": "20260926T220900+0800-EP72",
+    "declared_hash": "sha256:ce3abb44889a495d9a228e9117a22cc741807e033049a51346762110e7609cd2",
+    "canonicalization_version": "HUMAN_TEXT_V1"
+  },
+  "controller_contract": "CHAT_EXECUTION_POLICY_CONTRACT_V9_1_CANDIDATE",
+  "verifier_digest": "sha256:01cbbab08d423294e42dec679b46e5ebef9d06d2f1c3965de8f2bfb25711d4bf",
+  "lifecycle": "PAUSED",
+  "owner": null,
+  "run_ref": {
+    "kind": "EXTERNAL_IMMUTABLE",
+    "provider": "GitHub",
+    "repository_id_or_resource_id": "1352411536",
+    "revision": "e2f63f82bb0553bb0921430f12319e4fa94aa97a",
+    "path": "runs/V50-R3-001/run.json",
+    "digest": "sha256:542f1bdbfc1ae63399892c2e9b400c4a5372aa55731a94ff8a557e2cb980e384"
+  },
+  "task_id": "R3-P0-01-CANONICAL-CONTINUITY-REBASE",
+  "attempt_id": "V50-R3-P0-01-ATTEMPT-001",
+  "attempt_epoch": 1,
+  "atomic": {
+    "contract_ref": {
+      "kind": "EXTERNAL_IMMUTABLE",
+      "ref": "github://1352411536/runs/V50-R3-001/contract.json@e2f63f82bb0553bb0921430f12319e4fa94aa97a",
+      "digest": "sha256:8872e697829bfbb3f386895dddca3dce672bbabd5729d3a7af10f388f0df4367"
+    },
+    "state": "PREPARED_NOT_DISPATCHED",
+    "unit_id": "R3-P0-01-CANONICAL-CONTINUITY-REBASE",
+    "goal": "Prepare and review the exact continuity-first rebase candidate; do not publish canonical refs or dispatch Host work.",
+    "execution_fence": null
+  },
+  "last_accepted": null,
+  "remote_wip": null,
+  "active_job_refs": [],
+  "unresolved_effect_refs": [
+    {
+      "kind": "BUNDLE_OBJECT",
+      "path": "governance/v50/p0-03-orphan-readback-required.json",
+      "digest": "sha256:e309faa84f11b3385e76fa881728da98efa5a2d80c6e703d47ece40e10aaf422"
+    }
+  ],
+  "blockers": [
+    "P0_01_CANDIDATE_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+    "P0_01_CANDIDATE_REQUIRES_EXACT_PROTECTED_VERIFIER_ON_PROVIDER_HEAD",
+    "P0_02_DIRECTORY_ACTIVE_RUN_REF_NOT_PUBLISHED_OR_READBACK",
+    "P0_03_FACTORY_ORPHANS_NOT_CLASSIFIED_BY_SAME_SOURCE_READBACK",
+    "P0_04_FRESH_AUTHORIZATION_AND_EXECUTION_FENCE_NOT_ESTABLISHED",
+    "P0_05_FACTORY_MCP_RECOVERY_QUALIFICATION_NOT_RUN",
+    "P0_06_CHATGPT_SESSION_RECOVERY_NOT_PROVEN",
+    "P0_07_CODEX_PROJECT_RUN_RECOVERY_NOT_PROVEN",
+    "P0_08_DUAL_DISCONNECT_FINITE_PLAN_NOT_PROVEN",
+    "P0_09_CROSS_SESSION_REGRESSION_NOT_RUN"
+  ],
+  "last_verified_gate": null,
+  "next_legal_transition": {
+    "action": "P0_01_EXACT_HEAD_SEMANTIC_REVIEW_AND_PROVIDER_QUALIFICATION",
+    "unit_id": "R3-P0-01-CANDIDATE-REVIEW",
+    "requires": [
+      "INDEPENDENT_SEMANTIC_REVIEW_BOUND_TO_EXACT_CANDIDATE_BYTES",
+      "TRUSTED_STRUCTURAL_VERIFIER_BOUND_TO_EXACT_PROVIDER_HEAD",
+      "FRESH_CONTROL_PRESTATE_AND_EXACT_PERMIT_CAS_BEFORE_ANY_CANONICAL_UPDATE"
+    ],
+    "forbidden": [
+      "CANONICAL_REF_PUBLICATION_DURING_THIS_CANDIDATE_PREPARATION",
+      "HOST_MUTATION",
+      "OP025_REDISPATCH",
+      "CP192_OR_JIT_FENCE_ARM",
+      "OPERATION027_DISPATCH",
+      "PRODUCTION",
+      "BUSINESS_PROJECT",
+      "PAID_FALLBACK",
+      "FORCE_UPDATE"
+    ]
+  },
+  "stop_requested": false,
+  "barrier": "RECONCILE_REQUIRED",
+  "evidence_refs": [
+    {
+      "kind": "BUNDLE_OBJECT",
+      "path": "governance/v50/p0-01-authority-boundaries.json",
+      "digest": "sha256:d56db6c8f3066034a963fd0390d935428a85502e06d166cad715aa327be25a7b"
+    },
+    {
+      "kind": "BUNDLE_OBJECT",
+      "path": "governance/v50/p0-03-orphan-readback-required.json",
+      "digest": "sha256:e309faa84f11b3385e76fa881728da98efa5a2d80c6e703d47ece40e10aaf422"
+    },
+    {
+      "kind": "BUNDLE_OBJECT",
+      "path": "governance/v50/p0-01-cp190-legacy-profile-reuse.json",
+      "digest": "sha256:f782c617b3c1724f6ac5bf8f2c08024a2892ec405751dd5cc6ac9552faead56b"
+    }
+  ],
+  "recorded_at": "2026-09-26T17:00:32.000Z",
+  "payload_digest": "sha256:b480e51b6ce2320511e7552b428d5df18ee7d5ea75f915f3f7a14e4034b9a18c"
+}

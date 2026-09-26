@@ -1,0 +1,36 @@
+{
+  "schema": "r3.p0-03-orphan-readback-required.v1",
+  "classification": "EXTERNAL_GOVERNANCE_READBACK_EVIDENCE_PENDING_SAME_SOURCE_FACTORY_MCP_READBACK",
+  "source_file": "VNEXT5.0-R3-P0-01-GOVERNANCE-READBACK-20260926.md",
+  "source_sha256": "sha256:0d031f4857c1a523f3dd12716be03bce6e8f06183a0368dcfe600cde402c80dd",
+  "host": "DESKTOP-1B6PD2P",
+  "vm": "PTYSD-WORKER-01",
+  "vm_state": "Running",
+  "ssh22_reachable": true,
+  "control_plane_status": "ok",
+  "host_exec_lane": "IDLE_WITH_ORPHANS",
+  "active_count": 0,
+  "effective_active_count": 0,
+  "live_job_count": 0,
+  "orphan_count": 5,
+  "pending_receipt_count": 0,
+  "stale_count": 0,
+  "per_orphan_identity_available": false,
+  "per_orphan_classifications": null,
+  "permissible_classifications": [
+    "HISTORICAL_TERMINAL_RESIDUE",
+    "COMPLETED_BUT_UNCOLLECTED",
+    "TRUE_UNRESOLVED_EFFECT",
+    "UNKNOWN"
+  ],
+  "same_source_factory_mcp_readback": "NOT_PERFORMED_IN_THIS_CODEX_TOOL_SURFACE",
+  "prohibited_actions": [
+    "DELETE",
+    "RETRY",
+    "REDISPATCH",
+    "BROKER_MUTATION",
+    "RECEIPT_MUTATION",
+    "PROCESS_KILL"
+  ],
+  "status": "READBACK_REQUIRED_BEFORE_P0_04_FRESH_FENCE"
+}
