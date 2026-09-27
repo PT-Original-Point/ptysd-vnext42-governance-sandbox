@@ -125,16 +125,22 @@ test('PowerShell orphan receipt view is bounded and read-only', () => {
   assert.ok(start >= 0 && end > start, 'missing bounded orphan view and digest functions');
   const reader = broker.slice(start, end);
   for (const token of [
-    'OpenRead','ComputeHash','Get-ChildItem','Get-Content','Get-ReceiptFileSha256','function Get-OrphanReceiptStatusView {','ORPHANED','$maxOrphanStatusRecords',
+    '[IO.FileShare]::ReadWrite -bor [IO.FileShare]::Delete','ComputeHash($bytes)','Get-ChildItem','ConvertFrom-Json','function Read-ReceiptSnapshot {','function Get-OrphanReceiptStatusView {','ORPHANED','$maxOrphanStatusRecords','$maxOrphanStatusBytes',
     'request_id','project_id','run_id','task_id','attempt_id','attempt_epoch','control_oid',
     'checkpoint_digest','authorization_envelope_digest','capability_generation','started_at_utc',
     'finished_at_utc','timeout_seconds','side_effect_state','error_code','receipt_digest','truncated',
   ]) assert.ok(reader.includes(token), `missing orphan readback token: ${token}`);
   for (const token of [
     'Write-AtomicJson','Move-Item','Remove-Item','New-Item','Set-Content','Stop-Job','Stop-Process',
-    'stdout','stderr','script','receipt_path','run_as','response_path',
+    'Get-Content','Get-ReceiptFileSha256 -Path','stdout','stderr','script','receipt_path','run_as','response_path',
   ]) assert.equal(reader.includes(token), false, `orphan status view must not mutate or expose ${token}`);
   assert.match(broker, /function Get-HostExecLaneStatus \{\r?\n  \$orphanView = Get-OrphanReceiptStatusView/);
+  assert.match(broker, /\$maxOrphanStatusBytes = 524288/);
+  const orphanStart = broker.indexOf('function Get-OrphanReceiptStatusView {');
+  const orphanEnd = broker.indexOf('\nfunction Reconcile-OrphanedStartedReceipts {', orphanStart);
+  const orphanReader = broker.slice(orphanStart, orphanEnd);
+  assert.ok(orphanReader.includes('Read-ReceiptSnapshot -Path $file.FullName'));
+  assert.equal(orphanReader.includes('Get-ReceiptFileSha256 -Path'), false);
   assert.ok(index.includes('projectOrphanStatusView(status.host_exec_lane)'));
 });
 
