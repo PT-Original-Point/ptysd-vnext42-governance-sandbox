@@ -3,6 +3,7 @@ import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { promisify } from 'node:util';
 import { authorizeSystemExecution } from './current-execution-fence.mjs';
+import { projectOrphanStatusView } from './orphan-status.mjs';
 import { McpServer } from '@modelcontextprotocol/server';
 import { serveStdio } from '@modelcontextprotocol/server/stdio';
 import * as z from 'zod/v4';
@@ -221,7 +222,16 @@ function createServer() {
         openWorldHint: false,
       },
     },
-    async (args) => textResult(await runHostGuard('status', args)),
+    async (args) => {
+      const status = await runHostGuard('status', args);
+      if (args.probe === 'factory' && status?.host_exec_lane) {
+        status.host_exec_lane = {
+          ...status.host_exec_lane,
+          ...projectOrphanStatusView(status.host_exec_lane),
+        };
+      }
+      return textResult(status);
+    },
   );
 
   server.registerTool(
