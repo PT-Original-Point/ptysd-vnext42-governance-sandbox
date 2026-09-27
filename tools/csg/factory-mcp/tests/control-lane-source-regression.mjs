@@ -119,28 +119,37 @@ test('factory status returns a bounded allowlisted orphan identity view without 
   assert.equal(projected.orphan_records[1].request_id, null);
 });
 
-test('PowerShell orphan receipt view is bounded and read-only', () => {
+test('PowerShell orphan receipt status projects a bounded reconciliation snapshot', () => {
   const start = broker.indexOf('function Get-ReceiptFileSha256 {');
   const end = broker.indexOf('\nfunction Reconcile-OrphanedStartedReceipts {', start);
   assert.ok(start >= 0 && end > start, 'missing bounded orphan view and digest functions');
   const reader = broker.slice(start, end);
   for (const token of [
-    '[IO.FileShare]::ReadWrite -bor [IO.FileShare]::Delete','ComputeHash($bytes)','Get-ChildItem','ConvertFrom-Json','function Read-ReceiptSnapshot {','function Get-OrphanReceiptStatusView {','ORPHANED','$maxOrphanStatusRecords','$maxOrphanStatusBytes',
+    '[IO.FileShare]::ReadWrite -bor [IO.FileShare]::Delete','ComputeHash($bytes)','ConvertFrom-Json','function Read-ReceiptSnapshot {','function ConvertTo-OrphanReceiptStatusRecord {','function Get-OrphanReceiptStatusView {','ORPHANED','$maxOrphanStatusRecords','$maxOrphanStatusBytes',
     'request_id','project_id','run_id','task_id','attempt_id','attempt_epoch','control_oid',
     'checkpoint_digest','authorization_envelope_digest','capability_generation','started_at_utc',
     'finished_at_utc','timeout_seconds','side_effect_state','error_code','receipt_digest','truncated',
   ]) assert.ok(reader.includes(token), `missing orphan readback token: ${token}`);
   for (const token of [
     'Write-AtomicJson','Move-Item','Remove-Item','New-Item','Set-Content','Stop-Job','Stop-Process',
-    'Get-Content','Get-ReceiptFileSha256 -Path','stdout','stderr','script','receipt_path','run_as','response_path',
+    'Get-Content','Get-ReceiptFileSha256 -Path','stdout','stderr','receipt_path','run_as','response_path',
   ]) assert.equal(reader.includes(token), false, `orphan status view must not mutate or expose ${token}`);
+  assert.doesNotMatch(reader, /(?:\.|\[)script\b\s*(?:=|:)/i);
   assert.match(broker, /function Get-HostExecLaneStatus \{\r?\n  \$orphanView = Get-OrphanReceiptStatusView/);
   assert.match(broker, /\$maxOrphanStatusBytes = 524288/);
   const orphanStart = broker.indexOf('function Get-OrphanReceiptStatusView {');
   const orphanEnd = broker.indexOf('\nfunction Reconcile-OrphanedStartedReceipts {', orphanStart);
   const orphanReader = broker.slice(orphanStart, orphanEnd);
-  assert.ok(orphanReader.includes('Read-ReceiptSnapshot -Path $file.FullName'));
-  assert.equal(orphanReader.includes('Get-ReceiptFileSha256 -Path'), false);
+  assert.ok(orphanReader.includes('$summary.orphan_status_records'));
+  for (const token of ['Get-ChildItem','Read-ReceiptSnapshot','Get-Content','ConvertFrom-Json','[IO.File]::Open']) {
+    assert.equal(orphanReader.includes(token), false, `factory status must not access receipt files: ${token}`);
+  }
+  const reconcileStart = broker.indexOf('function Reconcile-OrphanedStartedReceipts {');
+  const reconcileEnd = broker.indexOf('\nfunction Get-HostExecLaneStatus {', reconcileStart);
+  const reconcile = broker.slice(reconcileStart, reconcileEnd);
+  assert.ok(reconcile.includes('Read-ReceiptSnapshot -Path $file.FullName'));
+  assert.ok(reconcile.includes('$orphanMetadataAttempts -lt $maxOrphanStatusRecords'));
+  assert.ok(reconcile.includes('$summary.orphan_status_records = @($orphanMetadataRecords.ToArray())'));
   assert.ok(index.includes('projectOrphanStatusView(status.host_exec_lane)'));
 });
 
