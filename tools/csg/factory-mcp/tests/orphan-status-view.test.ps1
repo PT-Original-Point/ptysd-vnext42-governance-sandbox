@@ -16,6 +16,7 @@ $functionNames = @(
   'ConvertTo-BoundedReceiptTimestamp',
   'ConvertTo-BoundedReceiptInteger',
   'Get-ReceiptFileSha256',
+  'Read-ReceiptSnapshot',
   'Get-OrphanReceiptStatusView',
   'Get-HostExecLaneStatus'
 )
@@ -26,6 +27,7 @@ $functionAsts = @($ast.FindAll({
 if ($functionAsts.Count -ne $functionNames.Count) { throw 'ORPHAN_VIEW_FUNCTIONS_MISSING' }
 
 $maxOrphanStatusRecords = 16
+$maxOrphanStatusBytes = 524288
 $tempRoot = Join-Path ([IO.Path]::GetTempPath()) ('ptysd-orphan-view-test-' + [Guid]::NewGuid().ToString('N'))
 if (Test-Path -LiteralPath $tempRoot) { throw 'TEST_TEMP_PATH_ALREADY_EXISTS' }
 New-Item -ItemType Directory -Path $tempRoot | Out-Null
@@ -90,6 +92,7 @@ try {
   $first = @($view.orphan_records | Where-Object { $_.request_id -eq ('{0:x32}' -f 1) })[0]
   if (-not $first -or $first.state -ne 'ORPHANED' -or $first.run_id -ne 'V50-R3-001') { throw 'ORPHAN_IDENTITY_MISSING' }
   if ($first.receipt_digest -notmatch '^sha256:[0-9a-f]{64}$') { throw 'ORPHAN_RECEIPT_DIGEST_MISSING' }
+  if ($first.receipt_digest -ne $before[('{0:x32}' -f 1) + '.json'].sha256) { throw 'ORPHAN_DIGEST_DOES_NOT_BIND_PARSED_RECEIPT' }
   foreach ($name in @('stdout','stderr','script','receipt_path','run_as')) {
     if ($first.PSObject.Properties.Name -contains $name) { throw ('SENSITIVE_FIELD_EXPOSED:' + $name) }
   }
@@ -99,7 +102,15 @@ try {
     $currentHash = Get-ReceiptFileSha256 -Path $file.FullName
     if ($currentHash -ne $previous.sha256 -or $file.LastWriteTimeUtc.Ticks -ne $previous.last_write_utc) { throw 'ORPHAN_READ_MUTATED_RECEIPT' }
   }
-  [ordered]@{ result='PASS'; total_count=$view.orphan_records_total_count; returned_count=@($view.orphan_records).Count; truncated=$view.orphan_records_truncated; receipt_bytes_unchanged=$true } | ConvertTo-Json -Compress
+
+  $oversizedRequestId = 'ffffffffffffffffffffffffffffffff'
+  $oversizedPath = Join-Path $tempRoot ($oversizedRequestId + '.json')
+  $oversizedJson = '{"state":"ORPHANED","request_id":"' + $oversizedRequestId + '","padding":"' + ('x' * ($maxOrphanStatusBytes + 1)) + '"}'
+  [IO.File]::WriteAllText($oversizedPath, $oversizedJson, (New-Object Text.UTF8Encoding($false)))
+  $partialView = Get-OrphanReceiptStatusView
+  if ($partialView.read_status -ne 'PARTIAL' -or -not [bool]$partialView.truncated) { throw 'OVERSIZED_RECEIPT_NOT_FAILED_CLOSED' }
+
+  [ordered]@{ result='PASS'; total_count=$view.orphan_records_total_count; returned_count=@($view.orphan_records).Count; truncated=$view.orphan_records_truncated; receipt_bytes_unchanged=$true; oversized_receipt_fail_closed=$true } | ConvertTo-Json -Compress
 } finally {
   $tempPrefix = [IO.Path]::GetFullPath([IO.Path]::GetTempPath())
   $resolvedTemp = [IO.Path]::GetFullPath($tempRoot)

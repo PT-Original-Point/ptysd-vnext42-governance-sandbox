@@ -24,6 +24,7 @@ $idPattern = '^[A-Z0-9][A-Z0-9._-]{0,79}$'
 $maxRequestBytes = 65536
 $maxOutputBytes = 131072
 $maxOrphanStatusRecords = 16
+$maxOrphanStatusBytes = 524288
 
 foreach ($path in @($inbox,$processing,$outbox,$state)) {
   if (-not (Test-Path -LiteralPath $path)) { throw ('BROKER_PATH_MISSING:' + $path) }
@@ -179,6 +180,42 @@ function Get-ReceiptFileSha256 {
   }
 }
 
+function Read-ReceiptSnapshot {
+  param([Parameter(Mandatory)][string]$Path)
+  $stream = $null
+  $memory = $null
+  $algorithm = $null
+  try {
+    $share = [IO.FileShare]::ReadWrite -bor [IO.FileShare]::Delete
+    $stream = [IO.File]::Open($Path, [IO.FileMode]::Open, [IO.FileAccess]::Read, $share)
+    if ($stream.Length -gt $maxOrphanStatusBytes) { throw 'RECEIPT_SNAPSHOT_TOO_LARGE' }
+
+    $memory = New-Object IO.MemoryStream
+    $buffer = New-Object byte[] 8192
+    $totalBytes = 0
+    while ($true) {
+      $read = $stream.Read($buffer, 0, $buffer.Length)
+      if ($read -le 0) { break }
+      $totalBytes += $read
+      if ($totalBytes -gt $maxOrphanStatusBytes) { throw 'RECEIPT_SNAPSHOT_TOO_LARGE' }
+      $memory.Write($buffer, 0, $read)
+    }
+
+    [byte[]]$bytes = $memory.ToArray()
+    $algorithm = [Security.Cryptography.SHA256]::Create()
+    $digest = 'sha256:' + ([BitConverter]::ToString($algorithm.ComputeHash($bytes)).Replace('-', '').ToLowerInvariant())
+    $encoding = New-Object System.Text.UTF8Encoding($false, $true)
+    $json = $encoding.GetString($bytes)
+    if ($json.Length -gt 0 -and $json[0] -eq [char]0xFEFF) { $json = $json.Substring(1) }
+    $receipt = ConvertFrom-Json -InputObject $json -ErrorAction Stop
+    return [pscustomobject]@{ receipt = $receipt; digest = $digest }
+  } finally {
+    if ($stream) { $stream.Dispose() }
+    if ($memory) { $memory.Dispose() }
+    if ($algorithm) { $algorithm.Dispose() }
+  }
+}
+
 function Get-OrphanReceiptStatusView {
   $records = New-Object 'System.Collections.Generic.List[object]'
   $partial = $false
@@ -198,7 +235,8 @@ function Get-OrphanReceiptStatusView {
 
   foreach ($file in $files) {
     try {
-      $receipt = Get-Content -LiteralPath $file.FullName -Raw -ErrorAction Stop | ConvertFrom-Json -ErrorAction Stop
+      $snapshot = Read-ReceiptSnapshot -Path $file.FullName
+      $receipt = $snapshot.receipt
     } catch {
       $partial = $true
       continue
@@ -209,12 +247,7 @@ function Get-OrphanReceiptStatusView {
     if ($file.BaseName -match '^[0-9a-f]{32}$' -and [string]$receipt.request_id -ceq $file.BaseName) {
       $requestId = $file.BaseName
     }
-    $receiptDigest = $null
-    try {
-      $receiptDigest = Get-ReceiptFileSha256 -Path $file.FullName
-    } catch {
-      $partial = $true
-    }
+    $receiptDigest = [string]$snapshot.digest
 
     $controlOid = $null
     if ([string]$receipt.control_oid -match '^(?:[0-9a-f]{40}|[0-9a-f]{64})$') { $controlOid = [string]$receipt.control_oid }
