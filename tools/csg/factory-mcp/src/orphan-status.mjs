@@ -51,10 +51,12 @@ export function projectOrphanStatusView(lane, limit = 16) {
   const safeLimit = Number.isSafeInteger(limit) && limit > 0 ? Math.min(limit, 16) : 16;
   const inputRecords = Array.isArray(source.orphan_records) ? source.orphan_records : [];
   const records = inputRecords.filter((record) => record && record.state === 'ORPHANED').map(projectRecord);
-  const rawCount = source.orphan_records_total_count ?? source.orphan_count;
-  const totalCount = Number.isSafeInteger(rawCount) && rawCount >= 0
+  const hasExactCount = Object.prototype.hasOwnProperty.call(source, 'orphan_records_total_count');
+  const rawCount = hasExactCount ? source.orphan_records_total_count : source.orphan_count;
+  const hasKnownCount = Number.isSafeInteger(rawCount) && rawCount >= 0;
+  const totalCount = hasKnownCount
     ? Math.max(rawCount, inputRecords.length)
-    : inputRecords.length;
+    : hasExactCount ? null : inputRecords.length;
   const readStatus = ['COMPLETE', 'PARTIAL', 'UNAVAILABLE'].includes(source.orphan_records_read_status)
     ? source.orphan_records_read_status
     : 'UNAVAILABLE';

@@ -119,6 +119,32 @@ test('factory status returns a bounded allowlisted orphan identity view without 
   assert.equal(projected.orphan_records[1].request_id, null);
 });
 
+test('explicit unknown orphan totals remain null while legacy absence falls back', () => {
+  const unavailable = projectOrphanStatusView({
+    orphan_records_read_status: 'UNAVAILABLE',
+    orphan_records_total_count: null,
+    orphan_count: 0,
+    orphan_records: [],
+  });
+  assert.equal(unavailable.orphan_records_total_count, null);
+  assert.equal(unavailable.orphan_records_truncated, true);
+
+  const partial = projectOrphanStatusView({
+    orphan_records_read_status: 'PARTIAL',
+    orphan_records_total_count: null,
+    orphan_count: 7,
+    orphan_records: [],
+  });
+  assert.equal(partial.orphan_records_total_count, null);
+  assert.equal(partial.orphan_records_truncated, true);
+
+  const legacy = projectOrphanStatusView({
+    orphan_records_read_status: 'COMPLETE',
+    orphan_count: 7,
+    orphan_records: [],
+  });
+  assert.equal(legacy.orphan_records_total_count, 7);
+});
 test('PowerShell orphan receipt status projects a bounded reconciliation snapshot', () => {
   const start = broker.indexOf('function Get-ReceiptFileSha256 {');
   const end = broker.indexOf('\nfunction Reconcile-OrphanedStartedReceipts {', start);
