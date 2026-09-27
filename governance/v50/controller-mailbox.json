@@ -1,0 +1,45 @@
+{
+  "schema_version": "v50.controller-mailbox.v1",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "repository_id": 1352411536,
+  "coordination_mailbox": {
+    "provider": "github_issue",
+    "repository_full_name": "PT-Original-Point/ptysd-vnext42-governance-sandbox",
+    "issue_number": 310,
+    "authority_class": "COORDINATION_ONLY_NOT_CANONICAL"
+  },
+  "canonical_resolution": {
+    "directory_ref": "refs/heads/governance/project-directory",
+    "control_ref": "refs/heads/v45/factory-control",
+    "control_current_path": "governance/csg/current.json"
+  },
+  "protocol": {
+    "request_states": [
+      "REQUESTED",
+      "ANSWERED",
+      "CONSUMED",
+      "SUPERSEDED"
+    ],
+    "no_duplicate_request_same_head_digest": true,
+    "review_bound_to_exact_head": true,
+    "no_delta_action": "SILENT_NOOP",
+    "human_relay_required": false
+  },
+  "executor_rules": {
+    "fresh_read_before_material_action": true,
+    "one_active_atomic_unit": true,
+    "one_next_single_action": true,
+    "chat_can_do_chat_must_do": true,
+    "unknown_effect_readback_first": true,
+    "op025_redispatch_while_unknown": false
+  },
+  "human_reserved": [
+    "MISSION_CHANGE",
+    "PRODUCTION_FINAL_AUTHORIZATION",
+    "NEW_COST_OR_PAID_FALLBACK",
+    "LEGAL_CONTRACT_SIGNATURE_IDENTITY",
+    "OAUTH_MFA",
+    "MAJOR_IRREVERSIBLE_OR_HIGH_RISK"
+  ],
+  "updated_at": "2026-09-27T23:01:00+08:00"
+}
