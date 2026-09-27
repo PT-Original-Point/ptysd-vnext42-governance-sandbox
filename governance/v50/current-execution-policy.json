@@ -88,8 +88,8 @@
     "sol_advisor_runtime": "DISABLED_UNTIL_EXACT_GATE",
     "astra_architect_runtime": "RARE_READ_ONLY_DISABLED_UNTIL_EXACT_GATE"
   },
-  "authorized_by": null,
-  "authorization_gate": "CANDIDATE_PREPARATION_ONLY_NOT_FINAL_POLICY_ACCEPTANCE",
+  "authorized_by": "HUMAN",
+  "authorization_gate": "VNEXT5.0-R3-CODEX-MCP-CONTINUITY-FIRST-HOTFIX-20260926/HUMAN_EXECUTE_DIRECTIVE",
   "supersedes": "20260919T010100+0800-EP71",
   "policy_hash": "sha256:ce3abb44889a495d9a228e9117a22cc741807e033049a51346762110e7609cd2"
 }
