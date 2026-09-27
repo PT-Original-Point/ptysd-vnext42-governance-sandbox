@@ -23,6 +23,7 @@ $systemCapabilityPath = Join-Path $root 'config\system-capability.json'
 $idPattern = '^[A-Z0-9][A-Z0-9._-]{0,79}$'
 $maxRequestBytes = 65536
 $maxOutputBytes = 131072
+$maxOrphanStatusRecords = 16
 
 foreach ($path in @($inbox,$processing,$outbox,$state)) {
   if (-not (Test-Path -LiteralPath $path)) { throw ('BROKER_PATH_MISSING:' + $path) }
@@ -135,6 +136,129 @@ function Get-PowerShellEntryAgeSeconds {
   return [int][Math]::Max(0,[Math]::Floor(([DateTime]::UtcNow - $started).TotalSeconds))
 }
 
+function ConvertTo-BoundedReceiptToken {
+  param([object]$Value)
+  if ($null -eq $Value) { return $null }
+  $text = [string]$Value
+  if ($text.Length -gt 128 -or $text -notmatch '^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$') { return $null }
+  return $text
+}
+
+function ConvertTo-BoundedReceiptTimestamp {
+  param([object]$Value)
+  if ($null -eq $Value) { return $null }
+  $text = [string]$Value
+  if ($text.Length -gt 64 -or $text -notmatch '^\d{4}-\d{2}-\d{2}T') { return $null }
+  try {
+    return ([DateTime]::Parse($text, [Globalization.CultureInfo]::InvariantCulture, [Globalization.DateTimeStyles]::AssumeUniversal)).ToUniversalTime().ToString('o')
+  } catch {
+    return $null
+  }
+}
+
+function ConvertTo-BoundedReceiptInteger {
+  param([object]$Value,[Parameter(Mandatory)][int64]$Maximum)
+  if ($null -eq $Value) { return $null }
+  $parsed = 0L
+  if (-not [int64]::TryParse([string]$Value, [ref]$parsed)) { return $null }
+  if ($parsed -lt 1 -or $parsed -gt $Maximum) { return $null }
+  return $parsed
+}
+
+function Get-ReceiptFileSha256 {
+  param([Parameter(Mandatory)][string]$Path)
+  $algorithm = [Security.Cryptography.SHA256]::Create()
+  $stream = $null
+  try {
+    $stream = [IO.File]::OpenRead($Path)
+    $hash = $algorithm.ComputeHash($stream)
+    return 'sha256:' + ([BitConverter]::ToString($hash).Replace('-', '').ToLowerInvariant())
+  } finally {
+    if ($stream) { $stream.Dispose() }
+    $algorithm.Dispose()
+  }
+}
+
+function Get-OrphanReceiptStatusView {
+  $records = New-Object 'System.Collections.Generic.List[object]'
+  $partial = $false
+  try {
+    $files = @(Get-ChildItem -LiteralPath $execReceipts -Filter '*.json' -File -ErrorAction Stop |
+      Where-Object { -not ($_.Attributes -band [IO.FileAttributes]::ReparsePoint) } |
+      Sort-Object Name)
+  } catch {
+    return [ordered]@{
+      read_status = 'UNAVAILABLE'
+      total_count = $null
+      records = @()
+      truncated = $true
+      read_at_utc = [DateTime]::UtcNow.ToString('o')
+    }
+  }
+
+  foreach ($file in $files) {
+    try {
+      $receipt = Get-Content -LiteralPath $file.FullName -Raw -ErrorAction Stop | ConvertFrom-Json -ErrorAction Stop
+    } catch {
+      $partial = $true
+      continue
+    }
+    if ([string]$receipt.state -ne 'ORPHANED') { continue }
+
+    $requestId = $null
+    if ($file.BaseName -match '^[0-9a-f]{32}$' -and [string]$receipt.request_id -ceq $file.BaseName) {
+      $requestId = $file.BaseName
+    }
+    $receiptDigest = $null
+    try {
+      $receiptDigest = Get-ReceiptFileSha256 -Path $file.FullName
+    } catch {
+      $partial = $true
+    }
+
+    $controlOid = $null
+    if ([string]$receipt.control_oid -match '^(?:[0-9a-f]{40}|[0-9a-f]{64})$') { $controlOid = [string]$receipt.control_oid }
+    $checkpointDigest = $null
+    if ([string]$receipt.checkpoint_digest -match '^sha256:[0-9a-f]{64}$') { $checkpointDigest = [string]$receipt.checkpoint_digest }
+    $authorizationDigest = $null
+    if ([string]$receipt.authorization_envelope_digest -match '^sha256:[0-9a-f]{64}$') { $authorizationDigest = [string]$receipt.authorization_envelope_digest }
+
+    $record = [ordered]@{
+      request_id = $requestId
+      project_id = ConvertTo-BoundedReceiptToken $receipt.project_id
+      capability_id = ConvertTo-BoundedReceiptToken $receipt.capability_id
+      operation_id = ConvertTo-BoundedReceiptToken $receipt.operation_id
+      control_oid = $controlOid
+      checkpoint_digest = $checkpointDigest
+      authorization_envelope_digest = $authorizationDigest
+      capability_generation = ConvertTo-BoundedReceiptInteger $receipt.capability_generation 2147483647
+      run_id = ConvertTo-BoundedReceiptToken $receipt.run_id
+      task_id = ConvertTo-BoundedReceiptToken $receipt.task_id
+      attempt_id = ConvertTo-BoundedReceiptToken $receipt.attempt_id
+      attempt_epoch = ConvertTo-BoundedReceiptInteger $receipt.attempt_epoch 2147483647
+      started_at_utc = ConvertTo-BoundedReceiptTimestamp $receipt.started_at_utc
+      finished_at_utc = ConvertTo-BoundedReceiptTimestamp $receipt.finished_at_utc
+      timeout_seconds = ConvertTo-BoundedReceiptInteger $receipt.timeout_seconds 86400
+      state = 'ORPHANED'
+      side_effect_state = ConvertTo-BoundedReceiptToken $receipt.side_effect_state
+      error_code = ConvertTo-BoundedReceiptToken $receipt.error_code
+      receipt_digest = $receiptDigest
+    }
+    [void]$records.Add($record)
+  }
+
+  $allRecords = @($records.ToArray() | Sort-Object @{ Expression = 'request_id' }, @{ Expression = 'receipt_digest' })
+  $boundedRecords = @($allRecords | Select-Object -First $maxOrphanStatusRecords)
+  $truncated = ($partial -or $allRecords.Count -gt $boundedRecords.Count)
+  return [ordered]@{
+    read_status = if ($partial) { 'PARTIAL' } else { 'COMPLETE' }
+    total_count = [int]$allRecords.Count
+    records = $boundedRecords
+    truncated = [bool]$truncated
+    read_at_utc = [DateTime]::UtcNow.ToString('o')
+  }
+}
+
 function Reconcile-OrphanedStartedReceipts {
   $summary = [ordered]@{
     broker_records = 0
@@ -193,6 +317,8 @@ function Reconcile-OrphanedStartedReceipts {
 }
 
 function Get-HostExecLaneStatus {
+  $orphanView = Get-OrphanReceiptStatusView
+  $orphanCount = if ($orphanView.read_status -eq 'COMPLETE') { [int]$orphanView.total_count } else { [int]$script:receiptSummary.orphan_count }
   $active = @(Get-ActivePowerShellEntries)
   if ($active.Count -gt 0) {
     $now = [DateTime]::UtcNow
@@ -225,7 +351,13 @@ function Get-HostExecLaneStatus {
       effective_active_count = [int]$items.Count
       live_job_count = [int]$items.Count
       broker_records = [int]$script:receiptSummary.broker_records
-      orphan_count = [int]$script:receiptSummary.orphan_count
+      orphan_count = $orphanCount
+      orphan_records_schema = 'v49.factory-mcp.orphan-records.v1'
+      orphan_records_read_status = [string]$orphanView.read_status
+      orphan_records_read_at_utc = [string]$orphanView.read_at_utc
+      orphan_records_total_count = $orphanView.total_count
+      orphan_records_truncated = [bool]$orphanView.truncated
+      orphan_records = @($orphanView.records)
       pending_receipt_count = [int]$script:receiptSummary.started_count
       stale_count = [int]$staleCount
       capacity = [int]$maxConcurrentPowerShell
@@ -249,7 +381,13 @@ function Get-HostExecLaneStatus {
       effective_active_count = 0
       live_job_count = 0
       broker_records = [int]$script:receiptSummary.broker_records
-      orphan_count = [int]$script:receiptSummary.orphan_count
+      orphan_count = $orphanCount
+      orphan_records_schema = 'v49.factory-mcp.orphan-records.v1'
+      orphan_records_read_status = [string]$orphanView.read_status
+      orphan_records_read_at_utc = [string]$orphanView.read_at_utc
+      orphan_records_total_count = $orphanView.total_count
+      orphan_records_truncated = [bool]$orphanView.truncated
+      orphan_records = @($orphanView.records)
       pending_receipt_count = [int]$script:receiptSummary.started_count
       stale_count = 0
       capacity = [int]$maxConcurrentPowerShell
@@ -267,7 +405,13 @@ function Get-HostExecLaneStatus {
       effective_active_count = 0
       live_job_count = 0
       broker_records = [int]$script:receiptSummary.broker_records
-      orphan_count = [int]$script:receiptSummary.orphan_count
+      orphan_count = $orphanCount
+      orphan_records_schema = 'v49.factory-mcp.orphan-records.v1'
+      orphan_records_read_status = [string]$orphanView.read_status
+      orphan_records_read_at_utc = [string]$orphanView.read_at_utc
+      orphan_records_total_count = $orphanView.total_count
+      orphan_records_truncated = [bool]$orphanView.truncated
+      orphan_records = @($orphanView.records)
       pending_receipt_count = [int]$script:receiptSummary.started_count
       stale_count = 0
       capacity = [int]$maxConcurrentPowerShell
@@ -282,12 +426,18 @@ function Get-HostExecLaneStatus {
   }
 
   return [ordered]@{
-    state = if ([int]$script:receiptSummary.orphan_count -gt 0) { 'IDLE_WITH_ORPHANS' } else { 'IDLE' }
+    state = if ($orphanCount -gt 0) { 'IDLE_WITH_ORPHANS' } else { 'IDLE' }
     active_count = 0
     effective_active_count = 0
     live_job_count = 0
     broker_records = [int]$script:receiptSummary.broker_records
-    orphan_count = [int]$script:receiptSummary.orphan_count
+    orphan_count = $orphanCount
+    orphan_records_schema = 'v49.factory-mcp.orphan-records.v1'
+    orphan_records_read_status = [string]$orphanView.read_status
+    orphan_records_read_at_utc = [string]$orphanView.read_at_utc
+    orphan_records_total_count = $orphanView.total_count
+    orphan_records_truncated = [bool]$orphanView.truncated
+    orphan_records = @($orphanView.records)
     pending_receipt_count = [int]$script:receiptSummary.started_count
     stale_count = 0
     capacity = [int]$maxConcurrentPowerShell
