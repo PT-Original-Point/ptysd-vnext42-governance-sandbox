@@ -17,7 +17,9 @@ $functionNames = @(
   'ConvertTo-BoundedReceiptInteger',
   'Get-ReceiptFileSha256',
   'Read-ReceiptSnapshot',
+  'ConvertTo-OrphanReceiptStatusRecord',
   'Get-OrphanReceiptStatusView',
+  'Reconcile-OrphanedStartedReceipts',
   'Get-HostExecLaneStatus'
 )
 $functionAsts = @($ast.FindAll({
@@ -35,7 +37,11 @@ try {
   $execReceipts = $tempRoot
   $functionSource = [string]::Join([Environment]::NewLine, @($functionAsts | ForEach-Object { $_.Extent.Text }))
   Invoke-Expression $functionSource
-  $script:receiptSummary = [ordered]@{ broker_records=5; orphan_count=5; started_count=0 }
+  $script:receiptSummary = [ordered]@{
+    broker_records=0; orphan_count=0; started_count=0; terminal_count=0; recorded_at_utc=$null
+    orphan_status_read_status='UNAVAILABLE'; orphan_status_records=@(); orphan_status_complete=$false
+  }
+  $script:activePowerShellJobs = @{}
   $maxConcurrentPowerShell = 4
   $maxPerRunPowerShell = 1
   $staleGraceSeconds = 5
@@ -45,6 +51,13 @@ try {
       state='ORPHANED'; request_id=('{0:x32}' -f 1); run_id='V50-R3-001'; task_id='R3-P0-03-READBACK'
       attempt_id='ATTEMPT-001'; attempt_epoch=1; started_at_utc='2026-09-27T06:00:00.000Z'
     }
+  }
+  $script:receiptSnapshotReadCount = 0
+  $script:readReceiptSnapshotImplementation = (Get-Command Read-ReceiptSnapshot -CommandType Function).ScriptBlock
+  function Read-ReceiptSnapshot {
+    param([Parameter(Mandatory)][string]$Path)
+    $script:receiptSnapshotReadCount += 1
+    return & $script:readReceiptSnapshotImplementation -Path $Path
   }
 
   foreach ($number in 1..5) {
@@ -86,7 +99,11 @@ try {
     }
   }
 
+  Reconcile-OrphanedStartedReceipts
+  if ($script:receiptSnapshotReadCount -ne 5) { throw 'INITIAL_ORPHAN_SNAPSHOT_COUNT_UNEXPECTED' }
+  $script:receiptSnapshotReadCount = 0
   $view = Get-HostExecLaneStatus
+  if ($script:receiptSnapshotReadCount -ne 0) { throw 'STATUS_READ_OPENED_RECEIPT_FILES' }
   if ($view.orphan_records_read_status -ne 'COMPLETE') { throw ('ORPHAN_VIEW_STATUS:' + $view.orphan_records_read_status) }
   if ([int]$view.orphan_records_total_count -ne 5 -or @($view.orphan_records).Count -ne 5 -or [bool]$view.orphan_records_truncated) { throw 'ORPHAN_VIEW_BOUND_FAILED' }
   $first = @($view.orphan_records | Where-Object { $_.request_id -eq ('{0:x32}' -f 1) })[0]
@@ -103,14 +120,52 @@ try {
     if ($currentHash -ne $previous.sha256 -or $file.LastWriteTimeUtc.Ticks -ne $previous.last_write_utc) { throw 'ORPHAN_READ_MUTATED_RECEIPT' }
   }
 
+  $scaleRoot = Join-Path $tempRoot 'scale'
+  New-Item -ItemType Directory -Path $scaleRoot | Out-Null
+  $execReceipts = $scaleRoot
+  foreach ($number in 1..48) {
+    $requestId = '{0:x32}' -f $number
+    $receipt = [ordered]@{
+      state='ORPHANED'; request_id=$requestId; project_id='CHATGPT_GLOBAL_SKILL_GOVERNANCE'
+      capability_id='CAP-GOV-SYSTEM-V1'; operation_id='OP025'; control_oid='209e0ad9040a08965a49109e18f783cfd9c7c7f4'
+      checkpoint_digest=('sha256:' + ('a' * 64)); authorization_envelope_digest=('sha256:' + ('b' * 64))
+      capability_generation=4; run_id='V50-R3-001'; task_id='R3-P0-03-READBACK'; attempt_id='ATTEMPT-001'; attempt_epoch=1
+      started_at_utc='2026-09-27T06:00:00.000Z'; finished_at_utc='2026-09-27T06:01:00.000Z'; timeout_seconds=60
+      side_effect_state='UNKNOWN_AFTER_BROKER_RESTART'; error_code='BROKER_RECEIPT_ORPHANED'
+    }
+    $path = Join-Path $scaleRoot ($requestId + '.json')
+    [IO.File]::WriteAllText($path, ($receipt | ConvertTo-Json -Depth 8 -Compress), (New-Object Text.UTF8Encoding($false)))
+  }
+  $script:receiptSnapshotReadCount = 0
+  Reconcile-OrphanedStartedReceipts
+  $reconcileSnapshotReads = $script:receiptSnapshotReadCount
+  if ($reconcileSnapshotReads -ne $maxOrphanStatusRecords) { throw 'RECONCILIATION_METADATA_READS_NOT_CAPPED' }
+  $script:receiptSnapshotReadCount = 0
+  $scaleView = Get-HostExecLaneStatus
+  if ($script:receiptSnapshotReadCount -ne 0) { throw 'SCALED_STATUS_READ_OPENED_RECEIPT_FILES' }
+  if ($scaleView.orphan_records_read_status -ne 'COMPLETE' -or [int]$scaleView.orphan_records_total_count -ne 48) { throw 'SCALED_ORPHAN_COUNT_NOT_EXACT' }
+  if (@($scaleView.orphan_records).Count -ne $maxOrphanStatusRecords -or -not [bool]$scaleView.orphan_records_truncated) { throw 'SCALED_ORPHAN_CACHE_NOT_BOUNDED' }
+
+  $oversizedRoot = Join-Path $tempRoot 'oversized'
+  New-Item -ItemType Directory -Path $oversizedRoot | Out-Null
+  $execReceipts = $oversizedRoot
   $oversizedRequestId = 'ffffffffffffffffffffffffffffffff'
-  $oversizedPath = Join-Path $tempRoot ($oversizedRequestId + '.json')
+  $oversizedPath = Join-Path $oversizedRoot ($oversizedRequestId + '.json')
   $oversizedJson = '{"state":"ORPHANED","request_id":"' + $oversizedRequestId + '","padding":"' + ('x' * ($maxOrphanStatusBytes + 1)) + '"}'
   [IO.File]::WriteAllText($oversizedPath, $oversizedJson, (New-Object Text.UTF8Encoding($false)))
-  $partialView = Get-OrphanReceiptStatusView
-  if ($partialView.read_status -ne 'PARTIAL' -or -not [bool]$partialView.truncated) { throw 'OVERSIZED_RECEIPT_NOT_FAILED_CLOSED' }
+  $script:receiptSnapshotReadCount = 0
+  Reconcile-OrphanedStartedReceipts
+  $script:receiptSnapshotReadCount = 0
+  $partialView = Get-HostExecLaneStatus
+  if ($script:receiptSnapshotReadCount -ne 0) { throw 'OVERSIZED_STATUS_READ_OPENED_RECEIPT_FILES' }
+  if ($partialView.orphan_records_read_status -ne 'PARTIAL' -or -not [bool]$partialView.orphan_records_truncated) { throw 'OVERSIZED_RECEIPT_NOT_FAILED_CLOSED' }
 
-  [ordered]@{ result='PASS'; total_count=$view.orphan_records_total_count; returned_count=@($view.orphan_records).Count; truncated=$view.orphan_records_truncated; receipt_bytes_unchanged=$true; oversized_receipt_fail_closed=$true } | ConvertTo-Json -Compress
+  [ordered]@{
+    result='PASS'; initial_total_count=$view.orphan_records_total_count; initial_returned_count=@($view.orphan_records).Count
+    scale_total_count=$scaleView.orphan_records_total_count; scale_returned_count=@($scaleView.orphan_records).Count
+    reconcile_snapshot_reads=$reconcileSnapshotReads; status_snapshot_reads=0
+    receipt_bytes_unchanged=$true; oversized_receipt_fail_closed=$true
+  } | ConvertTo-Json -Compress
 } finally {
   $tempPrefix = [IO.Path]::GetFullPath([IO.Path]::GetTempPath())
   $resolvedTemp = [IO.Path]::GetFullPath($tempRoot)

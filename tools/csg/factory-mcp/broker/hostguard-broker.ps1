@@ -69,6 +69,9 @@ $script:receiptSummary = [ordered]@{
   started_count = 0
   terminal_count = 0
   recorded_at_utc = $null
+  orphan_status_read_status = 'UNAVAILABLE'
+  orphan_status_records = @()
+  orphan_status_complete = $false
 }
 
 function Write-AtomicJson {
@@ -216,79 +219,58 @@ function Read-ReceiptSnapshot {
   }
 }
 
-function Get-OrphanReceiptStatusView {
-  $records = New-Object 'System.Collections.Generic.List[object]'
-  $partial = $false
-  try {
-    $files = @(Get-ChildItem -LiteralPath $execReceipts -Filter '*.json' -File -ErrorAction Stop |
-      Where-Object { -not ($_.Attributes -band [IO.FileAttributes]::ReparsePoint) } |
-      Sort-Object Name)
-  } catch {
-    return [ordered]@{
-      read_status = 'UNAVAILABLE'
-      total_count = $null
-      records = @()
-      truncated = $true
-      read_at_utc = [DateTime]::UtcNow.ToString('o')
-    }
-  }
+function ConvertTo-OrphanReceiptStatusRecord {
+  param([Parameter(Mandatory)]$Snapshot,[Parameter(Mandatory)][string]$FileName)
+  $receipt = $Snapshot.receipt
+  if ([string]$receipt.state -cne 'ORPHANED') { throw 'ORPHAN_STATUS_SNAPSHOT_STATE_CHANGED' }
 
-  foreach ($file in $files) {
-    try {
-      $snapshot = Read-ReceiptSnapshot -Path $file.FullName
-      $receipt = $snapshot.receipt
-    } catch {
-      $partial = $true
-      continue
-    }
-    if ([string]$receipt.state -ne 'ORPHANED') { continue }
+  $requestId = $null
+  $baseName = [IO.Path]::GetFileNameWithoutExtension($FileName)
+  if ($baseName -match '^[0-9a-f]{32}$' -and [string]$receipt.request_id -ceq $baseName) { $requestId = $baseName }
 
-    $requestId = $null
-    if ($file.BaseName -match '^[0-9a-f]{32}$' -and [string]$receipt.request_id -ceq $file.BaseName) {
-      $requestId = $file.BaseName
-    }
-    $receiptDigest = [string]$snapshot.digest
+  $controlOid = $null
+  if ([string]$receipt.control_oid -match '^(?:[0-9a-f]{40}|[0-9a-f]{64})$') { $controlOid = [string]$receipt.control_oid }
+  $checkpointDigest = $null
+  if ([string]$receipt.checkpoint_digest -match '^sha256:[0-9a-f]{64}$') { $checkpointDigest = [string]$receipt.checkpoint_digest }
+  $authorizationDigest = $null
+  if ([string]$receipt.authorization_envelope_digest -match '^sha256:[0-9a-f]{64}$') { $authorizationDigest = [string]$receipt.authorization_envelope_digest }
 
-    $controlOid = $null
-    if ([string]$receipt.control_oid -match '^(?:[0-9a-f]{40}|[0-9a-f]{64})$') { $controlOid = [string]$receipt.control_oid }
-    $checkpointDigest = $null
-    if ([string]$receipt.checkpoint_digest -match '^sha256:[0-9a-f]{64}$') { $checkpointDigest = [string]$receipt.checkpoint_digest }
-    $authorizationDigest = $null
-    if ([string]$receipt.authorization_envelope_digest -match '^sha256:[0-9a-f]{64}$') { $authorizationDigest = [string]$receipt.authorization_envelope_digest }
-
-    $record = [ordered]@{
-      request_id = $requestId
-      project_id = ConvertTo-BoundedReceiptToken $receipt.project_id
-      capability_id = ConvertTo-BoundedReceiptToken $receipt.capability_id
-      operation_id = ConvertTo-BoundedReceiptToken $receipt.operation_id
-      control_oid = $controlOid
-      checkpoint_digest = $checkpointDigest
-      authorization_envelope_digest = $authorizationDigest
-      capability_generation = ConvertTo-BoundedReceiptInteger $receipt.capability_generation 2147483647
-      run_id = ConvertTo-BoundedReceiptToken $receipt.run_id
-      task_id = ConvertTo-BoundedReceiptToken $receipt.task_id
-      attempt_id = ConvertTo-BoundedReceiptToken $receipt.attempt_id
-      attempt_epoch = ConvertTo-BoundedReceiptInteger $receipt.attempt_epoch 2147483647
-      started_at_utc = ConvertTo-BoundedReceiptTimestamp $receipt.started_at_utc
-      finished_at_utc = ConvertTo-BoundedReceiptTimestamp $receipt.finished_at_utc
-      timeout_seconds = ConvertTo-BoundedReceiptInteger $receipt.timeout_seconds 86400
-      state = 'ORPHANED'
-      side_effect_state = ConvertTo-BoundedReceiptToken $receipt.side_effect_state
-      error_code = ConvertTo-BoundedReceiptToken $receipt.error_code
-      receipt_digest = $receiptDigest
-    }
-    [void]$records.Add($record)
-  }
-
-  $allRecords = @($records.ToArray() | Sort-Object @{ Expression = 'request_id' }, @{ Expression = 'receipt_digest' })
-  $boundedRecords = @($allRecords | Select-Object -First $maxOrphanStatusRecords)
-  $truncated = ($partial -or $allRecords.Count -gt $boundedRecords.Count)
   return [ordered]@{
-    read_status = if ($partial) { 'PARTIAL' } else { 'COMPLETE' }
-    total_count = [int]$allRecords.Count
-    records = $boundedRecords
-    truncated = [bool]$truncated
-    read_at_utc = [DateTime]::UtcNow.ToString('o')
+    request_id = $requestId
+    project_id = ConvertTo-BoundedReceiptToken $receipt.project_id
+    capability_id = ConvertTo-BoundedReceiptToken $receipt.capability_id
+    operation_id = ConvertTo-BoundedReceiptToken $receipt.operation_id
+    control_oid = $controlOid
+    checkpoint_digest = $checkpointDigest
+    authorization_envelope_digest = $authorizationDigest
+    capability_generation = ConvertTo-BoundedReceiptInteger $receipt.capability_generation 2147483647
+    run_id = ConvertTo-BoundedReceiptToken $receipt.run_id
+    task_id = ConvertTo-BoundedReceiptToken $receipt.task_id
+    attempt_id = ConvertTo-BoundedReceiptToken $receipt.attempt_id
+    attempt_epoch = ConvertTo-BoundedReceiptInteger $receipt.attempt_epoch 2147483647
+    started_at_utc = ConvertTo-BoundedReceiptTimestamp $receipt.started_at_utc
+    finished_at_utc = ConvertTo-BoundedReceiptTimestamp $receipt.finished_at_utc
+    timeout_seconds = ConvertTo-BoundedReceiptInteger $receipt.timeout_seconds 86400
+    state = 'ORPHANED'
+    side_effect_state = ConvertTo-BoundedReceiptToken $receipt.side_effect_state
+    error_code = ConvertTo-BoundedReceiptToken $receipt.error_code
+    receipt_digest = [string]$Snapshot.digest
+  }
+}
+
+function Get-OrphanReceiptStatusView {
+  $summary = $script:receiptSummary
+  $records = @($summary.orphan_status_records | Sort-Object @{ Expression = 'request_id' }, @{ Expression = 'receipt_digest' } |
+    Select-Object -First $maxOrphanStatusRecords)
+  $complete = ([string]$summary.orphan_status_read_status -ceq 'COMPLETE' -and [bool]$summary.orphan_status_complete)
+  if ($complete -and [int]$summary.orphan_count -lt $records.Count) { $complete = $false }
+  $totalCount = if ($complete) { [int]$summary.orphan_count } else { $null }
+  return [ordered]@{
+    read_status = if ($complete) { 'COMPLETE' } elseif ([string]$summary.orphan_status_read_status -ceq 'UNAVAILABLE') { 'UNAVAILABLE' } else { 'PARTIAL' }
+    total_count = $totalCount
+    records = $records
+    truncated = [bool](-not $complete -or ([int]$summary.orphan_count -gt $records.Count))
+    read_at_utc = if ($summary.recorded_at_utc) { [string]$summary.recorded_at_utc } else { [DateTime]::UtcNow.ToString('o') }
   }
 }
 
@@ -299,8 +281,22 @@ function Reconcile-OrphanedStartedReceipts {
     started_count = 0
     terminal_count = 0
     recorded_at_utc = [DateTime]::UtcNow.ToString('o')
+    orphan_status_read_status = 'COMPLETE'
+    orphan_status_records = @()
+    orphan_status_complete = $true
   }
-  foreach ($file in @(Get-ChildItem -LiteralPath $execReceipts -Filter '*.json' -File -ErrorAction SilentlyContinue)) {
+  try {
+    $files = @(Get-ChildItem -LiteralPath $execReceipts -Filter '*.json' -File -ErrorAction Stop |
+      Where-Object { -not ($_.Attributes -band [IO.FileAttributes]::ReparsePoint) })
+  } catch {
+    $summary.orphan_status_read_status = 'UNAVAILABLE'
+    $summary.orphan_status_complete = $false
+    $script:receiptSummary = $summary
+    return
+  }
+  $orphanMetadataAttempts = 0
+  $orphanMetadataRecords = New-Object 'System.Collections.Generic.List[object]'
+  foreach ($file in $files) {
     try {
       $receipt = Get-Content -LiteralPath $file.FullName -Raw | ConvertFrom-Json -ErrorAction Stop
       $summary.broker_records += 1
@@ -338,14 +334,32 @@ function Reconcile-OrphanedStartedReceipts {
         }
       }
       switch ($stateValue) {
-        'ORPHANED' { $summary.orphan_count += 1 }
+        'ORPHANED' {
+          $summary.orphan_count += 1
+          if ($orphanMetadataAttempts -lt $maxOrphanStatusRecords) {
+            $orphanMetadataAttempts += 1
+            try {
+              $snapshot = Read-ReceiptSnapshot -Path $file.FullName
+              if ([string]$snapshot.receipt.state -cne 'ORPHANED' -or [string]$snapshot.receipt.request_id -cne [string]$receipt.request_id) {
+                throw 'ORPHAN_STATUS_SNAPSHOT_IDENTITY_CHANGED'
+              }
+              [void]$orphanMetadataRecords.Add((ConvertTo-OrphanReceiptStatusRecord -Snapshot $snapshot -FileName $file.Name))
+            } catch {
+              $summary.orphan_status_read_status = 'PARTIAL'
+              $summary.orphan_status_complete = $false
+            }
+          }
+        }
         'STARTED' { $summary.started_count += 1 }
         default { $summary.terminal_count += 1 }
       }
     } catch {
       # Reconciliation is best-effort and never converts malformed evidence into current truth.
+      $summary.orphan_status_read_status = 'PARTIAL'
+      $summary.orphan_status_complete = $false
     }
   }
+  $summary.orphan_status_records = @($orphanMetadataRecords.ToArray())
   $script:receiptSummary = $summary
 }
 
