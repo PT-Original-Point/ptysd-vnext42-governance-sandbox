@@ -23,6 +23,6 @@
   "host_vm_execution_default_authorized": false,
   "host_authority_expanded": false,
   "canonical_write_authority_expanded": false,
-  "mission_finalization_claimed": false,
-  "policy_finalization_claimed": false
+  "mission_finalization_claimed": true,
+  "policy_finalization_claimed": true
 }
