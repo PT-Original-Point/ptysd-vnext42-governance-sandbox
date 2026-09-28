@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {selectNextUnit,goalMayBeBlocked} from '../scheduler.mjs';
-import {durableFingerprint} from '../fingerprint.mjs';
+import {selectNextUnit,goalMayBeBlocked} from '../lib/scheduler.mjs';
+import {durableFingerprint} from '../lib/fingerprint.mjs';
 
 test('WAITING_EXTERNAL yields to READY',()=>{
   const r=selectNextUnit([{id:'A',state:'WAITING_EXTERNAL',priority:1},{id:'B',state:'READY',priority:5}]);
