@@ -25,6 +25,6 @@
   ],
   "human_reservations": [],
   "human_authorization_ref": "github://1352411536/governance/v50/current-mission.json@1ad3e192941ed3db63a2c605c8c2a72251d4523e#authorization_gate=VNEXT5.0-R3-CODEX-MCP-CONTINUITY-FIRST-HOTFIX-20260926/HUMAN_EXECUTE_DIRECTIVE",
-  "issued_at": "2026-09-28T02:40:00Z",
-  "envelope_digest": "sha256:c8a44326f5798c5775cde82ca5c6481f7771aba78b3962dce6e0c53d25327b71"
+  "issued_at": "2026-09-28T02:30:00Z",
+  "envelope_digest": "sha256:25e5e06317eecd33c85a5616aba7bcc9e900bd6207b39fe86b118aa7b0b86011"
 }

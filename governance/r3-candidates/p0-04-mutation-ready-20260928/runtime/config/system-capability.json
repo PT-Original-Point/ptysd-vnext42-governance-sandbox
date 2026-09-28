@@ -3,7 +3,7 @@
   "capability_id": "CAP-GOV-SYSTEM-V1",
   "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
   "mission_revision": "20260926T220900+0800",
-  "authorization_envelope_digest": "sha256:c8a44326f5798c5775cde82ca5c6481f7771aba78b3962dce6e0c53d25327b71",
+  "authorization_envelope_digest": "sha256:25e5e06317eecd33c85a5616aba7bcc9e900bd6207b39fe86b118aa7b0b86011",
   "allowed_run_id_patterns": [
     "^CHATGPT_GLOBAL_SKILL_GOVERNANCE$",
     "^CHATGPT_GLOBAL_SKILL_GOVERNANCE-QUAL-[A-Z0-9._-]{1,32}$"
