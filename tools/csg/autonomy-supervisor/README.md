@@ -18,3 +18,7 @@ Safety properties:
 Live acceptance is separate: prove SYSTEM/current-user Codex authentication, reboot survival, crash restart, duplicate-wake no duplicate effect, unchanged-fingerprint finite no-op, provider-first recovery, and operation with OpenAI Watch disabled.
 
 Do not claim live PASS until installed and tested on DESKTOP-1B6PD2P.
+
+## Continuity projection
+
+Every supervisor-started Codex run must read `governance/continuity/CURRENT.json` and its immutable snapshot before normal work, then fresh-read canonical/provider state. After a material evidence delta it must append a new snapshot and advance only `CURRENT.json`. Unchanged durable fingerprint means no duplicate snapshot. The projection is never canonical authority.

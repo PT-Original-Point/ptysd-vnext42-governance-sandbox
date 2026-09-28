@@ -78,12 +78,12 @@ try{
 
   $prompt=@'
 You are the bounded non-interactive executor for CHATGPT_GLOBAL_SKILL_GOVERNANCE.
-Do not use this prompt or chat history as current authority. Fresh-read Project Directory, canonical control/checkpoint/run, Current Mission/Execution Policy, accepted-source, Issue #310, and PR #316 exact current head first.
+Do not use this prompt or chat history as current authority. First read governance/continuity/CURRENT.json and the exact immutable snapshot commit/path it references, then fresh-read Project Directory, canonical control/checkpoint/run, Current Mission/Execution Policy, accepted-source, Issue #310, and PR #316 exact current head. Canonical/provider truth wins on mismatch.
 The Human has already decided EXECUTE_NOW for normal reversible pre-Production work. Do not ask whether to execute or review first. Do not require Human relay or periodic wake-up.
 Operate as an execution loop, not a reporting loop. WAITING_EXTERNAL yields the executor slot. Continue the next READY independent lawful unit.
 No evidence delta means no duplicate snapshot, handoff, test, or non-idempotent dispatch. Unknown effects are readback-first; never redispatch OP025 while UNKNOWN.
 Preserve Mission, Production final, new cost, legal/contract/signature/identity, OAuth/MFA, and major irreversible authority gates.
-After each material result, persist provider-addressable evidence, fresh-read, and continue. Exit only at Mission acceptance or a genuine Human-reserved/all-lanes-unavailable condition with exact re-entry evidence.
+After each material result, persist provider-addressable evidence, append a new continuity snapshot under governance/continuity/snapshots/, advance governance/continuity/CURRENT.json, fresh-read, and continue. A snapshot is a derived handoff only, never a second control plane. If the durable fingerprint is unchanged, do not publish a duplicate snapshot. Exit only at Mission acceptance or a genuine Human-reserved/all-lanes-unavailable condition with exact re-entry evidence.
 '@
   [IO.File]::WriteAllText($promptPath,$prompt,[Text.UTF8Encoding]::new($false))
   $stamp=[DateTimeOffset]::UtcNow.ToString('yyyyMMddTHHmmssZ')
