@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 const s=fs.readFileSync(new URL('../ptysd-autonomy-supervisor.ps1',import.meta.url),'utf8');
 const r=fs.readFileSync(new URL('../register-autonomy-supervisor.ps1',import.meta.url),'utf8');
-test('uses noninteractive codex exec JSON full-auto',()=>{assert.match(s,/exec --json --full-auto/);assert.match(s,/turn\.completed/);});
+test('uses supported noninteractive codex exec with automatic review',()=>{assert.match(s,/exec --json --approve-for-me/);assert.doesNotMatch(s,/exec --json --full-auto/);assert.match(s,/turn\.completed/);});
 test('anti-loop state exists',()=>{assert.match(s,/last_dispatched_fingerprint/);assert.match(s,/MaxSameFingerprintRetries/);assert.match(s,/FileShare\]::None/);});
 test('provider authority bootstrap exists',()=>{assert.match(s,/Project Directory/);assert.match(s,/canonical control\/checkpoint\/run/);assert.match(s,/Issue #310/);assert.match(s,/PR #316/);});
 test('human and unknown-effect gates remain',()=>{assert.match(s,/never redispatch OP025 while UNKNOWN/);assert.match(s,/Production final/);assert.match(s,/OAuth\/MFA/);});

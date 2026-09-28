@@ -95,7 +95,7 @@ After each material result, persist provider-addressable evidence, append a new 
     if(Test-Path -LiteralPath $CodexHome){$env:CODEX_HOME=$CodexHome}
     Set-Location -LiteralPath $Workspace
     $prompt=Get-Content -LiteralPath $PromptPath -Raw
-    $out=$prompt | & $Codex exec --json --full-auto 2> $Stderr
+    $out=$prompt | & $Codex exec --json --approve-for-me 2> $Stderr
     $out | Set-Content -LiteralPath $Stdout -Encoding UTF8
     return $LASTEXITCODE
   } -ArgumentList $codex.Source,$Workspace,$promptPath,$stdout,$stderr,$CodexHome
