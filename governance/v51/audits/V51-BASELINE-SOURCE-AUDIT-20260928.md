@@ -31,18 +31,21 @@
 5. `register-autonomy-supervisor.ps1` defaults to `C:\ProgramData\PTYSD\AutonomySupervisor` and a fixed workspace. Those defaults are source assumptions, not live OS discovery.
 6. On current `main` `1dcec5ea8124e4d1b69b53652c657df8b65eb3ef`, `.github/workflows/factory-bounded.yml` accepts caller-supplied `control_sha` for workflow-dispatch tests on the `PTYSD-V46-CONTROL-TRUSTED` self-hosted runner. The active trusted verifier lists individual forbidden workflow paths; it does not default-deny all of `.github/workflows/**`. PR #316's r4-08 files are candidates and do not change this active trust root.
 7. The R4-08 candidate workflow uses ubuntu-24.04 for its candidate-controlled test job and keeps the self-hosted job for `pull_request_target` verification. This remains candidate source only and has no exact PR #316 head check-run.
-8. The observed local V51-01 code/test paths are new and isolated from those R4 findings. This atomic unit will implement a pure ownership contract and local transition/race tests only. It will not add a persistent ownership database or claim provider/canonical CAS, cross-session exclusion, or system-level B19 acceptance. Durable enforcement must later bind to the one canonical run/control source with same-source compare-and-swap/readback.
+8. The V51-01 candidate is isolated from those R4 findings. It defines a versioned ownership state machine and a provider CAS/write/readback adapter contract; it does not contain a persistent ownership store or a production provider adapter. The local race test uses a shared in-memory provider model and does not establish cross-session exclusion or system-level B19 acceptance. Production integration must bind the ownership record and source head to an authoritative provider CAS and same-source readback.
 
 ## Automation cleanup readback
 
-The Codex App `codex-dev.db` was queried read-only: `automations=0`, `automation_runs=0`, `inbox_items=0`. The Codex Home automation directory contains no `automation.toml`. Delete for the only observed legacy ID returned `not_found`; the 11:52:38Z R4 locator message is preserved as historical thread evidence. No new scheduled injection was observed after the cleanup readback. Evidence is under `evidence/v51-00-codex-automation/`.
+The Codex App `codex-dev.db` was queried read-only again on 2026-09-29: `automations=0`, `automation_runs=0`, `inbox_items=0`; no matching automation definitions were returned. The Codex Home automation directory contains no `automation.toml`. Delete for the only observed legacy ID returned `not_found`; the automation tool view still returns only a rendered-card notice, so app-side exhaustive enumeration remains unverified. No duplicate delete/update was issued. Evidence is under `evidence/v51-00-codex-automation/`.
 
 ## V51-01 local candidate verification
 
 - Runtime: Node.js v24.19.0.
 - Exact command: node --test tools/csg/v51/tests/execution-owner.test.mjs.
-- Result after the final candidate correction: 8 tests passed, 0 failed.
-- Coverage includes exact scoped write proposals, owner handoff epochs, stale revision/head rejection, readback-bound reclaim, strict schema rejection, and a mock compare-and-swap conflict.
-- This is local candidate evidence only. The mock compare-and-swap test does not establish provider persistence, cross-session exclusion, canonical acceptance, or live supervisor qualification.
+- Candidate parent: PR328 head `d42736eb638ef93ebabab9e4e27fad0e1024c5bb`; this correction changes only the three authorized paths listed above.
+- The scope digest now includes `atomicUnitId`, preventing identical path scopes for different units from sharing a token.
+- `executeOwnedWrite` requires a provider CAS adapter, then validates a same-source readback bound to unit, owner, epoch, state, parent/result head, revision, scope, changed paths, and evidence digest before advancing the local record. Ambiguous adapter failures and readback mismatches are surfaced as unconfirmed effects; callers must read back before retrying.
+- Result after the correction: 11 tests passed, 0 failed.
+- Coverage includes exact scoped proposals, unit-bound scope digests, owner handoff epochs, stale revision/head rejection, readback-bound reclaim, strict schema rejection, concurrent stale proposals through a shared test adapter, post-write head advancement, readback mismatch handling, and unknown adapter failure without automatic replay.
+- This is local noncanonical candidate evidence only. The adapter interface and in-memory race model do not establish a production provider adapter, durable ownership persistence, cross-session exclusion, canonical acceptance, or live supervisor qualification.
 
 This audit is not an acceptance claim. It records the fresh source baseline and limits for the local V51-01 candidate.

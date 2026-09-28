@@ -42,6 +42,7 @@ const RECORD_KEYS = Object.freeze([
   'readbackRequired',
   'releaseRevision',
   'lastReadback',
+  'lastWriteReadback',
 ]);
 
 const READBACK_KEYS = Object.freeze([
@@ -50,6 +51,31 @@ const READBACK_KEYS = Object.freeze([
   'scopeDigest',
   'afterOwnershipRevision',
   'evidenceDigest',
+]);
+
+const WRITE_READBACK_KEYS = Object.freeze([
+  'atomicUnitId',
+  'owner',
+  'ownerEpoch',
+  'handoffState',
+  'sourceRef',
+  'parentHead',
+  'head',
+  'scopeDigest',
+  'afterOwnershipRevision',
+  'changedPaths',
+  'evidenceDigest',
+]);
+
+const CAS_RESULT_KEYS = Object.freeze([
+  'decision',
+  'atomicUnitId',
+  'ownerEpoch',
+  'expectedRecordRevision',
+  'parentHead',
+  'head',
+  'scopeDigest',
+  'afterOwnershipRevision',
 ]);
 
 function reject(code, message = code) {
@@ -147,9 +173,58 @@ function validateReadback(readback, record) {
   }
 }
 
-function scopeDigest(scope) {
+function validateStoredWriteReadback(readback, record) {
+  if (!readback || typeof readback !== 'object' || Array.isArray(readback)) {
+    reject('INVALID_WRITE_READBACK');
+  }
+  requireExactKeys(readback, WRITE_READBACK_KEYS, 'INVALID_WRITE_READBACK_FIELDS');
+  requireText(readback.atomicUnitId, 'INVALID_WRITE_READBACK_UNIT');
+  if (readback.atomicUnitId !== record.atomicUnitId) reject('WRITE_READBACK_UNIT_MISMATCH');
+  requireOwner(readback.owner);
+  if (
+    !HANDOFF_STATES.includes(readback.handoffState) ||
+    !ACTIVE_STATE_BY_OWNER[readback.owner].has(readback.handoffState)
+  ) reject('UNKNOWN_WRITE_READBACK_STATE');
+  if (
+    !Number.isSafeInteger(readback.ownerEpoch) ||
+    readback.ownerEpoch < 1 ||
+    readback.ownerEpoch > record.ownerEpoch
+  ) reject('INVALID_WRITE_READBACK_EPOCH');
+  requireText(readback.sourceRef, 'INVALID_WRITE_READBACK_REF');
+  if (readback.sourceRef !== record.exactScope.branchRef) reject('WRITE_READBACK_REF_MISMATCH');
+  const parentHead = normalizeOid(readback.parentHead, 'INVALID_WRITE_READBACK_PARENT');
+  const head = normalizeOid(readback.head, 'INVALID_WRITE_READBACK_HEAD');
+  if (readback.parentHead !== parentHead || readback.head !== head) {
+    reject('NONCANONICAL_WRITE_READBACK_OID');
+  }
+  if (parentHead.length !== record.currentHead.length || head.length !== record.currentHead.length) {
+    reject('OID_ALGORITHM_MISMATCH');
+  }
+  if (head === parentHead) reject('WRITE_READBACK_NO_HEAD_CHANGE');
+  if (readback.scopeDigest !== record.scopeDigest) reject('WRITE_READBACK_SCOPE_MISMATCH');
+  if (!Number.isSafeInteger(readback.afterOwnershipRevision) || readback.afterOwnershipRevision < 1) {
+    reject('INVALID_WRITE_READBACK_REVISION');
+  }
+  if (!Array.isArray(readback.changedPaths) || readback.changedPaths.length === 0) {
+    reject('INVALID_WRITE_READBACK_PATHS');
+  }
+  const normalizedPaths = readback.changedPaths.map(normalizePath);
+  if (new Set(normalizedPaths).size !== normalizedPaths.length) reject('DUPLICATE_WRITE_READBACK_PATH');
+  const allowed = new Set(record.exactScope.pathSet);
+  if (normalizedPaths.some((path) => !allowed.has(path))) reject('WRITE_READBACK_OUTSIDE_SCOPE');
+  const sortedPaths = [...normalizedPaths].sort();
+  if (normalizedPaths.some((path, index) => path !== sortedPaths[index])) {
+    reject('NONCANONICAL_WRITE_READBACK_PATHS');
+  }
+  if (!/^sha256:[a-f0-9]{64}$/.test(readback.evidenceDigest ?? '')) {
+    reject('INVALID_WRITE_READBACK_DIGEST');
+  }
+}
+
+function scopeDigest(atomicUnitId, scope) {
   const canonical = {
     schema: 'vnext5.execution-ownership.scope.v1',
+    atomicUnitId,
     projectId: scope.projectId,
     repository: scope.repository,
     branchRef: scope.branchRef,
@@ -192,7 +267,7 @@ function validateRecord(record) {
     record.exactScope.pathSet.length !== normalized.pathSet.length ||
     record.exactScope.pathSet.some((path, index) => path !== normalized.pathSet[index])
   ) reject('NONCANONICAL_OWNERSHIP_SCOPE');
-  const digest = scopeDigest(normalized);
+  const digest = scopeDigest(record.atomicUnitId, normalized);
   if (digest !== record.scopeDigest) reject('SCOPE_DIGEST_MISMATCH');
   if (record.currentHead !== normalizeOid(record.currentHead, 'INVALID_CURRENT_HEAD')) {
     reject('INVALID_CURRENT_HEAD');
@@ -200,6 +275,12 @@ function validateRecord(record) {
   if (record.currentHead.length !== normalized.baseHead.length) reject('OID_ALGORITHM_MISMATCH');
 
   if (record.lastReadback !== null) validateReadback(record.lastReadback, record);
+  if (record.lastWriteReadback !== null) {
+    validateStoredWriteReadback(record.lastWriteReadback, record);
+    if (record.lastWriteReadback.afterOwnershipRevision > record.revision) {
+      reject('WRITE_READBACK_FROM_FUTURE_REVISION');
+    }
+  }
 
   if (record.handoffState === 'HANDOFF_SEALED') {
     if (record.owner !== null || !OWNERS.includes(record.pendingOwner)) {
@@ -256,7 +337,7 @@ export function createOwnershipRecord({
     owner: 'CHAT',
     ownerEpoch,
     exactScope,
-    scopeDigest: scopeDigest(exactScope),
+    scopeDigest: scopeDigest(atomicUnitId, exactScope),
     currentHead: exactScope.baseHead,
     revision: 0,
     handoffState: 'CHAT_PREPARES',
@@ -264,6 +345,7 @@ export function createOwnershipRecord({
     readbackRequired: false,
     releaseRevision: null,
     lastReadback: null,
+    lastWriteReadback: null,
   };
   return validateRecord(record);
 }
@@ -410,4 +492,89 @@ export function authorizeWrite(record, {
     scopeDigest: record.scopeDigest,
     changedPaths: [...new Set(normalized)].sort(),
   };
+}
+
+/**
+ * Execute a scoped write only through a provider adapter that atomically checks
+ * the ownership revision and source head. The adapter's successful response is
+ * not enough: an exact same-source readback must confirm the parent, resulting
+ * head, revision, scope, and changed paths before the returned record advances.
+ * An adapter error after invocation is an unknown effect; callers must read back
+ * before retrying.
+ */
+export async function executeOwnedWrite(record, writeArgs, provider) {
+  const proposal = authorizeWrite(record, writeArgs);
+  if (
+    !provider ||
+    typeof provider !== 'object' ||
+    typeof provider.compareAndSwapWrite !== 'function' ||
+    typeof provider.readSameSource !== 'function'
+  ) reject('PROVIDER_CAS_ADAPTER_REQUIRED');
+
+  let result;
+  try {
+    result = await provider.compareAndSwapWrite(proposal);
+  } catch {
+    reject('WRITE_EFFECT_OUTCOME_UNKNOWN');
+  }
+
+  if (!result || typeof result !== 'object' || Array.isArray(result)) {
+    reject('WRITE_EFFECT_OUTCOME_UNKNOWN');
+  }
+  try {
+    requireExactKeys(result, CAS_RESULT_KEYS, 'INVALID_PROVIDER_CAS_RESULT');
+    if (
+      result.atomicUnitId !== proposal.atomicUnitId ||
+      result.ownerEpoch !== proposal.ownerEpoch ||
+      result.expectedRecordRevision !== proposal.expectedRecordRevision ||
+      result.parentHead !== proposal.expectedHead ||
+      result.scopeDigest !== proposal.scopeDigest
+    ) reject('PROVIDER_CAS_BINDING_MISMATCH');
+    normalizeOid(result.parentHead, 'INVALID_PROVIDER_CAS_PARENT');
+    const committedHead = normalizeOid(result.head, 'INVALID_PROVIDER_CAS_HEAD');
+    if (result.parentHead !== proposal.expectedHead || result.head !== committedHead) {
+      reject('NONCANONICAL_PROVIDER_CAS_OID');
+    }
+    if (committedHead.length !== proposal.expectedHead.length) reject('OID_ALGORITHM_MISMATCH');
+    if (result.decision === 'CAS_CONFLICT') reject('PROVIDER_CAS_CONFLICT');
+    if (result.decision !== 'CAS_APPLIED') reject('WRITE_EFFECT_OUTCOME_UNKNOWN');
+    if (committedHead === proposal.expectedHead) reject('PROVIDER_CAS_NO_HEAD_CHANGE');
+    if (result.afterOwnershipRevision !== record.revision + 1) {
+      reject('PROVIDER_CAS_REVISION_MISMATCH');
+    }
+  } catch (error) {
+    if (error?.code === 'PROVIDER_CAS_CONFLICT') throw error;
+    reject('WRITE_EFFECT_OUTCOME_UNKNOWN');
+  }
+
+  let readback;
+  try {
+    readback = await provider.readSameSource(proposal);
+  } catch {
+    reject('WRITE_APPLIED_READBACK_UNCONFIRMED');
+  }
+  try {
+    validateStoredWriteReadback(readback, record);
+    if (
+      readback.atomicUnitId !== proposal.atomicUnitId ||
+      readback.owner !== proposal.actor ||
+      readback.ownerEpoch !== proposal.ownerEpoch ||
+      readback.handoffState !== record.handoffState ||
+      readback.parentHead !== proposal.expectedHead ||
+      readback.head !== result.head ||
+      readback.scopeDigest !== proposal.scopeDigest ||
+      readback.afterOwnershipRevision !== record.revision + 1 ||
+      readback.changedPaths.length !== proposal.changedPaths.length ||
+      readback.changedPaths.some((path, index) => path !== proposal.changedPaths[index])
+    ) reject('WRITE_READBACK_BINDING_MISMATCH');
+  } catch {
+    reject('WRITE_APPLIED_READBACK_UNCONFIRMED');
+  }
+
+  return validateRecord({
+    ...record,
+    currentHead: readback.head,
+    revision: readback.afterOwnershipRevision,
+    lastWriteReadback: { ...readback },
+  });
 }

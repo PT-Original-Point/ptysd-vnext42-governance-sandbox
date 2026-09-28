@@ -5,6 +5,7 @@ import {
   acceptHandoff,
   authorizeWrite,
   createOwnershipRecord,
+  executeOwnedWrite,
   reclaimByChat,
   releaseOwnership,
   sealHandoff,
@@ -14,9 +15,12 @@ const BASE = '1111111111111111111111111111111111111111';
 const EVIDENCE = 'sha256:' + 'a'.repeat(64);
 const UNIT = 'V51-01-EXECUTION-OWNERSHIP-ANTI-DOUBLE-WRITER-CANDIDATE';
 
-function makeRecord(pathSet = ['tools/csg/v51/execution-owner.mjs', 'tools/csg/v51/tests/execution-owner.test.mjs']) {
+function makeRecord(
+  pathSet = ['tools/csg/v51/execution-owner.mjs', 'tools/csg/v51/tests/execution-owner.test.mjs'],
+  atomicUnitId = UNIT,
+) {
   return createOwnershipRecord({
-    atomicUnitId: UNIT,
+    atomicUnitId,
     owner: 'CHAT',
     ownerEpoch: 1,
     scope: {
@@ -49,6 +53,17 @@ function write(record, actor, overrides = {}) {
   });
 }
 
+function writeArgs(record, actor, overrides = {}) {
+  return {
+    ...preconditions(record),
+    actor,
+    branchRef: record.exactScope.branchRef,
+    observedHead: record.currentHead,
+    changedPaths: [record.exactScope.pathSet[0]],
+    ...overrides,
+  };
+}
+
 function expectCode(code, action) {
   assert.throws(action, (error) => error?.code === code, 'expected ' + code);
 }
@@ -71,6 +86,7 @@ test('scope identity is deterministic and requires a canonical exact path set', 
   const b = makeRecord(['tools/csg/v51/execution-owner.mjs', 'tools/csg/v51/tests/execution-owner.test.mjs']);
   assert.equal(a.scopeDigest, b.scopeDigest);
   assert.deepEqual(a.exactScope.pathSet, [...a.exactScope.pathSet].sort());
+  assert.notEqual(a.scopeDigest, makeRecord(undefined, UNIT + '-OTHER').scopeDigest);
   expectCode('INVALID_SCOPE_PATH', () => makeRecord(['/absolute/path.mjs']));
   expectCode('INVALID_SCOPE_PATH', () => makeRecord(['../escape.mjs']));
   expectCode('INVALID_SCOPE_PATH', () => makeRecord(['tools\\csg\\v51\\escape.mjs']));
@@ -230,26 +246,156 @@ test('all declared executor classes require a sealed transfer and receive a new 
   }
 });
 
-test('two stale proposals require provider CAS; only the first expected-head update wins in the model', () => {
+test('provider CAS serializes concurrent writers and same-source readback advances the owned head', async () => {
   const { accepted: codex } = transfer(makeRecord(), 'CODEX');
-  const proposalA = write(codex, 'CODEX');
-  const proposalB = write(codex, 'CODEX');
-  assert.equal(proposalA.decision, 'CAS_REQUIRED');
-  assert.equal(proposalB.decision, 'CAS_REQUIRED');
+  const providerState = { record: structuredClone(codex), serial: 2 };
+  const provider = {
+    async compareAndSwapWrite(proposal) {
+      const current = providerState.record;
+      if (
+        proposal.atomicUnitId !== current.atomicUnitId ||
+        proposal.ownerEpoch !== current.ownerEpoch ||
+        proposal.expectedRecordRevision !== current.revision ||
+        proposal.expectedHead !== current.currentHead ||
+        proposal.scopeDigest !== current.scopeDigest ||
+        proposal.actor !== current.owner
+      ) {
+        return {
+          decision: 'CAS_CONFLICT',
+          atomicUnitId: proposal.atomicUnitId,
+          ownerEpoch: proposal.ownerEpoch,
+          expectedRecordRevision: proposal.expectedRecordRevision,
+          parentHead: proposal.expectedHead,
+          head: current.currentHead,
+          scopeDigest: proposal.scopeDigest,
+          afterOwnershipRevision: current.revision,
+        };
+      }
 
-  let providerState = {
-    revision: codex.revision,
-    head: codex.currentHead,
-  };
-  const applyModelCas = (proposal, nextHead) => {
-    if (
-      proposal.expectedRecordRevision !== providerState.revision ||
-      proposal.expectedHead !== providerState.head
-    ) return 'CAS_CONFLICT';
-    providerState = { revision: providerState.revision + 1, head: nextHead };
-    return 'CAS_APPLIED';
+      const parentHead = current.currentHead;
+      const head = String(providerState.serial++).padStart(40, '0');
+      const afterOwnershipRevision = current.revision + 1;
+      const readback = {
+        atomicUnitId: current.atomicUnitId,
+        owner: current.owner,
+        ownerEpoch: current.ownerEpoch,
+        handoffState: current.handoffState,
+        sourceRef: current.exactScope.branchRef,
+        parentHead,
+        head,
+        scopeDigest: current.scopeDigest,
+        afterOwnershipRevision,
+        changedPaths: [...proposal.changedPaths],
+        evidenceDigest: EVIDENCE,
+      };
+      providerState.record = {
+        ...current,
+        currentHead: head,
+        revision: afterOwnershipRevision,
+        lastWriteReadback: readback,
+      };
+      return {
+        decision: 'CAS_APPLIED',
+        atomicUnitId: proposal.atomicUnitId,
+        ownerEpoch: proposal.ownerEpoch,
+        expectedRecordRevision: proposal.expectedRecordRevision,
+        parentHead,
+        head,
+        scopeDigest: proposal.scopeDigest,
+        afterOwnershipRevision,
+      };
+    },
+    async readSameSource() {
+      return structuredClone(providerState.record.lastWriteReadback);
+    },
   };
 
-  assert.equal(applyModelCas(proposalA, '2222222222222222222222222222222222222222'), 'CAS_APPLIED');
-  assert.equal(applyModelCas(proposalB, '3333333333333333333333333333333333333333'), 'CAS_CONFLICT');
+  const staleArgs = writeArgs(codex, 'CODEX');
+  const outcomes = await Promise.allSettled([
+    executeOwnedWrite(codex, staleArgs, provider),
+    executeOwnedWrite(codex, staleArgs, provider),
+  ]);
+  const successes = outcomes.filter((item) => item.status === 'fulfilled');
+  const failures = outcomes.filter((item) => item.status === 'rejected');
+  assert.equal(successes.length, 1);
+  assert.equal(failures.length, 1);
+  assert.equal(failures[0].reason?.code, 'PROVIDER_CAS_CONFLICT');
+  assert.equal(successes[0].value.currentHead, providerState.record.currentHead);
+  assert.equal(successes[0].value.revision, codex.revision + 1);
+  assert.equal(successes[0].value.lastWriteReadback.parentHead, codex.currentHead);
+
+  const next = await executeOwnedWrite(
+    successes[0].value,
+    writeArgs(successes[0].value, 'CODEX'),
+    provider,
+  );
+  assert.equal(next.currentHead, providerState.record.currentHead);
+  assert.equal(next.revision, codex.revision + 2);
+});
+
+test('an applied write without matching same-source readback remains unconfirmed', async () => {
+  const { accepted: codex } = transfer(makeRecord(), 'CODEX');
+  const provider = {
+    async compareAndSwapWrite(proposal) {
+      return {
+        decision: 'CAS_APPLIED',
+        atomicUnitId: proposal.atomicUnitId,
+        ownerEpoch: proposal.ownerEpoch,
+        expectedRecordRevision: proposal.expectedRecordRevision,
+        parentHead: proposal.expectedHead,
+        head: '2222222222222222222222222222222222222222',
+        scopeDigest: proposal.scopeDigest,
+        afterOwnershipRevision: proposal.expectedRecordRevision + 1,
+      };
+    },
+    async readSameSource() {
+      return {
+        atomicUnitId: codex.atomicUnitId,
+        owner: codex.owner,
+        ownerEpoch: codex.ownerEpoch,
+        handoffState: codex.handoffState,
+        sourceRef: codex.exactScope.branchRef,
+        parentHead: codex.currentHead,
+        head: '3333333333333333333333333333333333333333',
+        scopeDigest: codex.scopeDigest,
+        afterOwnershipRevision: codex.revision + 1,
+        changedPaths: [codex.exactScope.pathSet[0]],
+        evidenceDigest: EVIDENCE,
+      };
+    },
+  };
+  await assert.rejects(
+    executeOwnedWrite(codex, writeArgs(codex, 'CODEX'), provider),
+    (error) => error?.code === 'WRITE_APPLIED_READBACK_UNCONFIRMED',
+  );
+});
+
+test('owned writes fail closed when no provider CAS and same-source readback adapter exists', async () => {
+  const { accepted: codex } = transfer(makeRecord(), 'CODEX');
+  await assert.rejects(
+    executeOwnedWrite(codex, writeArgs(codex, 'CODEX'), null),
+    (error) => error?.code === 'PROVIDER_CAS_ADAPTER_REQUIRED',
+  );
+});
+
+test('provider adapter failure is an unknown effect and is never retried here', async () => {
+  const { accepted: codex } = transfer(makeRecord(), 'CODEX');
+  let dispatches = 0;
+  let readbacks = 0;
+  const provider = {
+    async compareAndSwapWrite() {
+      dispatches += 1;
+      throw new Error('transport interrupted after dispatch');
+    },
+    async readSameSource() {
+      readbacks += 1;
+      return null;
+    },
+  };
+  await assert.rejects(
+    executeOwnedWrite(codex, writeArgs(codex, 'CODEX'), provider),
+    (error) => error?.code === 'WRITE_EFFECT_OUTCOME_UNKNOWN',
+  );
+  assert.equal(dispatches, 1);
+  assert.equal(readbacks, 0);
 });
