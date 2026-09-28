@@ -3,7 +3,7 @@
   "version": "0.2.1",
   "private": true,
   "type": "module",
-  "description": "Governed PTYSD Factory MCP with SYSTEM-brokered arbitrary host PowerShell and V4.8 identity fencing.",
+  "description": "Governed PTYSD Factory MCP with SYSTEM-brokered arbitrary host PowerShell, controller-layer policy, durable receipts, and orphan recovery.",
   "engines": {
     "node": ">=20"
   },

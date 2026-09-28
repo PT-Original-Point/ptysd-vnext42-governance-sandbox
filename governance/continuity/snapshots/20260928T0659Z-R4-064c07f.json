@@ -1,0 +1,45 @@
+{
+  "schema_version": "vnext5.continuity-projection.v1",
+  "authority_class": "DERIVED_READ_ONLY_PROJECTION",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "snapshot_id": "20260928T0659Z-R4-064c07f",
+  "previous_snapshot_commit": "064c07fa6b300804569feea9d7cd1542195f3e85",
+  "note": "previous_snapshot_commit field is intentionally the immediately preceding snapshot publication commit; canonical/provider truth remains external.",
+  "canonical_checkpoint_seq": 192,
+  "canonical_checkpoint_digest": "sha256:fc0112e9203a8d9c8a43fa98f427f67c6e0b58aca09c6adcfa260ac6faa274f0",
+  "mission_revision": "20260926T220900+0800",
+  "policy_revision": "20260926T220900+0800-EP72",
+  "r4_pr": 316,
+  "r4_head_before_snapshot_publication": "064c07fa6b300804569feea9d7cd1542195f3e85",
+  "material_delta": {
+    "type": "VERIFIER_VERDICT",
+    "source_commit": "d2d3c355d2a86794b43fca13bc9a45fb78dd75ec",
+    "verifier_run": 36388989978,
+    "verifier_job": 108820408334,
+    "result": "PASS",
+    "verifier_only_pr": 320,
+    "verifier_only_pr_closed_without_merge": true
+  },
+  "durable_logging_state": {
+    "current_locator_exists": true,
+    "immutable_snapshot_chain_exists": true,
+    "root_read_first_exists": true,
+    "codex_goal_requires_projection_bootstrap": true,
+    "codex_directive_requires_projection_bootstrap": true,
+    "codex_prompt_requires_projection_bootstrap": true,
+    "supervisor_source_requires_projection_bootstrap": true,
+    "supervisor_regression_guard_added": true
+  },
+  "current_execution_facts": {
+    "r4_05_r4_06_functional_pass": "NOT_RESTORED",
+    "import_fix_commit": "4941cabed851e6e96820fec9e48e448b5dcb6c4e",
+    "required_test": "fresh repo-root rerun",
+    "factory_runtime_root": "UNRESOLVED",
+    "r4_01_live_host_qualification": false,
+    "r4_04_live_supervisor_install": false,
+    "orphan_count": 5,
+    "op025": "UNKNOWN"
+  },
+  "next_single_action": "FRESH_R4_05_R4_06_TEST_RERUN_AND_READ_ONLY_FACTORY_RUNTIME_DISCOVERY",
+  "anti_recursion": "Snapshot/CURRENT publication alone is not an execution material delta."
+}
