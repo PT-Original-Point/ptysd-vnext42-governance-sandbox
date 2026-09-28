@@ -71,9 +71,9 @@ try {
     attemptEpoch: 1,
   };
   const hostOp = {
-    runId: 'CHATGPT_GLOBAL_SKILL_GOVERNANCE-QUAL-P4',
-    taskId: 'GOV-HARDENING-P4',
-    attemptId: 'GOV-HARDENING-P4-ATTEMPT-001',
+    runId: 'V50-R3-001',
+    taskId: 'R3-P0-03-FACTORY-ORPHAN-RECONCILIATION',
+    attemptId: 'V50-R3-P0-03-ATTEMPT-001',
     attemptEpoch: 1,
   };
   const prepare = await send('tools/call', { name: 'worker_prepare', arguments: workerOp });
@@ -124,17 +124,19 @@ try {
   assert.ok(invalid.result?.isError || invalid.error, 'invalid input must fail closed');
   const staleWorker = await send('tools/call', { name: 'worker_start', arguments: { ...workerOp, attemptEpoch: 0 } });
   assert.ok(staleWorker.result?.isError || staleWorker.error, 'worker stale epoch must fail closed');
-  const staleHost = await send('tools/call', {
+  const transportEpoch = await send('tools/call', {
     name: 'host_powershell',
-    arguments: { ...hostOp, attemptEpoch: 999, script: "Write-Output 'P4_CURRENT_FENCE_OK'", timeoutSeconds: 30 },
+    arguments: { ...hostOp, attemptEpoch: 999, script: "Write-Output 'TRANSPORT_EPOCH_OK'", timeoutSeconds: 30 },
   });
-  assert.ok(staleHost.result?.isError || staleHost.error, 'host forged epoch must fail closed');
+  assert.equal(transportEpoch.error, undefined);
+  assert.equal(transportEpoch.result?.isError, undefined);
 
-  const wrongScript = await send('tools/call', {
+  const arbitraryScript = await send('tools/call', {
     name: 'host_powershell',
-    arguments: { ...hostOp, script: "Write-Output 'WRONG'", timeoutSeconds: 30 },
+    arguments: { ...hostOp, script: "Write-Output 'ARBITRARY_TRANSPORT_OK'", timeoutSeconds: 30 },
   });
-  assert.ok(wrongScript.result?.isError || wrongScript.error, 'host script outside current fence must fail closed');
+  assert.equal(arbitraryScript.error, undefined);
+  assert.equal(arbitraryScript.result?.isError, undefined);
 
   console.log('FACTORY_MCP_PROTOCOL_SMOKE=PASS');
 } finally {

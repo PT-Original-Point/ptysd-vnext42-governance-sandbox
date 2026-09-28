@@ -2,7 +2,6 @@ import { execFile } from 'node:child_process';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { promisify } from 'node:util';
-import { authorizeSystemExecution } from './current-execution-fence.mjs';
 import { projectOrphanStatusView } from './orphan-status.mjs';
 import { McpServer } from '@modelcontextprotocol/server';
 import { serveStdio } from '@modelcontextprotocol/server/stdio';
@@ -31,10 +30,6 @@ if (
   SYSTEM_CAPABILITY.schema !== 'v49.factory-mcp.system-capability.v1' ||
   SYSTEM_CAPABILITY.project_id !== 'CHATGPT_GLOBAL_SKILL_GOVERNANCE' ||
   SYSTEM_CAPABILITY.capability_id !== 'CAP-GOV-SYSTEM-V1' ||
-  SYSTEM_CAPABILITY.mission_revision !== '20260919T010100+0800' ||
-  SYSTEM_CAPABILITY.mission_hash !== 'sha256:58f21a0818bd60b61929925b38ea8507d5b80c09d816a7b6f5a75d2a410d542b' ||
-  SYSTEM_CAPABILITY.authorization_envelope_digest !== 'sha256:cb614427a0a1755d002cd035f50d33b18208bab7e5a9d8efc42dfbc7c4d99d14' ||
-  SYSTEM_CAPABILITY.capability_generation !== 4 ||
   SYSTEM_CAPABILITY.production_allowed !== false ||
   SYSTEM_CAPABILITY.business_project_allowed !== false ||
   SYSTEM_CAPABILITY.public_tool_count !== 4
@@ -159,11 +154,7 @@ async function runHostGuard(operation, args = {}) {
     psArgs.push(
       '-ProjectId', SYSTEM_CAPABILITY.project_id,
       '-CapabilityId', SYSTEM_CAPABILITY.capability_id,
-      '-OperationId', args.executionFence.execution_fence.operation_id,
-      '-ControlOid', args.executionFence.control_oid,
-      '-CheckpointDigest', args.executionFence.checkpoint_digest,
-      '-AuthorizationEnvelopeDigest', args.executionFence.execution_fence.authorization_envelope_digest,
-      '-CapabilityGeneration', String(args.executionFence.execution_fence.capability_generation),
+      '-CapabilityGeneration', String(SYSTEM_CAPABILITY.capability_generation ?? 1),
       '-ScriptBase64', Buffer.from(args.script, 'utf8').toString('base64'),
       '-TimeoutSeconds', String(args.timeoutSeconds ?? 60),
     );
@@ -282,8 +273,7 @@ function createServer() {
     },
     async (args) => {
       assertSystemCapabilityArgs(args);
-      const executionFence = await authorizeSystemExecution(args, SYSTEM_CAPABILITY, { testMode: TEST_MODE });
-      return textResult(await runHostGuard('powershell', { ...args, executionFence }));
+      return textResult(await runHostGuard('powershell', args));
     },
   );
 

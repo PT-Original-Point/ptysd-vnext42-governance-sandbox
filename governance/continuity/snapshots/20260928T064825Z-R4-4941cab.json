@@ -1,0 +1,153 @@
+{
+  "schema_version": "vnext5.continuity-projection.v1",
+  "authority_class": "DERIVED_READ_ONLY_PROJECTION",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "project_name": "全自動軟體工廠",
+  "snapshot_id": "20260928T064825Z-R4-4941cab",
+  "snapshot_rule": "APPEND_ONLY_BY_COMMIT_ID",
+  "never_overrides": [
+    "Human Mission",
+    "Project Directory",
+    "v45/factory-control",
+    "provider same-source readback"
+  ],
+  "canonical": {
+    "runtime_type": "GITHUB_ACTIONS_BOUNDED",
+    "project_directory_ref": "refs/heads/governance/project-directory",
+    "project_directory_revision": 5,
+    "active_run_ref_resolution": "CURRENT_CANONICAL_CONTROL_POINTER_V1",
+    "control_ref": "refs/heads/v45/factory-control",
+    "checkpoint_seq": 192,
+    "checkpoint_path": "governance/csg/checkpoints/000192.json",
+    "checkpoint_digest": "sha256:fc0112e9203a8d9c8a43fa98f427f67c6e0b58aca09c6adcfa260ac6faa274f0",
+    "mission_revision": "20260926T220900+0800",
+    "mission_hash": "sha256:3cd12c504e42247f52b2f8200ee590a7d1e6e1f0e58c15063cb9551ebf9a38a5",
+    "policy_revision": "20260926T220900+0800-EP72",
+    "policy_hash": "sha256:ce3abb44889a495d9a228e9117a22cc741807e033049a51346762110e7609cd2",
+    "controller_contract": "CHAT_EXECUTION_POLICY_CONTRACT_V9_1_CANDIDATE",
+    "run_ref": "github://1352411536/runs/V50-R3-001/run.json@1ad3e192941ed3db63a2c605c8c2a72251d4523e",
+    "canonical_atomic_unit": "R3-P0-03-FACTORY-ORPHAN-RECONCILIATION",
+    "canonical_atomic_state": "PREPARED_NOT_DISPATCHED"
+  },
+  "human_authorized_recovery_overlay": {
+    "mission_change": false,
+    "production_final_authorization": false,
+    "paid_fallback": false,
+    "human_relay_required": false,
+    "current_r4_pr": 316,
+    "current_r4_head": "4941cabed851e6e96820fec9e48e448b5dcb6c4e",
+    "current_r4_head_message": "Fix R4-05/R4-06 scheduler test module imports",
+    "active_recovery_priority": "eliminate execution-path deadlocks and human-relay dependence before ordinary R3 work",
+    "issue_310_latest_execution_directive_comment": 5864694790
+  },
+  "factory_same_source_observation": {
+    "observed_at_utc": "2026-09-28T06:48:25Z",
+    "host": "DESKTOP-1B6PD2P",
+    "boot_identity": "DESKTOP-1B6PD2P|2026-09-18T16:13:54.5000000Z",
+    "vm_name": "PTYSD-WORKER-01",
+    "vm_state": "Running",
+    "guest_ip": "172.31.253.10",
+    "ssh22_reachable": true,
+    "connector_run_as": "NT AUTHORITY\\SYSTEM",
+    "host_exec_lane": {
+      "state": "IDLE_WITH_ORPHANS",
+      "active_count": 0,
+      "live_job_count": 0,
+      "orphan_count": 5,
+      "pending_receipt_count": 0,
+      "capacity": 4,
+      "max_per_run": 1
+    },
+    "tunnel_lane": {
+      "task_state": "Running",
+      "live": true,
+      "ready": true,
+      "control_plane_status": "ok",
+      "control_plane_state": "poll_success_observed"
+    }
+  },
+  "executor_local_observation": {
+    "evidence_level": "CODEX_LOCAL_REPORT_NOT_PROVIDER_CONFIRMED",
+    "observed_in_current_codex_session": true,
+    "assumed_factory_path": "C:\\ProgramData\\PTYSD\\MCP\\FactoryMCP",
+    "assumed_path_result": "PATH_PRESENT_BUT_NOT_USABLE_AS_LIVE_FACTORY_RUNTIME_FROM_CURRENT_CODEX_SHELL",
+    "factory_broker_service_visible": false,
+    "running_factory_mcp_visible": false,
+    "codex_shell_elevated": false,
+    "actual_factory_runtime_path": "UNRESOLVED",
+    "required_next_read_only_discovery": [
+      "Scheduled Tasks actions/arguments/working directories",
+      "Win32_Process command lines for PTYSD/FactoryMCP/HostGuard/Tunnel",
+      "Win32_Service PathName for matching services",
+      "filesystem paths referenced by those OS objects"
+    ]
+  },
+  "verified_work": [
+    {
+      "unit": "R4-01",
+      "result": "SOURCE_STRUCTURAL_PASS_LIVE_PENDING",
+      "source_commit": "a83b7b973faa6e02f2d53c53d12f4c8567709a55",
+      "verifier_run": 36378250626,
+      "verifier_job": 108788401851,
+      "live_host_qualification": false
+    },
+    {
+      "unit": "R4-04",
+      "result": "SOURCE_STRUCTURAL_PASS_LIVE_PENDING",
+      "source_commit": "ca238f8c9478917102fd30d0590d669ce0accb24",
+      "verifier_run": 36381158935,
+      "verifier_job": 108797020346,
+      "live_host_install": false
+    },
+    {
+      "unit": "R4-05/R4-06",
+      "result": "IMPORT_PATH_REPAIR_COMMITTED_FRESH_FUNCTIONAL_RERUN_REQUIRED",
+      "current_fix_commit": "4941cabed851e6e96820fec9e48e448b5dcb6c4e",
+      "prior_functional_claim": "SUPERSEDED_INVALIDATED",
+      "reason": "Earlier 6/6 claim preceded discovery of broken test import paths; a fresh repo-root run is required before functional PASS can be restored."
+    },
+    {
+      "unit": "R4-08",
+      "result": "NONCANONICAL_TRUST_PLANE_CANDIDATE_PREPARED",
+      "promotion_authorized": false
+    }
+  ],
+  "unresolved_or_lane_local": [
+    "Actual live Factory MCP installation/runtime root is unresolved from current Codex principal.",
+    "R4-01 live deploy/SYSTEM canary not completed.",
+    "R4-04 live Scheduled Task install/reboot/crash/duplicate-wake qualification not completed.",
+    "R4-05/R4-06 fresh functional rerun after import fix is pending.",
+    "Five Factory orphan records remain unreconciled by same-source readback.",
+    "OP025 remains UNKNOWN and must not be redispatched."
+  ],
+  "next_single_action": {
+    "action": "FRESH_R4_05_R4_06_TEST_RERUN_AND_READ_ONLY_FACTORY_RUNTIME_DISCOVERY",
+    "acceptance": [
+      "Run repaired R4-05/R4-06 tests from repo root and persist exact command/exit/pass-fail counts.",
+      "Resolve actual live Factory runtime root from Windows task/process/service objects or prove unavailable to current principal.",
+      "If elevation blocks R4-01, yield that lane and continue R4-04 current-user qualification."
+    ]
+  },
+  "no_progress_guards": [
+    "WAITING_EXTERNAL is lane-local, not Goal-global.",
+    "No durable fingerprint delta => no repeated snapshot/comment/test/non-idempotent dispatch.",
+    "PR/review/verifier request is not terminal completion.",
+    "Do not require Human to relay messages or periodically wake Codex."
+  ],
+  "human_reserved_gates": [
+    "Production final",
+    "new cost/paid fallback",
+    "legal/contract/signature/identity",
+    "OAuth/MFA",
+    "major irreversible authority expansion",
+    "canonical trust-root promotion",
+    "Mission change"
+  ],
+  "resume_instructions": [
+    "Read governance/continuity/CURRENT.json first.",
+    "Then fresh-read Project Directory and v45/factory-control; canonical/provider truth wins on mismatch.",
+    "Read the immutable snapshot commit referenced by CURRENT.",
+    "Fresh-read PR #316 exact head and Issue #310 latest directives.",
+    "Do not trust stale chat summaries or scheduled wake text."
+  ]
+}

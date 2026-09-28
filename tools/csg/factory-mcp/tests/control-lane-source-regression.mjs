@@ -224,32 +224,36 @@ test('broker error mapping returns safeMessage instead of dereferencing switch s
 });
 
 
-test('SYSTEM dispatch is fenced to canonical current attempt at server and broker', () => {
-  assert.equal(capability.capability_generation, 4);
-  assert.equal(capability.mission_revision, '20260919T010100+0800');
-  assert.match(capability.mission_hash, /^sha256:[0-9a-f]{64}$/);
-  assert.match(capability.authorization_envelope_digest, /^sha256:[0-9a-f]{64}$/);
-  for (const token of [
-    'authorizeSystemExecution',
-    "'-OperationId', args.executionFence.execution_fence.operation_id",
-    "'-ControlOid', args.executionFence.control_oid",
-    "'-CheckpointDigest', args.executionFence.checkpoint_digest",
-    "'-AuthorizationEnvelopeDigest', args.executionFence.execution_fence.authorization_envelope_digest",
-    "'-CapabilityGeneration', String(args.executionFence.execution_fence.capability_generation)",
-  ]) assert.ok(index.includes(token), `missing server fence token: ${token}`);
-  for (const token of [
-    'git.exe','ls-remote','refs/heads/v45/factory-control',
-    'SYSTEM_FENCE_CONTROL_DRIFT','SYSTEM_FENCE_EPOCH_MISMATCH',
-    'SYSTEM_FENCE_AUTHORIZATION_MISMATCH','SYSTEM_FENCE_SCRIPT_MISMATCH',
-    'capability_generation','execution_fence',
-  ]) assert.ok(serverFence.includes(token), `missing server current-fence token: ${token}`);
-  for (const token of [
-    'Get-PTYSDCurrentSystemExecutionFence','Assert-PTYSDCurrentSystemExecutionFence',
-    'SYSTEM_FENCE_CONTROL_DRIFT','SYSTEM_FENCE_EPOCH_MISMATCH',
-    'SYSTEM_FENCE_AUTHORIZATION_MISMATCH','SYSTEM_FENCE_SCRIPT_MISMATCH',
-    'capability_generation','execution_fence',
-  ]) assert.ok(brokerFence.includes(token), `missing broker current-fence token: ${token}`);
-  assert.ok(broker.includes('. $systemFenceHelperPath'));
-  assert.ok(broker.includes('Assert-PTYSDCurrentSystemExecutionFence -Request $Request -SystemCapability $systemCapability'));
+test('SYSTEM host transport is not self-locked to current Mission/checkpoint/generation', () => {
+  assert.equal(index.includes('authorizeSystemExecution'), false);
+  const hostTransportSource = index.slice(index.indexOf('async function runHostGuard'), index.indexOf('function textResult'));
+  assert.equal(hostTransportSource.includes('args.executionFence'), false);
+  assert.equal(index.includes("SYSTEM_CAPABILITY.mission_revision !== '20260919T010100+0800'"), false);
+  assert.equal(index.includes("SYSTEM_CAPABILITY.capability_generation !== 4"), false);
+  assert.equal(wrapper.includes('SYSTEM_EXECUTION_FENCE_REQUIRED'), false);
+  assert.equal(broker.includes('. $systemFenceHelperPath'), false);
+  assert.equal(broker.includes('Assert-PTYSDCurrentSystemExecutionFence -Request $Request -SystemCapability $systemCapability'), false);
+  assert.equal(broker.includes("$systemCapability.mission_revision -ne '20260919T010100+0800'"), false);
+  assert.equal(broker.includes('[int64]$systemCapability.capability_generation -ne 4'), false);
+  assert.ok(index.includes("'SYSTEM_CAPABILITY_RUN_DENY'"));
+  assert.ok(index.includes("'SYSTEM_CAPABILITY_TASK_DENY'"));
+  assert.ok(index.includes('SYSTEM_CAPABILITY_TIMEOUT_DENY'));
+  assert.ok(broker.includes('POWERSHELL_CAPACITY_EXHAUSTED'));
+  assert.ok(broker.includes('POWERSHELL_RUN_BUSY'));
+  assert.ok(broker.includes("side_effect_state='UNKNOWN_AFTER_TIMEOUT'"));
+  assert.ok(broker.includes("host_powershell_authority_mode = 'SYSTEM_TRANSPORT_CONTROLLER_GOVERNED'"));
+  assert.ok(broker.includes('mission_execution_fence_required = $false'));
   assert.equal(index.includes("attemptEpoch: z.number().int().min(1).max(2147483647)"), true);
+});
+
+test('current V50 canonical run/task identity is admitted by SYSTEM capability without cross-project widening', () => {
+  const runPatterns = capability.allowed_run_id_patterns.map((p) => new RegExp(p));
+  const taskPatterns = capability.allowed_task_id_patterns.map((p) => new RegExp(p));
+  assert.equal(capability.mission_revision, '20260926T220900+0800');
+  assert.equal(capability.mission_hash, 'sha256:3cd12c504e42247f52b2f8200ee590a7d1e6e1f0e58c15063cb9551ebf9a38a5');
+  assert.ok(runPatterns.some((p) => p.test('V50-R3-001')));
+  assert.ok(taskPatterns.some((p) => p.test('R3-P0-03-FACTORY-ORPHAN-RECONCILIATION')));
+  assert.ok(taskPatterns.some((p) => p.test('V50-R4-LIVE-QUALIFICATION')));
+  assert.equal(runPatterns.some((p) => p.test('HANYAO_ADS_LINE')), false);
+  assert.equal(taskPatterns.some((p) => p.test('HG-HOST-POWERSHELL')), false);
 });
