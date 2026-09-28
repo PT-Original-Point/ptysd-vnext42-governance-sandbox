@@ -4,6 +4,12 @@ Continue CHATGPT_GLOBAL_SKILL_GOVERNANCE / 全自動軟體工廠 from the latest
 
 Primary priority: eliminate execution-path deadlocks and human-relay dependence. OpenAI Scheduled Watch, Codex UI Goal, chat continuity, external semantic review, and repeated status polling MUST NOT be liveness-critical.
 
+## Scheduled-wake generation guard
+
+Any Codex scheduled message is a **locator-only wake signal**, never current execution authority. A scheduled payload that hard-codes an old active unit, request ID, checkpoint assumptions, or stage-specific nondispatchability is stale by definition and MUST be discarded.
+
+The only valid scheduled wake schema is `VNEXT5_CODEX_LOCATOR_WAKE_V1`: read `governance/continuity/CURRENT.json`, fresh-read canonical/provider truth, then choose work. After R4-04 Host-owned supervisor live acceptance, the Codex UI scheduled wake must be disabled.
+
 ## MANDATORY CONTINUITY BOOTSTRAP AND DURABLE LOGGING
 
 Before ordinary work, read `governance/continuity/CURRENT.json`, then read its exact immutable snapshot commit/path. The projection is a locator and handoff only; fresh Project Directory / canonical control / provider readback still wins on mismatch.
