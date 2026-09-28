@@ -11,5 +11,5 @@ test('scheduled task restart and singleton settings exist',()=>{assert.match(r,/
 
 test('continuity projection bootstrap is mandatory',()=>{assert.match(s,/governance\/continuity\/CURRENT\.json/);assert.match(s,/immutable snapshot commit\/path/);assert.match(s,/append a new continuity snapshot/);assert.match(s,/never a second control plane/);assert.match(s,/durable fingerprint is unchanged/);});
 
-test('public GitHub provider fallback uses GET when gh is absent',()=>{assert.match(s,/https:\/\/api\.github\.com/);assert.match(s,/Invoke-RestMethod -Method Get/);assert.match(s,/X-GitHub-Api-Version/);});
+test('public GitHub provider fallback uses GET when gh is absent',()=>{assert.match(s,/Get-Command gh\.exe -CommandType Application/);assert.match(s,/https:\/\/api\.github\.com/);assert.match(s,/Invoke-RestMethod -Method Get/);assert.match(s,/X-GitHub-Api-Version/);});
 test('read-only preflight exits before persistent state writes or Codex dispatch',()=>{const start=s.indexOf('if($ReadOnlyPreflight)');const end=s.indexOf('New-Item -ItemType Directory -Force -Path $StateRoot');assert.ok(start>=0&&end>start);const block=s.slice(start,end);assert.match(block,/Provider-Fingerprint/);assert.match(block,/state_root_mutated=\$false/);assert.doesNotMatch(block,/Start-Job|Write-AtomicJson|New-Item|codex exec/);});

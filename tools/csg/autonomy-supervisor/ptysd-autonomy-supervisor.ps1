@@ -29,8 +29,8 @@ function Get-Sha256([string]$Text){
   try{return ([BitConverter]::ToString($sha.ComputeHash([Text.Encoding]::UTF8.GetBytes($Text)))).Replace('-','').ToLowerInvariant()}finally{$sha.Dispose()}
 }
 function Gh([string]$ApiPath){
-  $g=Get-Command gh.exe -ErrorAction SilentlyContinue
-  if(-not $g){$g=Get-Command gh -ErrorAction SilentlyContinue}
+  $g=Get-Command gh.exe -CommandType Application -ErrorAction SilentlyContinue
+  if(-not $g){$g=Get-Command gh -CommandType Application -ErrorAction SilentlyContinue}
   if($g){
     $o=& $g.Source api $ApiPath 2>&1
     if($LASTEXITCODE -ne 0){throw ('GH_API_FAILED: '+($o -join "`n"))}
