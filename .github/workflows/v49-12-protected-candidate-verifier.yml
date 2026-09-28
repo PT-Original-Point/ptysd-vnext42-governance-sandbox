@@ -1,0 +1,52 @@
+name: V49-12 protected real-builder candidate verifier
+
+on:
+  pull_request:
+    branches:
+      - v49/accepted-source
+    paths:
+      - "fixtures/v49-live-n1/**"
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    if: ${{ github.event.pull_request.head.ref == 'v49-12-real-builder-wip-20260919' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout exact candidate head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+          fetch-depth: 2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Enforce single direct-parent canary candidate and protected files
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE=141baaebb30e4e4b43a3237b8e352822bbd54b10
+          test "$(git rev-parse HEAD^)" = "$BASE"
+          test "$(git rev-parse "$BASE^{tree}")" = "de291ba0d7d6c6d09357471bd18653b0747a2a8a"
+          test "$(git diff --name-only "$BASE" HEAD)" = "fixtures/v49-live-n1/src/slugify.mjs"
+          test "$(git hash-object fixtures/v49-live-n1/test/slugify.test.mjs)" = "c9c0b95a6238c651afea50353e646b13c8ff3f8e"
+          test "$(git hash-object fixtures/v49-live-n1/package.json)" = "2311788fec136034891267320a2cde5f1c8f2f9b"
+      - name: Run protected product verifier
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --test fixtures/v49-live-n1/test/slugify.test.mjs | tee v49-12-verifier.log
+          grep -q 'tests 4' v49-12-verifier.log
+          grep -q 'pass 4' v49-12-verifier.log
+          grep -q 'fail 0' v49-12-verifier.log
+      - name: Emit proof identifiers
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "CANDIDATE_SHA=$(git rev-parse HEAD)"
+          echo "CANDIDATE_TREE=$(git rev-parse HEAD^{tree})"
+          sha256sum fixtures/v49-live-n1/src/slugify.mjs

@@ -1,4 +1,5 @@
 import { createHash } from 'node:crypto';
+import { evaluateAuthorization } from './authorization-envelope.mjs';
 
 export const POLICY_MIDDLEWARE_VERSION = 'v48.policy-middleware.v1';
 export const EFFECT_CLASSES = Object.freeze(['READ_ONLY','LOCAL_PREPARATION','LOCAL_EXECUTION','PROVIDER_EFFECT','HUMAN_RESERVED']);
@@ -132,10 +133,9 @@ function permitChecks(req, reasons) {
     if (req.effect_boundary !== 'PROVIDERGUARD') reasons.push('PROVIDERGUARD_REQUIRED');
     if (req.provider_permit_granted !== true) reasons.push('PROVIDER_PERMIT_REQUIRED');
   }
-  if (req.effect_class === 'HUMAN_RESERVED' && req.human_permit_granted !== true) reasons.push('HUMAN_PERMIT_REQUIRED');
 }
 
-export function evaluatePolicyRequest({ identity, capability, request, credential_profile = null, model_profile = null, now = new Date().toISOString() } = {}) {
+export function evaluatePolicyRequest({ identity, capability, request, credential_profile = null, model_profile = null, authorization_envelope = null, current_mission = null, human_reservation_permit = null, now = new Date().toISOString() } = {}) {
   const reasons = [];
   const nowMs = Date.parse(now);
   if (!Number.isFinite(nowMs)) return deny('INVALID_NOW');
@@ -147,7 +147,18 @@ export function evaluatePolicyRequest({ identity, capability, request, credentia
   credentialChecks(identity ?? {}, request, credential_profile, reasons);
   gitChecks(request, reasons);
   permitChecks(request, reasons);
-  if (reasons.length) return { ...deny(...reasons), middleware_version:POLICY_MIDDLEWARE_VERSION };
+  const authorization = evaluateAuthorization({ envelope: authorization_envelope, current_mission, identity, request, human_reservation_permit });
+  if (!authorization.authorized) reasons.push(...authorization.reason_codes);
+  if (reasons.length) {
+    return {
+      ...deny(...reasons),
+      middleware_version:POLICY_MIDDLEWARE_VERSION,
+      authorization_id:authorization.authorization_id ?? null,
+      authorization_decision_digest:authorization.authorization_decision_digest ?? null,
+      human_authorization_required:authorization.human_reservation_required === true,
+      tool_confirmation_required:reasons.includes('NONINTERACTIVE_ASK_DENY'),
+    };
+  }
   const dispatchAllowed = capability.execution_authorized === true && request.dispatch_requested === true;
   const out = {
     middleware_version:POLICY_MIDDLEWARE_VERSION,
@@ -157,6 +168,10 @@ export function evaluatePolicyRequest({ identity, capability, request, credentia
     shadow_only:capability.execution_authorized !== true,
     identity:{ project_id:identity.project_id, run_id:identity.run_id, task_id:identity.task_id, attempt_id:identity.attempt_id, attempt_epoch:identity.attempt_epoch },
     effect_class:request.effect_class,
+    authorization_id:authorization.authorization_id ?? null,
+    authorization_decision_digest:authorization.authorization_decision_digest ?? null,
+    human_authorization_required:false,
+    tool_confirmation_required:false,
     paid_fallback_allowed:false,
     incremental_usd:0,
   };

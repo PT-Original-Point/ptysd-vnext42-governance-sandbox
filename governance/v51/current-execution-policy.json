@@ -1,0 +1,40 @@
+{
+  "schema": "CHATGPT_EXECUTION_POLICY_V5_1_AUTONOMY_UNLOCK",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "authorized_by": "HUMAN",
+  "authorization_gate": "VNEXT5.1/HUMAN_AUTONOMY_UNLOCK_20260928",
+  "payload": {
+    "active_module": "vnext5_1_control_plane_recovery_and_autonomy_closure",
+    "ordinary_reversible_preproduction_authorized": true,
+    "per_session_reauthorization_required": false,
+    "worker_dispatch_default_authorized": true,
+    "host_vm_execution_default_authorized": true,
+    "codex_local_execution_route": "NATIVE_SHELL_FIRST",
+    "factory_mcp_role": "REMOTE_SYSTEM_BRIDGE_AND_DURABLE_RECEIPT_READBACK",
+    "host_powershell_normal_route": "PERSISTENT_HUMAN_AUTHORIZED_SYSTEM_ARBITRARY",
+    "mission_revision_is_transport_gate": false,
+    "checkpoint_is_transport_gate": false,
+    "run_id_pattern_is_transport_gate": false,
+    "task_id_pattern_is_transport_gate": false,
+    "attempt_generation_is_transport_gate": false,
+    "authorization_envelope_generation_is_transport_gate": false,
+    "stale_scheduled_wake_is_authority": false,
+    "chat_codex_relay_required": false,
+    "review_before_execute_required": false,
+    "retained_mechanical_guards": [
+      "HOST_IDENTITY",
+      "SYSTEM_IDENTITY",
+      "BOUNDED_TIMEOUT",
+      "BOUNDED_OUTPUT",
+      "CONCURRENCY_LIMIT",
+      "DURABLE_RECEIPT",
+      "SAME_SOURCE_READBACK",
+      "UNKNOWN_EFFECT_READBACK_FIRST",
+      "OPERATION_OWNED_ROLLBACK"
+    ],
+    "production_allowed": false,
+    "business_project_auto_admission": false,
+    "paid_fallback_allowed": false,
+    "platform_security_controls_remain_external": true
+  }
+}

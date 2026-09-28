@@ -1,0 +1,18 @@
+{
+  "schema": "vnext5.r4.trust-plane-hardening.candidate.v1",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "status": "NONCANONICAL_TRUST_ROOT_CHANGE_CANDIDATE_DO_NOT_AUTO_PROMOTE",
+  "source_main": "1dcec5ea8124e4d1b69b53652c657df8b65eb3ef",
+  "findings": [
+    "privileged self-hosted workflow_dispatch candidate-code execution",
+    "ordinary verifier does not default-deny all .github/workflows paths"
+  ],
+  "proposed_changes": [
+    "run workflow_dispatch candidate tests on github-hosted ubuntu-24.04 instead of trusted self-hosted runner",
+    "keep csg-trusted-verifier on trusted self-hosted runner executing trusted verifier code only",
+    "default-deny entire .github/workflows/ namespace for ordinary candidate PRs",
+    "retain trust-root and trust-template default-deny"
+  ],
+  "promotion_gate": "HUMAN_AUTHORIZED_TRUST_ROOT_CHANGE_LANE_REQUIRED",
+  "production_effect": false
+}

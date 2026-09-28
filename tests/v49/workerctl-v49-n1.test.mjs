@@ -1,0 +1,85 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+
+const p=new URL('../../scripts/ptysd-workerctl-v49-n1.sh',import.meta.url);
+const s=fs.readFileSync(p,'utf8');
+const nonblank=s.split(/\r?\n/).filter(x=>x.trim()).length;
+
+test('workerctl replacement stays inside delete-first runtime budget',()=>{
+  assert.ok(nonblank<=128,`workerctl nonblank LOC ${nonblank} exceeds 128`);
+});
+
+test('workerctl is pinned to exact accepted canary and zero-cost model',()=>{
+  for(const token of [
+    '141baaebb30e4e4b43a3237b8e352822bbd54b10',
+    'de291ba0d7d6c6d09357471bd18653b0747a2a8a',
+    'opencode/muse-spark-1.3-contributor-free',
+    'fixtures/v49-live-n1/src/slugify.mjs',
+    'fixtures/v49-live-n1/test/slugify.test.mjs',
+    'ZERO_COST_GUARD=PASS',
+    'OBSERVED_RUN_COST=',
+  ]) assert.ok(s.includes(token),`missing pin ${token}`);
+});
+
+test('restricted command surface is exact and has no arbitrary exec or privileged mutation',()=>{
+  for(const cmd of ['probe)','v49-n1-preflight)','v49-n1-build)','v49-n1-readback)','v49-n1-clean)']) assert.ok(s.includes(cmd),`missing command ${cmd}`);
+  for(const forbidden of ['eval ','sudo ','curl ','wget ','GITHUB_TOKEN','GH_TOKEN','OPENAI_ADMIN_KEY','CLOUDFLARE_API_TOKEN']) assert.equal(s.includes(forbidden),false,`forbidden surface: ${forbidden}`);
+});
+
+test('real builder cannot modify protected verifier or extra repo files',()=>{
+  assert.ok(s.includes('TEST_CHANGED'));
+  assert.ok(s.includes('PACKAGE_CHANGED'));
+  assert.ok(s.includes('WORKSPACE_SCOPE_CHANGED'));
+  assert.ok(s.includes('git" status --porcelain')||s.includes('"$GIT" status --porcelain'));
+});
+
+test('unknown forced command fails closed before runtime/model activity',()=>{
+  const i=s.indexOf('case "$CMD" in'), d=s.lastIndexOf("*) echo 'COMMAND_NOT_ALLOWED'");
+  assert.ok(i>=0&&d>i);
+});
+
+test('forced-command environment expands instead of remaining literal',()=>{
+  assert.ok(s.includes('CMD="${SSH_ORIGINAL_COMMAND:-${1:-}}"'));
+  assert.ok(s.includes('exit "${2:-1}"'));
+  assert.equal(s.includes('CMD="\\${SSH_ORIGINAL_COMMAND:-}"'),false);
+});
+
+test('controller fallback argument is bounded by the same fixed command allowlist',()=>{
+  assert.ok(s.includes('CMD="${SSH_ORIGINAL_COMMAND:-${1:-}}"'));
+});
+
+test('failed builder readback exposes only the synthetic run log as base64',()=>{
+  assert.ok(s.includes("RUN_LOG_BASE64="));
+  assert.ok(s.includes('base64 -w0 "$LOG"'));
+});
+
+test('headless OpenCode keeps built-in tool schemas visible while unapproved actions remain ask-only',()=>{
+  assert.ok(s.includes('"permission":{"*":"ask"'));
+  assert.ok(s.includes('"glob":"ask"'));
+  assert.ok(s.includes('"grep":"ask"'));
+  assert.equal(s.includes('"glob":"deny"'),false);
+  assert.equal(s.includes('"grep":"deny"'),false);
+  assert.equal(s.includes('--auto'),false);
+  assert.equal(s.includes('--yolo'),false);
+  assert.equal(s.includes('dangerously-skip-permissions'),false);
+  assert.ok(s.includes('"read":{"*":"ask","fixtures/v49-live-n1/src/slugify.mjs":"allow","fixtures/v49-live-n1/test/slugify.test.mjs":"allow","fixtures/v49-live-n1/package.json":"allow"}'));
+  assert.ok(s.includes('"edit":{"*":"ask","fixtures/v49-live-n1/src/slugify.mjs":"allow"}'));
+});
+
+test('builder prompt still forbids shell network subagents and external directories',()=>{
+  for(const token of ['Do not use shell','network tools','subagents','external directories']) assert.ok(s.includes(token));
+});
+
+
+test('OpenCode free-tier repair keeps one provider call and visible built-in tools without auto approval',()=>{
+  assert.ok(s.includes('\"agent\":{\"title\":{\"disable\":true}}'));
+  assert.ok(s.includes('\"compaction\":{\"auto\":false,\"prune\":false}'));
+  assert.ok(s.includes('\"permission\":{\"*\":\"ask\"'));
+  assert.equal(s.includes('--auto'),false);
+});
+
+test('probe exposes exact deployed workerctl identity without adding a new command',()=>{
+  for(const token of ['WORKERCTL_SHA256=','WORKERCTL_OWNER=','WORKERCTL_MODE=','sha256sum "$0"',"stat -c '%U:%G'","stat -c '%a'"]) assert.ok(s.includes(token),`missing self identity token ${token}`);
+  assert.equal((s.match(/probe\)/g) ?? []).length,1);
+});

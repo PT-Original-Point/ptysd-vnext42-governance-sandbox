@@ -1,0 +1,19 @@
+{
+  "schema_version": "vnext5.continuity-current.v1",
+  "authority_class": "LOCATOR_ONLY_NOT_CANONICAL",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "snapshot_id": "20260928T0941Z-R4-01B-CAPABILITY",
+  "snapshot_commit": "cc20d5bd2214c5ec204db146ba9fbf7a5cb259f3",
+  "immutable_snapshot_branch": "refs/heads/governance/continuity-snapshot-20260928t0941z-r4-01b-capability",
+  "snapshot_json_path": "governance/continuity/snapshots/20260928T0941Z-R4-01B-CAPABILITY.json",
+  "snapshot_markdown_path": "governance/continuity/snapshots/20260928T0941Z-R4-01B-CAPABILITY.md",
+  "snapshot_json_blob": "89e0509983f55c995763c9fd2939d89efed6e955",
+  "snapshot_markdown_blob": "4df6f72a1660ce220de35bb22f0473d0d7546b5c",
+  "canonical_checkpoint_at_snapshot": 192,
+  "r4_pr": 316,
+  "r4_head_before_snapshot_publication": "2994041cf1fe7cd820d87d2f3dcf367e29ab751d",
+  "latest_material_delta": "R4-01B source/protected verifier PASS: V4.9 SYSTEM capability run/task binding caused SYSTEM_CAPABILITY_RUN_DENY for canonical V50-R3-001; live install still pending.",
+  "next_single_action": "RUN_FRESH_FACTORY_MCP_REGRESSIONS_THEN_BUILD_EXACT_R4_01B_LIVE_DEPLOY_PACKAGE_AND_CANARY",
+  "precedence_note": "Human Mission and fresh canonical/provider readback override this projection.",
+  "anti_recursion": "Updating CURRENT or publishing a snapshot alone does not require another snapshot."
+}
