@@ -1,5 +1,9 @@
 # CODEX VNEXT5.0-R4 GOAL OBJECTIVE
 
+## SYSTEM-LEVEL ACCEPTANCE CLAIM GATE
+
+R4 starts and remains `NOT_ACCEPTED` until `governance/v50/VNEXT5.0-R4-SYSTEM-LEVEL-ACCEPTANCE-GATE-20260928.md` A01-A18 all PASS with durable evidence. A spec, commit, local test, structural verifier, review, draft PR, or single live canary does not authorize closure language. Any later regression revokes acceptance pending requalification.
+
 Continue CHATGPT_GLOBAL_SKILL_GOVERNANCE / 全自動軟體工廠 from the latest VERIFIED provider state until VNEXT5.0 R4 continuity/liveness P0 is live-qualified and normal V5.0 R3 construction can resume.
 
 Primary priority: eliminate execution-path deadlocks and human-relay dependence. OpenAI Scheduled Watch, Codex UI Goal, chat continuity, external semantic review, and repeated status polling MUST NOT be liveness-critical.
