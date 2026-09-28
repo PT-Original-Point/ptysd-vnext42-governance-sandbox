@@ -1,0 +1,17 @@
+{
+  "schema": "v49.factory-mcp.execution-fence.v1",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "mission_revision": "20260926T220900+0800",
+  "mission_hash": "sha256:3cd12c504e42247f52b2f8200ee590a7d1e6e1f0e58c15063cb9551ebf9a38a5",
+  "authorization_envelope_digest": "sha256:25e5e06317eecd33c85a5616aba7bcc9e900bd6207b39fe86b118aa7b0b86011",
+  "run_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "task_id": "GOV-R3-P0-04-OBSERVER-BOOTSTRAP",
+  "attempt_id": "V50-R3-P0-04-ATTEMPT-001",
+  "attempt_epoch": 1,
+  "operation_id": "GOV-R3-P0-04-OBSERVER-INSTALL-001",
+  "operation_kind": "HOST_POWERSHELL",
+  "script_sha256": "sha256:6fc41ea5bd5a88a96dea41a251a8bdd6d3bf551c2c69d32700b5dff42830e4db",
+  "timeout_seconds": 120,
+  "capability_generation": 5,
+  "expires_at": "2026-09-28T06:00:00Z"
+}

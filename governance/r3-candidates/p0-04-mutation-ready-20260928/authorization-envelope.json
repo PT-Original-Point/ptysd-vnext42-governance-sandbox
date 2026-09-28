@@ -1,0 +1,30 @@
+{
+  "schema": "v49.authorization-envelope.v1",
+  "authorization_id": "AUTH-R3-P0-04-OBSERVER-BOOTSTRAP-001",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "mission_revision": "20260926T220900+0800",
+  "mission_hash": "sha256:3cd12c504e42247f52b2f8200ee590a7d1e6e1f0e58c15063cb9551ebf9a38a5",
+  "valid_until_mission_revision": "20260926T220900+0800",
+  "scope_tags": [
+    "FACTORY_MCP_HOST",
+    "OBSERVER_INSTALL",
+    "P0_04_OBSERVER_BOOTSTRAP"
+  ],
+  "allowed_mutation_classes": [
+    "LOCAL_EXECUTION"
+  ],
+  "forbidden_actions": [
+    "BUSINESS_PROJECT_AUTO_ADMISSION",
+    "CANONICAL_FORCE_UPDATE",
+    "OP025_REDISPATCH",
+    "OPERATION027",
+    "PAID_FALLBACK",
+    "PRODUCTION_FINAL_APPROVAL",
+    "QUOTA_EVASION",
+    "RECEIPT_MUTATION"
+  ],
+  "human_reservations": [],
+  "human_authorization_ref": "github://1352411536/governance/v50/current-mission.json@1ad3e192941ed3db63a2c605c8c2a72251d4523e#authorization_gate=VNEXT5.0-R3-CODEX-MCP-CONTINUITY-FIRST-HOTFIX-20260926/HUMAN_EXECUTE_DIRECTIVE",
+  "issued_at": "2026-09-28T02:30:00Z",
+  "envelope_digest": "sha256:25e5e06317eecd33c85a5616aba7bcc9e900bd6207b39fe86b118aa7b0b86011"
+}

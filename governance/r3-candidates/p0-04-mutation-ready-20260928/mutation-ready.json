@@ -1,0 +1,55 @@
+{
+  "schema": "vnext5.r3.p0-04.mutation-ready-candidate.v1",
+  "status": "NONCANONICAL_NOT_AUTHORIZED_FOR_DISPATCH",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "base_accepted_source": "7784663cca65dc7b0aa96c599db3224ad8317817",
+  "base_control_head": "3fe64c651dd97fff75a74c668dc81f3fa2626c8f",
+  "base_checkpoint": 191,
+  "payload_source_commit": "7104a1a5b460b4e90ad6029464f9b1a79291906a",
+  "host_target": {
+    "install_root": "C:\\ProgramData\\PTYSD\\MCP\\FactoryMCP",
+    "broker_task": "PTYSD-FactoryMCP-HostGuard-Broker-V47",
+    "tunnel_task": "PTYSD-FactoryMCP-Tunnel-V47",
+    "run_as": "NT AUTHORITY\\SYSTEM"
+  },
+  "runtime_blob_oids": {
+    "broker/hostguard-broker.ps1": "f73c5e1b5aab23ad3e0de410c1956b683fc76781",
+    "src/index.mjs": "e64e859deb07eba696d94bb9ebaede645b88290d",
+    "src/orphan-status.mjs": "1e1067bf6617bf4a94018460bc916d7862c430fc",
+    "config/system-capability.json": "2c6f052721b1308b70d82990bbeb80d1d6e6adad"
+  },
+  "authorization_envelope_digest": "sha256:25e5e06317eecd33c85a5616aba7bcc9e900bd6207b39fe86b118aa7b0b86011",
+  "capability_generation": 5,
+  "deploy_script_sha256": "sha256:6fc41ea5bd5a88a96dea41a251a8bdd6d3bf551c2c69d32700b5dff42830e4db",
+  "deploy_script_git_blob": "f9c45e3838c53eb744326908c7a53028c21c061e",
+  "checkpoint_schema_patch_blob": "12a2fb342bcef11f168ad9c3e8be2d2daf015cee",
+  "execution_attempt_digest": "sha256:9260438bc68e956849dc7bf6baca1dbfaea5b631fb6144e4756a6358e3e7b9a0",
+  "checkpoint_192_digest": "sha256:33bca4d601ae3844794d1f59ff434841d32dfcb9afb0c53cf87692ba1d746189",
+  "operation_id": "GOV-R3-P0-04-OBSERVER-INSTALL-001",
+  "dispatch_allowed": false,
+  "host_mutation_allowed": false,
+  "canonical_mutation_allowed": false,
+  "shared_mutation_gate_required": true,
+  "independent_semantic_review_required": true,
+  "protected_structural_verifier_required": true,
+  "forbidden": [
+    "OP025_REDISPATCH",
+    "CP192_PUBLISH_WITHOUT_REVIEW",
+    "HOST_DISPATCH_WITHOUT_CURRENT_FENCE",
+    "OPERATION027",
+    "PRODUCTION",
+    "BUSINESS_PROJECT",
+    "PAID_FALLBACK",
+    "FORCE_UPDATE",
+    "BLIND_RETRY_UNKNOWN_EFFECT"
+  ],
+  "known_pre_dispatch_requirements": [
+    "checkpoint schema must admit authorization_mode",
+    "fresh control and accepted-source prestate",
+    "fresh Factory same-source status",
+    "fence must be unexpired at dispatch",
+    "exact Host payload blobs must match",
+    "operation claim must not exist",
+    "same-source readback required after dispatch"
+  ]
+}
