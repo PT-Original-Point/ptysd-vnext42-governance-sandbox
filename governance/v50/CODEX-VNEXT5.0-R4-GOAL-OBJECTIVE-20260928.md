@@ -1,0 +1,19 @@
+# CODEX VNEXT5.0-R4 GOAL OBJECTIVE
+
+Continue CHATGPT_GLOBAL_SKILL_GOVERNANCE / 全自動軟體工廠 from the latest VERIFIED provider state until VNEXT5.0 R4 continuity/liveness P0 is live-qualified and normal V5.0 R3 construction can resume.
+
+Primary priority: eliminate execution-path deadlocks and human-relay dependence. OpenAI Scheduled Watch, Codex UI Goal, chat continuity, external semantic review, and repeated status polling MUST NOT be liveness-critical.
+
+On every start:
+1. Fresh-read Project Directory, v45/factory-control current/checkpoint, Current Mission/Execution Policy, accepted-source, Issue #310, and PR #316 exact current head.
+2. Preserve the Human Mission. Never infer current authority from chat history or stale scheduled text.
+3. Execute the highest-priority READY reversible pre-Production unit. WAITING_EXTERNAL yields the executor slot.
+4. After every material delta: persist provider-addressable evidence, same-source readback, recompute READY work, and continue.
+5. Same durable fingerprint => no duplicate snapshot, handoff, test, or non-idempotent dispatch.
+
+Immediate R4 order:
+R4-01 live Factory MCP non-circular transport qualification -> R4-04 Host-owned autonomy supervisor live install/qualification -> R4-05 work-conserving scheduler -> R4-06 anti-loop fingerprint -> R4-08 trust-plane hardening -> orphan reconciliation/fault campaign -> resume normal R3.
+
+Do NOT redispatch OP025 while UNKNOWN. Preserve Production final, new-cost, legal/contract/signature/identity, OAuth/MFA, major irreversible, and trust-root promotion Human gates.
+
+Do not stop to ask whether to execute or review. The Human decision is EXECUTE_NOW for lawful reversible pre-Production work. Exit only at Mission acceptance or a genuine Human-reserved gate with exact blocker and re-entry evidence.
