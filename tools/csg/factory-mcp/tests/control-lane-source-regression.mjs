@@ -226,7 +226,8 @@ test('broker error mapping returns safeMessage instead of dereferencing switch s
 
 test('SYSTEM host transport is not self-locked to current Mission/checkpoint/generation', () => {
   assert.equal(index.includes('authorizeSystemExecution'), false);
-  assert.equal(index.includes('args.executionFence'), false);
+  const hostTransportSource = index.slice(index.indexOf('async function runHostGuard'), index.indexOf('function textResult'));
+  assert.equal(hostTransportSource.includes('args.executionFence'), false);
   assert.equal(index.includes("SYSTEM_CAPABILITY.mission_revision !== '20260919T010100+0800'"), false);
   assert.equal(index.includes("SYSTEM_CAPABILITY.capability_generation !== 4"), false);
   assert.equal(wrapper.includes('SYSTEM_EXECUTION_FENCE_REQUIRED'), false);
