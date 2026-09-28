@@ -1,0 +1,70 @@
+{
+  "schema_version": "vnext5.continuity-projection.v1",
+  "authority_class": "DERIVED_READ_ONLY_PROJECTION",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "snapshot_id": "20260928T065730Z-R4-d2d3c35",
+  "previous_snapshot_commit": "75e53cd2589c579f8f57cf21c5f57e2b6048c54c",
+  "never_overrides": [
+    "Human Mission",
+    "Project Directory",
+    "v45/factory-control",
+    "provider same-source readback"
+  ],
+  "canonical": {
+    "runtime_type": "GITHUB_ACTIONS_BOUNDED",
+    "project_directory_revision": 5,
+    "control_ref": "refs/heads/v45/factory-control",
+    "checkpoint_seq": 192,
+    "checkpoint_digest": "sha256:fc0112e9203a8d9c8a43fa98f427f67c6e0b58aca09c6adcfa260ac6faa274f0",
+    "mission_revision": "20260926T220900+0800",
+    "mission_hash": "sha256:3cd12c504e42247f52b2f8200ee590a7d1e6e1f0e58c15063cb9551ebf9a38a5",
+    "policy_revision": "20260926T220900+0800-EP72",
+    "policy_hash": "sha256:ce3abb44889a495d9a228e9117a22cc741807e033049a51346762110e7609cd2",
+    "controller_contract": "CHAT_EXECUTION_POLICY_CONTRACT_V9_1_CANDIDATE",
+    "canonical_atomic_unit": "R3-P0-03-FACTORY-ORPHAN-RECONCILIATION",
+    "canonical_atomic_state": "PREPARED_NOT_DISPATCHED"
+  },
+  "r4": {
+    "pr": 316,
+    "current_head": "d2d3c355d2a86794b43fca13bc9a45fb78dd75ec",
+    "material_delta": "R4-04 supervisor now mechanically requires continuity/CURRENT bootstrap and append-only snapshot logging",
+    "continuity_current_locator_commit": "e18337965103011c699a7f17daee9b8cd12e45f6",
+    "continuity_first_snapshot_commit": "75e53cd2589c579f8f57cf21c5f57e2b6048c54c",
+    "supervisor_logging_guard_commit": "d2d3c355d2a86794b43fca13bc9a45fb78dd75ec",
+    "verifier_run": 36388989978,
+    "verifier_job": 108820408334,
+    "verifier_state": "IN_PROGRESS_AT_SNAPSHOT"
+  },
+  "factory_same_source_observation": {
+    "observed_at_utc": "2026-09-28T06:57:30Z",
+    "host": "DESKTOP-1B6PD2P",
+    "vm_state": "Running",
+    "ssh22_reachable": true,
+    "connector_run_as": "NT AUTHORITY\\SYSTEM",
+    "host_exec_state": "IDLE_WITH_ORPHANS",
+    "orphan_count": 5,
+    "tunnel_live": true,
+    "tunnel_ready": true,
+    "control_plane_status": "ok"
+  },
+  "correctness_corrections": [
+    "R4-05/R4-06 earlier 6/6 functional PASS remains SUPERSEDED/INVALIDATED until fresh repo-root rerun after import fix commit 4941cabed851e6e96820fec9e48e448b5dcb6c4e."
+  ],
+  "runtime_path": {
+    "actual_factory_mcp_runtime_root": "UNRESOLVED",
+    "evidence_level": "CODEX_LOCAL_REPORT_NOT_PROVIDER_CONFIRMED",
+    "assumed_programdata_path": "NOT_USABLE_AS_LIVE_RUNTIME_FROM_CURRENT_CODEX_SHELL",
+    "next_discovery": "Scheduled Task actions + process command lines + service PathName"
+  },
+  "next_single_action": {
+    "action": "FRESH_R4_05_R4_06_TEST_RERUN_AND_READ_ONLY_FACTORY_RUNTIME_DISCOVERY",
+    "if_elevation_blocks_r4_01": "YIELD_LANE_AND_CONTINUE_R4_04_CURRENT_USER_QUALIFICATION"
+  },
+  "logging_contract": {
+    "entry": "governance/continuity/CURRENT.json",
+    "immutable_snapshots": "governance/continuity/snapshots/",
+    "update_rule": "MATERIAL_EVIDENCE_DELTA_ONLY",
+    "duplicate_rule": "UNCHANGED_DURABLE_FINGERPRINT_NO_NEW_SNAPSHOT",
+    "self_loop_rule": "Publishing CURRENT/snapshot alone is not a material execution delta and must not trigger another snapshot."
+  }
+}
