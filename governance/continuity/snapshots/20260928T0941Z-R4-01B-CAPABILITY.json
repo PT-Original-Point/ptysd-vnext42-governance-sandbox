@@ -1,0 +1,41 @@
+{
+  "schema_version": "vnext5.continuity-projection.v1",
+  "authority_class": "DERIVED_READ_ONLY_PROJECTION",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "snapshot_id": "20260928T0941Z-R4-01B-CAPABILITY",
+  "canonical_checkpoint_seq": 192,
+  "r4_pr": 316,
+  "source_head": "2994041cf1fe7cd820d87d2f3dcf367e29ab751d",
+  "material_delta": {
+    "type": "R4_01B_SYSTEM_CAPABILITY_REBINDING",
+    "root_cause": "Factory MCP system-capability remained bound to V4.9 run/task patterns and rejected canonical V50-R3-001 before broker dispatch.",
+    "live_probe_error": "SYSTEM_CAPABILITY_RUN_DENY",
+    "source_fix": "2994041cf1fe7cd820d87d2f3dcf367e29ab751d",
+    "protected_verifier_run": 36404974812,
+    "protected_verifier_job": 108871414352,
+    "protected_verifier_result": "PASS"
+  },
+  "acceptance": {
+    "source_structural": "PASS",
+    "live_install": "NOT_DONE",
+    "live_host_powershell": "NOT_PROVEN",
+    "r4_system_level": "NOT_ACCEPTED"
+  },
+  "same_source_factory_status": {
+    "host": "DESKTOP-1B6PD2P",
+    "vm_state": "Running",
+    "ssh22_reachable": true,
+    "run_as": "NT AUTHORITY\\SYSTEM",
+    "host_exec_state": "IDLE_WITH_ORPHANS",
+    "orphan_count": 5,
+    "tunnel_live": true,
+    "tunnel_ready": true
+  },
+  "next_single_action": "RUN_FRESH_FACTORY_MCP_REGRESSIONS_THEN_BUILD_EXACT_R4_01B_LIVE_DEPLOY_PACKAGE_AND_CANARY",
+  "safety": {
+    "op025": "UNKNOWN_DO_NOT_REDISPATCH",
+    "production": false,
+    "business_project": false,
+    "paid_fallback": false
+  }
+}

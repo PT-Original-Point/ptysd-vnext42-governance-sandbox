@@ -1,0 +1,104 @@
+{
+  "schema": "vnext5.r4.implementation-manifest.v1",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "mission_revision": "20260926T220900+0800",
+  "status": "HUMAN_AUTHORIZED_PREPRODUCTION_IMPLEMENTATION_PLAN",
+  "base_accepted_source": "7784663cca65dc7b0aa96c599db3224ad8317817",
+  "canonical_control_at_design": "a5ebfd86d440b61ecc4e4dc3ba7b8291836769c7",
+  "checkpoint_at_design": 192,
+  "priority_units": [
+    {
+      "unit": "R4-01_FACTORY_MCP_NONCIRCULAR_HOST_TRANSPORT",
+      "paths": [
+        "tools/csg/factory-mcp/src/index.mjs",
+        "tools/csg/factory-mcp/src/invoke-hostguard.ps1",
+        "tools/csg/factory-mcp/broker/hostguard-broker.ps1",
+        "tools/csg/factory-mcp/tests/protocol-smoke.mjs",
+        "tools/csg/factory-mcp/tests/control-lane-source-regression.mjs",
+        "tests/csg/v48-host-powershell-governance.test.mjs"
+      ],
+      "required_semantics": [
+        "host_powershell transport must not require current Mission revision/hash equality",
+        "host_powershell transport must not require a current checkpoint execution_fence to bootstrap",
+        "capability generation drift must not make the transport incapable of updating its own runtime",
+        "controller remains responsible for Mission/Production/business/cost authorization",
+        "public MCP tool surface remains exactly four",
+        "timeout, bounded output, per-run/global concurrency, durable receipts and orphan recovery remain enabled",
+        "unknown effects remain readback-first and are never blindly retried"
+      ],
+      "negative_acceptance": [
+        "SYSTEM_FENCE_CURRENT_FENCE_MISSING must no longer block a harmless host_powershell transport canary",
+        "Mission revision rollover alone must not disable the Host transport",
+        "a timeout must remain bounded and produce UNKNOWN_AFTER_TIMEOUT evidence",
+        "tool count must not exceed four"
+      ]
+    },
+    {
+      "unit": "R4-03_ORPHAN_RECONCILIATION",
+      "requires": [
+        "R4-01 live deployment and readback"
+      ],
+      "required_semantics": [
+        "read five orphan identities from same-source Factory status",
+        "classify each CONFIRMED, NOT_APPLIED, or PARTIAL_OR_AMBIGUOUS",
+        "do not redispatch OP025 while outcome is UNKNOWN"
+      ]
+    },
+    {
+      "unit": "R4-04_HOST_OWNED_AUTONOMY_SUPERVISOR",
+      "required_semantics": [
+        "Windows-native persistent supervisor survives reboot and process crash",
+        "OpenAI scheduled Watch is not a required liveness dependency",
+        "supervisor stores only liveness/fingerprint metadata and is not a second Mission/task authority",
+        "Codex work starts from Project Directory and current provider state",
+        "WAITING_EXTERNAL yields the execution slot",
+        "same durable fingerprint cannot emit duplicate requests or repeat non-idempotent operations"
+      ]
+    },
+    {
+      "unit": "R4-08_TRUST_PLANE_HARDENING",
+      "findings": [
+        "main .github/workflows/factory-bounded.yml workflow_dispatch control_sha currently executes tests from supplied SHA on privileged self-hosted runner",
+        "csg-trusted-pr-verifier currently forbids only named workflows instead of default-denying the full .github/workflows namespace"
+      ],
+      "required_semantics": [
+        "candidate-controlled code never executes on privileged trusted runner",
+        "candidate functional tests run on ephemeral hosted runners",
+        "trusted runner executes immutable trusted verifier or fixed maintenance executor only",
+        "ordinary candidate PRs cannot add or modify any .github/workflows path or trust-root path"
+      ]
+    }
+  ],
+  "loop_invariants": {
+    "no_evidence_delta_no_new_snapshot": true,
+    "waiting_external_yields_executor": true,
+    "human_relay_required": false,
+    "openai_watch_authority": "ADVISORY_ONLY",
+    "external_ai_semantic_review": "ASYNC_ADVISORY_FOR_REVERSIBLE_PREPRODUCTION",
+    "provider_readback_required_after_shared_mutation": true,
+    "blind_retry_unknown_effect": false
+  },
+  "human_reserved": [
+    "MISSION_CHANGE",
+    "PRODUCTION_FINAL_AUTHORIZATION",
+    "NEW_COST_OR_PAID_FALLBACK",
+    "LEGAL_CONTRACT_SIGNATURE_IDENTITY",
+    "OAUTH_MFA",
+    "MAJOR_IRREVERSIBLE_AUTHORITY_EXPANSION"
+  ],
+  "execution_decision": {
+    "decision": "EXECUTE_NOW",
+    "review_first": false,
+    "clarification_required": false,
+    "human_continue_required": false,
+    "current_r4_head": "c6a48d8ba7ce588101f22603bfb9838091c02edd",
+    "r4_01_implementation_commit": "a83b7b973faa6e02f2d53c53d12f4c8567709a55",
+    "r4_01_structural_verifier": {
+      "result": "PASS",
+      "run_id": 36378250626,
+      "job_id": 108788401851
+    },
+    "r4_01_live_host_qualification": "NOT_YET_COMPLETE",
+    "on_wait": "YIELD_EXECUTOR_TO_NEXT_READY_R4_UNIT"
+  }
+}

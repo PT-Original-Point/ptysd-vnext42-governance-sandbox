@@ -1,18 +1,1 @@
-{
-  "schema_version": "csg.pointer.v1",
-  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
-  "binding_id": "CSG-GOVERNANCE-BINDING-V2",
-  "binding_generation": 2,
-  "checkpoint_seq": 192,
-  "checkpoint_path": "governance/csg/checkpoints/000192.json",
-  "checkpoint_digest": "sha256:fc0112e9203a8d9c8a43fa98f427f67c6e0b58aca09c6adcfa260ac6faa274f0",
-  "previous_control_oid": {
-    "algorithm": "sha1",
-    "hex": "3fe64c651dd97fff75a74c668dc81f3fa2626c8f"
-  },
-  "transition_id": "V50-R3-P0-02-DIRECTORY-RECONCILED-192",
-  "reader_compatibility": {
-    "min_schema": "csg.checkpoint.v1",
-    "max_schema": "csg.checkpoint.v1"
-  }
-}
+{"binding_generation":2,"binding_id":"CSG-GOVERNANCE-BINDING-V2","checkpoint_digest":"sha256:913e64b9c4f461880cb8a94054ea641b2e2b0f687b6c925891c70ac7bf791ba8","checkpoint_path":"governance/csg/checkpoints/000041.json","checkpoint_seq":41,"previous_control_oid":{"algorithm":"sha1","hex":"16f132da6d6703f62d90fcd562d2f90c587bbe53"},"project_id":"CHATGPT_GLOBAL_SKILL_GOVERNANCE","reader_compatibility":{"max_schema":"csg.checkpoint.v1","min_schema":"csg.checkpoint.v1"},"schema_version":"csg.pointer.v1","transition_id":"V48-D14-ACCEPTED-041"}
