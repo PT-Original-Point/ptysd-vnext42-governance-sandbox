@@ -8,6 +8,8 @@ import { projectOrphanStatusView } from '../src/orphan-status.mjs';
 const broker = fs.readFileSync(new URL('../broker/hostguard-broker.ps1', import.meta.url), 'utf8');
 const index = fs.readFileSync(new URL('../src/index.mjs', import.meta.url), 'utf8');
 const wrapper = fs.readFileSync(new URL('../src/invoke-hostguard.ps1', import.meta.url), 'utf8');
+const operationIdentity = fs.readFileSync(new URL('../src/stable-operation-identity.mjs', import.meta.url), 'utf8');
+const callerIdentity = fs.readFileSync(new URL('../broker/system-capability-identity.ps1', import.meta.url), 'utf8');
 const capability = JSON.parse(fs.readFileSync(new URL('../config/system-capability.json', import.meta.url), 'utf8'));
 const serverFence = fs.readFileSync(new URL('../src/current-execution-fence.mjs', import.meta.url), 'utf8');
 const brokerFence = fs.readFileSync(new URL('../broker/current-execution-fence.ps1', import.meta.url), 'utf8');
@@ -74,6 +76,8 @@ test('factory status returns a bounded allowlisted orphan identity view without 
         project_id: 'CHATGPT_GLOBAL_SKILL_GOVERNANCE',
         capability_id: 'CAP-GOV-SYSTEM-V1',
         operation_id: 'OP025',
+        operation_key: 'd'.repeat(64),
+        trusted_caller_sid: 'S-1-5-20',
         control_oid: '209e0ad9040a08965a49109e18f783cfd9c7c7f4',
         checkpoint_digest: `sha256:${'a'.repeat(64)}`,
         authorization_envelope_digest: `sha256:${'b'.repeat(64)}`,
@@ -108,8 +112,8 @@ test('factory status returns a bounded allowlisted orphan identity view without 
   assert.equal(projected.orphan_records.length, 2);
   assert.deepEqual(Object.keys(projected.orphan_records[0]).sort(), [
     'attempt_epoch','attempt_id','authorization_envelope_digest','capability_generation','capability_id',
-    'checkpoint_digest','control_oid','error_code','finished_at_utc','operation_id','project_id','receipt_digest',
-    'request_id','run_id','side_effect_state','started_at_utc','state','task_id','timeout_seconds',
+    'checkpoint_digest','control_oid','error_code','finished_at_utc','operation_id','operation_key','project_id','receipt_digest',
+    'request_id','run_id','side_effect_state','started_at_utc','state','task_id','timeout_seconds','trusted_caller_sid',
   ].sort());
   assert.equal(projected.orphan_records[0].state, 'ORPHANED');
   assert.equal(projected.orphan_records[0].stdout, undefined);
@@ -152,7 +156,7 @@ test('PowerShell orphan receipt status projects a bounded reconciliation snapsho
   const reader = broker.slice(start, end);
   for (const token of [
     '[IO.FileShare]::ReadWrite -bor [IO.FileShare]::Delete','ComputeHash($bytes)','ConvertFrom-Json','function Read-ReceiptSnapshot {','function ConvertTo-OrphanReceiptStatusRecord {','function Get-OrphanReceiptStatusView {','ORPHANED','$maxOrphanStatusRecords','$maxOrphanStatusBytes',
-    'request_id','project_id','run_id','task_id','attempt_id','attempt_epoch','control_oid',
+    'request_id','project_id','run_id','task_id','attempt_id','attempt_epoch','control_oid','operation_key','trusted_caller_sid',
     'checkpoint_digest','authorization_envelope_digest','capability_generation','started_at_utc',
     'finished_at_utc','timeout_seconds','side_effect_state','error_code','receipt_digest','truncated',
   ]) assert.ok(reader.includes(token), `missing orphan readback token: ${token}`);
@@ -198,17 +202,22 @@ test('SYSTEM host capability is project scoped at server and broker without grow
   assert.equal(capability.production_allowed, false);
   assert.equal(capability.business_project_allowed, false);
   assert.equal(capability.public_tool_count, 4);
+  assert.equal(capability.trusted_caller_sid, 'S-1-5-20');
   for (const token of [
     'SYSTEM_CAPABILITY_PATH','assertSystemCapabilityArgs',
     "'-ProjectId', SYSTEM_CAPABILITY.project_id","'-CapabilityId', SYSTEM_CAPABILITY.capability_id",
-    'SYSTEM_CAPABILITY_RUN_DENY','SYSTEM_CAPABILITY_TASK_DENY',
+    "'-OperationId', args.operationId",'SYSTEM_OPERATION_ID_REQUIRED','getStableSystemOperationKey',
   ]) assert.ok(index.includes(token), `missing server capability token: ${token}`);
   for (const token of [
     'Assert-SystemCapabilityRequest','SYSTEM_CAPABILITY_PROJECT_DENY','SYSTEM_CAPABILITY_ID_DENY',
-    'SYSTEM_CAPABILITY_RUN_DENY','SYSTEM_CAPABILITY_TASK_DENY','system_capability_project_id','system_capability_id',
+    'SYSTEM_CAPABILITY_CALLER_DENY','SYSTEM_OPERATION_REPLAY_DENY','Initialize-OperationReplayIndex',
+    'system_capability_project_id','system_capability_id','system_capability_trusted_caller_sid',
   ]) assert.ok(broker.includes(token), `missing broker capability token: ${token}`);
   assert.ok(wrapper.includes("project_id = if ($Operation -eq 'powershell')"));
   assert.ok(wrapper.includes("capability_id = if ($Operation -eq 'powershell')"));
+  assert.ok(wrapper.includes("operation_id = if ($Operation -eq 'powershell') { $OperationId }"));
+  assert.ok(operationIdentity.includes("createHash('sha256')"));
+  assert.ok(callerIdentity.includes('GetOwner([Security.Principal.SecurityIdentifier])'));
   const names = [...index.matchAll(/server\.registerTool\(\s*\n\s*'([^']+)'/g)].map((m) => m[1]).sort();
   assert.deepEqual(names, ['factory_status','host_powershell','worker_prepare','worker_start']);
 });
@@ -224,7 +233,7 @@ test('broker error mapping returns safeMessage instead of dereferencing switch s
 });
 
 
-test('SYSTEM host transport is not self-locked to current Mission/checkpoint/generation', () => {
+test('SYSTEM host transport removes mutable-Mission locks but requires stable caller and operation identity', () => {
   assert.equal(index.includes('authorizeSystemExecution'), false);
   const hostTransportSource = index.slice(index.indexOf('async function runHostGuard'), index.indexOf('function textResult'));
   assert.equal(hostTransportSource.includes('args.executionFence'), false);
@@ -235,25 +244,32 @@ test('SYSTEM host transport is not self-locked to current Mission/checkpoint/gen
   assert.equal(broker.includes('Assert-PTYSDCurrentSystemExecutionFence -Request $Request -SystemCapability $systemCapability'), false);
   assert.equal(broker.includes("$systemCapability.mission_revision -ne '20260919T010100+0800'"), false);
   assert.equal(broker.includes('[int64]$systemCapability.capability_generation -ne 4'), false);
-  assert.ok(index.includes("'SYSTEM_CAPABILITY_RUN_DENY'"));
-  assert.ok(index.includes("'SYSTEM_CAPABILITY_TASK_DENY'"));
   assert.ok(index.includes('SYSTEM_CAPABILITY_TIMEOUT_DENY'));
+  assert.ok(index.includes("SYSTEM_CAPABILITY.trusted_caller_sid !== 'S-1-5-20'"));
+  assert.ok(broker.includes('Assert-PTYSDTrustedRequestOwner'));
+  assert.ok(broker.includes('Get-PTYSDSystemOperationKey'));
+  assert.ok(broker.includes('operation_key=$OperationKey'));
+  assert.ok(broker.includes('trusted_caller_sid=$TrustedCallerSid'));
+  assert.ok(broker.includes('$script:consumedOperationKeys[$OperationKey] = $receiptPath'));
   assert.ok(broker.includes('POWERSHELL_CAPACITY_EXHAUSTED'));
   assert.ok(broker.includes('POWERSHELL_RUN_BUSY'));
   assert.ok(broker.includes("side_effect_state='UNKNOWN_AFTER_TIMEOUT'"));
-  assert.ok(broker.includes("host_powershell_authority_mode = 'SYSTEM_TRANSPORT_CONTROLLER_GOVERNED'"));
+  assert.ok(broker.includes("host_powershell_authority_mode = 'PERSISTENT_HUMAN_AUTHORIZED_PREPRODUCTION'"));
   assert.ok(broker.includes('mission_execution_fence_required = $false'));
   assert.equal(index.includes("attemptEpoch: z.number().int().min(1).max(2147483647)"), true);
+  const start = broker.slice(broker.indexOf('function Start-BrokerPowerShell'), broker.indexOf('function Complete-OnePowerShellJob'));
+  assert.ok(start.indexOf('POWERSHELL_CAPACITY_EXHAUSTED') < start.indexOf('Write-AtomicJson -Path $receiptPath'));
+  assert.ok(start.indexOf('Write-AtomicJson -Path $receiptPath') < start.indexOf('Start-Job'));
 });
 
-test('current V50 canonical run/task identity is admitted by SYSTEM capability without cross-project widening', () => {
-  const runPatterns = capability.allowed_run_id_patterns.map((p) => new RegExp(p));
-  const taskPatterns = capability.allowed_task_id_patterns.map((p) => new RegExp(p));
-  assert.equal(capability.mission_revision, '20260926T220900+0800');
-  assert.equal(capability.mission_hash, 'sha256:3cd12c504e42247f52b2f8200ee590a7d1e6e1f0e58c15063cb9551ebf9a38a5');
-  assert.ok(runPatterns.some((p) => p.test('V50-R3-001')));
-  assert.ok(taskPatterns.some((p) => p.test('R3-P0-03-FACTORY-ORPHAN-RECONCILIATION')));
-  assert.ok(taskPatterns.some((p) => p.test('V50-R4-LIVE-QUALIFICATION')));
-  assert.equal(runPatterns.some((p) => p.test('HANYAO_ADS_LINE')), false);
-  assert.equal(taskPatterns.some((p) => p.test('HG-HOST-POWERSHELL')), false);
+test('mutable run/task labels are audit-only while fixed project/capability and trusted caller remain enforced', () => {
+  assert.equal(capability.project_id, 'CHATGPT_GLOBAL_SKILL_GOVERNANCE');
+  assert.equal(capability.capability_id, 'CAP-GOV-SYSTEM-V1');
+  assert.equal(capability.allowed_run_id_patterns, undefined);
+  assert.equal(capability.allowed_task_id_patterns, undefined);
+  assert.equal(capability.mission_revision, undefined);
+  assert.equal(capability.mission_hash, undefined);
+  assert.ok(broker.includes("[string]$Request.project_id -cne [string]$systemCapability.project_id"));
+  assert.ok(broker.includes("[string]$Request.capability_id -cne [string]$systemCapability.capability_id"));
+  assert.ok(broker.includes("$CallerSid -cne [string]$systemCapability.trusted_caller_sid"));
 });

@@ -3,6 +3,7 @@ import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { promisify } from 'node:util';
 import { projectOrphanStatusView } from './orphan-status.mjs';
+import { getStableSystemOperationKey } from './stable-operation-identity.mjs';
 import { McpServer } from '@modelcontextprotocol/server';
 import { serveStdio } from '@modelcontextprotocol/server/stdio';
 import * as z from 'zod/v4';
@@ -26,13 +27,15 @@ if (TEST_MODE && process.env.NODE_ENV !== 'test') {
 }
 
 const idPattern = /^[A-Z0-9][A-Z0-9._-]{0,79}$/;
+const operationIdPattern = /^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$/;
 if (
   SYSTEM_CAPABILITY.schema !== 'v49.factory-mcp.system-capability.v1' ||
   SYSTEM_CAPABILITY.project_id !== 'CHATGPT_GLOBAL_SKILL_GOVERNANCE' ||
   SYSTEM_CAPABILITY.capability_id !== 'CAP-GOV-SYSTEM-V1' ||
   SYSTEM_CAPABILITY.production_allowed !== false ||
   SYSTEM_CAPABILITY.business_project_allowed !== false ||
-  SYSTEM_CAPABILITY.public_tool_count !== 4
+  SYSTEM_CAPABILITY.public_tool_count !== 4 ||
+  SYSTEM_CAPABILITY.trusted_caller_sid !== 'S-1-5-20'
 ) {
   throw new Error('SYSTEM_CAPABILITY_CONFIG_INVALID');
 }
@@ -40,6 +43,8 @@ function assertSystemCapabilityArgs(args) {
   // V5.1 autonomy unlock: run/task/Mission/generation metadata is audit-only.
   // Execution is not denied because a Session, Mission, checkpoint, task, or generation rolled over.
   if ((args.timeoutSeconds ?? 60) > SYSTEM_CAPABILITY.max_timeout_seconds) throw new Error('SYSTEM_CAPABILITY_TIMEOUT_DENY');
+  if (!operationIdPattern.test(args.operationId ?? '')) throw new Error('SYSTEM_OPERATION_ID_REQUIRED');
+  getStableSystemOperationKey(SYSTEM_CAPABILITY.project_id, SYSTEM_CAPABILITY.capability_id, args.operationId);
 }
 const operationInput = z.object({
   runId: z.string().regex(idPattern),
@@ -53,6 +58,7 @@ const factoryStatusInput = z.object({
 });
 
 const hostPowerShellInput = operationInput.extend({
+  operationId: z.string().regex(operationIdPattern),
   script: z.string().min(1).max(8192),
   timeoutSeconds: z.number().int().min(1).max(300).default(60),
 });
@@ -85,11 +91,12 @@ function mockHostGuard(operation, args = {}) {
       result: 'COMPLETED',
       project_id: SYSTEM_CAPABILITY.project_id,
       capability_id: SYSTEM_CAPABILITY.capability_id,
-      operation_id: args.executionFence?.execution_fence?.operation_id ?? null,
+      operation_id: args.operationId,
+      operation_key: getStableSystemOperationKey(SYSTEM_CAPABILITY.project_id, SYSTEM_CAPABILITY.capability_id, args.operationId),
       control_oid: args.executionFence?.control_oid ?? null,
       checkpoint_digest: args.executionFence?.checkpoint_digest ?? null,
-      authorization_envelope_digest: args.executionFence?.execution_fence?.authorization_envelope_digest ?? null,
-      capability_generation: args.executionFence?.execution_fence?.capability_generation ?? null,
+      authorization_envelope_digest: null,
+      capability_generation: SYSTEM_CAPABILITY.capability_generation ?? null,
       run_id: args.runId,
       task_id: args.taskId,
       attempt_id: args.attemptId,
@@ -151,6 +158,7 @@ async function runHostGuard(operation, args = {}) {
     psArgs.push(
       '-ProjectId', SYSTEM_CAPABILITY.project_id,
       '-CapabilityId', SYSTEM_CAPABILITY.capability_id,
+      '-OperationId', args.operationId,
       '-CapabilityGeneration', String(SYSTEM_CAPABILITY.capability_generation ?? 1),
       '-ScriptBase64', Buffer.from(args.script, 'utf8').toString('base64'),
       '-TimeoutSeconds', String(args.timeoutSeconds ?? 60),

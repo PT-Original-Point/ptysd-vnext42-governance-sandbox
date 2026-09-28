@@ -15,6 +15,7 @@ $functionNames = @(
   'ConvertTo-BoundedReceiptToken',
   'ConvertTo-BoundedReceiptTimestamp',
   'ConvertTo-BoundedReceiptInteger',
+  'Get-ReceiptPropertyValue',
   'Get-ReceiptFileSha256',
   'Read-ReceiptSnapshot',
   'ConvertTo-OrphanReceiptStatusRecord',
@@ -62,6 +63,7 @@ try {
 
   foreach ($number in 1..5) {
     $requestId = '{0:x32}' -f $number
+    $operationKey = if (($number % 2) -eq 0) { '{0:x64}' -f $number } else { $null }
     $receipt = [ordered]@{
       state = 'ORPHANED'
       request_id = $requestId
@@ -87,7 +89,12 @@ try {
       receipt_path = 'MUST_NOT_LEAK'
       run_as = 'MUST_NOT_LEAK'
     }
-    $receiptPath = Join-Path $tempRoot ($requestId + '.json')
+    if ($operationKey) {
+      $receipt.operation_key = $operationKey
+      $receipt.trusted_caller_sid = 'S-1-5-20'
+    }
+    $receiptFileName = if ($operationKey) { $operationKey + '.json' } else { $requestId + '.json' }
+    $receiptPath = Join-Path $tempRoot $receiptFileName
     [IO.File]::WriteAllText($receiptPath, ($receipt | ConvertTo-Json -Depth 8 -Compress), (New-Object Text.UTF8Encoding($false)))
   }
 
@@ -110,6 +117,9 @@ try {
   if (-not $first -or $first.state -ne 'ORPHANED' -or $first.run_id -ne 'V50-R3-001') { throw 'ORPHAN_IDENTITY_MISSING' }
   if ($first.receipt_digest -notmatch '^sha256:[0-9a-f]{64}$') { throw 'ORPHAN_RECEIPT_DIGEST_MISSING' }
   if ($first.receipt_digest -ne $before[('{0:x32}' -f 1) + '.json'].sha256) { throw 'ORPHAN_DIGEST_DOES_NOT_BIND_PARSED_RECEIPT' }
+  if ($null -ne $first.operation_key -or $null -ne $first.trusted_caller_sid) { throw 'LEGACY_ORPHAN_OPTIONAL_IDENTITY_NOT_NULL' }
+  $stable = @($view.orphan_records | Where-Object { $_.request_id -eq ('{0:x32}' -f 2) })[0]
+  if (-not $stable -or $stable.operation_key -ne ('{0:x64}' -f 2) -or $stable.trusted_caller_sid -ne 'S-1-5-20') { throw 'STABLE_ORPHAN_IDENTITY_MISSING' }
   foreach ($name in @('stdout','stderr','script','receipt_path','run_as')) {
     if ($first.PSObject.Properties.Name -contains $name) { throw ('SENSITIVE_FIELD_EXPOSED:' + $name) }
   }

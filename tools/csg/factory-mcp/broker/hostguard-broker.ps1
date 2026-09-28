@@ -18,6 +18,7 @@ $execTemp = Join-Path $state 'exec-temp'
 $execReceipts = Join-Path $state 'exec-receipts'
 $modulePath = 'C:\Program Files\WindowsPowerShell\Modules\PTYSD.HostGuard\PTYSD.HostGuard.psd1'
 $hostExecHelperPath = Join-Path $root 'broker\host-powershell-exec.ps1'
+$systemCapabilityIdentityPath = Join-Path $root 'broker\system-capability-identity.ps1'
 $systemCapabilityPath = Join-Path $root 'config\system-capability.json'
 $idPattern = '^[A-Z0-9][A-Z0-9._-]{0,79}$'
 $maxRequestBytes = 65536
@@ -35,24 +36,30 @@ foreach ($path in @($execTemp,$execReceipts)) {
 }
 if (-not (Test-Path -LiteralPath $modulePath)) { throw 'HOSTGUARD_MODULE_MISSING' }
 if (-not (Test-Path -LiteralPath $hostExecHelperPath)) { throw 'HOST_EXEC_HELPER_MISSING' }
+if (-not (Test-Path -LiteralPath $systemCapabilityIdentityPath)) { throw 'SYSTEM_CAPABILITY_IDENTITY_HELPER_MISSING' }
 if (-not (Test-Path -LiteralPath $systemCapabilityPath)) { throw 'SYSTEM_CAPABILITY_CONFIG_MISSING' }
 $systemCapability = Get-Content -LiteralPath $systemCapabilityPath -Raw | ConvertFrom-Json -ErrorAction Stop
 if (
   $systemCapability.schema -ne 'v49.factory-mcp.system-capability.v1' -or
   $systemCapability.project_id -ne 'CHATGPT_GLOBAL_SKILL_GOVERNANCE' -or
   $systemCapability.capability_id -ne 'CAP-GOV-SYSTEM-V1' -or
+  $systemCapability.trusted_caller_sid -ne 'S-1-5-20' -or
   $systemCapability.production_allowed -ne $false -or
   $systemCapability.business_project_allowed -ne $false -or
   [int]$systemCapability.public_tool_count -ne 4
 ) { throw 'SYSTEM_CAPABILITY_CONFIG_INVALID' }
 Import-Module $modulePath -Force -ErrorAction Stop
 . $hostExecHelperPath
+. $systemCapabilityIdentityPath
 
 $createdNew = $false
 $mutex = New-Object Threading.Mutex($true, 'Global\PTYSDFactoryMCPHostGuardBrokerV47', [ref]$createdNew)
 if (-not $createdNew) { throw 'BROKER_ALREADY_RUNNING' }
 
 $script:activePowerShellJobs = @{}
+$script:consumedOperationKeys = @{}
+$script:operationReplayIndexReady = $false
+$script:operationReplayIndexError = 'NOT_INITIALIZED'
 $maxConcurrentPowerShell = 4
 $maxPerRunPowerShell = 1
 $staleGraceSeconds = 5
@@ -84,6 +91,8 @@ function Write-Health {
     powershell_exec = $true
     system_capability_project_id = [string]$systemCapability.project_id
     system_capability_id = [string]$systemCapability.capability_id
+    system_capability_trusted_caller_sid = [string]$systemCapability.trusted_caller_sid
+    system_operation_replay_index = if ($script:operationReplayIndexReady) { 'READY' } else { 'UNAVAILABLE' }
     host_powershell_authority_mode = 'PERSISTENT_HUMAN_AUTHORIZED_PREPRODUCTION'
     mission_execution_fence_required = $false
     recorded_at_utc = [DateTime]::UtcNow.ToString('o')
@@ -96,11 +105,45 @@ function Test-Id([object]$Value) {
 }
 
 function Assert-SystemCapabilityRequest {
-  param([Parameter(Mandatory)]$Request)
-  # V5.1 autonomy unlock:
-  # project/capability/run/task/Mission/checkpoint/generation values are receipt metadata,
-  # not a self-referential execution permission system.
+  param([Parameter(Mandatory)]$Request,[Parameter(Mandatory)][string]$CallerSid)
+  if ($CallerSid -cne [string]$systemCapability.trusted_caller_sid) { throw 'SYSTEM_CAPABILITY_CALLER_DENY' }
+  if ([string]$Request.project_id -cne [string]$systemCapability.project_id) { throw 'SYSTEM_CAPABILITY_PROJECT_DENY' }
+  if ([string]$Request.capability_id -cne [string]$systemCapability.capability_id) { throw 'SYSTEM_CAPABILITY_ID_DENY' }
   if ([int]$Request.timeout_seconds -gt [int]$systemCapability.max_timeout_seconds) { throw 'SYSTEM_CAPABILITY_TIMEOUT_DENY' }
+  if ([string]$Request.operation_id -notmatch '^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$') { throw 'SYSTEM_OPERATION_ID_REQUIRED' }
+  if (-not $script:operationReplayIndexReady) { throw 'SYSTEM_OPERATION_INDEX_UNAVAILABLE' }
+  $operationKey = Get-PTYSDSystemOperationKey -ProjectId ([string]$systemCapability.project_id) -CapabilityId ([string]$systemCapability.capability_id) -OperationId ([string]$Request.operation_id)
+  if ($script:consumedOperationKeys.ContainsKey($operationKey) -or (Test-Path -LiteralPath (Join-Path $execReceipts ($operationKey + '.json')))) {
+    throw 'SYSTEM_OPERATION_REPLAY_DENY'
+  }
+  return $operationKey
+}
+
+function Initialize-OperationReplayIndex {
+  $script:consumedOperationKeys = @{}
+  $script:operationReplayIndexReady = $false
+  $script:operationReplayIndexError = 'UNREAD'
+  try {
+    $files = @(Get-ChildItem -LiteralPath $execReceipts -Filter '*.json' -File -ErrorAction Stop |
+      Where-Object { -not ($_.Attributes -band [IO.FileAttributes]::ReparsePoint) })
+    foreach ($file in $files) {
+      $snapshot = Read-ReceiptSnapshot -Path $file.FullName
+      $receipt = $snapshot.receipt
+      if ([string]$receipt.operation -cne 'powershell') { continue }
+      if ([string]$receipt.project_id -cne [string]$systemCapability.project_id -or
+          [string]$receipt.capability_id -cne [string]$systemCapability.capability_id -or
+          [string]$receipt.operation_id -notmatch '^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$') {
+        throw 'SYSTEM_OPERATION_INDEX_IDENTITY_INVALID'
+      }
+      $operationKey = Get-PTYSDSystemOperationKey -ProjectId ([string]$receipt.project_id) -CapabilityId ([string]$receipt.capability_id) -OperationId ([string]$receipt.operation_id)
+      if (-not $script:consumedOperationKeys.ContainsKey($operationKey)) { $script:consumedOperationKeys[$operationKey] = $file.FullName }
+    }
+    $script:operationReplayIndexReady = $true
+    $script:operationReplayIndexError = $null
+  } catch {
+    $script:operationReplayIndexReady = $false
+    $script:operationReplayIndexError = 'SYSTEM_OPERATION_INDEX_UNAVAILABLE'
+  }
 }
 
 function Get-LatestHostExecReceipt {
@@ -131,6 +174,13 @@ function ConvertTo-BoundedReceiptToken {
   $text = [string]$Value
   if ($text.Length -gt 128 -or $text -notmatch '^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$') { return $null }
   return $text
+}
+
+function Get-ReceiptPropertyValue {
+  param([Parameter(Mandatory)]$Receipt,[Parameter(Mandatory)][string]$Name)
+  $property = $Receipt.PSObject.Properties[$Name]
+  if ($null -eq $property) { return $null }
+  return $property.Value
 }
 
 function ConvertTo-BoundedReceiptTimestamp {
@@ -207,38 +257,52 @@ function Read-ReceiptSnapshot {
 function ConvertTo-OrphanReceiptStatusRecord {
   param([Parameter(Mandatory)]$Snapshot,[Parameter(Mandatory)][string]$FileName)
   $receipt = $Snapshot.receipt
-  if ([string]$receipt.state -cne 'ORPHANED') { throw 'ORPHAN_STATUS_SNAPSHOT_STATE_CHANGED' }
+  if ([string](Get-ReceiptPropertyValue -Receipt $receipt -Name 'state') -cne 'ORPHANED') { throw 'ORPHAN_STATUS_SNAPSHOT_STATE_CHANGED' }
 
   $requestId = $null
   $baseName = [IO.Path]::GetFileNameWithoutExtension($FileName)
-  if ($baseName -match '^[0-9a-f]{32}$' -and [string]$receipt.request_id -ceq $baseName) { $requestId = $baseName }
+  $requestIdValue = Get-ReceiptPropertyValue -Receipt $receipt -Name 'request_id'
+  if ([string]$requestIdValue -match '^[0-9a-f]{32}$') { $requestId = [string]$requestIdValue }
+  $operationKey = $null
+  $operationKeyValue = Get-ReceiptPropertyValue -Receipt $receipt -Name 'operation_key'
+  if ([string]$operationKeyValue -match '^[0-9a-f]{64}$') {
+    if ([string]$operationKeyValue -cne $baseName) { throw 'ORPHAN_STATUS_OPERATION_KEY_MISMATCH' }
+    $operationKey = [string]$operationKeyValue
+  } elseif ($null -eq $requestId -or $baseName -cne $requestId) {
+    throw 'ORPHAN_STATUS_LEGACY_REQUEST_ID_MISMATCH'
+  }
 
   $controlOid = $null
-  if ([string]$receipt.control_oid -match '^(?:[0-9a-f]{40}|[0-9a-f]{64})$') { $controlOid = [string]$receipt.control_oid }
+  $controlOidValue = Get-ReceiptPropertyValue -Receipt $receipt -Name 'control_oid'
+  if ([string]$controlOidValue -match '^(?:[0-9a-f]{40}|[0-9a-f]{64})$') { $controlOid = [string]$controlOidValue }
   $checkpointDigest = $null
-  if ([string]$receipt.checkpoint_digest -match '^sha256:[0-9a-f]{64}$') { $checkpointDigest = [string]$receipt.checkpoint_digest }
+  $checkpointDigestValue = Get-ReceiptPropertyValue -Receipt $receipt -Name 'checkpoint_digest'
+  if ([string]$checkpointDigestValue -match '^sha256:[0-9a-f]{64}$') { $checkpointDigest = [string]$checkpointDigestValue }
   $authorizationDigest = $null
-  if ([string]$receipt.authorization_envelope_digest -match '^sha256:[0-9a-f]{64}$') { $authorizationDigest = [string]$receipt.authorization_envelope_digest }
+  $authorizationDigestValue = Get-ReceiptPropertyValue -Receipt $receipt -Name 'authorization_envelope_digest'
+  if ([string]$authorizationDigestValue -match '^sha256:[0-9a-f]{64}$') { $authorizationDigest = [string]$authorizationDigestValue }
 
   return [ordered]@{
     request_id = $requestId
-    project_id = ConvertTo-BoundedReceiptToken $receipt.project_id
-    capability_id = ConvertTo-BoundedReceiptToken $receipt.capability_id
-    operation_id = ConvertTo-BoundedReceiptToken $receipt.operation_id
+    project_id = ConvertTo-BoundedReceiptToken (Get-ReceiptPropertyValue -Receipt $receipt -Name 'project_id')
+    capability_id = ConvertTo-BoundedReceiptToken (Get-ReceiptPropertyValue -Receipt $receipt -Name 'capability_id')
+    operation_id = ConvertTo-BoundedReceiptToken (Get-ReceiptPropertyValue -Receipt $receipt -Name 'operation_id')
+    operation_key = $operationKey
+    trusted_caller_sid = ConvertTo-BoundedReceiptToken (Get-ReceiptPropertyValue -Receipt $receipt -Name 'trusted_caller_sid')
     control_oid = $controlOid
     checkpoint_digest = $checkpointDigest
     authorization_envelope_digest = $authorizationDigest
-    capability_generation = ConvertTo-BoundedReceiptInteger $receipt.capability_generation 2147483647
-    run_id = ConvertTo-BoundedReceiptToken $receipt.run_id
-    task_id = ConvertTo-BoundedReceiptToken $receipt.task_id
-    attempt_id = ConvertTo-BoundedReceiptToken $receipt.attempt_id
-    attempt_epoch = ConvertTo-BoundedReceiptInteger $receipt.attempt_epoch 2147483647
-    started_at_utc = ConvertTo-BoundedReceiptTimestamp $receipt.started_at_utc
-    finished_at_utc = ConvertTo-BoundedReceiptTimestamp $receipt.finished_at_utc
-    timeout_seconds = ConvertTo-BoundedReceiptInteger $receipt.timeout_seconds 86400
+    capability_generation = ConvertTo-BoundedReceiptInteger (Get-ReceiptPropertyValue -Receipt $receipt -Name 'capability_generation') 2147483647
+    run_id = ConvertTo-BoundedReceiptToken (Get-ReceiptPropertyValue -Receipt $receipt -Name 'run_id')
+    task_id = ConvertTo-BoundedReceiptToken (Get-ReceiptPropertyValue -Receipt $receipt -Name 'task_id')
+    attempt_id = ConvertTo-BoundedReceiptToken (Get-ReceiptPropertyValue -Receipt $receipt -Name 'attempt_id')
+    attempt_epoch = ConvertTo-BoundedReceiptInteger (Get-ReceiptPropertyValue -Receipt $receipt -Name 'attempt_epoch') 2147483647
+    started_at_utc = ConvertTo-BoundedReceiptTimestamp (Get-ReceiptPropertyValue -Receipt $receipt -Name 'started_at_utc')
+    finished_at_utc = ConvertTo-BoundedReceiptTimestamp (Get-ReceiptPropertyValue -Receipt $receipt -Name 'finished_at_utc')
+    timeout_seconds = ConvertTo-BoundedReceiptInteger (Get-ReceiptPropertyValue -Receipt $receipt -Name 'timeout_seconds') 86400
     state = 'ORPHANED'
-    side_effect_state = ConvertTo-BoundedReceiptToken $receipt.side_effect_state
-    error_code = ConvertTo-BoundedReceiptToken $receipt.error_code
+    side_effect_state = ConvertTo-BoundedReceiptToken (Get-ReceiptPropertyValue -Receipt $receipt -Name 'side_effect_state')
+    error_code = ConvertTo-BoundedReceiptToken (Get-ReceiptPropertyValue -Receipt $receipt -Name 'error_code')
     receipt_digest = [string]$Snapshot.digest
   }
 }
@@ -306,7 +370,7 @@ function Reconcile-OrphanedStartedReceipts {
                 schema='v48.factory-mcp.hostguard.response.v2'; request_id=$requestId; ok=$true; error_code=$null
                 result=[ordered]@{
                   schema='v48.factory-mcp.host-exec.result.v2'; operation='powershell'; result='ORPHANED'; request_id=$requestId
-                  project_id=[string]$receipt.project_id; capability_id=[string]$receipt.capability_id; run_id=[string]$receipt.run_id; task_id=[string]$receipt.task_id; attempt_id=[string]$receipt.attempt_id; attempt_epoch=[int]$receipt.attempt_epoch
+                  project_id=[string]$receipt.project_id; capability_id=[string]$receipt.capability_id; operation_id=[string]$receipt.operation_id; operation_key=[string]$receipt.operation_key; trusted_caller_sid=[string]$receipt.trusted_caller_sid; run_id=[string]$receipt.run_id; task_id=[string]$receipt.task_id; attempt_id=[string]$receipt.attempt_id; attempt_epoch=[int]$receipt.attempt_epoch
                   run_as=[string]$receipt.run_as; exit_code=$null; timed_out=$true; stdout=''; stderr=''; stdout_bytes=0; stderr_bytes=0
                   stdout_truncated=$false; stderr_truncated=$false; script_sha256=[string]$receipt.script_sha256; receipt_path=$file.FullName
                   side_effect_state='UNKNOWN_AFTER_BROKER_RESTART'
@@ -648,7 +712,9 @@ function Get-CloudflareIdentityReadback {
 function Start-BrokerPowerShell {
   param(
     [Parameter(Mandatory)]$Request,
-    [Parameter(Mandatory)][string]$RequestId
+    [Parameter(Mandatory)][string]$RequestId,
+    [Parameter(Mandatory)][string]$OperationKey,
+    [Parameter(Mandatory)][string]$TrustedCallerSid
   )
 
   $active = @(Get-ActivePowerShellEntries)
@@ -673,9 +739,13 @@ function Start-BrokerPowerShell {
   if ($scriptBytes.Length -lt 1 -or $scriptBytes.Length -gt 32768) {
     throw 'POWERSHELL_SCRIPT_SIZE_INVALID'
   }
+  if ($OperationKey -notmatch '^[0-9a-f]{64}$') { throw 'SYSTEM_OPERATION_IDENTITY_INVALID' }
+  if ($script:consumedOperationKeys.ContainsKey($OperationKey) -or (Test-Path -LiteralPath (Join-Path $execReceipts ($OperationKey + '.json')))) {
+    throw 'SYSTEM_OPERATION_REPLAY_DENY'
+  }
 
   $startedAt = [DateTime]::UtcNow.ToString('o')
-  $receiptPath = Join-Path $execReceipts ($RequestId + '.json')
+  $receiptPath = Join-Path $execReceipts ($OperationKey + '.json')
   $startedReceipt = [ordered]@{
     schema='v48.factory-mcp.host-exec.receipt.v2'
     state='STARTED'
@@ -684,6 +754,8 @@ function Start-BrokerPowerShell {
     project_id=[string]$Request.project_id
     capability_id=[string]$Request.capability_id
     operation_id=[string]$Request.operation_id
+    operation_key=$OperationKey
+    trusted_caller_sid=$TrustedCallerSid
     control_oid=[string]$Request.control_oid
     checkpoint_digest=[string]$Request.checkpoint_digest
     authorization_envelope_digest=[string]$Request.authorization_envelope_digest
@@ -706,6 +778,7 @@ function Start-BrokerPowerShell {
     finished_at_utc=$null
   }
   Write-AtomicJson -Path $receiptPath -Value $startedReceipt
+  $script:consumedOperationKeys[$OperationKey] = $receiptPath
 
   $responsePath = Join-Path $outbox ($RequestId + '.json')
   try {
@@ -739,6 +812,8 @@ function Start-BrokerPowerShell {
       project_id=[string]$Request.project_id
       capability_id=[string]$Request.capability_id
       operation_id=[string]$Request.operation_id
+      operation_key=$OperationKey
+      trusted_caller_sid=$TrustedCallerSid
       control_oid=[string]$Request.control_oid
       checkpoint_digest=[string]$Request.checkpoint_digest
       authorization_envelope_digest=[string]$Request.authorization_envelope_digest
@@ -767,7 +842,7 @@ function Complete-OnePowerShellJob {
     try { Stop-Job -Job $job -ErrorAction SilentlyContinue } catch {}
     $receipt = [ordered]@{
       schema='v48.factory-mcp.host-exec.receipt.v2'; state='TIMED_OUT'; request_id=[string]$ctx.request_id; operation='powershell'
-      project_id=[string]$ctx.project_id; capability_id=[string]$ctx.capability_id; operation_id=[string]$ctx.operation_id; control_oid=[string]$ctx.control_oid; checkpoint_digest=[string]$ctx.checkpoint_digest; authorization_envelope_digest=[string]$ctx.authorization_envelope_digest; capability_generation=[int64]$ctx.capability_generation; run_id=[string]$ctx.run_id; task_id=[string]$ctx.task_id; attempt_id=[string]$ctx.attempt_id; attempt_epoch=[int]$ctx.attempt_epoch
+      project_id=[string]$ctx.project_id; capability_id=[string]$ctx.capability_id; operation_id=[string]$ctx.operation_id; operation_key=[string]$ctx.operation_key; trusted_caller_sid=[string]$ctx.trusted_caller_sid; control_oid=[string]$ctx.control_oid; checkpoint_digest=[string]$ctx.checkpoint_digest; authorization_envelope_digest=[string]$ctx.authorization_envelope_digest; capability_generation=[int64]$ctx.capability_generation; run_id=[string]$ctx.run_id; task_id=[string]$ctx.task_id; attempt_id=[string]$ctx.attempt_id; attempt_epoch=[int]$ctx.attempt_epoch
       run_as=[Security.Principal.WindowsIdentity]::GetCurrent().Name; script_sha256=[string]$ctx.script_sha256; timeout_seconds=[int]$ctx.timeout_seconds
       exit_code=$null; timed_out=$true; side_effect_state='UNKNOWN_AFTER_TIMEOUT'; stdout_bytes=$null; stderr_bytes=$null; stdout_sha256=$null; stderr_sha256=$null
       started_at_utc=[string]$ctx.started_at_utc; finished_at_utc=$finishedAt; error_code='BROKER_WATCHDOG_TIMEOUT'
@@ -777,7 +852,7 @@ function Complete-OnePowerShellJob {
       schema='v48.factory-mcp.hostguard.response.v2'; request_id=[string]$ctx.request_id; ok=$true; error_code=$null
       result=[ordered]@{
         schema='v48.factory-mcp.host-exec.result.v2'; operation='powershell'; result='TIMED_OUT'; request_id=[string]$ctx.request_id
-        project_id=[string]$ctx.project_id; capability_id=[string]$ctx.capability_id; operation_id=[string]$ctx.operation_id; control_oid=[string]$ctx.control_oid; checkpoint_digest=[string]$ctx.checkpoint_digest; authorization_envelope_digest=[string]$ctx.authorization_envelope_digest; capability_generation=[int64]$ctx.capability_generation; run_id=[string]$ctx.run_id; task_id=[string]$ctx.task_id; attempt_id=[string]$ctx.attempt_id; attempt_epoch=[int]$ctx.attempt_epoch
+        project_id=[string]$ctx.project_id; capability_id=[string]$ctx.capability_id; operation_id=[string]$ctx.operation_id; operation_key=[string]$ctx.operation_key; trusted_caller_sid=[string]$ctx.trusted_caller_sid; control_oid=[string]$ctx.control_oid; checkpoint_digest=[string]$ctx.checkpoint_digest; authorization_envelope_digest=[string]$ctx.authorization_envelope_digest; capability_generation=[int64]$ctx.capability_generation; run_id=[string]$ctx.run_id; task_id=[string]$ctx.task_id; attempt_id=[string]$ctx.attempt_id; attempt_epoch=[int]$ctx.attempt_epoch
         run_as=[Security.Principal.WindowsIdentity]::GetCurrent().Name; executable=$null; exit_code=$null; timed_out=$true
         stdout=''; stderr=''; stdout_bytes=0; stderr_bytes=0; stdout_truncated=$false; stderr_truncated=$false
         script_sha256=[string]$ctx.script_sha256; receipt_path=[string]$ctx.receipt_path; side_effect_state='UNKNOWN_AFTER_TIMEOUT'
@@ -821,6 +896,8 @@ function Complete-OnePowerShellJob {
       project_id=[string]$ctx.project_id
       capability_id=[string]$ctx.capability_id
       operation_id=[string]$ctx.operation_id
+      operation_key=[string]$ctx.operation_key
+      trusted_caller_sid=[string]$ctx.trusted_caller_sid
       control_oid=[string]$ctx.control_oid
       checkpoint_digest=[string]$ctx.checkpoint_digest
       authorization_envelope_digest=[string]$ctx.authorization_envelope_digest
@@ -855,6 +932,8 @@ function Complete-OnePowerShellJob {
       project_id=[string]$ctx.project_id
       capability_id=[string]$ctx.capability_id
       operation_id=[string]$ctx.operation_id
+      operation_key=[string]$ctx.operation_key
+      trusted_caller_sid=[string]$ctx.trusted_caller_sid
       control_oid=[string]$ctx.control_oid
       checkpoint_digest=[string]$ctx.checkpoint_digest
       authorization_envelope_digest=[string]$ctx.authorization_envelope_digest
@@ -888,6 +967,8 @@ function Complete-OnePowerShellJob {
       project_id=[string]$ctx.project_id
       capability_id=[string]$ctx.capability_id
       operation_id=[string]$ctx.operation_id
+      operation_key=[string]$ctx.operation_key
+      trusted_caller_sid=[string]$ctx.trusted_caller_sid
       control_oid=[string]$ctx.control_oid
       checkpoint_digest=[string]$ctx.checkpoint_digest
       authorization_envelope_digest=[string]$ctx.authorization_envelope_digest
@@ -943,6 +1024,7 @@ function Process-Request {
   try {
     if ($requestId -notmatch '^[0-9a-f]{32}$') { throw 'REQUEST_ID_INVALID' }
     if ($File.Length -gt $maxRequestBytes) { throw 'REQUEST_TOO_LARGE' }
+    $callerSid = Assert-PTYSDTrustedRequestOwner -Path $File.FullName -ExpectedSid ([string]$systemCapability.trusted_caller_sid)
     $req = Get-Content -LiteralPath $File.FullName -Raw | ConvertFrom-Json -ErrorAction Stop
     if ($req.schema -ne 'v48.factory-mcp.hostguard.request.v2') { throw 'REQUEST_SCHEMA_INVALID' }
     if ($req.request_id -ne $requestId) { throw 'REQUEST_ID_MISMATCH' }
@@ -955,9 +1037,8 @@ function Process-Request {
     if ($req.operation -ne 'status') {
       if (-not (Test-Id $req.run_id) -or -not (Test-Id $req.task_id) -or -not (Test-Id $req.attempt_id)) { throw 'ID_INVALID' }
     }
-    if ($req.operation -eq 'powershell') {
-      Assert-SystemCapabilityRequest -Request $req
-    }
+    $operationKey = $null
+    if ($req.operation -eq 'powershell') { $operationKey = Assert-SystemCapabilityRequest -Request $req -CallerSid $callerSid }
 
     switch ([string]$req.operation) {
       'status' {
@@ -976,7 +1057,7 @@ function Process-Request {
         $result = Start-PTYSDWorkerVm -RunId ([string]$req.run_id) -TaskId ([string]$req.task_id) -AttemptId ([string]$req.attempt_id) -AttemptEpoch ([int]$req.attempt_epoch)
       }
       'powershell' {
-        Start-BrokerPowerShell -Request $req -RequestId $requestId
+        Start-BrokerPowerShell -Request $req -RequestId $requestId -OperationKey $operationKey -TrustedCallerSid $callerSid
         $deferred = $true
         $result = $null
       }
@@ -999,6 +1080,7 @@ function Process-Request {
       '^ATTEMPT_EPOCH_INVALID' { 'ATTEMPT_EPOCH_INVALID'; break }
       '^POWERSHELL_' { $safeMessage; break }
       '^SYSTEM_CAPABILITY_' { $safeMessage; break }
+      '^SYSTEM_OPERATION_' { $safeMessage; break }
       '^SYSTEM_FENCE_' { $safeMessage; break }
       '^STATUS_PROBE_INVALID' { 'STATUS_PROBE_INVALID'; break }
       '^REQUEST_' { $safeMessage; break }
@@ -1025,6 +1107,7 @@ function Process-Request {
 }
 
 try {
+  Initialize-OperationReplayIndex
   Write-Health
   $lastHealth = [DateTime]::UtcNow
   $lastReceiptReconcile = [DateTime]::MinValue

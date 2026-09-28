@@ -75,6 +75,7 @@ try {
     taskId: 'R3-P0-03-FACTORY-ORPHAN-RECONCILIATION',
     attemptId: 'V50-R3-P0-03-ATTEMPT-001',
     attemptEpoch: 1,
+    operationId: 'TEST-OP-HOST-SMOKE-001',
   };
   const prepare = await send('tools/call', { name: 'worker_prepare', arguments: workerOp });
   assert.equal(prepare.error, undefined);
@@ -105,17 +106,28 @@ try {
   assert.equal(powershellPayload.project_id, 'CHATGPT_GLOBAL_SKILL_GOVERNANCE');
   assert.equal(powershellPayload.capability_id, 'CAP-GOV-SYSTEM-V1');
 
-  const crossProjectHost = await send('tools/call', {
+  const callerCannotOverrideProject = await send('tools/call', {
     name: 'host_powershell',
     arguments: {
       ...hostOp,
-      runId: 'HANYAO_ADS_LINE',
-      taskId: 'HG-HOST-POWERSHELL',
-      script: "Write-Output 'MUST_NOT_RUN'",
+      projectId: 'HANYAO_ADS_LINE',
+      capabilityId: 'BUSINESS-PROJECT-CAPABILITY',
+      trustedCallerSid: 'S-1-5-18',
+      operationId: 'TEST-OP-PROJECT-BOUNDARY-001',
+      script: "Write-Output 'PROJECT_BINDING_STAYS_FIXED'",
       timeoutSeconds: 30,
     },
   });
-  assert.ok(crossProjectHost.result?.isError || crossProjectHost.error, 'business project SYSTEM request must fail closed');
+  assert.equal(callerCannotOverrideProject.error, undefined);
+  const fixedProjectPayload = JSON.parse(callerCannotOverrideProject.result.content[0].text);
+  assert.equal(fixedProjectPayload.project_id, 'CHATGPT_GLOBAL_SKILL_GOVERNANCE');
+  assert.equal(fixedProjectPayload.capability_id, 'CAP-GOV-SYSTEM-V1');
+
+  const missingOperationId = await send('tools/call', {
+    name: 'host_powershell',
+    arguments: { runId: hostOp.runId, taskId: hostOp.taskId, attemptId: hostOp.attemptId, attemptEpoch: hostOp.attemptEpoch, script: "Write-Output 'MUST_NOT_RUN'" },
+  });
+  assert.ok(missingOperationId.result?.isError || missingOperationId.error, 'stable operation identity is required');
 
   const invalid = await send('tools/call', {
     name: 'worker_start',
@@ -126,14 +138,14 @@ try {
   assert.ok(staleWorker.result?.isError || staleWorker.error, 'worker stale epoch must fail closed');
   const transportEpoch = await send('tools/call', {
     name: 'host_powershell',
-    arguments: { ...hostOp, attemptEpoch: 999, script: "Write-Output 'TRANSPORT_EPOCH_OK'", timeoutSeconds: 30 },
+    arguments: { ...hostOp, operationId: 'TEST-OP-HOST-EPOCH-001', attemptEpoch: 999, script: "Write-Output 'TRANSPORT_EPOCH_OK'", timeoutSeconds: 30 },
   });
   assert.equal(transportEpoch.error, undefined);
   assert.equal(transportEpoch.result?.isError, undefined);
 
   const arbitraryScript = await send('tools/call', {
     name: 'host_powershell',
-    arguments: { ...hostOp, script: "Write-Output 'ARBITRARY_TRANSPORT_OK'", timeoutSeconds: 30 },
+    arguments: { ...hostOp, operationId: 'TEST-OP-HOST-ARBITRARY-001', script: "Write-Output 'ARBITRARY_TRANSPORT_OK'", timeoutSeconds: 30 },
   });
   assert.equal(arbitraryScript.error, undefined);
   assert.equal(arbitraryScript.result?.isError, undefined);
