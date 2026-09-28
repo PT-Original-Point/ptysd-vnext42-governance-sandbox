@@ -18,7 +18,6 @@ $execTemp = Join-Path $state 'exec-temp'
 $execReceipts = Join-Path $state 'exec-receipts'
 $modulePath = 'C:\Program Files\WindowsPowerShell\Modules\PTYSD.HostGuard\PTYSD.HostGuard.psd1'
 $hostExecHelperPath = Join-Path $root 'broker\host-powershell-exec.ps1'
-$systemFenceHelperPath = Join-Path $root 'broker\current-execution-fence.ps1'
 $systemCapabilityPath = Join-Path $root 'config\system-capability.json'
 $idPattern = '^[A-Z0-9][A-Z0-9._-]{0,79}$'
 $maxRequestBytes = 65536
@@ -36,24 +35,18 @@ foreach ($path in @($execTemp,$execReceipts)) {
 }
 if (-not (Test-Path -LiteralPath $modulePath)) { throw 'HOSTGUARD_MODULE_MISSING' }
 if (-not (Test-Path -LiteralPath $hostExecHelperPath)) { throw 'HOST_EXEC_HELPER_MISSING' }
-if (-not (Test-Path -LiteralPath $systemFenceHelperPath)) { throw 'SYSTEM_FENCE_HELPER_MISSING' }
 if (-not (Test-Path -LiteralPath $systemCapabilityPath)) { throw 'SYSTEM_CAPABILITY_CONFIG_MISSING' }
 $systemCapability = Get-Content -LiteralPath $systemCapabilityPath -Raw | ConvertFrom-Json -ErrorAction Stop
 if (
   $systemCapability.schema -ne 'v49.factory-mcp.system-capability.v1' -or
   $systemCapability.project_id -ne 'CHATGPT_GLOBAL_SKILL_GOVERNANCE' -or
   $systemCapability.capability_id -ne 'CAP-GOV-SYSTEM-V1' -or
-  $systemCapability.mission_revision -ne '20260919T010100+0800' -or
-  $systemCapability.mission_hash -ne 'sha256:58f21a0818bd60b61929925b38ea8507d5b80c09d816a7b6f5a75d2a410d542b' -or
-  $systemCapability.authorization_envelope_digest -ne 'sha256:cb614427a0a1755d002cd035f50d33b18208bab7e5a9d8efc42dfbc7c4d99d14' -or
-  [int64]$systemCapability.capability_generation -ne 4 -or
   $systemCapability.production_allowed -ne $false -or
   $systemCapability.business_project_allowed -ne $false -or
   [int]$systemCapability.public_tool_count -ne 4
 ) { throw 'SYSTEM_CAPABILITY_CONFIG_INVALID' }
 Import-Module $modulePath -Force -ErrorAction Stop
 . $hostExecHelperPath
-. $systemFenceHelperPath
 
 $createdNew = $false
 $mutex = New-Object Threading.Mutex($true, 'Global\PTYSDFactoryMCPHostGuardBrokerV47', [ref]$createdNew)
@@ -91,6 +84,8 @@ function Write-Health {
     powershell_exec = $true
     system_capability_project_id = [string]$systemCapability.project_id
     system_capability_id = [string]$systemCapability.capability_id
+    host_powershell_authority_mode = 'SYSTEM_TRANSPORT_CONTROLLER_GOVERNED'
+    mission_execution_fence_required = $false
     recorded_at_utc = [DateTime]::UtcNow.ToString('o')
   }
   Write-AtomicJson -Path $health -Value $payload
@@ -115,7 +110,6 @@ function Assert-SystemCapabilityRequest {
   }
   if (-not $taskOk) { throw 'SYSTEM_CAPABILITY_TASK_DENY' }
   if ([int]$Request.timeout_seconds -gt [int]$systemCapability.max_timeout_seconds) { throw 'SYSTEM_CAPABILITY_TIMEOUT_DENY' }
-  [void](Assert-PTYSDCurrentSystemExecutionFence -Request $Request -SystemCapability $systemCapability)
 }
 
 function Get-LatestHostExecReceipt {

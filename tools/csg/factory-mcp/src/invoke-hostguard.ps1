@@ -64,10 +64,6 @@ if ($Operation -eq 'powershell' -and -not $ScriptBase64) {
 if ($Operation -eq 'powershell' -and (-not $ProjectId -or -not $CapabilityId)) {
   throw 'SYSTEM_CAPABILITY_REQUIRED'
 }
-if ($Operation -eq 'powershell' -and (-not $OperationId -or -not $ControlOid -or -not $CheckpointDigest -or -not $AuthorizationEnvelopeDigest)) {
-  throw 'SYSTEM_EXECUTION_FENCE_REQUIRED'
-}
-
 $requestId = [Guid]::NewGuid().ToString('N')
 $request = [ordered]@{
   schema = 'v48.factory-mcp.hostguard.request.v2'
@@ -80,7 +76,7 @@ $request = [ordered]@{
   attempt_epoch = $AttemptEpoch
   project_id = if ($Operation -eq 'powershell') { $ProjectId } else { $null }
   capability_id = if ($Operation -eq 'powershell') { $CapabilityId } else { $null }
-  operation_id = if ($Operation -eq 'powershell') { $OperationId } else { $null }
+  operation_id = if ($Operation -eq 'powershell') { if ($OperationId) { $OperationId } else { $requestId } } else { $null }
   control_oid = if ($Operation -eq 'powershell') { $ControlOid } else { $null }
   checkpoint_digest = if ($Operation -eq 'powershell') { $CheckpointDigest } else { $null }
   authorization_envelope_digest = if ($Operation -eq 'powershell') { $AuthorizationEnvelopeDigest } else { $null }
