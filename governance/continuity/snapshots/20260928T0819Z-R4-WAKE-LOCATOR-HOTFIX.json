@@ -1,0 +1,123 @@
+{
+  "schema_version": "vnext5.continuity-projection.v1",
+  "authority_class": "DERIVED_READ_ONLY_PROJECTION",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "snapshot_id": "20260928T0819Z-R4-WAKE-LOCATOR-HOTFIX",
+  "previous_snapshot_commit": "2f2f9d7d53106ee0e55d9bac9aa3d3b2c1f1b6b3",
+  "captured_at_utc": "2026-09-28T08:19:10Z",
+  "r4_pr": {
+    "number": 316,
+    "state": "OPEN_DRAFT_NONCANONICAL",
+    "base": "v49/accepted-source",
+    "base_sha": "7784663cca65dc7b0aa96c599db3224ad8317817",
+    "head": "4374160daea8c371a58b2885c17a21598cc44484",
+    "tree": "3ecbd6b74356be66ba4fd993f1749cd118dca0ca"
+  },
+  "authority_readback": {
+    "project_directory": {
+      "ref": "governance/project-directory",
+      "commit": "38f4fc7cb2841e2318a97ff7a53e41b2ec07aef1",
+      "path": "directory/projects/CHATGPT_GLOBAL_SKILL_GOVERNANCE.json",
+      "blob": "377dcf88279d3ba433d099a7cc9f78af8c86b8ae",
+      "revision": 5,
+      "binding_generation": 2,
+      "active_run_resolution": "CURRENT_CANONICAL_CONTROL_POINTER_V1"
+    },
+    "canonical_control": {
+      "ref": "v45/factory-control",
+      "branch_tip": "a5ebfd86d440b61ecc4e4dc3ba7b8291836769c7",
+      "current_pointer_path": "governance/csg/current.json",
+      "pointer_blob": "bf3b9719fcaaae3454b9bc277c9bae70d25aa543",
+      "checkpoint_seq": 192,
+      "checkpoint_path": "governance/csg/checkpoints/000192.json",
+      "checkpoint_blob": "99a3bc7a40aefcc4b7d0d17a5652ffa5e5a51781",
+      "checkpoint_digest": "sha256:fc0112e9203a8d9c8a43fa98f427f67c6e0b58aca09c6adcfa260ac6faa274f0",
+      "checkpoint_run_id": "V50-R3-001",
+      "execution_fence": null
+    },
+    "mission": {
+      "ref": "governance/v50/current-mission.json@1ad3e192941ed3db63a2c605c8c2a72251d4523e",
+      "blob": "2ee6ed2dc452299dc1da4bc6af721a7d244b2895",
+      "revision": "20260926T220900+0800",
+      "hash": "sha256:3cd12c504e42247f52b2f8200ee590a7d1e6e1f0e58c15063cb9551ebf9a38a5"
+    },
+    "execution_policy": {
+      "ref": "governance/v50/current-execution-policy.json@1ad3e192941ed3db63a2c605c8c2a72251d4523e",
+      "blob": "7398b69192ad1c9cbacdb888755a3d8fd2147afc",
+      "revision": "20260926T220900+0800-EP72",
+      "hash": "sha256:ce3abb44889a495d9a228e9117a22cc741807e033049a51346762110e7609cd2"
+    },
+    "run": {
+      "ref": "runs/V50-R3-001/run.json@1ad3e192941ed3db63a2c605c8c2a72251d4523e",
+      "blob": "96807d7a5754fd3a28ad695dfc8963b11e21b5e2",
+      "state": "RUNNING",
+      "active_task_id": "R3-P0-01-CANONICAL-CONTINUITY-REBASE",
+      "attempt_id": "V50-R3-P0-01-ATTEMPT-001",
+      "attempt_epoch": 1,
+      "unresolved_operation_ids": [],
+      "remaining_attempts": 1
+    },
+    "accepted_source": {
+      "ref": "v49/accepted-source",
+      "commit": "7784663cca65dc7b0aa96c599db3224ad8317817",
+      "mailbox_path": "governance/v50/controller-mailbox.json",
+      "mailbox_blob": "7269387d94d7809fe8d5ed3102cad2bebd93174f",
+      "authority_class": "COORDINATION_ONLY_NOT_CANONICAL"
+    }
+  },
+  "scheduled_wake_hotfix": {
+    "automation_id": "vnext5-0-r3-p0-01-exact-head-review-continuation",
+    "config_path": "C:/Users/x/.codex/automations/vnext5-0-r3-p0-01-exact-head-review-continuation/automation.toml",
+    "config_post_sha256": "10f4e1d22a29fe5b79f08311c3c99c35beae4efcbc125958f5c36691fdf077c4",
+    "backup_path": "C:/Users/x/.codex/automation-backups/vnext5-0-r3-p0-01-exact-head-review-continuation.20260928T074253Z.pre-r4-locator-hotfix.automation.toml",
+    "backup_sha256": "a61d5dc549fa0cb02d16f382f476029cc9f4a69d9254e1626b532f25da653be0",
+    "backup_bytes": 3461,
+    "status": "ACTIVE",
+    "cadence": "FREQ=HOURLY;INTERVAL=1",
+    "target_thread_id": "01a0cb52-6d41-7b33-b92c-099639fa07e7",
+    "active_project_wake_count": 1,
+    "payload_source_path": "governance/v50/CODEX-SCHEDULED-WAKE-LOCATOR-ONLY-R4.md",
+    "payload_source_ref": "PR-316-head-4374160daea8c371a58b2885c17a21598cc44484",
+    "payload_source_blob": "3658d9e1c7297c189d925f4665b84887e9c23dea",
+    "payload_sha256": "ab2ba2a7c70deb00d4c701307483390345d8e6f466e9243bffb2d90cdbf33c43",
+    "payload_exact_source_match": true,
+    "checks": {
+      "schema_present": "WAKE_SCHEMA=VNEXT5_CODEX_LOCATOR_WAKE_V1",
+      "old_atomic_unit_absent": true,
+      "old_request_id_absent": true,
+      "historical_package_digest_absent": true,
+      "hard_coded_active_unit_absent": true,
+      "only_task_payload_replaced": true,
+      "cadence_preserved": true
+    },
+    "disable_condition": "After R4-04 Host-owned autonomy supervisor LIVE PASS only."
+  },
+  "current_provider_gates": {
+    "r4_system_acceptance": "NOT_ACCEPTED",
+    "gate_path": "governance/v50/VNEXT5.0-R4-SYSTEM-LEVEL-ACCEPTANCE-GATE-20260928.json",
+    "gate_blob": "d5484609668df632579c90da6cf81e34a50b4878",
+    "all_A01_A18": "NOT_PROVEN",
+    "issue_310_latest_comment": 5865547757,
+    "csg_trusted_verifier_at_exact_head": "NO_STATUS_OR_PR_RUN"
+  },
+  "current_test_state": {
+    "r4_05_r4_06": "FRESH_REPO_ROOT_RERUN_REQUIRED; prior 6/6 claim invalidated",
+    "r4_10": "local 5/5 previously reported; no exact-head provider check-run",
+    "factory_runtime_path_discovery": "READY_READ_ONLY",
+    "r4_04_current_user_qualification": "NEXT_IF_R4_01_REMAINS_ELEVATION_BLOCKED"
+  },
+  "next_single_action": "FRESH_R4_05_R4_06_TEST_RERUN_AND_READ_ONLY_FACTORY_RUNTIME_DISCOVERY",
+  "goal_status": "ACTIVE",
+  "background_continuation_verified": false,
+  "safety": {
+    "op025": "UNKNOWN_NEVER_REDISPATCH",
+    "host_mutation": false,
+    "canonical_control_mutation": false,
+    "cp192_jit": false,
+    "operation027": false,
+    "production": false,
+    "paid_fallback": false,
+    "business_project": false,
+    "mission_change": false
+  }
+}
