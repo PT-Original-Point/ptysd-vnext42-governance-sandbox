@@ -4,6 +4,14 @@ Continue CHATGPT_GLOBAL_SKILL_GOVERNANCE / 全自動軟體工廠 from the latest
 
 Primary priority: eliminate execution-path deadlocks and human-relay dependence. OpenAI Scheduled Watch, Codex UI Goal, chat continuity, external semantic review, and repeated status polling MUST NOT be liveness-critical.
 
+## MANDATORY CONTINUITY BOOTSTRAP AND DURABLE LOGGING
+
+Before ordinary work, read `governance/continuity/CURRENT.json`, then read its exact immutable snapshot commit/path. The projection is a locator and handoff only; fresh Project Directory / canonical control / provider readback still wins on mismatch.
+
+After every material evidence delta, publish a new append-only continuity snapshot and advance only `governance/continuity/CURRENT.json`. Material deltas include checkpoint/run changes, provider head changes that alter execution state, test/verifier verdicts, runtime-path/principal discovery, deploy/restart/rollback/readback, blocker/effect changes, and reboot/crash/disconnect results.
+
+No durable fingerprint delta => do not emit a duplicate snapshot. Never make chat history or the projection itself a second canonical control plane.
+
 On every start:
 1. Fresh-read Project Directory, v45/factory-control current/checkpoint, Current Mission/Execution Policy, accepted-source, Issue #310, and PR #316 exact current head.
 2. Preserve the Human Mission. Never infer current authority from chat history or stale scheduled text.

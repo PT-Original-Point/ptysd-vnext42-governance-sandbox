@@ -1,0 +1,18 @@
+{
+  "schema_version": "vnext5.continuity-current.v1",
+  "authority_class": "LOCATOR_ONLY_NOT_CANONICAL",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "snapshot_id": "20260928T064825Z-R4-4941cab",
+  "snapshot_commit": "75e53cd2589c579f8f57cf21c5f57e2b6048c54c",
+  "immutable_snapshot_branch": "refs/heads/governance/continuity-snapshot-20260928t064825z-r4-4941cab",
+  "snapshot_json_path": "governance/continuity/snapshots/20260928T064825Z-R4-4941cab.json",
+  "snapshot_markdown_path": "governance/continuity/snapshots/20260928T064825Z-R4-4941cab.md",
+  "snapshot_json_blob": "b27ce7f37bdae69d930c4b454d783cac3bf93eeb",
+  "snapshot_markdown_blob": "0ddb9adb52788c5f43dfbc0801fc23de4515df57",
+  "canonical_checkpoint_at_snapshot": 192,
+  "canonical_checkpoint_digest": "sha256:fc0112e9203a8d9c8a43fa98f427f67c6e0b58aca09c6adcfa260ac6faa274f0",
+  "r4_pr": 316,
+  "r4_head_at_snapshot": "4941cabed851e6e96820fec9e48e448b5dcb6c4e",
+  "required_next_step": "Read snapshot, then fresh-read Directory/control/provider. If any material fact changed, publish a new append-only snapshot before/with the next durable checkpoint.",
+  "precedence_note": "Human Mission and fresh canonical/provider readback override this projection."
+}

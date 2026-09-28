@@ -34,6 +34,16 @@ Immediate action on wake:
 4. if that lane is externally unavailable, immediately continue the next READY independent R4 unit instead of asking the Human or emitting a status-only response;
 5. after every material delta, read back provider/runtime state and continue automatically.
 
+## Durable handoff projection — mandatory
+
+Every executor/session must begin with `governance/continuity/CURRENT.json` and its referenced immutable snapshot before doing historical archaeology.
+
+After every material evidence delta, append a new snapshot under `governance/continuity/snapshots/` and advance only `CURRENT.json`. The snapshot is a read-only projection of canonical/provider truth, never a second authority.
+
+A material delta includes checkpoint/run changes, meaningful PR/head changes, test/verifier verdicts, runtime path/principal discovery, deploy/restart/rollback/readback, blocker/effect classification, and crash/reboot/disconnect results.
+
+If the durable fingerprint is unchanged, do not publish a duplicate snapshot.
+
 ## Bootstrap authority
 
 Every start:

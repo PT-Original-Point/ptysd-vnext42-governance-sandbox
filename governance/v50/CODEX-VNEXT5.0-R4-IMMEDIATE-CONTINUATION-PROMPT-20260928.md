@@ -9,6 +9,14 @@ PAID_FALLBACK=NO
 HUMAN_RELAY_REQUIRED=false
 CODEX_LOCAL_LAST_MILE_OPT_IN=YES_FOR_THIS_R4_PREPRODUCTION_SCOPE
 
+## MANDATORY CONTINUITY BOOTSTRAP AND DURABLE LOGGING
+
+Before ordinary work, read `governance/continuity/CURRENT.json`, then read its exact immutable snapshot commit/path. The projection is a locator and handoff only; fresh Project Directory / canonical control / provider readback still wins on mismatch.
+
+After every material evidence delta, publish a new append-only continuity snapshot and advance only `governance/continuity/CURRENT.json`. Material deltas include checkpoint/run changes, provider head changes that alter execution state, test/verifier verdicts, runtime-path/principal discovery, deploy/restart/rollback/readback, blocker/effect changes, and reboot/crash/disconnect results.
+
+No durable fingerprint delta => do not emit a duplicate snapshot. Never make chat history or the projection itself a second canonical control plane.
+
 ## Fresh provider anchors
 - Directory: governance/project-directory -> project record CHATGPT_GLOBAL_SKILL_GOVERNANCE
 - Canonical control: v45/factory-control
@@ -23,7 +31,7 @@ CODEX_LOCAL_LAST_MILE_OPT_IN=YES_FOR_THIS_R4_PREPRODUCTION_SCOPE
 - R4-01 implementation commit: a83b7b973faa6e02f2d53c53d12f4c8567709a55
 - R4-01 structural verifier: PASS; run 36378250626; job 108788401851
 - R4-04 source/structural: PASS candidate at ca238f8c9478917102fd30d0590d669ce0accb24; verifier run 36381158935/job 108797020346
-- R4-05/R4-06 source/functional/structural: PASS candidate at bf9f4dd27bc6d8f80378b991e6138e58a7264c7f; functional 6/6; verifier run 36381441459/job 108797852726
+- R4-05/R4-06 structural candidate exists, but the earlier functional 6/6 claim is SUPERSEDED/INVALIDATED after broken test import paths were discovered. Import-path repair commit: 4941cabed851e6e96820fec9e48e448b5dcb6c4e. A fresh repo-root functional rerun is required before functional PASS is restored.
 - Factory fresh status at issuance: DESKTOP-1B6PD2P / VM Running / SSH reachable / SYSTEM / tunnel live+ready / host_exec_lane IDLE_WITH_ORPHANS / orphan_count=5
 
 IMPORTANT: the exact PR #316 head may advance after this prompt. Fresh-read it before mutation. Provider truth overrides the issuance snapshot above.
@@ -60,7 +68,7 @@ Immediately continue R4-04:
 6. Disable/ignore OpenAI Scheduled Watch as a liveness dependency during the fault test. It may remain advisory only.
 7. Same-source readback all task/process/state/log evidence.
 
-Then integrate/qualify R4-05/R4-06 from bf9f4dd27bc6d8f80378b991e6138e58a7264c7f:
+Then integrate/qualify R4-05/R4-06 from the current PR #316 head. Do not reuse the superseded 6/6 claim; first run the repaired tests from repo root and persist exact command/exit/pass-fail evidence:
 - WAITING_EXTERNAL must yield to READY;
 - only one RUNNING unit may own the executor;
 - same durable fingerprint must not repeat handoff/snapshot/test/non-idempotent dispatch;
