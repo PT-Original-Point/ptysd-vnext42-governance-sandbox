@@ -9,7 +9,8 @@ param(
   [string]$CodexHome='C:\Users\x\.codex',
   [string]$StateRoot='C:\ProgramData\PTYSD\AutonomySupervisor',
   [int]$MaxRunSeconds=2700,
-  [int]$MaxSameFingerprintRetries=1
+  [int]$MaxSameFingerprintRetries=1,
+  [switch]$ReadOnlyPreflight
 )
 $ErrorActionPreference='Stop'
 Set-StrictMode -Version Latest
@@ -30,10 +31,20 @@ function Get-Sha256([string]$Text){
 function Gh([string]$ApiPath){
   $g=Get-Command gh.exe -ErrorAction SilentlyContinue
   if(-not $g){$g=Get-Command gh -ErrorAction SilentlyContinue}
-  if(-not $g){throw 'GH_CLI_UNAVAILABLE'}
-  $o=& $g.Source api $ApiPath 2>&1
-  if($LASTEXITCODE -ne 0){throw ('GH_API_FAILED: '+($o -join "`n"))}
-  return (($o -join "`n")|ConvertFrom-Json)
+  if($g){
+    $o=& $g.Source api $ApiPath 2>&1
+    if($LASTEXITCODE -ne 0){throw ('GH_API_FAILED: '+($o -join "`n"))}
+    return (($o -join "`n")|ConvertFrom-Json)
+  }
+  if($PSVersionTable.PSVersion.Major -le 5){[Net.ServicePointManager]::SecurityProtocol=[Net.SecurityProtocolType]::Tls12}
+  $uri='https://api.github.com/'+$ApiPath.TrimStart('/')
+  $headers=@{
+    'Accept'='application/vnd.github+json'
+    'X-GitHub-Api-Version'='2022-11-28'
+    'User-Agent'='PTYSD-VNext5-AutonomySupervisor'
+  }
+  try{return Invoke-RestMethod -Method Get -Uri $uri -Headers $headers -TimeoutSec 20}
+  catch{throw ('GITHUB_READ_FAILED: '+$_.Exception.Message)}
 }
 function Provider-Fingerprint {
   $d=Gh ('repos/'+$Repo+'/branches/governance/project-directory')
@@ -45,6 +56,18 @@ function Provider-Fingerprint {
   $material=[ordered]@{project_id=$ProjectId;directory_head=$d.commit.sha;control_head=$c.commit.sha;r4_head=$p.head.sha;mailbox_last_comment_id=$last}
   $j=$material|ConvertTo-Json -Compress
   return [ordered]@{digest=('sha256:'+(Get-Sha256 $j));material=$material}
+}
+
+
+if($ReadOnlyPreflight){
+  try{
+    $fp=Provider-Fingerprint
+    [ordered]@{schema='vnext5.r4.autonomy-supervisor-preflight.v1';project_id=$ProjectId;mode='READ_ONLY_PREFLIGHT';result='PASS';fingerprint=$fp.digest;material=$fp.material;state_root_mutated=$false;codex_dispatched=$false}|ConvertTo-Json -Compress
+    exit 0
+  }catch{
+    [ordered]@{schema='vnext5.r4.autonomy-supervisor-preflight.v1';project_id=$ProjectId;mode='READ_ONLY_PREFLIGHT';result='FAIL';error=$_.Exception.Message;state_root_mutated=$false;codex_dispatched=$false}|ConvertTo-Json -Compress
+    exit 20
+  }
 }
 
 New-Item -ItemType Directory -Force -Path $StateRoot|Out-Null
