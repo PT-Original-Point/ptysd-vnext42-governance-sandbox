@@ -1,0 +1,184 @@
+{
+  "schema": "vnext5.r3.p0-03-p0-04.bootstrap-sequencing.v1",
+  "classification": "LOCAL_NONCANONICAL_DESIGN_CANDIDATE",
+  "status": "PREPARATION_ONLY_NOT_DISPATCHABLE",
+  "active_atomic_unit": "R3-P0-03-P0-04-BOOTSTRAP-SEQUENCING-REPAIR",
+  "next_single_action": "QUALIFY_PACKAGE_AND_REQUEST_ONE_GOVERNANCE_DESIGN_REVIEW",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "coordination_mailbox": {
+    "repository": "PT-Original-Point/ptysd-vnext42-governance-sandbox",
+    "issue_number": 310,
+    "authority_class": "COORDINATION_ONLY_NOT_CANONICAL"
+  },
+  "canonical_prestate": {
+    "directory": {
+      "ref": "governance/project-directory",
+      "head": "38f4fc7cb2841e2318a97ff7a53e41b2ec07aef1",
+      "record_path": "directory/projects/CHATGPT_GLOBAL_SKILL_GOVERNANCE.json",
+      "record_blob_oid": "377dcf88279d3ba433d099a7cc9f78af8c86b8ae",
+      "directory_revision": 5,
+      "active_run_ref_schema": "csg.active-run-ref.v1",
+      "binding_id": "CSG-GOVERNANCE-BINDING-V2",
+      "binding_generation": 2,
+      "resolution": "CURRENT_CANONICAL_CONTROL_POINTER_V1",
+      "control_ref": "v45/factory-control",
+      "current_pointer_path": "governance/csg/current.json"
+    },
+    "control": {
+      "ref": "v45/factory-control",
+      "head": "3fe64c651dd97fff75a74c668dc81f3fa2626c8f",
+      "current_pointer_blob_oid": "4ad01cbc6663294590d947e123eb50ba736ffb2f",
+      "checkpoint_seq": 191,
+      "checkpoint_path": "governance/csg/checkpoints/000191.json",
+      "checkpoint_blob_oid": "6720cea9c8a76a077d81c28fc62da34b0316e5f1",
+      "checkpoint_digest": "sha256:0e177814d7693e3fbc6a573979f3599e035cf31b920f0d08e81b1b30427cfa9f",
+      "run_revision": "1ad3e192941ed3db63a2c605c8c2a72251d4523e",
+      "run_path": "runs/V50-R3-001/run.json",
+      "run_blob_oid": "96807d7a5754fd3a28ad695dfc8963b11e21b5e2",
+      "run_digest": "sha256:b8d7797025dfff31bed9613125899999b0677339851edb4bf3741a2588e23c99",
+      "run_id": "V50-R3-001",
+      "task_id": "R3-P0-01-CANONICAL-CONTINUITY-REBASE",
+      "attempt_id": "V50-R3-P0-01-ATTEMPT-001",
+      "attempt_epoch": 1,
+      "execution_fence": null,
+      "authorization_envelope_digest": null,
+      "active_job_refs": [],
+      "unresolved_effect_refs": [],
+      "next_legal_transition": "R3-P0-02-DIRECTORY-ACTIVE-RUN-REF-PUBLICATION-AND-READBACK"
+    },
+    "mission": {
+      "revision": "20260926T220900+0800",
+      "hash": "sha256:3cd12c504e42247f52b2f8200ee590a7d1e6e1f0e58c15063cb9551ebf9a38a5"
+    },
+    "policy": {
+      "revision": "20260926T220900+0800-EP72",
+      "hash": "sha256:ce3abb44889a495d9a228e9117a22cc741807e033049a51346762110e7609cd2"
+    }
+  },
+  "source_candidate": {
+    "pr_number": 308,
+    "state": "MERGED_CLOSED_HISTORICAL_SOURCE_QUALIFICATION_EVIDENCE",
+    "head_sha": "6e8bd3aa0918fbf1a038d559c64eb6db3beeeee4",
+    "tree_sha": "01d3db213d35357d6f6ee751769b08979ddaa434",
+    "head_parent_sha": "8894cf133191e053dabc61ac9c35030c1a18d3df",
+    "merge_commit_sha": "a041043904cbef41e83b0209221aabe0b0ee3d91",
+    "current_accepted_source_sha": "7784663cca65dc7b0aa96c599db3224ad8317817",
+    "current_accepted_source_tree": "a540d81e695521f026fd49025b6ca2c2d546dfdc",
+    "semantic_review": {
+      "comment_id": 5856740789,
+      "verdict": "PASS",
+      "binding": "EXACT_PR308_HEAD"
+    },
+    "exact_head_protected_verifier": {
+      "name": "csg-trusted-verifier",
+      "status": "NOT_RUN_ON_EXACT_PR308_HEAD",
+      "check_run_count": 0,
+      "pull_request_workflow_run_count": 0,
+      "combined_status_count": 0
+    },
+    "mirror_verifier_transfer": "PROHIBITED",
+    "runtime_artifacts": [
+      {
+        "path": "tools/csg/factory-mcp/broker/hostguard-broker.ps1",
+        "blob_oid": "0c40dd6d87bce25f841dd5772d930d8cc5284b52"
+      },
+      {
+        "path": "tools/csg/factory-mcp/src/index.mjs",
+        "blob_oid": "42dafd04d50ea260ad8a6cc0ef86fd7454ea92cf"
+      },
+      {
+        "path": "tools/csg/factory-mcp/src/orphan-status.mjs",
+        "blob_oid": "1e1067bf6617bf4a94018460bc916d7862c430fc"
+      }
+    ],
+    "existing_public_tool_surface": [
+      "factory_status",
+      "worker_prepare",
+      "worker_start",
+      "host_powershell"
+    ],
+    "public_tool_growth_allowed": false
+  },
+  "repository_capability_binding": {
+    "path": "tools/csg/factory-mcp/config/system-capability.json",
+    "blob_oid": "6cbc824c700c87c66d2be628f0d304d1f2cd8f8f",
+    "capability_id": "CAP-GOV-SYSTEM-V1",
+    "capability_generation": 4,
+    "mission_revision": "20260919T010100+0800",
+    "mission_hash": "sha256:58f21a0818bd60b61929925b38ea8507d5b80c09d816a7b6f5a75d2a410d542b",
+    "authorization_envelope_digest": "sha256:cb614427a0a1755d002cd035f50d33b18208bab7e5a9d8efc42dfbc7c4d99d14",
+    "matches_current_checkpoint_mission": false,
+    "runtime_loaded_value_readback": "NOT_AVAILABLE"
+  },
+  "last_factory_readback": {
+    "source_comment_id": 5856944590,
+    "fresh_in_this_run": false,
+    "provider_result": "INSUFFICIENT_SURFACE",
+    "orphan_count": 5,
+    "active_count": 0,
+    "live_job_count": 0,
+    "pending_receipt_count": 0,
+    "per_record_identity": "NOT_OBSERVABLE",
+    "host_route_probe": "SYSTEM_FENCE_CURRENT_FENCE_MISSING",
+    "classification": "NO_RECORD_CLASSIFIED"
+  },
+  "readiness": {
+    "dispatch_allowed": false,
+    "host_mutation_allowed": false,
+    "canonical_mutation_allowed": false,
+    "cp192_or_jit_creation_allowed": false,
+    "op025_redispatch_allowed": false,
+    "operation027_dispatch_allowed": false,
+    "op025": "UNKNOWN",
+    "structural_source_qualification": "NOT_ESTABLISHED_FOR_EXACT_PR308_HEAD",
+    "known_blockers": [
+      "EXACT_PR308_HEAD_CSG_TRUSTED_VERIFIER_MISSING",
+      "CP191_EXECUTION_FENCE_MISSING",
+      "CP191_AUTHORIZATION_ENVELOPE_DIGEST_MISSING",
+      "REPOSITORY_SYSTEM_CAPABILITY_MISSION_BINDING_STALE",
+      "RUNTIME_CAPABILITY_READBACK_MISSING",
+      "HOST_INSTALL_TARGET_AND_SERVICE_UNBOUND",
+      "FIXED_DEPLOYMENT_SCRIPT_BYTES_AND_SHA256_UNBOUND",
+      "SINGLE_USE_OPERATION_REPLAY_ENFORCEMENT_UNPROVEN",
+      "CURRENT_TARGET_STATE_AND_HISTORICAL_OUTCOME_NOT_OBSERVED"
+    ]
+  },
+  "proposed_one_time_sequence": [
+    "FRESH_READ_AND_EXACT_SOURCE_QUALIFICATION",
+    "GOVERNANCE_ISSUED_NONEXPANDING_AUTHORIZATION_ENVELOPE",
+    "AUTHORIZED_CAPABILITY_REFRESH_AND_SAME_SOURCE_READBACK",
+    "EXACT_TARGET_AND_FIXED_SCRIPT_REHEARSAL",
+    "SEPARATE_CANONICAL_GATE_AND_CURRENT_FENCE_IF_PERMITTED",
+    "IMMEDIATE_STOP_REVOKE_CONTROL_ATTEMPT_EXPIRY_RECHECK",
+    "SINGLE_DISPATCH_OF_HASH_PINNED_ALLOWLISTED_OBSERVER_INSTALL",
+    "SAME_SOURCE_READBACK_AND_EXACT_ROLLBACK_OR_UNKNOWN_CLASSIFICATION",
+    "READ_ONLY_FACTORY_STATUS_IDENTITY_READBACK",
+    "PER_RECORD_CLASSIFICATION_ONLY_FROM_MATCHED_HISTORY_AND_CURRENT_TARGET_EVIDENCE"
+  ],
+  "test_vectors": [
+    {"id":"TV01_CP191_NULL_FENCE","expected":"DENY"},
+    {"id":"TV02_MISSING_AUTHORIZATION_ENVELOPE_DIGEST","expected":"DENY"},
+    {"id":"TV03_STALE_CAPABILITY_MISSION_REVISION_OR_HASH","expected":"DENY"},
+    {"id":"TV04_CAPABILITY_GENERATION_MISMATCH","expected":"DENY"},
+    {"id":"TV05_CONTROL_POINTER_CHECKPOINT_OR_RUN_DRIFT","expected":"DENY"},
+    {"id":"TV06_SOURCE_HEAD_TREE_OR_ANY_RUNTIME_BLOB_MISMATCH","expected":"DENY"},
+    {"id":"TV07_EXTRA_ARTIFACT_OR_TARGET_PATH","expected":"DENY"},
+    {"id":"TV08_CALLER_SCRIPT_OR_ARGUMENT_OVERRIDE","expected":"DENY"},
+    {"id":"TV09_UNKNOWN_INSTALL_ROOT_SERVICE_OR_ROLLBACK_TARGET","expected":"DENY"},
+    {"id":"TV10_MISSING_SCRIPT_SHA_TIMEOUT_EXPIRY_OR_OPERATION_ID","expected":"DENY"},
+    {"id":"TV11_EXPIRED_REVOKED_OR_REUSED_SINGLE_USE_OPERATION","expected":"DENY"},
+    {"id":"TV12_NEW_MCP_TOOL_OR_WORKER_EXECUTION_SCOPE","expected":"DENY"},
+    {"id":"TV13_PR309_MIRROR_VERIFIER_TRANSFERRED_TO_PR308","expected":"DENY"},
+    {"id":"TV14_AGGREGATE_COUNT_WITHOUT_RECORD_IDENTITY","expected":"UNKNOWN"},
+    {"id":"TV15_IDENTITY_WITHOUT_CURRENT_TARGET_AND_HISTORICAL_OUTCOME","expected":"UNKNOWN"},
+    {"id":"TV16_IDENTITY_JOIN_MISMATCH_OR_INCOMPLETE_RECEIPT","expected":"UNKNOWN"},
+    {"id":"TV17_OP025_UNKNOWN_REDISPATCH_OR_CP192_JIT_ARM","expected":"DENY"},
+    {"id":"TV18_ALL_SYNTHETIC_FUTURE_BINDINGS_MATCH","expected":"REVIEW_ONLY_NEVER_DISPATCH"}
+  ],
+  "authority_boundary": {
+    "allowed_now": ["LOCAL_NONCANONICAL_PACKAGE_PREPARATION", "LOCAL_PACKAGE_SELF_TESTS"],
+    "forbidden_now": ["HOST_MUTATION", "BROKER_OR_RECEIPT_MUTATION", "PROCESS_KILL", "RETRY", "REDISPATCH", "CANONICAL_REF_PUBLICATION", "CP192_OR_JIT", "OP025_REDISPATCH", "OPERATION027", "PRODUCTION", "BUSINESS_PROJECT", "PAID_FALLBACK"],
+    "classification_labels": ["HISTORICAL_TERMINAL_RESIDUE", "COMPLETED_BUT_UNCOLLECTED", "TRUE_UNRESOLVED_EFFECT", "UNKNOWN"],
+    "current_target_state_and_historical_execution_outcome_must_remain_separate": true
+  }
+}
