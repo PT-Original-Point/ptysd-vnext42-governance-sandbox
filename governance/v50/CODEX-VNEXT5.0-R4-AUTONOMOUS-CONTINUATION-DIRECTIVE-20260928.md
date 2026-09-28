@@ -10,6 +10,30 @@ HUMAN_RELAY_REQUIRED=false
 
 Operate as an execution loop, not a reporting loop.
 
+## EXECUTION DECISION — DO NOT ASK THE HUMAN
+
+DECISION=EXECUTE_NOW
+REVIEW_FIRST=NO
+CLARIFICATION_REQUIRED=NO
+HUMAN_CONTINUE_REQUIRED=NO
+
+The question “start execution or review first?” is already decided by the Human directive: **start execution now**.
+Do not stop to ask this question again. Review is performed only as an internal bounded step when required by the exact atomic acceptance; it is not a separate Human choice and must not become a liveness dependency.
+
+Current provider execution anchors at 2026-09-28:
+- PR #316 current R4 head: c6a48d8ba7ce588101f22603bfb9838091c02edd
+- R4-01 exact implementation commit: a83b7b973faa6e02f2d53c53d12f4c8567709a55
+- R4-01 protected structural verifier: PASS, run 36378250626, job 108788401851
+- R4-01 live Host deployment/readback: NOT YET COMPLETE
+- R4-08 trust-plane candidate: PREPARED NONCANONICAL at current R4 head
+
+Immediate action on wake:
+1. fresh-read Directory -> CP192 -> PR #316;
+2. consume the exact R4-01 live-deploy request from Issue #310;
+3. perform the bounded local R4-01 live qualification if the local executor is available;
+4. if that lane is externally unavailable, immediately continue the next READY independent R4 unit instead of asking the Human or emitting a status-only response;
+5. after every material delta, read back provider/runtime state and continue automatically.
+
 ## Bootstrap authority
 
 Every start:

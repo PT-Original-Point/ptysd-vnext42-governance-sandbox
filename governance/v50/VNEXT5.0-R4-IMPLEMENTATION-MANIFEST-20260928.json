@@ -35,7 +35,9 @@
     },
     {
       "unit": "R4-03_ORPHAN_RECONCILIATION",
-      "requires": ["R4-01 live deployment and readback"],
+      "requires": [
+        "R4-01 live deployment and readback"
+      ],
       "required_semantics": [
         "read five orphan identities from same-source Factory status",
         "classify each CONFIRMED, NOT_APPLIED, or PARTIAL_OR_AMBIGUOUS",
@@ -83,5 +85,20 @@
     "LEGAL_CONTRACT_SIGNATURE_IDENTITY",
     "OAUTH_MFA",
     "MAJOR_IRREVERSIBLE_AUTHORITY_EXPANSION"
-  ]
+  ],
+  "execution_decision": {
+    "decision": "EXECUTE_NOW",
+    "review_first": false,
+    "clarification_required": false,
+    "human_continue_required": false,
+    "current_r4_head": "c6a48d8ba7ce588101f22603bfb9838091c02edd",
+    "r4_01_implementation_commit": "a83b7b973faa6e02f2d53c53d12f4c8567709a55",
+    "r4_01_structural_verifier": {
+      "result": "PASS",
+      "run_id": 36378250626,
+      "job_id": 108788401851
+    },
+    "r4_01_live_host_qualification": "NOT_YET_COMPLETE",
+    "on_wait": "YIELD_EXECUTOR_TO_NEXT_READY_R4_UNIT"
+  }
 }
