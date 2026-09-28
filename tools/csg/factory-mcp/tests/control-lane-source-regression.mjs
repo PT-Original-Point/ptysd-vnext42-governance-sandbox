@@ -244,3 +244,15 @@ test('SYSTEM host transport is not self-locked to current Mission/checkpoint/gen
   assert.ok(broker.includes('mission_execution_fence_required = $false'));
   assert.equal(index.includes("attemptEpoch: z.number().int().min(1).max(2147483647)"), true);
 });
+
+test('current V50 canonical run/task identity is admitted by SYSTEM capability without cross-project widening', () => {
+  const runPatterns = capability.allowed_run_id_patterns.map((p) => new RegExp(p));
+  const taskPatterns = capability.allowed_task_id_patterns.map((p) => new RegExp(p));
+  assert.equal(capability.mission_revision, '20260926T220900+0800');
+  assert.equal(capability.mission_hash, 'sha256:3cd12c504e42247f52b2f8200ee590a7d1e6e1f0e58c15063cb9551ebf9a38a5');
+  assert.ok(runPatterns.some((p) => p.test('V50-R3-001')));
+  assert.ok(taskPatterns.some((p) => p.test('R3-P0-03-FACTORY-ORPHAN-RECONCILIATION')));
+  assert.ok(taskPatterns.some((p) => p.test('V50-R4-LIVE-QUALIFICATION')));
+  assert.equal(runPatterns.some((p) => p.test('HANYAO_ADS_LINE')), false);
+  assert.equal(taskPatterns.some((p) => p.test('HG-HOST-POWERSHELL')), false);
+});

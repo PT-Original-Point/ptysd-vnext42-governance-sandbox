@@ -71,9 +71,9 @@ try {
     attemptEpoch: 1,
   };
   const hostOp = {
-    runId: 'CHATGPT_GLOBAL_SKILL_GOVERNANCE-QUAL-P4',
-    taskId: 'GOV-HARDENING-P4',
-    attemptId: 'GOV-HARDENING-P4-ATTEMPT-001',
+    runId: 'V50-R3-001',
+    taskId: 'R3-P0-03-FACTORY-ORPHAN-RECONCILIATION',
+    attemptId: 'V50-R3-P0-03-ATTEMPT-001',
     attemptEpoch: 1,
   };
   const prepare = await send('tools/call', { name: 'worker_prepare', arguments: workerOp });
