@@ -23,7 +23,7 @@ foreach ($name in @($brokerTask,$tunnelTask,$probeTask)) {
 }
 if (Test-Path -LiteralPath $install) { throw 'INSTALL_ROOT_ALREADY_EXISTS' }
 
-$required = @('package.json','package-lock.json','src\index.mjs','src\invoke-hostguard.ps1','broker\hostguard-broker.ps1','broker\host-powershell-exec.ps1','tests\protocol-smoke.mjs','tests\live-status-smoke.mjs','tests\host-powershell-exec-smoke.ps1','tests\control-lane-source-regression.mjs','tests\control-lane-concurrency-smoke.mjs','tests\tunnel-supervisor-source-regression.mjs','tests\tunnel-preflight-negative.ps1','tests\credential-ingest-smoke.ps1','config\system-capability.json','windows\qualify-tunnel.ps1','windows\import-tunnel-credentials.ps1','windows\run-tunnel.ps1','windows\install-broker.ps1','windows\upgrade-host-powershell.ps1','windows\factory-mcp-tunnel.template.yaml')
+$required = @('package.json','package-lock.json','src\index.mjs','src\invoke-hostguard.ps1','src\stable-operation-identity.mjs','broker\hostguard-broker.ps1','broker\host-powershell-exec.ps1','broker\system-capability-identity.ps1','tests\protocol-smoke.mjs','tests\stable-operation-identity.test.mjs','tests\system-capability-identity-smoke.ps1','tests\live-status-smoke.mjs','tests\host-powershell-exec-smoke.ps1','tests\control-lane-source-regression.mjs','tests\control-lane-concurrency-smoke.mjs','tests\tunnel-supervisor-source-regression.mjs','tests\tunnel-preflight-negative.ps1','tests\credential-ingest-smoke.ps1','config\system-capability.json','windows\qualify-tunnel.ps1','windows\import-tunnel-credentials.ps1','windows\run-tunnel.ps1','windows\install-broker.ps1','windows\upgrade-host-powershell.ps1','windows\factory-mcp-tunnel.template.yaml')
 foreach ($rel in $required) {
   if (-not (Test-Path -LiteralPath (Join-Path $SourceRoot $rel))) { throw ('SOURCE_FILE_MISSING:' + $rel) }
 }
@@ -67,6 +67,8 @@ try {
     if ($LASTEXITCODE -ne 0) { throw 'FACTORY_MCP_PROTOCOL_SMOKE_FAILED' }
     & powershell.exe -NoProfile -NonInteractive -ExecutionPolicy Bypass -File (Join-Path $install 'tests\tunnel-preflight-negative.ps1')
     if ($LASTEXITCODE -ne 0) { throw 'TUNNEL_PREFLIGHT_NEGATIVE_FAILED' }
+    & powershell.exe -NoProfile -NonInteractive -ExecutionPolicy Bypass -File (Join-Path $install 'tests\system-capability-identity-smoke.ps1')
+    if ($LASTEXITCODE -ne 0) { throw 'SYSTEM_CAPABILITY_IDENTITY_SMOKE_FAILED' }
     & powershell.exe -NoProfile -NonInteractive -ExecutionPolicy Bypass -File (Join-Path $install 'tests\credential-ingest-smoke.ps1')
     if ($LASTEXITCODE -ne 0) { throw 'CREDENTIAL_INGEST_SMOKE_FAILED' }
   } finally { Pop-Location }

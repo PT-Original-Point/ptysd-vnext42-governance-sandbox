@@ -2,6 +2,7 @@
   "schema": "v49.factory-mcp.system-capability.v1",
   "capability_id": "CAP-GOV-SYSTEM-V1",
   "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "trusted_caller_sid": "S-1-5-20",
   "max_timeout_seconds": 300,
   "production_allowed": false,
   "business_project_allowed": false,

@@ -25,6 +25,8 @@ function projectRecord(value) {
     project_id: safeToken(record.project_id),
     capability_id: safeToken(record.capability_id),
     operation_id: safeToken(record.operation_id),
+    operation_key: typeof record.operation_key === 'string' && /^[0-9a-f]{64}$/.test(record.operation_key) ? record.operation_key : null,
+    trusted_caller_sid: safeToken(record.trusted_caller_sid),
     control_oid: controlOid,
     checkpoint_digest: typeof record.checkpoint_digest === 'string' && DIGEST.test(record.checkpoint_digest) ? record.checkpoint_digest : null,
     authorization_envelope_digest: typeof record.authorization_envelope_digest === 'string' && DIGEST.test(record.authorization_envelope_digest)
