@@ -1,0 +1,116 @@
+{
+  "record_type": "MISSION_REVISION",
+  "schema": "MISSION_CONTRACT_V2_RECOVERY_PUBLICATION",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "mission_revision_id": "20260930T000622+0800",
+  "effective_at": "2026-09-29T16:06:22.000Z",
+  "status": "FINALIZED",
+  "authorized_by": "HUMAN",
+  "authorization_gate": "VNEXT5.1-R2-CODEX-RESUME-TO-CLOSURE-PROMPT-20260929/R2-NATIVE-REV2/USER-DIRECTIVE",
+  "supersedes": "20260929T232301+0800",
+  "change_reason": "R2-01 remains the sole active atomic unit. CP196 still selects attempt 001 / owner generation 1, whose canonical lease expired at 2026-09-29T14:54:00.000Z; CP196 active_job_refs and unresolved_effect_refs are empty. The staged attempt 002 / epoch 2 / owner generation 3 lease expired at 2026-09-29T15:53:01Z before any canonical checkpoint selected it; its run has no unresolved operations. This does not assert that the current Codex thread is dead, and no Host action or external effect was replayed. Supersede the unselected EP77 attempt-002 stage and stage attempt 003 / epoch 3 / owner generation 4 for protected selection only after exact-head verification and fresh same-source readback.",
+  "canonicalization_version": "HUMAN_TEXT_V1",
+  "mission_hash": "sha256:ee27caaaf0237e88346b6a85d992f09e2320e4f38f8145969122446e42053fa1",
+  "payload": {
+    "final_strategic_goal": "Restore the existing V4.2-to-V4.9 multi-agent software factory under a single canonical V5.1-R2 control plane with any-state cross-session recovery, a 24/7 Host-owned Supervisor, and bounded pre-Production execution.",
+    "success_criteria": "R2_00_AUTHORITY_REBASE_AND_SAME_SOURCE_READBACK=PASS; R2_01_ANY_STATE_COLD_START=PASS; R2_02_STALE_OWNER_LIVENESS_RECONCILIATION=PASS; R2_03_FIXED_READONLY_FACTORY_OBSERVATION=PASS; R2_04_UNIQUE_TRUSTED_CALLER=PASS; R2_05_NONCIRCULAR_HOST_REPAIR=PASS; R2_06_LIVE_FACTORY_MCP_ACCEPTANCE=PASS; R2_07_HOST_SUPERVISOR_24X7=PASS; R2_08_ANTI_LOOP_AND_STALE_AUTOMATION=PASS; R2_09_ANY_STATE_CROSS_SESSION_REGRESSION=PASS; R2_10_MULTI_AGENT_FLEET=PASS; R2_11_TASK_GRAPH_AIMD_QUOTA=PASS; R2_12_FRESH_REVIEW_REPAIR=PASS; R2_13_SINGLE_INTEGRATION_PRODUCT_VERIFIER=PASS; R2_14_PROVIDERGUARD_PUBLICATION_NOTIFICATION=PASS; R2_15_HANYAO_READONLY_RECOVERY=PASS; R2_16_REAL_N1=PASS; R2_17_N2=PASS; R2_18_MEASURED_N4_N8=PASS; R2_19_MULTI_PROJECT_SHADOW=PASS; R2_20_DR_UNKNOWN_EFFECT_CAMPAIGN=PASS; R2_21_BOUNDED_RSI=PASS; CURRENT_SPEC=VNEXT5.1-R2; GPT_WEB_NOT_LIVENESS_CRITICAL=PASS; HOST_SUPERVISOR_24X7=PASS; OPENCODE_MUSE_PREFERRED_WHEN_HEALTHY=PASS; ANTIGRAVITY_CODEX_SECONDARY=PASS; HYPERV_NORMAL_CODING_BOUNDARY=PASS; CANONICAL_SINGLE_AUTHORITY=PASS; WORKER_PROVIDER_WRITE_CREDENTIALS=0; PAID_FALLBACK=false; PRODUCTION=false; FACTORY_MCP_PUBLIC_TOOLS=4.",
+    "current_construction_spec": {
+      "id": "VNEXT5.1-R2",
+      "source_class": "EXACT_HUMAN_PROVIDED_CONSTRUCTION_SPEC_ATTACHMENT",
+      "source_commit": null,
+      "source_path": "VNEXT5.1-R2-FULL-CONSTRUCTION-SPEC-20260929.md",
+      "canonical_path": "governance/csg/v51/specs/VNEXT5.1-R2-HUMAN-CURRENT-SPEC-20260929.md",
+      "blob_oid": "1dcd2d46a35bb3a580210ab4f0d29131587cc448",
+      "sha256": "sha256:b3b805f4dd5e88a2370c456c7f678c3264ca032090c957d69116512b563b589f",
+      "byte_length": 25222
+    },
+    "current_phase": "VNEXT5_1_R2_CONTROL_PLANE_RECOVERY",
+    "phase_acceptance": "R2_00_AUTHORITY_REBASE_REQUIRES_SPEC_MISSION_POLICY_RUN_TASK_ATTEMPT_COHERENCE_AND_SAME_SOURCE_READBACK; R2_01_THROUGH_R2_09_PASS_BEFORE_ORDINARY_PRODUCT_WORK; PRODUCTION=false; PAID_FALLBACK=false; WORKER_PROVIDER_WRITE_CREDENTIALS=0.",
+    "active_unit": "V51-R2-01-COLD-START-CANONICAL-CONTINUITY",
+    "active_run_id": "V51-R2-001",
+    "active_task_id": "V51-R2-01-COLD-START-CANONICAL-CONTINUITY",
+    "active_attempt_id": "V51-R2-01-ATTEMPT-003",
+    "next_phase": "VNEXT5_1_R2_P0_AND_MULTI_AGENT_FACTORY_CLOSURE",
+    "next_business_event": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION",
+    "executor_routing": {
+      "factory_execution_model": "MULTI_AGENT_FLEET",
+      "durable_orchestrator": "HOST_OWNED_24X7_SUPERVISOR_RECONCILER",
+      "gpt_web_role": "EPHEMERAL_AUDITOR_CONTROL_HUMAN_INTERFACE",
+      "preferred_builder": "OPENCODE_MUSE_SPARK_1_3",
+      "secondary_qualified_lanes": [
+        "ANTIGRAVITY",
+        "CODEX"
+      ],
+      "normal_product_coding": "HYPERV_UBUNTU_VM_ISOLATED_WORKTREE_OR_CONTAINER",
+      "codex_role": "CONTROL_PLANE_RECOVERY_HOST_MAINTENANCE_AND_QUALIFIED_SECONDARY_AGENT",
+      "one_execution_owner_per_mutable_atomic_scope": true,
+      "one_integration_lane_per_project": true,
+      "codex_mission_sovereignty": false
+    },
+    "authorization": {
+      "reversible_preproduction_persistent": true,
+      "production_allowed": false,
+      "production_final_authorization": "HUMAN_RESERVED",
+      "business_project_auto_admission": false,
+      "paid_fallback_allowed": false,
+      "worker_provider_write_credentials_allowed": false,
+      "new_paid_cost_allowed": false
+    },
+    "human_reserved_gates": [
+      "PRODUCTION_FINAL_AUTHORIZATION",
+      "NEW_PAID_COST_OR_SERVICE",
+      "LEGAL_CONTRACT_SIGNATURE_OR_IDENTITY",
+      "OAUTH_OR_MFA",
+      "MAJOR_IRREVERSIBLE_AUTHORITY_EXPANSION",
+      "UNRECONCILABLE_AMBIGUOUS_EXTERNAL_EFFECT"
+    ],
+    "factory_mcp": {
+      "public_tool_count": 4,
+      "bounded_read_only_diagnostics_required": true,
+      "read_only_diagnostics_require_host_mutation_fence": false,
+      "arbitrary_host_powershell_before_unique_trusted_caller": false,
+      "host_powershell_run_as_required": "NT AUTHORITY\\SYSTEM",
+      "trusted_caller": {
+        "unique_os_enforced_boundary_required": true,
+        "shared_network_service_sid_alone_sufficient": false
+      }
+    },
+    "cross_session_acceptance": [
+      "FRESH_SESSION_LOOKUP_EXACT_PROJECT_DIRECTORY_CONTROL_POINTER_SPEC_MISSION_POLICY_RUN_TASK_ATTEMPT_OWNER_EFFECTS",
+      "FRESH_LOCAL_HOST_OBSERVATION_AND_PROVIDER_READBACK_BEFORE_RECONCILIATION",
+      "NO_MEMORY_RECENT_CHAT_RECENT_HANDOFF_LATEST_LOCAL_FILE_SCHEDULED_WAKE_OLD_GOAL_OR_PRIOR_SUMMARY_AS_CURRENT_AUTHORITY",
+      "CANONICAL_UNREADABLE_RETURNS_CONTROL_STATE_UNAVAILABLE_AND_FAILS_CLOSED_WITHOUT_GUESSING",
+      "RUN_EVIDENCE_REFERENCES_CARRY_FORWARD_CAPABILITY_GAPS_UNTIL_PROVIDER_CONFIRMED_PASS",
+      "EXPIRED_UI_THREAD_CANNOT_OWN_FACTORY_WHEN_NO_LIVE_JOB_AND_NO_UNRESOLVED_EFFECT",
+      "STALE_R1_OR_V50_CONTINUATION_CANNOT_RESURRECT",
+      "PRODUCTION_REMAINS_HUMAN_RESERVED"
+    ],
+    "forbidden_until_r2_complete": [
+      "PRODUCTION",
+      "PAID_FALLBACK",
+      "NEW_PAID_SERVICE",
+      "BUSINESS_PROJECT_AUTO_ADMISSION",
+      "WORKER_PROVIDER_WRITE_CREDENTIALS",
+      "FIFTH_FACTORY_MCP_PUBLIC_TOOL",
+      "ARBITRARY_SYSTEM_POWERSHELL",
+      "BARE_HOST_NORMAL_PRODUCT_CODING",
+      "FORCE_UPDATE_CANONICAL_HISTORY",
+      "BLIND_RETRY_OR_REDISPATCH_UNKNOWN_EFFECT",
+      "STALE_SCHEDULED_CONTINUATION_RESURRECTION",
+      "SECOND_CANONICAL_STORE",
+      "DUPLICATE_CONTROL_PLANE"
+    ],
+    "non_goals": "No Production authorization; no paid fallback or new paid service; no worker provider-write credentials; no business-project auto admission; no fifth public Factory MCP tool; no second canonical store or duplicate control plane; no bare-host normal product coding; no force update; no blind unknown-effect replay. Preserve the Human-reserved gates.",
+    "mission_hash_profile": "RFC8785_CANONICAL_JSON_PAYLOAD_SHA256_V1",
+    "active_attempt_epoch": 3,
+    "supersedes_unselected_stage": {
+      "mission_revision_id": "20260929T223724+0800",
+      "policy_revision_id": "20260929T223724+0800-EP76",
+      "active_unit": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION",
+      "owner_generation": 3,
+      "disposition": "SUPERSEDED_UNSELECTED_STAGE",
+      "selected_by_checkpoint": false
+    }
+  },
+  "routing_authority": "VNEXT5.1-R2_HUMAN_CURRENT_SPEC_AND_USER_DIRECTIVE"
+}
