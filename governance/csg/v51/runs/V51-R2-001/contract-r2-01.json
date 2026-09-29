@@ -1,0 +1,71 @@
+{
+  "schema_version": "factory.contract.v1",
+  "contract_id": "V51-R2-CONTRACT-001-R2-01",
+  "task_id": "V51-R2-01-COLD-START-CANONICAL-CONTINUITY",
+  "run_id": "V51-R2-001",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "goal": "Restore and verify VNEXT5.1-R2 as the sole current authority, then prove cold-start continuity across Mission, Policy, checkpoint, run, task, attempt, and provider-addressable evidence.",
+  "current_spec": {
+    "id": "VNEXT5.1-R2",
+    "source_class": "EXACT_HUMAN_PROVIDED_CONSTRUCTION_SPEC_ATTACHMENT",
+    "source_commit": null,
+    "source_path": "VNEXT5.1-R2-FULL-CONSTRUCTION-SPEC-20260929.md",
+    "canonical_path": "governance/csg/v51/specs/VNEXT5.1-R2-HUMAN-CURRENT-SPEC-20260929.md",
+    "blob_oid": "1dcd2d46a35bb3a580210ab4f0d29131587cc448",
+    "sha256": "sha256:b3b805f4dd5e88a2370c456c7f678c3264ca032090c957d69116512b563b589f",
+    "byte_length": 25222
+  },
+  "include": [
+    "R2-00 immutable specification identity and Mission/Policy authority rebase",
+    "single canonical checkpoint/run/task/attempt identity and exact same-source provider readback",
+    "redacted provider-addressable summary of the local native host prestate"
+  ],
+  "exclude": [
+    "Production, paid service, business-project admission, or worker provider-write credentials",
+    "Factory MCP tool-count expansion or arbitrary SYSTEM PowerShell",
+    "bare-host normal product coding",
+    "Hyper-V VM inventory or live Host installation while the exact local privilege route is denied",
+    "force update, unknown-effect replay, second canonical store, or duplicate control plane"
+  ],
+  "affected_surfaces": [
+    "governance/csg/current.json",
+    "governance/csg/checkpoints",
+    "governance/csg/v51/specs",
+    "governance/csg/v51/missions",
+    "governance/csg/v51/policies",
+    "governance/csg/v51/runs/V51-R2-001",
+    "governance/csg/v51/readbacks"
+  ],
+  "requirements": [
+    "fresh prestate is CP194 at direct parent 6d33958484bbe1dfbb611127f37d49d00439fc2f; update canonical history by fast-forward only",
+    "exact VNEXT5.1-R2 spec bytes are pinned by blob 1dcd2d46a35bb3a580210ab4f0d29131587cc448 and SHA-256 b3b805f4dd5e88a2370c456c7f678c3264ca032090c957d69116512b563b589f",
+    "Mission and Policy bind the same R2 spec and matching R2-01 active unit",
+    "single R2 run/task/attempt identity agrees across current pointer-selected checkpoint and run record",
+    "same-source provider readback precedes PASS promotion",
+    "local host evidence is redacted before publication; raw identity, paths, command lines, and raw outputs remain local",
+    "only exact privilege-dependent VM inventory/live installation lanes park on local ACCESS_DENIED"
+  ],
+  "acceptance": [
+    "R2-00 Mission/Policy/spec identity is provider-addressable and hashes recompute",
+    "checkpoint payload digest and current pointer digest match exactly",
+    "same-source readback confirms exact Mission/Policy/checkpoint/run/task/attempt identities",
+    "Project Directory remains bound to the same control ref and is unchanged",
+    "Production=false, paid fallback=false, worker provider-write credentials=false, public Factory MCP tools=4"
+  ],
+  "dependencies": [
+    "Human-provided VNEXT5.1-R2 full construction specification and direct execution request"
+  ],
+  "risk": "PREPRODUCTION_CANONICAL_AUTHORITY_REBASE_WITH_FAST_FORWARD_ONLY_READBACK",
+  "allowed_tools": [
+    "local native read-only host discovery",
+    "GitHub exact-read/content/ref APIs",
+    "bounded local JSON and digest validation"
+  ],
+  "allowed_effects": [
+    "append immutable R2 authority/evidence records and advance v45/factory-control by forward-only updates"
+  ],
+  "max_attempts": 1,
+  "time_budget_policy": "ONE_ACTIVE_ATOMIC_OWNER_FORWARD_ONLY_CONTROL_TRANSITIONS",
+  "expected_parent": "6d33958484bbe1dfbb611127f37d49d00439fc2f",
+  "prestate_checkpoint_seq": 194
+}

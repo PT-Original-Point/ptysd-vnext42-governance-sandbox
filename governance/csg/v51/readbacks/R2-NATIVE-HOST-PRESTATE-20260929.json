@@ -1,0 +1,50 @@
+{
+  "schema": "vnext5.1-r2.host-prestate-summary.v1",
+  "evidence_class": "LOCAL_NATIVE_HOST_PRESTATE_REDACTED_SUMMARY",
+  "observed_at_utc": "2026-09-29T13:54:38.3341816Z",
+  "local_evidence": {
+    "artifact_name": "host-prestate-20260929.json",
+    "sha256": "sha256:44fbb470ad63cc6a93187f9d8db8e2286e138c4723b4dcb26014e84604a25bee",
+    "full_artifact_persisted_locally_only": true
+  },
+  "host_platform": {
+    "os_family": "Windows 11",
+    "build": "26200",
+    "caller_integrity": "MEDIUM",
+    "caller_is_admin": false
+  },
+  "bounded_discovery": {
+    "factory_mcp_service": "NOT_FOUND",
+    "matching_runner_service": "RUNNING_AS_SHARED_NETWORK_SERVICE",
+    "supervisor_candidate_task": "FOUND_DISABLED_NOT_RUN",
+    "listener_attributed_to_factory_mcp_service_process": "NOT_FOUND",
+    "local_codex_automation_toml_count": 0
+  },
+  "privilege_dependent_lanes": [
+    {
+      "lane": "Hyper-V VM inventory via Get-VM",
+      "status": "ACCESS_DENIED",
+      "classification": "LOCAL_OS_PRIVILEGE_REQUIRED"
+    },
+    {
+      "lane": "PTYSD HostGuard JEA read probe",
+      "status": "ACCESS_DENIED",
+      "classification": "LOCAL_OS_PRIVILEGE_REQUIRED",
+      "observation": "Prior exact probe; not rerun for this artifact"
+    }
+  ],
+  "route_assessment": {
+    "authorized_bounded_privileged_service_task_or_broker_route": "NOT_FOUND",
+    "effect": "PARK_ONLY_EXACT_PRIVILEGE_DEPENDENT_VM_INVENTORY_AND_LIVE_HOST_INSTALL_LANES",
+    "reentry_condition": "Fresh authorized local privilege route; continue independent preproduction construction meanwhile."
+  },
+  "safety": {
+    "task_enabled_or_run": false,
+    "services_changed": false,
+    "processes_changed": false,
+    "host_mutation_performed": false,
+    "raw_output_persisted": false,
+    "sensitive_host_identifiers_published": false
+  },
+  "acceptance_limit": "Local host evidence only; it does not establish provider, semantic, live installation, canonical, or Production acceptance."
+}
