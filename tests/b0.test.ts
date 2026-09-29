@@ -42,7 +42,9 @@ test('crash restart preserves lease then expiry only reduces capability',()=>{
   s.ingest(env()); s.dispatch('T1','W1',100); const before=s.stateHash(); s.close();
   s=new Supervisor(db,project,()=>t); assert.equal(s.stateHash(),before); assert.equal(s.runtime().active_worker,'W1');
   t=1200; const stale=s.tick() as any; assert.equal(stale.worker,'W1'); assert.equal(s.runtime().active_worker,null); assert.equal(s.runtime().recovery_required,true);
-  assert.equal(s.snapshot().tasks[0].state,'LEASE_EXPIRED'); s.close();
+  assert.equal(s.snapshot().tasks[0].state,'LEASE_EXPIRED'); s.ingest(env('T2'));
+  throws(()=>s.dispatch('T2','W2',60000),'RECOVERY_REQUIRED'); s.interrupt('NO_ACTIVE_WORKER');
+  assert.equal(s.runtime().recovery_required,true); throws(()=>s.dispatch('T2','W2',60000),'RECOVERY_REQUIRED'); s.close();
 });
 
 test('worker provider credential guard',()=>{
