@@ -1,0 +1,244 @@
+{
+  "schema_version": "csg.checkpoint.v1",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "checkpoint_seq": 198,
+  "transition_id": "V51-R2-01-POST-CP197-SAME-SOURCE-READBACK-PASS-198",
+  "previous_checkpoint_ref": {
+    "kind": "EXTERNAL_IMMUTABLE",
+    "provider": "GitHub",
+    "repository_id_or_resource_id": "1352411536",
+    "revision": "86e7e7310deed9dd54c0d75c897f8af8716bd4f8",
+    "path": "governance/csg/checkpoints/000197.json",
+    "digest": "sha256:5f7881bbd2e5e68831dc6890ec291e51d7733ba5c18963c627b41570acfbd1e4"
+  },
+  "migration_anchor": null,
+  "event": {
+    "type": "GATE_PASS",
+    "reason_code": "V51_R2_01_POST_CP197_SAME_SOURCE_READBACK_PASS",
+    "subject_id": "V51-R2-01-POST-CP197-SAME-SOURCE-READBACK"
+  },
+  "mission_anchor": {
+    "ref": "github://1352411536/governance/csg/v51/missions/20260930T004411+0800.json@a2eb05b1dec3b6d0829c79cf118b4ec200b70fce",
+    "revision": "20260930T004411+0800",
+    "declared_hash": "sha256:0a3f4a5861d66eafec71a40e78f757a092f6d9aed8aaf122f8f31ae590a1f764",
+    "canonicalization_version": "HUMAN_TEXT_V1"
+  },
+  "policy_anchor": {
+    "ref": "github://1352411536/governance/csg/v51/policies/20260930T004411+0800-EP79.json@a2eb05b1dec3b6d0829c79cf118b4ec200b70fce",
+    "revision": "20260930T004411+0800-EP79",
+    "declared_hash": "sha256:9d9796994fb56e5b1a410bf135a254e097d944bc0631a24866efd2837af0d7df",
+    "canonicalization_version": "HUMAN_TEXT_V1"
+  },
+  "controller_contract": "V51-R2-EXECUTION-POLICY-EP79",
+  "verifier_digest": null,
+  "lifecycle": "ACTIVE",
+  "owner": {
+    "principal_id": "CODEX_THREAD_01a0ed35-6063-7912-9872-7d4122a3b125",
+    "owner_generation": 5,
+    "scope": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION",
+    "lease_until": "2026-09-29T18:44:11Z"
+  },
+  "run_ref": {
+    "kind": "EXTERNAL_IMMUTABLE",
+    "provider": "GitHub",
+    "repository_id_or_resource_id": "1352411536",
+    "revision": "a2eb05b1dec3b6d0829c79cf118b4ec200b70fce",
+    "path": "governance/csg/v51/runs/V51-R2-001/run-r2-02.json",
+    "digest": "sha256:8d4bdf7aae9c5e462026a3a3d80e5ff515d5a41222d7c08d823ebd1414624ce7"
+  },
+  "task_id": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION",
+  "attempt_id": "V51-R2-02-ATTEMPT-002",
+  "attempt_epoch": 2,
+  "atomic": {
+    "state": "PREPARED_NOT_DISPATCHED",
+    "unit_id": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION",
+    "goal": "Reconcile the expired R1 owner generation 2 without UI-only liveness inference; preserve unknown live-job status when no authorized bounded read route exists, and prepare bounded stale-owner recovery source work without dispatching Host actions or replaying effects.",
+    "execution_fence": null
+  },
+  "last_accepted": {
+    "unit_id": "V51-R2-01-COLD-START-CANONICAL-CONTINUITY",
+    "result": "PASS_PROVIDER_CONFIRMED",
+    "provider_ref": "refs/heads/v45/factory-control",
+    "provider_commit": "fcdcf8771ce6eaa887bd761a5e9bc42e4a99c596",
+    "readback_path": "governance/csg/v51/readbacks/R2-01-POST-CP197-ATTEMPT-003-SAME-SOURCE-READBACK-20260930.json",
+    "readback_blob_oid": "1ed26dde690e0e222b9c0571d6643fb31de23f12"
+  },
+  "remote_wip": null,
+  "active_job_refs": [],
+  "unresolved_effect_refs": [],
+  "blockers": [
+    "R2_02_AUTHORIZED_LIVE_EXECUTOR_OBSERVATION_REQUIRED_BEFORE_STALE_OWNER_CONFIRMATION_OR_HOST_DISPATCH"
+  ],
+  "last_verified_gate": {
+    "gate_id": "V51-R2-01-POST-CP197-SAME-SOURCE-READBACK",
+    "verdict": "PASS_PROVIDER_CONFIRMED",
+    "provider_ref": "refs/heads/v45/factory-control",
+    "provider_commit": "fcdcf8771ce6eaa887bd761a5e9bc42e4a99c596",
+    "directory_commit": "38f4fc7cb2841e2318a97ff7a53e41b2ec07aef1"
+  },
+  "next_legal_transition": {
+    "action": "CONTINUE_R2_02_NONPRIVILEGED_SOURCE_RECONCILIATION_WHILE_LIVE_OBSERVATION_LANE_IS_PARKED",
+    "unit_id": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION",
+    "requires": [
+      "CP198 selects only R2-02 attempt 002 / epoch 2 / owner generation 5 as PREPARED_NOT_DISPATCHED",
+      "preserve provider live-job count as UNAVAILABLE_NO_AUTHORIZED_READ_ROUTE until a fresh authorized bounded observation exists",
+      "perform only reversible pre-Production source work with no Host dispatch or mutation",
+      "before any STALE_OWNER_CONFIRMED decision, owner revocation, or Host dispatch, obtain independent fresh provider and native local executor/job/effect readback",
+      "carry forward Hyper-V, HostGuard, ProgramData protected-child, and Factory MCP live-install capability gaps"
+    ],
+    "forbidden": [
+      "STALE_OWNER_CONFIRMED_WITHOUT_FRESH_LIVE_EXECUTOR_OBSERVATION",
+      "OWNER_REVOCATION_OR_HOST_DISPATCH_WHILE_LIVE_JOB_COUNT_UNKNOWN",
+      "PRODUCTION",
+      "PAID_FALLBACK",
+      "WORKER_PROVIDER_WRITE_CREDENTIALS",
+      "FIFTH_FACTORY_MCP_PUBLIC_TOOL",
+      "ARBITRARY_SYSTEM_POWERSHELL",
+      "HOST_MUTATION",
+      "FORCE_UPDATE",
+      "UNKNOWN_EFFECT_REPLAY"
+    ]
+  },
+  "stop_requested": false,
+  "barrier": "ACTIVE_UNIT",
+  "evidence_refs": [
+    {
+      "kind": "EXTERNAL_IMMUTABLE",
+      "provider": "GitHub",
+      "repository_id_or_resource_id": "1352411536",
+      "revision": "021f1752448ac0d16cb6bdc0d49231976a839cf2",
+      "path": "governance/csg/v51/specs/VNEXT5.1-R2-HUMAN-CURRENT-SPEC-20260929.md",
+      "digest": "sha256:b3b805f4dd5e88a2370c456c7f678c3264ca032090c957d69116512b563b589f"
+    },
+    {
+      "kind": "EXTERNAL_IMMUTABLE",
+      "provider": "GitHub",
+      "repository_id_or_resource_id": "1352411536",
+      "revision": "021f1752448ac0d16cb6bdc0d49231976a839cf2",
+      "path": "governance/csg/v51/missions/20260930T000622+0800.json",
+      "digest": "sha256:fce6d01f7aca5378566254f1f4583d855e496e1ab32fad7fa30b3a8443dafc4e"
+    },
+    {
+      "kind": "EXTERNAL_IMMUTABLE",
+      "provider": "GitHub",
+      "repository_id_or_resource_id": "1352411536",
+      "revision": "021f1752448ac0d16cb6bdc0d49231976a839cf2",
+      "path": "governance/csg/v51/policies/20260930T000622+0800-EP78.json",
+      "digest": "sha256:aac58a6a1cab0e879c729a7abe736735e8b239262b86e2476feb4f834b592b70"
+    },
+    {
+      "kind": "EXTERNAL_IMMUTABLE",
+      "provider": "GitHub",
+      "repository_id_or_resource_id": "1352411536",
+      "revision": "021f1752448ac0d16cb6bdc0d49231976a839cf2",
+      "path": "governance/csg/v51/runs/V51-R2-001/contract-r2-01-attempt-003.json",
+      "digest": "sha256:a9d00188ec2493556dcb9e9515d7af009620f54d87e5370cbd6a9974c791f8b2"
+    },
+    {
+      "kind": "EXTERNAL_IMMUTABLE",
+      "provider": "GitHub",
+      "repository_id_or_resource_id": "1352411536",
+      "revision": "021f1752448ac0d16cb6bdc0d49231976a839cf2",
+      "path": "governance/csg/v51/runs/V51-R2-001/run-r2-01.json",
+      "digest": "sha256:b52aa2021dc6f093a61d5d77f13a4cc424c9ffa9393768a372e1ccbb862f970e"
+    },
+    {
+      "kind": "EXTERNAL_IMMUTABLE",
+      "provider": "GitHub",
+      "repository_id_or_resource_id": "1352411536",
+      "revision": "021f1752448ac0d16cb6bdc0d49231976a839cf2",
+      "path": "governance/csg/v51/readbacks/R2-01-NATIVE-HOST-OBSERVATION-ATTEMPT-003-20260930.json",
+      "digest": "sha256:4edd0088184528b2ee323ce6e4409affefe2aa2e049b8693021cbe9005035cdb"
+    },
+    {
+      "kind": "EXTERNAL_IMMUTABLE",
+      "provider": "GitHub",
+      "repository_id_or_resource_id": "1352411536",
+      "revision": "021f1752448ac0d16cb6bdc0d49231976a839cf2",
+      "path": "governance/csg/v51/readbacks/R2-01-ATTEMPT-003-OWNER-REENTRY-READBACK-20260930.json",
+      "digest": "sha256:ce29d198855835ed31569acac614b24218d23cb0cdf827a59a48bf13ad0369a3"
+    },
+    {
+      "kind": "EXTERNAL_IMMUTABLE",
+      "provider": "GitHub",
+      "repository_id_or_resource_id": "1352411536",
+      "revision": "021f1752448ac0d16cb6bdc0d49231976a839cf2",
+      "path": "governance/csg/v51/readbacks/R2-01-ATTEMPT-003-POST-STAGE-READBACK-20260930.json",
+      "digest": "sha256:d492987fd2c46b82537cdf9a13d3e3bf7c646b835fc36868a3b0131769fc5758"
+    },
+    {
+      "kind": "EXTERNAL_IMMUTABLE",
+      "provider": "GitHub",
+      "repository_id_or_resource_id": "1352411536",
+      "revision": "021f1752448ac0d16cb6bdc0d49231976a839cf2",
+      "path": "governance/csg/v51/readbacks/R2-01-PRE-CP197-ATTEMPT-003-SAME-SOURCE-READBACK-20260930.json",
+      "digest": "sha256:b62a0c376b592e002d701119a2ab662449517511ba44feed0c468b6a688ca4f8"
+    },
+    {
+      "kind": "EXTERNAL_IMMUTABLE",
+      "provider": "GitHub",
+      "repository_id_or_resource_id": "1352411536",
+      "revision": "021f1752448ac0d16cb6bdc0d49231976a839cf2",
+      "path": "governance/csg/v51/readbacks/R2-CARRY-FORWARD-CAPABILITY-GAPS-20260929.json",
+      "digest": "sha256:02c059430505e6566cde542fcd37c449ae0e0fb9b6de53a983a13115cc6ff8ca"
+    },
+    {
+      "kind": "EXTERNAL_IMMUTABLE",
+      "provider": "GitHub",
+      "repository_id_or_resource_id": "1352411536",
+      "revision": "021f1752448ac0d16cb6bdc0d49231976a839cf2",
+      "path": "governance/csg/v51/readbacks/R2-00-SAME-SOURCE-READBACK-20260929.json",
+      "digest": "sha256:50ab0c82d09c0e3981515c2bad76f6e76fa60c5ff165fc126c3f8cdd98d19a76"
+    },
+    {
+      "kind": "EXTERNAL_IMMUTABLE",
+      "provider": "GitHub",
+      "repository_id_or_resource_id": "1352411536",
+      "revision": "a2eb05b1dec3b6d0829c79cf118b4ec200b70fce",
+      "path": "governance/csg/v51/missions/20260930T004411+0800.json",
+      "digest": "sha256:3289621043ac0446df121bcfe19bed27eb0dc563c791a52d07904e991a606ff0"
+    },
+    {
+      "kind": "EXTERNAL_IMMUTABLE",
+      "provider": "GitHub",
+      "repository_id_or_resource_id": "1352411536",
+      "revision": "a2eb05b1dec3b6d0829c79cf118b4ec200b70fce",
+      "path": "governance/csg/v51/policies/20260930T004411+0800-EP79.json",
+      "digest": "sha256:3617a1d9a85802b544cc26247e5b8b1311efc0ce132e067387ea539780200a93"
+    },
+    {
+      "kind": "EXTERNAL_IMMUTABLE",
+      "provider": "GitHub",
+      "repository_id_or_resource_id": "1352411536",
+      "revision": "a2eb05b1dec3b6d0829c79cf118b4ec200b70fce",
+      "path": "governance/csg/v51/runs/V51-R2-001/contract-r2-02-attempt-002.json",
+      "digest": "sha256:cfa2e2d9ae2782a33a611a2ef54429bfe7839a1eb19d1cabdedcc241fb6ed9f6"
+    },
+    {
+      "kind": "EXTERNAL_IMMUTABLE",
+      "provider": "GitHub",
+      "repository_id_or_resource_id": "1352411536",
+      "revision": "a2eb05b1dec3b6d0829c79cf118b4ec200b70fce",
+      "path": "governance/csg/v51/runs/V51-R2-001/run-r2-02.json",
+      "digest": "sha256:8d4bdf7aae9c5e462026a3a3d80e5ff515d5a41222d7c08d823ebd1414624ce7"
+    },
+    {
+      "kind": "EXTERNAL_IMMUTABLE",
+      "provider": "GitHub",
+      "repository_id_or_resource_id": "1352411536",
+      "revision": "fcdcf8771ce6eaa887bd761a5e9bc42e4a99c596",
+      "path": "governance/csg/v51/readbacks/R2-01-POST-CP197-ATTEMPT-003-SAME-SOURCE-READBACK-20260930.json",
+      "digest": "sha256:579d20b772717ecab055a4f2b40b6200fe2e23e648a90a54c7e1a293e06d1e30"
+    },
+    {
+      "kind": "EXTERNAL_IMMUTABLE",
+      "provider": "GitHub",
+      "repository_id_or_resource_id": "1352411536",
+      "revision": "86e7e7310deed9dd54c0d75c897f8af8716bd4f8",
+      "path": "governance/csg/v51/readbacks/R2-02-ATTEMPT-002-PRE-CP198-STAGE-READBACK-20260930.json",
+      "digest": "sha256:087a1f216b9a97a3e7827a8ec17ff1b48d496b3840cb0d9ff139d9ebdf1d234a"
+    }
+  ],
+  "recorded_at": "2026-09-29T16:54:10Z",
+  "payload_digest": "sha256:a3cb58e7bda52bd714d4932157f9028e38b655bb75cadbbd5c9caa79b09ec066"
+}
