@@ -1,0 +1,102 @@
+{
+  "schema": "vnext5.1-r2.source-correction-qualification-readback.v1",
+  "readback_id": "V51-R2-02-SOURCE-CORRECTION-QUALIFICATION-READBACK-20260930",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "recorded_at_utc": "2026-09-29T17:48:31Z",
+  "canonical_pre_update": {
+    "source_ref": "refs/heads/v45/factory-control",
+    "source_commit": "021b360ed43f1adc5163d55433fbed2a08d14edb",
+    "pointer_path": "governance/csg/current.json",
+    "pointer_blob": "18411d712e1d3ce6c3d96b113fa086d148fa6ffb",
+    "checkpoint_seq": 198,
+    "checkpoint_path": "governance/csg/checkpoints/000198.json",
+    "checkpoint_blob": "0fe44aeeba07060bd8227fbbfce4432c7b592343",
+    "checkpoint_digest": "sha256:a3cb58e7bda52bd714d4932157f9028e38b655bb75cadbbd5c9caa79b09ec066",
+    "owner_generation": 5,
+    "atomic_state": "PREPARED_NOT_DISPATCHED",
+    "run_revision": 5,
+    "run_blob": "089cd16ae07892386a8620da612b79d7cb5c92cc",
+    "run_latest_checkpoint_ref_before_update": "governance/csg/checkpoints/000197.json",
+    "run_selection_status_before_update": "STAGED_NOT_SELECTED_BY_CP197"
+  },
+  "qualified_source_changes": [
+    {
+      "scope": "CSG_RECOVERY_POLICY",
+      "pull_request": 368,
+      "head_ref": "refs/heads/codex/r2-02-audit-correction-20260930",
+      "exact_head": "75e2927bbd98754dc80106ae78f69d2ac06e3149",
+      "direct_parent": "79f336145d633d66f3686502b93d53fb58b45a40",
+      "merged_commit": "021b360ed43f1adc5163d55433fbed2a08d14edb",
+      "files": {
+        "tests/csg/recovery_owner_policy.py": "3dbd4a4b0080b4fdb90f9bbd5f196b4963a0308a",
+        "tests/csg/test_recovery_owner_policy.py": "bb5c1bf62bd60da1f28806cefdaa4a4d5ef988ad"
+      },
+      "trusted_verifier": {
+        "name": "csg-trusted-verifier",
+        "conclusion": "success",
+        "workflow_run_id": 36606802727,
+        "job_id": 109537802991
+      },
+      "same_source_readback_comment_id": 5895505330,
+      "targeted_tests": "17 passed"
+    },
+    {
+      "scope": "LOCAL_SUPERVISOR_RUNTIME",
+      "pull_request": 369,
+      "head_ref": "refs/heads/codex/r2-02-recovery-runtime-correction-20260930",
+      "exact_head": "da163cd6ac20e7356956c270626f6601db5cd78b",
+      "direct_parent": "1dcec5ea8124e4d1b69b53652c657df8b65eb3ef",
+      "merged_commit": "06da5fa224b65b9346e8b250dcea686d0ed458ee",
+      "files": {
+        "src/core.ts": "774db616917f229a51e36e848cc544e3d3773c40",
+        "tests/b0.test.ts": "ce7c9a459122b798ccd471562f5fcbc54183a4d3"
+      },
+      "trusted_verifier": {
+        "name": "csg-trusted-verifier",
+        "conclusion": "success",
+        "workflow_run_id": 36606804693,
+        "job_id": 109537808118
+      },
+      "same_source_readback_comment_id": 5895525311,
+      "targeted_tests": "10 passed"
+    }
+  ],
+  "full_csg_python_suite": {
+    "passed": 49,
+    "module_import_errors": 2,
+    "missing_package": "directory",
+    "affected_modules": [
+      "tests/csg/test_admission_policy.py",
+      "tests/csg/test_remote_wip.py"
+    ],
+    "irrelevance_basis": "These modules import directory.lib.admission_policy and directory.lib.remote_wip_qualifier; the changed recovery contract is directly covered by 17 passing test_recovery_owner_policy tests."
+  },
+  "post_cp198_same_source_readback": {
+    "path": "governance/csg/v51/readbacks/R2-02-ATTEMPT-002-POST-CP198-SAME-SOURCE-READBACK-20260930.json",
+    "blob": "aa613e481e1f2cec05b7e838bbadb0da1c8c77a9",
+    "raw_sha256": "sha256:49684a6727bc6f25b9f25b6ea9fd684ad6d6378f607c9a66a96fc24cc778763c",
+    "verdict": "PASS_FOR_CP198_POST_SELECTION_CONTINUITY_ONLY"
+  },
+  "forward_run_update": {
+    "revision": 6,
+    "latest_checkpoint_ref": "governance/csg/checkpoints/000198.json",
+    "canonical_selection_status": "SELECTED_BY_CP198",
+    "added_evidence_refs": [
+      "governance/csg/v51/readbacks/R2-02-ATTEMPT-002-POST-CP198-SAME-SOURCE-READBACK-20260930.json",
+      "governance/csg/v51/readbacks/R2-02-SOURCE-CORRECTION-QUALIFICATION-READBACK-20260930.json"
+    ],
+    "next_checkpoint_transition": "CP199 will bind this run revision and qualify the exact-head source correction; R2-02 remains PREPARED_NOT_DISPATCHED."
+  },
+  "live_liveness": {
+    "factory_live_job_count": "UNAVAILABLE_NO_AUTHORIZED_READ_ROUTE",
+    "web_factory_zero_job_snapshot_used_for_owner_revocation": false,
+    "owner_generation_5_revoked": false,
+    "host_dispatch_or_mutation": false
+  },
+  "safety": {
+    "production": false,
+    "paid_fallback": false,
+    "worker_provider_write_credentials": false,
+    "force_update": false
+  }
+}
