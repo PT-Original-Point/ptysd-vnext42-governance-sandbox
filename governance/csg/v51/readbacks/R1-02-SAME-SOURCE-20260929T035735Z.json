@@ -1,0 +1,78 @@
+{
+  "schema_version": "v51.r1.same-source-readback.v1",
+  "record_type": "SAME_SOURCE_PROVIDER_READBACK",
+  "gate_id": "V51-R1-02-SAME-SOURCE-READBACK",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "result": "PASS",
+  "readback_at": "2026-09-29T03:57:35Z",
+  "provider": "GitHub",
+  "repository_id": "1352411536",
+  "control_ref": "refs/heads/v45/factory-control",
+  "control_commit": "3a7f08a4ed1940b6666d4c61bef11b3a742773bc",
+  "control_tree": "c5ba76c9f5de4b4788ad033355470e49677071c2",
+  "directory_ref": "refs/heads/governance/project-directory",
+  "directory_commit": "38f4fc7cb2841e2318a97ff7a53e41b2ec07aef1",
+  "directory_record_path": "directory/projects/CHATGPT_GLOBAL_SKILL_GOVERNANCE.json",
+  "directory_record_blob": "377dcf88279d3ba433d099a7cc9f78af8c86b8ae",
+  "pointer_path": "governance/csg/current.json",
+  "pointer_blob": "8555cc784cf9396d178af2035fbe08f8bb0e6c7e",
+  "pointer_checkpoint_seq": 193,
+  "pointer_checkpoint_path": "governance/csg/checkpoints/000193.json",
+  "pointer_checkpoint_digest": "sha256:92a1e4636b2083d22984ed0fd988529592efacea4f81396d2edbdb171c556562",
+  "checkpoint_blob": "2e6adb3d2343313ea15e8cc02b65b84605a5a594",
+  "checkpoint_task_id": "V51-R1-02-CHECKPOINT-RUN-COHERENCE",
+  "checkpoint_attempt_id": "V51-R1-02-ATTEMPT-001",
+  "checkpoint_attempt_epoch": 1,
+  "artifacts": [
+    {
+      "path": "governance/csg/v51/specs/VNEXT5.1-R1-HUMAN-CURRENT-SPEC-20260929.md",
+      "blob_oid": "6df4a189c84ff1e53ce4ba0a90ba39eb6334e59a",
+      "sha256": "sha256:29e8a4b8685afbbc8531e1a62dee0b5b072f6a28270f11bfbea9d9b6a5378bea"
+    },
+    {
+      "path": "governance/csg/v51/current-mission.json",
+      "blob_oid": "ba529162d5f374e6e8f2ed04b1dbf2c1e0f7b558",
+      "sha256": "sha256:cffde4e13c76ccc31e93bb61801566c5a46fff70b0e49094912f5e8f13f353f2"
+    },
+    {
+      "path": "governance/csg/v51/current-execution-policy.json",
+      "blob_oid": "5517d315c4ae73fdfafdc7fb785ec74f3f7c23c5",
+      "sha256": "sha256:15d89642d741a3f0a8a0561ab579340f0c4fc09fa6ee5b430125af4d4b245ee2"
+    },
+    {
+      "path": "governance/csg/v51/runs/V51-R1-001/run.json",
+      "blob_oid": "6c084fc023087bc31f1cca75d2c71bb0b8aa7a4a",
+      "sha256": "sha256:7b3415e29a2cb7813d9e41c72f9a72a9bd831175dc3efeff02092d48a198d79c"
+    },
+    {
+      "path": "governance/csg/v51/runs/V51-R1-001/contract.json",
+      "blob_oid": "b0af6186c249bd84ff338add77c983106fb8cb3b",
+      "sha256": "sha256:ac78ccc79ba28a0aed1bbc6f8929c52ec7777f439669dc4796b2709b69b6d1f7"
+    }
+  ],
+  "checks": {
+    "directory_current": true,
+    "pointer_selects_cp193": true,
+    "cp193_payload_and_pointer_digest_match": true,
+    "spec_oid_and_sha_match_human_pin": true,
+    "mission_hash_and_spec_match": true,
+    "policy_hash_and_mission_binding_match": true,
+    "run_task_attempt_match_checkpoint": true,
+    "contract_task_and_run_match": true,
+    "production_false": true,
+    "paid_fallback_false": true,
+    "business_project_auto_admission_false": true,
+    "factory_mcp_public_tool_count_four": true,
+    "cp192_preserved_as_exact_predecessor": true
+  },
+  "non_effects": {
+    "host_mutation": false,
+    "broker_or_receipt_mutation": false,
+    "production": false,
+    "paid_cost": false,
+    "business_project_admission": false,
+    "op025_redispatch": false,
+    "cp192_or_jit_arm": false,
+    "operation027_dispatch": false
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "schema_version": "factory.contract.v1",
+  "contract_id": "V51-R1-CONTRACT-001-R1-03",
+  "task_id": "V51-R1-03-FACTORY-READONLY-BOOTSTRAP-SURFACE",
+  "run_id": "V51-R1-001",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "goal": "Implement and qualify fixed-purpose read-only Factory MCP bootstrap diagnostics through the existing four public tools while preserving the unique-caller boundary and all Human-reserved gates.",
+  "current_spec": {
+    "id": "VNEXT5.1-R1",
+    "source_class": "EXACT_USER_PROVIDED_GOAL_OBJECTIVE",
+    "source_commit": "3bead6a1b0b2efe29c99bb6fbfe1dbc6fba43091",
+    "source_path": "governance/csg/candidates/v51-r1/VNEXT5.1-R1-HUMAN-CURRENT-SPEC-20260929.md",
+    "canonical_path": "governance/csg/v51/specs/VNEXT5.1-R1-HUMAN-CURRENT-SPEC-20260929.md",
+    "blob_oid": "6df4a189c84ff1e53ce4ba0a90ba39eb6334e59a",
+    "sha256": "sha256:29e8a4b8685afbbc8531e1a62dee0b5b072f6a28270f11bfbea9d9b6a5378bea",
+    "byte_length": 5779
+  },
+  "include": [
+    "R1-03 bounded fixed-purpose read-only Factory bootstrap surface",
+    "capability status, orphan identities, installed runtime/prestate hashes, service/process/task identity, broker/receipt state, trusted-caller identity",
+    "fresh provider readback and tests for every supported observation"
+  ],
+  "exclude": [
+    "arbitrary PowerShell diagnostics",
+    "Host mutation",
+    "Host mutation fence for read-only diagnostics",
+    "fifth public MCP tool",
+    "SYSTEM execution before R1-04/R1-06 prerequisites",
+    "Production",
+    "paid service",
+    "business-project admission",
+    "OP025 redispatch",
+    "CP192/JIT",
+    "operation027"
+  ],
+  "affected_surfaces": [
+    "tools/csg/factory-mcp only",
+    "tests/csg only",
+    "governance/csg/v51/R1 evidence"
+  ],
+  "requirements": [
+    "R1-02 exact same-source readback PASS at control head 3a7f08a4ed1940b6666d4c61bef11b3a742773bc",
+    "exactly four public Factory MCP tools remain",
+    "fixed purpose allowlist only; no arbitrary PowerShell argument accepted by diagnostics",
+    "diagnostics are read-only and require no Host-mutation fence",
+    "production=false; paid_fallback=false; business_project_auto_admission=false; OP025 remains UNKNOWN"
+  ],
+  "acceptance": [
+    "fixed read-only probes cover the Human-specified observations",
+    "negative arbitrary-command inputs fail closed",
+    "no Host, broker, receipt, process, or scheduled-task mutation",
+    "four public tools only",
+    "local tests and exact source verifier pass"
+  ],
+  "dependencies": [
+    "R1-02 same-source readback PASS",
+    "Human VNEXT5.1-R1 specification"
+  ],
+  "risk": "PREPRODUCTION_FIXED_READONLY_SURFACE",
+  "allowed_tools": [
+    "local repository read/write",
+    "Node test runner",
+    "trusted protected structural verifier"
+  ],
+  "allowed_effects": [
+    "candidate source and test files under the existing four-tool surface"
+  ],
+  "max_attempts": 1,
+  "time_budget_policy": "WORK_CONSERVING_SINGLE_ATOMIC_OWNER",
+  "expected_parent": "3a7f08a4ed1940b6666d4c61bef11b3a742773bc",
+  "prestate_checkpoint_seq": 193
+}

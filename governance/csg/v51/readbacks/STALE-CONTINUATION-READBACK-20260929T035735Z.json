@@ -1,0 +1,39 @@
+{
+  "schema_version": "v51.r1.stale-continuation-readback.v1",
+  "record_type": "SCHEDULER_AUTOMATION_SOURCE_READBACK",
+  "gate_id": "V51-R1-STALE-CONTINUATION-CLEANUP",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "checked_at": "2026-09-29T03:57:35Z",
+  "classification": "NO_MATCHING_ACTIVE_LEGACY_TASK_FOUND_IN_ENUMERATED_SOURCES",
+  "sources": [
+    {
+      "source": "Codex local automation registry",
+      "path": "C:\\Users\\x\\.codex\\automations",
+      "automation_toml_definitions": 0,
+      "directory_entries": [
+        ".run-jitter-salt"
+      ]
+    },
+    {
+      "source": "Codex app automation API",
+      "known_legacy_id": "vnext5-0-r3-p0-01-exact-head-review-continuation",
+      "view": "rendered automation card",
+      "delete_readback": "not_found",
+      "active_definition": false
+    },
+    {
+      "source": "Windows Task Scheduler",
+      "tasks_enumerated": 225,
+      "matching_task_name_path_or_action_count": 0
+    }
+  ],
+  "authority_rule": "stale_historical_wake_payload_is_not_authority",
+  "scope_limit": "The Codex app connector exposes exact-ID view/delete but no list operation; this evidence proves the known historical wake is absent and no matching local/Windows definition was found, not an unfiltered account-wide automation inventory.",
+  "unrelated_automations_touched": 0,
+  "checks": {
+    "known_r3_heartbeat_absent": true,
+    "local_codex_definitions_absent": true,
+    "matching_windows_tasks_absent": true,
+    "stale_payload_cannot_override_current_mission": true
+  }
+}
