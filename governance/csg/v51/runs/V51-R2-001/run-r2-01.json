@@ -1,0 +1,29 @@
+{
+  "schema_version": "factory.run.v1",
+  "run_id": "V51-R2-001",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "revision": 1,
+  "command_id": "V51-R2-01-COLD-START-CANONICAL-CONTINUITY",
+  "contract_ref": "governance/csg/v51/runs/V51-R2-001/contract-r2-01.json",
+  "state": "RUNNING",
+  "wait_reason": "R2_00_SAME_SOURCE_READBACK_PENDING",
+  "active_task_id": "V51-R2-01-COLD-START-CANONICAL-CONTINUITY",
+  "attempt_id": "V51-R2-01-ATTEMPT-001",
+  "attempt_epoch": 1,
+  "latest_checkpoint_ref": null,
+  "unresolved_operation_ids": [],
+  "stop_requested": false,
+  "completed_stage_receipts": [],
+  "evidence_refs": [
+    "governance/csg/v51/specs/VNEXT5.1-R2-HUMAN-CURRENT-SPEC-20260929.md",
+    "governance/csg/v51/missions/20260929T215913+0800.json",
+    "governance/csg/v51/policies/20260929T215913+0800-EP75.json",
+    "governance/csg/v51/readbacks/R2-NATIVE-HOST-PRESTATE-20260929.json"
+  ],
+  "remaining_attempts": 1,
+  "execution_owner": {
+    "principal_id": "CODEX_THREAD_01a0ed35-6063-7912-9872-7d4122a3b125",
+    "owner_generation": 1,
+    "scope": "V51-R2-01-COLD-START-CANONICAL-CONTINUITY"
+  }
+}
