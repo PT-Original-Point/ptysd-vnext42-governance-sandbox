@@ -1,0 +1,115 @@
+{
+  "schema": "vnext5.1-r2.pre-cp197-same-source-readback.v1",
+  "readback_id": "V51-R2-01-PRE-CP197-SAME-SOURCE-READBACK-20260929",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "source_ref": "refs/heads/v45/factory-control",
+  "source_commit": "e5069f71731e6783d6555d35774ce65deddd3396",
+  "read_at_utc": "2026-09-29T15:47:59.000Z",
+  "canonical": {
+    "project_directory_ref": "refs/heads/governance/project-directory",
+    "project_directory_commit": "38f4fc7cb2841e2318a97ff7a53e41b2ec07aef1",
+    "pointer_path": "governance/csg/current.json",
+    "pointer_blob": "c2e3cb0d2a02efe44e59baac2d5aa7608f9ca32d",
+    "checkpoint_seq": 196,
+    "checkpoint_path": "governance/csg/checkpoints/000196.json",
+    "checkpoint_blob": "518b5ea6fa2e89b88814996ead065c4e82ae82ed",
+    "checkpoint_digest": "sha256:5821da1a1a3af00e6be79624ec3850873763ca1cf45ff1a1f55b486c1ac9285d",
+    "checkpoint_digest_recomputed": "sha256:5821da1a1a3af00e6be79624ec3850873763ca1cf45ff1a1f55b486c1ac9285d",
+    "active_unit": "V51-R2-01-COLD-START-CANONICAL-CONTINUITY",
+    "selected_attempt": "V51-R2-01-ATTEMPT-001",
+    "selected_owner_generation": 1,
+    "owner_lease_until": "2026-09-29T14:54:00.000Z",
+    "owner_lease_status": "EXPIRED",
+    "active_jobs": [],
+    "unresolved_effects": []
+  },
+  "staged_attempt": {
+    "mission": {
+      "path": "governance/csg/v51/missions/20260929T232301+0800.json",
+      "blob": "798e01943739178917529ca57d69859d77895719",
+      "raw_sha256": "sha256:32dbfbbcb0c82cd9aa55d3a64b5144a505109a80289a19c0102adc4b37c065b9",
+      "revision": "20260929T232301+0800",
+      "declared_hash": "sha256:89515c15dfb3a65b50fe669701cdf0f5a31de86c9aafdfda08b78344727a45f1"
+    },
+    "policy": {
+      "path": "governance/csg/v51/policies/20260929T232301+0800-EP77.json",
+      "blob": "be32fe374254f92f5c63a71a750aa8938410abeb",
+      "raw_sha256": "sha256:ecbbb36d25de8e46584efac4a9f5eb1dc22ca57cab8e2d2f6eb6dc848f11cb1d",
+      "revision": "20260929T232301+0800-EP77",
+      "declared_hash": "sha256:d54a139541ef1e2f633b0d93069e904565e9dccae2db1798bac17b52ef16271b"
+    },
+    "contract": {
+      "path": "governance/csg/v51/runs/V51-R2-001/contract-r2-01-attempt-002.json",
+      "blob": "8e145f1be98696d4db4c184025e46a06825bba3d",
+      "raw_sha256": "sha256:d57b5fd4370ec06137c0eba1db9860ce87ec87bef1e3e93f77796877c85bbba6",
+      "attempt_id": "V51-R2-01-ATTEMPT-002",
+      "attempt_epoch": 2,
+      "owner_generation": 3,
+      "owner_lease_until": "2026-09-29T15:53:01Z"
+    },
+    "run": {
+      "path": "governance/csg/v51/runs/V51-R2-001/run-r2-01.json",
+      "blob": "d7e8dae9a717060a39cd484a20c020fff36f793e",
+      "raw_sha256": "sha256:63bc9549135a8940398457ab48de9ba40541ca0860e6511cab43fb8bde7f7a78",
+      "revision": 6,
+      "state": "RUNNING",
+      "attempt_id": "V51-R2-01-ATTEMPT-002",
+      "attempt_epoch": 2,
+      "latest_checkpoint_ref": "governance/csg/checkpoints/000197.json",
+      "canonical_selection_status": "STAGED_NOT_SELECTED_BY_CP196"
+    }
+  },
+  "local_host_observation": {
+    "path": "C:\\Users\\x\\.codex\\attachments\\01a0ed35-6063-7912-9872-7d4122a3b125\\r2-evidence\\host-prestate-20260929-R2-NATIVE-REV2-EXECUTE-20260929T154526Z.json",
+    "sha256": "sha256:7eff94671f09d019a4da254b5d6270a2c8a05590f9b7aed35ef81a669c62a93c",
+    "captured_at_utc": "2026-09-29T15:45:26.4965544Z",
+    "user_is_admin": false,
+    "process_count": 356,
+    "service_count": 325,
+    "scheduled_task_count": 225,
+    "tcp_connections": 212,
+    "netstat_lines": 298,
+    "hyperv_status": "ACCESS_DENIED",
+    "vmms_status": "RUNNING",
+    "hostguard_status": "ACCESS_DENIED",
+    "candidate_supervisor_task": {
+      "name": "PTYSD-VNext42-Supervisor-Candidate1",
+      "state": "Disabled"
+    },
+    "authorized_bounded_privileged_route": "NOT_FOUND",
+    "host_mutations_performed": false
+  },
+  "qualifications": {
+    "pr351": {
+      "head": "4fa50aca06922dfdb3e75f40cee1d462f02ff215",
+      "merged_commit": "344fb05cd61220ef633c203151ff79e0e9e1b091",
+      "csg_trusted_verifier": "PASS"
+    },
+    "pr352": {
+      "head": "725d385966ce9654e223d5a5dd02fcfabe36f87d",
+      "merged_commit": "e5069f71731e6783d6555d35774ce65deddd3396",
+      "csg_trusted_verifier": "PASS",
+      "workflow_run_id": 36591451189,
+      "job_id": 109485302878,
+      "bounded_driver_acceptance": "SKIPPED"
+    },
+    "pr342": {
+      "state": "OPEN_DRAFT_PRESERVED",
+      "head": "068f423fa8315eceaf9885c87b1caf7906e69d7a"
+    }
+  },
+  "result": {
+    "pre_cp197_readback": "PASS",
+    "attempt002": "STAGED_NOT_SELECTED_BY_CP196",
+    "active_unit_change": false,
+    "r2_01_gate": "PENDING",
+    "next_legal_transition": "Publish separate protected CP197 and current-pointer update selecting the exact Mission/Policy/run revision 6 and attempt 002/epoch 2/owner generation 3 while retaining R2-01 active; perform a fresh post-merge same-source readback before any PASS."
+  },
+  "constraints": {
+    "host_mutation": false,
+    "production": false,
+    "paid_fallback": false,
+    "worker_provider_write_credentials": false,
+    "factory_mcp_public_tools": 4
+  }
+}
