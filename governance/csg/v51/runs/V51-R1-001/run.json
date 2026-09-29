@@ -2,13 +2,13 @@
   "schema_version": "factory.run.v1",
   "run_id": "V51-R1-001",
   "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
-  "revision": 1,
-  "command_id": "V51-R1-02-CHECKPOINT-RUN-COHERENCE",
-  "contract_ref": "governance/csg/v51/runs/V51-R1-001/contract.json",
+  "revision": 2,
+  "command_id": "V51-R1-03-FACTORY-READONLY-BOOTSTRAP-SURFACE",
+  "contract_ref": "governance/csg/v51/runs/V51-R1-001/contract-r1-03.json",
   "state": "RUNNING",
-  "wait_reason": "R1_02_CANONICAL_READBACK_PENDING",
-  "active_task_id": "V51-R1-02-CHECKPOINT-RUN-COHERENCE",
-  "attempt_id": "V51-R1-02-ATTEMPT-001",
+  "wait_reason": "R1_03_FIXED_READ_ONLY_BOOTSTRAP_NOT_QUALIFIED",
+  "active_task_id": "V51-R1-03-FACTORY-READONLY-BOOTSTRAP-SURFACE",
+  "attempt_id": "V51-R1-03-ATTEMPT-001",
   "attempt_epoch": 1,
   "latest_checkpoint_ref": null,
   "unresolved_operation_ids": [],
@@ -16,13 +16,15 @@
   "completed_stage_receipts": [],
   "evidence_refs": [
     "governance/csg/v51/specs/VNEXT5.1-R1-HUMAN-CURRENT-SPEC-20260929.md",
-    "governance/csg/v51/current-mission.json",
-    "governance/csg/v51/current-execution-policy.json"
+    "governance/csg/v51/missions/20260929T115735+0800.json",
+    "governance/csg/v51/policies/20260929T115735+0800-EP74.json",
+    "governance/csg/v51/readbacks/R1-02-SAME-SOURCE-20260929T035735Z.json",
+    "governance/csg/v51/readbacks/STALE-CONTINUATION-READBACK-20260929T035735Z.json"
   ],
   "remaining_attempts": 1,
   "execution_owner": {
     "principal_id": "CODEX_THREAD_01a0cb52-6d41-7b33-b92c-099639fa07e7",
-    "owner_generation": 1,
-    "scope": "V51-R1-02-CHECKPOINT-RUN-COHERENCE"
+    "owner_generation": 2,
+    "scope": "V51-R1-03-FACTORY-READONLY-BOOTSTRAP-SURFACE"
   }
 }

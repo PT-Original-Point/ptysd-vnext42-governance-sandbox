@@ -3,14 +3,14 @@
   "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
   "binding_id": "CSG-GOVERNANCE-BINDING-V2",
   "binding_generation": 2,
-  "checkpoint_seq": 193,
-  "checkpoint_path": "governance/csg/checkpoints/000193.json",
-  "checkpoint_digest": "sha256:92a1e4636b2083d22984ed0fd988529592efacea4f81396d2edbdb171c556562",
+  "checkpoint_seq": 194,
+  "checkpoint_path": "governance/csg/checkpoints/000194.json",
+  "checkpoint_digest": "sha256:93a8317b012689c474fbfd5dfbdc63c5bfcd8d5f35751f352178295f12adbc73",
   "previous_control_oid": {
     "algorithm": "sha1",
-    "hex": "c8991af91c9b220d9de7f282e580655b98122991"
+    "hex": "52d2688eba4ffce4f496869eab7aa5d53dc1ddfd"
   },
-  "transition_id": "V51-R1-CANONICAL-REBASE-193",
+  "transition_id": "V51-R1-R1-02-READBACK-R1-03-OPEN-194",
   "reader_compatibility": {
     "min_schema": "csg.checkpoint.v1",
     "max_schema": "csg.checkpoint.v1"
