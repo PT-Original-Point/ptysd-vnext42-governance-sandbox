@@ -38,12 +38,15 @@
     "production_allowed": false,
     "business_project_auto_admission": false,
     "paid_fallback_allowed": false,
-    "next_legal_transition": "PUBLISH_V51_R1_MISSION_POLICY_AND_RECONCILE_RUN_IDENTITY"
+    "next_legal_transition": "PUBLISH_V51_R1_MISSION_POLICY_AND_RECONCILE_RUN_IDENTITY",
+    "executor_routing": "CODEX_PRIMARY_FOR_SUBSTANTIAL_WORK",
+    "chatgpt_web_role": "CONTROL_REVIEW_SHORT_READBACK_HUMAN_INTERFACE"
   },
   "required_rebase_sequence": [
     "PUBLISH_IMMUTABLE_V51_R1_SPEC_IDENTITY",
     "PUBLISH_HUMAN_AUTHORIZED_V51_R1_MISSION_REVISION",
     "PUBLISH_MATCHING_V51_R1_EXECUTION_POLICY",
+    "PUBLISH_CODEX_PRIMARY_EXECUTOR_ROUTING_POLICY",
     "RECONCILE_CHECKPOINT_AND_RUN_TO_ONE_ACTIVE_TASK_ATTEMPT",
     "QUALIFY_FIXED_READ_ONLY_FACTORY_STATUS_PROBES",
     "QUALIFY_UNIQUE_OS_ENFORCED_TRUSTED_CALLER",
@@ -107,10 +110,29 @@
     "PUBLIC_TOOL_COUNT_EXACTLY_4"
   ],
   "codex_boundary": {
-    "chat_first": true,
-    "codex_owner_of_r1": false,
-    "codex_eligible_scope": "LOCAL_WINDOWS_LAST_MILE_ONLY",
-    "explicit_current_human_opt_in_required": true
+    "routing_policy": "CODEX_PRIMARY_FOR_SUBSTANTIAL_AND_LONG_RUNNING_WORK",
+    "former_chat_first_policy_revoked": true,
+    "former_direct_native_capability_precedence_revoked": true,
+    "former_codex_last_mile_only_revoked": true,
+    "chat_connector_exhaustion_not_required_before_delegation": true,
+    "codex_primary_for": [
+      "MULTI_STEP_CODING",
+      "REPOSITORY_CONSTRUCTION",
+      "TEST_REPAIR_LOOPS",
+      "LONG_LOCAL_FILESYSTEM_WORK",
+      "SUSTAINED_RESEARCH_TO_IMPLEMENTATION",
+      "LONG_RUNNING_STATEFUL_CONSTRUCTION"
+    ],
+    "chatgpt_web_primary_for": [
+      "MISSION_INTERPRETATION",
+      "BOUNDED_CONTROL_READBACK",
+      "INDEPENDENT_AUDIT",
+      "EXCEPTION_HANDLING",
+      "HUMAN_INTERACTION"
+    ],
+    "routine_per_session_codex_opt_in_required": false,
+    "codex_mission_sovereignty": false,
+    "human_reserved_gates_remain": true
   },
   "forbidden_in_this_candidate": [
     "CANONICAL_POINTER_MUTATION",
