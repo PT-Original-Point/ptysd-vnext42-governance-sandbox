@@ -26,7 +26,11 @@ def classify_receipt(*, receipt_owner_generation:int, current_owner_generation:i
         return 'QUARANTINE_STALE_OWNER'
     return 'CURRENT_RECEIPT'
 
-def resume_mode(*, owner:dict|None, provider_now:str, unresolved_effects:list, live_job:dict|None, current_attempt_epoch:int, stop_requested:bool, mission_match:bool, policy_match:bool, controller_match:bool) -> dict:
+def resume_mode(*, owner:dict|None, provider_now:str, unresolved_effects:list, live_job:dict|None, current_attempt_epoch:int, stop_requested:bool, mission_match:bool, policy_match:bool, controller_match:bool, live_job_observation:str='UNKNOWN') -> dict:
+    if live_job_observation not in {'UNKNOWN','OBSERVED_EMPTY','OBSERVED_JOB'}:
+        raise OwnerPolicyError('INVALID_LIVE_JOB_OBSERVATION')
+    if (live_job_observation == 'OBSERVED_EMPTY' and live_job is not None) or (live_job_observation == 'OBSERVED_JOB' and live_job is None):
+        raise OwnerPolicyError('LIVE_JOB_OBSERVATION_MISMATCH')
     if stop_requested:
         return {'mode':'OBSERVER_STOPPED','ordinary_writer':False}
     if not (mission_match and policy_match and controller_match):
@@ -34,6 +38,8 @@ def resume_mode(*, owner:dict|None, provider_now:str, unresolved_effects:list, l
     expired = owner_expired(owner, provider_now)
     if unresolved_effects:
         return {'mode':'RECOVERY_ONLY','ordinary_writer':False,'next_owner_generation':(owner or {}).get('owner_generation',0)+1,'preserve_pending':True}
+    if live_job_observation == 'UNKNOWN':
+        return {'mode':'LIVE_OBSERVATION_REQUIRED','ordinary_writer':False,'redispatch':False,'live_job_observation':'UNKNOWN'}
     if live_job and live_job.get('attempt_epoch') == current_attempt_epoch and live_job.get('state') in {'QUEUED','IN_PROGRESS'}:
         if expired:
             return {'mode':'ADOPT_LIVE_JOB','ordinary_writer':True,'next_owner_generation':(owner or {}).get('owner_generation',0)+1,'redispatch':False,'attempt_epoch':current_attempt_epoch}
@@ -47,7 +53,7 @@ def resume_mode(*, owner:dict|None, provider_now:str, unresolved_effects:list, l
 def authorize_action(mode: str, action: str) -> str:
     if mode == 'RECOVERY_ONLY':
         return 'ALLOW' if action in READ_ACTIONS else 'DENY_RECOVERY_ONLY'
-    if mode in {'OBSERVER_STOPPED','REBASE_REQUIRED','ADOPT_COMPLETED_RESULT_READBACK'}:
+    if mode in {'OBSERVER_STOPPED','REBASE_REQUIRED','ADOPT_COMPLETED_RESULT_READBACK','LIVE_OBSERVATION_REQUIRED'}:
         return 'ALLOW' if action == 'READBACK' else 'DENY_NON_WRITER_MODE'
     if mode in {'ADOPT_LIVE_JOB','CLAIM_ORDINARY_OWNER','CURRENT_OWNER_CONTINUES'}:
         return 'ALLOW'
