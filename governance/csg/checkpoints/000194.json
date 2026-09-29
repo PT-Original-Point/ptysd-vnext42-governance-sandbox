@@ -1,0 +1,163 @@
+{
+  "schema_version": "csg.checkpoint.v1",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "checkpoint_seq": 194,
+  "transition_id": "V51-R1-R1-02-READBACK-R1-03-OPEN-194",
+  "previous_checkpoint_ref": {
+    "kind": "EXTERNAL_IMMUTABLE",
+    "provider": "GitHub",
+    "repository_id_or_resource_id": "1352411536",
+    "revision": "52d2688eba4ffce4f496869eab7aa5d53dc1ddfd",
+    "path": "governance/csg/checkpoints/000193.json",
+    "digest": "sha256:92a1e4636b2083d22984ed0fd988529592efacea4f81396d2edbdb171c556562"
+  },
+  "migration_anchor": null,
+  "event": {
+    "type": "GATE_PASS",
+    "reason_code": "V51_R1_02_SAME_SOURCE_READBACK_PASS",
+    "subject_id": "V51-R1-02-CHECKPOINT-RUN-COHERENCE"
+  },
+  "mission_anchor": {
+    "ref": "github://1352411536/governance/csg/v51/missions/20260929T115735+0800.json@52d2688eba4ffce4f496869eab7aa5d53dc1ddfd",
+    "revision": "20260929T115735+0800",
+    "declared_hash": "sha256:4262d5f0d3070d7f6e1e632ac176fd7850c9cbc460e8da31f981eea42f9b1c55",
+    "canonicalization_version": "HUMAN_TEXT_V1"
+  },
+  "policy_anchor": {
+    "ref": "github://1352411536/governance/csg/v51/policies/20260929T115735+0800-EP74.json@52d2688eba4ffce4f496869eab7aa5d53dc1ddfd",
+    "revision": "20260929T115735+0800-EP74",
+    "declared_hash": "sha256:41272bff5ace8e59b9e7668882e115ce3a3f5ef01a446b3baad9366faf98800f",
+    "canonicalization_version": "HUMAN_TEXT_V1"
+  },
+  "controller_contract": "V51-R1-EXECUTION-POLICY-EP74",
+  "verifier_digest": "sha256:01cbbab08d423294e42dec679b46e5ebef9d06d2f1c3965de8f2bfb25711d4bf",
+  "lifecycle": "ACTIVE",
+  "owner": {
+    "principal_id": "CODEX_THREAD_01a0cb52-6d41-7b33-b92c-099639fa07e7",
+    "owner_generation": 2,
+    "scope": "V51-R1-03-FACTORY-READONLY-BOOTSTRAP-SURFACE",
+    "lease_until": "2026-09-29T08:12:07Z"
+  },
+  "run_ref": {
+    "kind": "EXTERNAL_IMMUTABLE",
+    "provider": "GitHub",
+    "repository_id_or_resource_id": "1352411536",
+    "revision": "52d2688eba4ffce4f496869eab7aa5d53dc1ddfd",
+    "path": "governance/csg/v51/runs/V51-R1-001/run-r1-03.json",
+    "digest": "sha256:0fdc8ffd935fbaebcbe27ff60a7d0b4f17f0bd6ea88359f61c9331bf4003f861"
+  },
+  "task_id": "V51-R1-03-FACTORY-READONLY-BOOTSTRAP-SURFACE",
+  "attempt_id": "V51-R1-03-ATTEMPT-001",
+  "attempt_epoch": 1,
+  "atomic": {
+    "state": "PREPARED_NOT_DISPATCHED",
+    "unit_id": "V51-R1-03-FACTORY-READONLY-BOOTSTRAP-SURFACE",
+    "goal": "Implement and qualify bounded fixed-purpose read-only diagnostics on the existing four Factory MCP tools; no arbitrary PowerShell and no Host or broker mutation.",
+    "execution_fence": null
+  },
+  "last_accepted": {
+    "unit_id": "V51-R1-02-CHECKPOINT-RUN-COHERENCE",
+    "result": "PASS_PROVIDER_CONFIRMED",
+    "provider_ref": "refs/heads/v45/factory-control",
+    "provider_commit": "3a7f08a4ed1940b6666d4c61bef11b3a742773bc",
+    "readback_path": "governance/csg/v51/readbacks/R1-02-SAME-SOURCE-20260929T035735Z.json",
+    "readback_blob_oid": "39f24413430f18bc4580e0ffaa8434912ed42146"
+  },
+  "remote_wip": null,
+  "active_job_refs": [],
+  "unresolved_effect_refs": [],
+  "blockers": [
+    "R1_03_FIXED_READONLY_BOOTSTRAP_NOT_QUALIFIED"
+  ],
+  "last_verified_gate": {
+    "gate_id": "V51-R1-02-SAME-SOURCE-READBACK",
+    "verdict": "PASS_PROVIDER_CONFIRMED",
+    "provider_ref": "refs/heads/v45/factory-control",
+    "provider_commit": "3a7f08a4ed1940b6666d4c61bef11b3a742773bc",
+    "directory_commit": "38f4fc7cb2841e2318a97ff7a53e41b2ec07aef1"
+  },
+  "next_legal_transition": {
+    "action": "IMPLEMENT_V51_R1_03_FIXED_PURPOSE_READ_ONLY_DIAGNOSTICS",
+    "unit_id": "V51-R1-03-FACTORY-READONLY-BOOTSTRAP-SURFACE",
+    "requires": [
+      "R1-02 exact same-source readback PASS",
+      "exactly four public Factory MCP tools",
+      "fixed-purpose allowlist only",
+      "no arbitrary PowerShell argument",
+      "read-only probes require no Host-mutation fence"
+    ],
+    "forbidden": [
+      "HOST_MUTATION",
+      "OP025_REDISPATCH",
+      "CP192_OR_JIT_FENCE_ARM",
+      "OPERATION027_DISPATCH",
+      "PRODUCTION",
+      "BUSINESS_PROJECT",
+      "PAID_FALLBACK",
+      "FIFTH_PUBLIC_FACTORY_MCP_TOOL",
+      "ARBITRARY_SYSTEM_POWERSHELL"
+    ]
+  },
+  "stop_requested": false,
+  "barrier": "ACTIVE_UNIT",
+  "evidence_refs": [
+    {
+      "kind": "EXTERNAL_IMMUTABLE",
+      "provider": "GitHub",
+      "repository_id_or_resource_id": "1352411536",
+      "revision": "52d2688eba4ffce4f496869eab7aa5d53dc1ddfd",
+      "path": "governance/csg/v51/specs/VNEXT5.1-R1-HUMAN-CURRENT-SPEC-20260929.md",
+      "digest": "sha256:29e8a4b8685afbbc8531e1a62dee0b5b072f6a28270f11bfbea9d9b6a5378bea"
+    },
+    {
+      "kind": "EXTERNAL_IMMUTABLE",
+      "provider": "GitHub",
+      "repository_id_or_resource_id": "1352411536",
+      "revision": "52d2688eba4ffce4f496869eab7aa5d53dc1ddfd",
+      "path": "governance/csg/v51/missions/20260929T115735+0800.json",
+      "digest": "sha256:351b53cffab1277c40594a6e1822f07debd4ac12c377b494f95f8200bc85f092"
+    },
+    {
+      "kind": "EXTERNAL_IMMUTABLE",
+      "provider": "GitHub",
+      "repository_id_or_resource_id": "1352411536",
+      "revision": "52d2688eba4ffce4f496869eab7aa5d53dc1ddfd",
+      "path": "governance/csg/v51/policies/20260929T115735+0800-EP74.json",
+      "digest": "sha256:138cd240e272f2591342f8f17e2c5ab10e962923d358769765adafac0437c343"
+    },
+    {
+      "kind": "EXTERNAL_IMMUTABLE",
+      "provider": "GitHub",
+      "repository_id_or_resource_id": "1352411536",
+      "revision": "52d2688eba4ffce4f496869eab7aa5d53dc1ddfd",
+      "path": "governance/csg/v51/runs/V51-R1-001/run-r1-03.json",
+      "digest": "sha256:0fdc8ffd935fbaebcbe27ff60a7d0b4f17f0bd6ea88359f61c9331bf4003f861"
+    },
+    {
+      "kind": "EXTERNAL_IMMUTABLE",
+      "provider": "GitHub",
+      "repository_id_or_resource_id": "1352411536",
+      "revision": "52d2688eba4ffce4f496869eab7aa5d53dc1ddfd",
+      "path": "governance/csg/v51/runs/V51-R1-001/contract-r1-03.json",
+      "digest": "sha256:2e8dc0f79b60ca4f811c93d660c982189ff54d719a3f52e5e1ce12b47a050dd6"
+    },
+    {
+      "kind": "EXTERNAL_IMMUTABLE",
+      "provider": "GitHub",
+      "repository_id_or_resource_id": "1352411536",
+      "revision": "52d2688eba4ffce4f496869eab7aa5d53dc1ddfd",
+      "path": "governance/csg/v51/readbacks/R1-02-SAME-SOURCE-20260929T035735Z.json",
+      "digest": "sha256:370de10cfd591f6369c8b2f9bf4c093a8f9facf46f4e13f0bf86ed2909f4c569"
+    },
+    {
+      "kind": "EXTERNAL_IMMUTABLE",
+      "provider": "GitHub",
+      "repository_id_or_resource_id": "1352411536",
+      "revision": "52d2688eba4ffce4f496869eab7aa5d53dc1ddfd",
+      "path": "governance/csg/v51/readbacks/STALE-CONTINUATION-READBACK-20260929T035735Z.json",
+      "digest": "sha256:59936e9916403c93660c9c4331959ab6b08349eb955d775203b0d497efb8c21f"
+    }
+  ],
+  "recorded_at": "2026-09-29T04:12:07Z",
+  "payload_digest": "sha256:93a8317b012689c474fbfd5dfbdc63c5bfcd8d5f35751f352178295f12adbc73"
+}
