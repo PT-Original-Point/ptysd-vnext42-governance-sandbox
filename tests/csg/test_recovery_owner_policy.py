@@ -7,10 +7,20 @@ LIVE={'principal_id':'OLD','owner_generation':7,'scope':'CSG','lease_until':'202
 BASE=dict(provider_now=NOW,current_attempt_epoch=3,stop_requested=False,mission_match=True,policy_match=True,controller_match=True)
 
 class T(unittest.TestCase):
- def test_read_does_not_claim(self):
-  m=resume_mode(owner=EXPIRED,unresolved_effects=[],live_job=None,**BASE); self.assertEqual(m['mode'],'CLAIM_ORDINARY_OWNER'); self.assertNotIn('transport_id',m)
+ def test_unknown_live_status_does_not_claim_or_dispatch(self):
+  m=resume_mode(owner=EXPIRED,unresolved_effects=[],live_job=None,**BASE)
+  self.assertEqual(m['mode'],'LIVE_OBSERVATION_REQUIRED'); self.assertFalse(m['ordinary_writer']); self.assertFalse(m['redispatch'])
+  self.assertEqual(authorize_action(m['mode'],'READBACK'),'ALLOW'); self.assertEqual(authorize_action(m['mode'],'DISPATCH'),'DENY_NON_WRITER_MODE')
+ def test_observed_empty_live_status_allows_claim(self):
+  m=resume_mode(owner=EXPIRED,unresolved_effects=[],live_job=None,live_job_observation='OBSERVED_EMPTY',**BASE)
+  self.assertEqual(m['mode'],'CLAIM_ORDINARY_OWNER'); self.assertNotIn('transport_id',m)
+ def test_live_observation_must_match_job_value(self):
+  with self.assertRaisesRegex(OwnerPolicyError,'LIVE_JOB_OBSERVATION_MISMATCH'):
+   resume_mode(owner=EXPIRED,unresolved_effects=[],live_job=None,live_job_observation='OBSERVED_JOB',**BASE)
+  with self.assertRaisesRegex(OwnerPolicyError,'LIVE_JOB_OBSERVATION_MISMATCH'):
+   resume_mode(owner=EXPIRED,unresolved_effects=[],live_job={'state':'IN_PROGRESS','attempt_epoch':3},live_job_observation='OBSERVED_EMPTY',**BASE)
  def test_two_sessions_generation_is_monotonic(self):
-  a=resume_mode(owner=EXPIRED,unresolved_effects=[],live_job=None,**BASE); b=resume_mode(owner=EXPIRED,unresolved_effects=[],live_job=None,**BASE); self.assertEqual(a['next_owner_generation'],8); self.assertEqual(b['next_owner_generation'],8)
+  a=resume_mode(owner=EXPIRED,unresolved_effects=[],live_job=None,live_job_observation='OBSERVED_EMPTY',**BASE); b=resume_mode(owner=EXPIRED,unresolved_effects=[],live_job=None,live_job_observation='OBSERVED_EMPTY',**BASE); self.assertEqual(a['next_owner_generation'],8); self.assertEqual(b['next_owner_generation'],8)
  def test_zombie_sender_quarantined(self):
   self.assertEqual(classify_receipt(receipt_owner_generation=7,current_owner_generation=8,receipt_attempt_epoch=3,current_attempt_epoch=3,receipt_mission_revision='M',current_mission_revision='M'),'QUARANTINE_STALE_OWNER')
  def test_stale_attempt_quarantined(self):
@@ -20,11 +30,11 @@ class T(unittest.TestCase):
  def test_pending_expired_owner_enters_recovery_only_no_deadlock(self):
   m=resume_mode(owner=EXPIRED,unresolved_effects=['op1'],live_job=None,**BASE); self.assertEqual(m['mode'],'RECOVERY_ONLY'); self.assertEqual(m['next_owner_generation'],8); self.assertTrue(m['preserve_pending']); self.assertEqual(authorize_action(m['mode'],'READBACK'),'ALLOW'); self.assertEqual(authorize_action(m['mode'],'DISPATCH'),'DENY_RECOVERY_ONLY')
  def test_live_job_adoption_preserves_attempt_no_redispatch(self):
-  m=resume_mode(owner=EXPIRED,unresolved_effects=[],live_job={'state':'IN_PROGRESS','attempt_epoch':3},**BASE); self.assertEqual(m['mode'],'ADOPT_LIVE_JOB'); self.assertFalse(m['redispatch']); self.assertEqual(m['attempt_epoch'],3)
+  m=resume_mode(owner=EXPIRED,unresolved_effects=[],live_job={'state':'IN_PROGRESS','attempt_epoch':3},live_job_observation='OBSERVED_JOB',**BASE); self.assertEqual(m['mode'],'ADOPT_LIVE_JOB'); self.assertFalse(m['redispatch']); self.assertEqual(m['attempt_epoch'],3)
  def test_live_owner_continues_without_generation_bump(self):
-  m=resume_mode(owner=LIVE,unresolved_effects=[],live_job={'state':'IN_PROGRESS','attempt_epoch':3},**BASE); self.assertEqual(m['owner_generation'],7); self.assertEqual(m['mode'],'CURRENT_OWNER_CONTINUES')
+  m=resume_mode(owner=LIVE,unresolved_effects=[],live_job={'state':'IN_PROGRESS','attempt_epoch':3},live_job_observation='OBSERVED_JOB',**BASE); self.assertEqual(m['owner_generation'],7); self.assertEqual(m['mode'],'CURRENT_OWNER_CONTINUES')
  def test_worker_completed_controller_gone_readback_only(self):
-  m=resume_mode(owner=EXPIRED,unresolved_effects=[],live_job={'state':'COMPLETED','attempt_epoch':3},**BASE); self.assertEqual(m['mode'],'ADOPT_COMPLETED_RESULT_READBACK'); self.assertEqual(authorize_action(m['mode'],'DISPATCH'),'DENY_NON_WRITER_MODE')
+  m=resume_mode(owner=EXPIRED,unresolved_effects=[],live_job={'state':'COMPLETED','attempt_epoch':3},live_job_observation='OBSERVED_JOB',**BASE); self.assertEqual(m['mode'],'ADOPT_COMPLETED_RESULT_READBACK'); self.assertEqual(authorize_action(m['mode'],'DISPATCH'),'DENY_NON_WRITER_MODE')
  def test_client_clock_cannot_override_provider_time(self):
   self.assertFalse(owner_expired(LIVE,NOW)); self.assertTrue(owner_expired(EXPIRED,NOW))
  def test_stop_blocks_writer(self):
