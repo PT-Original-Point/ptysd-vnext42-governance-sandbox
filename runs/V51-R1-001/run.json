@@ -1,0 +1,28 @@
+{
+  "schema_version": "factory.run.v1",
+  "run_id": "V51-R1-001",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "revision": 1,
+  "command_id": "V51-R1-02-CHECKPOINT-RUN-COHERENCE",
+  "contract_ref": "runs/V51-R1-001/contract.json",
+  "state": "RUNNING",
+  "wait_reason": "R1_02_CANONICAL_READBACK_PENDING",
+  "active_task_id": "V51-R1-02-CHECKPOINT-RUN-COHERENCE",
+  "attempt_id": "V51-R1-02-ATTEMPT-001",
+  "attempt_epoch": 1,
+  "latest_checkpoint_ref": null,
+  "unresolved_operation_ids": [],
+  "stop_requested": false,
+  "completed_stage_receipts": [],
+  "evidence_refs": [
+    "governance/v51/specs/VNEXT5.1-R1-HUMAN-CURRENT-SPEC-20260929.md",
+    "governance/v51/current-mission.json",
+    "governance/v51/current-execution-policy.json"
+  ],
+  "remaining_attempts": 1,
+  "execution_owner": {
+    "principal_id": "CODEX_THREAD_01a0cb52-6d41-7b33-b92c-099639fa07e7",
+    "owner_generation": 1,
+    "scope": "V51-R1-02-CHECKPOINT-RUN-COHERENCE"
+  }
+}

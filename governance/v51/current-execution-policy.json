@@ -1,0 +1,141 @@
+{
+  "schema": "CHATGPT_EXECUTION_POLICY_V5_1_R1",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "status": "FINALIZED",
+  "authorized_by": "HUMAN",
+  "authorization_gate": "VNEXT5.1-R1-CODEX-EXECUTION-PROMPT-20260929/USER-DIRECTIVE",
+  "mission_revision_id": "20260929T113457+0800",
+  "mission_hash": "sha256:e36405f7ada177b69e17f056f6c687329030af24cc8f890fd6dfd1c4d623102e",
+  "policy_revision_id": "20260929T113457+0800-EP73",
+  "canonicalization_version": "HUMAN_TEXT_V1",
+  "policy_hash_profile": "RFC8785_CANONICAL_JSON_PAYLOAD_SHA256_V1",
+  "policy_hash": "sha256:fcd400ebbf61139e497c0e9c6b7a7a3a2268fa56875834713f83290daf55875f",
+  "payload": {
+    "active_module": "vnext5_1_r1_control_plane_recovery",
+    "active_unit": "V51-R1-02-CHECKPOINT-RUN-COHERENCE",
+    "module_acceptance": "R1_00_SPEC_IDENTITY_THROUGH_R1_09_HANYAO_READ_ONLY_RECOVERY_PASS_BEFORE_ORDINARY_PRODUCT_WORK",
+    "current_construction_spec": {
+      "id": "VNEXT5.1-R1",
+      "source_class": "EXACT_USER_PROVIDED_GOAL_OBJECTIVE",
+      "source_commit": "3bead6a1b0b2efe29c99bb6fbfe1dbc6fba43091",
+      "source_path": "governance/csg/candidates/v51-r1/VNEXT5.1-R1-HUMAN-CURRENT-SPEC-20260929.md",
+      "canonical_path": "governance/v51/specs/VNEXT5.1-R1-HUMAN-CURRENT-SPEC-20260929.md",
+      "blob_oid": "6df4a189c84ff1e53ce4ba0a90ba39eb6334e59a",
+      "sha256": "sha256:29e8a4b8685afbbc8531e1a62dee0b5b072f6a28270f11bfbea9d9b6a5378bea",
+      "byte_length": 5779
+    },
+    "routing": {
+      "policy": "CODEX_PRIMARY_FOR_SUBSTANTIAL_OR_LONG_RUNNING_WORK",
+      "revoked": [
+        "LEGACY_CHAT_FIRST_MANDATORY_EXECUTION",
+        "LEGACY_DIRECT_CONNECTOR_PRECEDENCE_AS_EXECUTOR_SELECTOR",
+        "LEGACY_CHAT_CONNECTOR_EXHAUSTION_BEFORE_DELEGATION",
+        "LEGACY_CODEX_TERMINAL_LOCAL_ONLY_ROLE",
+        "LEGACY_PER_SESSION_CODEX_REAUTHORIZATION"
+      ],
+      "codex_primary_when_any": [
+        "multi_step",
+        "long_running",
+        "stateful",
+        "repository_construction",
+        "coding_and_test_repair_loop",
+        "local_filesystem_or_native_shell_heavy",
+        "sustained_research_to_implementation",
+        "chat_session_interruption_risk_material"
+      ],
+      "chatgpt_web_role": [
+        "mission_control",
+        "short_bounded_actions",
+        "fresh_readback",
+        "independent_audit",
+        "exception_handling",
+        "human_interface"
+      ],
+      "chat_direct_execution_allowed": true,
+      "chat_direct_execution_mandatory_when_capable": false,
+      "connector_exhaustion_required_before_codex": false,
+      "codex_mission_sovereignty": false
+    },
+    "coordination": {
+      "one_active_atomic_unit": true,
+      "one_execution_owner_per_atomic_scope": true,
+      "active_execution_owner": "CODEX_THREAD_01a0cb52-6d41-7b33-b92c-099639fa07e7",
+      "no_concurrent_chat_codex_mutation_same_scope": true,
+      "codex_progress_must_be_provider_or_artifact_addressable": true,
+      "chat_claim_verification_required_for_promotion": true,
+      "cross_session_resume_uses_canonical_backend_not_chat_memory": true
+    },
+    "authorization": {
+      "reversible_preproduction_persistent": true,
+      "routine_per_session_reauthorization": false,
+      "production_final_human_required": true,
+      "new_cost_human_required": true,
+      "legal_contract_signature_identity_human_required": true,
+      "oauth_mfa_human_required": true,
+      "major_irreversible_authority_expansion_human_required": true,
+      "unreconcilable_ambiguous_external_effect_human_required": true
+    },
+    "mutation_safety": {
+      "fresh_prestate": true,
+      "provider_or_backend_cas_at_dispatch": true,
+      "same_source_readback": true,
+      "unknown_effect_readback_first": true,
+      "no_blind_replay": true,
+      "operation_owned_rollback": true,
+      "canonical_control_updates_must_be_fast_forward_only": true
+    },
+    "project_controls": {
+      "mission_revision_rollover_is_not_transport_denial": true,
+      "checkpoint_rollover_is_not_transport_denial": true,
+      "run_id_pattern_rollover_is_not_transport_denial": true,
+      "task_id_pattern_rollover_is_not_transport_denial": true,
+      "attempt_or_generation_metadata_is_not_transport_denial": true,
+      "stale_historical_wake_payload_is_not_authority": true,
+      "production_allowed": false,
+      "business_project_auto_admission": false,
+      "paid_fallback_allowed": false,
+      "worker_provider_write_credentials_allowed": false,
+      "zero_incremental_paid_cost_required": true
+    },
+    "factory_mcp": {
+      "public_tool_count": 4,
+      "read_only_diagnostics": {
+        "preferred_tool": "factory_status",
+        "bounded_fixed_purpose_only": true,
+        "arbitrary_powershell": false,
+        "host_mutation": false,
+        "host_mutation_fence_required": false
+      },
+      "trusted_caller": {
+        "unique_os_enforced_boundary_required": true,
+        "shared_network_service_sid_alone_sufficient": false,
+        "negative_injection_test_required": true
+      },
+      "host_powershell": {
+        "public_tool_retained": true,
+        "run_as_required": "NT AUTHORITY\\SYSTEM",
+        "authorized_scope_requires": [
+          "R1_04_UNIQUE_TRUSTED_CALLER_PASS",
+          "R1_05_TRANSPORT_GUARD_QUALIFICATION_PASS",
+          "R1_06_EXACT_TARGET_PRESTATE_BACKUP_ROLLBACK_AND_READBACK"
+        ],
+        "production_allowed": false
+      }
+    },
+    "human_reserved_gates": [
+      "PRODUCTION_FINAL_AUTHORIZATION",
+      "NEW_PAID_COST_OR_SERVICE",
+      "LEGAL_CONTRACT_SIGNATURE_OR_IDENTITY",
+      "OAUTH_OR_MFA",
+      "MAJOR_IRREVERSIBLE_AUTHORITY_EXPANSION",
+      "UNRECONCILABLE_AMBIGUOUS_EXTERNAL_EFFECT"
+    ],
+    "factory_mcp_public_tool_count": 4,
+    "host_vm_execution_default_authorized": false,
+    "host_powershell_normal_route": "CONDITIONED_ON_R1_04_UNIQUE_CALLER_AND_R1_06_LIVE_INSTALL_ACCEPTANCE",
+    "provider_write_credentials_on_worker_allowed": false,
+    "paid_fallback_allowed": false,
+    "business_project_access_allowed": false,
+    "production_allowed": false
+  }
+}
