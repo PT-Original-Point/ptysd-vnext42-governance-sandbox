@@ -2,7 +2,7 @@
   "schema_version": "csg.v51-r1.canonical-rebase-candidate.v1",
   "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
   "status": "NONCANONICAL_REVIEW_ONLY",
-  "human_current_construction_spec": "VNEXT5.1",
+  "human_current_construction_spec": "VNEXT5.1-R1",
   "candidate_current_spec": "VNEXT5.1-R1",
   "exact_prestate": {
     "canonical_control_head": "a5ebfd86d440b61ecc4e4dc3ba7b8291836769c7",
@@ -16,10 +16,13 @@
   },
   "immutable_spec": {
     "repository_id": 1352411536,
-    "commit": "3059ece3601180e4e57a3d729f0aaa48248a53c4",
-    "path": "governance/v51/VNEXT5.1-R1-CANONICAL-RECOVERY-SPEC-20260929.md",
-    "blob_oid": "39c496ab211c744cf3cf71e4b2d15d3ee866b0be",
-    "pull_request": 334
+    "commit": "3bead6a1b0b2efe29c99bb6fbfe1dbc6fba43091",
+    "path": "governance/csg/candidates/v51-r1/VNEXT5.1-R1-HUMAN-CURRENT-SPEC-20260929.md",
+    "blob_oid": "6df4a189c84ff1e53ce4ba0a90ba39eb6334e59a",
+    "sha256": "29e8a4b8685afbbc8531e1a62dee0b5b072f6a28270f11bfbea9d9b6a5378bea",
+    "byte_length": 5779,
+    "pull_request": 335,
+    "source_class": "EXACT_USER_PROVIDED_GOAL_OBJECTIVE"
   },
   "defect_classification": [
     "SPEC_CONTROL_PLANE_REBASE_REQUIRED",
