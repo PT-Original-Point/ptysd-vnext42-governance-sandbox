@@ -1,0 +1,84 @@
+{
+  "schema": "vnext5.1-r2.host-observation-summary.v1",
+  "evidence_class": "LOCAL_NATIVE_READONLY_HOST_OBSERVATION_REDACTED",
+  "observed_at_utc": "2026-09-29T14:48:22.6376799Z",
+  "local_evidence": {
+    "artifact_name": "host-prestate-20260929-R2-NATIVE-REV2-FINAL.json",
+    "sha256": "sha256:2aa0da4e35598b977c0eb7cd500994b75b28188326e53ec36ce22b1dc7897d83",
+    "byte_length": 35897,
+    "full_artifact_persisted_locally_only": true,
+    "supporting_source_detail_artifact_name": "host-prestate-20260929-R2-NATIVE-REV2-SOURCE-DETAILS-v2.json",
+    "supporting_source_detail_sha256": "sha256:8cfa842b4e007ba7a1727b3bd2724bc13346ff050c2eba3b6f34ee05cad1b465",
+    "supporting_source_detail_byte_length": 34460,
+    "supporting_artifact_persisted_locally_only": true
+  },
+  "host_platform": {
+    "os_family": "Windows 11",
+    "build": "26200",
+    "caller_is_admin": false
+  },
+  "bounded_discovery": {
+    "matching_process_candidate_count": 9,
+    "matching_service_candidate_count": 12,
+    "matching_scheduled_task_candidate_count": 2,
+    "supervisor_candidate_task_state": "DISABLED",
+    "factory_mcp_named_service": "NOT_FOUND",
+    "discovered_programdata_root_count": 0,
+    "service_adjacent_directories_inspected": 4,
+    "related_log_or_receipt_tail_reads": 58,
+    "discovered_source_files_hashed": 10,
+    "discovered_source_file_acls_read": 10,
+    "local_codex_automation_toml_count": 0,
+    "factory_mcp_listener_attribution": "NOT_ESTABLISHED"
+  },
+  "privilege_dependent_lanes": [
+    {
+      "lane": "HYPERV_VM_INVENTORY_READ",
+      "prior_human_directive_status": "ACCESS_DENIED",
+      "latest_local_probe_status": "ERROR",
+      "latest_error_class_chain": [
+        "VirtualizationException",
+        "ServerConnectionException",
+        "CimException"
+      ],
+      "hyperv_vmms_service_state": "RUNNING",
+      "classification": "LOCAL_OS_PRIVILEGE_REQUIRED",
+      "status": "OPEN_PARKED_NO_PASS"
+    },
+    {
+      "lane": "HOSTGUARD_JEA_READONLY_OBSERVATION",
+      "prior_human_directive_status": "ACCESS_DENIED",
+      "latest_local_probe_status": "ERROR",
+      "latest_error_class_chain": [
+        "VirtualizationException",
+        "ServerConnectionException",
+        "CimException"
+      ],
+      "classification": "LOCAL_OS_PRIVILEGE_REQUIRED_OR_JEA_AUTHORIZATION_DEFECT",
+      "status": "OPEN_PARKED_NO_PASS"
+    }
+  ],
+  "route_assessment": {
+    "authorized_bounded_privileged_service_task_or_broker_route_found": false,
+    "observed_candidate_supervisor_task_enabled": false,
+    "factory_mcp_named_service_found": false,
+    "effect": "PARK_ONLY_EXACT_PRIVILEGE_DEPENDENT_LANES",
+    "independent_r2_construction_may_continue": true
+  },
+  "safety": {
+    "host_mutations_performed": 0,
+    "process_service_task_registry_mutations": 0,
+    "production": false,
+    "paid_fallback": false,
+    "worker_provider_write_credentials": false
+  },
+  "acceptance_limit": "Local host observation only; it does not establish Factory MCP semantic, live installation, canary, or Production acceptance.",
+  "inspection": {
+    "live_process_command_lines_inspected_but_not_persisted": true,
+    "service_imagepaths_and_registry_service_config_inspected": true,
+    "scheduled_task_actions_inspected": true,
+    "discovered_source_file_hashes_and_acls_recorded_locally": true,
+    "service_adjacent_logs_or_receipts_inspected_as_bounded_tail_counts_only": true,
+    "raw_command_lines_logs_receipts_paths_and_network_endpoints_in_provider_summary": false
+  }
+}
