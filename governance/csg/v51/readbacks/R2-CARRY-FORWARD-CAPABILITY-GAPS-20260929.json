@@ -1,0 +1,121 @@
+{
+  "schema": "vnext5.1-r2.carry-forward-capability-gaps.v1",
+  "record_id": "V51-R2-DURABLE-CARRY-FORWARD-CAPABILITY-GAPS-20260929",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "source": {
+    "kind": "HUMAN_DIRECTIVE_NONCANONICAL_COORDINATION_ANCHOR",
+    "provider": "GitHub Issue",
+    "issue_number": 310,
+    "comment_id": 5892287634,
+    "request_id": "V51-R2-DURABLE-CARRY-FORWARD-CAPABILITY-GAPS-20260929"
+  },
+  "current_canonical_prestate": {
+    "checkpoint_seq": 196,
+    "checkpoint_digest": "sha256:5821da1a1a3af00e6be79624ec3850873763ca1cf45ff1a1f55b486c1ac9285d",
+    "active_unit": "V51-R2-01-COLD-START-CANONICAL-CONTINUITY",
+    "active_unit_change_authorized": false
+  },
+  "purpose": "Persist exact unresolved local-host capability gaps across session changes; current canonical authority remains decisive if a newer checkpoint supersedes this record.",
+  "gaps": [
+    {
+      "id": "HYPERV_VM_INVENTORY_READ",
+      "observed_status": "ACCESS_DENIED",
+      "observed_route": "local native Get-VM",
+      "classification": "LOCAL_OS_PRIVILEGE_REQUIRED",
+      "scope": "Hyper-V inventory/lifecycle observation only",
+      "effect": "park exact lane; do not block independent R2 work",
+      "must_be_closed_before": [
+        "R2-07_HOST_SUPERVISOR_24X7_ACCEPTANCE",
+        "R2-09_ANY_STATE_CROSS_SESSION_REGRESSION"
+      ],
+      "acceptance": "Supervisor or authorized bounded route reads required Hyper-V worker state after a fresh boot/session without granting arbitrary admin shell.",
+      "latest_local_probe": {
+        "status": "ERROR",
+        "error_class_chain": [
+          "VirtualizationException",
+          "ServerConnectionException",
+          "CimException"
+        ],
+        "vmms_service_state": "RUNNING",
+        "closed": false
+      }
+    },
+    {
+      "id": "HOSTGUARD_JEA_READONLY_OBSERVATION",
+      "observed_status": "ACCESS_DENIED",
+      "observed_route": "Get-PTYSDHostGuardStatus",
+      "classification": "LOCAL_OS_PRIVILEGE_REQUIRED_OR_JEA_AUTHORIZATION_DEFECT",
+      "effect": "park exact read-only observation lane; do not block independent R2 work",
+      "must_be_closed_before": [
+        "R2-03_FIXED_READONLY_FACTORY_OBSERVATION",
+        "R2-09_ANY_STATE_CROSS_SESSION_REGRESSION"
+      ],
+      "acceptance": "Bounded read-only Host/Factory observation succeeds for the intended executor identity without arbitrary SYSTEM PowerShell or Host mutation.",
+      "latest_local_probe": {
+        "status": "ERROR",
+        "error_class_chain": [
+          "VirtualizationException",
+          "ServerConnectionException",
+          "CimException"
+        ],
+        "closed": false
+      }
+    },
+    {
+      "id": "FACTORY_MCP_PRIVILEGED_LIVE_REPAIR",
+      "current_status": "NOT_YET_ACCEPTED",
+      "dependency": [
+        "R2-04_UNIQUE_TRUSTED_CALLER",
+        "R2-05_NON_CIRCULAR_REPAIR_LANE",
+        "R2-06_LIVE_ACCEPTANCE"
+      ],
+      "rule": "Broken Factory MCP is not a prerequisite for local Codex source/control-plane work.",
+      "acceptance": "Authorized pre-Production SYSTEM canary PASS; metadata rollover does not recreate RUN_DENY, TASK_DENY, or FENCE_MISSING."
+    },
+    {
+      "id": "GITHUB_CANONICAL_PROTECTED_PATH",
+      "status": "EXPECTED_SECURITY_CONTROL",
+      "observation": "Direct ref fast-forward/write was rejected by branch protection; protected PR route with csg-trusted-verifier is available.",
+      "rule": "DO_NOT_REMOVE_PROTECTION",
+      "required_route": [
+        "protected PR",
+        "csg-trusted-verifier",
+        "merge",
+        "same-source readback"
+      ],
+      "not_a_blocker_when_route_available": true
+    }
+  ],
+  "cold_start_requirement": {
+    "order": [
+      "Project Directory",
+      "current control pointer",
+      "checkpoint",
+      "Mission and Policy",
+      "run/task/attempt",
+      "evidence refs"
+    ],
+    "carry_gaps_until": "provider-confirmed PASS",
+    "forbidden_authority_sources": [
+      "chat history",
+      "Memory",
+      "this comment alone when newer canonical evidence supersedes it"
+    ]
+  },
+  "constraints": {
+    "active_unit_change": "NONE",
+    "host_mutation": false,
+    "production": false,
+    "paid_fallback": false
+  },
+  "latest_local_observation": {
+    "observed_at_utc": "2026-09-29T14:48:22.6376799Z",
+    "redacted_summary_path": "governance/csg/v51/readbacks/R2-01-HOST-OBSERVATION-20260929.json",
+    "redacted_summary_sha256": "sha256:c9f93bf6c72889f61c43df18490df35a1e3da43105d7cae18c39ad515ed8300a",
+    "local_full_artifact_name": "host-prestate-20260929-R2-NATIVE-REV2-FINAL.json",
+    "local_full_artifact_sha256": "sha256:2aa0da4e35598b977c0eb7cd500994b75b28188326e53ec36ce22b1dc7897d83",
+    "local_full_artifact_byte_length": 35897,
+    "provider_source_checkpoint": "CP196",
+    "reconciliation": "Carry all four Issue #310 gaps forward; current local probes did not produce acceptance PASS for any parked lane."
+  }
+}

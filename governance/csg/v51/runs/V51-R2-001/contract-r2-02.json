@@ -1,0 +1,68 @@
+{
+  "schema_version": "factory.contract.v1",
+  "contract_id": "V51-R2-CONTRACT-001-R2-02",
+  "task_id": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION",
+  "run_id": "V51-R2-001",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "goal": "Confirm and revoke the stale R1 execution owner using lease, job/effect, provider-thread, and fresh local host evidence; advance the owner generation and recompute one READY R2 recovery task without replaying unknown effects.",
+  "current_spec": {
+    "id": "VNEXT5.1-R2",
+    "source_class": "EXACT_HUMAN_PROVIDED_CONSTRUCTION_SPEC_ATTACHMENT",
+    "source_commit": null,
+    "source_path": "VNEXT5.1-R2-FULL-CONSTRUCTION-SPEC-20260929.md",
+    "canonical_path": "governance/csg/v51/specs/VNEXT5.1-R2-HUMAN-CURRENT-SPEC-20260929.md",
+    "blob_oid": "1dcd2d46a35bb3a580210ab4f0d29131587cc448",
+    "sha256": "sha256:b3b805f4dd5e88a2370c456c7f678c3264ca032090c957d69116512b563b589f",
+    "byte_length": 25222
+  },
+  "include": [
+    "OS/process/container, provider agent session, supervisor heartbeat, active job/receipt, and lease freshness evidence",
+    "explicit stale-owner disposition and revocation record",
+    "strictly increasing owner generation before the next R2 task becomes current",
+    "one qualified recovery owner on one active atomic unit"
+  ],
+  "exclude": [
+    "Host service/task/broker mutation",
+    "arbitrary SYSTEM PowerShell",
+    "Production, paid fallback, business-project admission, or worker provider-write credentials",
+    "blind retry or replay when any effect is UNKNOWN",
+    "treating UI thread status as the sole liveness signal"
+  ],
+  "affected_surfaces": [
+    "governance/csg/v51/runs/V51-R2-001",
+    "governance/csg/v51/missions",
+    "governance/csg/v51/policies",
+    "governance/csg/v51/readbacks"
+  ],
+  "requirements": [
+    "CP194 records R1 run RUNNING with owner generation 2 and lease 2026-09-29T08:12:07Z, expired before the R2 recovery observation",
+    "CP194 active_job_refs and unresolved_effect_refs are both empty; the R1 task thread is idle on fresh Codex app readback",
+    "fresh local host evidence shows no enabled supervisor candidate task, no local Codex automation TOML records, and no authorized bounded privileged service/task/broker route",
+    "a stale generation is revoked before advancing; next recovery owner_generation is strictly greater than stale generation 2",
+    "no unresolved/unknown effect is replayed; exact privileged VM/JEA lanes remain scoped and non-blocking"
+  ],
+  "acceptance": [
+    "STALE_OWNER_CONFIRMED is supported by expired lease plus no active jobs/effects and independent provider/local observations, not UI alone",
+    "stale R1 owner generation 2 cannot regain authority under CP196 or later R2 checkpoints",
+    "next task has one active owner and owner_generation 3; current Codex acts only in its authorized recovery/secondary role",
+    "run, checkpoint, task, attempt, owner generation, and carry-forward gaps agree by same-source provider readback"
+  ],
+  "dependencies": [
+    "R2-01 cold-start canonical continuity PASS",
+    "R2-00 exact same-source readback PASS",
+    "fresh provider and local native observations"
+  ],
+  "risk": "PREPRODUCTION_STALE_OWNER_REVOCATION_AND_RECOVERY_OWNER_ADVANCE",
+  "allowed_tools": [
+    "GitHub exact-read/content/ref APIs",
+    "local native read-only host/process/task observation",
+    "bounded JSON and digest validation"
+  ],
+  "allowed_effects": [
+    "append provider-addressable stale-owner disposition and R2-02 control artifacts by protected forward-only PR path"
+  ],
+  "max_attempts": 1,
+  "time_budget_policy": "ONE_ACTIVE_RECOVERY_OWNER_PER_MUTABLE_ATOMIC_SCOPE",
+  "expected_parent": "be0a3fdc69efb0c11dfb10790bdf7ed1d4ba14b5",
+  "prestate_checkpoint_seq": 196
+}
