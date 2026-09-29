@@ -1,0 +1,153 @@
+{
+  "schema_version": "csg.checkpoint.v1",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "checkpoint_seq": 195,
+  "transition_id": "V51-R2-00-AUTHORITY-REBASE-195",
+  "previous_checkpoint_ref": {
+    "kind": "EXTERNAL_IMMUTABLE",
+    "provider": "GitHub",
+    "repository_id_or_resource_id": "1352411536",
+    "revision": "b3812557ed86a732c0a8c4f51356b30435538a1f",
+    "path": "governance/csg/checkpoints/000194.json",
+    "digest": "sha256:93a8317b012689c474fbfd5dfbdc63c5bfcd8d5f35751f352178295f12adbc73"
+  },
+  "migration_anchor": null,
+  "event": {
+    "type": "CONTROL_PLANE_REBASE_PUBLISHED",
+    "reason_code": "V51_R2_00_AUTHORITY_REBASE_READBACK_PENDING",
+    "subject_id": "V51-R2-00-MISSION-POLICY-SPEC-AUTHORITY"
+  },
+  "mission_anchor": {
+    "ref": "github://1352411536/governance/csg/v51/missions/20260929T215913+0800.json@b3812557ed86a732c0a8c4f51356b30435538a1f",
+    "revision": "20260929T215913+0800",
+    "declared_hash": "sha256:3ce38d0e29806dbc7cae58517d79b6a8ec6977a340e45cc689e56b4ff3c9f6c5",
+    "canonicalization_version": "HUMAN_TEXT_V1"
+  },
+  "policy_anchor": {
+    "ref": "github://1352411536/governance/csg/v51/policies/20260929T215913+0800-EP75.json@b3812557ed86a732c0a8c4f51356b30435538a1f",
+    "revision": "20260929T215913+0800-EP75",
+    "declared_hash": "sha256:fb502b8d550ff62b34e005c06830cd04ed4e1606aa669a5d7542706b3774d16b",
+    "canonicalization_version": "HUMAN_TEXT_V1"
+  },
+  "controller_contract": "V51-R2-EXECUTION-POLICY-EP75",
+  "verifier_digest": null,
+  "lifecycle": "ACTIVE",
+  "owner": {
+    "principal_id": "CODEX_THREAD_01a0ed35-6063-7912-9872-7d4122a3b125",
+    "owner_generation": 1,
+    "scope": "V51-R2-01-COLD-START-CANONICAL-CONTINUITY",
+    "lease_until": "2026-09-29T14:45:22.000Z"
+  },
+  "run_ref": {
+    "kind": "EXTERNAL_IMMUTABLE",
+    "provider": "GitHub",
+    "repository_id_or_resource_id": "1352411536",
+    "revision": "b3812557ed86a732c0a8c4f51356b30435538a1f",
+    "path": "governance/csg/v51/runs/V51-R2-001/run-r2-01.json",
+    "digest": "sha256:5541749816eb771e2206927ab59c943c02ab3cd12a4ec4776866aaee070c1a52"
+  },
+  "task_id": "V51-R2-01-COLD-START-CANONICAL-CONTINUITY",
+  "attempt_id": "V51-R2-01-ATTEMPT-001",
+  "attempt_epoch": 1,
+  "atomic": {
+    "state": "PREPARED_NOT_DISPATCHED",
+    "unit_id": "V51-R2-01-COLD-START-CANONICAL-CONTINUITY",
+    "goal": "Establish fresh-session canonical continuity across the immutable R2 spec, Mission/Policy, run/task/attempt, and sole current pointer; continue preproduction work independent of exact local privilege lanes.",
+    "execution_fence": null
+  },
+  "last_accepted": {
+    "unit_id": "V51-R1-02-CHECKPOINT-RUN-COHERENCE",
+    "result": "PASS_PROVIDER_CONFIRMED",
+    "provider_ref": "refs/heads/v45/factory-control",
+    "provider_commit": "3a7f08a4ed1940b6666d4c61bef11b3a742773bc",
+    "readback_path": "governance/csg/v51/readbacks/R1-02-SAME-SOURCE-20260929T035735Z.json",
+    "readback_blob_oid": "39f24413430f18bc4580e0ffaa8434912ed42146"
+  },
+  "remote_wip": null,
+  "active_job_refs": [],
+  "unresolved_effect_refs": [],
+  "blockers": [
+    "R2_00_SAME_SOURCE_READBACK_PENDING"
+  ],
+  "last_verified_gate": {
+    "gate_id": "V51-R1-02-SAME-SOURCE-READBACK",
+    "verdict": "PASS_PROVIDER_CONFIRMED",
+    "provider_ref": "refs/heads/v45/factory-control",
+    "provider_commit": "3a7f08a4ed1940b6666d4c61bef11b3a742773bc",
+    "directory_commit": "38f4fc7cb2841e2318a97ff7a53e41b2ec07aef1"
+  },
+  "next_legal_transition": {
+    "action": "PERFORM_R2_00_SAME_SOURCE_PROVIDER_READBACK",
+    "unit_id": "V51-R2-00-AUTHORITY-REBASE",
+    "requires": [
+      "CP195 is the exact current pointer target",
+      "Mission/Policy/spec/run/contract/redacted host evidence are read from the same provider commit",
+      "Project Directory still resolves this exact control ref",
+      "PR #342 remains preserved without merge"
+    ],
+    "forbidden": [
+      "PRODUCTION",
+      "PAID_FALLBACK",
+      "WORKER_PROVIDER_WRITE_CREDENTIALS",
+      "FIFTH_FACTORY_MCP_PUBLIC_TOOL",
+      "ARBITRARY_SYSTEM_POWERSHELL",
+      "HOST_MUTATION",
+      "FORCE_UPDATE",
+      "UNKNOWN_EFFECT_REPLAY"
+    ]
+  },
+  "stop_requested": false,
+  "barrier": "ACTIVE_UNIT",
+  "evidence_refs": [
+    {
+      "kind": "EXTERNAL_IMMUTABLE",
+      "provider": "GitHub",
+      "repository_id_or_resource_id": "1352411536",
+      "revision": "b3812557ed86a732c0a8c4f51356b30435538a1f",
+      "path": "governance/csg/v51/specs/VNEXT5.1-R2-HUMAN-CURRENT-SPEC-20260929.md",
+      "digest": "sha256:b3b805f4dd5e88a2370c456c7f678c3264ca032090c957d69116512b563b589f"
+    },
+    {
+      "kind": "EXTERNAL_IMMUTABLE",
+      "provider": "GitHub",
+      "repository_id_or_resource_id": "1352411536",
+      "revision": "b3812557ed86a732c0a8c4f51356b30435538a1f",
+      "path": "governance/csg/v51/missions/20260929T215913+0800.json",
+      "digest": "sha256:d797f6deee8b792da0628308fa2a1dcbe034d332272eb3f496ffd43d9325245c"
+    },
+    {
+      "kind": "EXTERNAL_IMMUTABLE",
+      "provider": "GitHub",
+      "repository_id_or_resource_id": "1352411536",
+      "revision": "b3812557ed86a732c0a8c4f51356b30435538a1f",
+      "path": "governance/csg/v51/policies/20260929T215913+0800-EP75.json",
+      "digest": "sha256:adf83c382ce4ef00ee8c0b0e85a5917df1c7ed5d6e51a31fe5dea350ea370e38"
+    },
+    {
+      "kind": "EXTERNAL_IMMUTABLE",
+      "provider": "GitHub",
+      "repository_id_or_resource_id": "1352411536",
+      "revision": "b3812557ed86a732c0a8c4f51356b30435538a1f",
+      "path": "governance/csg/v51/runs/V51-R2-001/run-r2-01.json",
+      "digest": "sha256:5541749816eb771e2206927ab59c943c02ab3cd12a4ec4776866aaee070c1a52"
+    },
+    {
+      "kind": "EXTERNAL_IMMUTABLE",
+      "provider": "GitHub",
+      "repository_id_or_resource_id": "1352411536",
+      "revision": "b3812557ed86a732c0a8c4f51356b30435538a1f",
+      "path": "governance/csg/v51/runs/V51-R2-001/contract-r2-01.json",
+      "digest": "sha256:94dfdc9161ee586f294380e40a3fdd408575f4a1a37e95560e44d861e2826ee0"
+    },
+    {
+      "kind": "EXTERNAL_IMMUTABLE",
+      "provider": "GitHub",
+      "repository_id_or_resource_id": "1352411536",
+      "revision": "b3812557ed86a732c0a8c4f51356b30435538a1f",
+      "path": "governance/csg/v51/readbacks/R2-NATIVE-HOST-PRESTATE-20260929.json",
+      "digest": "sha256:624ae0ca7dfd3926c7bde584eba03c44fe9fff9092a2a15a19aa9b44cc32d07a"
+    }
+  ],
+  "recorded_at": "2026-09-29T14:15:22.000Z",
+  "payload_digest": "sha256:61daff1128f146749292ba02bf6fa6ae7c098537c60f1da4ff23cca9a50a2532"
+}
