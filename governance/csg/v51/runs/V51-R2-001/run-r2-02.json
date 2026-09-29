@@ -2,7 +2,7 @@
   "schema_version": "factory.run.v1",
   "run_id": "V51-R2-001",
   "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
-  "revision": 5,
+  "revision": 6,
   "command_id": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION",
   "contract_ref": "governance/csg/v51/runs/V51-R2-001/contract-r2-02-attempt-002.json",
   "state": "RUNNING",
@@ -10,12 +10,14 @@
   "active_task_id": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION",
   "attempt_id": "V51-R2-02-ATTEMPT-002",
   "attempt_epoch": 2,
-  "latest_checkpoint_ref": "governance/csg/checkpoints/000197.json",
+  "latest_checkpoint_ref": "governance/csg/checkpoints/000198.json",
   "unresolved_operation_ids": [],
   "stop_requested": false,
   "completed_stage_receipts": [
     "R2_00_SAME_SOURCE_READBACK_PASS",
-    "R2_01_POST_CP197_READBACK_PROVIDER_CONFIRMED_PR359"
+    "R2_01_POST_CP197_READBACK_PROVIDER_CONFIRMED_PR359",
+    "R2_02_CP198_POST_SELECTION_READBACK_PASS",
+    "R2_02_SOURCE_CORRECTION_EXACT_HEAD_PASS"
   ],
   "evidence_refs": [
     "governance/csg/v51/specs/VNEXT5.1-R2-HUMAN-CURRENT-SPEC-20260929.md",
@@ -24,7 +26,9 @@
     "governance/csg/v51/runs/V51-R2-001/contract-r2-02-attempt-002.json",
     "governance/csg/v51/readbacks/R2-01-POST-CP197-ATTEMPT-003-SAME-SOURCE-READBACK-20260930.json",
     "governance/csg/v51/readbacks/R2-01-NATIVE-HOST-OBSERVATION-ATTEMPT-003-20260930.json",
-    "governance/csg/v51/readbacks/R2-CARRY-FORWARD-CAPABILITY-GAPS-20260929.json"
+    "governance/csg/v51/readbacks/R2-CARRY-FORWARD-CAPABILITY-GAPS-20260929.json",
+    "governance/csg/v51/readbacks/R2-02-ATTEMPT-002-POST-CP198-SAME-SOURCE-READBACK-20260930.json",
+    "governance/csg/v51/readbacks/R2-02-SOURCE-CORRECTION-QUALIFICATION-READBACK-20260930.json"
   ],
   "remaining_attempts": 1,
   "execution_owner": {
@@ -33,5 +37,5 @@
     "scope": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION",
     "lease_until": "2026-09-29T18:44:11Z"
   },
-  "canonical_selection_status": "STAGED_NOT_SELECTED_BY_CP197"
+  "canonical_selection_status": "SELECTED_BY_CP198"
 }
