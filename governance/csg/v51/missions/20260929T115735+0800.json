@@ -1,0 +1,88 @@
+{
+  "record_type": "MISSION_REVISION",
+  "schema": "MISSION_CONTRACT_V2_RECOVERY_PUBLICATION",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "mission_revision_id": "20260929T115735+0800",
+  "effective_at": "2026-09-29T11:57:35+08:00",
+  "status": "FINALIZED",
+  "authorized_by": "HUMAN",
+  "authorization_gate": "VNEXT5.1-R1-CODEX-EXECUTION-PROMPT-20260929/USER-DIRECTIVE",
+  "supersedes": "20260929T113457+0800",
+  "change_reason": "R1-02 same-source readback passed at v45/factory-control 3a7f08a4ed1940b6666d4c61bef11b3a742773bc with Directory unchanged; advancing the single active task to R1-03 while preserving Human gates.",
+  "canonicalization_version": "HUMAN_TEXT_V1",
+  "mission_hash": "sha256:4262d5f0d3070d7f6e1e632ac176fd7850c9cbc460e8da31f981eea42f9b1c55",
+  "payload": {
+    "final_strategic_goal": "Deliver the human-approved VNEXT4.9 Factory Completion / Scale Closure / Bounded RSI pre-Production construction path on the existing Git/CSG single authority, closing all required partial, synthetic-only, deferred, and missing factory capabilities through live command-to-notification acceptance while retaining the human-authorized four-tool PTYSD Factory MCP including SYSTEM host_powershell.",
+    "success_criteria": "NO_REQUIRED_PARTIAL=true; NO_REQUIRED_SYNTHETIC_ONLY=true; NO_REQUIRED_DEFERRED=true; NO_REQUIRED_MISSING=true; REAL_N1=PASS; LIVE_REVIEW_REPAIR_INTEGRATION=PASS; PRODUCT_LEVEL_E2E=PASS; PROVIDER_PUBLICATION_READBACK=PASS; DELIVERY_NOTIFICATION=PASS; SESSION_INDEPENDENT=PASS; N2=PASS; MULTIPROJECT_SHADOW=PASS; BOUNDED_SCALE=PASS; DR_RESTORE=PASS; UNKNOWN_EFFECT_CAMPAIGN=PASS; WORKLOG_TELEMETRY=PASS; RSI_CANDIDATE_LOOP=PASS; ONE_CANONICAL_AUTHORITY=PASS; WORKER_PROVIDER_WRITE_CREDENTIALS=0; PAID_FALLBACK=0; FACTORY_MCP_PUBLIC_TOOLS=4; PRODUCTION_FINAL_APPROVAL=HUMAN_RESERVED",
+    "current_construction_spec": {
+      "id": "VNEXT5.1-R1",
+      "source_class": "EXACT_USER_PROVIDED_GOAL_OBJECTIVE",
+      "source_commit": "3bead6a1b0b2efe29c99bb6fbfe1dbc6fba43091",
+      "source_path": "governance/csg/candidates/v51-r1/VNEXT5.1-R1-HUMAN-CURRENT-SPEC-20260929.md",
+      "canonical_path": "governance/csg/v51/specs/VNEXT5.1-R1-HUMAN-CURRENT-SPEC-20260929.md",
+      "blob_oid": "6df4a189c84ff1e53ce4ba0a90ba39eb6334e59a",
+      "sha256": "sha256:29e8a4b8685afbbc8531e1a62dee0b5b072f6a28270f11bfbea9d9b6a5378bea",
+      "byte_length": 5779
+    },
+    "current_phase": "VNEXT5_1_R1_CONTROL_PLANE_RECOVERY",
+    "phase_acceptance": "R1_00_CURRENT_SPEC_IDENTITY=PASS; R1_01_MISSION_POLICY_REBASE=PASS; R1_02_RUN_CHECKPOINT_TASK_ATTEMPT_COHERENCE=PASS; R1_03_THROUGH_R1_09_PASS_BEFORE_ORDINARY_PRODUCT_WORK; PRODUCTION=false; PAID_FALLBACK=false; BUSINESS_PROJECT_AUTO_ADMISSION=false",
+    "active_unit": "V51-R1-03-FACTORY-READONLY-BOOTSTRAP-SURFACE",
+    "active_run_id": "V51-R1-001",
+    "active_task_id": "V51-R1-03-FACTORY-READONLY-BOOTSTRAP-SURFACE",
+    "active_attempt_id": "V51-R1-03-ATTEMPT-001",
+    "next_phase": "VNEXT5_1_R1_FACTORY_MCP_AND_CROSS_SESSION_ACCEPTANCE",
+    "next_business_event": "V51-R1-03-BOUNDED-READONLY-BOOTSTRAP",
+    "executor_routing": {
+      "substantial_or_long_running_work": "CODEX_PRIMARY",
+      "chatgpt_web_role": "CONTROL_REVIEW_SHORT_READBACK_HUMAN_INTERFACE",
+      "connector_exhaustion_required_before_codex": false,
+      "routine_per_session_reauthorization": false,
+      "one_execution_owner_per_mutable_atomic_scope": true,
+      "codex_mission_sovereignty": false
+    },
+    "authorization": {
+      "reversible_preproduction_persistent": true,
+      "production_allowed": false,
+      "production_final_authorization": "HUMAN_RESERVED",
+      "business_project_auto_admission": false,
+      "paid_fallback_allowed": false,
+      "worker_provider_write_credentials_allowed": false,
+      "new_paid_cost_allowed": false
+    },
+    "human_reserved_gates": [
+      "PRODUCTION_FINAL_AUTHORIZATION",
+      "NEW_PAID_COST_OR_SERVICE",
+      "LEGAL_CONTRACT_SIGNATURE_OR_IDENTITY",
+      "OAUTH_OR_MFA",
+      "MAJOR_IRREVERSIBLE_AUTHORITY_EXPANSION",
+      "UNRECONCILABLE_AMBIGUOUS_EXTERNAL_EFFECT"
+    ],
+    "factory_mcp": {
+      "public_tool_count": 4,
+      "bounded_read_only_diagnostics_required": true,
+      "read_only_diagnostics_require_host_mutation_fence": false,
+      "arbitrary_host_powershell_before_unique_trusted_caller": false,
+      "shared_network_service_sid_alone_is_unique": false,
+      "host_powershell_run_as_required": "NT AUTHORITY\\SYSTEM"
+    },
+    "cross_session_acceptance": [
+      "FRESH_SESSION_RESOLVES_CURRENT_SPEC_VNEXT5_1_R1_FROM_DIRECTORY_CONTROL_MISSION_POLICY",
+      "MISSION_POLICY_CHECKPOINT_RUN_TASK_ATTEMPT_IDENTITIES_AGREE",
+      "STALE_V50_R3_AND_R4_CONTINUATION_CANNOT_RESURRECT_AS_CURRENT",
+      "NO_MEMORY_OR_CHAT_HISTORY_REQUIRED",
+      "PRODUCTION_REMAINS_HUMAN_RESERVED"
+    ],
+    "forbidden_until_r1_complete": [
+      "PRODUCTION",
+      "PAID_FALLBACK",
+      "BUSINESS_PROJECT_AUTO_ADMISSION",
+      "BLIND_RETRY_OR_REDISPATCH_OF_UNKNOWN_EFFECT",
+      "OP025_REDISPATCH",
+      "FIFTH_FACTORY_MCP_PUBLIC_TOOL",
+      "UNRESTRICTED_SYSTEM_CALLER_WITHOUT_UNIQUE_OS_BOUNDARY",
+      "FORCE_UPDATE_OF_CANONICAL_HISTORY"
+    ],
+    "non_goals": "No Production authorization; no paid service; no business-project admission; no provider-write credential on workers; no fifth public MCP tool; no second canonical task/run store; no quota evasion; no Host mutation before R1-04/R1-06 prerequisites; no blind retry or redispatch of OP025 or any unknown effect."
+  },
+  "routing_authority": "HUMAN_CURRENT_SPEC_VNEXT5_1_R1"
+}
