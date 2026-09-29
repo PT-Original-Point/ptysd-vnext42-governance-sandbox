@@ -30,9 +30,9 @@ HUMAN_DIRECTIVE_TO_CANONICAL_PUBLICATION_GAP=true
 
 ## 1. R1 objective
 
-VNEXT5.1-R1 is not another narrative plan to be handed wholesale to an external agent.
+VNEXT5.1-R1 makes the current Human specification, Mission, Policy, active run identity, and live Factory MCP behavior converge so every fresh Session/AI obtains the same current state from the canonical backend without relying on Memory, chat history, recent files, or handoff summaries.
 
-Its purpose is to make the current Human specification, Mission, Policy, active run identity, and live Factory MCP behavior converge so every fresh Session/AI obtains the same current state from the canonical backend without relying on Memory, chat history, recent files, or handoff summaries.
+Execution routing is changed by Human authority in this revision: ChatGPT Web is no longer the primary long-running construction executor. Substantial, multi-step, stateful, or long-running construction SHOULD be delegated to Codex as the primary executor. ChatGPT Web is the short-lived control/review surface for Mission interpretation, bounded readback, auditing, exception handling, and Human interaction.
 
 ## 2. Required authority model
 
@@ -163,7 +163,7 @@ R1-05 TRANSPORT GUARD SIMPLIFICATION
 
 R1-06 LIVE FACTORY MCP INSTALL
 - Exact source blobs, immutable hashes, exact target prestate, operation-owned backup, bounded install, restart, same-source readback.
-- This is the principal local Windows last-mile unit and is the only part expected to require Codex/native local execution if Chat cannot directly execute it.
+- Codex is the primary long-running executor for this and other substantial implementation units. ChatGPT Web remains the control/review surface and performs only bounded actions that are materially faster or necessary for supervision.
 
 R1-07 CROSS-SESSION / COLD-START REGRESSION
 With Memory/chat-history assumptions removed, a fresh controller must resolve:
@@ -191,15 +191,32 @@ After Factory MCP R1 live acceptance:
 - distinguish real no-lead state from attribution/outbox/provider/reporting loss;
 - only then proceed to separate Production deployment/business gates.
 
-## 8. Codex boundary
+## 8. Executor routing — Codex primary for substantial work
 
-CHAT_CAN_DO => CHAT_MUST_DO.
+The former rule `CHAT_CAN_DO => CHAT_MUST_DO` is explicitly revoked for this Project.
 
-GitHub/control-plane/spec/PR/readback work stays with ChatGPT when connectors can execute and validate it.
+The former routing model "ChatGPT Web first, Codex only as last mile" is also revoked.
 
-Codex is not the owner of VNEXT5.1-R1. Codex is eligible only for the minimal local last mile that Chat cannot perform directly, primarily exact Windows runtime prestate/install/restart/canary work, and only under a current explicit Human opt-in for that exact scope.
+New routing contract:
 
-No old-session Codex permission is inherited.
+- `SUBSTANTIAL_OR_LONG_RUNNING_WORK => CODEX_PRIMARY`
+- `CHATGPT_WEB => CONTROL_REVIEW_SHORT_READBACK_HUMAN_INTERFACE`
+- ChatGPT Web MAY directly execute short, bounded, low-latency actions when doing so materially reduces coordination overhead, but it is not required to exhaust all connector capabilities before delegating.
+- Codex is the preferred executor for multi-step coding, repository construction, test/repair loops, long local filesystem work, sustained research-to-implementation loops, and other work where ChatGPT Web session interruption or context loss would materially degrade reliability.
+- A task MUST NOT be kept in ChatGPT Web merely because Chat technically has a connector that could execute it.
+- The routing decision optimizes continuity, durability, long-run reliability, and executor suitability rather than native-tool precedence.
+- Human authorization for the Project's already-authorized reversible pre-Production construction may be carried into Codex execution; routine executor routing does not require repeated per-Session Human opt-in.
+- Human-reserved gates remain Human-reserved: Mission/major strategic change, Production final authorization, new cost, legal/contract/signature/identity, OAuth/MFA, major irreversible authority expansion, and unreconcilable ambiguous external effects.
+- ChatGPT Web remains responsible for independent readback/audit of material Codex claims before promotion or closure.
+- Codex does not gain Mission sovereignty; it executes the Human Mission and current canonical policy.
+
+Routing anti-patterns that are now forbidden:
+
+- `DIRECT_NATIVE_CAPABILITY_PRECEDENCE` as a mandatory executor selector;
+- requiring Chat to complete all work it can technically perform before Codex may start;
+- `CODEX_LAST_MILE` as the only lawful Codex role;
+- treating Codex delegation itself as a capability-gap exception;
+- repeated Human approval solely because a new ChatGPT Web Session or Codex Session started.
 
 ## 9. R1 completion criteria
 
