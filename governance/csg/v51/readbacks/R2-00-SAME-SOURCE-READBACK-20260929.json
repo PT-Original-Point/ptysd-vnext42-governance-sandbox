@@ -1,0 +1,120 @@
+{
+  "schema": "vnext5.1-r2.same-source-readback.v1",
+  "readback_id": "R2-00-SAME-SOURCE-READBACK-20260929",
+  "result": "PASS",
+  "gate_id": "V51-R2-00-SAME-SOURCE-READBACK",
+  "observed_at_utc": "2026-09-29T14:19:35Z",
+  "source": {
+    "provider": "GitHub",
+    "repository_id": 1352411536,
+    "ref": "refs/heads/v45/factory-control",
+    "source_commit": "0dfdd859695a13b47eaad5d20095708bffa58bbc",
+    "parent_commit": "b3812557ed86a732c0a8c4f51356b30435538a1f"
+  },
+  "canonical": {
+    "pointer_path": "governance/csg/current.json",
+    "checkpoint_seq": 195,
+    "checkpoint_path": "governance/csg/checkpoints/000195.json",
+    "checkpoint_digest": "sha256:61daff1128f146749292ba02bf6fa6ae7c098537c60f1da4ff23cca9a50a2532",
+    "transition_id": "V51-R2-00-AUTHORITY-REBASE-195"
+  },
+  "authority": {
+    "specification": {
+      "path": "governance/csg/v51/specs/VNEXT5.1-R2-HUMAN-CURRENT-SPEC-20260929.md",
+      "blob_oid": "1dcd2d46a35bb3a580210ab4f0d29131587cc448",
+      "sha256": "sha256:b3b805f4dd5e88a2370c456c7f678c3264ca032090c957d69116512b563b589f",
+      "byte_length": 25222
+    },
+    "mission": {
+      "path": "governance/csg/v51/missions/20260929T215913+0800.json",
+      "revision": "20260929T215913+0800",
+      "declared_hash": "sha256:3ce38d0e29806dbc7cae58517d79b6a8ec6977a340e45cc689e56b4ff3c9f6c5",
+      "provider_blob_oid": "4303c17c40df6e99f08e483402893eb973252b62",
+      "raw_sha256": "sha256:d797f6deee8b792da0628308fa2a1dcbe034d332272eb3f496ffd43d9325245c"
+    },
+    "policy": {
+      "path": "governance/csg/v51/policies/20260929T215913+0800-EP75.json",
+      "revision": "20260929T215913+0800-EP75",
+      "declared_hash": "sha256:fb502b8d550ff62b34e005c06830cd04ed4e1606aa669a5d7542706b3774d16b",
+      "provider_blob_oid": "2b8a859752f70b7a7445b8011edc1b9993f8b719",
+      "raw_sha256": "sha256:adf83c382ce4ef00ee8c0b0e85a5917df1c7ed5d6e51a31fe5dea350ea370e38",
+      "hash_profile": "RFC8785_CANONICAL_JSON_PAYLOAD_SHA256_V1"
+    },
+    "run": {
+      "path": "governance/csg/v51/runs/V51-R2-001/run-r2-01.json",
+      "run_id": "V51-R2-001",
+      "revision": 1,
+      "provider_blob_oid": "28501da505b93be106ff6b665e5747f3ddf609c0",
+      "raw_sha256": "sha256:5541749816eb771e2206927ab59c943c02ab3cd12a4ec4776866aaee070c1a52"
+    },
+    "contract": {
+      "path": "governance/csg/v51/runs/V51-R2-001/contract-r2-01.json",
+      "contract_id": "V51-R2-CONTRACT-001-R2-01",
+      "provider_blob_oid": "cb89c7fd82a60576c7b3e8c1f77d74f3242d1997",
+      "raw_sha256": "sha256:94dfdc9161ee586f294380e40a3fdd408575f4a1a37e95560e44d861e2826ee0"
+    },
+    "host_prestate_summary": {
+      "path": "governance/csg/v51/readbacks/R2-NATIVE-HOST-PRESTATE-20260929.json",
+      "provider_blob_oid": "7c556a30ea5365ccb9f017488f94d6e85d0fe63c",
+      "raw_sha256": "sha256:624ae0ca7dfd3926c7bde584eba03c44fe9fff9092a2a15a19aa9b44cc32d07a",
+      "full_artifact_sha256": "sha256:44fbb470ad63cc6a93187f9d8db8e2286e138c4723b4dcb26014e84604a25bee"
+    }
+  },
+  "execution": {
+    "active_unit": "V51-R2-01-COLD-START-CANONICAL-CONTINUITY",
+    "run_id": "V51-R2-001",
+    "task_id": "V51-R2-01-COLD-START-CANONICAL-CONTINUITY",
+    "attempt_id": "V51-R2-01-ATTEMPT-001",
+    "attempt_epoch": 1,
+    "execution_owner": "CODEX_THREAD_01a0ed35-6063-7912-9872-7d4122a3b125",
+    "owner_generation": 1,
+    "active_job_refs": [],
+    "unresolved_effect_refs": [],
+    "stop_requested": false
+  },
+  "checks": {
+    "current_ref_exact": true,
+    "merge_is_direct_child": true,
+    "pointer_selects_cp195": true,
+    "cp_payload_digest_valid": true,
+    "cp195_pending": true,
+    "mission_policy_spec": true,
+    "aliases_exact": true,
+    "run_task_attempt": true,
+    "anchors_at_immutable_stage": true,
+    "evidence_refs_bind_exact_bytes": true,
+    "directory_unchanged": true,
+    "issue_latest_is_R2": true,
+    "pr342_preserved": true,
+    "pr344_merged": true,
+    "required_check": true,
+    "host_summary_redacted": true
+  },
+  "directory": {
+    "branch": "governance/project-directory",
+    "head": "38f4fc7cb2841e2318a97ff7a53e41b2ec07aef1",
+    "directory_revision": 5,
+    "binding_generation": 2,
+    "control_ref": "refs/heads/v45/factory-control",
+    "unchanged": true
+  },
+  "coordination": {
+    "issue310_latest_comment_id": 5891244125,
+    "issue310_request_id": "V51-R2-CODEX-LOCAL-NATIVE-EXECUTION-ROUTING-HOTFIX-20260929",
+    "pr342": {
+      "number": 342,
+      "state": "open",
+      "draft": true,
+      "head_sha": "068f423fa8315eceaf9885c87b1caf7906e69d7a",
+      "preserved": true
+    },
+    "cp195_pr": {
+      "number": 344,
+      "state": "closed",
+      "merged": true,
+      "merge_commit": "0dfdd859695a13b47eaad5d20095708bffa58bbc",
+      "required_check": "csg-trusted-verifier:success"
+    }
+  },
+  "limitation": "This record establishes exact provider readback only; it is not a semantic, live Host installation, or Production acceptance."
+}
