@@ -1,0 +1,250 @@
+{
+  "schema": "vnext5.1-r2.pre-cp198-stage-readback.v1",
+  "readback_id": "V51-R2-02-ATTEMPT-002-PRE-CP198-STAGE-READBACK-20260930",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "source_ref": "refs/heads/v45/factory-control",
+  "source_commit": "a2eb05b1dec3b6d0829c79cf118b4ec200b70fce",
+  "read_at_utc": "2026-09-29T16:47:18.000Z",
+  "verdict": "PASS_FOR_CP198_STAGE_PRECONDITION_ONLY",
+  "unit_completion_status": "R2_01_PASS_TRANSITION_PENDING_CP198",
+  "directory": {
+    "ref": "refs/heads/governance/project-directory",
+    "commit": "38f4fc7cb2841e2318a97ff7a53e41b2ec07aef1",
+    "project_record_path": "directory/projects/CHATGPT_GLOBAL_SKILL_GOVERNANCE.json",
+    "project_record_blob": "377dcf88279d3ba433d099a7cc9f78af8c86b8ae",
+    "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+    "binding_id": "CSG-GOVERNANCE-BINDING-V2",
+    "control_ref": "refs/heads/v45/factory-control",
+    "pointer_path": "governance/csg/current.json"
+  },
+  "canonical_prestate": {
+    "pointer_path": "governance/csg/current.json",
+    "pointer_blob": "46df45ce35eb8cb71345407825c4fbaf9f955537",
+    "checkpoint_seq": 197,
+    "checkpoint_path": "governance/csg/checkpoints/000197.json",
+    "checkpoint_blob": "a1331b39e381156c5bcbacf587db54e6592ecbff",
+    "checkpoint_digest": "sha256:5f7881bbd2e5e68831dc6890ec291e51d7733ba5c18963c627b41570acfbd1e4",
+    "checkpoint_digest_recomputed": "sha256:5f7881bbd2e5e68831dc6890ec291e51d7733ba5c18963c627b41570acfbd1e4",
+    "checkpoint_transition_id": "V51-R2-01-ATTEMPT-003-CANONICAL-SELECTION-197",
+    "active_unit": "V51-R2-01-COLD-START-CANONICAL-CONTINUITY",
+    "atomic_state": "PREPARED_NOT_DISPATCHED",
+    "owner": {
+      "principal_id": "CODEX_THREAD_01a0ed35-6063-7912-9872-7d4122a3b125",
+      "owner_generation": 4,
+      "scope": "V51-R2-01-COLD-START-CANONICAL-CONTINUITY",
+      "lease_until": "2026-09-29T18:06:22Z"
+    },
+    "attempt_id": "V51-R2-01-ATTEMPT-003",
+    "attempt_epoch": 3,
+    "active_job_refs": [],
+    "unresolved_effect_refs": [],
+    "blockers_at_read": [
+      "R2_01_POST_CP197_SAME_SOURCE_READBACK_PENDING"
+    ],
+    "canonical_mission": {
+      "revision": "20260930T000622+0800",
+      "hash": "sha256:ee27caaaf0237e88346b6a85d992f09e2320e4f38f8145969122446e42053fa1",
+      "blob": "ce5bfcbb05f8e1d89c8941be6c14cc5b72b43141",
+      "active_unit": "V51-R2-01-COLD-START-CANONICAL-CONTINUITY"
+    },
+    "canonical_policy": {
+      "revision": "20260930T000622+0800-EP78",
+      "hash": "sha256:f525c30c6d1b2359e165190a73ab300a7c73627a9839c605f0fa87c0b2b56c9c",
+      "blob": "cec5104b1c2a94d12e0c4a16ad2d6fd78f1c03d5",
+      "active_unit": "V51-R2-01-COLD-START-CANONICAL-CONTINUITY"
+    },
+    "staged_r2_02_selected_by_cp197": false
+  },
+  "r2_01_completion_evidence": {
+    "readback_path": "governance/csg/v51/readbacks/R2-01-POST-CP197-ATTEMPT-003-SAME-SOURCE-READBACK-20260930.json",
+    "readback_blob": "1ed26dde690e0e222b9c0571d6643fb31de23f12",
+    "readback_source_commit": "e0e2e7551919fa23c3ca914915234eb6a80417a9",
+    "verdict": "PASS_FOR_POST_SELECTION_CONTINUITY_ONLY",
+    "protected_readback_pr": {
+      "number": 359,
+      "head_sha": "e26266d7b60b340d5ae71d9cbaaf9e94fbcda8da",
+      "merge_commit": "fcdcf8771ce6eaa887bd761a5e9bc42e4a99c596",
+      "csg_trusted_verifier": "PASS_EXACT_HEAD",
+      "bounded_driver_acceptance": "SKIPPED"
+    },
+    "completion_checkpoint": "PENDING_CP198"
+  },
+  "staged_next_unit": {
+    "mission": {
+      "path": "governance/csg/v51/missions/20260930T004411+0800.json",
+      "blob": "4397208a41f82d57a6793d60a91ff6c47bf63206",
+      "revision": "20260930T004411+0800",
+      "declared_hash": "sha256:0a3f4a5861d66eafec71a40e78f757a092f6d9aed8aaf122f8f31ae590a1f764",
+      "recomputed_hash": "sha256:0a3f4a5861d66eafec71a40e78f757a092f6d9aed8aaf122f8f31ae590a1f764",
+      "active_unit": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION",
+      "active_attempt_id": "V51-R2-02-ATTEMPT-002",
+      "active_attempt_epoch": 2,
+      "pinned_by_cp197": false
+    },
+    "policy": {
+      "path": "governance/csg/v51/policies/20260930T004411+0800-EP79.json",
+      "blob": "0f9cd1ae025e2b07f13eb46c49ee87b31f525551",
+      "revision": "20260930T004411+0800-EP79",
+      "declared_hash": "sha256:9d9796994fb56e5b1a410bf135a254e097d944bc0631a24866efd2837af0d7df",
+      "recomputed_hash": "sha256:9d9796994fb56e5b1a410bf135a254e097d944bc0631a24866efd2837af0d7df",
+      "active_unit": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION",
+      "active_attempt_id": "V51-R2-02-ATTEMPT-002",
+      "owner_generation": 5,
+      "pinned_by_cp197": false
+    },
+    "contract": {
+      "path": "governance/csg/v51/runs/V51-R2-001/contract-r2-02-attempt-002.json",
+      "blob": "4d0b592346e42bcd74518ca312f229f11fe911ed",
+      "contract_id": "V51-R2-CONTRACT-002-R2-02-ATTEMPT-002",
+      "task_id": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION",
+      "run_id": "V51-R2-001",
+      "attempt_id": "V51-R2-02-ATTEMPT-002",
+      "attempt_epoch": 2,
+      "owner_generation": 5,
+      "owner_lease_until": "2026-09-29T18:44:11Z",
+      "prestate_checkpoint_seq": 197
+    },
+    "run": {
+      "path": "governance/csg/v51/runs/V51-R2-001/run-r2-02.json",
+      "blob": "089cd16ae07892386a8620da612b79d7cb5c92cc",
+      "revision": 5,
+      "state": "RUNNING",
+      "active_task_id": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION",
+      "attempt_id": "V51-R2-02-ATTEMPT-002",
+      "attempt_epoch": 2,
+      "owner": {
+        "principal_id": "CODEX_THREAD_01a0ed35-6063-7912-9872-7d4122a3b125",
+        "owner_generation": 5,
+        "scope": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION",
+        "lease_until": "2026-09-29T18:44:11Z"
+      },
+      "latest_checkpoint_ref": "governance/csg/checkpoints/000197.json",
+      "canonical_selection_status": "STAGED_NOT_SELECTED_BY_CP197",
+      "unresolved_operation_ids": [],
+      "wait_reason": "R2_02_AUTHORIZED_LIVE_EXECUTOR_OBSERVATION_REQUIRED_BEFORE_STALE_OWNER_CONFIRMATION_OR_HOST_DISPATCH"
+    }
+  },
+  "prior_owner_evidence": {
+    "cp194": {
+      "path": "governance/csg/checkpoints/000194.json",
+      "blob": "06df37454a4ccb4172ae19a1b6dd0de3bf49eec6",
+      "checkpoint_seq": 194,
+      "stale_owner": {
+        "principal_id": "CODEX_THREAD_01a0cb52-6d41-7b33-b92c-099639fa07e7",
+        "owner_generation": 2,
+        "scope": "V51-R1-03-FACTORY-READONLY-BOOTSTRAP-SURFACE",
+        "lease_until": "2026-09-29T08:12:07Z"
+      },
+      "active_job_refs": [],
+      "unresolved_effect_refs": [],
+      "run_ref": {
+        "kind": "EXTERNAL_IMMUTABLE",
+        "provider": "GitHub",
+        "repository_id_or_resource_id": "1352411536",
+        "revision": "52d2688eba4ffce4f496869eab7aa5d53dc1ddfd",
+        "path": "governance/csg/v51/runs/V51-R1-001/run-r1-03.json",
+        "digest": "sha256:0fdc8ffd935fbaebcbe27ff60a7d0b4f17f0bd6ea88359f61c9331bf4003f861"
+      }
+    },
+    "old_r1_thread": {
+      "thread_id": "01a0cb52-6d41-7b33-b92c-099639fa07e7",
+      "status": "notLoaded",
+      "updated_at_unix": 1790658182,
+      "last_turn_id": "01a0eb1c-9958-7642-be3b-f51e615cd20d",
+      "last_turn_status": "completed",
+      "sole_liveness_signal": false
+    },
+    "canonical_r2_01_run": {
+      "path": "governance/csg/v51/runs/V51-R2-001/run-r2-01.json",
+      "blob": "ccd5cff809655f3ce25b51ac8727bf27b1fdb6cb",
+      "run_id": "V51-R2-001",
+      "revision": 8,
+      "task_id": "V51-R2-01-COLD-START-CANONICAL-CONTINUITY",
+      "attempt_id": "V51-R2-01-ATTEMPT-003",
+      "attempt_epoch": 3,
+      "owner": {
+        "principal_id": "CODEX_THREAD_01a0ed35-6063-7912-9872-7d4122a3b125",
+        "owner_generation": 4,
+        "scope": "V51-R2-01-COLD-START-CANONICAL-CONTINUITY"
+      },
+      "unresolved_operation_ids": []
+    }
+  },
+  "local_host_observation": {
+    "path": "governance/csg/v51/readbacks/R2-01-NATIVE-HOST-OBSERVATION-ATTEMPT-003-20260930.json",
+    "blob": "b7858558d1bbd8f756785eb39c38e5f4fa4d2e06",
+    "raw_sha256": "sha256:4edd0088184528b2ee323ce6e4409affefe2aa2e049b8693021cbe9005035cdb",
+    "captured_at_utc": "2026-09-29T16:00:36.2420412Z",
+    "caller_class": "STANDARD_USER",
+    "administrator_integrity": false,
+    "get_vm": "ACCESS_DENIED",
+    "hostguard": "ACCESS_DENIED",
+    "supervisor_candidate_task": "DISABLED",
+    "authorized_bounded_privileged_route": "NOT_FOUND",
+    "factory_live_job_count": "UNAVAILABLE_NO_AUTHORIZED_READ_ROUTE",
+    "host_mutations_performed": false
+  },
+  "carry_forward_gaps": {
+    "path": "governance/csg/v51/readbacks/R2-CARRY-FORWARD-CAPABILITY-GAPS-20260929.json",
+    "blob": "8ff633253061299a8272f45e2c6d34e8b412997e",
+    "parked_lanes": [
+      {
+        "id": "HYPERV_VM_INVENTORY_READ",
+        "status": "ACCESS_DENIED",
+        "classification": "LOCAL_OS_PRIVILEGE_REQUIRED"
+      },
+      {
+        "id": "HOSTGUARD_JEA_READONLY_OBSERVATION",
+        "status": "ACCESS_DENIED",
+        "classification": "LOCAL_OS_PRIVILEGE_REQUIRED_OR_JEA_AUTHORIZATION_DEFECT"
+      },
+      {
+        "id": "FACTORY_MCP_PRIVILEGED_LIVE_REPAIR",
+        "status": "NOT_YET_ACCEPTED",
+        "classification": null
+      },
+      {
+        "id": "GITHUB_CANONICAL_PROTECTED_PATH",
+        "classification": null
+      }
+    ]
+  },
+  "lane_disposition": {
+    "R2_02_LIVE_EXECUTOR_OBSERVATION": "PARKED_NO_AUTHORIZED_BOUNDED_READ_ROUTE",
+    "STALE_OWNER_CONFIRMED": false,
+    "OWNER_REVOKE_OR_DISPATCH_PERFORMED": false,
+    "host_actions_dispatched": false,
+    "active_job_count_inferred_from_empty_refs": false
+  },
+  "stage_pr": {
+    "number": 360,
+    "head_sha": "0614913c32195ab664572e6e52290e6b9cfc2ab3",
+    "merge_commit": "a2eb05b1dec3b6d0829c79cf118b4ec200b70fce",
+    "csg_trusted_verifier": "PASS_EXACT_HEAD",
+    "check_run_id": 109514607591,
+    "bounded_driver_acceptance": "SKIPPED"
+  },
+  "safety": {
+    "production": false,
+    "paid_fallback": false,
+    "worker_provider_write_credentials": false,
+    "factory_mcp_public_tool_count": 4,
+    "force_update": false,
+    "blind_replay": false,
+    "host_mutations_performed": false
+  },
+  "verification": {
+    "control_branch_head_matches_source_commit": true,
+    "directory_branch_head_matches_recorded_commit": true,
+    "pointer_resolves_to_cp197": true,
+    "cp197_digest_verified": true,
+    "current_canonical_mission_policy_remain_ep78": true,
+    "staged_ep79_hashes_verified": true,
+    "r2_02_stage_identity_coherent": true,
+    "staged_attempt_not_selected_by_cp197": true,
+    "canonical_active_jobs_and_effects_empty": true,
+    "provider_live_job_count": "UNAVAILABLE_NO_AUTHORIZED_READ_ROUTE",
+    "latest_issue_310_comment_id": 5892287634
+  },
+  "next_legal_action": "After this pre-CP198 readback is merged and confirmed from its source head, prepare a forward-only CP198 transition that records R2-01 PASS from the merged post-selection readback and selects R2-02 attempt 002 / epoch 2 / owner generation 5 as PREPARED_NOT_DISPATCHED. Preserve the exact live-observation blocker and do not dispatch or confirm stale-owner takeover."
+}
