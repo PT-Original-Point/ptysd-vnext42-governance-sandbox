@@ -1,0 +1,136 @@
+{
+  "schema": "vnext5.1-r2.pre-cp197-same-source-readback.v1",
+  "readback_id": "V51-R2-01-PRE-CP197-ATTEMPT-003-SAME-SOURCE-READBACK-20260930",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "source_ref": "refs/heads/v45/factory-control",
+  "source_commit": "282610b976b07dc40f31424d27bc2aae8ab577eb",
+  "read_at_utc": "2026-09-29T16:17:18.000Z",
+  "verdict": "PASS_FOR_CP197_PRECONDITION_ONLY",
+  "directory": {
+    "ref": "refs/heads/governance/project-directory",
+    "commit": "38f4fc7cb2841e2318a97ff7a53e41b2ec07aef1",
+    "project_record_path": "directory/projects/CHATGPT_GLOBAL_SKILL_GOVERNANCE.json",
+    "project_record_blob": "377dcf88279d3ba433d099a7cc9f78af8c86b8ae",
+    "control_ref": "refs/heads/v45/factory-control",
+    "pointer_path": "governance/csg/current.json"
+  },
+  "canonical": {
+    "pointer_blob": "c2e3cb0d2a02efe44e59baac2d5aa7608f9ca32d",
+    "checkpoint_seq": 196,
+    "checkpoint_path": "governance/csg/checkpoints/000196.json",
+    "checkpoint_blob": "518b5ea6fa2e89b88814996ead065c4e82ae82ed",
+    "checkpoint_digest": "sha256:5821da1a1a3af00e6be79624ec3850873763ca1cf45ff1a1f55b486c1ac9285d",
+    "checkpoint_digest_recomputed": "sha256:5821da1a1a3af00e6be79624ec3850873763ca1cf45ff1a1f55b486c1ac9285d",
+    "canonical_mission_revision": "20260929T215913+0800",
+    "canonical_policy_revision": "20260929T215913+0800-EP75",
+    "active_unit": "V51-R2-01-COLD-START-CANONICAL-CONTINUITY",
+    "selected_attempt_id": "V51-R2-01-ATTEMPT-001",
+    "selected_attempt_epoch": 1,
+    "selected_owner_generation": 1,
+    "owner_lease_until": "2026-09-29T14:54:00.000Z",
+    "owner_lease_status": "EXPIRED",
+    "active_job_refs": [],
+    "unresolved_effect_refs": [],
+    "staged_attempt_003_selected_by_cp196": false,
+    "cp197_path_status": "NOT_PRESENT_ON_PROTECTED_REF"
+  },
+  "staged_attempt_003": {
+    "mission_revision": "20260930T000622+0800",
+    "mission_blob": "ce5bfcbb05f8e1d89c8941be6c14cc5b72b43141",
+    "mission_raw_sha256": "sha256:fce6d01f7aca5378566254f1f4583d855e496e1ab32fad7fa30b3a8443dafc4e",
+    "mission_declared_hash": "sha256:ee27caaaf0237e88346b6a85d992f09e2320e4f38f8145969122446e42053fa1",
+    "mission_hash_recomputed": "sha256:ee27caaaf0237e88346b6a85d992f09e2320e4f38f8145969122446e42053fa1",
+    "policy_revision": "20260930T000622+0800-EP78",
+    "policy_blob": "cec5104b1c2a94d12e0c4a16ad2d6fd78f1c03d5",
+    "policy_raw_sha256": "sha256:aac58a6a1cab0e879c729a7abe736735e8b239262b86e2476feb4f834b592b70",
+    "policy_declared_hash": "sha256:f525c30c6d1b2359e165190a73ab300a7c73627a9839c605f0fa87c0b2b56c9c",
+    "policy_hash_recomputed": "sha256:f525c30c6d1b2359e165190a73ab300a7c73627a9839c605f0fa87c0b2b56c9c",
+    "contract_path": "governance/csg/v51/runs/V51-R2-001/contract-r2-01-attempt-003.json",
+    "contract_blob": "624aed6e4d1fe3a940e0e2dfba33c358f3e23d66",
+    "run_path": "governance/csg/v51/runs/V51-R2-001/run-r2-01.json",
+    "run_blob": "ccd5cff809655f3ce25b51ac8727bf27b1fdb6cb",
+    "run_raw_sha256": "sha256:b52aa2021dc6f093a61d5d77f13a4cc424c9ffa9393768a372e1ccbb862f970e",
+    "run_revision": 8,
+    "run_state": "RUNNING",
+    "active_unit": "V51-R2-01-COLD-START-CANONICAL-CONTINUITY",
+    "attempt_id": "V51-R2-01-ATTEMPT-003",
+    "attempt_epoch": 3,
+    "owner_generation": 4,
+    "owner_lease_until": "2026-09-29T18:06:22Z",
+    "run_active_task_id": "V51-R2-01-COLD-START-CANONICAL-CONTINUITY",
+    "unresolved_operation_ids": [],
+    "canonical_selection_status": "STAGED_NOT_SELECTED_BY_CP196",
+    "host_observation_blob": "b7858558d1bbd8f756785eb39c38e5f4fa4d2e06",
+    "owner_reentry_readback_blob": "40b40692f2e5e2f10f604c1d990398c1da58f088",
+    "post_stage_readback_path": "governance/csg/v51/readbacks/R2-01-ATTEMPT-003-POST-STAGE-READBACK-20260930.json",
+    "post_stage_readback_blob": "d8f638e8a2e3f00e6e2e0667d8c0d34403521707",
+    "post_stage_readback_verdict": "PASS_FOR_STAGE_PUBLICATION_ONLY"
+  },
+  "previous_staged_attempt_002": {
+    "attempt_id": "V51-R2-01-ATTEMPT-002",
+    "attempt_epoch": 2,
+    "owner_generation": 3,
+    "owner_lease_until": "2026-09-29T15:53:01Z",
+    "selected_by_cp196": false,
+    "lease_status": "EXPIRED_BEFORE_SELECTION",
+    "run_revision": 6,
+    "unresolved_operation_ids": [],
+    "disposition": "SUPERSEDED_UNSELECTED_NO_JOB_NO_EFFECT",
+    "historical_checkpoint_pr": {
+      "number": 354,
+      "state": "CLOSED_UNMERGED",
+      "head_sha": "b2d05e01a0d38e68fa6bb7643087001012b49b21"
+    }
+  },
+  "native_host_observation": {
+    "observation_id": "V51-R2-01-NATIVE-HOST-OBSERVATION-ATTEMPT-003-20260930",
+    "source_class": "LOCAL_NATIVE_READ_ONLY",
+    "caller_class": "STANDARD_USER",
+    "administrator_integrity": false,
+    "get_vm": "ACCESS_DENIED",
+    "hostguard_readonly": "ACCESS_DENIED",
+    "candidate_supervisor_task_state": "DISABLED",
+    "authorized_bounded_privileged_route": "NOT_FOUND",
+    "factory_live_job_count": "UNAVAILABLE_NO_AUTHORIZED_READ_ROUTE",
+    "host_mutations_performed": false,
+    "raw_local_identity_paths_commands_logs_acl_identities_published": false,
+    "local_snapshot_sha256": "sha256:d3c95f48d91768d176ba5b7904741f5d34d2a0f624cf9cdaab4fe578ab922327"
+  },
+  "prior_stage_prs": [
+    {
+      "number": 355,
+      "head_sha": "a5673363baea8319f5a597514fd5e2022c5d4d8e",
+      "merge_commit": "921b5fd94cf8fbd0ba242f5439ef63ab90f69a7d",
+      "csg_trusted_verifier": "PASS",
+      "csg_job_id": 109499823343,
+      "bounded_driver_acceptance": "SKIPPED"
+    },
+    {
+      "number": 356,
+      "head_sha": "d7293b66cc0209def730641bd3cd2de86964a027",
+      "merge_commit": "282610b976b07dc40f31424d27bc2aae8ab577eb",
+      "csg_trusted_verifier": "PASS",
+      "csg_job_id": 109501922175,
+      "bounded_driver_acceptance": "SKIPPED"
+    }
+  ],
+  "latest_human_directive": {
+    "issue_number": 310,
+    "comment_id": 5892287634,
+    "active_unit_unchanged": true
+  },
+  "unchanged_pr342": {
+    "state": "OPEN_DRAFT",
+    "head_sha": "068f423fa8315eceaf9885c87b1caf7906e69d7a"
+  },
+  "safety": {
+    "production": false,
+    "paid_fallback": false,
+    "worker_provider_write_credentials": false,
+    "factory_mcp_public_tool_count": 4,
+    "host_mutations_performed": false,
+    "force_update": false,
+    "blind_replay": false
+  },
+  "next_legal_transition": "A separate forward-only CP197 transition may select attempt 003 / epoch 3 / owner generation 4 only while its lease remains fresh. Retain R2-01 as active and require exact same-source post-selection readback before any PASS."
+}
