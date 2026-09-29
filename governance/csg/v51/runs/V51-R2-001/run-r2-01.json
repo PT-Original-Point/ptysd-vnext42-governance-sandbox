@@ -2,31 +2,36 @@
   "schema_version": "factory.run.v1",
   "run_id": "V51-R2-001",
   "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
-  "revision": 3,
+  "revision": 5,
   "command_id": "V51-R2-01-COLD-START-CANONICAL-CONTINUITY",
-  "contract_ref": "governance/csg/v51/runs/V51-R2-001/contract-r2-01.json",
+  "contract_ref": "governance/csg/v51/runs/V51-R2-001/contract-r2-01-attempt-002.json",
   "state": "RUNNING",
-  "wait_reason": "R2_01_COLD_START_READBACK_AND_GAP_BINDING_PENDING",
+  "wait_reason": "R2_01_ATTEMPT_002_SAME_SOURCE_COLD_START_READBACK_PENDING",
   "active_task_id": "V51-R2-01-COLD-START-CANONICAL-CONTINUITY",
-  "attempt_id": "V51-R2-01-ATTEMPT-001",
-  "attempt_epoch": 1,
+  "attempt_id": "V51-R2-01-ATTEMPT-002",
+  "attempt_epoch": 2,
   "latest_checkpoint_ref": "governance/csg/checkpoints/000196.json",
   "unresolved_operation_ids": [],
   "stop_requested": false,
-  "completed_stage_receipts": [],
+  "completed_stage_receipts": [
+    "R2_00_SAME_SOURCE_READBACK_PASS"
+  ],
   "evidence_refs": [
     "governance/csg/v51/specs/VNEXT5.1-R2-HUMAN-CURRENT-SPEC-20260929.md",
-    "governance/csg/v51/missions/20260929T215913+0800.json",
-    "governance/csg/v51/policies/20260929T215913+0800-EP75.json",
-    "governance/csg/v51/readbacks/R2-NATIVE-HOST-PRESTATE-20260929.json",
-    "governance/csg/v51/readbacks/R2-01-HOST-OBSERVATION-20260929.json",
+    "governance/csg/v51/missions/20260929T232301+0800.json",
+    "governance/csg/v51/policies/20260929T232301+0800-EP77.json",
+    "governance/csg/v51/runs/V51-R2-001/contract-r2-01-attempt-002.json",
+    "governance/csg/v51/readbacks/R2-01-NATIVE-HOST-OBSERVATION-ATTEMPT-002-20260929.json",
+    "governance/csg/v51/readbacks/R2-01-OWNER-REENTRY-READBACK-20260929.json",
     "governance/csg/v51/readbacks/R2-CARRY-FORWARD-CAPABILITY-GAPS-20260929.json",
-    "governance/csg/v51/readbacks/R2-01-COLD-START-READBACK-20260929.json"
+    "governance/csg/v51/readbacks/R2-01-ATTEMPT-002-SUPERSESSION-READBACK-20260929.json",
+    "governance/csg/v51/readbacks/R2-00-SAME-SOURCE-READBACK-20260929.json",
+    "governance/csg/v51/readbacks/R2-01-POST-PUBLICATION-READBACK-20260929.json"
   ],
   "remaining_attempts": 1,
   "execution_owner": {
     "principal_id": "CODEX_THREAD_01a0ed35-6063-7912-9872-7d4122a3b125",
-    "owner_generation": 1,
+    "owner_generation": 3,
     "scope": "V51-R2-01-COLD-START-CANONICAL-CONTINUITY"
   }
 }

@@ -1,0 +1,71 @@
+{
+  "schema": "vnext5.1-r2.owner-reentry-readback.v1",
+  "record_id": "V51-R2-01-OWNER-REENTRY-READBACK-20260929",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "observed_at_utc": "2026-09-29T15:23:01.000Z",
+  "source_snapshot": {
+    "project_directory_commit": "38f4fc7cb2841e2318a97ff7a53e41b2ec07aef1",
+    "project_blob": "377dcf88279d3ba433d099a7cc9f78af8c86b8ae",
+    "canonical_ref": "refs/heads/v45/factory-control",
+    "canonical_head": "16152c0803ceee4c647ce791ab63880da4add32d",
+    "pointer_blob": "c2e3cb0d2a02efe44e59baac2d5aa7608f9ca32d",
+    "pointer_checkpoint_seq": 196,
+    "pointer_checkpoint_path": "governance/csg/checkpoints/000196.json",
+    "checkpoint_blob": "518b5ea6fa2e89b88814996ead065c4e82ae82ed",
+    "checkpoint_digest": "sha256:5821da1a1a3af00e6be79624ec3850873763ca1cf45ff1a1f55b486c1ac9285d",
+    "checkpoint_digest_recomputed": "sha256:5821da1a1a3af00e6be79624ec3850873763ca1cf45ff1a1f55b486c1ac9285d",
+    "issue_310_latest_human_comment_id": 5892287634
+  },
+  "current_unit": {
+    "unit_id": "V51-R2-01-COLD-START-CANONICAL-CONTINUITY",
+    "attempt_id": "V51-R2-01-ATTEMPT-001",
+    "attempt_epoch": 1,
+    "owner_principal": "CODEX_THREAD_01a0ed35-6063-7912-9872-7d4122a3b125",
+    "owner_generation": 1,
+    "owner_lease_until": "2026-09-29T14:54:00.000Z",
+    "owner_lease_status": "EXPIRED",
+    "active_job_refs": [],
+    "unresolved_effect_refs": [],
+    "execution_thread_status": "ACTIVE_CURRENT_RECOVERY_THREAD",
+    "thread_status_is_not_canonical_lease_extension": true
+  },
+  "decision": {
+    "disposition": "EXPIRED_OWNER_AUTHORITY_NO_JOB_NO_EFFECT",
+    "old_attempt_claim": "CLOSED_WITHOUT_PASS_OR_EXTERNAL_EFFECT",
+    "stale_ui_thread_claim": "NOT_DECLARED_DEAD",
+    "active_unit_change": "NONE",
+    "next_attempt_id": "V51-R2-01-ATTEMPT-002",
+    "next_attempt_epoch": 2,
+    "next_owner_generation": 3,
+    "next_owner_lease_until": "2026-09-29T15:53:01Z",
+    "canonical_selection_status": "PENDING_SEPARATE_PROTECTED_CHECKPOINT_TRANSITION",
+    "R2_01_status": "IN_PROGRESS_NOT_PASS"
+  },
+  "source_revision_mismatch": {
+    "current_checkpoint_run_anchor_revision": "aa5525601aec833ed9a4d19af1bc2fbe4859c722",
+    "current_checkpoint_run_anchor_digest": "sha256:e9697d9624af93d306b0495eccd9226a662271f094c2ac755a309921e52b1dee",
+    "current_branch_run_revision": 3,
+    "current_branch_run_sha256": "sha256:7b4f6e546b0d8859ecb2603f41d8f615e02c1d45ad1931573a13724075cde0b8",
+    "disposition": "CP196_ANCHORS_IMMUTABLE_RUN_AT_REVISION_2; BRANCH_HEAD_RUN_REVISION_3_IS_NOT_CURRENT_AUTHORITY; ATTEMPT_002_WILL_BE_SELECTED_ONLY_BY_CP197"
+  },
+  "references": {
+    "current_mission_revision": "20260929T215913+0800",
+    "current_policy_revision": "20260929T215913+0800-EP75",
+    "unselected_stage_mission_revision": "20260929T223724+0800",
+    "unselected_stage_policy_revision": "20260929T223724+0800-EP76",
+    "unselected_stage_unit": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION",
+    "unselected_stage_owner_generation": 3,
+    "stage_run_revision": 4,
+    "exact_host_summary_path": "governance/csg/v51/readbacks/R2-01-NATIVE-HOST-OBSERVATION-ATTEMPT-002-20260929.json",
+    "carry_forward_gaps_path": "governance/csg/v51/readbacks/R2-CARRY-FORWARD-CAPABILITY-GAPS-20260929.json"
+  },
+  "constraints": {
+    "host_mutations_performed": false,
+    "production": false,
+    "paid_fallback": false,
+    "worker_provider_write_credentials_allowed": false,
+    "factory_mcp_public_tool_count": 4,
+    "force_update": false,
+    "unknown_effect_replay": false
+  }
+}

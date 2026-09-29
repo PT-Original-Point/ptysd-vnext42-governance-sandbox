@@ -1,0 +1,43 @@
+{
+  "schema": "vnext5.1-r2.host-observation-summary.v1",
+  "observation_id": "V51-R2-01-NATIVE-HOST-OBSERVATION-ATTEMPT-002",
+  "captured_at_utc": "2026-09-29T15:17:19.3520200Z",
+  "source_class": "LOCAL_NATIVE_READ_ONLY",
+  "summary": {
+    "os": "Windows 11",
+    "build": "26200",
+    "caller_class": "STANDARD_USER",
+    "administrator_integrity": false,
+    "process_count": 376,
+    "service_count": 325,
+    "scheduled_task_count": 225,
+    "tcp_connection_count": 254,
+    "netstat_line_count": 326,
+    "hyperv_vm_inventory": {
+      "status": "ACCESS_DENIED",
+      "error_class": "VirtualizationException",
+      "vmms_service": "Running"
+    },
+    "hostguard_readonly": {
+      "status": "ERROR",
+      "error_class": "VirtualizationException"
+    },
+    "authorized_bounded_privileged_route": "NOT_FOUND",
+    "host_mutations_performed": false
+  },
+  "local_evidence": {
+    "current_snapshot_file": "host-readonly-snapshot-r2-attempt-002-20260929T151722Z.json",
+    "sha256": "sha256:e9bbbd141ab2b93b1ec3d14cea3e2d891cebeae987193d03242bad166f36b332",
+    "byte_length": 1089,
+    "prior_full_inventory_sha256": "sha256:36a4267556653afbd619f59ade2b10f4d90c0e7b6471e7b708bed826d11b96b5",
+    "privileged_route_discovery_sha256": "sha256:d584d1e257b829efa124db5e9f668bb2b3461d1408cd5d1167e0c4baa3bd3224",
+    "privileged_route_discovery_byte_length": 6206,
+    "raw_local_paths_command_lines_and_logs_published": false
+  },
+  "disposition": {
+    "HYPERV_VM_INVENTORY_READ": "PARKED_LOCAL_OS_PRIVILEGE_REQUIRED",
+    "HOSTGUARD_JEA_READONLY_OBSERVATION": "PARKED_NO_PASS",
+    "FACTORY_MCP_PRIVILEGED_LIVE_REPAIR": "NOT_YET_ACCEPTED",
+    "independent_canonical_and_source_work": "READY"
+  }
+}
