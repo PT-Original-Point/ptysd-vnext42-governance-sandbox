@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "based_on_fingerprint", "authority_sources_read", "authority_readback", "progress", "units", "next_single_action"],
+  "properties": {
+    "schema": { "const": "vnext5.autonomy-supervisor-readiness.v1" },
+    "based_on_fingerprint": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+    "authority_sources_read": { "const": true },
+    "authority_readback": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["project_directory_commit", "directory_active_ref_consistent", "control_head", "checkpoint_seq", "checkpoint_digest", "checkpoint_digest_matches_pointer", "checkpoint_task_id", "checkpoint_attempt_id", "checkpoint_attempt_epoch", "run_id", "run_task_id", "run_attempt_id", "run_attempt_epoch", "mission_revision", "mission_hash", "mission_anchor_matches", "execution_policy_revision", "execution_policy_hash", "policy_anchor_matches", "run_identity_matches_checkpoint", "accepted_source_head", "latest_issue_comment_id", "implementation_head", "implementation_tree"],
+      "properties": {
+        "project_directory_commit": { "type": "string", "minLength": 1 },
+        "directory_active_ref_consistent": { "type": "boolean" },
+        "control_head": { "type": "string", "minLength": 1 },
+        "checkpoint_seq": { "type": "integer", "minimum": 0 },
+        "checkpoint_digest": { "type": "string", "minLength": 1 },
+        "checkpoint_digest_matches_pointer": { "type": "boolean" },
+        "checkpoint_task_id": { "type": "string", "minLength": 1 },
+        "checkpoint_attempt_id": { "type": "string", "minLength": 1 },
+        "checkpoint_attempt_epoch": { "type": "integer", "minimum": 0 },
+        "run_id": { "type": "string", "minLength": 1 },
+        "run_task_id": { "type": "string", "minLength": 1 },
+        "run_attempt_id": { "type": "string", "minLength": 1 },
+        "run_attempt_epoch": { "type": "integer", "minimum": 0 },
+        "mission_revision": { "type": "string", "minLength": 1 },
+        "mission_hash": { "type": "string", "minLength": 1 },
+        "mission_anchor_matches": { "type": "boolean" },
+        "execution_policy_revision": { "type": "string", "minLength": 1 },
+        "execution_policy_hash": { "type": "string", "minLength": 1 },
+        "policy_anchor_matches": { "type": "boolean" },
+        "run_identity_matches_checkpoint": { "type": "boolean" },
+        "accepted_source_head": { "type": "string", "minLength": 1 },
+        "latest_issue_comment_id": { "type": "string", "minLength": 1 },
+        "implementation_head": { "type": "string", "minLength": 1 },
+        "implementation_tree": { "type": "string", "minLength": 1 }
+      }
+    },
+    "progress": { "enum": ["MATERIAL_DELTA", "NO_MATERIAL_DELTA", "WAITING_EXTERNAL", "WAITING_HUMAN"] },
+    "next_single_action": { "type": "string", "minLength": 1 },
+    "units": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "state", "priority", "retry_allowed"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "state": { "enum": ["READY", "RUNNING", "WAITING_EXTERNAL", "WAITING_HUMAN", "DONE", "FAILED_RETRYABLE", "FAILED_TERMINAL"] },
+          "priority": { "type": "integer" },
+          "retry_allowed": { "type": "boolean" }
+        }
+      }
+    }
+  }
+}

@@ -22,14 +22,24 @@ test('multiple RUNNING is an invariant violation',()=>{
 });
 
 test('same semantic fingerprint is order independent',()=>{
-  const a={project_id:'P',directory:{head:'d'},control:{head:'c'},checkpoint:{digest:'x'},run:{id:'r'},accepted_source:{head:'a'},mailbox:{id:1},factory:{orphan_count:5}};
-  const b={factory:{orphan_count:5},mailbox:{id:1},accepted_source:{head:'a'},run:{id:'r'},checkpoint:{digest:'x'},control:{head:'c'},directory:{head:'d'},project_id:'P'};
+  const a={project_id:'P',directory:{head:'d'},control:{head:'c'},checkpoint:{digest:'x'},run:{id:'r'},accepted_source:{head:'a'},mailbox:{id:1},factory:{orphan_count:5},runtime:{selected_path:'node.exe',selected_sha256:'n'},supervisor_source:{script:'s'},workspace:{head:'w'}};
+  const b={workspace:{head:'w'},supervisor_source:{script:'s'},runtime:{selected_path:'node.exe',selected_sha256:'n'},factory:{orphan_count:5},mailbox:{id:1},accepted_source:{head:'a'},run:{id:'r'},checkpoint:{digest:'x'},control:{head:'c'},directory:{head:'d'},project_id:'P'};
   assert.equal(durableFingerprint(a).digest,durableFingerprint(b).digest);
 });
 
 test('provider delta changes fingerprint',()=>{
-  const x={project_id:'P',directory:{head:'d'},control:{head:'c'},checkpoint:{digest:'x'},run:{id:'r'},accepted_source:{head:'a'},mailbox:{id:1},factory:{orphan_count:5}};
+  const x={project_id:'P',directory:{head:'d'},control:{head:'c'},checkpoint:{digest:'x'},run:{id:'r'},accepted_source:{head:'a'},mailbox:{id:1},factory:{orphan_count:5},runtime:{selected_path:'node.exe',selected_sha256:'n'},supervisor_source:{script:'s'},workspace:{head:'w'}};
   const y=structuredClone(x);y.mailbox.id=2;
   assert.notEqual(durableFingerprint(x).digest,durableFingerprint(y).digest);
+});
+
+test('supervisor and workspace source edits change the durable fingerprint',()=>{
+  const x={project_id:'P',directory:{head:'d'},control:{head:'c'},checkpoint:{digest:'x'},run:{id:'r'},accepted_source:{head:'a'},mailbox:{id:1},factory:{orphan_count:5},runtime:{selected_path:'node.exe',selected_sha256:'n'},supervisor_source:{script:'s'},workspace:{head:'w'}};
+  const supervisor=structuredClone(x);supervisor.supervisor_source.script='changed';
+  const workspace=structuredClone(x);workspace.workspace.head='changed';
+  const runtime=structuredClone(x);runtime.runtime.selected_path='other-node.exe';
+  assert.notEqual(durableFingerprint(x).digest,durableFingerprint(supervisor).digest);
+  assert.notEqual(durableFingerprint(x).digest,durableFingerprint(workspace).digest);
+  assert.notEqual(durableFingerprint(x).digest,durableFingerprint(runtime).digest);
 });
 
