@@ -1,0 +1,166 @@
+{
+  "schema": "vnext5.1-r2.owner-reentry-readback.v1",
+  "readback_id": "V51-R2-01-ATTEMPT-003-OWNER-REENTRY-READBACK-20260930",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "source_ref": "refs/heads/v45/factory-control",
+  "source_commit": "daa835250df686db6e1b75431548260f8dd971ae",
+  "read_at_utc": "2026-09-29T16:08:01.000Z",
+  "verdict": "PASS_FOR_PRESTAGE_REENTRY_ONLY",
+  "directory": {
+    "ref": "refs/heads/governance/project-directory",
+    "commit": "38f4fc7cb2841e2318a97ff7a53e41b2ec07aef1",
+    "project_record_path": "directory/projects/CHATGPT_GLOBAL_SKILL_GOVERNANCE.json",
+    "project_record_blob": "377dcf88279d3ba433d099a7cc9f78af8c86b8ae",
+    "control_ref": "refs/heads/v45/factory-control",
+    "pointer_path": "governance/csg/current.json"
+  },
+  "canonical": {
+    "pointer_blob": "c2e3cb0d2a02efe44e59baac2d5aa7608f9ca32d",
+    "checkpoint_seq": 196,
+    "checkpoint_path": "governance/csg/checkpoints/000196.json",
+    "checkpoint_blob": "518b5ea6fa2e89b88814996ead065c4e82ae82ed",
+    "checkpoint_digest": "sha256:5821da1a1a3af00e6be79624ec3850873763ca1cf45ff1a1f55b486c1ac9285d",
+    "checkpoint_digest_recomputed": "sha256:5821da1a1a3af00e6be79624ec3850873763ca1cf45ff1a1f55b486c1ac9285d",
+    "canonical_mission_revision": "20260929T215913+0800",
+    "canonical_policy_revision": "20260929T215913+0800-EP75",
+    "active_unit": "V51-R2-01-COLD-START-CANONICAL-CONTINUITY",
+    "selected_attempt_id": "V51-R2-01-ATTEMPT-001",
+    "selected_attempt_epoch": 1,
+    "selected_owner_generation": 1,
+    "owner_lease_until": "2026-09-29T14:54:00.000Z",
+    "owner_lease_status": "EXPIRED",
+    "active_job_refs": [],
+    "unresolved_effect_refs": []
+  },
+  "staged_attempt_002": {
+    "mission_revision": "20260929T232301+0800",
+    "mission_blob": "798e01943739178917529ca57d69859d77895719",
+    "policy_revision": "20260929T232301+0800-EP77",
+    "policy_blob": "be32fe374254f92f5c63a71a750aa8938410abeb",
+    "contract_blob": "8e145f1be98696d4db4c184025e46a06825bba3d",
+    "run_revision": 6,
+    "attempt_id": "V51-R2-01-ATTEMPT-002",
+    "attempt_epoch": 2,
+    "owner_generation": 3,
+    "owner_lease_until": "2026-09-29T15:53:01Z",
+    "selected_by_cp196": false,
+    "lease_status": "EXPIRED_BEFORE_SELECTION",
+    "unresolved_operation_ids": [],
+    "disposition": "SUPERSEDED_UNSELECTED_NO_JOB_NO_EFFECT"
+  },
+  "staged_attempt_003": {
+    "mission_revision": "20260930T000622+0800",
+    "mission_path": "governance/csg/v51/missions/20260930T000622+0800.json",
+    "mission_declared_hash": "sha256:ee27caaaf0237e88346b6a85d992f09e2320e4f38f8145969122446e42053fa1",
+    "policy_revision": "20260930T000622+0800-EP78",
+    "policy_path": "governance/csg/v51/policies/20260930T000622+0800-EP78.json",
+    "policy_declared_hash": "sha256:f525c30c6d1b2359e165190a73ab300a7c73627a9839c605f0fa87c0b2b56c9c",
+    "contract_path": "governance/csg/v51/runs/V51-R2-001/contract-r2-01-attempt-003.json",
+    "run_path": "governance/csg/v51/runs/V51-R2-001/run-r2-01.json",
+    "active_unit": "V51-R2-01-COLD-START-CANONICAL-CONTINUITY",
+    "attempt_id": "V51-R2-01-ATTEMPT-003",
+    "attempt_epoch": 3,
+    "owner_generation": 4,
+    "owner_lease_until": "2026-09-29T18:06:22Z",
+    "selected_by_cp196": false,
+    "artifacts": {
+      "mission": {
+        "path": "governance/csg/v51/missions/20260930T000622+0800.json",
+        "blob": "ce5bfcbb05f8e1d89c8941be6c14cc5b72b43141",
+        "raw_sha256": "sha256:fce6d01f7aca5378566254f1f4583d855e496e1ab32fad7fa30b3a8443dafc4e",
+        "byte_length": 7878
+      },
+      "policy": {
+        "path": "governance/csg/v51/policies/20260930T000622+0800-EP78.json",
+        "blob": "cec5104b1c2a94d12e0c4a16ad2d6fd78f1c03d5",
+        "raw_sha256": "sha256:aac58a6a1cab0e879c729a7abe736735e8b239262b86e2476feb4f834b592b70",
+        "byte_length": 9097
+      },
+      "contract": {
+        "path": "governance/csg/v51/runs/V51-R2-001/contract-r2-01-attempt-003.json",
+        "blob": "624aed6e4d1fe3a940e0e2dfba33c358f3e23d66",
+        "raw_sha256": "sha256:a9d00188ec2493556dcb9e9515d7af009620f54d87e5370cbd6a9974c791f8b2",
+        "byte_length": 5650
+      },
+      "run": {
+        "path": "governance/csg/v51/runs/V51-R2-001/run-r2-01.json",
+        "blob": "dbb683d04d10c90ed218cd645021a8250275ea66",
+        "raw_sha256": "sha256:bb1ec181cba8c8392833574bf50a144d8df9de5bba6c5a1bebecd5d89bab62e5",
+        "byte_length": 2372
+      },
+      "host_observation": {
+        "path": "governance/csg/v51/readbacks/R2-01-NATIVE-HOST-OBSERVATION-ATTEMPT-003-20260930.json",
+        "blob": "b7858558d1bbd8f756785eb39c38e5f4fa4d2e06",
+        "raw_sha256": "sha256:4edd0088184528b2ee323ce6e4409affefe2aa2e049b8693021cbe9005035cdb",
+        "byte_length": 1973
+      }
+    },
+    "mission_blob": "ce5bfcbb05f8e1d89c8941be6c14cc5b72b43141",
+    "policy_blob": "cec5104b1c2a94d12e0c4a16ad2d6fd78f1c03d5",
+    "contract_blob": "624aed6e4d1fe3a940e0e2dfba33c358f3e23d66",
+    "run_blob": "dbb683d04d10c90ed218cd645021a8250275ea66",
+    "host_observation_blob": "b7858558d1bbd8f756785eb39c38e5f4fa4d2e06"
+  },
+  "local_observation": {
+    "observation_id": "V51-R2-01-NATIVE-HOST-OBSERVATION-ATTEMPT-003-20260930",
+    "artifact_id": "host-discovery-attempt003-20260929T160032Z.json",
+    "sha256": "sha256:d3c95f48d91768d176ba5b7904741f5d34d2a0f624cf9cdaab4fe578ab922327",
+    "host_mutations_performed": false
+  },
+  "latest_human_directive": {
+    "issue_number": 310,
+    "comment_id": 5892287634,
+    "active_unit_unchanged": true,
+    "latest_comment_id": 5892287634
+  },
+  "safe_next_action": "Publish attempt 003 as a noncanonical protected stage from the exact source base; require exact-head csg-trusted-verifier and then a fresh post-stage same-source readback before any CP197 transition.",
+  "prior_invalid_checkpoint_candidate": {
+    "pr_number": 354,
+    "head_sha": "b2d05e01a0d38e68fa6bb7643087001012b49b21",
+    "state": "CLOSED_UNMERGED",
+    "reason": "Attempt 002 owner lease expired before PR creation/selection; historical candidate is not canonical."
+  },
+  "fresh_provider_readback": {
+    "source_ref": "refs/heads/v45/factory-control",
+    "source_commit": "daa835250df686db6e1b75431548260f8dd971ae",
+    "directory_ref": "refs/heads/governance/project-directory",
+    "directory_commit": "38f4fc7cb2841e2318a97ff7a53e41b2ec07aef1",
+    "pointer_blob": "c2e3cb0d2a02efe44e59baac2d5aa7608f9ca32d",
+    "checkpoint_blob": "518b5ea6fa2e89b88814996ead065c4e82ae82ed",
+    "attempt_002_blobs": {
+      "mission": "798e01943739178917529ca57d69859d77895719",
+      "policy": "be32fe374254f92f5c63a71a750aa8938410abeb",
+      "contract": "8e145f1be98696d4db4c184025e46a06825bba3d",
+      "run": "d7e8dae9a717060a39cd484a20c020fff36f793e"
+    },
+    "issue_310_latest_comment_id": 5892287634,
+    "pr_342": {
+      "state": "open",
+      "draft": true,
+      "head_sha": "068f423fa8315eceaf9885c87b1caf7906e69d7a",
+      "base_sha": "6d33958484bbe1dfbb611127f37d49d00439fc2f"
+    },
+    "pr_354": {
+      "state": "closed",
+      "merged": false,
+      "head_sha": "b2d05e01a0d38e68fa6bb7643087001012b49b21",
+      "base_sha": "daa835250df686db6e1b75431548260f8dd971ae"
+    }
+  },
+  "current_spec": {
+    "id": "VNEXT5.1-R2",
+    "path": "governance/csg/v51/specs/VNEXT5.1-R2-HUMAN-CURRENT-SPEC-20260929.md",
+    "blob": "1dcd2d46a35bb3a580210ab4f0d29131587cc448",
+    "sha256": "sha256:b3b805f4dd5e88a2370c456c7f678c3264ca032090c957d69116512b563b589f",
+    "byte_length": 25222
+  },
+  "current_mission_policy": {
+    "canonical_mission_revision": "20260929T215913+0800",
+    "canonical_policy_revision": "20260929T215913+0800-EP75",
+    "staged_attempt_002_mission_blob": "798e01943739178917529ca57d69859d77895719",
+    "staged_attempt_002_policy_blob": "be32fe374254f92f5c63a71a750aa8938410abeb",
+    "staged_attempt_002_contract_blob": "8e145f1be98696d4db4c184025e46a06825bba3d",
+    "staged_attempt_002_run_blob": "d7e8dae9a717060a39cd484a20c020fff36f793e",
+    "staged_attempt_002_run_revision": 6
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "schema": "vnext5.1-r2.host-observation-summary.v1",
+  "observation_id": "V51-R2-01-NATIVE-HOST-OBSERVATION-ATTEMPT-003-20260930",
+  "captured_at_utc": "2026-09-29T16:00:36.2420412Z",
+  "source_class": "LOCAL_NATIVE_READ_ONLY",
+  "summary": {
+    "os": "Windows 11",
+    "caller_class": "STANDARD_USER",
+    "administrator_integrity": false,
+    "process_count": 362,
+    "relevant_service_count": 13,
+    "relevant_scheduled_task_count": 4,
+    "tcp_connection_count": 230,
+    "netstat_line_count": 500,
+    "hyperv_vm_inventory": {
+      "status": "ACCESS_DENIED",
+      "error_class": "LOCAL_OS_PRIVILEGE_REQUIRED",
+      "vmms_service": "RUNNING"
+    },
+    "hostguard_readonly": {
+      "status": "ACCESS_DENIED",
+      "error_class": "LOCAL_OS_PRIVILEGE_REQUIRED_OR_JEA_AUTHORIZATION_DEFECT"
+    },
+    "protected_programdata_tree": {
+      "root_found": true,
+      "bounded_metadata_listing": true,
+      "protected_child_hash_or_acl_denials": true
+    },
+    "candidate_supervisor_task_state": "DISABLED",
+    "codex_automation_payloads_found_in_checked_local_folders": 0,
+    "authorized_bounded_privileged_route": "NOT_FOUND",
+    "factory_live_job_count": "UNAVAILABLE_NO_AUTHORIZED_READ_ROUTE",
+    "host_mutations_performed": false
+  },
+  "local_evidence": {
+    "artifact_id": "host-discovery-attempt003-20260929T160032Z.json",
+    "sha256": "sha256:d3c95f48d91768d176ba5b7904741f5d34d2a0f624cf9cdaab4fe578ab922327",
+    "byte_length": 381276,
+    "raw_local_paths_command_lines_logs_and_acl_identities_published": false
+  },
+  "disposition": {
+    "HYPERV_VM_INVENTORY_READ": "PARKED_LOCAL_OS_PRIVILEGE_REQUIRED",
+    "HOSTGUARD_JEA_READONLY_OBSERVATION": "PARKED_LOCAL_OS_PRIVILEGE_REQUIRED_OR_JEA_AUTHORIZATION_DEFECT",
+    "PROGRAMDATA_PROTECTED_CHILD_INSPECTION": "PARKED_ACCESS_DENIED_CHILDREN_ONLY",
+    "R2_FACTORY_MCP_LIVE_INSTALL": "PARKED_AWAITING_AUTHORIZED_SYSTEM_OR_ADMIN_ROUTE",
+    "independent_canonical_and_source_work": "READY"
+  }
+}

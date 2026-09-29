@@ -1,0 +1,80 @@
+{
+  "schema_version": "factory.contract.v1",
+  "contract_id": "V51-R2-CONTRACT-003-R2-01-ATTEMPT-003",
+  "task_id": "V51-R2-01-COLD-START-CANONICAL-CONTINUITY",
+  "run_id": "V51-R2-001",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "goal": "Recover the still-active R2-01 cold-start continuity unit under attempt 003 after CP196's canonical attempt 001 owner lease expired and staged attempt 002 expired before canonical selection, preserving exact provider identity, fresh local observation, and Issue 310 carry-forward gaps.",
+  "current_spec": {
+    "id": "VNEXT5.1-R2",
+    "source_class": "EXACT_HUMAN_PROVIDED_CONSTRUCTION_SPEC_ATTACHMENT",
+    "source_commit": null,
+    "source_path": "VNEXT5.1-R2-FULL-CONSTRUCTION-SPEC-20260929.md",
+    "canonical_path": "governance/csg/v51/specs/VNEXT5.1-R2-HUMAN-CURRENT-SPEC-20260929.md",
+    "blob_oid": "1dcd2d46a35bb3a580210ab4f0d29131587cc448",
+    "sha256": "sha256:b3b805f4dd5e88a2370c456c7f678c3264ca032090c957d69116512b563b589f",
+    "byte_length": 25222
+  },
+  "include": [
+    "fresh exact Project Directory/current pointer/CP196/Mission/Policy/run/task/attempt/owner/evidence and latest Issue 310 directive",
+    "explicit expiry of CP196 attempt 001 owner authority without inferring that the live Codex thread is dead",
+    "explicit supersession of staged attempt 002 / epoch 2 / owner generation 3 after its lease expired before canonical selection, with no active job/effect",
+    "fresh bounded native host snapshot and carry-forward of privilege-dependent gaps",
+    "protected re-entry to attempt 003 / epoch 3 / owner generation 4 while retaining R2-01 as the sole active unit"
+  ],
+  "exclude": [
+    "Host/process/service/task/registry/broker/receipt mutation",
+    "Production, paid service/fallback, business-project admission, or worker provider-write credentials",
+    "arbitrary SYSTEM PowerShell, a fifth Factory MCP public tool, or bare-host normal product coding",
+    "blind retry/replay of unknown effects, force update, or direct canonical ref write"
+  ],
+  "affected_surfaces": [
+    "governance/csg/current.json",
+    "governance/csg/checkpoints",
+    "governance/csg/v51/specs",
+    "governance/csg/v51/missions",
+    "governance/csg/v51/policies",
+    "governance/csg/v51/runs/V51-R2-001",
+    "governance/csg/v51/readbacks"
+  ],
+  "requirements": [
+    "Project Directory commit 38f4fc7cb2841e2318a97ff7a53e41b2ec07aef1 resolves repository 1352411536 / refs/heads/v45/factory-control / governance/csg/current.json",
+    "current pointer blob c2e3cb0d2a02efe44e59baac2d5aa7608f9ca32d selects CP196 path governance/csg/checkpoints/000196.json and digest sha256:5821da1a1a3af00e6be79624ec3850873763ca1cf45ff1a1f55b486c1ac9285d",
+    "CP196 digest recomputes; canonical attempt 001 owner lease 2026-09-29T14:54:00.000Z is expired and active_job_refs=[] and unresolved_effect_refs=[]",
+    "attempt 002 / epoch 2 / generation 3 remained unselected by CP196 and its 2026-09-29T15:53:01Z lease expired before selection; run revision 6 unresolved_operation_ids=[]; do not treat the live UI thread as durable job evidence",
+    "fresh local-only native snapshot records standard-user access, Get-VM and Get-PTYSDHostGuardStatus ACCESS_DENIED, protected ProgramData ACL limits, disabled candidate Supervisor task, and no authorized bounded privileged route",
+    "Issue 310 comment 5892287634 is the latest Human carry-forward directive and retains R2-01 as the active unit",
+    "EP76/R2-02 remains an explicitly superseded unselected stage; EP77/attempt 002 is an expired unselected stage and must not be promoted",
+    "attempt V51-R2-01-ATTEMPT-003 / epoch 3 / owner generation 4 is selected only by a protected forward-only checkpoint transition with a fresh lease",
+    "no R2-01 PASS until a fresh exact same-source post-selection readback validates Directory and pointer/checkpoint/Mission/Policy/run/task/attempt/owner/evidence"
+  ],
+  "acceptance": [
+    "attempt-003 stage PR is based on fresh current base daa835250df686db6e1b75431548260f8dd971ae and does not change current.json or checkpoint 000196",
+    "csg-trusted-verifier passes on the exact stage head; bounded live acceptance remains skipped",
+    "post-stage same-source readback confirms Directory and CP196 unchanged, exact EP78 Mission/Policy/run/contract identity, and attempt 003 remains staged only",
+    "a separate forward-only CP197 transition may select attempt 003 while retaining R2-01; do not claim R2-01 PASS before fresh post-selection continuity readback",
+    "Production=false, paid_fallback=false, worker_provider_write_credentials=false, Factory MCP public tool count=4"
+  ],
+  "dependencies": [
+    "R2-00 same-source readback PASS at CP196",
+    "fresh provider and local native observations for this attempt",
+    "latest Issue 310 directive remains non-blocking and does not change active unit"
+  ],
+  "risk": "PREPRODUCTION_CANONICAL_REENTRY_WITH_EXPIRED_OWNER_AUTHORITY_AND_FORWARD_ONLY_READBACK",
+  "allowed_tools": [
+    "local native read-only host discovery",
+    "GitHub exact-read/content/ref APIs",
+    "bounded local JSON and digest validation"
+  ],
+  "allowed_effects": [
+    "append immutable recovery/evidence records by protected forward-only PR; separately reviewed canonical checkpoint may select new attempt"
+  ],
+  "max_attempts": 1,
+  "time_budget_policy": "ONE_ACTIVE_ATOMIC_OWNER_FORWARD_ONLY_CONTROL_TRANSITIONS",
+  "expected_parent": "daa835250df686db6e1b75431548260f8dd971ae",
+  "prestate_checkpoint_seq": 196,
+  "attempt_id": "V51-R2-01-ATTEMPT-003",
+  "attempt_epoch": 3,
+  "owner_generation": 4,
+  "owner_lease_until": "2026-09-29T18:06:22Z"
+}
