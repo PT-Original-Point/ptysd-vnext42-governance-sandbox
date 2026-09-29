@@ -1,0 +1,29 @@
+{
+  "schema": "vnext5.1-r2.unselected-stage-supersession.v1",
+  "record_id": "V51-R2-01-ATTEMPT-002-SUPERSESSION-READBACK-20260929",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "captured_at_utc": "2026-09-29T15:23:01.000Z",
+  "source_stage_commit": "2222ca856c10977c6b09fe2581da91a988f1b7e6",
+  "current_canonical_checkpoint": 196,
+  "current_canonical_active_unit": "V51-R2-01-COLD-START-CANONICAL-CONTINUITY",
+  "unselected_stage": {
+    "mission_path": "governance/csg/v51/missions/20260929T223724+0800.json",
+    "mission_blob": "5315118060fdf2d0f101d39d469e8b2cd3cc8f2e",
+    "mission_revision_id": "20260929T223724+0800",
+    "policy_path": "governance/csg/v51/policies/20260929T223724+0800-EP76.json",
+    "policy_blob": "4520eee695d2196fd8431a2e391641add3d879e9",
+    "policy_revision_id": "20260929T223724+0800-EP76",
+    "run_path": "governance/csg/v51/runs/V51-R2-001/run-r2-02.json",
+    "run_blob": "5ab2dab587209cacef16e89a3f252a86c5feec49",
+    "run_revision": 4,
+    "active_unit": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION",
+    "owner_generation": 3,
+    "selected_by_cp196": false
+  },
+  "disposition": {
+    "status": "SUPERSEDED_UNSELECTED_STAGE",
+    "reason": "R2-02 was staged ahead of R2-01 lease reconciliation and must not become canonical from file presence alone. CP196 remains authoritative at R2-01 / attempt 001. New bundle keeps R2-01 active under attempt 002 / generation 3. After R2-01 closes, R2-02 must be regenerated as a successor with owner generation 4.",
+    "old_attempt_or_job_dispatched": false,
+    "active_unit_change": false
+  }
+}

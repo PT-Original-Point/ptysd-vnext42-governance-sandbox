@@ -13,7 +13,17 @@
     "checkpoint_seq": 196,
     "checkpoint_digest": "sha256:5821da1a1a3af00e6be79624ec3850873763ca1cf45ff1a1f55b486c1ac9285d",
     "active_unit": "V51-R2-01-COLD-START-CANONICAL-CONTINUITY",
-    "active_unit_change_authorized": false
+    "active_unit_change_authorized": false,
+    "owner": {
+      "principal_id": "CODEX_THREAD_01a0ed35-6063-7912-9872-7d4122a3b125",
+      "owner_generation": 1,
+      "lease_until": "2026-09-29T14:54:00.000Z",
+      "lease_status": "EXPIRED"
+    },
+    "attempt_id": "V51-R2-01-ATTEMPT-001",
+    "attempt_epoch": 1,
+    "active_job_refs": [],
+    "unresolved_effect_refs": []
   },
   "purpose": "Persist exact unresolved local-host capability gaps across session changes; current canonical authority remains decisive if a newer checkpoint supersedes this record.",
   "gaps": [
@@ -30,13 +40,11 @@
       ],
       "acceptance": "Supervisor or authorized bounded route reads required Hyper-V worker state after a fresh boot/session without granting arbitrary admin shell.",
       "latest_local_probe": {
-        "status": "ERROR",
-        "error_class_chain": [
-          "VirtualizationException",
-          "ServerConnectionException",
-          "CimException"
-        ],
-        "vmms_service_state": "RUNNING",
+        "status": "ACCESS_DENIED",
+        "error_class": "VirtualizationException",
+        "error_category": "NotSpecified",
+        "vmms_service_state": "Running",
+        "observed_at_utc": "2026-09-29T15:17:19.3520200Z",
         "closed": false
       }
     },
@@ -53,11 +61,8 @@
       "acceptance": "Bounded read-only Host/Factory observation succeeds for the intended executor identity without arbitrary SYSTEM PowerShell or Host mutation.",
       "latest_local_probe": {
         "status": "ERROR",
-        "error_class_chain": [
-          "VirtualizationException",
-          "ServerConnectionException",
-          "CimException"
-        ],
+        "error_class": "VirtualizationException",
+        "observed_at_utc": "2026-09-29T15:17:19.3520200Z",
         "closed": false
       }
     },
@@ -109,13 +114,16 @@
     "paid_fallback": false
   },
   "latest_local_observation": {
-    "observed_at_utc": "2026-09-29T14:48:22.6376799Z",
-    "redacted_summary_path": "governance/csg/v51/readbacks/R2-01-HOST-OBSERVATION-20260929.json",
-    "redacted_summary_sha256": "sha256:c9f93bf6c72889f61c43df18490df35a1e3da43105d7cae18c39ad515ed8300a",
-    "local_full_artifact_name": "host-prestate-20260929-R2-NATIVE-REV2-FINAL.json",
-    "local_full_artifact_sha256": "sha256:2aa0da4e35598b977c0eb7cd500994b75b28188326e53ec36ce22b1dc7897d83",
-    "local_full_artifact_byte_length": 35897,
+    "observed_at_utc": "2026-09-29T15:17:19.3520200Z",
+    "redacted_summary_path": "governance/csg/v51/readbacks/R2-01-NATIVE-HOST-OBSERVATION-ATTEMPT-002-20260929.json",
+    "redacted_summary_sha256": "sha256:7e4505d466731881cef93746cb406eda0a127d57bb6e3c852d61e25fd3e98f72",
+    "local_full_artifact_name": "host-readonly-snapshot-r2-attempt-002-20260929T151722Z.json",
+    "local_full_artifact_sha256": "sha256:e9bbbd141ab2b93b1ec3d14cea3e2d891cebeae987193d03242bad166f36b332",
+    "local_full_artifact_byte_length": 1089,
+    "prior_full_inventory_sha256": "sha256:36a4267556653afbd619f59ade2b10f4d90c0e7b6471e7b708bed826d11b96b5",
+    "privileged_route_discovery_sha256": "sha256:d584d1e257b829efa124db5e9f668bb2b3461d1408cd5d1167e0c4baa3bd3224",
     "provider_source_checkpoint": "CP196",
-    "reconciliation": "Carry all four Issue #310 gaps forward; current local probes did not produce acceptance PASS for any parked lane."
+    "provider_source_commit": "16152c0803ceee4c647ce791ab63880da4add32d",
+    "reconciliation": "Preserve all Issue 310 gaps. CP196 owner lease expired with no active jobs or unresolved effects. Keep R2-01 active; stage attempt 002 / owner generation 3 for separate protected checkpoint selection. Hyper-V and HostGuard lanes remain unresolved; no authorized bounded privileged route was found."
   }
 }
