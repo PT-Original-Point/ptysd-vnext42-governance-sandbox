@@ -16,9 +16,9 @@
   },
   "immutable_spec": {
     "repository_id": 1352411536,
-    "commit": "7c3f19113b4aa28449d4b3eaebffd56f6084c3e8",
+    "commit": "3059ece3601180e4e57a3d729f0aaa48248a53c4",
     "path": "governance/v51/VNEXT5.1-R1-CANONICAL-RECOVERY-SPEC-20260929.md",
-    "blob_oid": "9acfe1ca134a5b71967df1f40ccd376e5e6c33c3",
+    "blob_oid": "39c496ab211c744cf3cf71e4b2d15d3ee866b0be",
     "pull_request": 334
   },
   "defect_classification": [
