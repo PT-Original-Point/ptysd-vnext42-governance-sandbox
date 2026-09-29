@@ -1,0 +1,120 @@
+{
+  "schema": "vnext5.1-r2.post-publication-readback.v1",
+  "evidence_class": "SAME_SOURCE_PROVIDER_READBACK_AND_OWNER_RECONCILIATION",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "observed_at_utc": "2026-09-29T14:58:30Z",
+  "source_snapshot": {
+    "canonical_ref": "refs/heads/v45/factory-control",
+    "canonical_head": "2222ca856c10977c6b09fe2581da91a988f1b7e6",
+    "canonical_ref_protected": true,
+    "required_status_check": "csg-trusted-verifier",
+    "project_directory_ref": "refs/heads/governance/project-directory",
+    "project_directory_commit": "38f4fc7cb2841e2318a97ff7a53e41b2ec07aef1",
+    "project_directory_blob": "377dcf88279d3ba433d099a7cc9f78af8c86b8ae",
+    "project_directory_revision": 5,
+    "pointer_path": "governance/csg/current.json",
+    "pointer_blob": "c2e3cb0d2a02efe44e59baac2d5aa7608f9ca32d",
+    "pointer_checkpoint_seq": 196,
+    "pointer_checkpoint_path": "governance/csg/checkpoints/000196.json",
+    "pointer_checkpoint_digest": "sha256:5821da1a1a3af00e6be79624ec3850873763ca1cf45ff1a1f55b486c1ac9285d",
+    "checkpoint_blob": "518b5ea6fa2e89b88814996ead065c4e82ae82ed",
+    "checkpoint_owner_generation": 1,
+    "checkpoint_owner_lease_until": "2026-09-29T14:54:00.000Z",
+    "cp196_run_ref_commit": "aa5525601aec833ed9a4d19af1bc2fbe4859c722",
+    "cp196_run_ref_sha256": "sha256:e9697d9624af93d306b0495eccd9226a662271f094c2ac755a309921e52b1dee",
+    "active_unit": "V51-R2-01-COLD-START-CANONICAL-CONTINUITY",
+    "active_jobs": [],
+    "unresolved_effects": []
+  },
+  "published_stage_artifacts": [
+    {
+      "path": "governance/csg/v51/readbacks/R2-01-HOST-OBSERVATION-20260929.json",
+      "blob": "28d29112cd1f0ff21bce73c92c9a73d5bcfc8350",
+      "sha256": "sha256:c9f93bf6c72889f61c43df18490df35a1e3da43105d7cae18c39ad515ed8300a"
+    },
+    {
+      "path": "governance/csg/v51/readbacks/R2-CARRY-FORWARD-CAPABILITY-GAPS-20260929.json",
+      "blob": "22920d51bb521ecd0284b7d8b04f721b697fe993",
+      "sha256": "sha256:e9d0254fc767a25b28019b3c3737a0afa5cb48fc4b76d63d9f4ea116274fbd91"
+    },
+    {
+      "path": "governance/csg/v51/readbacks/R2-01-COLD-START-READBACK-20260929.json",
+      "blob": "073b8aaaee8e41d69f7a4b0e97326661909e8fa3",
+      "sha256": "sha256:972b1e48b4e332454bcb34b82b57d6df836026b943dcedcf306ac9f5b3b1851e"
+    },
+    {
+      "path": "governance/csg/v51/runs/V51-R2-001/run-r2-01.json",
+      "blob": "6abe2bfc1e8c1d702a12d05488c38aebabcaffa5",
+      "sha256": "sha256:7b4f6e546b0d8859ecb2603f41d8f615e02c1d45ad1931573a13724075cde0b8",
+      "revision": 3
+    },
+    {
+      "path": "governance/csg/v51/missions/20260929T223724+0800.json",
+      "blob": "5315118060fdf2d0f101d39d469e8b2cd3cc8f2e",
+      "sha256": "sha256:ced71046a7b3a6717f685bc98b06d69d5e21a649c6843bfaf2e47aa8f983a3ea",
+      "state": "STAGED_NOT_SELECTED"
+    },
+    {
+      "path": "governance/csg/v51/policies/20260929T223724+0800-EP76.json",
+      "blob": "4520eee695d2196fd8431a2e391641add3d879e9",
+      "sha256": "sha256:ca87253801e4766e1611397993a101bb4dae66920758fbbc1afdc49b800bcee9",
+      "state": "STAGED_NOT_SELECTED"
+    },
+    {
+      "path": "governance/csg/v51/runs/V51-R2-001/contract-r2-02.json",
+      "blob": "dff2146dce278c7af1ff4e6eaea2d48c49a13cf2",
+      "sha256": "sha256:5e93d1b95b7de952f2538052e4d2238a31d475eaab592ac9a87f01d71a9ff469",
+      "state": "STAGED_NOT_SELECTED"
+    },
+    {
+      "path": "governance/csg/v51/runs/V51-R2-001/run-r2-02.json",
+      "blob": "5ab2dab587209cacef16e89a3f252a86c5feec49",
+      "sha256": "sha256:3cd6c9f7d9f43bf9c7c8909e8d0d63df981f001bf15c3c9d2e15a8641103ed78",
+      "state": "STAGED_NOT_SELECTED"
+    }
+  ],
+  "pr_347": {
+    "number": 347,
+    "state": "MERGED",
+    "merge_commit": "2222ca856c10977c6b09fe2581da91a988f1b7e6",
+    "head": "4a69f05973df9c80fe3f33bc58adc7d7281c1a6a",
+    "required_check": "csg-trusted-verifier",
+    "required_check_conclusion": "success",
+    "other_check": "bounded-driver-acceptance",
+    "other_check_conclusion": "skipped"
+  },
+  "pr_342": {
+    "number": 342,
+    "state": "OPEN",
+    "draft": true,
+    "head": "068f423fa8315eceaf9885c87b1caf7906e69d7a",
+    "exact_head_unchanged": true
+  },
+  "latest_issue_310_human_comment": {
+    "comment_id": 5892287634,
+    "request_id": "V51-R2-DURABLE-CARRY-FORWARD-CAPABILITY-GAPS-20260929"
+  },
+  "live_owner_observation": {
+    "provider_thread_status": "ACTIVE",
+    "canonical_lease_status": "EXPIRED",
+    "lease_expired_at": "2026-09-29T14:54:00Z",
+    "active_job": false,
+    "unresolved_effect": false,
+    "authorization_conclusion": "Expired canonical lease is not renewed by UI-thread activity."
+  },
+  "local_host_observation": {
+    "redacted_summary_path": "governance/csg/v51/readbacks/R2-01-HOST-OBSERVATION-20260929.json",
+    "redacted_summary_sha256": "sha256:c9f93bf6c72889f61c43df18490df35a1e3da43105d7cae18c39ad515ed8300a",
+    "full_local_artifact_sha256": "sha256:2aa0da4e35598b977c0eb7cd500994b75b28188326e53ec36ce22b1dc7897d83",
+    "raw_host_data_remains_local": true,
+    "mutations": 0
+  },
+  "readback_result": {
+    "provider_stage_readback": "PASS",
+    "project_directory_and_cp196_unchanged": true,
+    "active_unit_changed": false,
+    "r2_02_artifacts_current": false,
+    "r2_01_gate_acceptance": "WITHHELD_PENDING_OWNER_RECONCILIATION",
+    "owner_reconciliation_required": "Advance attempt and owner generation via forward-only protected control transition after fresh no-live-job/no-unresolved-effect confirmation."
+  }
+}
