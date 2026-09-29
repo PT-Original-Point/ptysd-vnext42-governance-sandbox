@@ -1,0 +1,72 @@
+{
+  "schema_version": "factory.contract.v1",
+  "contract_id": "V51-R1-CONTRACT-001",
+  "task_id": "V51-R1-02-CHECKPOINT-RUN-COHERENCE",
+  "run_id": "V51-R1-001",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "goal": "Publish exact VNEXT5.1-R1 current-spec identity, matching Mission and Execution Policy, and a coherent current run/checkpoint/task/attempt state while preserving the existing final strategic goal and all Production, cost, business-project, and Human-reserved gates.",
+  "current_spec": {
+    "id": "VNEXT5.1-R1",
+    "source_class": "EXACT_USER_PROVIDED_GOAL_OBJECTIVE",
+    "source_commit": "3bead6a1b0b2efe29c99bb6fbfe1dbc6fba43091",
+    "source_path": "governance/csg/candidates/v51-r1/VNEXT5.1-R1-HUMAN-CURRENT-SPEC-20260929.md",
+    "canonical_path": "governance/v51/specs/VNEXT5.1-R1-HUMAN-CURRENT-SPEC-20260929.md",
+    "blob_oid": "6df4a189c84ff1e53ce4ba0a90ba39eb6334e59a",
+    "sha256": "sha256:29e8a4b8685afbbc8531e1a62dee0b5b072f6a28270f11bfbea9d9b6a5378bea",
+    "byte_length": 5779
+  },
+  "include": [
+    "R1-00 immutable current-spec identity",
+    "R1-01 Human-authorized Mission and matching Execution Policy rebase",
+    "R1-02 one canonical active run/task/attempt identity selected by the current control pointer",
+    "same-source readback of exact Mission/Policy/checkpoint/run/task/attempt identity"
+  ],
+  "exclude": [
+    "Production authorization",
+    "paid cost or service",
+    "business-project admission",
+    "Host mutation",
+    "Factory MCP installation",
+    "OP025 redispatch",
+    "CP192/JIT fence arm",
+    "operation027 dispatch",
+    "force update of canonical history",
+    "fifth public Factory MCP tool"
+  ],
+  "affected_surfaces": [
+    "v45/factory-control only",
+    "governance/v51 current spec, Mission and Policy",
+    "runs/V51-R1-001 immutable execution record"
+  ],
+  "requirements": [
+    "Project Directory exact branch head 38f4fc7cb2841e2318a97ff7a53e41b2ec07aef1 remains unchanged and resolves v45/factory-control/governance/csg/current.json",
+    "v45/factory-control exact prestate a5ebfd86d440b61ecc4e4dc3ba7b8291836769c7; update only by fast-forward child",
+    "CP192 exact prestate digest sha256:fc0112e9203a8d9c8a43fa98f427f67c6e0b58aca09c6adcfa260ac6faa274f0",
+    "Human spec exact blob 6df4a189c84ff1e53ce4ba0a90ba39eb6334e59a and sha256:29e8a4b8685afbbc8531e1a62dee0b5b072f6a28270f11bfbea9d9b6a5378bea",
+    "run, checkpoint, task and attempt identifiers must be equal at the canonical authority edge; no old R3 task projection may remain current"
+  ],
+  "acceptance": [
+    "Mission hash recomputes under HUMAN_TEXT_V1 canonical JSON payload profile",
+    "Execution Policy binds exact same Mission revision/hash and recomputes under explicit RFC8785_CANONICAL_JSON_PAYLOAD_SHA256_V1 profile",
+    "Checkpoint payload_digest and current pointer checkpoint_digest recompute exactly",
+    "Canonical current pointer selects CP193 and CP193 points to exact immutable V51-R1-001 run blob",
+    "Mission, Policy, checkpoint, run, task and attempt identities agree by same-source readback",
+    "Production=false; paid_fallback=false; business_project_auto_admission=false; worker_provider_write_credentials=false; public Factory MCP tools=4"
+  ],
+  "dependencies": [
+    "Human VNEXT5.1-R1 execution instruction in current turn",
+    "fresh Project Directory/control/Issue #310 readback"
+  ],
+  "risk": "CANONICAL_CONTROL_PLANE_REBASE_WITH_EXACT_NONFORCE_PARENT_AND_READBACK",
+  "allowed_tools": [
+    "GitHub exact-read provider and content/ref APIs",
+    "local bounded JSON/hash consistency test"
+  ],
+  "allowed_effects": [
+    "one fast-forward update of v45/factory-control to the exact non-forced direct-parent V51-R1 transition"
+  ],
+  "max_attempts": 1,
+  "time_budget_policy": "ONE_ATOMIC_CONTROL_TRANSITION",
+  "expected_parent": "a5ebfd86d440b61ecc4e4dc3ba7b8291836769c7",
+  "prestate_checkpoint_seq": 192
+}
