@@ -1,0 +1,130 @@
+{
+  "schema": "vnext5.1-r2.same-source-stage-readback.v1",
+  "readback_id": "V51-R2-01-ATTEMPT-002-POST-STAGE-READBACK-20260929",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "source_commit": "bf936ef0d532fbd9f692f0960c6c16de974f4cd0",
+  "source_ref": "refs/heads/v45/factory-control",
+  "read_at_utc": "2026-09-29T15:26:40.000Z",
+  "verdict": "PASS_FOR_STAGE_PUBLICATION_ONLY",
+  "canonical": {
+    "directory_commit": "38f4fc7cb2841e2318a97ff7a53e41b2ec07aef1",
+    "directory_blob": "377dcf88279d3ba433d099a7cc9f78af8c86b8ae",
+    "canonical_ref": "refs/heads/v45/factory-control",
+    "source_head": "bf936ef0d532fbd9f692f0960c6c16de974f4cd0",
+    "pointer_blob": "c2e3cb0d2a02efe44e59baac2d5aa7608f9ca32d",
+    "pointer_checkpoint_seq": 196,
+    "pointer_checkpoint_path": "governance/csg/checkpoints/000196.json",
+    "checkpoint_blob": "518b5ea6fa2e89b88814996ead065c4e82ae82ed",
+    "checkpoint_digest": "sha256:5821da1a1a3af00e6be79624ec3850873763ca1cf45ff1a1f55b486c1ac9285d",
+    "checkpoint_digest_recomputed": "sha256:5821da1a1a3af00e6be79624ec3850873763ca1cf45ff1a1f55b486c1ac9285d",
+    "active_unit": "V51-R2-01-COLD-START-CANONICAL-CONTINUITY",
+    "selected_attempt_id": "V51-R2-01-ATTEMPT-001",
+    "selected_owner_generation": 1,
+    "active_job_refs": [],
+    "unresolved_effect_refs": [],
+    "owner_lease_until": "2026-09-29T14:54:00.000Z",
+    "owner_lease_status": "EXPIRED"
+  },
+  "stage": {
+    "mission_revision": "20260929T232301+0800",
+    "mission_hash": "sha256:89515c15dfb3a65b50fe669701cdf0f5a31de86c9aafdfda08b78344727a45f1",
+    "policy_revision": "20260929T232301+0800-EP77",
+    "policy_hash": "sha256:d54a139541ef1e2f633b0d93069e904565e9dccae2db1798bac17b52ef16271b",
+    "active_unit": "V51-R2-01-COLD-START-CANONICAL-CONTINUITY",
+    "attempt_id": "V51-R2-01-ATTEMPT-002",
+    "attempt_epoch": 2,
+    "owner_generation": 3,
+    "owner_lease_until": "2026-09-29T15:53:01Z",
+    "run_revision": 5,
+    "run_state": "RUNNING",
+    "run_active_task_id": "V51-R2-01-COLD-START-CANONICAL-CONTINUITY",
+    "run_attempt_id": "V51-R2-01-ATTEMPT-002",
+    "run_attempt_epoch": 2,
+    "selected_by_cp196": false
+  },
+  "artifacts": {
+    "governance/csg/v51/missions/20260929T232301+0800.json": {
+      "blob": "798e01943739178917529ca57d69859d77895719",
+      "sha256": "sha256:32dbfbbcb0c82cd9aa55d3a64b5144a505109a80289a19c0102adc4b37c065b9",
+      "bytes": 7553
+    },
+    "governance/csg/v51/policies/20260929T232301+0800-EP77.json": {
+      "blob": "be32fe374254f92f5c63a71a750aa8938410abeb",
+      "sha256": "sha256:ecbbb36d25de8e46584efac4a9f5eb1dc22ca57cab8e2d2f6eb6dc848f11cb1d",
+      "bytes": 8693
+    },
+    "governance/csg/v51/runs/V51-R2-001/contract-r2-01-attempt-002.json": {
+      "blob": "8e145f1be98696d4db4c184025e46a06825bba3d",
+      "sha256": "sha256:d57b5fd4370ec06137c0eba1db9860ce87ec87bef1e3e93f77796877c85bbba6",
+      "bytes": 4983
+    },
+    "governance/csg/v51/runs/V51-R2-001/run-r2-01.json": {
+      "blob": "f23a9ce0af3c8db0d70d2c4110c78baaba33584a",
+      "sha256": "sha256:c1a5f498a774aa4cbbbc95f93a9ad2e6dd4760d23801d5df2f462a0652e082b2",
+      "bytes": 1733
+    },
+    "governance/csg/v51/readbacks/R2-01-NATIVE-HOST-OBSERVATION-ATTEMPT-002-20260929.json": {
+      "blob": "425f360109b1393a73754750619be03dabc89572",
+      "sha256": "sha256:7e4505d466731881cef93746cb406eda0a127d57bb6e3c852d61e25fd3e98f72",
+      "bytes": 1706
+    },
+    "governance/csg/v51/readbacks/R2-01-OWNER-REENTRY-READBACK-20260929.json": {
+      "blob": "7eac326da841cb4f04513459025c8264bce6816d",
+      "sha256": "sha256:1db131cbe91d00aa48d45d2a2ae9563876003e7f1f32966a23a231931c148c68",
+      "bytes": 3542
+    },
+    "governance/csg/v51/readbacks/R2-CARRY-FORWARD-CAPABILITY-GAPS-20260929.json": {
+      "blob": "8ff633253061299a8272f45e2c6d34e8b412997e",
+      "sha256": "sha256:02c059430505e6566cde542fcd37c449ae0e0fb9b6de53a983a13115cc6ff8ca",
+      "bytes": 5761
+    },
+    "governance/csg/v51/readbacks/R2-01-ATTEMPT-002-SUPERSESSION-READBACK-20260929.json": {
+      "blob": "9c5131f153732e14fd2e06812bd56e3290b7e444",
+      "sha256": "sha256:b436800988c9c3d1c8335542d679528519689a07b70d4e988af5b099d83534ea",
+      "bytes": 1593
+    }
+  },
+  "host_observation": {
+    "captured_at_utc": "2026-09-29T15:17:19.3520200Z",
+    "hyperv_status": "ACCESS_DENIED",
+    "hostguard_status": "ERROR",
+    "authorized_bounded_privileged_route": "NOT_FOUND",
+    "host_mutations_performed": false,
+    "local_snapshot_sha256": "sha256:e9bbbd141ab2b93b1ec3d14cea3e2d891cebeae987193d03242bad166f36b332",
+    "full_inventory_sha256": "sha256:36a4267556653afbd619f59ade2b10f4d90c0e7b6471e7b708bed826d11b96b5",
+    "route_discovery_sha256": "sha256:d584d1e257b829efa124db5e9f668bb2b3461d1408cd5d1167e0c4baa3bd3224"
+  },
+  "governance": {
+    "latest_issue_310_comment_id": 5892287634,
+    "issue_310_does_not_change_active_unit": true,
+    "pr349_head": "d6762a3befdaed7dfd8baf1856d35890f6e00f22",
+    "csg_trusted_verifier": {
+      "conclusion": "success",
+      "run_id": 36589910103,
+      "job_id": 109479993274
+    },
+    "bounded_driver_acceptance": {
+      "conclusion": "skipped",
+      "run_id": 36589910103,
+      "job_id": 109479994894
+    },
+    "pr342": {
+      "state": "open",
+      "draft": true,
+      "head": "068f423fa8315eceaf9885c87b1caf7906e69d7a"
+    }
+  },
+  "result": {
+    "stage_publication_readback": "PASS",
+    "canonical_attempt002_selected": false,
+    "R2_01_gate": "PENDING",
+    "next_legal_transition": "Build a separate protected CP197/pointer transition using this exact staged Mission/Policy/run/attempt and retain R2-01 active; obtain fresh same-source readback before R2-01 PASS.",
+    "constraints": {
+      "host_mutation": false,
+      "production": false,
+      "paid_fallback": false,
+      "worker_provider_write_credentials": false,
+      "factory_mcp_public_tools": 4
+    }
+  }
+}
