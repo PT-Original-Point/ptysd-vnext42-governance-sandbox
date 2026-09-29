@@ -1,0 +1,145 @@
+{
+  "schema_version": "csg.checkpoint.v1",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "checkpoint_seq": 193,
+  "transition_id": "V51-R1-CANONICAL-REBASE-193",
+  "previous_checkpoint_ref": {
+    "kind": "EXTERNAL_IMMUTABLE",
+    "provider": "GitHub",
+    "repository_id_or_resource_id": "1352411536",
+    "revision": "a5ebfd86d440b61ecc4e4dc3ba7b8291836769c7",
+    "path": "governance/csg/checkpoints/000192.json",
+    "digest": "sha256:fc0112e9203a8d9c8a43fa98f427f67c6e0b58aca09c6adcfa260ac6faa274f0"
+  },
+  "migration_anchor": null,
+  "event": {
+    "type": "MISSION_REBASE",
+    "reason_code": "V51_R1_HUMAN_AUTHORIZED_CONTROL_PLANE_REBASE",
+    "subject_id": "V51-R1-00-02-CANONICAL-REBASE"
+  },
+  "mission_anchor": {
+    "ref": "github://1352411536/governance/v51/current-mission.json@45d201d7d9871fec1f3ee685b812921607bae0b6",
+    "revision": "20260929T113457+0800",
+    "declared_hash": "sha256:e36405f7ada177b69e17f056f6c687329030af24cc8f890fd6dfd1c4d623102e",
+    "canonicalization_version": "HUMAN_TEXT_V1"
+  },
+  "policy_anchor": {
+    "ref": "github://1352411536/governance/v51/current-execution-policy.json@45d201d7d9871fec1f3ee685b812921607bae0b6",
+    "revision": "20260929T113457+0800-EP73",
+    "declared_hash": "sha256:fcd400ebbf61139e497c0e9c6b7a7a3a2268fa56875834713f83290daf55875f",
+    "canonicalization_version": "HUMAN_TEXT_V1"
+  },
+  "controller_contract": "V51-R1-EXECUTION-POLICY-EP73",
+  "verifier_digest": "sha256:01cbbab08d423294e42dec679b46e5ebef9d06d2f1c3965de8f2bfb25711d4bf",
+  "lifecycle": "ACTIVE",
+  "owner": {
+    "principal_id": "CODEX_THREAD_01a0cb52-6d41-7b33-b92c-099639fa07e7",
+    "owner_generation": 1,
+    "scope": "V51-R1-02-CHECKPOINT-RUN-COHERENCE",
+    "lease_until": "2026-09-29T04:36:55Z"
+  },
+  "run_ref": {
+    "kind": "EXTERNAL_IMMUTABLE",
+    "provider": "GitHub",
+    "repository_id_or_resource_id": "1352411536",
+    "revision": "45d201d7d9871fec1f3ee685b812921607bae0b6",
+    "path": "runs/V51-R1-001/run.json",
+    "digest": "sha256:bd3cef762ebb61dec5f677459dae45e9379987739697db0f4b898e9f31a369b2"
+  },
+  "task_id": "V51-R1-02-CHECKPOINT-RUN-COHERENCE",
+  "attempt_id": "V51-R1-02-ATTEMPT-001",
+  "attempt_epoch": 1,
+  "atomic": {
+    "state": "PREPARED_NOT_DISPATCHED",
+    "unit_id": "V51-R1-02-CHECKPOINT-RUN-COHERENCE",
+    "goal": "Perform same-source readback of the newly published VNEXT5.1-R1 spec, Mission, Execution Policy, run, checkpoint, task and attempt before opening R1-03.",
+    "execution_fence": null
+  },
+  "last_accepted": {
+    "unit_id": "R3-P0-02-DIRECTORY-ACTIVE-RUN-REF-PUBLICATION-AND-READBACK",
+    "result": "PASS_PROVIDER_CONFIRMED",
+    "provider_commit": "38f4fc7cb2841e2318a97ff7a53e41b2ec07aef1",
+    "provider_ref": "refs/heads/governance/project-directory",
+    "directory_revision": 5
+  },
+  "remote_wip": null,
+  "active_job_refs": [],
+  "unresolved_effect_refs": [],
+  "blockers": [
+    "R1_02_SAME_SOURCE_READBACK_PENDING",
+    "R1_03_FACTORY_FIXED_READ_ONLY_BOOTSTRAP_NOT_QUALIFIED"
+  ],
+  "last_verified_gate": {
+    "gate_id": "R3-P0-02-DIRECTORY-ACTIVE-RUN-REF",
+    "verdict": "PASS_PROVIDER_CONFIRMED",
+    "provider_ref": "refs/heads/governance/project-directory",
+    "provider_commit": "38f4fc7cb2841e2318a97ff7a53e41b2ec07aef1",
+    "directory_revision": 5
+  },
+  "next_legal_transition": {
+    "action": "VERIFY_V51_R1_00_02_SAME_SOURCE_READBACK",
+    "unit_id": "V51-R1-02-CHECKPOINT-RUN-COHERENCE",
+    "requires": [
+      "current control ref equals the committed non-force transition",
+      "current pointer selects checkpoint 193",
+      "spec blob, Mission hash, Policy hash, run identity, task and attempt match"
+    ],
+    "forbidden": [
+      "HOST_MUTATION",
+      "OP025_REDISPATCH",
+      "CP192_OR_JIT_FENCE_ARM",
+      "OPERATION027_DISPATCH",
+      "PRODUCTION",
+      "BUSINESS_PROJECT",
+      "PAID_FALLBACK",
+      "FORCE_UPDATE",
+      "BLIND_RETRY_UNKNOWN_EFFECT"
+    ]
+  },
+  "stop_requested": false,
+  "barrier": "ACTIVE_UNIT",
+  "evidence_refs": [
+    {
+      "kind": "EXTERNAL_IMMUTABLE",
+      "provider": "GitHub",
+      "repository_id_or_resource_id": "1352411536",
+      "revision": "45d201d7d9871fec1f3ee685b812921607bae0b6",
+      "path": "governance/v51/specs/VNEXT5.1-R1-HUMAN-CURRENT-SPEC-20260929.md",
+      "digest": "sha256:29e8a4b8685afbbc8531e1a62dee0b5b072f6a28270f11bfbea9d9b6a5378bea"
+    },
+    {
+      "kind": "EXTERNAL_IMMUTABLE",
+      "provider": "GitHub",
+      "repository_id_or_resource_id": "1352411536",
+      "revision": "45d201d7d9871fec1f3ee685b812921607bae0b6",
+      "path": "governance/v51/current-mission.json",
+      "digest": "sha256:393a1dd663aa30bbfb6e1b297d372c39c252b1eee8fbb64b54d051b190d58859"
+    },
+    {
+      "kind": "EXTERNAL_IMMUTABLE",
+      "provider": "GitHub",
+      "repository_id_or_resource_id": "1352411536",
+      "revision": "45d201d7d9871fec1f3ee685b812921607bae0b6",
+      "path": "governance/v51/current-execution-policy.json",
+      "digest": "sha256:d4484429f1ffa0b3ae4ce30d09123f2cbb5ea6ec9736c73a110d0a63d90e76e8"
+    },
+    {
+      "kind": "EXTERNAL_IMMUTABLE",
+      "provider": "GitHub",
+      "repository_id_or_resource_id": "1352411536",
+      "revision": "45d201d7d9871fec1f3ee685b812921607bae0b6",
+      "path": "runs/V51-R1-001/run.json",
+      "digest": "sha256:bd3cef762ebb61dec5f677459dae45e9379987739697db0f4b898e9f31a369b2"
+    },
+    {
+      "kind": "EXTERNAL_IMMUTABLE",
+      "provider": "GitHub",
+      "repository_id_or_resource_id": "1352411536",
+      "revision": "45d201d7d9871fec1f3ee685b812921607bae0b6",
+      "path": "runs/V51-R1-001/contract.json",
+      "digest": "sha256:d8581b1801ca6bac7f3791594005c0d00f48981ffe8ff632f48678413c6b4495"
+    }
+  ],
+  "recorded_at": "2026-09-29T03:36:55Z",
+  "payload_digest": "sha256:ed9baf51b7fa6ea0bdd555c0e93188b230e3b10e73bab9a80f0042e2774193a2"
+}
