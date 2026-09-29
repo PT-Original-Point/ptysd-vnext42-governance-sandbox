@@ -63,6 +63,7 @@ export class Supervisor {
     const r=this.runtime();
     if(r.stopped) fail('HUMAN_STOP_ACTIVE');
     if(r.pending_side_effect) fail('PENDING_SIDE_EFFECT_BARRIER');
+    if(r.recovery_required) fail('RECOVERY_REQUIRED');
     if(r.active_task || r.active_worker) fail('ACTIVE_WORKER_CONFLICT');
     const row=this.db.prepare('SELECT state,envelope FROM tasks WHERE task_id=?').get(taskId) as any;
     if(!row) fail('TASK_NOT_FOUND'); if(row.state!=='QUEUED') fail('ILLEGAL_TASK_TRANSITION');
@@ -84,7 +85,7 @@ export class Supervisor {
   interrupt(reason='INTERRUPT'){
     const r=this.runtime();
     if(r.active_task) this.db.prepare('UPDATE tasks SET state=? WHERE task_id=?').run('INTERRUPTED',r.active_task);
-    const old={task:r.active_task,worker:r.active_worker}; r.active_task=null; r.active_worker=null; r.worker_lease_expires_at_ms=0; r.recovery_required=false; this.save(r);
+    const old={task:r.active_task,worker:r.active_worker}; const hadActiveExecution=Boolean(r.active_task || r.active_worker); r.active_task=null; r.active_worker=null; r.worker_lease_expires_at_ms=0; if(hadActiveExecution) r.recovery_required=false; this.save(r);
     this.event('WORKER_INTERRUPTED',{reason,...old});
   }
   stop(){
