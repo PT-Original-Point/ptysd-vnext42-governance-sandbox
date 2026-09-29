@@ -2,7 +2,7 @@
   "schema_version": "factory.run.v1",
   "run_id": "V51-R2-001",
   "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
-  "revision": 7,
+  "revision": 8,
   "command_id": "V51-R2-01-COLD-START-CANONICAL-CONTINUITY",
   "contract_ref": "governance/csg/v51/runs/V51-R2-001/contract-r2-01-attempt-003.json",
   "state": "RUNNING",
@@ -33,7 +33,8 @@
     "governance/csg/v51/runs/V51-R2-001/contract-r2-01-attempt-003.json",
     "governance/csg/v51/readbacks/R2-01-NATIVE-HOST-OBSERVATION-ATTEMPT-003-20260930.json",
     "governance/csg/v51/readbacks/R2-01-ATTEMPT-003-OWNER-REENTRY-READBACK-20260930.json",
-    "governance/csg/v51/readbacks/R2-01-PRE-CP197-SAME-SOURCE-READBACK-20260929.json"
+    "governance/csg/v51/readbacks/R2-01-PRE-CP197-SAME-SOURCE-READBACK-20260929.json",
+    "governance/csg/v51/readbacks/R2-01-ATTEMPT-003-POST-STAGE-READBACK-20260930.json"
   ],
   "remaining_attempts": 1,
   "execution_owner": {
