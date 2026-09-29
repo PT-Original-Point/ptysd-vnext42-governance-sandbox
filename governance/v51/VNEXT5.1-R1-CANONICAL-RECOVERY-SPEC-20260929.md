@@ -193,9 +193,7 @@ After Factory MCP R1 live acceptance:
 
 ## 8. Executor routing — Codex primary for substantial work
 
-The former rule `CHAT_CAN_DO => CHAT_MUST_DO` is explicitly revoked for this Project.
-
-The former routing model "ChatGPT Web first, Codex only as last mile" is also revoked.
+The legacy Chat-first executor policy is removed from the active routing contract.
 
 New routing contract:
 
@@ -212,10 +210,10 @@ New routing contract:
 
 Routing anti-patterns that are now forbidden:
 
-- `DIRECT_NATIVE_CAPABILITY_PRECEDENCE` as a mandatory executor selector;
-- requiring Chat to complete all work it can technically perform before Codex may start;
-- `CODEX_LAST_MILE` as the only lawful Codex role;
-- treating Codex delegation itself as a capability-gap exception;
+- mandatory Chat-first executor selection;
+- requiring Chat to complete all technically possible work before Codex may start;
+- restricting Codex to only a terminal local-only role;
+- treating Codex delegation itself as an exceptional fallback;
 - repeated Human approval solely because a new ChatGPT Web Session or Codex Session started.
 
 ## 9. R1 completion criteria
