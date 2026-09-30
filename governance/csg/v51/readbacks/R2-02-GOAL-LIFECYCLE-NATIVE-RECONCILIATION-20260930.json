@@ -1,0 +1,173 @@
+{
+  "schema": "V51_R2_GOAL_LIFECYCLE_NATIVE_RECONCILIATION_READBACK_V1",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "recorded_at_utc": "2026-09-30T02:49:06Z",
+  "authority": {
+    "project_directory_ref": "refs/heads/governance/project-directory",
+    "project_directory_commit": "38f4fc7cb2841e2318a97ff7a53e41b2ec07aef1",
+    "descriptor_blob": "468232e79905774296db9136a592858a06347bbc",
+    "project_record_blob": "377dcf88279d3ba433d099a7cc9f78af8c86b8ae",
+    "canonical_control_ref": "refs/heads/v45/factory-control",
+    "canonical_control_commit": "5731acc8b29dad713d99098c0540a1382c9e86d1",
+    "current_pointer_blob": "187daa93cd33dfe4e5f8885f0ca3c65029bb9bd8",
+    "current_checkpoint_seq": 199,
+    "current_checkpoint_path": "governance/csg/checkpoints/000199.json",
+    "current_checkpoint_digest": "sha256:6194c90782bb72b8ff268de5cddae6b66e05376a3ffbf5f2afaf638d94a2732e",
+    "mission_revision": "20260930T004411+0800",
+    "mission_hash": "sha256:0a3f4a5861d66eafec71a40e78f757a092f6d9aed8aaf122f8f31ae590a1f764",
+    "policy_revision": "20260930T004411+0800-EP79",
+    "policy_hash": "sha256:9d9796994fb56e5b1a410bf135a254e097d944bc0631a24866efd2837af0d7df",
+    "run_id": "V51-R2-001",
+    "run_revision": 6,
+    "run_blob": "5f005269d2f7fb53e60a2371012d864907e72ba1",
+    "task_id": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION",
+    "attempt_id": "V51-R2-02-ATTEMPT-002",
+    "attempt_epoch": 2,
+    "owner": {
+      "principal_id": "CODEX_THREAD_01a0ed35-6063-7912-9872-7d4122a3b125",
+      "owner_generation": 5,
+      "scope": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION",
+      "lease_until": "2026-09-29T18:44:11Z"
+    },
+    "unresolved_effect_refs": [],
+    "active_job_refs": [],
+    "stop_requested": false,
+    "lifecycle": "ACTIVE"
+  },
+  "staged_lifecycle_rebase": {
+    "branch": "codex/r2-02-goal-lifecycle-hotfix-20260930",
+    "source_commit": "dc3b419d8abf696b04b5bfdbdab7b3c8b70526cb",
+    "mission_path": "governance/csg/v51/missions/20260930T104733+0800.json",
+    "mission_blob": "2a913c7c5585bedda72d54df626cd38ae52bdade",
+    "mission_revision": "20260930T104733+0800",
+    "mission_hash": "sha256:f235c085f10e54705f7817f0ce6dee1e5b29ef1279306e4b2c280322bfacab29",
+    "policy_path": "governance/csg/v51/policies/20260930T104733+0800-EP80.json",
+    "policy_blob": "a31f86215c8d0fcc2cee0183f75d18158bb3d9fb",
+    "policy_revision": "20260930T104733+0800-EP80",
+    "policy_hash": "sha256:8529b4bccc66147465b066bf97d71ce2c6ae6bea11e146ca215976bf3b839c85",
+    "canonical_status": "CANDIDATE_NOT_YET_SELECTED"
+  },
+  "host_observation": {
+    "observed_at_utc": "2026-09-30T02:48:55.6721199Z",
+    "host": "DESKTOP-1B6PD2P",
+    "principal": "DESKTOP-1B6PD2P\\x",
+    "runner_service": {
+      "name": "actions.runner.PT-Original-Point.PTYSD-V45-CONTROL-01",
+      "state": "Running",
+      "start_mode": "Auto",
+      "start_name": "NT AUTHORITY\\NETWORK SERVICE",
+      "process_id": 5692,
+      "path": "\"C:\\actions-runner-v45\\bin\\RunnerService.exe\""
+    },
+    "runner_process_tree": [
+      {
+        "pid": 5692,
+        "parent_pid": 1664,
+        "name": "RunnerService.exe"
+      },
+      {
+        "pid": 20488,
+        "parent_pid": 5692,
+        "name": "Runner.Listener.exe"
+      },
+      {
+        "pid": 10308,
+        "parent_pid": 20488,
+        "name": "conhost.exe"
+      }
+    ],
+    "runner_worker_processes": [],
+    "supervisor_candidate_task": {
+      "name": "PTYSD-VNext42-Supervisor-Candidate1",
+      "state": 1,
+      "user": "x",
+      "run_level": 0,
+      "execute": "C:\\PTYSD\\vnext42-supervisor-candidate1\\watchdog.cmd",
+      "last_run_utc": "2026-09-09T03:39:01.0000000Z",
+      "last_result": 0,
+      "missed_runs": 30189
+    },
+    "supervisor_candidate_database": {
+      "opened_read_only": true,
+      "kv": [
+        {
+          "k": "executor_state",
+          "v": "IDLE"
+        },
+        {
+          "k": "last_heartbeat_ms",
+          "v": "1788879908036"
+        },
+        {
+          "k": "lease_expires_at_ms",
+          "v": "1788880508038"
+        },
+        {
+          "k": "lease_generation",
+          "v": "2"
+        },
+        {
+          "k": "project_id",
+          "v": "CHATGPT_GLOBAL_SKILL_GOVERNANCE"
+        },
+        {
+          "k": "recovery_required",
+          "v": "false"
+        }
+      ],
+      "latest_event": {
+        "id": 805,
+        "ts": "2026-09-09T03:39:01.296Z",
+        "kind": "INIT"
+      }
+    },
+    "hostguard_fixed_read": {
+      "result": "LOCAL_OS_PRIVILEGE_REQUIRED",
+      "error_type": "Microsoft.HyperV.PowerShell.VirtualizationException",
+      "message": "您沒有完成此工作的必要權限。請連絡電腦 'DESKTOP-1B6PD2P' 的授權原則系統管理員。"
+    },
+    "hyperv_read": {
+      "result": "LOCAL_OS_PRIVILEGE_REQUIRED",
+      "error_type": "Microsoft.HyperV.PowerShell.VirtualizationException",
+      "message": "您沒有完成此工作的必要權限。請連絡電腦 'DESKTOP-1B6PD2P' 的授權原則系統管理員。"
+    }
+  },
+  "user_reported_web_factory_observation": {
+    "source_class": "USER_PROVIDED_CURRENT_SNAPSHOT_NOT_INDEPENDENTLY_FETCHED",
+    "freshness_assertion": "USER_STATED_CURRENT",
+    "observed_at_utc": null,
+    "active_count": 0,
+    "effective_active_count": 0,
+    "live_job_count": 0,
+    "pending_receipt_count": 0,
+    "orphan_count": 5,
+    "control_plane_status": "ok",
+    "sufficiency": "EVIDENCE_ONLY_NOT_SUFFICIENT_FOR_STALE_OWNER_CONFIRMATION"
+  },
+  "reconciliation": {
+    "current_owner_status": "STALE_EXECUTION_OWNER_CANDIDATE",
+    "owner_generation": 5,
+    "lease_expired": true,
+    "stale_owner_confirmed": false,
+    "owner_revoked": false,
+    "host_dispatch": false,
+    "host_mutation": false,
+    "rationale": [
+      "Generation 5 lease expiry alone is insufficient.",
+      "User-reported aggregate Web Factory zero counts are insufficient.",
+      "GitHub Actions runner service is running but has no Runner.Worker descendant, and no evidence binds that idle runner to generation 5.",
+      "Local Supervisor Candidate1 scheduled task is Disabled; its read-only SQLite state is generation 2 and IDLE with latest persisted event 2026-09-09, so it is not exact generation-5 proof.",
+      "Hyper-V inventory and the fixed HostGuard status read both returned LOCAL_OS_PRIVILEGE_REQUIRED."
+    ],
+    "parked_exact_lanes": [
+      "R2-02_HYPER_V_VM_INVENTORY_AND_HOSTGUARD_LIVENESS_LOCAL_OS_PRIVILEGE_REQUIRED",
+      "R2-02_EXACT_GENERATION_5_PROVIDER_SESSION_LIVENESS_NOT_ESTABLISHED"
+    ],
+    "ready_work": [
+      "R2-02_NONPRIVILEGED_SOURCE_RECONCILIATION",
+      "GOAL_LIFECYCLE_MISSION_POLICY_CONTRACT_REBASE"
+    ],
+    "mission_status": "ACTIVE",
+    "next_action": "Continue highest-priority legal nonprivileged R2-02 source work; do not revoke generation 5 or dispatch."
+  }
+}
