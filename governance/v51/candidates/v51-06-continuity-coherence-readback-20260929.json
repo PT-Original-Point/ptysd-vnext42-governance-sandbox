@@ -1,0 +1,161 @@
+{
+  "schema": "v51-06-continuity-coherence-readback.v1",
+  "classification": "CANONICAL_CHECKPOINT_RUN_IDENTITY_MISMATCH",
+  "authority_class": "READ_ONLY_PROVIDER_EVIDENCE",
+  "recorded_at_utc": "2026-09-28T22:38:12Z",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "provider": "GitHub",
+  "repository": "PT-Original-Point/ptysd-vnext42-governance-sandbox",
+  "repository_id": 1352411536,
+  "current_ref_heads": {
+    "governance/project-directory": "38f4fc7cb2841e2318a97ff7a53e41b2ec07aef1",
+    "v45/factory-control": "a5ebfd86d440b61ecc4e4dc3ba7b8291836769c7",
+    "v49/accepted-source": "7784663cca65dc7b0aa96c599db3224ad8317817",
+    "confirmation": "GitHub compare returned identical for each exact ref/head pair"
+  },
+  "project_directory": {
+    "path": "directory/projects/CHATGPT_GLOBAL_SKILL_GOVERNANCE.json",
+    "blob_oid": "377dcf88279d3ba433d099a7cc9f78af8c86b8ae",
+    "directory_revision": 5,
+    "active_run_ref_resolution": "CURRENT_CANONICAL_CONTROL_POINTER_V1",
+    "control_ref": "refs/heads/v45/factory-control",
+    "control_path": "governance/csg/current.json"
+  },
+  "current_pointer": {
+    "path": "governance/csg/current.json",
+    "blob_oid": "bf3b9719fcaaae3454b9bc277c9bae70d25aa543",
+    "checkpoint_seq": 192,
+    "checkpoint_path": "governance/csg/checkpoints/000192.json",
+    "checkpoint_payload_digest": "sha256:fc0112e9203a8d9c8a43fa98f427f67c6e0b58aca09c6adcfa260ac6faa274f0",
+    "transition_id": "V50-R3-P0-02-DIRECTORY-RECONCILED-192"
+  },
+  "checkpoint_192": {
+    "path": "governance/csg/checkpoints/000192.json",
+    "commit": "a5ebfd86d440b61ecc4e4dc3ba7b8291836769c7",
+    "blob_oid": "99a3bc7a40aefcc4b7d0d17a5652ffa5e5a51781",
+    "payload_digest": "sha256:fc0112e9203a8d9c8a43fa98f427f67c6e0b58aca09c6adcfa260ac6faa274f0",
+    "task_id": "R3-P0-03-FACTORY-ORPHAN-RECONCILIATION",
+    "atomic_unit_id": "R3-P0-03-FACTORY-ORPHAN-RECONCILIATION",
+    "attempt_id": "V50-R3-P0-03-ATTEMPT-001",
+    "attempt_epoch": 1,
+    "atomic_state": "PREPARED_NOT_DISPATCHED",
+    "execution_fence": null,
+    "next_legal_transition": "QUALIFY_P0_03_P0_04_NONCIRCULAR_BOOTSTRAP_ROUTE",
+    "next_transition_forbids_host_mutation": true,
+    "op025_state": "UNKNOWN"
+  },
+  "referenced_run": {
+    "immutable_commit": "1ad3e192941ed3db63a2c605c8c2a72251d4523e",
+    "path": "runs/V50-R3-001/run.json",
+    "blob_oid": "96807d7a5754fd3a28ad695dfc8963b11e21b5e2",
+    "payload_digest_declared_by_checkpoint": "sha256:b8d7797025dfff31bed9613125899999b0677339851edb4bf3741a2588e23c99",
+    "run_id": "V50-R3-001",
+    "revision": 1,
+    "state": "RUNNING",
+    "wait_reason": "P0_02_ACTIVE_RUN_LOCATOR_PENDING_NO_EXECUTION_FENCE",
+    "active_task_id": "R3-P0-01-CANONICAL-CONTINUITY-REBASE",
+    "attempt_id": "V50-R3-P0-01-ATTEMPT-001",
+    "attempt_epoch": 1,
+    "latest_checkpoint_ref": null
+  },
+  "referenced_contract": {
+    "immutable_commit": "1ad3e192941ed3db63a2c605c8c2a72251d4523e",
+    "path": "runs/V50-R3-001/contract.json",
+    "blob_oid": "efd2116da61bd4a2df8ed5002a90261d4648d605",
+    "contract_id": "V50-R3-CONTRACT-001",
+    "task_id": "R3-P0-01-CANONICAL-CONTINUITY-REBASE",
+    "mission_revision_id": "20260926T220900+0800",
+    "mission_hash": "sha256:3cd12c504e42247f52b2f8200ee590a7d1e6e1f0e58c15063cb9551ebf9a38a5",
+    "policy_revision_id": "20260926T220900+0800-EP72",
+    "policy_hash": "sha256:ce3abb44889a495d9a228e9117a22cc741807e033049a51346762110e7609cd2"
+  },
+  "identity_comparison": {
+    "checkpoint_task_vs_run_active_task": false,
+    "checkpoint_task_vs_contract_task": false,
+    "checkpoint_attempt_vs_run_attempt": false,
+    "checkpoint_epoch_vs_run_epoch": true,
+    "checkpoint_state_vs_run_state": "SEMANTICS_UNRESOLVED: PREPARED_NOT_DISPATCHED versus RUNNING",
+    "result": "B20_IDENTITY_COHERENCE_FAIL"
+  },
+  "mission_policy": {
+    "immutable_commit": "1ad3e192941ed3db63a2c605c8c2a72251d4523e",
+    "mission_path": "governance/v50/current-mission.json",
+    "mission_blob_oid": "2ee6ed2dc452299dc1da4bc6af721a7d244b2895",
+    "mission_revision": "20260926T220900+0800",
+    "mission_hash": "sha256:3cd12c504e42247f52b2f8200ee590a7d1e6e1f0e58c15063cb9551ebf9a38a5",
+    "policy_path": "governance/v50/current-execution-policy.json",
+    "policy_blob_oid": "7398b69192ad1c9cbacdb888755a3d8fd2147afc",
+    "policy_revision": "20260926T220900+0800-EP72",
+    "policy_hash": "sha256:ce3abb44889a495d9a228e9117a22cc741807e033049a51346762110e7609cd2",
+    "host_vm_execution_default_authorized": false,
+    "shared_mutation_policy": "PROVIDER_OR_BACKEND_PERMIT_AT_DISPATCH"
+  },
+  "current_control_schema_inventory": {
+    "source_ref": "v45/factory-control",
+    "source_head": "a5ebfd86d440b61ecc4e4dc3ba7b8291836769c7",
+    "paths": [
+      {
+        "path": "schemas/csg/checkpoint.schema.json",
+        "blob_oid": "3a8783c4d1c9ad8b12fa902919f89db791e8343a"
+      },
+      {
+        "path": "schemas/csg/effect-intent.schema.json",
+        "blob_oid": "dfb4a1efc679f598e5c96c1fb22a092f1a94666e"
+      },
+      {
+        "path": "schemas/csg/effect-receipt.schema.json",
+        "blob_oid": "35b4e91416cf6bdd4fe0d21b62fa0442777e606d"
+      },
+      {
+        "path": "schemas/csg/evidence.schema.json",
+        "blob_oid": "787518ea3ddd6f2cda98d4111c295222803ad75d"
+      },
+      {
+        "path": "schemas/csg/pointer.schema.json",
+        "blob_oid": "fd0ff3e02cadac51dee6adb1999d7ebf0060e064"
+      },
+      {
+        "path": "schemas/csg/project.schema.json",
+        "blob_oid": "4636949989d65b728ac39a8a26f96b9bc8d6ca31"
+      },
+      {
+        "path": "schemas/csg/worklog.schema.json",
+        "blob_oid": "55fc85baa57dbbec5bac08b742e662baee1164c9"
+      },
+      {
+        "path": "schemas/v47/contract.schema.json",
+        "blob_oid": "e5cc30f7dc34758cdb547306851c11f5b37ce88a"
+      },
+      {
+        "path": "schemas/task-envelope.schema.json",
+        "blob_oid": "316d122a5e1f7ac3abedaeb3690dd23d58e33caa"
+      }
+    ],
+    "authoritative_factory_run_v1_schema": "NOT_ESTABLISHED",
+    "applicable_factory_contract_v1_schema": "NOT_ESTABLISHED",
+    "absence_claim_scope": "No applicable schema was listed in the targeted current schemas directory; no repository-wide absence claim."
+  },
+  "v51_08_lane": {
+    "request_id": "V51-AUTONOMY-UNLOCK-LIVE-INSTALL-20260928T1408Z",
+    "pr": 322,
+    "state": "OPEN_DRAFT_UNMERGED",
+    "base_sha": "7784663cca65dc7b0aa96c599db3224ad8317817",
+    "exact_head_sha": "e021b03bca502f5d5354c0d30a26631b337676ee",
+    "exact_tree_sha": "e47e6bf95b689fe80ddce594c4121d9891b0cf88",
+    "qualified_blob_oids_match": true,
+    "qualification_scope": "Mirror PR327 PASS applies to the three listed blobs only",
+    "exact_pr322_head_workflow_runs": 0,
+    "exact_pr322_head_combined_statuses": 0,
+    "exact_pr322_reviews": 0,
+    "live_install_authorized_by_current_cp192": false
+  },
+  "mutation_summary": {
+    "canonical_refs_modified": false,
+    "mission_or_policy_modified": false,
+    "host_modified": false,
+    "op025_redispatched": false,
+    "cp192_or_jit_armed": false,
+    "operation027_dispatched": false
+  }
+}
+
