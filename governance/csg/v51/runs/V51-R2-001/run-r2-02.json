@@ -2,7 +2,7 @@
   "schema_version": "factory.run.v1",
   "run_id": "V51-R2-001",
   "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
-  "revision": 6,
+  "revision": 7,
   "command_id": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION",
   "contract_ref": "governance/csg/v51/runs/V51-R2-001/contract-r2-02-attempt-002.json",
   "state": "RUNNING",
@@ -28,7 +28,11 @@
     "governance/csg/v51/readbacks/R2-01-NATIVE-HOST-OBSERVATION-ATTEMPT-003-20260930.json",
     "governance/csg/v51/readbacks/R2-CARRY-FORWARD-CAPABILITY-GAPS-20260929.json",
     "governance/csg/v51/readbacks/R2-02-ATTEMPT-002-POST-CP198-SAME-SOURCE-READBACK-20260930.json",
-    "governance/csg/v51/readbacks/R2-02-SOURCE-CORRECTION-QUALIFICATION-READBACK-20260930.json"
+    "governance/csg/v51/readbacks/R2-02-SOURCE-CORRECTION-QUALIFICATION-READBACK-20260930.json",
+    "governance/csg/v51/missions/20260930T104733+0800.json",
+    "governance/csg/v51/policies/20260930T104733+0800-EP80.json",
+    "governance/csg/v51/runs/V51-R2-001/contract-r2-02-attempt-002-goal-lifecycle.json",
+    "governance/csg/v51/readbacks/R2-02-GOAL-LIFECYCLE-NATIVE-RECONCILIATION-20260930.json"
   ],
   "remaining_attempts": 1,
   "execution_owner": {
@@ -37,5 +41,59 @@
     "scope": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION",
     "lease_until": "2026-09-29T18:44:11Z"
   },
-  "canonical_selection_status": "SELECTED_BY_CP198"
+  "canonical_selection_status": "SELECTED_BY_CP198",
+  "goal_lifecycle_recovery": {
+    "mission_status": "ACTIVE",
+    "active_unit": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION",
+    "run_state": "RUNNING",
+    "local_codex_goal_state_authoritative": false,
+    "bounded_batch_completion_terminates_mission": false,
+    "after_material_delta": "FRESH_CANONICAL_AND_LIVE_READ_RECOMPUTE_READY_CONTINUE_HIGHEST_PRIORITY",
+    "exact_lane_parking_only": true,
+    "continue_other_ready_work": true,
+    "r2_07_acceptance_status": "REQUIRED_NOT_YET_ACCEPTED",
+    "r2_09_regression_id": "LOCAL_CODEX_GOAL_DISAPPEARS_WHILE_MISSION_ACTIVE",
+    "r2_09_acceptance_status": "REQUIRED_NOT_YET_ACCEPTED"
+  },
+  "liveness_reconciliation": {
+    "observed_at_utc": "2026-09-30T02:50:03.8216370Z",
+    "owner_generation": 5,
+    "status": "STALE_EXECUTION_OWNER_CANDIDATE",
+    "lease_expired": true,
+    "stale_owner_confirmed": false,
+    "revocation": false,
+    "host_dispatch": false,
+    "host_mutation": false,
+    "canonical_active_job_refs": [],
+    "canonical_unresolved_effect_refs": [],
+    "user_reported_web_factory_counts": {
+      "active_count": 0,
+      "effective_active_count": 0,
+      "live_job_count": 0,
+      "pending_receipt_count": 0,
+      "orphan_count": 5,
+      "control_plane_status": "ok",
+      "independent_provider_read": false
+    },
+    "native_observation": {
+      "runner_service_state": "Running",
+      "runner_worker_processes": [],
+      "supervisor_candidate_task_state": 1,
+      "local_candidate_db_read_only_state": "IDLE",
+      "local_candidate_db_generation": "2",
+      "hyperv_read": "LOCAL_OS_PRIVILEGE_REQUIRED",
+      "hostguard_read": "LOCAL_OS_PRIVILEGE_REQUIRED"
+    },
+    "reasons": [
+      "Generation 5 lease expiry alone and user-reported aggregate Web Factory zero counts are insufficient.",
+      "Idle GitHub runner process tree has no Runner.Worker and is not linked to generation 5.",
+      "Disabled local Supervisor Candidate1 and its generation-2 IDLE database are not exact generation-5 proof.",
+      "Hyper-V and HostGuard reads returned LOCAL_OS_PRIVILEGE_REQUIRED."
+    ],
+    "parked_lanes": [
+      "R2-02_EXACT_GENERATION_5_LIVENESS_PROOF",
+      "R2-02_HYPERV_AND_HOSTGUARD_READ"
+    ],
+    "ready_lane": "R2-02_NONPRIVILEGED_SOURCE_RECONCILIATION"
+  }
 }

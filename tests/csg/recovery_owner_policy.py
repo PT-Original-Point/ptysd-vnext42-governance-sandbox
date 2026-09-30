@@ -107,6 +107,137 @@ def _validate_observation(
     return 0 <= age <= MAX_OBSERVATION_AGE_SECONDS
 
 
+
+def _validate_local_liveness_observation(
+    observation: dict | None,
+    *,
+    provider_now: str,
+    expected_project_id: str | None,
+    expected_provider: str | None,
+    expected_attempt_id: str | None,
+    expected_attempt_epoch: int,
+    owner: dict | None,
+    provider_observation_id: str,
+) -> bool:
+    if not isinstance(owner, dict):
+        return False
+    expected_owner_generation = owner.get("owner_generation")
+    expected_owner_principal_id = owner.get("principal_id")
+    expected_owner_scope = owner.get("scope")
+    if type(expected_owner_generation) is not int or not isinstance(expected_owner_principal_id, str) or not expected_owner_principal_id:
+        return False
+    if not isinstance(expected_owner_scope, str) or not expected_owner_scope:
+        return False
+
+    required = {
+        "observation_id",
+        "provider_observation_id",
+        "project_id",
+        "provider",
+        "attempt_id",
+        "attempt_epoch",
+        "owner_generation",
+        "owner_principal_id",
+        "owner_scope",
+        "observed_at",
+        "source",
+        "components",
+    }
+    if not isinstance(observation, dict) or not required.issubset(observation):
+        return False
+    string_fields = (
+        "observation_id",
+        "provider_observation_id",
+        "project_id",
+        "provider",
+        "attempt_id",
+        "owner_principal_id",
+        "owner_scope",
+        "observed_at",
+        "source",
+    )
+    if not all(isinstance(observation.get(key), str) and observation[key] for key in string_fields):
+        return False
+    if observation["provider_observation_id"] != provider_observation_id:
+        return False
+    if observation["project_id"] != expected_project_id or observation["provider"] != expected_provider:
+        return False
+    if observation["attempt_id"] != expected_attempt_id or observation["attempt_epoch"] != expected_attempt_epoch:
+        return False
+    if observation["owner_generation"] != expected_owner_generation:
+        return False
+    if observation["owner_principal_id"] != expected_owner_principal_id or observation["owner_scope"] != expected_owner_scope:
+        return False
+
+    expected_components = {
+        "os_process": ("local-os-process-readback", {"ABSENT", "EXITED"}),
+        "provider_agent_session": ("provider-agent-session-readback", {"ABSENT", "TERMINAL"}),
+        "supervisor_heartbeat": ("host-supervisor-heartbeat-readback", {"ABSENT", "EXPIRED"}),
+    }
+    components = observation["components"]
+    if not isinstance(components, dict) or set(components) != set(expected_components):
+        return False
+    observation_ids = [observation["observation_id"]]
+    try:
+        now = parse_utc(provider_now)
+        observed_at = parse_utc(observation["observed_at"])
+    except OwnerPolicyError:
+        return False
+    age = (now - observed_at).total_seconds()
+    if not 0 <= age <= MAX_OBSERVATION_AGE_SECONDS:
+        return False
+
+    component_required = {
+        "observation_id",
+        "project_id",
+        "provider",
+        "attempt_id",
+        "attempt_epoch",
+        "owner_generation",
+        "owner_principal_id",
+        "owner_scope",
+        "observed_at",
+        "source",
+        "state",
+    }
+    component_string_fields = (
+        "observation_id",
+        "project_id",
+        "provider",
+        "attempt_id",
+        "owner_principal_id",
+        "owner_scope",
+        "observed_at",
+        "source",
+        "state",
+    )
+    for component_name, (expected_source, allowed_states) in expected_components.items():
+        component = components[component_name]
+        if not isinstance(component, dict) or not component_required.issubset(component):
+            return False
+        if not all(isinstance(component.get(key), str) and component[key] for key in component_string_fields):
+            return False
+        if component["source"] != expected_source or component["state"] not in allowed_states:
+            return False
+        if component["project_id"] != expected_project_id or component["provider"] != expected_provider:
+            return False
+        if component["attempt_id"] != expected_attempt_id or component["attempt_epoch"] != expected_attempt_epoch:
+            return False
+        if component["owner_generation"] != expected_owner_generation:
+            return False
+        if component["owner_principal_id"] != expected_owner_principal_id or component["owner_scope"] != expected_owner_scope:
+            return False
+        try:
+            component_age = (now - parse_utc(component["observed_at"])).total_seconds()
+        except OwnerPolicyError:
+            return False
+        if not 0 <= component_age <= MAX_OBSERVATION_AGE_SECONDS:
+            return False
+        observation_ids.append(component["observation_id"])
+
+    return provider_observation_id not in observation_ids and len(set(observation_ids)) == len(observation_ids)
+
+
 def resume_mode(
     *,
     owner: dict | None,
@@ -120,6 +251,7 @@ def resume_mode(
     controller_match: bool,
     live_job_observation: str = "UNKNOWN",
     live_job_observation_record: dict | None = None,
+    local_liveness_observation: dict | None = None,
     current_project_id: str | None = None,
     current_provider: str | None = None,
     current_attempt_id: str | None = None,
@@ -145,7 +277,8 @@ def resume_mode(
             "allowed_actions": sorted(READ_ACTIONS),
         }
     if live_job_observation == "UNKNOWN":
-        return _readback_only("LIVE_OBSERVATION_REQUIRED", live_job_observation="UNKNOWN")
+        fields = {"owner_liveness_status": "STALE_EXECUTION_OWNER_CANDIDATE"} if expired else {}
+        return _readback_only("LIVE_OBSERVATION_REQUIRED", live_job_observation="UNKNOWN", **fields)
 
     observation = live_job_observation_record
     if observation is None and live_job_observation == "OBSERVED_JOB":
@@ -165,14 +298,39 @@ def resume_mode(
             allow_job_id=False,
         )
         if not valid:
-            return _readback_only("LIVE_OBSERVATION_REQUIRED", reason="EMPTY_OBSERVATION_IDENTITY_OR_FRESHNESS_REQUIRED")
+            fields = {"owner_liveness_status": "STALE_EXECUTION_OWNER_CANDIDATE"} if expired else {}
+            return _readback_only("LIVE_OBSERVATION_REQUIRED", reason="EMPTY_OBSERVATION_IDENTITY_OR_FRESHNESS_REQUIRED", **fields)
         if expired:
+            local_valid = _validate_local_liveness_observation(
+                local_liveness_observation,
+                provider_now=provider_now,
+                expected_project_id=current_project_id,
+                expected_provider=current_provider,
+                expected_attempt_id=current_attempt_id,
+                expected_attempt_epoch=current_attempt_epoch,
+                owner=owner,
+                provider_observation_id=observation["observation_id"],
+            )
+            if not local_valid:
+                return _readback_only(
+                    "LIVE_OBSERVATION_REQUIRED",
+                    reason="LOCAL_OWNER_LIVENESS_NOT_PROVEN",
+                    owner_liveness_status="STALE_EXECUTION_OWNER_CANDIDATE",
+                    provider_observation_id=observation["observation_id"],
+                )
             return {
                 "mode": "CLAIM_ORDINARY_OWNER",
                 "ordinary_writer": True,
                 "redispatch": True,
-                "next_owner_generation": (owner or {}).get("owner_generation", 0) + 1,
+                "next_owner_generation": owner["owner_generation"] + 1,
                 "observation_id": observation["observation_id"],
+                "provider_observation_id": observation["observation_id"],
+                "local_liveness_observation_id": local_liveness_observation["observation_id"],
+                "local_liveness_component_observation_ids": {
+                    key: local_liveness_observation["components"][key]["observation_id"]
+                    for key in ("os_process", "provider_agent_session", "supervisor_heartbeat")
+                },
+                "owner_liveness_status": "STALE_OWNER_CONFIRMED",
                 "allowed_actions": ["DISPATCH", "NEW_ATOMIC_UNIT", "READBACK"],
             }
         return {
