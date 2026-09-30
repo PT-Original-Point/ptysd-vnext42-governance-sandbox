@@ -1,0 +1,15 @@
+{
+  "schema": "v49.factory-mcp.system-capability.v1",
+  "capability_id": "CAP-GOV-SYSTEM-V1",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "max_timeout_seconds": 300,
+  "production_allowed": false,
+  "business_project_allowed": false,
+  "public_tool_count": 4,
+  "execution_authority_mode": "PERSISTENT_HUMAN_AUTHORIZED_PREPRODUCTION",
+  "dynamic_identity_fields_are_audit_only": true,
+  "reauthorization_per_session_required": false,
+  "mission_rollover_blocks_transport": false,
+  "checkpoint_rollover_blocks_transport": false,
+  "attempt_generation_blocks_transport": false
+}
