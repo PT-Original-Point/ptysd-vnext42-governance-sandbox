@@ -2,6 +2,7 @@ import { execFile } from 'node:child_process';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { promisify } from 'node:util';
+import { projectOrphanStatusView } from './orphan-status.mjs';
 import { McpServer } from '@modelcontextprotocol/server';
 import { serveStdio } from '@modelcontextprotocol/server/stdio';
 import * as z from 'zod/v4';
@@ -15,6 +16,8 @@ if (typeof VERSION !== 'string' || VERSION.length === 0) {
   throw new Error('INVALID_PACKAGE_VERSION');
 }
 const WRAPPER = fileURLToPath(new URL('./invoke-hostguard.ps1', import.meta.url));
+const SYSTEM_CAPABILITY_PATH = fileURLToPath(new URL('../config/system-capability.json', import.meta.url));
+const SYSTEM_CAPABILITY = JSON.parse(readFileSync(SYSTEM_CAPABILITY_PATH, 'utf8'));
 const POWERSHELL = process.env.PTYSD_FACTORY_MCP_POWERSHELL || 'powershell.exe';
 const TEST_MODE = process.env.PTYSD_FACTORY_MCP_TEST_MODE === '1';
 
@@ -23,11 +26,35 @@ if (TEST_MODE && process.env.NODE_ENV !== 'test') {
 }
 
 const idPattern = /^[A-Z0-9][A-Z0-9._-]{0,79}$/;
+if (
+  SYSTEM_CAPABILITY.schema !== 'v49.factory-mcp.system-capability.v1' ||
+  SYSTEM_CAPABILITY.project_id !== 'CHATGPT_GLOBAL_SKILL_GOVERNANCE' ||
+  SYSTEM_CAPABILITY.capability_id !== 'CAP-GOV-SYSTEM-V1' ||
+  SYSTEM_CAPABILITY.production_allowed !== false ||
+  SYSTEM_CAPABILITY.business_project_allowed !== false ||
+  SYSTEM_CAPABILITY.public_tool_count !== 4
+) {
+  throw new Error('SYSTEM_CAPABILITY_CONFIG_INVALID');
+}
+function assertSystemCapabilityArgs(args) {
+  // V5.1 autonomy unlock: run/task/Mission/generation metadata is audit-only.
+  // Execution is not denied because a Session, Mission, checkpoint, task, or generation rolled over.
+  if ((args.timeoutSeconds ?? 60) > SYSTEM_CAPABILITY.max_timeout_seconds) throw new Error('SYSTEM_CAPABILITY_TIMEOUT_DENY');
+}
 const operationInput = z.object({
   runId: z.string().regex(idPattern),
   taskId: z.string().regex(idPattern),
   attemptId: z.string().regex(idPattern),
   attemptEpoch: z.number().int().min(1).max(2147483647),
+});
+
+const factoryStatusInput = z.object({
+  probe: z.string().regex(/^[a-z0-9_-]{1,64}$/).default('factory'),
+});
+
+const hostPowerShellInput = operationInput.extend({
+  script: z.string().min(1).max(8192),
+  timeoutSeconds: z.number().int().min(1).max(300).default(60),
 });
 
 function mockHostGuard(operation, args = {}) {
@@ -41,8 +68,45 @@ function mockHostGuard(operation, args = {}) {
       guest_ip: '172.31.253.10',
       ssh22_reachable: false,
       run_as: 'TEST\\PTYSDFactoryMCP',
+      probe: args.probe ?? 'factory',
+      tunnel_lane: {
+        task_state: 'Running',
+        live: true,
+        ready: true,
+        control_plane_status: 'ok',
+      },
     };
   }
+
+  if (operation === 'powershell') {
+    return {
+      schema: 'v48.factory-mcp.host-exec.result.v1',
+      operation: 'powershell',
+      result: 'COMPLETED',
+      project_id: SYSTEM_CAPABILITY.project_id,
+      capability_id: SYSTEM_CAPABILITY.capability_id,
+      operation_id: args.executionFence?.execution_fence?.operation_id ?? null,
+      control_oid: args.executionFence?.control_oid ?? null,
+      checkpoint_digest: args.executionFence?.checkpoint_digest ?? null,
+      authorization_envelope_digest: args.executionFence?.execution_fence?.authorization_envelope_digest ?? null,
+      capability_generation: args.executionFence?.execution_fence?.capability_generation ?? null,
+      run_id: args.runId,
+      task_id: args.taskId,
+      attempt_id: args.attemptId,
+      attempt_epoch: args.attemptEpoch,
+      run_as: 'NT AUTHORITY\\SYSTEM',
+      exit_code: 0,
+      timed_out: false,
+      stdout: 'PTYSD_HOST_POWERSHELL_TEST_OK\n',
+      stderr: '',
+      stdout_bytes: 31,
+      stderr_bytes: 0,
+      stdout_truncated: false,
+      stderr_truncated: false,
+      script_sha256: 'TEST_ONLY',
+    };
+  }
+
   return {
     schema: 'v45.hostguard.receipt.v1',
     operation,
@@ -70,6 +134,10 @@ async function runHostGuard(operation, args = {}) {
     operation,
   ];
 
+  if (operation === 'status') {
+    psArgs.push('-Probe', args.probe ?? 'factory');
+  }
+
   if (operation !== 'status') {
     psArgs.push(
       '-RunId', args.runId,
@@ -79,10 +147,22 @@ async function runHostGuard(operation, args = {}) {
     );
   }
 
+  if (operation === 'powershell') {
+    psArgs.push(
+      '-ProjectId', SYSTEM_CAPABILITY.project_id,
+      '-CapabilityId', SYSTEM_CAPABILITY.capability_id,
+      '-CapabilityGeneration', String(SYSTEM_CAPABILITY.capability_generation ?? 1),
+      '-ScriptBase64', Buffer.from(args.script, 'utf8').toString('base64'),
+      '-TimeoutSeconds', String(args.timeoutSeconds ?? 60),
+    );
+  }
+
   try {
     const { stdout } = await execFileAsync(POWERSHELL, psArgs, {
       windowsHide: true,
-      timeout: 45000,
+      timeout: operation === 'powershell'
+        ? Math.max(60000, ((args.timeoutSeconds ?? 60) + 30) * 1000)
+        : 45000,
       maxBuffer: 1024 * 1024,
       env: process.env,
     });
@@ -91,7 +171,16 @@ async function runHostGuard(operation, args = {}) {
     return JSON.parse(text);
   } catch (error) {
     const code = error?.code ? String(error.code) : 'UNKNOWN';
-    throw new Error(`HOSTGUARD_CALL_FAILED:${operation}:${code}`);
+    const rawStderr =
+      typeof error?.stderr === 'string'
+        ? error.stderr
+        : Buffer.isBuffer(error?.stderr)
+          ? error.stderr.toString('utf8')
+          : '';
+    const stderrTail = rawStderr.replace(/\\s+/g, ' ').trim().slice(-512);
+    throw new Error(
+      `HOSTGUARD_CALL_FAILED:${operation}:${code}${stderrTail ? `:STDERR:${stderrTail}` : ''}`,
+    );
   }
 }
 
@@ -104,15 +193,15 @@ function createServer() {
     { name: 'ptysd-factory-mcp', version: VERSION },
     {
       instructions:
-        'Governed PTYSD host control. No shell, filesystem, provider credentials, or arbitrary command execution is exposed. Use factory_status before bounded worker operations.',
+        'PTYSD host control for fully authorized pre-Production automation. factory_status is read-only. host_powershell executes caller-supplied PowerShell through the SYSTEM broker. V5.1 treats run/task/Mission/generation identifiers as audit metadata, not execution locks. Keep timeout, bounded output, receipts, concurrency and same-source readback. Avoid printing credentials or access tokens.',
     },
   );
 
   server.registerTool(
     'factory_status',
     {
-      description: 'Read the exact PTYSD HostGuard/worker VM status through the constrained JEA endpoint.',
-      inputSchema: z.object({}),
+      description: 'Run a bounded read-only diagnostic probe through the constrained broker. Supported probes: factory (HostGuard, host-exec lane, tunnel liveness/readiness/control-plane health) and cloudflare_identity (fixed GET-only provider identity readback; never returns tokens).',
+      inputSchema: factoryStatusInput,
       annotations: {
         title: 'Factory Status',
         readOnlyHint: true,
@@ -121,7 +210,16 @@ function createServer() {
         openWorldHint: false,
       },
     },
-    async () => textResult(await runHostGuard('status')),
+    async (args) => {
+      const status = await runHostGuard('status', args);
+      if (args.probe === 'factory' && status?.host_exec_lane) {
+        status.host_exec_lane = {
+          ...status.host_exec_lane,
+          ...projectOrphanStatusView(status.host_exec_lane),
+        };
+      }
+      return textResult(status);
+    },
   );
 
   server.registerTool(
@@ -154,6 +252,26 @@ function createServer() {
       },
     },
     async (args) => textResult(await runHostGuard('start', args)),
+  );
+
+  server.registerTool(
+    'host_powershell',
+    {
+      description:
+        'Execute caller-supplied Windows PowerShell on DESKTOP-1B6PD2P through the existing SYSTEM broker. Returns bounded stdout/stderr, exit code, timeout state, execution identity and script digest. This tool has full local host authority and may access local files, processes, network/provider CLIs and credentials available to SYSTEM. Do not print secret values or bearer tokens.',
+      inputSchema: hostPowerShellInput,
+      annotations: {
+        title: 'Host PowerShell',
+        readOnlyHint: false,
+        destructiveHint: true,
+        idempotentHint: false,
+        openWorldHint: true,
+      },
+    },
+    async (args) => {
+      assertSystemCapabilityArgs(args);
+      return textResult(await runHostGuard('powershell', args));
+    },
   );
 
   return server;
