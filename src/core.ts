@@ -26,15 +26,47 @@ export type RecoveryObservation = {
   attempt_id: string; attempt_epoch: number; owner_generation: number;
   fingerprint: string; observed_at: string; source: string; state: string;
   evidence_ref: string; evidence_digest: string;
+  local_liveness_observation?: LocalLivenessObservation;
   reconciled_terminal?: boolean; reconciliation_ref?: string;
+};
+
+export type LocalLivenessComponent = {
+  observation_id: string; provider_observation_id: string;
+  project_id: string; provider: string; task_id: string;
+  attempt_id: string; attempt_epoch: number; owner_generation: number;
+  fingerprint: string; observed_at: string; source: string; state: string;
+};
+
+export type LocalLivenessObservation = {
+  observation_id: string; provider_observation_id: string;
+  project_id: string; provider: string; task_id: string;
+  attempt_id: string; attempt_epoch: number; owner_generation: number;
+  fingerprint: string; observed_at: string; source: string;
+  evidence_ref: string; evidence_digest: string;
+  components: {
+    os_process: LocalLivenessComponent;
+    provider_agent_session: LocalLivenessComponent;
+    supervisor_heartbeat: LocalLivenessComponent;
+  };
 };
 
 const MAX_RECOVERY_OBSERVATION_AGE_MS = 30_000;
 const RECONCILED_TERMINAL_STATES = new Set(['COMPLETED', 'FAILED', 'CANCELLED', 'TIMED_OUT']);
+const LOCAL_LIVENESS_COMPONENTS = {
+  os_process: {source:'local-os-process-readback', state:'ABSENT'},
+  provider_agent_session: {source:'provider-agent-session-readback', state:'TERMINAL'},
+  supervisor_heartbeat: {source:'host-supervisor-heartbeat-readback', state:'EXPIRED'},
+} as const;
 const stable = (v:any):any => Array.isArray(v) ? v.map(stable) :
   v && typeof v === 'object' ? Object.fromEntries(Object.keys(v).sort().map(k => [k, stable(v[k])])) : v;
 const hash = (v:any) => createHash('sha256').update(JSON.stringify(stable(v))).digest('hex');
 const fail = (m:string):never => { throw new Error(m); };
+const isRecord = (v:any):v is Record<string,any> => v !== null && typeof v === 'object' && !Array.isArray(v);
+const isFreshUtc = (value:unknown, now:number) => {
+  if (typeof value !== 'string' || !value.endsWith('Z')) return false;
+  const observedAt=Date.parse(value), age=now-observedAt;
+  return Number.isFinite(observedAt) && age>=0 && age<=MAX_RECOVERY_OBSERVATION_AGE_MS;
+};
 
 export class Supervisor {
   db: DatabaseSync; projectId: string; clock: () => number;
@@ -76,6 +108,52 @@ export class Supervisor {
     const envelope = JSON.parse(row.envelope) as Envelope;
     r.recovery_context = this.executionIdentity(r.active_task,r.active_worker,r.worker_lease_generation,envelope);
     r.recovery_required = true;
+  }
+  private validateLocalLivenessObservation(
+    local:LocalLivenessObservation|undefined,
+    providerObservation:RecoveryObservation,
+    expected:RecoveryContext,
+    now:number,
+  ) {
+    if (!isRecord(local)) fail('LOCAL_OWNER_LIVENESS_REQUIRED');
+    if (local.provider_observation_id !== providerObservation.observation_id) fail('LOCAL_OWNER_LIVENESS_PROVIDER_OBSERVATION_MISMATCH');
+    if (typeof local.observation_id !== 'string' || !local.observation_id || local.observation_id === providerObservation.observation_id ||
+        local.source !== 'authorized-cross-source-liveness-readback' ||
+        typeof local.evidence_ref !== 'string' || !local.evidence_ref ||
+        typeof local.evidence_digest !== 'string' || !/^sha256:[0-9a-f]{64}$/.test(local.evidence_digest)) {
+      fail('LOCAL_OWNER_LIVENESS_EVIDENCE_IDENTITY_REQUIRED');
+    }
+    const identity={
+      project_id:this.projectId,
+      provider:expected.provider,
+      task_id:expected.task_id,
+      attempt_id:expected.attempt_id,
+      attempt_epoch:expected.attempt_epoch,
+      owner_generation:expected.owner_generation,
+      fingerprint:expected.fingerprint,
+    };
+    for (const [key,value] of Object.entries(identity)) {
+      if (local[key] !== value) fail('LOCAL_OWNER_LIVENESS_IDENTITY_MISMATCH');
+    }
+    if (!isFreshUtc(local.observed_at,now)) fail('LOCAL_OWNER_LIVENESS_STALE');
+    if (!isRecord(local.components) ||
+        Object.keys(local.components).sort().join(',') !== 'os_process,provider_agent_session,supervisor_heartbeat') {
+      fail('LOCAL_OWNER_LIVENESS_COMPONENTS_INVALID');
+    }
+    const observationIds=new Set([local.observation_id,providerObservation.observation_id]);
+    for (const [name,requirement] of Object.entries(LOCAL_LIVENESS_COMPONENTS)) {
+      const component=local.components[name];
+      if (!isRecord(component)) fail('LOCAL_OWNER_LIVENESS_COMPONENTS_INVALID');
+      if (typeof component.observation_id !== 'string' || !component.observation_id || observationIds.has(component.observation_id)) fail('LOCAL_OWNER_LIVENESS_OBSERVATION_ID_REUSED');
+      observationIds.add(component.observation_id);
+      if (component.provider_observation_id !== providerObservation.observation_id) fail('LOCAL_OWNER_LIVENESS_PROVIDER_OBSERVATION_MISMATCH');
+      for (const [key,value] of Object.entries(identity)) {
+        if (component[key] !== value) fail('LOCAL_OWNER_LIVENESS_IDENTITY_MISMATCH');
+      }
+      if (component.source !== requirement.source) fail('LOCAL_OWNER_LIVENESS_SOURCE_MISMATCH');
+      if (component.state !== requirement.state) fail('LOCAL_OWNER_LIVENESS_STATE_MISMATCH');
+      if (!isFreshUtc(component.observed_at,now)) fail('LOCAL_OWNER_LIVENESS_STALE');
+    }
   }
   close(){ this.db.close(); }
 
@@ -205,16 +283,18 @@ export class Supervisor {
       if(!observation || typeof observation!=='object') fail('LIVE_OBSERVATION_REQUIRED');
       if(observation.project_id!==this.projectId) fail('RECOVERY_IDENTITY_MISMATCH');
       if(observation.attempt_id!==expected.attempt_id || observation.attempt_epoch!==expected.attempt_epoch || observation.owner_generation!==expected.owner_generation || observation.fingerprint!==expected.fingerprint || observation.provider!==expected.provider) fail('RECOVERY_IDENTITY_MISMATCH');
-      if(!observation.observation_id || !observation.source || !observation.evidence_ref || !/^sha256:[0-9a-f]{64}$/.test(observation.evidence_digest)) fail('DURABLE_EVIDENCE_IDENTITY_REQUIRED');
+      if(typeof observation.observation_id!=='string' || !observation.observation_id || typeof observation.source!=='string' || !observation.source || typeof observation.evidence_ref!=='string' || !observation.evidence_ref || typeof observation.evidence_digest!=='string' || !/^sha256:[0-9a-f]{64}$/.test(observation.evidence_digest)) fail('DURABLE_EVIDENCE_IDENTITY_REQUIRED');
       if(!observation.observed_at?.endsWith('Z')) fail('UTC_REQUIRED');
       const observedAt=Date.parse(observation.observed_at);
-      const age=this.clock()-observedAt;
+      const now=this.clock();
+      const age=now-observedAt;
       if(!Number.isFinite(observedAt) || age<0 || age>MAX_RECOVERY_OBSERVATION_AGE_MS) fail('LIVE_OBSERVATION_STALE');
       if(observation.status==='OBSERVED_EMPTY') {
         if(observation.provider_job_id!==null || observation.state!=='NONE') fail('LIVE_JOB_RECONCILIATION_REQUIRED');
       } else if(observation.status==='OBSERVED_JOB') {
         if(!observation.provider_job_id || !RECONCILED_TERMINAL_STATES.has(observation.state) || observation.reconciled_terminal!==true || !observation.reconciliation_ref) fail('LIVE_JOB_RECONCILIATION_REQUIRED');
       } else fail('INVALID_LIVE_JOB_OBSERVATION');
+      this.validateLocalLivenessObservation(observation.local_liveness_observation,observation,expected,now);
 
       const resolvedAt=this.clock();
       const detail={result:'RESOLVED',project_id:this.projectId,recovery_context:expected,observation,evidence_ref:observation.evidence_ref,evidence_digest:observation.evidence_digest,resolved_at_ms:resolvedAt};

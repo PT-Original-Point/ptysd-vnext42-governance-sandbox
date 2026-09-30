@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { Supervisor, providerSecretKeys, type Envelope, type RecoveryObservation } from '../src/core.ts';
+import { Supervisor, providerSecretKeys, type Envelope, type RecoveryObservation, type LocalLivenessComponent } from '../src/core.ts';
 
 const project='CHATGPT_GLOBAL_SKILL_GOVERNANCE';
 const tmp=()=>fs.mkdtempSync(path.join(os.tmpdir(),'ptysd-b0-'));
@@ -12,11 +12,31 @@ const env=(id='T1',epoch=0):Envelope=>({schema:'PTYSD_TASK_ENVELOPE_V1',task_id:
 const throws=(fn:()=>any,msg:string)=>assert.throws(fn,new RegExp(msg));
 const emptyObservation=(s:Supervisor,t:number):RecoveryObservation=>{
   const context=s.runtime().recovery_context!;
+  const observationId='OBS-EMPTY-1';
+  const identity={
+    project_id:project,provider:context.provider,task_id:context.task_id,
+    attempt_id:context.attempt_id,attempt_epoch:context.attempt_epoch,
+    owner_generation:context.owner_generation,fingerprint:context.fingerprint,
+  };
+  const component=(name:string,source:string,state:string):LocalLivenessComponent=>({
+    observation_id:`LOCAL-${name.toUpperCase()}-1`,provider_observation_id:observationId,
+    ...identity,observed_at:new Date(t).toISOString(),source,state,
+  });
   return {
-    observation_id:'OBS-EMPTY-1',status:'OBSERVED_EMPTY',project_id:project,provider:context.provider,provider_job_id:null,
+    observation_id:observationId,status:'OBSERVED_EMPTY',project_id:project,provider:context.provider,provider_job_id:null,
     attempt_id:context.attempt_id,attempt_epoch:context.attempt_epoch,owner_generation:context.owner_generation,
     fingerprint:context.fingerprint,observed_at:new Date(t).toISOString(),source:'authorized-test-readback',state:'NONE',
     evidence_ref:'provider://test/readback/empty-1',evidence_digest:`sha256:${'a'.repeat(64)}`,
+    local_liveness_observation:{
+      observation_id:'LOCAL-OBS-1',provider_observation_id:observationId,...identity,
+      observed_at:new Date(t).toISOString(),source:'authorized-cross-source-liveness-readback',
+      evidence_ref:'host://test/readback/liveness-1',evidence_digest:`sha256:${'b'.repeat(64)}`,
+      components:{
+        os_process:component('os-process','local-os-process-readback','ABSENT'),
+        provider_agent_session:component('provider-agent-session','provider-agent-session-readback','TERMINAL'),
+        supervisor_heartbeat:component('supervisor-heartbeat','host-supervisor-heartbeat-readback','EXPIRED'),
+      },
+    },
   };
 };
 
@@ -95,6 +115,35 @@ test('recovery resolution accepts only fresh empty or explicitly reconciled term
   throws(()=>s.resolveRecovery({...observation,status:'OBSERVED_JOB',provider_job_id:'JOB-1',state:'IN_PROGRESS'}),'LIVE_JOB_RECONCILIATION_REQUIRED');
   const receipt=s.resolveRecovery({...observation,status:'OBSERVED_JOB',provider_job_id:'JOB-1',state:'FAILED',reconciled_terminal:true,reconciliation_ref:'provider://test/reconciliation/1'});
   assert.equal(receipt.result,'RESOLVED'); assert.equal(s.runtime().recovery_required,false); s.close();
+});
+
+test('provider empty observation alone cannot resolve stale owner recovery or dispatch',()=>{
+  let t=1000; const s=new Supervisor(path.join(tmp(),'s.db'),project,()=>t); s.ingest(env()); s.ingest(env('T2')); s.dispatch('T1','W1',100); t=1200; s.tick();
+  const observation=emptyObservation(s,t); delete observation.local_liveness_observation;
+  throws(()=>s.resolveRecovery(observation),'LOCAL_OWNER_LIVENESS_REQUIRED');
+  assert.equal(s.runtime().recovery_required,true); assert.equal(s.recoveryReceipts().length,0);
+  throws(()=>s.dispatch('T2','W2',60000),'RECOVERY_REQUIRED'); s.close();
+});
+
+test('stale owner recovery requires exact fresh independent process, session, and heartbeat observations',()=>{
+  let t=1000; const s=new Supervisor(path.join(tmp(),'s.db'),project,()=>t); s.ingest(env()); s.dispatch('T1','W1',100); t=1200; s.tick();
+  const valid=emptyObservation(s,t);
+  const clone=()=>JSON.parse(JSON.stringify(valid)) as RecoveryObservation;
+  const cases:[string,(observation:RecoveryObservation)=>void][]=[
+    ['LOCAL_OWNER_LIVENESS_COMPONENTS_INVALID',o=>{ delete o.local_liveness_observation!.components.supervisor_heartbeat; }],
+    ['LOCAL_OWNER_LIVENESS_STALE',o=>{ o.local_liveness_observation!.components.os_process.observed_at=new Date(t-31000).toISOString(); }],
+    ['LOCAL_OWNER_LIVENESS_STATE_MISMATCH',o=>{ o.local_liveness_observation!.components.provider_agent_session.state='ACTIVE'; }],
+    ['LOCAL_OWNER_LIVENESS_IDENTITY_MISMATCH',o=>{ o.local_liveness_observation!.components.supervisor_heartbeat.owner_generation++; }],
+    ['LOCAL_OWNER_LIVENESS_PROVIDER_OBSERVATION_MISMATCH',o=>{ o.local_liveness_observation!.provider_observation_id='OBS-OTHER'; }],
+    ['LOCAL_OWNER_LIVENESS_SOURCE_MISMATCH',o=>{ o.local_liveness_observation!.components.os_process.source='generic-process-list'; }],
+    ['LOCAL_OWNER_LIVENESS_OBSERVATION_ID_REUSED',o=>{ o.local_liveness_observation!.components.supervisor_heartbeat.observation_id=o.local_liveness_observation!.components.os_process.observation_id; }],
+  ];
+  for(const [code,mutate] of cases){
+    const observation=clone(); mutate(observation); throws(()=>s.resolveRecovery(observation),code);
+    assert.equal(s.runtime().recovery_required,true); assert.equal(s.recoveryReceipts().length,0);
+  }
+  const receipt=s.resolveRecovery(valid); assert.equal(receipt.result,'RESOLVED');
+  assert.equal(s.runtime().recovery_required,false); assert.equal(s.recoveryReceipts().length,1); s.close();
 });
 
 test('worker provider credential guard',()=>{
