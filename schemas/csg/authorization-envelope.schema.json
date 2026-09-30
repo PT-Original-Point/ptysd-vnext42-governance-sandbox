@@ -1,0 +1,23 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://ptysd.invalid/schemas/csg/authorization-envelope.v1.schema.json",
+  "title":"AuthorizationEnvelope",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["schema","authorization_id","project_id","mission_revision","mission_hash","valid_until_mission_revision","scope_tags","allowed_mutation_classes","forbidden_actions","human_reservations","human_authorization_ref","issued_at","envelope_digest"],
+  "properties":{
+    "schema":{"const":"v49.authorization-envelope.v1"},
+    "authorization_id":{"type":"string","minLength":1,"maxLength":128},
+    "project_id":{"type":"string","minLength":1,"maxLength":128},
+    "mission_revision":{"type":"string","minLength":1,"maxLength":256},
+    "mission_hash":{"type":"string","pattern":"^sha256:[0-9a-f]{64}$"},
+    "valid_until_mission_revision":{"type":"string","minLength":1,"maxLength":256},
+    "scope_tags":{"type":"array","minItems":1,"maxItems":64,"uniqueItems":true,"items":{"type":"string","minLength":1,"maxLength":128}},
+    "allowed_mutation_classes":{"type":"array","minItems":1,"uniqueItems":true,"items":{"enum":["LOCAL_PREPARATION","LOCAL_EXECUTION","PROVIDER_EFFECT","HUMAN_RESERVED"]}},
+    "forbidden_actions":{"type":"array","maxItems":128,"uniqueItems":true,"items":{"type":"string","minLength":1,"maxLength":128}},
+    "human_reservations":{"type":"array","maxItems":128,"uniqueItems":true,"items":{"type":"string","minLength":1,"maxLength":128}},
+    "human_authorization_ref":{"type":"string","minLength":1,"maxLength":1024},
+    "issued_at":{"type":"string","minLength":1,"maxLength":128},
+    "envelope_digest":{"type":"string","pattern":"^sha256:[0-9a-f]{64}$"}
+  }
+}

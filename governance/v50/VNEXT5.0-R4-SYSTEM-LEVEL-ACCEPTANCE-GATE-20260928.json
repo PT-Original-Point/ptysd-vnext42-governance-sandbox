@@ -1,0 +1,87 @@
+{
+  "schema_version": "vnext5.r4.system-acceptance.v1",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "status": "NOT_ACCEPTED",
+  "promotion_rule": "ALL_A01_A18_PASS",
+  "revocation_rule": "ANY_A01_A18_REGRESSION_REVOKES",
+  "rows": [
+    {
+      "id": "A01",
+      "status": "NOT_PROVEN"
+    },
+    {
+      "id": "A02",
+      "status": "NOT_PROVEN"
+    },
+    {
+      "id": "A03",
+      "status": "NOT_PROVEN"
+    },
+    {
+      "id": "A04",
+      "status": "NOT_PROVEN"
+    },
+    {
+      "id": "A05",
+      "status": "NOT_PROVEN"
+    },
+    {
+      "id": "A06",
+      "status": "NOT_PROVEN"
+    },
+    {
+      "id": "A07",
+      "status": "NOT_PROVEN"
+    },
+    {
+      "id": "A08",
+      "status": "NOT_PROVEN"
+    },
+    {
+      "id": "A09",
+      "status": "NOT_PROVEN"
+    },
+    {
+      "id": "A10",
+      "status": "NOT_PROVEN"
+    },
+    {
+      "id": "A11",
+      "status": "NOT_PROVEN"
+    },
+    {
+      "id": "A12",
+      "status": "NOT_PROVEN"
+    },
+    {
+      "id": "A13",
+      "status": "NOT_PROVEN"
+    },
+    {
+      "id": "A14",
+      "status": "NOT_PROVEN"
+    },
+    {
+      "id": "A15",
+      "status": "NOT_PROVEN"
+    },
+    {
+      "id": "A16",
+      "status": "NOT_PROVEN"
+    },
+    {
+      "id": "A17",
+      "status": "NOT_PROVEN"
+    },
+    {
+      "id": "A18",
+      "status": "NOT_PROVEN"
+    }
+  ],
+  "forbidden_closure_claims_when_not_accepted": true,
+  "current_known_open_gaps": [
+    "stale Codex scheduled wake",
+    "R4-01 live Host qualification incomplete",
+    "R4-04 live supervisor fault qualification incomplete"
+  ]
+}

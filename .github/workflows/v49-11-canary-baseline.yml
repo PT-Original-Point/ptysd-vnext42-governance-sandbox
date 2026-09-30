@@ -1,0 +1,47 @@
+name: V49-11 live N1 canary baseline
+
+on:
+  push:
+    branches:
+      - v49-11-canary-baseline-20260919
+      - v49/accepted-source
+    paths:
+      - "fixtures/v49-live-n1/**"
+      - ".github/workflows/v49-11-canary-baseline.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  baseline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Prove protected canary starts with a real failing requirement
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd fixtures/v49-live-n1
+          set +e
+          node --test test/slugify.test.mjs > baseline-test.log 2>&1
+          rc=$?
+          set -e
+          cat baseline-test.log
+          test "$rc" -ne 0
+          grep -q "fail 0" baseline-test.log && exit 21 || true
+          grep -Eq "fail [1-9][0-9]*" baseline-test.log
+      - name: Protect verifier and fixture scope
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f fixtures/v49-live-n1/src/slugify.mjs
+          test -f fixtures/v49-live-n1/test/slugify.test.mjs
+          test -f fixtures/v49-live-n1/package.json

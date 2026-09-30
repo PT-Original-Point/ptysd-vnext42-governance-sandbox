@@ -1,0 +1,52 @@
+{
+  "schema_version": "vnext5.continuity-projection.v1",
+  "authority_class": "DERIVED_READ_ONLY_PROJECTION",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "snapshot_id": "20260928T0716Z-R4-STALE-WAKE",
+  "canonical_checkpoint_seq": 192,
+  "canonical_checkpoint_digest": "sha256:fc0112e9203a8d9c8a43fa98f427f67c6e0b58aca09c6adcfa260ac6faa274f0",
+  "mission_revision": "20260926T220900+0800",
+  "policy_revision": "20260926T220900+0800-EP72",
+  "r4_pr": 316,
+  "r4_head": "1292c2861ad44c2029f66ed304dd2a26cacacffc",
+  "incident": {
+    "type": "STALE_CODEX_SCHEDULED_WAKE_REINTRODUCED_OLD_R3_AUTHORITY",
+    "observed_text_prefix": "Continue VNEXT5.0-R3 P0-03/P0-04 bootstrap sequencing in this thread.",
+    "evidence_level": "CODEX_UI_TRANSCRIPT_USER_OBSERVED",
+    "effect": "After context compaction, old scheduled payload became the newest task-specific instruction and reintroduced historical active-unit/nondispatchable/no-mutation constraints, causing the executor to stop after current work.",
+    "recurrence": "hourly scheduled wake remained enabled"
+  },
+  "current_codex_local_results": {
+    "evidence_level": "CODEX_LOCAL_REPORT_NOT_PROTECTED_CHECKRUN",
+    "r4_05_r4_06": "11/11 PASS locally after import repair; no exact-head check-run, so not protected-verifier PASS",
+    "r4_08": "3/3 path-guard PASS locally; main-source manifest still pinned to 1dcec5e... according to Codex report",
+    "r4_10": "5/5 isolated local tests PASS and direct-parent candidate commit 68b0d8d8498d5342e0df76efe0c9c9d99b4c7cd4 published to PR #316; no exact-head check-run at report time"
+  },
+  "hotfix": {
+    "commit": "1292c2861ad44c2029f66ed304dd2a26cacacffc",
+    "locator_wake_path": "governance/v50/CODEX-SCHEDULED-WAKE-LOCATOR-ONLY-R4.md",
+    "hotfix_spec_path": "governance/v50/VNEXT5.0-R4-SCHEDULED-WAKE-STALENESS-HOTFIX-20260928.md",
+    "rule": "Scheduled wake is locator-only and must never carry hard-coded active unit/request/hash/nondispatchability. It reads CURRENT then canonical/provider truth.",
+    "post_r4_04_rule": "Disable Codex UI scheduled wake after Host-owned supervisor live acceptance."
+  },
+  "next_single_action": {
+    "action": "REPLACE_STALE_CODEX_SCHEDULED_WAKE_PAYLOAD_AND_READBACK",
+    "acceptance": [
+      "Back up local Codex automation config.",
+      "Identify exact automation whose prompt begins with the historical R3 wake prefix.",
+      "Replace only its payload with CODEX-SCHEDULED-WAKE-LOCATOR-ONLY-R4.md.",
+      "Read back exactly one active project wake and verify stale active-unit/request/package strings are absent.",
+      "Continue current R4 work immediately; do not wait for next hour."
+    ]
+  },
+  "blockers": [
+    "Direct Chat host_powershell attempt to inspect the local Codex automation was denied before execution with SYSTEM_CAPABILITY_RUN_DENY; no Host side effect occurred.",
+    "Therefore local Codex scheduler mutation remains a Codex-local last-mile until Factory MCP transport is live-qualified."
+  ],
+  "safety": {
+    "op025": "UNKNOWN_DO_NOT_REDISPATCH",
+    "production_final": false,
+    "paid_fallback": false,
+    "mission_change": false
+  }
+}
