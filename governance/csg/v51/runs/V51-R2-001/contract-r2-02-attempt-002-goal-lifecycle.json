@@ -1,0 +1,94 @@
+{
+  "schema_version": "factory.contract.v1",
+  "contract_id": "V51-R2-CONTRACT-002-R2-02-ATTEMPT-002-REV2",
+  "task_id": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION",
+  "run_id": "V51-R2-001",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "goal": "Reconcile the expired R1 owner generation 2 without UI-only liveness inference; preserve unknown live-job status when no authorized bounded read route exists, and prepare bounded stale-owner recovery source work without dispatching Host actions or replaying effects.",
+  "current_spec": {
+    "id": "VNEXT5.1-R2",
+    "source_class": "EXACT_HUMAN_PROVIDED_CONSTRUCTION_SPEC_ATTACHMENT",
+    "source_commit": null,
+    "source_path": "VNEXT5.1-R2-FULL-CONSTRUCTION-SPEC-20260929.md",
+    "canonical_path": "governance/csg/v51/specs/VNEXT5.1-R2-HUMAN-CURRENT-SPEC-20260929.md",
+    "blob_oid": "1dcd2d46a35bb3a580210ab4f0d29131587cc448",
+    "sha256": "sha256:b3b805f4dd5e88a2370c456c7f678c3264ca032090c957d69116512b563b589f",
+    "byte_length": 25222
+  },
+  "include": [
+    "OS/process/container, provider agent session, supervisor heartbeat, active job/receipt, and lease freshness evidence",
+    "explicit stale-owner disposition and revocation record",
+    "strictly increasing owner generation before the next R2 task becomes current",
+    "one qualified recovery owner on one active atomic unit"
+  ],
+  "exclude": [
+    "Host service/task/broker mutation",
+    "arbitrary SYSTEM PowerShell",
+    "Production, paid fallback, business-project admission, or worker provider-write credentials",
+    "blind retry or replay when any effect is UNKNOWN",
+    "treating UI thread status as the sole liveness signal"
+  ],
+  "affected_surfaces": [
+    "governance/csg/v51/runs/V51-R2-001",
+    "governance/csg/v51/missions",
+    "governance/csg/v51/policies",
+    "governance/csg/v51/readbacks"
+  ],
+  "requirements": [
+    "R2-01 post-CP197 same-source continuity readback is merged and provider-confirmed by PR #359; CP197 remains the exact current canonical state until a forward-only CP198 transition selects the next unit.",
+    "CP194 records the R1 run as RUNNING with owner generation 2 and lease 2026-09-29T08:12:07Z, which is expired; later canonical checkpoints do not select that R1 owner.",
+    "Canonical provider reads show CP197 active_job_refs=[] and unresolved_effect_refs=[]; this does not establish the live Factory job count.",
+    "Fresh native host observation records the Supervisor candidate task Disabled, Get-VM and HostGuard read AccessDenied, and no authorized bounded privileged route; preserve exact lanes and keep live job count UNAVAILABLE.",
+    "A fresh Codex app read of the R1 owner thread reports status notLoaded and its last turn completed; do not use this UI state as the sole stale-owner liveness signal.",
+    "The prior EP76 R2-02 attempt 001 / epoch 1 / owner generation 3 was staged but never canonically selected; supersede it without replay.",
+    "R2-02 attempt 002 / epoch 2 / owner generation 5 is selected only by a protected CP198 transition; before that it is staged, PREPARED_NOT_DISPATCHED, with no Host dispatch.",
+    "Do not set STALE_OWNER_CONFIRMED or revoke/redispatch while independent live executor observation is unavailable; perform source work only within authorized pre-Production bounds.",
+    "Local Goal, Codex UI, thread, or executor-session disappearance is not Project authority and cannot terminate the canonical active Mission.",
+    "After each material evidence delta, fresh-read Project Directory/current pointer/spec/Mission/Policy/checkpoint/run/task/attempt/owner/effects and fresh provider/local live state, recompute READY, then continue highest-priority READY work.",
+    "WAITING_EXTERNAL, AccessDenied, missing privileged route, or pending review parks only its exact lane while any other legal READY lane continues.",
+    "Owner generation 5 lease expiry and aggregate Web Factory zero counts alone are insufficient to confirm stale ownership; preserve STALE_EXECUTION_OWNER_CANDIDATE until exact R2-02 evidence is sufficient.",
+    "R2-07 must prove Windows reboot resume, Supervisor crash restart, Codex UI closed and GPT Web gone continuity, canonical READY recomputation, and evidence/checkpoint persistence.",
+    "R2-09 must include LOCAL_CODEX_GOAL_DISAPPEARS_WHILE_MISSION_ACTIVE with active Mission preserved, new executor recovery, no repeated completed work, and next READY continuation without Human re-injection."
+  ],
+  "acceptance": [
+    "The expired R1 owner generation 2 cannot regain canonical authority under CP196 or later R2 checkpoints.",
+    "R2-01 completion is recorded only by a protected forward-only checkpoint after the merged CP197 post-selection readback.",
+    "R2-02 attempt 002 / epoch 2 / owner generation 5 is the sole active unit only after CP198 and exact post-selection same-source readback.",
+    "STALE_OWNER_CONFIRMED and any revoke/dispatch require fresh independent provider and local liveness evidence; otherwise the exact live-observation lane stays parked and no Host action is dispatched.",
+    "Canonical run, checkpoint, task, attempt, owner generation, and capability-gap evidence agree by same-source readback.",
+    "Production=false, paid_fallback=false, worker_provider_write_credentials=false, Factory MCP public tool count=4.",
+    "Goal lifecycle remains ACTIVE through bounded batches, PR merge, test/verifier PASS, same-source readback, and checkpoint publication.",
+    "Mission termination requires all criteria provider-confirmed PASS, explicit Human cancel/supersede, or durable terminal Human-reserved gate/unrecoverable terminal failure.",
+    "Current R2-02 remains PREPARED_NOT_DISPATCHED; owner generation 5 remains unrevoked pending exact liveness evidence; no Host dispatch or mutation."
+  ],
+  "dependencies": [
+    "R2-01 post-CP197 same-source readback provider-confirmed",
+    "R2-00 exact same-source readback PASS",
+    "fresh provider and native local observations before stale-owner confirmation"
+  ],
+  "risk": "PREPRODUCTION_STALE_OWNER_RECONCILIATION_WITH_LIVE_OBSERVATION_LANE_PARKED",
+  "allowed_tools": [
+    "GitHub exact-read/content/ref APIs",
+    "local native read-only host/process/task observation",
+    "bounded JSON and digest validation"
+  ],
+  "allowed_effects": [
+    "stage R2-02 mission, policy, contract, and run; publish by protected forward-only PR; perform provider and local read-only observations; implement bounded source changes and requested deterministic tests without Host mutation or dispatch",
+    "Publish the user-authorized Mission/Policy GoalLifecycle rebase and continuity acceptance through a protected forward-only PR; record native and provider evidence without Host mutation or dispatch."
+  ],
+  "max_attempts": 1,
+  "time_budget_policy": "ONE_ACTIVE_RECOVERY_OWNER_PER_MUTABLE_ATOMIC_SCOPE",
+  "expected_parent": "5731acc8b29dad713d99098c0540a1382c9e86d1",
+  "prestate_checkpoint_seq": 199,
+  "attempt_id": "V51-R2-02-ATTEMPT-002",
+  "attempt_epoch": 2,
+  "owner_generation": 5,
+  "owner_lease_until": "2026-09-29T18:44:11Z",
+  "contract_revision": 2,
+  "supersedes_contract_path": "governance/csg/v51/runs/V51-R2-001/contract-r2-02-attempt-002.json",
+  "mission_revision_id": "20260930T104733+0800",
+  "mission_hash": "sha256:f235c085f10e54705f7817f0ce6dee1e5b29ef1279306e4b2c280322bfacab29",
+  "policy_revision_id": "20260930T104733+0800-EP80",
+  "policy_hash": "sha256:8529b4bccc66147465b066bf97d71ce2c6ae6bea11e146ca215976bf3b839c85",
+  "change_reason": "VNEXT5.1-R2 GOAL-LIFECYCLE / CONTINUATION HOTFIX"
+}
