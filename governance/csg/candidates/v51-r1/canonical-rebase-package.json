@@ -1,0 +1,151 @@
+{
+  "schema_version": "csg.v51-r1.canonical-rebase-candidate.v1",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "status": "NONCANONICAL_REVIEW_ONLY",
+  "human_current_construction_spec": "VNEXT5.1-R1",
+  "candidate_current_spec": "VNEXT5.1-R1",
+  "exact_prestate": {
+    "canonical_control_head": "a5ebfd86d440b61ecc4e4dc3ba7b8291836769c7",
+    "checkpoint_seq": 192,
+    "checkpoint_digest": "sha256:fc0112e9203a8d9c8a43fa98f427f67c6e0b58aca09c6adcfa260ac6faa274f0",
+    "mission_revision": "20260926T220900+0800",
+    "execution_policy_revision": "20260926T220900+0800-EP72",
+    "phase": "VNEXT5_0_R3_MCP_CONTINUITY_FIRST",
+    "active_unit": "R3-P0-03-FACTORY-ORPHAN-RECONCILIATION",
+    "execution_fence": null
+  },
+  "immutable_spec": {
+    "repository_id": 1352411536,
+    "commit": "3bead6a1b0b2efe29c99bb6fbfe1dbc6fba43091",
+    "path": "governance/csg/candidates/v51-r1/VNEXT5.1-R1-HUMAN-CURRENT-SPEC-20260929.md",
+    "blob_oid": "6df4a189c84ff1e53ce4ba0a90ba39eb6334e59a",
+    "sha256": "29e8a4b8685afbbc8531e1a62dee0b5b072f6a28270f11bfbea9d9b6a5378bea",
+    "byte_length": 5779,
+    "pull_request": 335,
+    "source_class": "EXACT_USER_PROVIDED_GOAL_OBJECTIVE"
+  },
+  "defect_classification": [
+    "SPEC_CONTROL_PLANE_REBASE_REQUIRED",
+    "CANONICAL_SPEC_LAG",
+    "HUMAN_DIRECTIVE_TO_CANONICAL_PUBLICATION_GAP",
+    "CHECKPOINT_RUN_ACTIVE_TASK_IDENTITY_DRIFT",
+    "FACTORY_MCP_SELF_IMPOSED_TRANSPORT_LOCKS",
+    "TRUSTED_CALLER_SHARED_PRINCIPAL_BOUNDARY_GAP"
+  ],
+  "proposed_next_canonical_state": {
+    "construction_spec": "VNEXT5.1-R1",
+    "phase": "VNEXT5_1_R1_CONTROL_PLANE_RECOVERY",
+    "active_unit": "V51-R1-00-CANONICAL-SPEC-ALIGNMENT",
+    "lifecycle": "ACTIVE",
+    "stop_requested": false,
+    "production_allowed": false,
+    "business_project_auto_admission": false,
+    "paid_fallback_allowed": false,
+    "next_legal_transition": "PUBLISH_V51_R1_MISSION_POLICY_AND_RECONCILE_RUN_IDENTITY",
+    "executor_routing": "CODEX_PRIMARY_FOR_SUBSTANTIAL_WORK",
+    "chatgpt_web_role": "CONTROL_REVIEW_SHORT_READBACK_HUMAN_INTERFACE"
+  },
+  "required_rebase_sequence": [
+    "PUBLISH_IMMUTABLE_V51_R1_SPEC_IDENTITY",
+    "PUBLISH_HUMAN_AUTHORIZED_V51_R1_MISSION_REVISION",
+    "PUBLISH_MATCHING_V51_R1_EXECUTION_POLICY",
+    "PUBLISH_CODEX_PRIMARY_EXECUTOR_ROUTING_POLICY",
+    "RECONCILE_CHECKPOINT_AND_RUN_TO_ONE_ACTIVE_TASK_ATTEMPT",
+    "QUALIFY_FIXED_READ_ONLY_FACTORY_STATUS_PROBES",
+    "QUALIFY_UNIQUE_OS_ENFORCED_TRUSTED_CALLER",
+    "REMOVE_DUPLICATED_MISSION_CHECKPOINT_RUN_TASK_GENERATION_TRANSPORT_GATES",
+    "QUALIFY_EXACT_LIVE_FACTORY_MCP_INSTALL",
+    "RUN_CROSS_SESSION_COLD_START_REGRESSION",
+    "RUN_HANYAO_READ_ONLY_RECOVERY"
+  ],
+  "factory_mcp_guard_contract": {
+    "read_only_surface": {
+      "preferred_tool": "factory_status",
+      "arbitrary_powershell": false,
+      "mutation_fence_required": false,
+      "required_probes": [
+        "capability_status",
+        "orphan_records",
+        "runtime_prestate",
+        "factory_service_process_task_identity",
+        "broker_receipt_state",
+        "trusted_caller_identity"
+      ]
+    },
+    "host_powershell": {
+      "public_tool_retained": true,
+      "run_as_required": "NT AUTHORITY\\SYSTEM",
+      "mission_revision_rollover_gate": false,
+      "checkpoint_rollover_gate": false,
+      "run_id_pattern_rollover_gate": false,
+      "task_id_pattern_rollover_gate": false,
+      "per_session_reauthorization_gate": false,
+      "retained_safety": [
+        "EXACT_PROJECT_AND_HOST_TARGET",
+        "STOP",
+        "REAL_BACKEND_STALE_ATTEMPT_FENCE_WHEN_PRESENT",
+        "UNRESOLVED_AMBIGUOUS_EFFECT_READBACK_FIRST",
+        "PROVIDER_BACKEND_CAS_REVISION",
+        "PRODUCTION_HUMAN_GATE",
+        "BOUNDED_TIMEOUT_OUTPUT",
+        "DURABLE_RECEIPT",
+        "SAME_SOURCE_READBACK",
+        "OPERATION_OWNED_ROLLBACK"
+      ]
+    }
+  },
+  "cross_session_acceptance": [
+    "FRESH_SESSION_RESOLVES_VNEXT5_1_R1_WITHOUT_MEMORY",
+    "MISSION_POLICY_SPEC_CHECKPOINT_RUN_IDENTITIES_AGREE",
+    "OLD_R4_OR_V50_STATE_CANNOT_RESURRECT_AS_CURRENT",
+    "WORKLOG_IS_PROJECTION_NOT_SECOND_AUTHORITY",
+    "ORDINARY_REVERSIBLE_PREPRODUCTION_DOES_NOT_REASK_HUMAN",
+    "PRODUCTION_REMAINS_HUMAN_RESERVED"
+  ],
+  "live_acceptance": [
+    "FACTORY_STATUS_PASS",
+    "FIXED_READ_ONLY_PROBES_PASS_WITH_ZERO_HOST_MUTATION",
+    "TRUSTED_CALLER_NEGATIVE_INJECTION_TEST_PASS",
+    "AUTHORIZED_HOST_POWERSHELL_CANARY_RETURNS_SYSTEM",
+    "SYSTEM_CAPABILITY_RUN_DENY_ABSENT_FOR_AUTHORIZED_SCOPE",
+    "SYSTEM_CAPABILITY_TASK_DENY_ABSENT_FOR_AUTHORIZED_SCOPE",
+    "MISSION_CHECKPOINT_ROLLOVER_ALONE_DOES_NOT_DISABLE_TRANSPORT",
+    "PUBLIC_TOOL_COUNT_EXACTLY_4"
+  ],
+  "codex_boundary": {
+    "routing_policy": "CODEX_PRIMARY_FOR_SUBSTANTIAL_AND_LONG_RUNNING_WORK",
+    "former_chat_first_policy_revoked": true,
+    "former_direct_native_capability_precedence_revoked": true,
+    "former_codex_last_mile_only_revoked": true,
+    "chat_connector_exhaustion_not_required_before_delegation": true,
+    "codex_primary_for": [
+      "MULTI_STEP_CODING",
+      "REPOSITORY_CONSTRUCTION",
+      "TEST_REPAIR_LOOPS",
+      "LONG_LOCAL_FILESYSTEM_WORK",
+      "SUSTAINED_RESEARCH_TO_IMPLEMENTATION",
+      "LONG_RUNNING_STATEFUL_CONSTRUCTION"
+    ],
+    "chatgpt_web_primary_for": [
+      "MISSION_INTERPRETATION",
+      "BOUNDED_CONTROL_READBACK",
+      "INDEPENDENT_AUDIT",
+      "EXCEPTION_HANDLING",
+      "HUMAN_INTERACTION"
+    ],
+    "routine_per_session_codex_opt_in_required": false,
+    "codex_mission_sovereignty": false,
+    "human_reserved_gates_remain": true
+  },
+  "forbidden_in_this_candidate": [
+    "CANONICAL_POINTER_MUTATION",
+    "MISSION_POLICY_PUBLICATION",
+    "HOST_MUTATION",
+    "FACTORY_MCP_INSTALL",
+    "RUNNER_OR_TRUST_ROOT_ACTIVATION",
+    "PRODUCTION",
+    "BUSINESS_PROJECT_MUTATION",
+    "PAID_FALLBACK",
+    "BLIND_RETRY_UNKNOWN_EFFECT"
+  ]
+}
