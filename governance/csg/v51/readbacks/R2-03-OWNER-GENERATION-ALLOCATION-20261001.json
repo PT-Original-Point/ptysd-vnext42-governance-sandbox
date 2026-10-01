@@ -1,0 +1,254 @@
+{
+  "schema_version": "csg.v51.owner-generation-allocation-evidence.v1",
+  "record_id": "V51-R2-CP201-OWNER-GENERATION-ALLOCATION-20261001",
+  "regression_id": "NEW_OWNER_GENERATION_MUST_EXCEED_CANONICAL_AND_AVOID_DURABLE_COLLISION",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "observed_at_utc": "2026-10-01T04:22:13Z",
+  "classification": "GEN6_BURNED_DURABLE_IDENTITY",
+  "classification_basis": "The CP200 canonical checkpoint census contains only owner generations 1-5. Generation 6 was not canonically selected, its lease expired before the CP201 recorded_at, and its checkpoint has no execution fence, remote WIP, active job, or unresolved effect; however, the generation-6 CP201 owner claim and current pointer were provider-addressable at the exact open Draft PR #342 head 3cf057c4b28d3c7f225823ede198ac9845e050e0, and the protected exact-head csg-trusted-verifier succeeded (run 36801312818, job 110176050759). That public owner claim burns generation 6. Generation 7 is in provider-addressable candidate branch 1cee612cf30e96cd5e3d7ae130948018ec6f1393; generation 8 is in provider-addressable candidate branch 7cfb1ec3711421b5ee534be19f321fbec33a82a3.",
+  "canonical_owner": {
+    "checkpoint_seq": 200,
+    "owner_generation": 5,
+    "control_commit": "d39486601d851e31256852a24e9c1393b9046fe5",
+    "pointer_digest": "sha256:2cd708bb96179b7ef416ab5a7616f7dff50030567f56d7506a7182f6ceda600d",
+    "control_ref": "refs/heads/v45/factory-control"
+  },
+  "canonical_checkpoint_census": {
+    "through_checkpoint_seq": 200,
+    "checkpoint_files_present": 192,
+    "parsed_checkpoint_count": 191,
+    "unparsed_checkpoint_refs": [
+      {
+        "path": "governance/csg/checkpoints/000047.json",
+        "owner_field": "null",
+        "owner_generation_token_present": false
+      }
+    ],
+    "distinct_owner_generations": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "generation_six_present": false,
+    "evidence_ref": "CP200 canonical checkpoint tree at d39486601d851e31256852a24e9c1393b9046fe5"
+  },
+  "policy_assessment": {
+    "current_policy_revision": "20260930T104733+0800-EP80",
+    "durable_allocator_present": false,
+    "monotonic_nonreuse_for_unselected_candidates_required": false,
+    "policy_requires_new_generation_greater_than_canonical": true
+  },
+  "candidate_scoped_allocation_rule": {
+    "scope": "CP201_CANDIDATE_PACKET_ONLY",
+    "durable_allocator_claimed": false,
+    "rule": "NEXT_INTEGER_GREATER_THAN_CANONICAL_AND_NOT_IN_DURABLY_CONSUMED_SET",
+    "owner_claim_publication_consumes_identity": true,
+    "identity_sources": "Canonical selection, provider-addressable owner claims, durable leases, fences, jobs, or external receipts/effects consume the corresponding generation identity.",
+    "selection": "Choose the smallest integer greater than the canonical owner generation that does not appear in the durable consumed identity set.",
+    "unconsumed_generation_six_rule": "If generation 6 is not canonical, provider-addressable, leased, fenced, job-bound, or referenced by an external receipt/effect, and current policy does not require monotonic non-reuse, allocate generation 6 rather than skipping to 7."
+  },
+  "durable_generation_identity_sources": [
+    {
+      "generation": 1,
+      "classification": "CANONICALLY_SELECTED",
+      "evidence": "CP200 canonical predecessor checkpoint census"
+    },
+    {
+      "generation": 2,
+      "classification": "CANONICALLY_SELECTED",
+      "evidence": "CP200 canonical predecessor checkpoint census"
+    },
+    {
+      "generation": 3,
+      "classification": "CANONICALLY_SELECTED",
+      "evidence": "CP200 canonical predecessor checkpoint census"
+    },
+    {
+      "generation": 4,
+      "classification": "CANONICALLY_SELECTED",
+      "evidence": "CP200 canonical predecessor checkpoint census"
+    },
+    {
+      "generation": 5,
+      "classification": "CANONICALLY_SELECTED",
+      "evidence": "CP200 canonical predecessor checkpoint census"
+    },
+    {
+      "generation": 6,
+      "classification": "GEN6_BURNED_DURABLE_IDENTITY",
+      "evidence": "PR #342 exact-head provider workflow plus historical PR-target workflow"
+    },
+    {
+      "generation": 7,
+      "classification": "GEN7_PROVIDER_ADDRESSABLE_CANDIDATE",
+      "evidence": "Current provider branch codex/r2-cp201-audit-rebuild-20261001 points to a CP201 owner-generation-7 claim"
+    },
+    {
+      "generation": 8,
+      "classification": "GEN8_PROVIDER_ADDRESSABLE_CANDIDATE",
+      "evidence": "Provider branch 7cfb1ec3711421b5ee534be19f321fbec33a82a3 points to a CP201 checkpoint and pointer with owner_generation 8; parent is exact CP200 d39486601d851e31256852a24e9c1393b9046fe5."
+    }
+  ],
+  "prior_generation_six_candidate": {
+    "classification": "GEN6_BURNED_DURABLE_IDENTITY",
+    "checkpoint_seq": 201,
+    "owner_generation": 6,
+    "commit_sha": "3cf057c4b28d3c7f225823ede198ac9845e050e0",
+    "tree_oid": "31914fc0473fc339a71f6b06c5a5ca745f74aa1f",
+    "checkpoint_blob_oid": "e10581e299a2ea37bec36ca2929bade21d2c4b7f",
+    "pointer_blob_oid": "f89f7eaecb99beb17e2ca3a21042b9b5116d06d1",
+    "previous_control_oid": "d39486601d851e31256852a24e9c1393b9046fe5",
+    "recorded_at": "2026-09-30T10:43:20.359Z",
+    "lease_until": "2026-09-30T06:14:26Z",
+    "canonical_selection": false,
+    "execution_fence": null,
+    "lease_valid_at_recorded_at": false,
+    "remote_wip": null,
+    "active_job_refs": [],
+    "unresolved_effect_refs": [],
+    "branches_where_head": [
+      "codex/v51-r1-03-readonly-bootstrap-20260929"
+    ],
+    "associated_pull_requests": [
+      342
+    ],
+    "provider_publication": {
+      "kind": "PULL_REQUEST_EXACT_HEAD_PROVIDER_WORKFLOW",
+      "pr_number": 342,
+      "exact_head_sha": "3cf057c4b28d3c7f225823ede198ac9845e050e0",
+      "workflow_head_sha": "3cf057c4b28d3c7f225823ede198ac9845e050e0",
+      "workflow_run_id": 36801312818,
+      "workflow_run_number": 399,
+      "workflow_event": "pull_request_target",
+      "verifier_job_id": 110176050759,
+      "verifier_name": "csg-trusted-verifier",
+      "verifier_conclusion": "success",
+      "bounded_driver_job_id": 110176051643,
+      "bounded_driver_conclusion": "skipped",
+      "current_pr_state": "open",
+      "current_pr_draft": true,
+      "current_pr_merged": false,
+      "current_pr_branch": "codex/v51-r1-03-readonly-bootstrap-20260929",
+      "current_pr_head_tree": "31914fc0473fc339a71f6b06c5a5ca745f74aa1f",
+      "current_pr_head_checkpoint_blob_oid": "e10581e299a2ea37bec36ca2929bade21d2c4b7f",
+      "current_pr_head_pointer_blob_oid": "f89f7eaecb99beb17e2ca3a21042b9b5116d06d1",
+      "current_pr_updated_at": "2026-10-01T01:39:11Z",
+      "observed_at_utc": "2026-10-01T03:26:35.845Z"
+    },
+    "historical_provider_publications": [
+      {
+        "kind": "PULL_REQUEST_EXACT_HEAD_PROVIDER_WORKFLOW",
+        "pr_number": 342,
+        "exact_head_sha": "f1b95241b744bf57b924e5e7856f681fd20b216e",
+        "workflow_head_sha": "f1b95241b744bf57b924e5e7856f681fd20b216e",
+        "workflow_run_id": 36740121863,
+        "workflow_event": "pull_request_target",
+        "verifier_job_id": 109972022641,
+        "verifier_conclusion": "success",
+        "checkpoint_blob_oid": "e10581e299a2ea37bec36ca2929bade21d2c4b7f",
+        "pointer_blob_oid": "fbaf551eb44a1a20db9c40a8c4b204df35da2a9c"
+      }
+    ]
+  },
+  "prior_generation_seven_candidate": {
+    "classification": "GEN7_PROVIDER_ADDRESSABLE_CANDIDATE",
+    "checkpoint_seq": 201,
+    "owner_generation": 7,
+    "commit_sha": "1cee612cf30e96cd5e3d7ae130948018ec6f1393",
+    "tree_oid": "bf972f6495766559d54bcb2283a3d851217b4173",
+    "checkpoint_blob_oid": "2b832472a29122c4b4eb026224030f970caae68a",
+    "pointer_blob_oid": "5d0e880f6af8669a7fa10e5b485a4ca142def33c",
+    "branch": "codex/r2-cp201-audit-rebuild-20261001",
+    "branch_head": true,
+    "branches_where_head": [
+      "codex/r2-cp201-audit-rebuild-20261001"
+    ],
+    "associated_pull_requests": [],
+    "action_runs": [],
+    "recorded_at": "2026-10-01T02:38:53Z",
+    "lease_until": "2026-10-01T06:38:53Z",
+    "canonical_selection": false,
+    "execution_fence": null,
+    "active_job_refs": [],
+    "unresolved_effect_refs": []
+  },
+  "durably_consumed_generation_values": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "candidate": {
+    "checkpoint_seq": 201,
+    "candidate_branch": "codex/r2-cp201-generation-allocation-rebuild-20261001",
+    "owner_generation": 9,
+    "lease_until": "2026-10-01T08:22:13Z",
+    "recorded_at": "2026-10-01T04:22:13Z",
+    "publication_state": "CANDIDATE_PACKET_PREPARED_FOR_PROVIDER_BRANCH",
+    "becomes_durably_consumed_when_provider_addressable": true
+  },
+  "provider_readback": {
+    "observed_at_utc": "2026-10-01T04:22:13Z",
+    "repository": "PT-Original-Point/ptysd-vnext42-governance-sandbox",
+    "project_directory_ref": "refs/heads/governance/project-directory",
+    "project_directory_commit": "38f4fc7cb2841e2318a97ff7a53e41b2ec07aef1",
+    "project_directory_path": "directory/projects/CHATGPT_GLOBAL_SKILL_GOVERNANCE.json",
+    "project_directory_blob_oid": "377dcf88279d3ba433d099a7cc9f78af8c86b8ae",
+    "current_control_ref": "refs/heads/v45/factory-control",
+    "current_control_commit": "d39486601d851e31256852a24e9c1393b9046fe5",
+    "current_canonical_checkpoint_seq": 200,
+    "current_canonical_checkpoint_digest": "sha256:2cd708bb96179b7ef416ab5a7616f7dff50030567f56d7506a7182f6ceda600d",
+    "current_pr342_head": "3cf057c4b28d3c7f225823ede198ac9845e050e0",
+    "current_candidate_generation_six_commit": "3cf057c4b28d3c7f225823ede198ac9845e050e0",
+    "current_candidate_generation_six_tree": "31914fc0473fc339a71f6b06c5a5ca745f74aa1f",
+    "current_candidate_generation_seven_commit": "1cee612cf30e96cd5e3d7ae130948018ec6f1393",
+    "current_candidate_generation_seven_tree": "bf972f6495766559d54bcb2283a3d851217b4173",
+    "generation_six_workflow_run_id": 36801312818,
+    "generation_six_verifier_job_id": 110176050759,
+    "generation_six_historical_workflow_run_id": 36740121863,
+    "generation_six_historical_verifier_job_id": 109972022641,
+    "current_candidate_generation_eight_commit": "7cfb1ec3711421b5ee534be19f321fbec33a82a3",
+    "current_candidate_generation_eight_tree": "dee39f180c73bc997165417271627b6bce330b7b",
+    "current_candidate_generation_eight_checkpoint_blob_oid": "fee4c8451bab7a354a1196e504326460f1b6eb31",
+    "current_candidate_generation_eight_pointer_blob_oid": "f71d3175df8db0be6e6b2727145b2186cb41e215",
+    "current_pr377_head": "b09aff5143d9c66ad6ab8cdbc9c141d982771b61",
+    "current_pr377_tree": "06a7e7ad56dbe82a3c29d8543c1ae51d55ff0c1f",
+    "current_pr377_verifier_run_id": 36801313542,
+    "current_pr377_verifier_job_id": 110176053104,
+    "current_pr377_verifier_conclusion": "success",
+    "current_pr377_state": "open",
+    "current_pr377_draft": true,
+    "current_pr377_merged": false
+  },
+  "prior_generation_eight_candidate": {
+    "classification": "GEN8_PROVIDER_ADDRESSABLE_CANDIDATE",
+    "checkpoint_seq": 201,
+    "owner_generation": 8,
+    "commit_sha": "7cfb1ec3711421b5ee534be19f321fbec33a82a3",
+    "tree_oid": "dee39f180c73bc997165417271627b6bce330b7b",
+    "checkpoint_blob_oid": "fee4c8451bab7a354a1196e504326460f1b6eb31",
+    "pointer_blob_oid": "f71d3175df8db0be6e6b2727145b2186cb41e215",
+    "previous_control_oid": "d39486601d851e31256852a24e9c1393b9046fe5",
+    "branch": "codex/r2-cp201-generation-discipline-20261001",
+    "branch_head": true,
+    "branches_where_head": [
+      "codex/r2-cp201-generation-discipline-20261001"
+    ],
+    "associated_pull_requests": [],
+    "action_runs": [],
+    "recorded_at": "2026-10-01T03:33:20.138Z",
+    "lease_until": "2026-10-01T07:33:20.138Z",
+    "canonical_selection": false,
+    "execution_fence": null,
+    "active_job_refs": [],
+    "unresolved_effect_refs": [],
+    "candidate_owner_authority": "NOT_CANONICALLY_SELECTED_NO_EXECUTION_FENCE_OR_DISPATCH",
+    "provider_readback_at_utc": "2026-10-01T04:22:13Z"
+  }
+}

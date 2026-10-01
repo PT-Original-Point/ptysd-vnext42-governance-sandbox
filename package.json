@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "test": "node --test tests/b0.test.ts",
+    "test:v51-r2-promotion": "node --test tests/csg/v51-r2-promotion-packet.test.mjs",
     "test:v45": "node --test tests/v45-bounded.test.mjs",
-    "verify": "node scripts/verify.mjs",
+    "verify": "node scripts/verify.mjs && node scripts/verify-v51-r2-promotion-packet.mjs && npm run test:v51-r2-promotion",
     "verify:v45-bounded": "node scripts/verify-v45-bounded.mjs",
     "e2e": "node scripts/e2e.mjs",
     "verify:contracts": "node scripts/verify-b0-contracts.mjs",
