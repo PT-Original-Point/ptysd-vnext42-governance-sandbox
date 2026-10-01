@@ -1,0 +1,120 @@
+{
+  "schema_version": "PTYSD_RECOVERY_TRUST_PROVISIONING_PACKET_V1",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "status": "PREPARED_NOT_INSTALLABLE_REAL_KEYS_AND_AUTHORIZED_ROUTE_REQUIRED",
+  "install_authorized": false,
+  "host_mutation_authorized": false,
+  "current_runtime_trust_root_count": 0,
+  "runtime_trust_root_generation": 1,
+  "provisioning_targets": [
+    {
+      "key_id": null,
+      "issuer_role": "HOST_LOCAL",
+      "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+      "scope": "V51_R2_LOCAL_OWNER_LIVENESS",
+      "generation": null,
+      "not_before": null,
+      "not_after": null,
+      "revoked_at": null,
+      "schemas": [
+        "PTYSD_LOCAL_LIVENESS_EVIDENCE_V1"
+      ],
+      "public_key": null,
+      "public_key_pem": null,
+      "producer_boundary": "HOST_LOCAL_SIGNER",
+      "private_key_policy": "PRIVATE_SIGNING_KEY_REMAINS_EXCLUSIVELY_WITH_HOST_LOCAL_PRODUCER",
+      "status": "NOT_PROVISIONED",
+      "required_fields": [
+        "key_id",
+        "issuer_role",
+        "project_id",
+        "scope",
+        "generation",
+        "not_before",
+        "not_after",
+        "revoked_at",
+        "schemas",
+        "public_key"
+      ]
+    },
+    {
+      "key_id": null,
+      "issuer_role": "PROVIDER_AGENT",
+      "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+      "scope": "V51_R2_PROVIDER_AGENT_SESSION",
+      "generation": null,
+      "not_before": null,
+      "not_after": null,
+      "revoked_at": null,
+      "schemas": [
+        "PTYSD_PROVIDER_LIVENESS_EVIDENCE_V1"
+      ],
+      "public_key": null,
+      "public_key_pem": null,
+      "producer_boundary": "PROVIDER_AGENT_SIGNER",
+      "private_key_policy": "PRIVATE_SIGNING_KEY_REMAINS_EXCLUSIVELY_WITH_PROVIDER_AGENT_PRODUCER",
+      "status": "NOT_PROVISIONED",
+      "required_fields": [
+        "key_id",
+        "issuer_role",
+        "project_id",
+        "scope",
+        "generation",
+        "not_before",
+        "not_after",
+        "revoked_at",
+        "schemas",
+        "public_key"
+      ]
+    },
+    {
+      "key_id": null,
+      "issuer_role": "HOST_SUPERVISOR",
+      "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+      "scope": "V51_R2_SUPERVISOR_HEARTBEAT",
+      "generation": null,
+      "not_before": null,
+      "not_after": null,
+      "revoked_at": null,
+      "schemas": [
+        "PTYSD_SUPERVISOR_HEARTBEAT_EVIDENCE_V1"
+      ],
+      "public_key": null,
+      "public_key_pem": null,
+      "producer_boundary": "HOST_SUPERVISOR_SIGNER",
+      "private_key_policy": "PRIVATE_SIGNING_KEY_REMAINS_EXCLUSIVELY_WITH_HOST_SUPERVISOR_PRODUCER",
+      "status": "NOT_PROVISIONED",
+      "required_fields": [
+        "key_id",
+        "issuer_role",
+        "project_id",
+        "scope",
+        "generation",
+        "not_before",
+        "not_after",
+        "revoked_at",
+        "schemas",
+        "public_key"
+      ]
+    }
+  ],
+  "synthetic_test_keys_in_runtime": false,
+  "worker_provider_write_credentials": 0,
+  "exact_reentry_condition": "Each real producer publishes its public key and signed identity metadata through an authorized route; then policy permits fixed-path read-only trust installation and same-source readback.",
+  "observed_at_utc": "2026-10-01T02:38:53Z",
+  "target_host_identity": null,
+  "fixed_host_path": null,
+  "required_key_metadata": [
+    "key_id",
+    "issuer_role",
+    "project_id",
+    "scope",
+    "generation",
+    "not_before",
+    "not_after",
+    "revoked_at",
+    "schemas",
+    "public_key"
+  ],
+  "private_key_handling": "PRIVATE_SIGNING_KEYS_REMAIN_AT_THEIR_RESPECTIVE_PRODUCER_BOUNDARIES_AND_ARE_NEVER_INCLUDED_IN_THIS_PACKAGE"
+}

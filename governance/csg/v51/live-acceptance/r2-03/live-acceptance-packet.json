@@ -1,0 +1,91 @@
+{
+  "schema_version": "V51_R2_03_LIVE_ACCEPTANCE_PACKET_V1",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "unit_id": "V51-R2-03-FIXED-READONLY-FACTORY-OBSERVATION",
+  "status": "NOT_ACCEPTED",
+  "candidate_only": true,
+  "acceptance_boundary": "R2-03 may become PASS only after every listed criterion is provider-confirmed on the real Host.",
+  "source_contract": "QUALIFIED_CANDIDATE",
+  "synthetic_integration": {
+    "status": "PASS",
+    "evidence_class": "SYNTHETIC_TEST_KEYS_AND_TEMPORARY_STORES_ONLY"
+  },
+  "live_states": {
+    "trust_provisioning": "NOT_ACCEPTED",
+    "provider_session_route": "NOT_ACCEPTED",
+    "supervisor_heartbeat_route": "NOT_ACCEPTED",
+    "signed_evidence_path": "NOT_ACCEPTED"
+  },
+  "criteria": [
+    {
+      "criterion": "TRUSTED_ROOTS_INSTALLED_READ_ONLY",
+      "status": "NOT_ACCEPTED",
+      "required_evidence": "REAL_HOST_PROVIDER_ADDRESSABLE_EXACT_IDENTITY_SAME_SOURCE_READBACK"
+    },
+    {
+      "criterion": "FIXED_PRODUCER_RUNNING",
+      "status": "NOT_ACCEPTED",
+      "required_evidence": "REAL_HOST_PROVIDER_ADDRESSABLE_EXACT_IDENTITY_SAME_SOURCE_READBACK"
+    },
+    {
+      "criterion": "PROVIDER_SESSION_ROUTE_READABLE",
+      "status": "NOT_ACCEPTED",
+      "required_evidence": "REAL_HOST_PROVIDER_ADDRESSABLE_EXACT_IDENTITY_SAME_SOURCE_READBACK"
+    },
+    {
+      "criterion": "SUPERVISOR_HEARTBEAT_ROUTE_READABLE",
+      "status": "NOT_ACCEPTED",
+      "required_evidence": "REAL_HOST_PROVIDER_ADDRESSABLE_EXACT_IDENTITY_SAME_SOURCE_READBACK"
+    },
+    {
+      "criterion": "SIGNED_EVIDENCE_PUBLISHED",
+      "status": "NOT_ACCEPTED",
+      "required_evidence": "REAL_HOST_PROVIDER_ADDRESSABLE_EXACT_IDENTITY_SAME_SOURCE_READBACK"
+    },
+    {
+      "criterion": "IMMUTABLE_EVIDENCE_READBACK_SUCCEEDS",
+      "status": "NOT_ACCEPTED",
+      "required_evidence": "REAL_HOST_PROVIDER_ADDRESSABLE_EXACT_IDENTITY_SAME_SOURCE_READBACK"
+    },
+    {
+      "criterion": "FACTORY_STATUS_EXPOSES_EXACT_REFS",
+      "status": "NOT_ACCEPTED",
+      "required_evidence": "REAL_HOST_PROVIDER_ADDRESSABLE_EXACT_IDENTITY_SAME_SOURCE_READBACK"
+    },
+    {
+      "criterion": "RECOVERY_EVIDENCE_TRUST_READS_THE_SAME_SIGNED_BYTES",
+      "status": "NOT_ACCEPTED",
+      "required_evidence": "REAL_HOST_PROVIDER_ADDRESSABLE_EXACT_IDENTITY_SAME_SOURCE_READBACK"
+    },
+    {
+      "criterion": "SIGNATURE_DIGEST_IDENTITY_AND_FRESHNESS_CHECKS_PASS",
+      "status": "NOT_ACCEPTED",
+      "required_evidence": "REAL_HOST_PROVIDER_ADDRESSABLE_EXACT_IDENTITY_SAME_SOURCE_READBACK"
+    },
+    {
+      "criterion": "TAMPER_WRONG_KEY_AND_STALE_GENERATION_CASES_FAIL_CLOSED",
+      "status": "NOT_ACCEPTED",
+      "required_evidence": "REAL_HOST_PROVIDER_ADDRESSABLE_EXACT_IDENTITY_SAME_SOURCE_READBACK"
+    }
+  ],
+  "forbidden_conclusions": [
+    "R2_03_PASS",
+    "R2_02_PASS",
+    "STALE_OWNER_CONFIRMED",
+    "OWNER_REVOKED",
+    "HOST_DISPATCH",
+    "PRODUCTION",
+    "PAID_FALLBACK",
+    "WORKER_PROVIDER_WRITE_CREDENTIALS"
+  ],
+  "exact_reentry_condition": "After authentic trust roots, the provider session route, and the Host Supervisor heartbeat route are available under explicit policy authorization, run the full real-Host acceptance and persist provider-addressable same-source readback.",
+  "last_reconciled_at_utc": "2026-10-01T02:38:53Z",
+  "exact_blocker_ids": [
+    "R2_03_LIVE_FACTORY_MCP_ROUTE_UNAVAILABLE_IN_CURRENT_EXECUTOR",
+    "R2_03_LIVE_TRUST_PROVISIONING_NOT_ACCEPTED",
+    "R2_03_LIVE_PROVIDER_SESSION_ROUTE_NOT_ACCEPTED",
+    "R2_03_LIVE_SUPERVISOR_HEARTBEAT_ROUTE_NOT_ACCEPTED",
+    "R2_03_LIVE_SIGNED_EVIDENCE_PATH_NOT_ACCEPTED",
+    "HOST_MUTATION_FORBIDDEN_BY_CP200_POLICY"
+  ]
+}

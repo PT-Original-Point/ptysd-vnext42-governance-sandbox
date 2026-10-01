@@ -1,0 +1,44 @@
+{
+  "schema_version": "PTYSD_HOST_SUPERVISOR_HEARTBEAT_READ_ROUTE_CONTRACT_V1",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "status": "UNAVAILABLE",
+  "reason_code": "SUPERVISOR_HEARTBEAT_READ_ROUTE_NOT_CONFIGURED",
+  "route_id": "PTYSD_SUPERVISOR_HEARTBEAT_EVIDENCE_V1",
+  "required_exact_output_identity": [
+    "project_id",
+    "supervisor_id",
+    "boot_identity",
+    "service_identity",
+    "task_identity",
+    "process_identity",
+    "task_id",
+    "attempt_id",
+    "attempt_epoch",
+    "owner_generation",
+    "heartbeat_id",
+    "heartbeat_at_utc",
+    "evidence_digest",
+    "signature",
+    "producer_identity"
+  ],
+  "producer_boundary": "HOST_SUPERVISOR_SIGNER",
+  "durability_requirements": [
+    "WEB_SESSION_DISAPPEARANCE",
+    "CODEX_SESSION_DISAPPEARANCE",
+    "CONTEXT_COMPACTION",
+    "WINDOWS_REBOOT",
+    "SUPERVISOR_PROCESS_RESTART"
+  ],
+  "prohibited_substitutes": [
+    "SCHEDULED_TASK_DISABLED_STATE",
+    "PROCESS_ABSENCE",
+    "UNSIGNED_LOCAL_FILE"
+  ],
+  "exact_reentry_condition": "A real Host Supervisor emits a signed heartbeat after service start, reboot/resume, and process restart; the fixed route returns identical signed bytes with the full identity, digest, producer, and freshness verified.",
+  "observed_at_utc": "2026-10-01T02:38:53Z",
+  "current_runtime_manifest_ref": {
+    "revision": "b09aff5143d9c66ad6ab8cdbc9c141d982771b61",
+    "path": "config/runtime-manifest.json",
+    "digest": "sha256:34175d81c54f36fdf7343cf1431a257c9924a4cebd82d01fd0aac16c5dd5e94b"
+  }
+}

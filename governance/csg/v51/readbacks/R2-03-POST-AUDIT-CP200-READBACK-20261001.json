@@ -1,0 +1,189 @@
+{
+  "schema_version": "csg.v51.fresh-authority-readback.v1",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "observed_at_utc": "2026-10-01T02:38:53Z",
+  "project_directory": {
+    "revision": 5,
+    "commit": "38f4fc7cb2841e2318a97ff7a53e41b2ec07aef1",
+    "path": "directory/projects/CHATGPT_GLOBAL_SKILL_GOVERNANCE.json",
+    "blob_oid": "377dcf88279d3ba433d099a7cc9f78af8c86b8ae",
+    "digest": "sha256:191535151abfa78decf9392b2381ed5296281a14e4e943f78d77e356c4c372d8",
+    "control_locator": {
+      "provider": "github",
+      "repository_id": 1352411536,
+      "ref": "refs/heads/v45/factory-control",
+      "current_path": "governance/csg/current.json"
+    }
+  },
+  "canonical_pointer": {
+    "revision": "d39486601d851e31256852a24e9c1393b9046fe5",
+    "checkpoint_seq": 200,
+    "checkpoint_path": "governance/csg/checkpoints/000200.json",
+    "checkpoint_digest": "sha256:2cd708bb96179b7ef416ab5a7616f7dff50030567f56d7506a7182f6ceda600d",
+    "transition_id": "V51-R2-GOAL-LIFECYCLE-REBASE-200"
+  },
+  "current_spec": {
+    "revision": "021f1752448ac0d16cb6bdc0d49231976a839cf2",
+    "path": "governance/csg/v51/specs/VNEXT5.1-R2-HUMAN-CURRENT-SPEC-20260929.md",
+    "digest": "sha256:b3b805f4dd5e88a2370c456c7f678c3264ca032090c957d69116512b563b589f"
+  },
+  "mission": {
+    "status": "ACTIVE",
+    "revision": "20260930T104733+0800",
+    "hash": "sha256:f235c085f10e54705f7817f0ce6dee1e5b29ef1279306e4b2c280322bfacab29",
+    "active_unit": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION"
+  },
+  "policy": {
+    "revision": "20260930T104733+0800-EP80",
+    "hash": "sha256:8529b4bccc66147465b066bf97d71ce2c6ae6bea11e146ca215976bf3b839c85",
+    "active_owner_generation": 5
+  },
+  "checkpoint": {
+    "seq": 200,
+    "recorded_at": "2026-09-30T02:52:35Z",
+    "owner": {
+      "principal_id": "CODEX_THREAD_01a0ed35-6063-7912-9872-7d4122a3b125",
+      "owner_generation": 5,
+      "scope": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION",
+      "lease_until": "2026-09-29T18:44:11Z"
+    },
+    "blockers": [
+      "R2_02_AUTHORIZED_LIVE_EXECUTOR_OBSERVATION_REQUIRED_BEFORE_STALE_OWNER_CONFIRMATION_OR_HOST_DISPATCH",
+      "R2_02_GEN5_EXACT_LIVENESS_PROOF_INSUFFICIENT",
+      "R2_02_HYPERV_HOSTGUARD_LOCAL_OS_PRIVILEGE_REQUIRED"
+    ]
+  },
+  "run_task_attempt_owner": {
+    "run_id": "V51-R2-001",
+    "run_revision": 7,
+    "run_state": "RUNNING",
+    "task_id": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION",
+    "attempt_id": "V51-R2-02-ATTEMPT-002",
+    "attempt_epoch": 2,
+    "owner": {
+      "principal_id": "CODEX_THREAD_01a0ed35-6063-7912-9872-7d4122a3b125",
+      "owner_generation": 5,
+      "scope": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION",
+      "lease_until": "2026-09-29T18:44:11Z"
+    },
+    "unresolved_effect_refs": []
+  },
+  "provider_readback": {
+    "pr342": {
+      "state": "OPEN",
+      "draft": true,
+      "merged": false,
+      "head": "3cf057c4b28d3c7f225823ede198ac9845e050e0",
+      "base": "d39486601d851e31256852a24e9c1393b9046fe5",
+      "tree": "31914fc0473fc339a71f6b06c5a5ca745f74aa1f",
+      "verifier": "PASS_EXACT_HEAD",
+      "verifier_job_id": 110176050759,
+      "bounded_driver": "SKIPPED_NOT_PASS",
+      "reviewer": "wfvupu1212",
+      "exact_head_verdict": "PENDING",
+      "review_submissions": [
+        {
+          "review_id": "PRR_kwDOUJwpkM8AAAABP9Shvg",
+          "state": "COMMENTED",
+          "target_sha": "84ab8ea8ca0bb54ef2af8ced7f71ec65e84570c5",
+          "disposition": "NONPORTABLE_OLD_SHA"
+        },
+        {
+          "review_id": "PRR_kwDOUJwpkM8AAAABQDviQQ",
+          "state": "COMMENTED",
+          "disposition": "REVIEW_QUOTA_FAILURE_NOT_A_VERDICT"
+        }
+      ]
+    },
+    "pr377": {
+      "state": "OPEN",
+      "draft": true,
+      "merged": false,
+      "head": "b09aff5143d9c66ad6ab8cdbc9c141d982771b61",
+      "base": "06da5fa224b65b9346e8b250dcea686d0ed458ee",
+      "tree": "06a7e7ad56dbe82a3c29d8543c1ae51d55ff0c1f",
+      "verifier": "PASS_EXACT_HEAD",
+      "verifier_job_id": 110176053104,
+      "bounded_driver": "SKIPPED_NOT_PASS",
+      "reviewer": "wfvupu1212",
+      "exact_head_verdict": "PENDING",
+      "review_submissions": [
+        {
+          "review_id": "PRR_kwDOUJwpkM8AAAABP9SjkA",
+          "state": "COMMENTED",
+          "target_sha": "6c5050da0dcea785a2900733a7493baa6893850a",
+          "disposition": "NONPORTABLE_OLD_SHA"
+        },
+        {
+          "review_id": "PRR_kwDOUJwpkM8AAAABP5EfSQ",
+          "state": "COMMENTED",
+          "disposition": "REVIEW_QUOTA_FAILURE_NOT_A_VERDICT"
+        }
+      ]
+    },
+    "review_routes": {
+      "available": true,
+      "requested": true,
+      "requested_reviewer": "wfvupu1212",
+      "exact_head_verdict": "PENDING_CURRENT_HEAD",
+      "observed_at_utc": "2026-10-01T02:38:53Z",
+      "prior_sha_reviews_portable": false
+    },
+    "runtime_manifest": {
+      "revision": "b09aff5143d9c66ad6ab8cdbc9c141d982771b61",
+      "trust_root_count": 0,
+      "publication": {
+        "status": "UNAVAILABLE",
+        "route_id": "PTYSD_FACTORY_MCP_OWNER_LIVENESS_PUBLICATION_V1",
+        "reason_code": "OWNER_LIVENESS_PUBLICATION_ROUTE_NOT_CONFIGURED"
+      },
+      "provider_session": {
+        "status": "UNAVAILABLE",
+        "reason_code": "PROVIDER_AGENT_SESSION_READ_ROUTE_NOT_CONFIGURED"
+      },
+      "supervisor_heartbeat": {
+        "status": "UNAVAILABLE",
+        "reason_code": "SUPERVISOR_HEARTBEAT_READ_ROUTE_NOT_CONFIGURED"
+      },
+      "digest": "sha256:34175d81c54f36fdf7343cf1431a257c9924a4cebd82d01fd0aac16c5dd5e94b"
+    }
+  },
+  "live_observation": {
+    "real_host_observation": "UNAVAILABLE_TO_CURRENT_EXECUTOR",
+    "provider_authoritative_session_route": "UNAVAILABLE",
+    "supervisor_heartbeat_route": "UNAVAILABLE",
+    "host_mutation_performed": false,
+    "stale_owner_confirmed": false,
+    "owner_revoked": false,
+    "host_dispatched": false,
+    "fixed_factory_mcp_route_inventory": {
+      "observed_at_utc": "2026-10-01T02:38:53Z",
+      "route_available": false,
+      "exposed_route_names": [],
+      "evidence_source": "CURRENT_EXECUTOR_TOOL_CATALOG_AND_EXACT_RUNTIME_MANIFEST_READBACK",
+      "exact_reentry_condition": "Expose the existing fixed-purpose read-only factory_status route and return provider-addressable same-source evidence."
+    }
+  },
+  "ready_lane_recomputation": {
+    "ready_before_this_candidate_delta": [
+      "CP201_PROMOTION_PACKET_REBUILD",
+      "R2_03_LIVE_ACCEPTANCE_PACKAGE_PREPARATION",
+      "DETERMINISTIC_OWNER_LEASE_VERIFIER_REGRESSION"
+    ],
+    "parked_exact_lanes": [
+      "PR342_EXACT_HEAD_SEMANTIC_REVIEW",
+      "PR377_EXACT_HEAD_SEMANTIC_REVIEW",
+      "R2_03_REAL_TRUST_ROOT_PROVISIONING",
+      "R2_03_PROVIDER_SESSION_ROUTE",
+      "R2_03_SUPERVISOR_HEARTBEAT_ROUTE",
+      "R2_03_HOST_INSTALLATION",
+      "R2_02B_EXACT_GENERATION_5_LIVENESS",
+      "R2_02_HYPERV_HOSTGUARD_READ"
+    ],
+    "global_blocked": false,
+    "observed_at_utc": "2026-10-01T02:38:53Z",
+    "ready_after_this_candidate_delta": [
+      "R2_03_PROVIDER_ADDRESSABLE_CP201_CANDIDATE_READBACK"
+    ]
+  }
+}

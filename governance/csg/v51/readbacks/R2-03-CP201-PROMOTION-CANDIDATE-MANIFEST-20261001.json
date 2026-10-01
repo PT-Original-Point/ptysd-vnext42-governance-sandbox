@@ -1,0 +1,25 @@
+{
+  "schema_version": "csg.v51.checkpoint-candidate-manifest.v1",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "candidate_id": "V51-R2-CP201-AUDIT-REBUILD-20261001",
+  "candidate_status": "NONCANONICAL_REBUILT_FROM_FRESH_CP200",
+  "candidate_branch": "codex/r2-cp201-audit-rebuild-20261001",
+  "base_commit": "d39486601d851e31256852a24e9c1393b9046fe5",
+  "expected_parent_count": 1,
+  "checkpoint_seq": 201,
+  "recorded_at": "2026-10-01T02:38:53Z",
+  "owner_generation": 7,
+  "lease_until": "2026-10-01T06:38:53Z",
+  "allocation": {
+    "canonical_generation": 5,
+    "discarded_noncanonical_candidate_generation": 6,
+    "allocated_generation": 7,
+    "rule": "MAX_CANONICAL_AND_PRIOR_UNSELECTED_CANDIDATE_PLUS_ONE"
+  },
+  "source_bindings_path": "governance/csg/v51/readbacks/R2-03-PROMOTION-EVIDENCE-BINDINGS-20261001.json",
+  "blocker_reconciliation_path": "governance/csg/v51/readbacks/R2-03-BLOCKER-RECONCILIATION-20261001.json",
+  "live_acceptance_packet_path": "governance/csg/v51/live-acceptance/r2-03/live-acceptance-packet.json",
+  "control_pointer_changes_canonical_authority": false,
+  "promotion_gate": "EXACT_SOURCE_VERIFIERS_PASS; SEMANTIC_REVIEW_PENDING; REAL_LIVE_ACCEPTANCE_NOT_ACCEPTED",
+  "install_readback_plan_path": "governance/csg/v51/live-acceptance/r2-03/install-readback-plan.json"
+}
