@@ -1,0 +1,43 @@
+{
+  "schema_version": "csg.v51.checkpoint-candidate-manifest.v1",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "candidate_id": "V51-R2-CP201-GENERATION-DISCIPLINE-REBUILD-20261001",
+  "candidate_status": "NONCANONICAL_REBUILT_FROM_FRESH_CP200",
+  "candidate_branch": "codex/r2-cp201-generation-discipline-20261001",
+  "base_commit": "d39486601d851e31256852a24e9c1393b9046fe5",
+  "expected_parent_count": 1,
+  "checkpoint_seq": 201,
+  "recorded_at": "2026-10-01T03:33:20.138Z",
+  "owner_generation": 8,
+  "lease_until": "2026-10-01T07:33:20.138Z",
+  "allocation": {
+    "canonical_generation": 5,
+    "generation_six_classification": "GEN6_BURNED_DURABLE_IDENTITY",
+    "generation_six_provider_head": "3cf057c4b28d3c7f225823ede198ac9845e050e0",
+    "generation_seven_classification": "GEN7_PROVIDER_ADDRESSABLE_CANDIDATE",
+    "generation_seven_provider_commit": "1cee612cf30e96cd5e3d7ae130948018ec6f1393",
+    "durably_consumed_generations": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "allocated_generation": 8,
+    "rule": "NEXT_INTEGER_GREATER_THAN_CANONICAL_AND_NOT_IN_DURABLY_CONSUMED_SET",
+    "record_path": "governance/csg/v51/readbacks/R2-03-OWNER-GENERATION-ALLOCATION-20261001.json",
+    "regression_path": "governance/csg/v51/regressions/NEW_OWNER_GENERATION_MUST_EXCEED_CANONICAL_AND_AVOID_DURABLE_COLLISION-v1.json",
+    "classification": "GEN6_BURNED_DURABLE_IDENTITY"
+  },
+  "source_bindings_path": "governance/csg/v51/readbacks/R2-03-PROMOTION-EVIDENCE-BINDINGS-20261001.json",
+  "blocker_reconciliation_path": "governance/csg/v51/readbacks/R2-03-BLOCKER-RECONCILIATION-20261001.json",
+  "live_acceptance_packet_path": "governance/csg/v51/live-acceptance/r2-03/live-acceptance-packet.json",
+  "control_pointer_changes_canonical_authority": false,
+  "promotion_gate": "EXACT_SOURCE_VERIFIERS_PASS; SEMANTIC_REVIEW_PENDING; REAL_LIVE_ACCEPTANCE_NOT_ACCEPTED",
+  "install_readback_plan_path": "governance/csg/v51/live-acceptance/r2-03/install-readback-plan.json",
+  "generation_allocation_record_path": "governance/csg/v51/readbacks/R2-03-OWNER-GENERATION-ALLOCATION-20261001.json",
+  "generation_regression_path": "governance/csg/v51/regressions/NEW_OWNER_GENERATION_MUST_EXCEED_CANONICAL_AND_AVOID_DURABLE_COLLISION-v1.json",
+  "git_oid_regression_path": "governance/csg/v51/regressions/GIT_OID_EVIDENCE_MUST_BE_CANONICAL_LOWERCASE_40_HEX-v1.json"
+}

@@ -1,0 +1,238 @@
+{
+  "schema_version": "csg.checkpoint.v1",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "checkpoint_seq": 201,
+  "transition_id": "V51-R2-03-CP201-GEN8-REBUILD-20261001T113320",
+  "previous_checkpoint_ref": {
+    "kind": "EXTERNAL_IMMUTABLE",
+    "provider": "GitHub",
+    "repository_id_or_resource_id": "1352411536",
+    "revision": "d39486601d851e31256852a24e9c1393b9046fe5",
+    "path": "governance/csg/checkpoints/000200.json",
+    "digest": "sha256:2cd708bb96179b7ef416ab5a7616f7dff50030567f56d7506a7182f6ceda600d"
+  },
+  "migration_anchor": null,
+  "event": {
+    "type": "MISSION_REBASE",
+    "reason_code": "V51_R2_03_CP201_OWNER_GENERATION_ALLOCATION_REBUILD",
+    "subject_id": "V51_R2_03_FIXED_READONLY_FACTORY_OBSERVATION"
+  },
+  "mission_anchor": {
+    "ref": "github://1352411536/governance/csg/v51/missions/20261001T113320+0800.json@blob:c743e17a3283adb7b95af17e16544ff09dff39d8",
+    "revision": "20261001T113320+0800",
+    "declared_hash": "sha256:71af8724e50272e80389eb0d867feb0d843bf0022a6cbdd7b411fbb9dfbd112d",
+    "canonicalization_version": "HUMAN_TEXT_V1"
+  },
+  "policy_anchor": {
+    "ref": "github://1352411536/governance/csg/v51/policies/20261001T113320+0800-EP83.json@blob:26eb100c92b48b47642cfabe355cc78ef16ab5c5",
+    "revision": "20261001T113320+0800-EP83",
+    "declared_hash": "sha256:ecae72f6af717eaafc309eb68ce52d0df43626d6b232ad861a1c3caabc818240",
+    "canonicalization_version": "HUMAN_TEXT_V1"
+  },
+  "controller_contract": "V51-R2-EXECUTION-POLICY-EP83",
+  "verifier_digest": "sha256:5ed8659aee0f95b8627345d207245fc2f14cfb49b6e0c6803c177eb0fe1252c0",
+  "lifecycle": "ACTIVE",
+  "owner": {
+    "principal_id": "CODEX_THREAD_01a0ed35-6063-7912-9872-7d4122a3b125",
+    "owner_generation": 8,
+    "scope": "V51-R2-03-FIXED-READONLY-FACTORY-OBSERVATION",
+    "lease_until": "2026-10-01T07:33:20.138Z"
+  },
+  "run_ref": {
+    "kind": "EXTERNAL_IMMUTABLE",
+    "provider": "GitHub",
+    "repository_id_or_resource_id": "1352411536",
+    "revision": "blob:97ed7a64dc94bc06ecec376dc31390bc8fef5a22",
+    "path": "governance/csg/v51/runs/V51-R2-001/run-r2-03.json",
+    "digest": "sha256:9a240d880f63f48a3c18a49794649f7b53a8297693ed12e65f294a96e05a8eeb"
+  },
+  "task_id": "V51-R2-03-FIXED-READONLY-FACTORY-OBSERVATION",
+  "attempt_id": "V51-R2-03-ATTEMPT-002",
+  "attempt_epoch": 2,
+  "atomic": {
+    "state": "PREPARED_NOT_DISPATCHED",
+    "unit_id": "V51-R2-03-FIXED-READONLY-FACTORY-OBSERVATION",
+    "goal": "Prepare and close R2-03 live trust/provider/heartbeat/evidence acceptance while preserving CP200 as canonical and R2-02 generation 5 as STALE_EXECUTION_OWNER_CANDIDATE.",
+    "execution_fence": null
+  },
+  "last_accepted": {
+    "unit_id": "V51-R2-01-COLD-START-CANONICAL-CONTINUITY",
+    "result": "PASS_PROVIDER_CONFIRMED",
+    "provider_ref": "refs/heads/v45/factory-control",
+    "provider_commit": "fcdcf8771ce6eaa887bd761a5e9bc42e4a99c596",
+    "readback_path": "governance/csg/v51/readbacks/R2-01-POST-CP197-ATTEMPT-003-SAME-SOURCE-READBACK-20260930.json",
+    "readback_blob_oid": "1ed26dde690e0e222b9c0571d6643fb31de23f12"
+  },
+  "remote_wip": null,
+  "active_job_refs": [],
+  "unresolved_effect_refs": [],
+  "blockers": [
+    "PR342_SEMANTIC_REVIEW_PENDING_EXACT_HEAD",
+    "PR377_SEMANTIC_REVIEW_PENDING_EXACT_LANE",
+    "R2_03_LIVE_FACTORY_MCP_ROUTE_UNAVAILABLE_IN_CURRENT_EXECUTOR",
+    "R2_03_LIVE_TRUST_PROVISIONING_NOT_ACCEPTED",
+    "R2_03_LIVE_PROVIDER_SESSION_ROUTE_NOT_ACCEPTED",
+    "R2_03_LIVE_SUPERVISOR_HEARTBEAT_ROUTE_NOT_ACCEPTED",
+    "R2_03_LIVE_SIGNED_EVIDENCE_PATH_NOT_ACCEPTED",
+    "HOST_MUTATION_FORBIDDEN_BY_CP200_POLICY",
+    "R2_02_AUTHORIZED_LIVE_EXECUTOR_OBSERVATION_REQUIRED_BEFORE_STALE_OWNER_CONFIRMATION_OR_HOST_DISPATCH",
+    "R2_02_GEN5_EXACT_LIVENESS_PROOF_INSUFFICIENT",
+    "R2_02_HYPERV_HOSTGUARD_LOCAL_OS_PRIVILEGE_REQUIRED"
+  ],
+  "last_verified_gate": {
+    "gate_id": "V51-R2-03-SOURCE-CONTRACT-EXACT-HEAD-PAIR",
+    "verdict": "EXACT_SOURCE_VERIFIERS_PASS; BOUNDED_DRIVER_SKIPPED_NOT_PASS; SEMANTIC_REVIEW_PENDING_CURRENT_HEAD; SYNTHETIC_INTEGRATION_PASS; LIVE_ACCEPTANCE_NOT_ACCEPTED",
+    "evidence_binding_path": "governance/csg/v51/readbacks/R2-03-PROMOTION-EVIDENCE-BINDINGS-20261001.json",
+    "source_heads": [
+      {
+        "pr": 342,
+        "sha": "3cf057c4b28d3c7f225823ede198ac9845e050e0",
+        "tree": "31914fc0473fc339a71f6b06c5a5ca745f74aa1f"
+      },
+      {
+        "pr": 377,
+        "sha": "b09aff5143d9c66ad6ab8cdbc9c141d982771b61",
+        "tree": "06a7e7ad56dbe82a3c29d8543c1ae51d55ff0c1f"
+      }
+    ],
+    "directory_commit": "38f4fc7cb2841e2318a97ff7a53e41b2ec07aef1",
+    "canonical_control_commit": "d39486601d851e31256852a24e9c1393b9046fe5",
+    "verified_at_utc": "2026-10-01T03:26:35.845Z",
+    "generation_allocation_record_path": "governance/csg/v51/readbacks/R2-03-OWNER-GENERATION-ALLOCATION-20261001.json"
+  },
+  "next_legal_transition": {
+    "action": "CONTINUE_R2_03_NONPRIVILEGED_LIVE_ACCEPTANCE_CLOSURE",
+    "unit_id": "V51-R2-03-FIXED-READONLY-FACTORY-OBSERVATION",
+    "requires": [
+      "CP201 is a rebuilt candidate derived directly from CP200; CP200 remains canonical until authorized provider-confirmed acceptance.",
+      "PR #342 at the exact bound head and PR #377 at the exact bound head remain separate frozen Draft source candidates.",
+      "Source contract is QUALIFIED_CANDIDATE and synthetic integration is PASS; live trust provisioning, provider session, Supervisor heartbeat, and signed evidence remain NOT_ACCEPTED.",
+      "Exact-head review requests remain open for wfvupu1212; old-SHA and quota-failure reviews are not current-head verdicts.",
+      "The fixed-purpose live Factory MCP route is not exposed to this executor and runtime publication remains UNAVAILABLE; park only that route lane.",
+      "Generation 5 remains STALE_EXECUTION_OWNER_CANDIDATE until exact cross-source liveness is provider-confirmed.",
+      "Generation 6 is consumed by exact PR #342 provider publication, generation 7 is present on a provider candidate branch, and generation 8 is explicitly allocated against durable consumed identities; this candidate does not change CP200 canonical authority."
+    ],
+    "forbidden": [
+      "PROMOTE_CP201_WITHOUT_VALID_REVIEW_AND_AUTHORIZED_GATE",
+      "MARK_R2_03_PASS",
+      "MARK_R2_02_PASS",
+      "STALE_OWNER_CONFIRMED_WITHOUT_EXACT_CROSS_SOURCE_EVIDENCE",
+      "REVOKE_GEN5",
+      "HOST_DISPATCH",
+      "HOST_MUTATION",
+      "PRODUCTION",
+      "PAID_FALLBACK",
+      "WORKER_PROVIDER_WRITE_CREDENTIALS",
+      "CREATE_CP202",
+      "GLOBAL_BLOCK_WHILE_ANY_READY_LANE_EXISTS",
+      "TERMINATE_MISSION_ON_CANDIDATE_OR_BATCH_COMPLETION"
+    ]
+  },
+  "stop_requested": false,
+  "barrier": "ACTIVE_UNIT",
+  "evidence_refs": [
+    {
+      "kind": "EXTERNAL_IMMUTABLE",
+      "provider": "GitHub",
+      "repository_id_or_resource_id": "1352411536",
+      "revision": "d39486601d851e31256852a24e9c1393b9046fe5",
+      "path": "governance/csg/checkpoints/000200.json",
+      "digest": "sha256:2cd708bb96179b7ef416ab5a7616f7dff50030567f56d7506a7182f6ceda600d"
+    },
+    {
+      "kind": "EXTERNAL_IMMUTABLE",
+      "provider": "GitHub",
+      "repository_id_or_resource_id": "1352411536",
+      "revision": "021f1752448ac0d16cb6bdc0d49231976a839cf2",
+      "path": "governance/csg/v51/specs/VNEXT5.1-R2-HUMAN-CURRENT-SPEC-20260929.md",
+      "digest": "sha256:b3b805f4dd5e88a2370c456c7f678c3264ca032090c957d69116512b563b589f"
+    },
+    {
+      "kind": "BUNDLE_OBJECT",
+      "path": "governance/csg/v51/missions/20261001T113320+0800.json",
+      "digest": "sha256:975c3fdfcb2e1c010a0374dbf909571e286818682fdf4d9f57c728f1fa8a93e7"
+    },
+    {
+      "kind": "BUNDLE_OBJECT",
+      "path": "governance/csg/v51/policies/20261001T113320+0800-EP83.json",
+      "digest": "sha256:38794282dcdebecfcef83d7910de2dcd5c5ebc27303f732382123179ab0eeba7"
+    },
+    {
+      "kind": "BUNDLE_OBJECT",
+      "path": "governance/csg/v51/runs/V51-R2-001/contract-r2-03-attempt-002.json",
+      "digest": "sha256:789786dbd9b644689736173de2b3c0031b24afc591e6e06cd90c0f20b707bb19"
+    },
+    {
+      "kind": "BUNDLE_OBJECT",
+      "path": "governance/csg/v51/runs/V51-R2-001/run-r2-03.json",
+      "digest": "sha256:9a240d880f63f48a3c18a49794649f7b53a8297693ed12e65f294a96e05a8eeb"
+    },
+    {
+      "kind": "BUNDLE_OBJECT",
+      "path": "governance/csg/v51/readbacks/R2-03-PROMOTION-EVIDENCE-BINDINGS-20261001.json",
+      "digest": "sha256:cd8750de3d2dd153730ef4ab2f9643a235292a215994ad68753bdbaf271a57ec"
+    },
+    {
+      "kind": "BUNDLE_OBJECT",
+      "path": "governance/csg/v51/readbacks/R2-03-BLOCKER-RECONCILIATION-20261001.json",
+      "digest": "sha256:910e27f5df96e64601e28ae8ea9a673d02bd3295beb5d1cd8eddec6c8101cfc9"
+    },
+    {
+      "kind": "BUNDLE_OBJECT",
+      "path": "governance/csg/v51/readbacks/R2-03-POST-AUDIT-CP200-READBACK-20261001.json",
+      "digest": "sha256:0c6dccdf2ccc399ef2bcc8cc9cb8b82a8dfc9255f7c9dbe72b98cf1ba8393e86"
+    },
+    {
+      "kind": "BUNDLE_OBJECT",
+      "path": "governance/csg/v51/readbacks/R2-03-CP201-PROMOTION-CANDIDATE-MANIFEST-20261001.json",
+      "digest": "sha256:7ae88bba121be9a8433b0f54007f3c02fd70e67ecd77847d3f894408d697d272"
+    },
+    {
+      "kind": "BUNDLE_OBJECT",
+      "path": "governance/csg/v51/live-acceptance/r2-03/trust-provisioning-manifest.json",
+      "digest": "sha256:34400712ad798ff0f4708a358982b8cfda50369257c45e8d832281e27c16cd13"
+    },
+    {
+      "kind": "BUNDLE_OBJECT",
+      "path": "governance/csg/v51/live-acceptance/r2-03/provider-session-route-contract.json",
+      "digest": "sha256:d3ad48bc65c02e0f52bac36d730d1e485be0b7fd2289831fd708b8a6df3471c6"
+    },
+    {
+      "kind": "BUNDLE_OBJECT",
+      "path": "governance/csg/v51/live-acceptance/r2-03/supervisor-heartbeat-route-contract.json",
+      "digest": "sha256:1d36710924f0931bccd54c9cac10add0e4965b6a35c6b1b2025c9863af3d3638"
+    },
+    {
+      "kind": "BUNDLE_OBJECT",
+      "path": "governance/csg/v51/live-acceptance/r2-03/live-acceptance-packet.json",
+      "digest": "sha256:f9426527bfd49b828ed7a4d4bf955d4c78045d67d18fdac873fe660906af257e"
+    },
+    {
+      "kind": "BUNDLE_OBJECT",
+      "path": "governance/csg/v51/regressions/ACTIVE_OWNER_LEASE_MUST_BE_VALID_AT_CHECKPOINT_RECORDED_AT-v1.json",
+      "digest": "sha256:2c60857432dadbcceb695fd10312fed46724a69dfdff4b5f4cccf8104b52fbce"
+    },
+    {
+      "kind": "BUNDLE_OBJECT",
+      "path": "governance/csg/v51/live-acceptance/r2-03/install-readback-plan.json",
+      "digest": "sha256:6ebab956f3ff3162012579b3d8876e413e798f4a553150e728d83ff2b851513f"
+    },
+    {
+      "kind": "BUNDLE_OBJECT",
+      "path": "governance/csg/v51/readbacks/R2-03-OWNER-GENERATION-ALLOCATION-20261001.json",
+      "digest": "sha256:911b5d308f6e6d0e601cb1e65aff75ea273575b0e08cc43350d6c46cc5f0b7e9"
+    },
+    {
+      "kind": "BUNDLE_OBJECT",
+      "path": "governance/csg/v51/regressions/NEW_OWNER_GENERATION_MUST_EXCEED_CANONICAL_AND_AVOID_DURABLE_COLLISION-v1.json",
+      "digest": "sha256:68cf17e7eacd691719a92fe9a691013f833605d91c01e6f850ca4cf0ba2ae090"
+    },
+    {
+      "kind": "BUNDLE_OBJECT",
+      "path": "governance/csg/v51/regressions/GIT_OID_EVIDENCE_MUST_BE_CANONICAL_LOWERCASE_40_HEX-v1.json",
+      "digest": "sha256:4637a8bad68a70c1925eddf1ba636ee492810208d15eb495d23692aff3aeb0c5"
+    }
+  ],
+  "recorded_at": "2026-10-01T03:33:20.138Z",
+  "payload_digest": "sha256:0c89c3adf2de4fab30bfce54b4706505440e04892099ce9c828a4d23675fdbfb"
+}

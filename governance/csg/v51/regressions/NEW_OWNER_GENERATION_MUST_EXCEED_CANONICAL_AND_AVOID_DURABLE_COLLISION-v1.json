@@ -1,0 +1,40 @@
+{
+  "schema_version": "csg.v51.owner-generation-regression.v1",
+  "regression_id": "NEW_OWNER_GENERATION_MUST_EXCEED_CANONICAL_AND_AVOID_DURABLE_COLLISION",
+  "status": "DETERMINISTIC_VERIFIER_REQUIRED",
+  "invariants": [
+    "NEW_OWNER_GENERATION > CURRENT_CANONICAL_OWNER_GENERATION",
+    "NEW_OWNER_GENERATION_NOT_IN_DURABLY_CONSUMED_GENERATIONS"
+  ],
+  "expected_failure_codes": {
+    "not_greater_than_canonical": "NEW_OWNER_GENERATION_NOT_GREATER_THAN_CANONICAL",
+    "already_durably_consumed": "NEW_OWNER_GENERATION_ALREADY_DURABLY_CONSUMED"
+  },
+  "candidate_fixture": {
+    "canonical_generation": 5,
+    "durably_consumed_generations": [1, 2, 3, 4, 5, 6, 7],
+    "prior_generation_six_classification": "GEN6_BURNED_DURABLE_IDENTITY",
+    "generation_six_provider_claim": {
+      "commit_sha": "3cf057c4b28d3c7f225823ede198ac9845e050e0",
+      "pull_request_number": 342,
+      "workflow_run_id": 36801312818,
+      "verifier_job_id": 110176050759,
+      "verifier_conclusion": "success"
+    },
+    "generation_six_historical_provider_claim": {
+      "commit_sha": "f1b95241b744bf57b924e5e7856f681fd20b216e",
+      "pull_request_number": 342,
+      "workflow_run_id": 36740121863,
+      "verifier_job_id": 109972022641,
+      "verifier_conclusion": "success"
+    },
+    "generation_seven_provider_claim": {
+      "commit_sha": "1cee612cf30e96cd5e3d7ae130948018ec6f1393",
+      "branch": "codex/r2-cp201-audit-rebuild-20261001",
+      "branch_head": true
+    },
+    "expected_available_generation": 8
+  },
+  "allocation_rule": "CANDIDATE_PACKET_ONLY; choose the smallest integer greater than the canonical owner generation and absent from all provider-addressably consumed owner-generation identities; this is not a claim that a durable repository-wide allocator exists",
+  "fixture_scope": "CANDIDATE_PACKET_ONLY; provider-addressable owner claims, canonical selections, leases, fences, jobs, or effects consume a generation identity"
+}

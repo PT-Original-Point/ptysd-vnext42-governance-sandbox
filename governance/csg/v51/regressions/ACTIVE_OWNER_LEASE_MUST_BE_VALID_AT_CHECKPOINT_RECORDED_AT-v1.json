@@ -1,0 +1,21 @@
+{
+  "schema_version": "csg.v51.verifier-regression.v1",
+  "regression_id": "ACTIVE_OWNER_LEASE_MUST_BE_VALID_AT_CHECKPOINT_RECORDED_AT",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "invariant": "A newly introduced or renewed active owner lease must end strictly after the checkpoint recorded_at timestamp.",
+  "legacy_owner_rule": "An unchanged owner claim carried forward from the immediately previous checkpoint may already be expired and remains STALE_EXECUTION_OWNER_CANDIDATE evidence; it does not authorize revocation or dispatch.",
+  "fixture": {
+    "checkpoint_seq": 201,
+    "recorded_at": "2026-09-30T10:43:20.359Z",
+    "previous_owner_generation": 5,
+    "owner_generation": 6,
+    "lease_until": "2026-09-30T06:14:26Z"
+  },
+  "expected_failure_code": "OWNER_LEASE_ALREADY_EXPIRED_AT_CHECKPOINT_CREATION",
+  "candidate_rebuild_owner_generation": 8,
+  "source_evidence": {
+    "provider": "GitHub",
+    "origin_ref": "PR #342",
+    "origin_exact_sha": "3cf057c4b28d3c7f225823ede198ac9845e050e0"
+  }
+}

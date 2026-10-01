@@ -1,0 +1,112 @@
+{
+  "schema_version": "factory.run.v1",
+  "run_id": "V51-R2-001",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "revision": 11,
+  "command_id": "V51-R2-03-FIXED-READONLY-FACTORY-OBSERVATION",
+  "contract_ref": "governance/csg/v51/runs/V51-R2-001/contract-r2-03-attempt-002.json",
+  "state": "RUNNING",
+  "wait_reason": "GEN8_CP201_CANDIDATE_REBUILT_FROM_CP200; EXACT_SOURCE_VERIFIERS_PASS; SEMANTIC_REVIEW_AND_REAL_LIVE_ACCEPTANCE_PENDING",
+  "active_task_id": "V51-R2-03-FIXED-READONLY-FACTORY-OBSERVATION",
+  "attempt_id": "V51-R2-03-ATTEMPT-002",
+  "attempt_epoch": 2,
+  "latest_checkpoint_ref": "governance/csg/checkpoints/000201.json",
+  "unresolved_operation_ids": [],
+  "stop_requested": false,
+  "completed_stage_receipts": [
+    "R2_00_SAME_SOURCE_READBACK_PASS",
+    "R2_01_POST_CP197_READBACK_PROVIDER_CONFIRMED_PR359",
+    "R2_02_CP198_POST_SELECTION_READBACK_PASS",
+    "R2_02_SOURCE_CORRECTION_EXACT_HEAD_PASS"
+  ],
+  "evidence_refs": [
+    "governance/csg/v51/specs/VNEXT5.1-R2-HUMAN-CURRENT-SPEC-20260929.md",
+    "governance/csg/v51/missions/20260930T104733+0800.json",
+    "governance/csg/v51/policies/20260930T104733+0800-EP80.json",
+    "governance/csg/v51/runs/V51-R2-001/contract-r2-03-attempt-002.json",
+    "governance/csg/v51/readbacks/R2-03-PROMOTION-EVIDENCE-BINDINGS-20261001.json",
+    "governance/csg/v51/readbacks/R2-03-BLOCKER-RECONCILIATION-20261001.json",
+    "governance/csg/v51/readbacks/R2-03-POST-AUDIT-CP200-READBACK-20261001.json",
+    "governance/csg/v51/readbacks/R2-03-CP201-PROMOTION-CANDIDATE-MANIFEST-20261001.json",
+    "governance/csg/v51/live-acceptance/r2-03/trust-provisioning-manifest.json",
+    "governance/csg/v51/live-acceptance/r2-03/provider-session-route-contract.json",
+    "governance/csg/v51/live-acceptance/r2-03/supervisor-heartbeat-route-contract.json",
+    "governance/csg/v51/live-acceptance/r2-03/live-acceptance-packet.json",
+    "governance/csg/v51/regressions/ACTIVE_OWNER_LEASE_MUST_BE_VALID_AT_CHECKPOINT_RECORDED_AT-v1.json",
+    "governance/csg/v51/live-acceptance/r2-03/install-readback-plan.json",
+    "governance/csg/v51/missions/20261001T113320+0800.json",
+    "governance/csg/v51/policies/20261001T113320+0800-EP83.json",
+    "governance/csg/v51/readbacks/R2-03-OWNER-GENERATION-ALLOCATION-20261001.json",
+    "governance/csg/v51/regressions/NEW_OWNER_GENERATION_MUST_EXCEED_CANONICAL_AND_AVOID_DURABLE_COLLISION-v1.json",
+    "governance/csg/v51/regressions/GIT_OID_EVIDENCE_MUST_BE_CANONICAL_LOWERCASE_40_HEX-v1.json"
+  ],
+  "remaining_attempts": 0,
+  "execution_owner": {
+    "principal_id": "CODEX_THREAD_01a0ed35-6063-7912-9872-7d4122a3b125",
+    "owner_generation": 8,
+    "scope": "V51-R2-03-FIXED-READONLY-FACTORY-OBSERVATION",
+    "lease_until": "2026-10-01T07:33:20.138Z"
+  },
+  "canonical_selection_status": "CANDIDATE_ONLY_NOT_CANONICALLY_SELECTED",
+  "goal_lifecycle_recovery": {
+    "mission_status": "ACTIVE",
+    "active_unit": "V51-R2-03-FIXED-READONLY-FACTORY-OBSERVATION",
+    "run_state": "RUNNING",
+    "local_codex_goal_state_authoritative": false,
+    "bounded_batch_completion_terminates_mission": false,
+    "after_material_delta": "FRESH_DIRECTORY_POINTER_SPEC_MISSION_POLICY_CHECKPOINT_RUN_TASK_ATTEMPT_OWNER_EFFECTS_AND_PROVIDER_LOCAL_READ_RECOMPUTE_READY_CONTINUE_HIGHEST_PRIORITY",
+    "exact_lane_parking_only": true,
+    "continue_other_ready_work": true,
+    "global_block_requires": "ALL_LEGAL_READY_LANES_EXHAUSTED_AND_REMAINDER_REQUIRES_GENUINE_EXTERNAL_OR_HUMAN_PREREQUISITE",
+    "ready_lanes": [
+      "R2_03_PROVIDER_ADDRESSABLE_CP201_CANDIDATE_READBACK"
+    ],
+    "parked_lanes": [
+      "PR342_EXACT_HEAD_SEMANTIC_REVIEW",
+      "PR377_EXACT_HEAD_SEMANTIC_REVIEW",
+      "R2_03_REAL_TRUST_ROOT_PROVISIONING",
+      "R2_03_PROVIDER_SESSION_ROUTE",
+      "R2_03_SUPERVISOR_HEARTBEAT_ROUTE",
+      "R2_03_FIXED_FACTORY_MCP_ROUTE",
+      "R2_03_HOST_INSTALLATION",
+      "R2_02B_EXACT_GENERATION_5_LIVENESS",
+      "R2_02_HYPERV_HOSTGUARD_READ"
+    ],
+    "r2_02_status": "NOT_PASS",
+    "r2_03_status": "NOT_PASS",
+    "r2_02b_status": "WAITING_ON_R2_03_LIVE_ACCEPTANCE",
+    "r2_07_acceptance_status": "REQUIRED_NOT_YET_ACCEPTED",
+    "r2_09_regression_id": "LOCAL_CODEX_GOAL_DISAPPEARS_WHILE_MISSION_ACTIVE",
+    "r2_09_acceptance_status": "REQUIRED_NOT_YET_ACCEPTED",
+    "ready_lane_observed_at_utc": "2026-10-01T03:26:35.845Z",
+    "global_blocked": false
+  },
+  "liveness_reconciliation": {
+    "owner_generation": 5,
+    "status": "STALE_EXECUTION_OWNER_CANDIDATE",
+    "lease_expired": true,
+    "stale_owner_confirmed": false,
+    "revocation": false,
+    "host_dispatch": false,
+    "host_mutation": false,
+    "unresolved_effects": [],
+    "evidence_basis": "CP200_CANONICAL_STATE_AND_PRIOR_HUMAN_REPORTED_AGGREGATE_COUNTS_ONLY",
+    "fresh_exact_generation_5_observation_in_this_candidate": false,
+    "next_action": "RETURN_TO_R2_02B_ONLY_AFTER_PROVIDER_CONFIRMED_R2_03_LIVE_ACCEPTANCE"
+  },
+  "evidence_binding_state": {
+    "source_contract": "QUALIFIED_CANDIDATE",
+    "synthetic_integration": "PASS",
+    "live_trust_provisioning": "NOT_ACCEPTED",
+    "live_provider_session_route": "NOT_ACCEPTED",
+    "live_supervisor_heartbeat_route": "NOT_ACCEPTED",
+    "live_signed_evidence_path": "NOT_ACCEPTED"
+  },
+  "live_acceptance_state": {
+    "trust_provisioning": "NOT_ACCEPTED",
+    "provider_session_route": "NOT_ACCEPTED",
+    "supervisor_heartbeat_route": "NOT_ACCEPTED",
+    "signed_evidence_path": "NOT_ACCEPTED"
+  },
+  "owner_generation_allocation_record_path": "governance/csg/v51/readbacks/R2-03-OWNER-GENERATION-ALLOCATION-20261001.json"
+}
