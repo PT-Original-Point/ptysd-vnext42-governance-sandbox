@@ -18,12 +18,62 @@ $tunnelTask = 'PTYSD-FactoryMCP-Tunnel-V47'
 $probeTask = 'PTYSD-FactoryMCP-Live-Probe-Temp'
 $probeOut = Join-Path $base 'qualification\factory-mcp-live-status.json'
 
+function Test-FreshUtcTimestamp {
+  param([Parameter(Mandatory)][string]$Value,[int]$MaximumAgeSeconds = 30)
+  try { $observed = [DateTimeOffset]::Parse($Value,[Globalization.CultureInfo]::InvariantCulture,[Globalization.DateTimeStyles]::RoundtripKind) }
+  catch { return $false }
+  if ($observed.Offset -ne [TimeSpan]::Zero) { return $false }
+  $ageSeconds = ([DateTimeOffset]::UtcNow - $observed).TotalSeconds
+  return ($ageSeconds -ge 0 -and $ageSeconds -le $MaximumAgeSeconds)
+}
+
+function Test-OwnerLivenessBoundedValue {
+  param([Parameter(Mandatory)][string]$Value,[Parameter(Mandatory)][string]$Pattern,[Parameter(Mandatory)][int]$MaximumLength)
+  return ($Value.Length -gt 0 -and $Value.Length -le $MaximumLength -and $Value -match $Pattern)
+}
+
+function Assert-ReadyBrokerHealth {
+  param([Parameter(Mandatory)]$Health)
+  if ($Health.status -cne 'READY' -or $Health.run_as -cne 'NT AUTHORITY\SYSTEM') { throw 'BROKER_HEALTH_INVALID' }
+  if (-not (Test-FreshUtcTimestamp -Value ([string]$Health.recorded_at_utc))) { throw 'BROKER_HEALTH_STALE' }
+  if ([string]$Health.owner_liveness_publisher_status -cnotin @('PUBLISHED','SOURCE_MISSING','SOURCE_INVALID','SOURCE_STALE')) { throw 'BROKER_OWNER_LIVENESS_PUBLISHER_NOT_READY' }
+}
+
+function Get-VerifiedBrokerTaskState {
+  param([Parameter(Mandatory)][string]$TaskName)
+  $task = Get-ScheduledTask -TaskName $TaskName -ErrorAction Stop
+  if ([string]$task.State -cne 'Running' -or $task.Settings.Enabled -ne $true) { throw 'BROKER_TASK_NOT_RUNNING' }
+  if ([string]$task.Principal.UserId -cnotin @('SYSTEM','NT AUTHORITY\SYSTEM','S-1-5-18')) { throw 'BROKER_TASK_PRINCIPAL_INVALID' }
+  return [string]$task.State
+}
+
 foreach ($name in @($brokerTask,$tunnelTask,$probeTask)) {
   if (Get-ScheduledTask -TaskName $name -ErrorAction SilentlyContinue) { throw ('TASK_ALREADY_EXISTS:' + $name) }
 }
 if (Test-Path -LiteralPath $install) { throw 'INSTALL_ROOT_ALREADY_EXISTS' }
 
-$required = @('package.json','package-lock.json','src\index.mjs','src\invoke-hostguard.ps1','broker\hostguard-broker.ps1','tests\protocol-smoke.mjs','tests\live-status-smoke.mjs','tests\tunnel-preflight-negative.ps1','tests\credential-ingest-smoke.ps1','windows\qualify-tunnel.ps1','windows\import-tunnel-credentials.ps1','windows\run-tunnel.ps1','windows\factory-mcp-tunnel.template.yaml')
+$required = @(
+  'package.json',
+  'package-lock.json',
+  'src\index.mjs',
+  'src\invoke-hostguard.ps1',
+  'src\readonly-diagnostics.mjs',
+  'src\readonly-diagnostics.ps1',
+  'broker\hostguard-broker.ps1',
+  'broker\owner-liveness-publisher.ps1',
+  'tests\protocol-smoke.mjs',
+  'tests\live-status-smoke.mjs',
+  'tests\official-inspector-equivalence.mjs',
+  'tests\read-only-diagnostics.test.mjs',
+  'tests\owner-liveness-publisher.test.mjs',
+  'tests\owner-liveness-e2e.test.mjs',
+  'tests\tunnel-preflight-negative.ps1',
+  'tests\credential-ingest-smoke.ps1',
+  'windows\qualify-tunnel.ps1',
+  'windows\import-tunnel-credentials.ps1',
+  'windows\run-tunnel.ps1',
+  'windows\factory-mcp-tunnel.template.yaml'
+)
 foreach ($rel in $required) {
   if (-not (Test-Path -LiteralPath (Join-Path $SourceRoot $rel))) { throw ('SOURCE_FILE_MISSING:' + $rel) }
 }
@@ -106,7 +156,8 @@ try {
   do { Start-Sleep -Milliseconds 250 } while (-not (Test-Path -LiteralPath $health) -and (Get-Date) -lt $deadline)
   if (-not (Test-Path -LiteralPath $health)) { throw 'BROKER_HEALTH_MISSING' }
   $healthObj = Get-Content -LiteralPath $health -Raw | ConvertFrom-Json
-  if ($healthObj.status -ne 'READY' -or $healthObj.run_as -ne 'NT AUTHORITY\SYSTEM') { throw 'BROKER_HEALTH_INVALID' }
+  [void](Get-VerifiedBrokerTaskState -TaskName $brokerTask)
+  Assert-ReadyBrokerHealth -Health $healthObj
 
   if (Test-Path -LiteralPath $probeOut) { Remove-Item -LiteralPath $probeOut -Force }
   $probeAction = New-ScheduledTaskAction -Execute 'C:\Program Files\nodejs\node.exe' -Argument ('"'+(Join-Path $install 'tests\live-status-smoke.mjs')+'" "'+$probeOut+'"')
@@ -120,10 +171,53 @@ try {
   if ($probeInfo.LastTaskResult -ne 0 -or -not (Test-Path -LiteralPath $probeOut)) { throw 'LIVE_STATUS_PROBE_FAILED' }
   $probe = Get-Content -LiteralPath $probeOut -Raw | ConvertFrom-Json
   if ($probe.result -ne 'PASS') { throw 'LIVE_STATUS_PROBE_NOT_PASS' }
+  if ($probe.owner_liveness_publisher_status -notin @('PUBLISHED','SOURCE_MISSING','SOURCE_INVALID','SOURCE_STALE') -or
+      $probe.owner_liveness_read_status -notin @('AVAILABLE','UNAVAILABLE','INVALID','STALE')) {
+    throw 'LIVE_STATUS_OWNER_LIVENESS_READBACK_INVALID'
+  }
+  if ($probe.owner_liveness_publisher_status -ceq 'PUBLISHED') {
+    $ownerReadback = $probe.owner_liveness_readback
+    if ($null -eq $ownerReadback -or [string]$ownerReadback.reconciliation_verdict -cne 'NOT_PERFORMED') {
+      throw 'LIVE_STATUS_OWNER_LIVENESS_VERDICT_INVALID'
+    }
+    if ([string]$ownerReadback.source -ceq 'system-broker-fixed-owner-liveness-collector') {
+      if ([string]$ownerReadback.os_process_identity_link_status -cne 'UNRESOLVED' -or
+          [string]$ownerReadback.provider_session_state -cne 'UNAVAILABLE' -or
+          [string]$ownerReadback.provider_session_unavailability_reason -cne 'PROVIDER_AGENT_SESSION_READ_ROUTE_NOT_CONFIGURED' -or
+          [string]$ownerReadback.supervisor_heartbeat_state -cne 'UNAVAILABLE' -or
+          [string]$ownerReadback.supervisor_unavailability_reason -cne 'SUPERVISOR_HEARTBEAT_READ_ROUTE_NOT_CONFIGURED' -or
+          [string]$ownerReadback.supervisor_task_read_status -notin @('PRESENT','UNAVAILABLE') -or
+          -not (Test-FreshUtcTimestamp -Value ([string]$ownerReadback.supervisor_task_observed_at_utc))) {
+        throw 'LIVE_STATUS_PARTIAL_OWNER_OBSERVATION_INVALID'
+      }
+      if ([string]$ownerReadback.supervisor_task_read_status -ceq 'PRESENT') {
+        if ([string]$ownerReadback.supervisor_task_name -cne 'PTYSD-VNext42-Supervisor-Candidate1' -or
+            -not (Test-OwnerLivenessBoundedValue ([string]$ownerReadback.supervisor_task_state) '^[A-Za-z0-9._-]{1,64}$' 64) -or
+            $ownerReadback.supervisor_task_enabled -isnot [bool] -or
+            -not (Test-OwnerLivenessBoundedValue ([string]$ownerReadback.supervisor_task_principal) '^[A-Za-z0-9 _\\.-]{1,128}$' 128)) {
+          throw 'LIVE_STATUS_SUPERVISOR_TASK_OBSERVATION_INVALID'
+        }
+      } elseif ($null -ne $ownerReadback.supervisor_task_name -or $null -ne $ownerReadback.supervisor_task_state -or
+          $null -ne $ownerReadback.supervisor_task_enabled -or $null -ne $ownerReadback.supervisor_task_principal) {
+        throw 'LIVE_STATUS_SUPERVISOR_TASK_OBSERVATION_INVALID'
+      }
+    } elseif ([string]$ownerReadback.source -cne 'authorized-cross-source-liveness-readback') {
+      throw 'LIVE_STATUS_OWNER_LIVENESS_SOURCE_INVALID'
+    }
+  }
+  if (-not (Test-FreshUtcTimestamp -Value ([string]$probe.broker_recorded_at_utc)) -or
+      -not (Test-FreshUtcTimestamp -Value ([string]$probe.owner_liveness_publisher_observed_at_utc)) -or
+      [string]$probe.broker_task_state -cne 'Running' -or [int]$probe.broker_pid -ne [int]$probe.broker_process_pid) {
+    throw 'LIVE_STATUS_BROKER_OR_PUBLISHER_STALE'
+  }
+  $brokerTaskState = Get-VerifiedBrokerTaskState -TaskName $brokerTask
+  $healthObj = Get-Content -LiteralPath $health -Raw | ConvertFrom-Json
+  Assert-ReadyBrokerHealth -Health $healthObj
+  if ([int]$healthObj.pid -ne [int]$probe.broker_pid) { throw 'BROKER_PROCESS_CHANGED_DURING_LIVE_PROBE' }
 
   [ordered]@{
     result='PASS'
-    broker_task=(Get-ScheduledTask -TaskName $brokerTask).State.ToString()
+    broker_task=$brokerTaskState
     tunnel_task=(Get-ScheduledTask -TaskName $tunnelTask).State.ToString()
     runtime_exe_sha256=(Get-FileHash -LiteralPath (Join-Path $tunnel 'tunnel-client.exe') -Algorithm SHA256).Hash.ToLowerInvariant()
     doctor_exe_sha256=(Get-FileHash -LiteralPath (Join-Path $doctorClient 'tunnel-client.exe') -Algorithm SHA256).Hash.ToLowerInvariant()

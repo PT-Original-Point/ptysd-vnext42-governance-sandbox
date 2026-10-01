@@ -1,0 +1,424 @@
+{
+  "schema": "CHATGPT_EXECUTION_POLICY_V5_1_R2",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "status": "FINALIZED",
+  "authorized_by": "HUMAN",
+  "authorization_gate": "VNEXT5.1-R2 CP201 REBUILD CORRECTION / OWNER GENERATION DISCIPLINE",
+  "mission_revision_id": "20261001T132452+0800",
+  "mission_hash": "sha256:3bef2d242e9ce53e7ff01acbcac97e4a346eed829afe6afaae4eba197c83ca04",
+  "policy_revision_id": "20261001T132452+0800-EP85",
+  "canonicalization_version": "HUMAN_TEXT_V1",
+  "policy_hash_profile": "RFC8785_CANONICAL_JSON_PAYLOAD_SHA256_V1",
+  "payload": {
+    "active_module": "vnext5_1_r2_control_plane_recovery",
+    "active_unit": "V51-R2-03-FIXED-READONLY-FACTORY-OBSERVATION",
+    "module_acceptance": "R2_00_AUTHORITY_REBASE_AND_SAME_SOURCE_READBACK_THROUGH_R2_09_ANY_STATE_CROSS_SESSION_REGRESSION_PASS_BEFORE_ORDINARY_PRODUCT_WORK",
+    "current_construction_spec": {
+      "id": "VNEXT5.1-R2",
+      "source_class": "EXACT_HUMAN_PROVIDED_CONSTRUCTION_SPEC_ATTACHMENT",
+      "source_commit": null,
+      "source_path": "VNEXT5.1-R2-FULL-CONSTRUCTION-SPEC-20260929.md",
+      "canonical_path": "governance/csg/v51/specs/VNEXT5.1-R2-HUMAN-CURRENT-SPEC-20260929.md",
+      "blob_oid": "1dcd2d46a35bb3a580210ab4f0d29131587cc448",
+      "sha256": "sha256:b3b805f4dd5e88a2370c456c7f678c3264ca032090c957d69116512b563b589f",
+      "byte_length": 25222
+    },
+    "routing": {
+      "policy": "HOST_OWNED_SUPERVISOR_MULTI_AGENT_FLEET",
+      "superseded": [
+        "CODEX_PRIMARY_FOR_SUBSTANTIAL_OR_LONG_RUNNING_WORK_AS_FACTORY_WIDE_BUILDER_AUTHORITY"
+      ],
+      "durable_orchestrator": "HOST_OWNED_24X7_SUPERVISOR_RECONCILER",
+      "factory_execution_model": "MULTI_AGENT_FLEET",
+      "gpt_web_role": "EPHEMERAL_AUDITOR_CONTROL_SHORT_READBACK_HUMAN_INTERFACE",
+      "preferred_builder_route": "OPENCODE_MUSE_SPARK_1_3_WHEN_HEALTHY_ELIGIBLE_AND_QUOTA_ALLOWED",
+      "secondary_qualified_lanes": [
+        "ANTIGRAVITY",
+        "CODEX"
+      ],
+      "normal_product_coding_boundary": "HYPERV_UBUNTU_WORKER_VM_WITH_ISOLATED_WORKTREE_CONTAINER_OR_CELL",
+      "routing_inputs": [
+        "task_class",
+        "capability",
+        "provider_health",
+        "quota",
+        "measured_success_rate",
+        "sandbox_eligibility",
+        "review_backlog",
+        "integration_backlog"
+      ],
+      "codex_role": "RECOVERY_EXECUTOR_HOST_MAINTENANCE_AND_QUALIFIED_SECONDARY",
+      "gpt_web_availability_required_for_liveness": false,
+      "connector_exhaustion_required_before_codex": false,
+      "codex_mission_sovereignty": false
+    },
+    "coordination": {
+      "one_active_atomic_unit": true,
+      "one_execution_owner_per_atomic_scope": true,
+      "active_execution_owner": "CODEX_THREAD_01a0ed35-6063-7912-9872-7d4122a3b125",
+      "no_concurrent_chat_codex_mutation_same_scope": true,
+      "codex_progress_must_be_provider_or_artifact_addressable": true,
+      "chat_claim_verification_required_for_promotion": true,
+      "cross_session_resume_uses_canonical_backend_not_chat_memory": true,
+      "active_owner_generation": null,
+      "active_unit": "V51-R2-03-FIXED-READONLY-FACTORY-OBSERVATION",
+      "asynchronous_independent_slices": true,
+      "one_integration_lane_per_project": true,
+      "host_supervisor_owns_liveness": true,
+      "work_conserving_scheduler": true,
+      "cold_start_authority_sequence": [
+        "EXACT_PROJECT_LOOKUP",
+        "PROJECT_DIRECTORY",
+        "CANONICAL_CONTROL_POINTER",
+        "CURRENT_SPEC",
+        "MISSION",
+        "EXECUTION_POLICY",
+        "RUN_CHECKPOINT_TASK_ATTEMPT",
+        "EXECUTION_OWNER",
+        "UNRESOLVED_EFFECTS",
+        "FRESH_HOST_OBSERVATION_AND_PROVIDER_READBACK",
+        "RECONCILE",
+        "SAFE_NEXT_ACTION"
+      ],
+      "forbidden_current_authority_sources": [
+        "MEMORY",
+        "RECENT_CHAT",
+        "RECENT_HANDOFF",
+        "LATEST_LOCAL_FILE",
+        "SCHEDULED_WAKE_PAYLOAD",
+        "OLD_GOAL",
+        "PREVIOUS_AI_SUMMARY"
+      ],
+      "canonical_unreadable_result": "CONTROL_STATE_UNAVAILABLE_FAIL_CLOSED_NO_GUESSING",
+      "carry_forward_capability_gaps_path": "governance/csg/v51/readbacks/R2-CARRY-FORWARD-CAPABILITY-GAPS-20260929.json",
+      "carry_forward_gaps_must_remain_until_provider_confirmed_pass": true,
+      "active_attempt_id": "V51-R2-03-ATTEMPT-002",
+      "active_attempt_epoch": 2,
+      "owner_reentry": {
+        "prior_attempt_id": "V51-R2-02-ATTEMPT-001",
+        "prior_attempt_epoch": 1,
+        "prior_owner_generation": 3,
+        "prior_owner_lease_until": null,
+        "disposition": "SUPERSEDED_UNSELECTED_STAGE_NO_CANONICAL_OWNER_AUTHORITY",
+        "new_attempt_id": "V51-R2-02-ATTEMPT-002",
+        "new_attempt_epoch": 2,
+        "new_owner_generation": 5,
+        "new_owner_lease_until": "2026-09-29T18:44:11Z",
+        "selected_only_after_canonical_checkpoint": true
+      },
+      "prior_unit_owner_reentry": {
+        "prior_attempt_id": "V51-R2-01-ATTEMPT-001",
+        "prior_attempt_epoch": 1,
+        "prior_owner_generation": 1,
+        "prior_lease_until": "2026-09-29T14:54:00.000Z",
+        "disposition": "EXPIRED_OWNER_AUTHORITY_NO_JOB_NO_EFFECT",
+        "new_attempt_id": "V51-R2-01-ATTEMPT-003",
+        "new_attempt_epoch": 3,
+        "new_owner_generation": 4,
+        "new_owner_lease_until": "2026-09-29T18:06:22Z",
+        "selected_only_after_canonical_checkpoint": true,
+        "superseded_unselected_attempt": {
+          "attempt_id": "V51-R2-01-ATTEMPT-002",
+          "attempt_epoch": 2,
+          "owner_generation": 3,
+          "owner_lease_until": "2026-09-29T15:53:01Z",
+          "selected_by_checkpoint": false,
+          "disposition": "EXPIRED_BEFORE_SELECTION_NO_JOB_NO_EFFECT",
+          "run_revision": 6,
+          "unresolved_operation_ids": []
+        }
+      },
+      "r2_01_completion_evidence": {
+        "readback_path": "governance/csg/v51/readbacks/R2-01-POST-CP197-ATTEMPT-003-SAME-SOURCE-READBACK-20260930.json",
+        "readback_blob": "1ed26dde690e0e222b9c0571d6643fb31de23f12",
+        "source_commit": "e0e2e7551919fa23c3ca914915234eb6a80417a9",
+        "provider_confirmation_commit": "fcdcf8771ce6eaa887bd761a5e9bc42e4a99c596",
+        "provider_confirmation_pr": 359,
+        "canonical_completion_checkpoint": "PENDING_CP198"
+      },
+      "goal_lifecycle": {
+        "canonical_mission_status": "ACTIVE",
+        "project_directory_and_canonical_checkpoint_are_authority": true,
+        "local_codex_goal_session_thread_or_ui_state_authoritative": false,
+        "batch_completion_or_pr_test_verifier_readback_checkpoint_terminates_mission": false,
+        "fresh_read_after_each_material_evidence_delta": [
+          "PROJECT_DIRECTORY",
+          "CURRENT_POINTER",
+          "CURRENT_SPEC",
+          "MISSION",
+          "POLICY",
+          "CHECKPOINT",
+          "RUN_TASK_ATTEMPT_OWNER",
+          "UNRESOLVED_EFFECTS",
+          "FRESH_PROVIDER_AND_LOCAL_LIVE_OBSERVATION",
+          "RECOMPUTE_READY_LANES"
+        ],
+        "lane_parking_is_exact_lane_only": true,
+        "parked_lane_reasons": [
+          "WAITING_EXTERNAL",
+          "ACCESS_DENIED",
+          "MISSING_PRIVILEGED_ROUTE",
+          "PENDING_REVIEW"
+        ],
+        "continue_highest_priority_ready_lane": true,
+        "do_not_repeat_provider_confirmed_completed_work": true,
+        "recover_without_human_reinjection": true,
+        "termination_conditions": [
+          "ALL_MISSION_ACCEPTANCE_CRITERIA_PROVIDER_CONFIRMED_PASS",
+          "HUMAN_EXPLICIT_CANCEL_OR_SUPERSEDE",
+          "DURABLY_PERSISTED_TERMINAL_HUMAN_RESERVED_GATE_OR_UNRECOVERABLE_TERMINAL_FAILURE"
+        ],
+        "false_global_block_regression": {
+          "regression_id": "LOCAL_GOAL_THREE_IDENTICAL_BLOCKERS_FALSE_GLOBAL_BLOCK",
+          "status": "REQUIRED_NOT_YET_ACCEPTED",
+          "blocked_condition": "ALL_LEGAL_READY_LANES_EXHAUSTED_AND_REMAINDER_REQUIRES_GENUINE_EXTERNAL_OR_HUMAN_PREREQUISITE",
+          "expected": [
+            "MISSION_ACTIVE",
+            "ONE_OR_MORE_LANES_PARKED",
+            "ANOTHER_LEGAL_READY_LANE_EXISTS",
+            "GOAL_REMAINS_ACTIVE",
+            "HIGHEST_PRIORITY_READY_LANE_CONTINUES",
+            "THREE_IDENTICAL_BLOCKERS_DO_NOT_SET_GLOBAL_BLOCKED"
+          ]
+        },
+        "global_block_condition": "ALL_LEGAL_READY_LANES_EXHAUSTED_AND_REMAINDER_REQUIRES_GENUINE_EXTERNAL_OR_HUMAN_PREREQUISITE",
+        "local_codex_goal_disappears_while_mission_active": "RECOVER_FROM_CANONICAL_MISSION_AND_CONTINUE_READY_WORK_WITHOUT_HUMAN_REINJECTION"
+      },
+      "owner_liveness_reconciliation": {
+        "active_unit": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION",
+        "owner_generation": 5,
+        "lease_expiry_alone_confirms_stale": false,
+        "aggregate_zero_job_counts_alone_confirm_stale": false,
+        "exact_cross_source_liveness_observation_required": true,
+        "unresolved_or_unknown_effects_require_readback_first": true,
+        "status_until_sufficient_evidence": "STALE_EXECUTION_OWNER_CANDIDATE",
+        "do_not_revoke_or_dispatch_until_confirmed": true
+      },
+      "r2_07_acceptance": {
+        "status": "REQUIRED_NOT_YET_ACCEPTED",
+        "acceptance": [
+          "WINDOWS_REBOOT_SUPERVISOR_RESUMES",
+          "SUPERVISOR_CRASH_AUTOMATIC_RESTART",
+          "CODEX_UI_CLOSED_CONSTRUCTION_CONTINUES",
+          "GPT_WEB_GONE_CONSTRUCTION_CONTINUES",
+          "FRESH_CANONICAL_READ_RECOMPUTES_READY",
+          "EVIDENCE_AND_CHECKPOINT_PERSISTENCE_CONTINUES"
+        ]
+      },
+      "r2_09_acceptance": {
+        "status": "REQUIRED_NOT_YET_ACCEPTED",
+        "regression_id": "LOCAL_CODEX_GOAL_DISAPPEARS_WHILE_MISSION_ACTIVE",
+        "expected": [
+          "CANONICAL_MISSION_REMAINS_ACTIVE",
+          "NEW_EXECUTOR_SESSION_RECOVERS_CURRENT_CANONICAL_UNIT",
+          "COMPLETED_WORK_IS_NOT_REPEATED",
+          "NEXT_HIGHEST_PRIORITY_READY_WORK_CONTINUES_WITHOUT_HUMAN_REINJECTION"
+        ]
+      },
+      "r2_02_parked_owner": {
+        "task_id": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION",
+        "attempt_id": "V51-R2-02-ATTEMPT-002",
+        "attempt_epoch": 2,
+        "owner_generation": 5,
+        "liveness": "STALE_EXECUTION_OWNER_CANDIDATE",
+        "stale_owner_confirmed": false,
+        "revoke": false,
+        "host_dispatch": false,
+        "host_mutation": false,
+        "parked_sublane": "R2-02B_EXACT_GENERATION_5_LIVENESS"
+      },
+      "r2_03_candidate_rebuild": {
+        "canonical_checkpoint_seq": 200,
+        "canonical_control_commit": "d39486601d851e31256852a24e9c1393b9046fe5",
+        "canonical_owner_generation": 5,
+        "candidate_id": "V51-R2-CP201-OWNER-ALLOCATION-ARCHITECTURE-CORRECTION-20261001",
+        "candidate_instance_id": "785b137a-083a-433f-bff9-c4ac97d07888",
+        "candidate_status": "NONCANONICAL_PREPARED_NOT_DISPATCHED",
+        "candidate_branch": "codex/r2-cp201-promotion-time-owner-allocation-20261001",
+        "proposed_owner_generation_policy": "NEXT_AVAILABLE_AT_PROMOTION",
+        "owner_generation": null,
+        "lease_duration_seconds": 14400,
+        "lease_until": null,
+        "execution_owner_allocated": false,
+        "allocation_record_path": "governance/csg/v51/readbacks/R2-03-OWNER-ALLOCATION-ARCHITECTURE-CORRECTION-20261001.json",
+        "allocation_regression_id": "OWNER_ALLOCATION_ARCHITECTURE_CORRECTION",
+        "allocation_phase": "CANONICAL_PROMOTION_CAS",
+        "fresh_canonical_prestate_readback_required": true,
+        "fresh_durable_consumed_generation_readback_required": true,
+        "same_source_readback_after_canonical_write_required": true,
+        "historical_generation_labels": [
+          6,
+          7,
+          8,
+          9
+        ],
+        "generation_6_through_9_are_historical_candidate_evidence": true
+      },
+      "historical_candidate_generation_9_owner_scope": "V51-R2-03-FIXED-READONLY-FACTORY-OBSERVATION",
+      "historical_candidate_generation_9_lease_until": "2026-10-01T08:22:13Z"
+    },
+    "authorization": {
+      "reversible_preproduction_persistent": true,
+      "routine_per_session_reauthorization": false,
+      "production_final_human_required": true,
+      "new_cost_human_required": true,
+      "legal_contract_signature_identity_human_required": true,
+      "oauth_mfa_human_required": true,
+      "major_irreversible_authority_expansion_human_required": true,
+      "unreconcilable_ambiguous_external_effect_human_required": true,
+      "normal_product_coding_boundary": "HYPERV_UBUNTU_WORKER_VM",
+      "host_supervisor_preproduction_execution_authorized": true
+    },
+    "mutation_safety": {
+      "fresh_prestate": true,
+      "provider_or_backend_cas_at_dispatch": true,
+      "same_source_readback": true,
+      "unknown_effect_readback_first": true,
+      "no_blind_replay": true,
+      "operation_owned_rollback": true,
+      "canonical_control_updates_must_be_fast_forward_only": true,
+      "exact_host_project_binding_required": true,
+      "stop_gate_retained": true,
+      "bounded_timeout_output_and_concurrency": true,
+      "durable_receipt_required": true
+    },
+    "project_controls": {
+      "mission_revision_rollover_is_not_transport_denial": true,
+      "checkpoint_rollover_is_not_transport_denial": true,
+      "run_id_pattern_rollover_is_not_transport_denial": true,
+      "task_id_pattern_rollover_is_not_transport_denial": true,
+      "attempt_or_generation_metadata_is_not_transport_denial": true,
+      "stale_historical_wake_payload_is_not_authority": true,
+      "production_allowed": false,
+      "business_project_auto_admission": false,
+      "paid_fallback_allowed": false,
+      "worker_provider_write_credentials_allowed": false,
+      "zero_incremental_paid_cost_required": true,
+      "session_rollover_is_not_transport_denial": true,
+      "authorization_envelope_generation_churn_alone_is_not_transport_denial": true
+    },
+    "factory_mcp": {
+      "public_tool_count": 4,
+      "read_only_diagnostics": {
+        "preferred_tool": "factory_status",
+        "bounded_fixed_purpose_only": true,
+        "arbitrary_powershell": false,
+        "host_mutation": false,
+        "host_mutation_fence_required": false
+      },
+      "trusted_caller": {
+        "unique_os_enforced_boundary_required": true,
+        "shared_network_service_sid_alone_sufficient": false,
+        "negative_injection_test_required": true
+      },
+      "host_powershell": {
+        "public_tool_retained": true,
+        "run_as_required": "NT AUTHORITY\\SYSTEM",
+        "authorized_scope_requires": [
+          "R2_04_UNIQUE_TRUSTED_CALLER_PASS",
+          "R2_05_NONCIRCULAR_HOST_REPAIR_LANE_PASS",
+          "R2_06_LIVE_INSTALL_ACCEPTANCE_PASS"
+        ],
+        "production_allowed": false
+      }
+    },
+    "human_reserved_gates": [
+      "PRODUCTION_FINAL_AUTHORIZATION",
+      "NEW_PAID_COST_OR_SERVICE",
+      "LEGAL_CONTRACT_SIGNATURE_OR_IDENTITY",
+      "OAUTH_OR_MFA",
+      "MAJOR_IRREVERSIBLE_AUTHORITY_EXPANSION",
+      "UNRECONCILABLE_AMBIGUOUS_EXTERNAL_EFFECT"
+    ],
+    "factory_mcp_public_tool_count": 4,
+    "host_vm_execution_default_authorized": true,
+    "host_powershell_normal_route": "CONDITIONED_ON_R2_04_UNIQUE_TRUSTED_CALLER_R2_05_NONCIRCULAR_REPAIR_AND_R2_06_LIVE_ACCEPTANCE",
+    "provider_write_credentials_on_worker_allowed": false,
+    "paid_fallback_allowed": false,
+    "business_project_access_allowed": false,
+    "production_allowed": false,
+    "supersedes_unselected_stage": {
+      "mission_revision_id": "20260929T223724+0800",
+      "policy_revision_id": "20260929T223724+0800-EP76",
+      "active_unit": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION",
+      "active_attempt_id": "V51-R2-02-ATTEMPT-001",
+      "attempt_epoch": 1,
+      "owner_generation": 3,
+      "selected_by_checkpoint": false,
+      "disposition": "SUPERSEDED_UNSELECTED_STAGE",
+      "superseded_by_attempt_id": "V51-R2-02-ATTEMPT-002"
+    },
+    "r2_02_dependency_split": {
+      "overall_status": "NOT_PASS",
+      "r2_02a_fail_closed_source_model": {
+        "status": "QUALIFIED_SOURCE_MODEL",
+        "readback_path": "governance/csg/v51/readbacks/R2-02-SOURCE-CORRECTION-QUALIFICATION-READBACK-20260930.json",
+        "readback_verdict": "PASS_EXACT_HEAD_AND_SAME_SOURCE_READBACK"
+      },
+      "r2_02b_exact_generation_5_liveness": {
+        "status": "WAITING_ON_R2_03_OBSERVATION_CAPABILITY",
+        "acceptance_status": "NOT_PASS",
+        "owner_generation": 5,
+        "owner_liveness": "STALE_EXECUTION_OWNER_CANDIDATE",
+        "stale_owner_confirmed": false,
+        "revoke": false,
+        "dispatch": false,
+        "host_mutation": false
+      },
+      "required_order": [
+        "R2-02A_QUALIFIED",
+        "R2-03_OBSERVATION_CAPABILITY",
+        "R2-02B_EXACT_LIVE_RECONCILIATION",
+        "R2-02_PASS",
+        "R2-04"
+      ],
+      "return_to_r2_02b_immediately_after_r2_03_acceptance": true
+    },
+    "r2_03_observation_lane": {
+      "task_id": "V51-R2-03-FIXED-READONLY-FACTORY-OBSERVATION",
+      "status": "ACTIVE_READY_NOT_YET_ACCEPTED",
+      "attempt_id": "V51-R2-03-ATTEMPT-002",
+      "attempt_epoch": 2,
+      "owner_generation": null,
+      "source_candidate_head": null,
+      "next_step": "IMPLEMENT_AND_QUALIFY_SYSTEM_BROKER_DURABLE_FIXED_SCHEMA_PUBLICATION_AND_PROVIDER_READBACK",
+      "no_host_mutation": true,
+      "no_fifth_public_tool": true,
+      "source_candidate_head_binding": {
+        "method": "GITHUB_PULL_REQUEST_PROVIDER_READBACK",
+        "pull_request_number": 342,
+        "head_branch": "codex/v51-r1-03-readonly-bootstrap-20260929",
+        "target_branch": "v45/factory-control",
+        "target_base_commit": "d39486601d851e31256852a24e9c1393b9046fe5",
+        "exact_final_head": "3cf057c4b28d3c7f225823ede198ac9845e050e0",
+        "exact_final_head_readback_required": true
+      },
+      "owner_lease_until": null
+    },
+    "owner_liveness_reconciliation": {
+      "active_unit": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION",
+      "owner_generation": 5,
+      "status": "NOT_PASS",
+      "stale_owner_liveness": "STALE_EXECUTION_OWNER_CANDIDATE",
+      "stale_owner_confirmed": false,
+      "revocation": false,
+      "host_dispatch": false,
+      "host_mutation": false,
+      "live_observation_sublane": "WAITING_ON_R2_03_OBSERVATION_CAPABILITY",
+      "ready_lane": "V51-R2-03-FIXED-READONLY-FACTORY-OBSERVATION"
+    },
+    "r2_03_acceptance_state": {
+      "source_contract": "QUALIFIED_CANDIDATE",
+      "synthetic_integration": "PASS",
+      "live_trust_provisioning": "NOT_ACCEPTED",
+      "live_provider_session_route": "NOT_ACCEPTED",
+      "live_supervisor_heartbeat_route": "NOT_ACCEPTED",
+      "live_signed_evidence_path": "NOT_ACCEPTED"
+    }
+  },
+  "policy_hash": "sha256:030ab4cab3e6bd947bf1f46b3b248de77bf76d08f86b1c5baa66c1e7fbc08d2f",
+  "effective_at": "2026-10-01T04:22:13Z",
+  "supersedes": "20260930T104733+0800-EP80",
+  "change_reason": "Candidate-only owner-allocation correction from fresh CP200 provider state. A noncanonical PREPARED_NOT_DISPATCHED CP201 candidate carries a durable candidate_instance_id but owner_generation=null and lease_until=null. Execution owner generation and lease are allocated only inside canonical promotion CAS after fresh canonical prestate and durable-consumed-generation readbacks. Existing gen6-gen9 CP201 candidate documents remain historical unchanged evidence; they do not cause another generation allocation. CP200 remains canonical, R2-02/R2-03 remain NOT PASS, and no revoke, dispatch, Host mutation, or Production action is performed.",
+  "canonical_selection_status": "CANDIDATE_ONLY_NOT_CANONICALLY_SELECTED"
+}

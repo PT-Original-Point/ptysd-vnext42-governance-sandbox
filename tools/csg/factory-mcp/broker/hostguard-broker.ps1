@@ -12,6 +12,7 @@ $state = Join-Path $root 'state'
 $health = Join-Path $state 'broker-health.json'
 $modulePath = 'C:\Program Files\WindowsPowerShell\Modules\PTYSD.HostGuard\PTYSD.HostGuard.psd1'
 $idPattern = '^[A-Z0-9][A-Z0-9._-]{0,79}$'
+. (Join-Path $PSScriptRoot 'owner-liveness-publisher.ps1')
 
 foreach ($path in @($inbox,$processing,$outbox,$state)) {
   if (-not (Test-Path -LiteralPath $path)) { throw ('BROKER_PATH_MISSING:' + $path) }
@@ -31,13 +32,16 @@ function Write-AtomicJson {
 }
 
 function Write-Health {
+  $ownerLivenessPublisherStatus = 'PUBLISH_FAILED'
+  try { $ownerLivenessPublisherStatus = Publish-OwnerLivenessSnapshot } catch {}
   $payload = [ordered]@{
     schema = 'v47.factory-mcp.broker.health.v1'
-    status = 'READY'
+    status = (Get-OwnerLivenessBrokerHealthStatus -PublisherStatus $ownerLivenessPublisherStatus)
     pid = $PID
     host = $env:COMPUTERNAME
     run_as = [Security.Principal.WindowsIdentity]::GetCurrent().Name
     recorded_at_utc = [DateTime]::UtcNow.ToString('o')
+    owner_liveness_publisher_status = $ownerLivenessPublisherStatus
   }
   Write-AtomicJson -Path $health -Value $payload
 }

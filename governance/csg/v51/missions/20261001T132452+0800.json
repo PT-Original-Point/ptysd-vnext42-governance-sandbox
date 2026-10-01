@@ -1,0 +1,292 @@
+{
+  "record_type": "MISSION_REVISION",
+  "schema": "MISSION_CONTRACT_V2_RECOVERY_PUBLICATION",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "mission_revision_id": "20261001T132452+0800",
+  "effective_at": "2026-10-01T05:24:52Z",
+  "status": "FINALIZED",
+  "authorized_by": "HUMAN",
+  "authorization_gate": "CP201 OWNER-ALLOCATION ARCHITECTURE CORRECTION",
+  "supersedes": "20261001T122213+0800",
+  "change_reason": "Candidate-only owner-allocation correction from fresh CP200 provider state. A noncanonical PREPARED_NOT_DISPATCHED CP201 candidate carries a durable candidate_instance_id but owner_generation=null and lease_until=null. Execution owner generation and lease are allocated only inside canonical promotion CAS after fresh canonical prestate and durable-consumed-generation readbacks. Existing gen6-gen9 CP201 candidate documents remain historical unchanged evidence; they do not cause another generation allocation. CP200 remains canonical, R2-02/R2-03 remain NOT PASS, and no revoke, dispatch, Host mutation, or Production action is performed.",
+  "canonicalization_version": "HUMAN_TEXT_V1",
+  "payload": {
+    "final_strategic_goal": "Restore the existing V4.2-to-V4.9 multi-agent software factory under a single canonical V5.1-R2 control plane with any-state cross-session recovery, a 24/7 Host-owned Supervisor, and bounded pre-Production execution.",
+    "success_criteria": "R2_00_AUTHORITY_REBASE_AND_SAME_SOURCE_READBACK=PASS; R2_01_ANY_STATE_COLD_START=PASS; R2_02_STALE_OWNER_LIVENESS_RECONCILIATION=PASS; R2_03_FIXED_READONLY_FACTORY_OBSERVATION=PASS; R2_04_UNIQUE_TRUSTED_CALLER=PASS; R2_05_NONCIRCULAR_HOST_REPAIR=PASS; R2_06_LIVE_FACTORY_MCP_ACCEPTANCE=PASS; R2_07_HOST_SUPERVISOR_24X7=PASS; R2_08_ANTI_LOOP_AND_STALE_AUTOMATION=PASS; R2_09_ANY_STATE_CROSS_SESSION_REGRESSION=PASS; R2_10_MULTI_AGENT_FLEET=PASS; R2_11_TASK_GRAPH_AIMD_QUOTA=PASS; R2_12_FRESH_REVIEW_REPAIR=PASS; R2_13_SINGLE_INTEGRATION_PRODUCT_VERIFIER=PASS; R2_14_PROVIDERGUARD_PUBLICATION_NOTIFICATION=PASS; R2_15_HANYAO_READONLY_RECOVERY=PASS; R2_16_REAL_N1=PASS; R2_17_N2=PASS; R2_18_MEASURED_N4_N8=PASS; R2_19_MULTI_PROJECT_SHADOW=PASS; R2_20_DR_UNKNOWN_EFFECT_CAMPAIGN=PASS; R2_21_BOUNDED_RSI=PASS; CURRENT_SPEC=VNEXT5.1-R2; GPT_WEB_NOT_LIVENESS_CRITICAL=PASS; HOST_SUPERVISOR_24X7=PASS; OPENCODE_MUSE_PREFERRED_WHEN_HEALTHY=PASS; ANTIGRAVITY_CODEX_SECONDARY=PASS; HYPERV_NORMAL_CODING_BOUNDARY=PASS; CANONICAL_SINGLE_AUTHORITY=PASS; WORKER_PROVIDER_WRITE_CREDENTIALS=0; PAID_FALLBACK=false; PRODUCTION=false; FACTORY_MCP_PUBLIC_TOOLS=4.",
+    "current_construction_spec": {
+      "id": "VNEXT5.1-R2",
+      "source_class": "EXACT_HUMAN_PROVIDED_CONSTRUCTION_SPEC_ATTACHMENT",
+      "source_commit": null,
+      "source_path": "VNEXT5.1-R2-FULL-CONSTRUCTION-SPEC-20260929.md",
+      "canonical_path": "governance/csg/v51/specs/VNEXT5.1-R2-HUMAN-CURRENT-SPEC-20260929.md",
+      "blob_oid": "1dcd2d46a35bb3a580210ab4f0d29131587cc448",
+      "sha256": "sha256:b3b805f4dd5e88a2370c456c7f678c3264ca032090c957d69116512b563b589f",
+      "byte_length": 25222
+    },
+    "current_phase": "VNEXT5_1_R2_CONTROL_PLANE_RECOVERY",
+    "phase_acceptance": "R2_00_AUTHORITY_REBASE_REQUIRES_SPEC_MISSION_POLICY_RUN_TASK_ATTEMPT_COHERENCE_AND_SAME_SOURCE_READBACK; R2_01_THROUGH_R2_09_PASS_BEFORE_ORDINARY_PRODUCT_WORK; PRODUCTION=false; PAID_FALLBACK=false; WORKER_PROVIDER_WRITE_CREDENTIALS=0.",
+    "active_unit": "V51-R2-03-FIXED-READONLY-FACTORY-OBSERVATION",
+    "active_run_id": "V51-R2-001",
+    "active_task_id": "V51-R2-03-FIXED-READONLY-FACTORY-OBSERVATION",
+    "active_attempt_id": "V51-R2-03-ATTEMPT-002",
+    "next_phase": "VNEXT5_1_R2_P0_AND_MULTI_AGENT_FACTORY_CLOSURE",
+    "next_business_event": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION:R2-02B-EXACT-GENERATION-5-LIVENESS-RECONCILIATION",
+    "executor_routing": {
+      "factory_execution_model": "MULTI_AGENT_FLEET",
+      "durable_orchestrator": "HOST_OWNED_24X7_SUPERVISOR_RECONCILER",
+      "gpt_web_role": "EPHEMERAL_AUDITOR_CONTROL_HUMAN_INTERFACE",
+      "preferred_builder": "OPENCODE_MUSE_SPARK_1_3",
+      "secondary_qualified_lanes": [
+        "ANTIGRAVITY",
+        "CODEX"
+      ],
+      "normal_product_coding": "HYPERV_UBUNTU_VM_ISOLATED_WORKTREE_OR_CONTAINER",
+      "codex_role": "CONTROL_PLANE_RECOVERY_HOST_MAINTENANCE_AND_QUALIFIED_SECONDARY_AGENT",
+      "one_execution_owner_per_mutable_atomic_scope": true,
+      "one_integration_lane_per_project": true,
+      "codex_mission_sovereignty": false
+    },
+    "authorization": {
+      "reversible_preproduction_persistent": true,
+      "production_allowed": false,
+      "production_final_authorization": "HUMAN_RESERVED",
+      "business_project_auto_admission": false,
+      "paid_fallback_allowed": false,
+      "worker_provider_write_credentials_allowed": false,
+      "new_paid_cost_allowed": false
+    },
+    "human_reserved_gates": [
+      "PRODUCTION_FINAL_AUTHORIZATION",
+      "NEW_PAID_COST_OR_SERVICE",
+      "LEGAL_CONTRACT_SIGNATURE_OR_IDENTITY",
+      "OAUTH_OR_MFA",
+      "MAJOR_IRREVERSIBLE_AUTHORITY_EXPANSION",
+      "UNRECONCILABLE_AMBIGUOUS_EXTERNAL_EFFECT"
+    ],
+    "factory_mcp": {
+      "public_tool_count": 4,
+      "bounded_read_only_diagnostics_required": true,
+      "read_only_diagnostics_require_host_mutation_fence": false,
+      "arbitrary_host_powershell_before_unique_trusted_caller": false,
+      "host_powershell_run_as_required": "NT AUTHORITY\\SYSTEM",
+      "trusted_caller": {
+        "unique_os_enforced_boundary_required": true,
+        "shared_network_service_sid_alone_sufficient": false
+      }
+    },
+    "cross_session_acceptance": [
+      "FRESH_SESSION_LOOKUP_EXACT_PROJECT_DIRECTORY_CONTROL_POINTER_SPEC_MISSION_POLICY_RUN_TASK_ATTEMPT_OWNER_EFFECTS",
+      "FRESH_LOCAL_HOST_OBSERVATION_AND_PROVIDER_READBACK_BEFORE_RECONCILIATION",
+      "NO_MEMORY_RECENT_CHAT_RECENT_HANDOFF_LATEST_LOCAL_FILE_SCHEDULED_WAKE_OLD_GOAL_OR_PRIOR_SUMMARY_AS_CURRENT_AUTHORITY",
+      "CANONICAL_UNREADABLE_RETURNS_CONTROL_STATE_UNAVAILABLE_AND_FAILS_CLOSED_WITHOUT_GUESSING",
+      "RUN_EVIDENCE_REFERENCES_CARRY_FORWARD_CAPABILITY_GAPS_UNTIL_PROVIDER_CONFIRMED_PASS",
+      "STALE_R1_OR_V50_CONTINUATION_CANNOT_RESURRECT",
+      "PRODUCTION_REMAINS_HUMAN_RESERVED",
+      "CODEX_LOCAL_GOAL_SESSION_THREAD_EXISTENCE_OR_DISAPPEARANCE_IS_NOT_PROJECT_AUTHORITY",
+      "BOUNDED_BATCH_PR_MERGE_TEST_VERIFIER_READBACK_OR_CHECKPOINT_DOES_NOT_TERMINATE_MISSION",
+      "AFTER_EACH_MATERIAL_DELTA_FRESH_READ_DIRECTORY_POINTER_SPEC_MISSION_POLICY_CHECKPOINT_RUN_TASK_ATTEMPT_OWNER_EFFECTS_AND_PROVIDER_LOCAL_OBSERVATIONS_THEN_RECOMPUTE_READY",
+      "WAITING_EXTERNAL_ACCESS_DENIED_MISSING_PRIVILEGED_ROUTE_OR_PENDING_REVIEW_PARKS_ONLY_THE_EXACT_LANE_AND_DOES_NOT_STOP_OTHER_READY_WORK",
+      "OWNER_GENERATION_5_LEASE_EXPIRY_OR_WEB_FACTORY_ZERO_AGGREGATE_COUNTS_ALONE_DO_NOT_CONFIRM_STALE_OWNER",
+      "LOCAL_CODEX_GOAL_DISAPPEARS_WHILE_MISSION_ACTIVE_RECOVER_CANONICAL_UNIT_SKIP_COMPLETED_WORK_AND_CONTINUE_WITHOUT_HUMAN_REINJECTION",
+      "LOCAL_GOAL_THREE_IDENTICAL_BLOCKERS_FALSE_GLOBAL_BLOCK: while Mission is ACTIVE, any parked lanes plus any legal READY lane keeps Goal ACTIVE; identical blocker repetition cannot override work-conserving READY scheduling; global BLOCKED requires ALL_LEGAL_READY_LANES_EXHAUSTED plus a genuine external/Human prerequisite."
+    ],
+    "forbidden_until_r2_complete": [
+      "PRODUCTION",
+      "PAID_FALLBACK",
+      "NEW_PAID_SERVICE",
+      "BUSINESS_PROJECT_AUTO_ADMISSION",
+      "WORKER_PROVIDER_WRITE_CREDENTIALS",
+      "FIFTH_FACTORY_MCP_PUBLIC_TOOL",
+      "ARBITRARY_SYSTEM_POWERSHELL",
+      "BARE_HOST_NORMAL_PRODUCT_CODING",
+      "FORCE_UPDATE_CANONICAL_HISTORY",
+      "BLIND_RETRY_OR_REDISPATCH_UNKNOWN_EFFECT",
+      "STALE_SCHEDULED_CONTINUATION_RESURRECTION",
+      "SECOND_CANONICAL_STORE",
+      "DUPLICATE_CONTROL_PLANE"
+    ],
+    "non_goals": "No Production authorization; no paid fallback or new paid service; no worker provider-write credentials; no business-project auto admission; no fifth public Factory MCP tool; no second canonical store or duplicate control plane; no bare-host normal product coding; no force update; no blind unknown-effect replay. Preserve the Human-reserved gates.",
+    "mission_hash_profile": "RFC8785_CANONICAL_JSON_PAYLOAD_SHA256_V1",
+    "active_attempt_epoch": 2,
+    "supersedes_unselected_stage": {
+      "mission_revision_id": "20260929T223724+0800",
+      "policy_revision_id": "20260929T223724+0800-EP76",
+      "active_unit": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION",
+      "active_attempt_id": "V51-R2-02-ATTEMPT-001",
+      "attempt_epoch": 1,
+      "owner_generation": 3,
+      "disposition": "SUPERSEDED_UNSELECTED_STAGE",
+      "selected_by_checkpoint": false,
+      "superseded_by_attempt_id": "V51-R2-02-ATTEMPT-002"
+    },
+    "goal_lifecycle": {
+      "canonical_mission_status": "ACTIVE",
+      "canonical_project_control_plane_is_authority": true,
+      "local_codex_goal_session_or_thread_is_authority": false,
+      "bounded_batch_completion_terminates_mission": false,
+      "nonterminal_evidence_deltas": [
+        "PR_MERGE",
+        "TEST_PASS",
+        "VERIFIER_PASS",
+        "SAME_SOURCE_READBACK",
+        "CHECKPOINT_PUBLICATION",
+        "SOURCE_CORRECTION_BATCH"
+      ],
+      "after_every_material_evidence_delta": [
+        "FRESH_PROJECT_DIRECTORY",
+        "CURRENT_CONTROL_POINTER",
+        "CURRENT_SPEC",
+        "MISSION",
+        "POLICY",
+        "CHECKPOINT",
+        "RUN_TASK_ATTEMPT_OWNER",
+        "UNRESOLVED_EFFECTS",
+        "FRESH_PROVIDER_AND_LOCAL_LIVE_OBSERVATION",
+        "RECOMPUTE_READY_LANES",
+        "CONTINUE_HIGHEST_PRIORITY_READY_UNIT"
+      ],
+      "lane_parking": [
+        "WAITING_EXTERNAL",
+        "ACCESS_DENIED",
+        "MISSING_PRIVILEGED_ROUTE",
+        "PENDING_REVIEW"
+      ],
+      "lane_parking_scope": "EXACT_LANE_ONLY",
+      "continue_other_ready_lanes": true,
+      "completed_work_repeated": false,
+      "recovery_without_human_reinjection": true,
+      "goal_termination_conditions": [
+        "ALL_MISSION_ACCEPTANCE_CRITERIA_PROVIDER_CONFIRMED_PASS",
+        "HUMAN_EXPLICITLY_CANCELS_OR_SUPERSEDES_MISSION",
+        "GENUINE_TERMINAL_HUMAN_RESERVED_GATE_OR_UNRECOVERABLE_TERMINAL_FAILURE_DURABLY_PERSISTED"
+      ],
+      "ui_or_executor_recovery": "FRESH_CANONICAL_READ_AND_READY_RECOMPUTATION",
+      "false_global_block_regression": {
+        "regression_id": "LOCAL_GOAL_THREE_IDENTICAL_BLOCKERS_FALSE_GLOBAL_BLOCK",
+        "status": "REQUIRED_NOT_YET_ACCEPTED",
+        "blocked_condition": "ALL_LEGAL_READY_LANES_EXHAUSTED_AND_REMAINDER_REQUIRES_GENUINE_EXTERNAL_OR_HUMAN_PREREQUISITE",
+        "expected": [
+          "MISSION_ACTIVE",
+          "ONE_OR_MORE_LANES_PARKED",
+          "ANOTHER_LEGAL_READY_LANE_EXISTS",
+          "GOAL_REMAINS_ACTIVE",
+          "HIGHEST_PRIORITY_READY_LANE_CONTINUES",
+          "THREE_IDENTICAL_BLOCKERS_DO_NOT_SET_GLOBAL_BLOCKED"
+        ]
+      },
+      "global_block_condition": "ALL_LEGAL_READY_LANES_EXHAUSTED_AND_REMAINDER_REQUIRES_GENUINE_EXTERNAL_OR_HUMAN_PREREQUISITE",
+      "continue_highest_priority_ready_lane": true
+    },
+    "r2_07_acceptance": {
+      "status": "REQUIRED_NOT_YET_ACCEPTED",
+      "acceptance": [
+        "WINDOWS_REBOOT_SUPERVISOR_RESUMES",
+        "SUPERVISOR_CRASH_AUTOMATIC_RESTART",
+        "CODEX_UI_CLOSED_CONSTRUCTION_CONTINUES",
+        "GPT_WEB_GONE_CONSTRUCTION_CONTINUES",
+        "FRESH_CANONICAL_READ_RECOMPUTES_READY",
+        "EVIDENCE_AND_CHECKPOINT_PERSISTENCE_CONTINUES"
+      ]
+    },
+    "r2_09_acceptance": {
+      "status": "REQUIRED_NOT_YET_ACCEPTED",
+      "regression_id": "LOCAL_CODEX_GOAL_DISAPPEARS_WHILE_MISSION_ACTIVE",
+      "expected": [
+        "CANONICAL_MISSION_REMAINS_ACTIVE",
+        "NEW_EXECUTOR_SESSION_RECOVERS_CURRENT_CANONICAL_UNIT",
+        "COMPLETED_WORK_IS_NOT_REPEATED",
+        "NEXT_HIGHEST_PRIORITY_READY_WORK_CONTINUES_WITHOUT_HUMAN_REINJECTION"
+      ]
+    },
+    "r2_02_dependency_split": {
+      "overall_status": "NOT_PASS",
+      "r2_02a_fail_closed_source_model": {
+        "status": "QUALIFIED_SOURCE_MODEL",
+        "readback_path": "governance/csg/v51/readbacks/R2-02-SOURCE-CORRECTION-QUALIFICATION-READBACK-20260930.json",
+        "readback_verdict": "PASS_EXACT_HEAD_AND_SAME_SOURCE_READBACK"
+      },
+      "r2_02b_exact_generation_5_liveness": {
+        "status": "WAITING_ON_R2_03_OBSERVATION_CAPABILITY",
+        "acceptance_status": "NOT_PASS",
+        "owner_generation": 5,
+        "owner_liveness": "STALE_EXECUTION_OWNER_CANDIDATE",
+        "stale_owner_confirmed": false,
+        "revoke": false,
+        "dispatch": false,
+        "host_mutation": false
+      },
+      "required_order": [
+        "R2-02A_QUALIFIED",
+        "R2-03_OBSERVATION_CAPABILITY",
+        "R2-02B_EXACT_LIVE_RECONCILIATION",
+        "R2-02_PASS",
+        "R2-04"
+      ],
+      "return_to_r2_02b_immediately_after_r2_03_acceptance": true
+    },
+    "r2_03_acceptance": {
+      "status": "ACTIVE_READY_NOT_YET_ACCEPTED",
+      "task_id": "V51-R2-03-FIXED-READONLY-FACTORY-OBSERVATION",
+      "attempt_id": "V51-R2-03-ATTEMPT-002",
+      "requires_fixed_four_tool_factory_status_path": true,
+      "requires_authorized_system_broker_snapshot_publication": true,
+      "requires_exact_provider_and_local_identity_bound_readback": true,
+      "no_host_dispatch_revoke_or_mutation": true,
+      "source_candidate_head": null,
+      "live_publisher_and_provider_readback": "NOT_YET_QUALIFIED",
+      "source_candidate_head_binding": {
+        "method": "GITHUB_PULL_REQUEST_PROVIDER_READBACK",
+        "pull_request_number": 342,
+        "head_branch": "codex/v51-r1-03-readonly-bootstrap-20260929",
+        "target_branch": "v45/factory-control",
+        "target_base_commit": "d39486601d851e31256852a24e9c1393b9046fe5",
+        "exact_final_head": "3cf057c4b28d3c7f225823ede198ac9845e050e0",
+        "exact_final_head_readback_required": true
+      }
+    },
+    "active_owner_generation": null,
+    "r2_03_acceptance_state": {
+      "source_contract": "QUALIFIED_CANDIDATE",
+      "synthetic_integration": "PASS",
+      "live_trust_provisioning": "NOT_ACCEPTED",
+      "live_provider_session_route": "NOT_ACCEPTED",
+      "live_supervisor_heartbeat_route": "NOT_ACCEPTED",
+      "live_signed_evidence_path": "NOT_ACCEPTED"
+    },
+    "coordination": {
+      "active_owner_generation": null,
+      "r2_03_candidate_rebuild": {
+        "canonical_checkpoint_seq": 200,
+        "canonical_control_commit": "d39486601d851e31256852a24e9c1393b9046fe5",
+        "canonical_owner_generation": 5,
+        "candidate_id": "V51-R2-CP201-OWNER-ALLOCATION-ARCHITECTURE-CORRECTION-20261001",
+        "candidate_instance_id": "785b137a-083a-433f-bff9-c4ac97d07888",
+        "candidate_status": "NONCANONICAL_PREPARED_NOT_DISPATCHED",
+        "candidate_branch": "codex/r2-cp201-promotion-time-owner-allocation-20261001",
+        "proposed_owner_generation_policy": "NEXT_AVAILABLE_AT_PROMOTION",
+        "owner_generation": null,
+        "lease_duration_seconds": 14400,
+        "lease_until": null,
+        "execution_owner_allocated": false,
+        "allocation_record_path": "governance/csg/v51/readbacks/R2-03-OWNER-ALLOCATION-ARCHITECTURE-CORRECTION-20261001.json",
+        "allocation_regression_id": "OWNER_ALLOCATION_ARCHITECTURE_CORRECTION",
+        "allocation_phase": "CANONICAL_PROMOTION_CAS",
+        "fresh_canonical_prestate_readback_required": true,
+        "fresh_durable_consumed_generation_readback_required": true,
+        "same_source_readback_after_canonical_write_required": true,
+        "historical_generation_labels": [
+          6,
+          7,
+          8,
+          9
+        ],
+        "generation_6_through_9_are_historical_candidate_evidence": true
+      }
+    },
+    "historical_candidate_generation_9_owner_scope": "V51-R2-03-FIXED-READONLY-FACTORY-OBSERVATION",
+    "historical_candidate_generation_9_lease_until": "2026-10-01T08:22:13Z"
+  },
+  "routing_authority": "VNEXT5.1-R2_HUMAN_CURRENT_SPEC_AND_USER_DIRECTIVE",
+  "mission_hash": "sha256:3bef2d242e9ce53e7ff01acbcac97e4a346eed829afe6afaae4eba197c83ca04",
+  "canonical_selection_status": "CANDIDATE_ONLY_NOT_CANONICALLY_SELECTED"
+}

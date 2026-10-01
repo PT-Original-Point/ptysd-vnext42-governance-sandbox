@@ -1,0 +1,39 @@
+{
+  "schema": "vnext5.1-r2.goal-lifecycle-regression.v1",
+  "regression_id": "LOCAL_GOAL_THREE_IDENTICAL_BLOCKERS_FALSE_GLOBAL_BLOCK",
+  "mission_revision": "20260930T131426+0800",
+  "policy_revision": "20260930T131426+0800-EP81",
+  "severity": "MISSION_CONTINUITY",
+  "input": {
+    "mission_status": "ACTIVE",
+    "parked_lanes": [
+      "PR377_INDEPENDENT_SEMANTIC_REVIEW",
+      "R2-02B_EXACT_GENERATION_5_LIVENESS"
+    ],
+    "ready_lanes": [
+      "V51-R2-03-FIXED-READONLY-FACTORY-OBSERVATION"
+    ],
+    "identical_blocker_count": 3,
+    "all_legal_ready_lanes_exhausted": false,
+    "genuine_external_or_human_prerequisite_for_all_remaining_work": false
+  },
+  "expected": {
+    "goal_status": "ACTIVE",
+    "global_blocked": false,
+    "next_unit": "V51-R2-03-FIXED-READONLY-FACTORY-OBSERVATION",
+    "completed_work_repeated": false,
+    "human_reinjection_required": false
+  },
+  "implementation": {
+    "module": "scripts/csg-v51-goal-lifecycle.mjs",
+    "test": "tests/csg/v51-goal-lifecycle.test.mjs"
+  },
+  "acceptance_status": "PASS_LOCAL_DETERMINISTIC_4_OF_4",
+  "test_evidence": {
+    "path": "tests/csg/v51-goal-lifecycle.test.mjs",
+    "module": "scripts/csg-v51-goal-lifecycle.mjs",
+    "total": 4,
+    "passed": 4,
+    "failed": 0
+  }
+}

@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "node src/index.mjs",
-    "test": "node tests/official-inspector-equivalence.mjs"
+    "test": "node tests/official-inspector-equivalence.mjs && node --test tests/read-only-diagnostics.test.mjs tests/owner-liveness-publisher.test.mjs tests/owner-liveness-e2e.test.mjs"
   },
   "dependencies": {
     "@modelcontextprotocol/server": "2.0.0",

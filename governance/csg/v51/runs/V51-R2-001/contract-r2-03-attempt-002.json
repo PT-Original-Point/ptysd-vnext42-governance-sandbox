@@ -1,0 +1,110 @@
+{
+  "schema_version": "factory.contract.v1",
+  "contract_id": "V51-R2-CONTRACT-003-R2-03-ATTEMPT-002",
+  "task_id": "V51-R2-03-FIXED-READONLY-FACTORY-OBSERVATION",
+  "run_id": "V51-R2-001",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "goal": "Prepare and close the real pre-Production trust, provider-session, Host Supervisor heartbeat, and signed-evidence acceptance path for the fixed-purpose Factory observation; R2-03 remains NOT PASS until real-Host/provider-addressable evidence is read back.",
+  "current_spec": {
+    "id": "VNEXT5.1-R2",
+    "source_class": "EXACT_HUMAN_PROVIDED_CONSTRUCTION_SPEC_ATTACHMENT",
+    "source_commit": null,
+    "source_path": "VNEXT5.1-R2-FULL-CONSTRUCTION-SPEC-20260929.md",
+    "canonical_path": "governance/csg/v51/specs/VNEXT5.1-R2-HUMAN-CURRENT-SPEC-20260929.md",
+    "blob_oid": "1dcd2d46a35bb3a580210ab4f0d29131587cc448",
+    "sha256": "sha256:b3b805f4dd5e88a2370c456c7f678c3264ca032090c957d69116512b563b589f",
+    "byte_length": 25222
+  },
+  "include": [
+    "Existing four public Factory MCP tools only; extend no-argument factory_status/read-only route.",
+    "SYSTEM/broker/service-boundary publication of a sanitized fixed schema and bounded durable snapshot readable by the intended observer identity.",
+    "Exact project/task/attempt/epoch/owner-generation/principal/scope/provider-session/job/OS-process/Supervisor-heartbeat/observed-time/source/evidence-ref/digest binding.",
+    "Independent, fresh, provider-addressable source identity and exact same-source readback; missing or unavailable sources remain explicit and cannot infer stale ownership.",
+    "Startup/restart behavior and stable atomic snapshot replacement; ACL, reparse-point, size, freshness, identity-match, duplicate-observation, and fail-closed checks.",
+    "Deterministic tests, PowerShell 5.1 parse/AST validation, exact-head source review, provider invocation/install and readback evidence before R2-03 PASS.",
+    "After R2-03 acceptance, resume R2-02B exact generation-5 liveness reconciliation immediately."
+  ],
+  "exclude": [
+    "R2-02 PASS before exact R2-02B liveness reconciliation.",
+    "Owner generation 5 revocation or stale-owner confirmation from lease expiry, aggregate zero counts, generic Runner.Listener presence, missing Runner.Worker, or a disabled historical Supervisor task.",
+    "Host dispatch, Host mutation, arbitrary SYSTEM PowerShell, fifth Factory MCP public tool, Production, paid fallback, new paid services, and worker provider-write credentials.",
+    "Treating R2-03 source tests or a local-only snapshot as live/provider acceptance.",
+    "Repeating completed R2-02A source/model work."
+  ],
+  "affected_surfaces": [
+    "tools/csg/factory-mcp/src",
+    "tools/csg/factory-mcp/broker",
+    "tools/csg/factory-mcp/windows",
+    "tools/csg/factory-mcp/tests",
+    "governance/csg/v51/missions",
+    "governance/csg/v51/policies",
+    "governance/csg/v51/runs/V51-R2-001",
+    "governance/csg/v51/readbacks",
+    "governance/csg/v51/regressions"
+  ],
+  "requirements": [
+    "CP200 remains canonical until protected forward-only CP201 is accepted and provider-confirmed.",
+    "R2-02 remains NOT PASS; R2-02A source/model qualification is carried from its exact-head readback; R2-02B waits only on R2-03 observation capability.",
+    "Generation 5 remains STALE_EXECUTION_OWNER_CANDIDATE; no revoke, dispatch, or Host mutation.",
+    "R2-03 must provide a real fixed-purpose SYSTEM/service publisher and intended-identity read route, not only a policy schema or unpopulated reader path.",
+    "Provider/session identity may be called unavailable until supplied by an authorized provider read route; unavailable never projects as terminal.",
+    "Mission and Policy remain ACTIVE and the work-conserving regression keeps any READY lane active despite repeated parked-lane blockers.",
+    "PR #377 exact head cae9aa76e41d4ad4e9b3f96fa65b13a7a9b614bc remains Draft with its semantic review lane parked; do not retry exhausted Copilot quota.",
+    "No direct write to refs/heads/v45/factory-control; PR remains Draft until required exact-head trusted verification and independent semantic review.",
+    "CP200 remains canonical; this rebuilt CP201 branch is a candidate only.",
+    "PR #342 at 3cf057c4b28d3c7f225823ede198ac9845e050e0 and PR #377 at b09aff5143d9c66ad6ab8cdbc9c141d982771b61 remain separate exact source candidates.",
+    "Source contract and synthetic integration are candidate-qualified; live trust provisioning, provider session, Supervisor heartbeat, and signed evidence remain NOT_ACCEPTED.",
+    "The exact-head semantic review lane is pending and does not block other legal nonprivileged work.",
+    "No Host mutation while CP200 policy forbids it; no owner revoke, Host dispatch, Production, paid fallback, or worker provider-write credentials.",
+    "A noncanonical PREPARED_NOT_DISPATCHED CP201 candidate has a unique candidate_instance_id, owner_generation=null, and lease_until=null; allocate the real owner generation only in canonical promotion CAS using fresh canonical and durable-consumed-generation readbacks, then write and same-source read back the canonical checkpoint."
+  ],
+  "acceptance": [
+    "All three real producer trust roots are installed read-only with exact key identity, generation, validity, schema, scope, and public key; private keys remain at producers.",
+    "A fixed provider-authoritative session route returns the full exact project/task/attempt/epoch/generation/owner/session/job identity.",
+    "A real Host Supervisor publishes a durable signed heartbeat with exact task, attempt, generation, boot, service, task, process, heartbeat, and producer identity.",
+    "Signed evidence is published and immutable same-source readback succeeds; factory_status exposes exact refs and RecoveryEvidenceTrust reads the same bytes.",
+    "Signature, digest, identity, and freshness checks pass; tamper, wrong-key, and stale-generation cases fail closed.",
+    "R2-03 remains NOT PASS until every live criterion is provider-confirmed on the real Host."
+  ],
+  "dependencies": [
+    "CP200 canonical authority and human-authorized sequencing correction.",
+    "R2-02A exact-head source qualification readback.",
+    "Authorized SYSTEM broker/service boundary and exact intended-identity read route.",
+    "Qualified independent semantic reviewer and protected forward-only provider publication.",
+    "Real producer public keys and an authorized fixed-path read-only installation/readback transition.",
+    "Provider-authoritative session read route.",
+    "Host Supervisor heartbeat service and fixed durable read route.",
+    "Exact-head independent semantic verdicts for the frozen source PR candidates.",
+    "Real producer public-key metadata for all three trust roots.",
+    "Provider-authoritative exact session route.",
+    "Durable signed Host Supervisor heartbeat route.",
+    "Canonical authorization plus same-source Host install/readback route."
+  ],
+  "allowed_tools": [
+    "GitHub exact-read/content/ref APIs",
+    "local native read-only process/task/service observation",
+    "bounded JSON schema/digest validation",
+    "authorized Factory MCP factory_status read-only invocation when a live connector route exists"
+  ],
+  "allowed_effects": [
+    "reversible preproduction source changes, deterministic tests, protected forward-only draft PR publication, fresh read-only provider/local observations"
+  ],
+  "max_attempts": 1,
+  "time_budget_policy": "ONE_ACTIVE_RECOVERY_OWNER_PER_MUTABLE_ATOMIC_SCOPE",
+  "expected_parent": "d39486601d851e31256852a24e9c1393b9046fe5",
+  "prestate_checkpoint_seq": 200,
+  "attempt_id": "V51-R2-03-ATTEMPT-002",
+  "attempt_epoch": 2,
+  "owner_generation": null,
+  "owner_lease_until": null,
+  "owner_principal_id": "CODEX_THREAD_01a0ed35-6063-7912-9872-7d4122a3b125",
+  "excludes": [
+    "Installing trust roots or mutating Host state before explicit policy authorization.",
+    "Treating synthetic keys, temporary stores, aggregate job counts, or task state as live acceptance."
+  ],
+  "candidate_instance_id": "785b137a-083a-433f-bff9-c4ac97d07888",
+  "proposed_owner_generation_policy": "NEXT_AVAILABLE_AT_PROMOTION",
+  "lease_duration_seconds": 14400,
+  "execution_owner_allocated": false,
+  "owner_allocation_architecture_record_path": "governance/csg/v51/readbacks/R2-03-OWNER-ALLOCATION-ARCHITECTURE-CORRECTION-20261001.json"
+}
