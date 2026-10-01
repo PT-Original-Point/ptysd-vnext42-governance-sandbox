@@ -1,0 +1,123 @@
+{
+  "schema": "vnext5.1-r2.host-observation-summary.v1",
+  "observation_id": "V51-R2-02-NATIVE-HOST-OBSERVATION-ATTEMPT-002-20261001T174947Z",
+  "captured_at_utc": "2026-09-30T17:49:47.6890001Z",
+  "source_class": "LOCAL_NATIVE_READ_ONLY",
+  "summary": {
+    "host": "DESKTOP-1B6PD2P",
+    "principal": "DESKTOP-1B6PD2P\\x",
+    "runner_worker_processes": [],
+    "candidate_supervisor_task": {
+      "name": "PTYSD-VNext42-Supervisor-Candidate1",
+      "state": "DISABLED",
+      "task_path": "\\",
+      "last_run_utc": "2026-09-09T03:39:01.0000000Z",
+      "last_task_result": 0,
+      "missed_runs": 31090,
+      "next_run_utc": "2026-09-30T17:50:00.0000000Z"
+    },
+    "hyperv_vm_inventory": {
+      "status": "ACCESS_DENIED",
+      "error_class": "LOCAL_OS_PRIVILEGE_REQUIRED",
+      "message": "您沒有完成此工作的必要權限。請連絡電腦 'DESKTOP-1B6PD2P' 的授權原則系統管理員。"
+    },
+    "hostguard_readonly": "NOT_REOBSERVED_IN_THIS_READBACK",
+    "factory_live_job_count": "UNAVAILABLE_NO_AUTHORIZED_READ_ROUTE",
+    "owner_generation_5_exact_liveness": "NOT_ESTABLISHED",
+    "host_mutations_performed": false
+  },
+  "local_evidence": {
+    "commands": [
+      "Get-Process -Name Runner.Worker -ErrorAction SilentlyContinue",
+      "Get-ScheduledTask -TaskName PTYSD-VNext42-Supervisor-Candidate1",
+      "Get-ScheduledTaskInfo -TaskName PTYSD-VNext42-Supervisor-Candidate1",
+      "Get-VM -ErrorAction Stop"
+    ],
+    "runner_worker_processes": [],
+    "supervisor_task_state": "Disabled",
+    "hyperv_result": "LOCAL_OS_PRIVILEGE_REQUIRED",
+    "raw_local_paths_or_credentials_published": false
+  },
+  "provider_readback": {
+    "observed_at_utc": "2026-09-30T17:52:33Z",
+    "project_directory": {
+      "ref": "refs/heads/governance/project-directory",
+      "commit": "38f4fc7cb2841e2318a97ff7a53e41b2ec07aef1",
+      "descriptor_blob": "468232e79905774296db9136a592858a06347bbc",
+      "project_record_blob": "377dcf88279d3ba433d099a7cc9f78af8c86b8ae"
+    },
+    "canonical_control": {
+      "ref": "refs/heads/v45/factory-control",
+      "commit": "d39486601d851e31256852a24e9c1393b9046fe5",
+      "pointer_path": "governance/csg/current.json",
+      "pointer_blob": "2481db71189e0f4cef024873b07c3d26e605cc9f",
+      "checkpoint_seq": 200,
+      "checkpoint_path": "governance/csg/checkpoints/000200.json",
+      "checkpoint_blob": "88524eee6c06f1fcf4b07053d5baca3324b06299",
+      "checkpoint_digest": "sha256:2cd708bb96179b7ef416ab5a7616f7dff50030567f56d7506a7182f6ceda600d",
+      "current_spec_blob": "1dcd2d46a35bb3a580210ab4f0d29131587cc448",
+      "mission_revision": "20260930T104733+0800",
+      "mission_blob": "2a913c7c5585bedda72d54df626cd38ae52bdade",
+      "policy_revision": "20260930T104733+0800-EP80",
+      "policy_blob": "a31f86215c8d0fcc2cee0183f75d18158bb3d9fb",
+      "run_id": "V51-R2-001",
+      "run_revision": 7,
+      "run_blob": "09245a8ec5c320bafa287b6bafc9475b52d21d75",
+      "contract_blob": "9de804b48ab739848dd648a05fdc09ac47635bd3",
+      "mission_lifecycle": "ACTIVE",
+      "active_unit": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION",
+      "atomic_state": "PREPARED_NOT_DISPATCHED",
+      "attempt_id": "V51-R2-02-ATTEMPT-002",
+      "attempt_epoch": 2,
+      "owner_generation": 5,
+      "owner_lease_until": "2026-09-29T18:44:11Z",
+      "active_job_refs": [],
+      "unresolved_effect_refs": [],
+      "stop_requested": false
+    },
+    "pull_requests": [
+      {
+        "number": 342,
+        "state": "open",
+        "draft": true,
+        "head": "f1b95241b744bf57b924e5e7856f681fd20b216e",
+        "base": "d39486601d851e31256852a24e9c1393b9046fe5",
+        "verifier_run_id": 36740121863,
+        "verifier_job_id": 109972022641,
+        "verifier_conclusion": "success",
+        "independent_exact_pair_review": "PENDING"
+      },
+      {
+        "number": 377,
+        "state": "open",
+        "draft": true,
+        "head": "2fca65dd69aa2490e4e40fa46e99e2432cc07e33",
+        "base": "06da5fa224b65b9346e8b250dcea686d0ed458ee",
+        "verifier_run_id": 36751631777,
+        "verifier_job_id": 110011462379,
+        "verifier_conclusion": "success",
+        "independent_exact_pair_review": "PENDING"
+      }
+    ],
+    "factory_live_observation_route": "NOT_EXPOSED_IN_CURRENT_CONNECTED_TOOL_INVENTORY",
+    "provider_observation_sufficiency": "DOES_NOT_PROVE_GENERATION_5_LIVENESS_OR_STALE_OWNER"
+  },
+  "reconciliation": {
+    "mission_lifecycle": "ACTIVE",
+    "current_owner_status": "STALE_EXECUTION_OWNER_CANDIDATE",
+    "stale_owner_confirmed": false,
+    "owner_revoked": false,
+    "host_dispatch": false,
+    "host_mutation": false,
+    "production": false,
+    "paid_fallback": false,
+    "worker_provider_write_credentials": false,
+    "parked_lanes": [
+      "R2-02_EXACT_GENERATION_5_PROVIDER_SESSION_LIVENESS_NOT_ESTABLISHED",
+      "R2-02_HYPERV_AND_HOSTGUARD_READ_LOCAL_OS_PRIVILEGE_REQUIRED",
+      "R2-03_INDEPENDENT_EXACT_HEAD_REVIEW_PENDING"
+    ],
+    "ready_lane": "R2-02_NONPRIVILEGED_SOURCE_RECONCILIATION_AND_DURABLE_EVIDENCE_CARRY_FORWARD",
+    "next_action": "Continue only legal nonprivileged R2-02 source/evidence work; recompute READY after each material delta."
+  }
+}

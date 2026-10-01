@@ -1,0 +1,223 @@
+{
+  "schema": "vnext5.1-r2.trusted-evidence-integration-readback.v1",
+  "evidence_id": "V51-R2-02-03-TRUSTED-EVIDENCE-INTEGRATION-READBACK-20260930T194601Z",
+  "observed_at_utc": "2026-09-30T19:46:01Z",
+  "source_class": "AUTHENTICATED_PROVIDER_READBACK_AND_LOCAL_EXACT_CANDIDATE_INTEGRATION_TEST",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "authority": {
+    "project_directory": {
+      "ref": "refs/heads/governance/project-directory",
+      "commit": "38f4fc7cb2841e2318a97ff7a53e41b2ec07aef1",
+      "descriptor_path": "directory/descriptor.json",
+      "descriptor_blob": "468232e79905774296db9136a592858a06347bbc",
+      "project_record_path": "directory/projects/CHATGPT_GLOBAL_SKILL_GOVERNANCE.json",
+      "project_record_blob": "377dcf88279d3ba433d099a7cc9f78af8c86b8ae",
+      "directory_revision": 5,
+      "binding_generation": 2,
+      "control_locator": {
+        "ref": "refs/heads/v45/factory-control",
+        "current_path": "governance/csg/current.json"
+      }
+    },
+    "canonical_control": {
+      "ref": "refs/heads/v45/factory-control",
+      "commit": "d39486601d851e31256852a24e9c1393b9046fe5",
+      "pointer_path": "governance/csg/current.json",
+      "pointer_blob": "2481db71189e0f4cef024873b07c3d26e605cc9f",
+      "checkpoint_seq": 200,
+      "checkpoint_path": "governance/csg/checkpoints/000200.json",
+      "checkpoint_blob": "88524eee6c06f1fcf4b07053d5baca3324b06299",
+      "checkpoint_digest": "sha256:2cd708bb96179b7ef416ab5a7616f7dff50030567f56d7506a7182f6ceda600d",
+      "current_spec_path": "governance/csg/v51/specs/VNEXT5.1-R2-HUMAN-CURRENT-SPEC-20260929.md",
+      "current_spec_blob": "1dcd2d46a35bb3a580210ab4f0d29131587cc448"
+    },
+    "mission": {
+      "path": "governance/csg/v51/current-mission.json",
+      "revision": "20260930T104733+0800",
+      "blob": "2a913c7c5585bedda72d54df626cd38ae52bdade",
+      "declared_hash": "sha256:f235c085f10e54705f7817f0ce6dee1e5b29ef1279306e4b2c280322bfacab29",
+      "lifecycle": "ACTIVE",
+      "active_unit": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION"
+    },
+    "policy": {
+      "path": "governance/csg/v51/current-execution-policy.json",
+      "revision": "20260930T104733+0800-EP80",
+      "blob": "a31f86215c8d0fcc2cee0183f75d18158bb3d9fb",
+      "declared_hash": "sha256:8529b4bccc66147465b066bf97d71ce2c6ae6bea11e146ca215976bf3b839c85",
+      "goal_lifecycle": {
+        "canonical_mission_status": "ACTIVE",
+        "project_directory_and_canonical_checkpoint_are_authority": true,
+        "local_codex_goal_session_thread_or_ui_state_authoritative": false,
+        "batch_completion_or_pr_test_verifier_readback_checkpoint_terminates_mission": false,
+        "lane_parking_is_exact_lane_only": true,
+        "continue_highest_priority_ready_lane": true,
+        "recover_without_human_reinjection": true,
+        "termination_conditions": [
+          "ALL_MISSION_ACCEPTANCE_CRITERIA_PROVIDER_CONFIRMED_PASS",
+          "HUMAN_EXPLICIT_CANCEL_OR_SUPERSEDE",
+          "DURABLY_PERSISTED_TERMINAL_HUMAN_RESERVED_GATE_OR_UNRECOVERABLE_TERMINAL_FAILURE"
+        ]
+      },
+      "r2_07_status": "REQUIRED_NOT_YET_ACCEPTED",
+      "r2_09_status": "REQUIRED_NOT_YET_ACCEPTED",
+      "r2_09_regression_id": "LOCAL_CODEX_GOAL_DISAPPEARS_WHILE_MISSION_ACTIVE"
+    },
+    "checkpoint": {
+      "sequence": 200,
+      "transition_id": "V51-R2-GOAL-LIFECYCLE-REBASE-200",
+      "lifecycle": "ACTIVE",
+      "atomic_state": "PREPARED_NOT_DISPATCHED",
+      "task_id": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION",
+      "attempt_id": "V51-R2-02-ATTEMPT-002",
+      "attempt_epoch": 2,
+      "owner": {
+        "principal_id": "CODEX_THREAD_01a0ed35-6063-7912-9872-7d4122a3b125",
+        "owner_generation": 5,
+        "lease_until": "2026-09-29T18:44:11Z",
+        "status": "STALE_EXECUTION_OWNER_CANDIDATE"
+      },
+      "run": {
+        "run_id": "V51-R2-001",
+        "revision": 7,
+        "commit": "9a7dc324f680c303a83123eb6a7b2cc7b410fda2",
+        "path": "governance/csg/v51/runs/V51-R2-001/run-r2-02.json",
+        "blob": "09245a8ec5c320bafa287b6bafc9475b52d21d75"
+      },
+      "active_job_refs": [],
+      "unresolved_effect_refs": [],
+      "stop_requested": false,
+      "last_recorded_blockers": [
+        "R2_02_AUTHORIZED_LIVE_EXECUTOR_OBSERVATION_REQUIRED_BEFORE_STALE_OWNER_CONFIRMATION_OR_HOST_DISPATCH",
+        "R2_02_GEN5_EXACT_LIVENESS_PROOF_INSUFFICIENT",
+        "R2_02_HYPERV_HOSTGUARD_LOCAL_OS_PRIVILEGE_REQUIRED"
+      ],
+      "next_legal_transition": "CONTINUE_R2_02_NONPRIVILEGED_SOURCE_RECONCILIATION_WHILE_LIVE_OBSERVATION_LANE_IS_PARKED"
+    }
+  },
+  "integration_candidate_pair": {
+    "producer_pr": {
+      "number": 342,
+      "state": "OPEN",
+      "draft": true,
+      "head": "f1b95241b744bf57b924e5e7856f681fd20b216e",
+      "base": "d39486601d851e31256852a24e9c1393b9046fe5",
+      "parent": "d39486601d851e31256852a24e9c1393b9046fe5",
+      "direct_parent_verified": true,
+      "protected_verifier": {
+        "result": "PASS",
+        "run_id": 36740121863,
+        "job_id": 109972022641,
+        "provenance": "CURRENT_PR_BODY_EXACT_HEAD_RECORD"
+      },
+      "exact_pair_semantic_review": "PENDING"
+    },
+    "runtime_consumer_pr": {
+      "number": 377,
+      "state": "OPEN",
+      "draft": true,
+      "head": "cd83a18417fa85eec77dc4eccfa06ae436c8f073",
+      "tree": "936fa13514f848ad75e2e3bf336cde43468dbda8",
+      "base": "06da5fa224b65b9346e8b250dcea686d0ed458ee",
+      "parent": "06da5fa224b65b9346e8b250dcea686d0ed458ee",
+      "direct_parent_verified": true,
+      "protected_verifier": {
+        "result": "PASS",
+        "run_id": 36764614273,
+        "provenance": "CURRENT_PR_BODY_EXACT_HEAD_RECORD"
+      },
+      "bounded_driver_acceptance": "SKIPPED_NOT_PASS",
+      "exact_pair_semantic_review": "PENDING"
+    }
+  },
+  "source_contract_readback": {
+    "producer_publication": {
+      "path": "tools/csg/factory-mcp/broker/owner-liveness-publisher.ps1",
+      "blob": "a3b1925765d944f288279ee0242ed2592e713a35",
+      "publication_schema": "v51.factory.owner-liveness.publication.v1",
+      "recovery_evidence_schema": "PTYSD_RECOVERY_EVIDENCE_REFERENCES_V1",
+      "recovery_evidence_status": "UNAVAILABLE",
+      "reason_code": "TRUSTED_SIGNED_EVIDENCE_NOT_CONFIGURED"
+    },
+    "runtime_consumer": {
+      "composition_path": "src/recovery-evidence.ts",
+      "composition_blob": "dda26fb02d7e2252f9675b1906d19ef59b173ab8",
+      "cross_candidate_test_path": "tests/cross-candidate-integration.mjs",
+      "cross_candidate_test_blob": "adc161eb2e6132d452eb5bd75a8c51643917a70e",
+      "runtime_manifest_path": "config/runtime-manifest.json",
+      "runtime_manifest_blob": "a31e06717e095f1c0b411d69951c28a2fedf7f55",
+      "publication_route_status": "UNAVAILABLE",
+      "publication_reason_code": "OWNER_LIVENESS_PUBLICATION_ROUTE_NOT_CONFIGURED",
+      "provider_session_route_status": "UNAVAILABLE",
+      "provider_session_reason_code": "PROVIDER_AGENT_SESSION_READ_ROUTE_NOT_CONFIGURED",
+      "supervisor_heartbeat_route_status": "UNAVAILABLE",
+      "supervisor_heartbeat_reason_code": "SUPERVISOR_HEARTBEAT_READ_ROUTE_NOT_CONFIGURED",
+      "configured_provider_public_keys": 0,
+      "configured_local_public_keys": 0,
+      "configured_supervisor_heartbeat_public_keys": 0
+    },
+    "connected_tool_inventory": {
+      "exact_factory_live_observation_tools": [],
+      "provider_session_or_supervisor_heartbeat_live_read_route": "NOT_AVAILABLE_IN_CURRENT_CONNECTED_TOOL_INVENTORY",
+      "interpretation": "No live provider/Host identity readback was taken in this readback."
+    }
+  },
+  "local_integration_test": {
+    "command": "npm run test:cross-candidate",
+    "executed_at_utc": "2026-09-30T19:43:10Z",
+    "consumer_head": "cd83a18417fa85eec77dc4eccfa06ae436c8f073",
+    "producer_head": "f1b95241b744bf57b924e5e7856f681fd20b216e",
+    "producer_publisher_blob": "a3b1925765d944f288279ee0242ed2592e713a35",
+    "exit_code": 0,
+    "result": "CROSS_CANDIDATE_PRODUCER_TO_RECOVERY_TRUST_FAIL_CLOSED_PASS",
+    "fixture_scope": {
+      "publisher_function": "REAL_CANDIDATE_SCRIPT_FUNCTION_EXECUTED",
+      "publisher_identity_check": "TEST_STUBBED_TO_SYSTEM_SID",
+      "filesystem_boundary_and_acl_helpers": "TEST_STUBBED",
+      "windows_process_and_task_probes": "DETERMINISTIC_TEST_DOUBLES"
+    },
+    "proves": [
+      "The exact producer publisher function writes a filesystem publication that the consumer composition reads.",
+      "The producer's explicit signed-evidence UNAVAILABLE result is rejected by the recovery evidence path.",
+      "Recovery remains latched, dispatch is denied, and no recovery receipt is created."
+    ],
+    "does_not_prove": [
+      "The cross-candidate fixture ran under the real SYSTEM identity or verified production ACLs/live OS probes.",
+      "Live provider-session identity or provider job terminality.",
+      "A live Host Supervisor heartbeat.",
+      "A successful real signed evidence production and recovery-resolution path.",
+      "R2-02 or R2-03 acceptance."
+    ]
+  },
+  "historical_host_observation": {
+    "path": "governance/csg/v51/readbacks/R2-02-NATIVE-OBSERVATION-READBACK-20261001T174947Z.json",
+    "commit": "ac3994e7621ee7d55047d62d83512235f0b3b5f2",
+    "blob": "0f8ed44b5537274f60f67b592292d1ce3c225446",
+    "captured_at_utc": "2026-09-30T17:49:47.6890001Z",
+    "host_observation_repeated": false,
+    "historical_result": "Hyper-V was ACCESS_DENIED; HostGuard was NOT_REOBSERVED in that artifact; generation-5 exact liveness was NOT_ESTABLISHED."
+  },
+  "reconciliation": {
+    "mission_lifecycle": "ACTIVE",
+    "r2_02": "NOT_PASS",
+    "r2_03": "NOT_PASS",
+    "r2_07": "REQUIRED_NOT_YET_ACCEPTED",
+    "r2_09": "REQUIRED_NOT_YET_ACCEPTED",
+    "owner_generation_5": "STALE_EXECUTION_OWNER_CANDIDATE",
+    "stale_owner_confirmed": false,
+    "owner_revoked": false,
+    "host_dispatch": false,
+    "host_mutation": false,
+    "production": false,
+    "paid_fallback": false,
+    "worker_provider_write_credentials": false,
+    "parked_lanes": [
+      "R2_02_EXACT_GENERATION_5_PROVIDER_SESSION_LIVENESS_UNAVAILABLE",
+      "R2_02_HYPERV_HOSTGUARD_LOCAL_OS_PRIVILEGE_REQUIRED",
+      "R2_03_EXACT_PAIR_SEMANTIC_REVIEW_PENDING"
+    ],
+    "ready_lane": "R2_02_NONPRIVILEGED_SOURCE_RECONCILIATION_AND_DURABLE_EVIDENCE_CARRY_FORWARD",
+    "next_action": "Continue the highest-priority legal nonprivileged source/evidence lane; return to exact generation-5 reconciliation when the live provider and Host identity routes become available."
+  },
+  "candidate_only": true,
+  "canonical_pointer_changed": false
+}

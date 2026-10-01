@@ -1,0 +1,135 @@
+{
+  "schema": "vnext5.1-r2.host-observation-summary.v1",
+  "observation_id": "V51-R2-02-NATIVE-HOST-OBSERVATION-ATTEMPT-002-20261001T063222Z",
+  "captured_at_utc": "2026-10-01T06:32:22.3999346Z",
+  "source_class": "LOCAL_NATIVE_READ_ONLY",
+  "summary": {
+    "runner_worker_processes": [],
+    "runner_worker_count": 0,
+    "candidate_supervisor_task": {
+      "name": "PTYSD-VNext42-Supervisor-Candidate1",
+      "state": "DISABLED",
+      "enabled": false,
+      "last_run_utc": "2026-09-09T03:39:01Z",
+      "last_task_result": 0,
+      "next_run_utc": "2026-10-01T06:33:00.0000000Z"
+    },
+    "hyperv_vm_inventory": "NOT_REOBSERVED_IN_THIS_READBACK",
+    "hostguard_readonly": "NOT_REOBSERVED_IN_THIS_READBACK",
+    "factory_live_job_count": "UNAVAILABLE_NO_AUTHORIZED_READ_ROUTE",
+    "owner_generation_5_exact_liveness": "NOT_ESTABLISHED",
+    "host_mutations_performed": false
+  },
+  "local_evidence": {
+    "commands": [
+      "Get-Process -Name Runner.Worker -ErrorAction SilentlyContinue",
+      "Get-ScheduledTask -TaskName PTYSD-VNext42-Supervisor-Candidate1",
+      "Get-ScheduledTaskInfo -TaskName PTYSD-VNext42-Supervisor-Candidate1"
+    ],
+    "runner_worker_processes": [],
+    "supervisor_task_state": "Disabled",
+    "supervisor_task_enabled": false,
+    "last_run_utc": "2026-09-09T03:39:01Z",
+    "last_task_result": 0,
+    "next_run_utc": "2026-10-01T06:33:00.0000000Z",
+    "hyperv_recheck": "NOT_PERFORMED",
+    "hostguard_recheck": "NOT_PERFORMED",
+    "previous_privileged_read_status": "LOCAL_OS_PRIVILEGE_REQUIRED",
+    "raw_local_identity_paths_or_credentials_published": false
+  },
+  "provider_readback": {
+    "observed_at_utc": "2026-10-01T06:32:22.3999346Z",
+    "project_directory": {
+      "ref": "refs/heads/governance/project-directory",
+      "commit": "38f4fc7cb2841e2318a97ff7a53e41b2ec07aef1",
+      "directory_revision": 5,
+      "descriptor_blob": "468232e79905774296db9136a592858a06347bbc",
+      "project_record_blob": "377dcf88279d3ba433d099a7cc9f78af8c86b8ae"
+    },
+    "canonical_control": {
+      "ref": "refs/heads/v45/factory-control",
+      "commit": "d39486601d851e31256852a24e9c1393b9046fe5",
+      "pointer_path": "governance/csg/current.json",
+      "pointer_blob": "2481db71189e0f4cef024873b07c3d26e605cc9f",
+      "checkpoint_seq": 200,
+      "checkpoint_path": "governance/csg/checkpoints/000200.json",
+      "checkpoint_blob": "88524eee6c06f1fcf4b07053d5baca3324b06299",
+      "checkpoint_digest": "sha256:2cd708bb96179b7ef416ab5a7616f7dff50030567f56d7506a7182f6ceda600d",
+      "current_spec_blob": "1dcd2d46a35bb3a580210ab4f0d29131587cc448",
+      "mission_revision": "20260930T104733+0800",
+      "mission_blob": "2a913c7c5585bedda72d54df626cd38ae52bdade",
+      "policy_revision": "20260930T104733+0800-EP80",
+      "policy_blob": "a31f86215c8d0fcc2cee0183f75d18158bb3d9fb",
+      "run_id": "V51-R2-001",
+      "run_revision": 7,
+      "run_blob": "09245a8ec5c320bafa287b6bafc9475b52d21d75",
+      "contract_blob": "9de804b48ab739848dd648a05fdc09ac47635bd3",
+      "mission_lifecycle": "ACTIVE",
+      "active_unit": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION",
+      "atomic_state": "PREPARED_NOT_DISPATCHED",
+      "attempt_id": "V51-R2-02-ATTEMPT-002",
+      "attempt_epoch": 2,
+      "owner_generation": 5,
+      "owner_lease_until": "2026-09-29T18:44:11Z",
+      "owner_status": "STALE_EXECUTION_OWNER_CANDIDATE",
+      "active_job_refs": [],
+      "unresolved_effect_refs": [],
+      "stop_requested": false
+    },
+    "pull_requests": [
+      {
+        "number": 342,
+        "state": "open",
+        "draft": true,
+        "head": "727164c4de92bea2707621692af93578d7d668bb",
+        "base": "d39486601d851e31256852a24e9c1393b9046fe5",
+        "commits": 1,
+        "csg_trusted_verifier": "PASS_EXACT_HEAD_STRUCTURAL_ONLY",
+        "csg_trusted_verifier_run_id": 36822967814,
+        "bounded_driver_acceptance": "SKIPPED",
+        "independent_exact_head_semantic_review": "PENDING_REVIEW_REQUESTED"
+      },
+      {
+        "number": 377,
+        "state": "open",
+        "draft": true,
+        "head": "b09aff5143d9c66ad6ab8cdbc9c141d982771b61",
+        "base": "06da5fa224b65b9346e8b250dcea686d0ed458ee",
+        "commits": 1,
+        "csg_trusted_verifier": "PASS_EXACT_HEAD_STRUCTURAL_ONLY",
+        "bounded_driver_acceptance": "SKIPPED",
+        "independent_exact_head_semantic_review": "PENDING"
+      },
+      {
+        "number": 378,
+        "state": "open",
+        "draft": true,
+        "head": "27e1acfa03e8bae604ac0f608c19dd5796b101d5",
+        "base": "d39486601d851e31256852a24e9c1393b9046fe5",
+        "commits": 1,
+        "planned_candidate_update": "ADD_FRESH_SANITIZED_LOCAL_READBACK_AND_REBUILD_ONE_COMMIT_FROM_CP200"
+      }
+    ],
+    "factory_live_observation_route": "UNAVAILABLE_NO_AUTHORIZED_READ_ROUTE",
+    "provider_observation_sufficiency": "DOES_NOT_PROVE_GENERATION_5_LIVENESS_OR_STALE_OWNER"
+  },
+  "reconciliation": {
+    "mission_lifecycle": "ACTIVE",
+    "current_owner_status": "STALE_EXECUTION_OWNER_CANDIDATE",
+    "stale_owner_confirmed": false,
+    "owner_revoked": false,
+    "host_dispatch": false,
+    "host_mutation": false,
+    "production": false,
+    "paid_fallback": false,
+    "worker_provider_write_credentials": false,
+    "parked_lanes": [
+      "R2-02_EXACT_GENERATION_5_PROVIDER_SESSION_LIVENESS_NOT_ESTABLISHED",
+      "R2-02_HYPERV_AND_HOSTGUARD_READ_LOCAL_OS_PRIVILEGE_REQUIRED",
+      "R2-03_INDEPENDENT_EXACT_HEAD_REVIEW_PENDING",
+      "R2-03_LIVE_PROVIDER_SESSION_AND_SUPERVISOR_HEARTBEAT_ROUTES_UNAVAILABLE"
+    ],
+    "ready_lane": "R2-02_NONPRIVILEGED_SOURCE_RECONCILIATION_AND_DURABLE_EVIDENCE_CARRY_FORWARD",
+    "next_action": "Continue legal nonprivileged R2-02 source and evidence work; preserve all exact liveness and privileged observation lanes as parked until the required independent routes become available."
+  }
+}
