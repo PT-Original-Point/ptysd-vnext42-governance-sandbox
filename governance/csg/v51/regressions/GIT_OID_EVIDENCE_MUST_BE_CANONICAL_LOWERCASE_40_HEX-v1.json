@@ -1,0 +1,17 @@
+{
+  "schema_version": "csg.v51.git-oid-regression.v1",
+  "regression_id": "GIT_OID_EVIDENCE_MUST_BE_CANONICAL_LOWERCASE_40_HEX",
+  "status": "DETERMINISTIC_VERIFIER_REQUIRED",
+  "accepted_encoding": "EXACT_40_LOWERCASE_HEX_ASCII_BYTES",
+  "producer_input": "GIT_REV_PARSE_STDOUT_BYTES_WITH_OPTIONAL_SINGLE_LINE_TERMINATOR",
+  "verifier_failure_code": "GIT_OID_NOT_NORMALIZED_LOWERCASE_40_HEX",
+  "producer_failure_code": "GIT_OID_PRODUCER_OUTPUT_NOT_CANONICAL",
+  "forbidden_normalization": "DO_NOT_TRIM_OR_CASE_FOLD_MALFORMED_EVIDENCE",
+  "rejected_examples": [
+    "leading_or_trailing_whitespace",
+    "uppercase_hex",
+    "wrong_length",
+    "non_hex_character",
+    "multiple_or_extra_lines"
+  ]
+}

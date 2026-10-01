@@ -1,0 +1,165 @@
+{
+  "schema_version": "csg.v51.owner-allocation-architecture-correction.v1",
+  "record_id": "R2-03-CP201-OWNERLESS-ALLOCATION-DEFERRED-2026-10-01T16:49:50+0800",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "status": "CANDIDATE_OWNERLESS_ALLOCATION_DEFERRED",
+  "observed_at_utc": "2026-10-01T08:49:50Z",
+  "canonical_prestate": {
+    "control_ref": "refs/heads/v45/factory-control",
+    "control_commit": "d39486601d851e31256852a24e9c1393b9046fe5",
+    "checkpoint_seq": 200,
+    "checkpoint_digest": "sha256:2cd708bb96179b7ef416ab5a7616f7dff50030567f56d7506a7182f6ceda600d",
+    "owner_generation": 5,
+    "lifecycle": "ACTIVE",
+    "atomic_state": "PREPARED_NOT_DISPATCHED",
+    "active_job_refs": [],
+    "unresolved_effect_refs": [],
+    "observed_at_utc": "2026-10-01T08:49:50Z",
+    "source": "FRESH_GITHUB_PROVIDER_READBACK_THIS_TURN"
+  },
+  "candidate": {
+    "candidate_id": "V51-R2-CP201-FROZEN-SOURCE-PAIR-20261001",
+    "candidate_instance_id": "8d7e977d-4797-4d80-9562-027de8873b50",
+    "candidate_branch": "codex/v51-r2-cp201-frozen-source-packet-20261001",
+    "candidate_status": "NONCANONICAL_PREPARED_NOT_DISPATCHED",
+    "candidate_checkpoint_seq": 201,
+    "canonical_selection_status": "NOT_SELECTED_CP200_REMAINS_CANONICAL",
+    "proposed_owner_generation_policy": "NEXT_AVAILABLE_AT_PROMOTION",
+    "owner_generation": null,
+    "owner_scope": "V51-R2-03-FIXED-READONLY-FACTORY-OBSERVATION",
+    "execution_owner_allocated": false,
+    "lease_duration_seconds": 14400,
+    "lease_until": null,
+    "recorded_at": "2026-10-01T08:49:50Z"
+  },
+  "historical_candidate_generation_labels": [
+    {
+      "generation": 6,
+      "provider_identity": "PR #342 head b26d400af6c232ad7fcf253c48f9066cbddc2d12",
+      "checkpoint_seq": 201,
+      "candidate_state": "PREPARED_NOT_DISPATCHED",
+      "canonical_selection": false,
+      "execution_fence": null,
+      "active_job_refs": [],
+      "unresolved_effect_refs": [],
+      "classification": "HISTORICAL_CANDIDATE_ONLY_NOT_CONSUMED_EXECUTION_OWNER"
+    },
+    {
+      "generation": 7,
+      "provider_identity": "branch codex/r2-cp201-audit-rebuild-20261001 commit 1cee612cf30e96cd5e3d7ae130948018ec6f1393",
+      "checkpoint_seq": 201,
+      "candidate_state": "PREPARED_NOT_DISPATCHED",
+      "canonical_selection": false,
+      "execution_fence": null,
+      "active_job_refs": [],
+      "unresolved_effect_refs": [],
+      "classification": "HISTORICAL_CANDIDATE_ONLY_NOT_CONSUMED_EXECUTION_OWNER"
+    },
+    {
+      "generation": 8,
+      "provider_identity": "branch codex/r2-cp201-generation-discipline-20261001 commit 7cfb1ec3711421b5ee534be19f321fbec33a82a3",
+      "checkpoint_seq": 201,
+      "candidate_state": "PREPARED_NOT_DISPATCHED",
+      "canonical_selection": false,
+      "execution_fence": null,
+      "active_job_refs": [],
+      "unresolved_effect_refs": [],
+      "classification": "HISTORICAL_CANDIDATE_ONLY_NOT_CONSUMED_EXECUTION_OWNER"
+    },
+    {
+      "generation": 9,
+      "provider_identity": "branch codex/r2-cp201-generation-allocation-rebuild-20261001 commit f23d489aa8d6292a205b506cbc483e844e08a3fb",
+      "checkpoint_seq": 201,
+      "candidate_state": "PREPARED_NOT_DISPATCHED",
+      "canonical_selection": false,
+      "execution_fence": null,
+      "active_job_refs": [],
+      "unresolved_effect_refs": [],
+      "classification": "HISTORICAL_CANDIDATE_ONLY_NOT_CONSUMED_EXECUTION_OWNER"
+    }
+  ],
+  "historical_documents": [
+    {
+      "path": "governance/csg/v51/readbacks/R2-03-OWNER-GENERATION-ALLOCATION-20261001.json",
+      "source_commit": "f23d489aa8d6292a205b506cbc483e844e08a3fb",
+      "blob_oid": "d4d66cf8ce84d4b9d4ab6371fbf953cca28fdc85"
+    },
+    {
+      "path": "governance/csg/v51/regressions/NEW_OWNER_GENERATION_MUST_EXCEED_CANONICAL_AND_AVOID_DURABLE_COLLISION-v1.json",
+      "source_commit": "f23d489aa8d6292a205b506cbc483e844e08a3fb",
+      "blob_oid": "67c26e393c32dda606444c77527445f7c377361e"
+    },
+    {
+      "path": "governance/csg/v51/missions/20261001T122213+0800.json",
+      "source_commit": "f23d489aa8d6292a205b506cbc483e844e08a3fb",
+      "blob_oid": "501363d868d6b0d8dc21f3a26e3cfb92c484b7de"
+    },
+    {
+      "path": "governance/csg/v51/policies/20261001T122213+0800-EP84.json",
+      "source_commit": "f23d489aa8d6292a205b506cbc483e844e08a3fb",
+      "blob_oid": "1feec5d6060cb00e710a51e3125f88cfa71cf236"
+    }
+  ],
+  "historical_assessment": {
+    "provider_readable_candidate_documents_are_execution_generation_consumption": false,
+    "owner_generation_labels_6_through_9_are_reclassified_for_future_allocation": true,
+    "prior_generation_6_through_9_allocation_assessment_is_preserved_as_historical_bytes": true,
+    "prior_allocation_assessment_is_not_the_current_durable_consumption_set": true,
+    "existing_generation_6_through_9_branch_and_pr_bytes_were_not_modified": true,
+    "decision_basis": "CP200 remains canonical; fresh provider reads of the gen6 PR claim and gen7/gen8/gen9 candidate checkpoints show PREPARED_NOT_DISPATCHED, no execution fence, no active job refs, and no unresolved effect refs. Their previous generation-allocation assessment remains unchanged as historical evidence, but candidate readability alone is not the current execution-generation consumption authority. A provider-readable inert candidate document does not make an execution-owner identity canonical or side-effect-authoritative."
+  },
+  "promotion_cas": {
+    "status": "REQUIRED_NOT_EXECUTED",
+    "allocation_phase": "CANONICAL_PROMOTION_CAS",
+    "fresh_canonical_prestate_readback": "REQUIRED_IN_SAME_CAS_TRANSACTION",
+    "fresh_durable_consumed_generation_readback": "REQUIRED_IN_SAME_CAS_TRANSACTION",
+    "readbacks_must_bind": [
+      "control_ref",
+      "control_commit",
+      "checkpoint_seq",
+      "checkpoint_digest",
+      "owner_generation",
+      "transaction_id",
+      "observed_at"
+    ],
+    "generation_rule": "SMALLEST_INTEGER_GREATER_THAN_FRESH_CANONICAL_OWNER_GENERATION_AND_ABSENT_FROM_FRESH_DURABLY_CONSUMED_SET",
+    "selection_time": "PROMOTION_CAS_TIME",
+    "canonical_checkpoint_recorded_at": "PROMOTION_CAS_TIME",
+    "lease_starts_at_or_after_checkpoint_recorded_at": true,
+    "lease_until": "CHECKPOINT_RECORDED_AT_PLUS_CONFIGURED_BOUNDED_TTL",
+    "configured_lease_duration_seconds": 14400,
+    "canonical_checkpoint_write": "REQUIRED_IN_SAME_PROMOTION_CAS_TRANSACTION",
+    "same_source_readback_after_write": true,
+    "fresh_readback_transaction_binding_required": true,
+    "stale_prestate_result": "CAS_CONFLICT; DO_NOT_ALLOCATE_OR_WRITE",
+    "candidate_branch_readability_consumes_execution_generation": false
+  },
+  "invariant_ids": [
+    "NONCANONICAL_PREPARED_CANDIDATE_MUST_NOT_HAVE_ACTIVE_OWNER_LEASE",
+    "CANONICAL_OWNER_GENERATION_ALLOCATED_AT_SELECTION",
+    "CANONICAL_OWNER_LEASE_STARTS_AT_OR_AFTER_CHECKPOINT_RECORDED_AT",
+    "OWNER_GENERATION_ALLOCATION_USES_FRESH_CANONICAL_PRESTATE"
+  ],
+  "supersedes_historical_candidate_allocation_record": "governance/csg/v51/readbacks/R2-03-OWNER-GENERATION-ALLOCATION-20261001.json",
+  "supersedes_historical_candidate_generation_regression": "governance/csg/v51/regressions/NEW_OWNER_GENERATION_MUST_EXCEED_CANONICAL_AND_AVOID_DURABLE_COLLISION-v1.json",
+  "canonical_pointer_written": false,
+  "same_source_promotion_readback": "REQUIRED_NOT_PERFORMED",
+  "owner_generation_10_created": false,
+  "no_revoke_dispatch_production": true,
+  "frozen_source_pair": [
+    {
+      "pr_number": 342,
+      "exact_head": "b26d400af6c232ad7fcf253c48f9066cbddc2d12",
+      "tree": "a49a9686bde16155a3b3463f5cd4e5be4d3cd86f",
+      "verifier": "PASS_EXACT_HEAD",
+      "bounded_driver": "SKIPPED_NOT_PASS"
+    },
+    {
+      "pr_number": 377,
+      "exact_head": "a5a2b134eb1501dc644678ab5ad1e6700f99bff6",
+      "tree": "3477dace4e602a9e9a77cf7c86a3884c65c1ac2d",
+      "verifier": "PASS_EXACT_HEAD",
+      "bounded_driver": "SKIPPED_NOT_PASS"
+    }
+  ]
+}

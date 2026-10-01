@@ -1,0 +1,39 @@
+{
+  "schema_version": "PTYSD_PROVIDER_SESSION_READ_ROUTE_CONTRACT_V1",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "status": "UNAVAILABLE",
+  "reason_code": "PROVIDER_AGENT_SESSION_READ_ROUTE_NOT_CONFIGURED",
+  "authority_requirement": "PROVIDER_AUTHORITATIVE_OR_PROVIDER_ADDRESSABLE",
+  "route_id": "PTYSD_PROVIDER_AGENT_SESSION_READ_V1",
+  "required_exact_output_identity": [
+    "project_id",
+    "provider",
+    "task_id",
+    "attempt_id",
+    "attempt_epoch",
+    "owner_generation",
+    "owner_principal_id",
+    "owner_session_id",
+    "provider_session_id",
+    "provider_job_id",
+    "state",
+    "observed_at",
+    "source"
+  ],
+  "prohibited_substitutes": [
+    "GENERIC_PROCESS_PRESENCE",
+    "RUNNER_LISTENER_PRESENCE",
+    "RUNNER_WORKER_ABSENCE",
+    "WEB_AGGREGATE_LIVE_JOB_COUNT_ZERO"
+  ],
+  "current_runtime_manifest_ref": {
+    "kind": "EXTERNAL_IMMUTABLE",
+    "provider": "GitHub",
+    "repository_id_or_resource_id": "1352411536",
+    "revision": "a5a2b134eb1501dc644678ab5ad1e6700f99bff6",
+    "path": "config/runtime-manifest.json",
+    "digest": "sha256:97bee3f46d0708fb4e54fa9f51155b18918e0d1fe7705b761f1d2928bef415c3"
+  },
+  "exact_reentry_condition": "A fixed provider-authoritative read returns all 13 required identity fields for this exact project/task/attempt/epoch/generation and retains the provider response ID, observed time, source, digest, and immutable same-source readback.",
+  "observed_at_utc": "2026-10-01T08:49:50Z"
+}

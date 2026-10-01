@@ -1,0 +1,185 @@
+{
+  "schema_version": "csg.v51.blocker-reconciliation.v1",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "observed_at_utc": "2026-10-01T08:49:50Z",
+  "canonical_checkpoint_seq": 200,
+  "candidate_checkpoint_seq": 201,
+  "blockers": [
+    {
+      "blocker_id": "R2_03_SYSTEM_BROKER_SNAPSHOT_PUBLISHER_NOT_YET_QUALIFIED",
+      "classification": "SUPERSEDED",
+      "resolved_as": "SOURCE_CONTRACT_QUALIFIED_CANDIDATE_WITH_SYNTHETIC_INTEGRATION_PASS",
+      "evidence_path": "governance/csg/v51/readbacks/R2-03-FROZEN-SOURCE-PAIR-EVIDENCE-BINDINGS-20261001T084950Z.json",
+      "reentry_condition": "Create a new source-specific blocker only if the exact frozen source bytes or synthetic integration show a concrete defect; real publication remains tracked by the separate live route and signed-evidence blockers.",
+      "superseded_by": [
+        "R2_03_SOURCE_CONTRACT_QUALIFIED_CANDIDATE",
+        "R2_03_LIVE_SIGNED_EVIDENCE_PATH_NOT_ACCEPTED"
+      ],
+      "reason": "The prior wording combined candidate source qualification with real Host publication. Exact source contracts and synthetic integration are candidate-qualified; live publication remains a separate current blocker."
+    },
+    {
+      "blocker_id": "PR342_SEMANTIC_REVIEW_PENDING_EXACT_HEAD",
+      "classification": "PARKED",
+      "lane": "PR342_EXACT_HEAD_SEMANTIC_REVIEW",
+      "exact_head": "b26d400af6c232ad7fcf253c48f9066cbddc2d12",
+      "reviewer": "wfvupu1212",
+      "route_available": true,
+      "request_already_open": true,
+      "reentry_condition": "Resume only when the independent reviewer returns a verdict bound to #342 b26d400 and #377 a5a2b13 as this exact pair.",
+      "last_review_readback_at_utc": "2026-10-01T08:49:50Z",
+      "exact_tree": "a49a9686bde16155a3b3463f5cd4e5be4d3cd86f",
+      "request_comment_id": 5927599632
+    },
+    {
+      "blocker_id": "PR377_SEMANTIC_REVIEW_PENDING_EXACT_LANE",
+      "classification": "PARKED",
+      "lane": "PR377_EXACT_HEAD_SEMANTIC_REVIEW",
+      "exact_head": "a5a2b134eb1501dc644678ab5ad1e6700f99bff6",
+      "reviewer": "wfvupu1212",
+      "route_available": true,
+      "request_already_open": true,
+      "reentry_condition": "Resume only when the independent reviewer returns a verdict bound to #342 b26d400 and #377 a5a2b13 as this exact pair.",
+      "last_review_readback_at_utc": "2026-10-01T08:49:50Z",
+      "exact_tree": "3477dace4e602a9e9a77cf7c86a3884c65c1ac2d",
+      "request_comment_id": 5927512370
+    },
+    {
+      "blocker_id": "R2_03_LIVE_FACTORY_MCP_ROUTE_UNAVAILABLE_IN_CURRENT_EXECUTOR",
+      "classification": "CURRENT",
+      "parked_lane": "R2_03_LIVE_FACTORY_MCP_READ_ROUTE",
+      "status": "UNAVAILABLE",
+      "reason_code": "FIXED_PURPOSE_FACTORY_MCP_ROUTE_NOT_EXPOSED_AND_RUNTIME_PUBLICATION_UNAVAILABLE",
+      "reentry_condition": "Expose an authorized fixed-purpose Factory MCP factory_status read route to the execution environment and read back a fresh exact-identity response with immutable same-source evidence references.",
+      "observed_at_utc": "2026-10-01T08:49:50Z",
+      "runtime_manifest_ref": {
+        "revision": "a5a2b134eb1501dc644678ab5ad1e6700f99bff6",
+        "path": "config/runtime-manifest.json",
+        "digest": "sha256:97bee3f46d0708fb4e54fa9f51155b18918e0d1fe7705b761f1d2928bef415c3"
+      },
+      "exposed_route_names": [],
+      "sufficient_for_owner_liveness": false
+    },
+    {
+      "blocker_id": "R2_03_LIVE_TRUST_PROVISIONING_NOT_ACCEPTED",
+      "classification": "CURRENT",
+      "parked_lane": "R2_03_REAL_PRODUCER_TRUST_ROOTS",
+      "reentry_condition": "Each actual producer boundary supplies its own public key record and identity metadata; private signing keys remain at their producer; Host install/readback is explicitly authorized by the active policy."
+    },
+    {
+      "blocker_id": "R2_03_LIVE_PROVIDER_SESSION_ROUTE_NOT_ACCEPTED",
+      "classification": "CURRENT",
+      "parked_lane": "R2_03_PROVIDER_AGENT_SESSION_READ_ROUTE",
+      "reason_code": "PROVIDER_AGENT_SESSION_READ_ROUTE_NOT_CONFIGURED",
+      "reentry_condition": "A provider-authoritative or provider-addressable read route returns all 13 required owner/session/job identity fields with an exact provider observation and same-source readback."
+    },
+    {
+      "blocker_id": "R2_03_LIVE_SUPERVISOR_HEARTBEAT_ROUTE_NOT_ACCEPTED",
+      "classification": "CURRENT",
+      "parked_lane": "R2_03_HOST_SUPERVISOR_HEARTBEAT_READ_ROUTE",
+      "reason_code": "SUPERVISOR_HEARTBEAT_READ_ROUTE_NOT_CONFIGURED",
+      "reentry_condition": "A real Host Supervisor service publishes a durable signed heartbeat bound to the exact project/task/attempt/epoch/generation, boot, service, process, and producer identities, and the fixed read route returns the same bytes."
+    },
+    {
+      "blocker_id": "R2_03_LIVE_SIGNED_EVIDENCE_PATH_NOT_ACCEPTED",
+      "classification": "CURRENT",
+      "parked_lane": "R2_03_LIVE_SIGNED_EVIDENCE_READBACK",
+      "reentry_condition": "After authentic roots and real routes are installed, publish signed bytes, read them immutably by exact reference, expose those refs through factory_status, and verify the same bytes through RecoveryEvidenceTrust."
+    },
+    {
+      "blocker_id": "HOST_MUTATION_FORBIDDEN_BY_CP200_POLICY",
+      "classification": "PARKED",
+      "parked_lane": "R2_03_HOST_INSTALLATION",
+      "reentry_condition": "Resume only after a canonical policy transition explicitly permits this exact pre-Production installation/readback operation."
+    },
+    {
+      "blocker_id": "R2_02_AUTHORIZED_LIVE_EXECUTOR_OBSERVATION_REQUIRED_BEFORE_STALE_OWNER_CONFIRMATION_OR_HOST_DISPATCH",
+      "classification": "PARKED",
+      "parked_lane": "R2_02B_EXACT_GENERATION_5_LIVENESS",
+      "reentry_condition": "Resume after R2-03 provider-confirmed live acceptance and a fresh exact provider plus local observation for generation 5; aggregate counts and lease expiry alone remain insufficient."
+    },
+    {
+      "blocker_id": "R2_02_GEN5_EXACT_LIVENESS_PROOF_INSUFFICIENT",
+      "classification": "PARKED",
+      "parked_lane": "R2_02B_EXACT_GENERATION_5_LIVENESS",
+      "reentry_condition": "Resume only with provider-authoritative and local evidence that binds generation 5 to the exact current task, attempt, epoch, principal, sessions, job, and terminal state."
+    },
+    {
+      "blocker_id": "R2_02_HYPERV_HOSTGUARD_LOCAL_OS_PRIVILEGE_REQUIRED",
+      "classification": "PARKED",
+      "parked_lane": "R2_02_HYPERV_AND_HOSTGUARD_READ",
+      "reentry_condition": "Resume through the authorized local privileged read route with exact same-source readback; do not infer from process presence, absence, or task state."
+    },
+    {
+      "blocker_id": "R2_03_SOURCE_CONTRACT_QUALIFIED_CANDIDATE",
+      "classification": "RESOLVED",
+      "resolved_as": "SOURCE_CONTRACT_QUALIFIED_CANDIDATE_WITH_SYNTHETIC_INTEGRATION_PASS",
+      "exact_heads": [
+        {
+          "pr_number": 342,
+          "sha": "b26d400af6c232ad7fcf253c48f9066cbddc2d12"
+        },
+        {
+          "pr_number": 377,
+          "sha": "a5a2b134eb1501dc644678ab5ad1e6700f99bff6"
+        }
+      ],
+      "evidence_path": "governance/csg/v51/readbacks/R2-03-FROZEN-SOURCE-PAIR-EVIDENCE-BINDINGS-20261001T084950Z.json",
+      "reentry_condition": "Reopen only for a concrete defect in these exact frozen source bytes or a regression in their synthetic producer-to-RecoveryEvidenceTrust integration."
+    },
+    {
+      "blocker_id": "R2_03_LIVE_TRUST_PROVIDER_HEARTBEAT_ACCEPTANCE_NOT_ACCEPTED",
+      "classification": "CURRENT",
+      "status": "NOT_ACCEPTED",
+      "parked_lanes": [
+        "R2_03_REAL_TRUST_ROOT_PROVISIONING",
+        "R2_03_PROVIDER_SESSION_ROUTE",
+        "R2_03_SUPERVISOR_HEARTBEAT_ROUTE",
+        "R2_03_SIGNED_EVIDENCE_PATH"
+      ],
+      "observed_at_utc": "2026-10-01T08:49:50Z",
+      "reentry_condition": "Resume only after authorized real trust provisioning, provider session and Supervisor heartbeat routes, signed evidence storage, exact identity readback, and same-source confirmation are available."
+    }
+  ],
+  "global_blocked": false,
+  "reason": "CP201 is a noncanonical ownerless candidate; exact-head semantic review, live trust roots, provider/heartbeat routes, and authorized Host install remain parked on their exact dependencies. The fixed-purpose live Factory MCP route is unavailable in this executor; unrelated local source/verifier work remains eligible.",
+  "owner_generation_allocation": {
+    "record_path": "governance/csg/v51/readbacks/R2-03-OWNER-ALLOCATION-ARCHITECTURE-CORRECTION-20261001.json",
+    "classification": "ALLOCATION_DEFERRED_UNTIL_CANONICAL_PROMOTION_CAS",
+    "candidate_instance_id": "785b137a-083a-433f-bff9-c4ac97d07888",
+    "candidate_owner_generation": null,
+    "candidate_lease_until": null,
+    "proposed_owner_generation_policy": "NEXT_AVAILABLE_AT_PROMOTION",
+    "historical_candidate_owner_generation_labels": [
+      6,
+      7,
+      8,
+      9
+    ],
+    "historical_execution_generation_labels_consumed": false,
+    "fresh_durable_consumed_generation_readback": "REQUIRED_AT_PROMOTION_NOT_PERFORMED",
+    "observed_at_utc": "2026-10-01T05:24:52Z"
+  },
+  "canonical_authority": {
+    "ref": "refs/heads/v45/factory-control",
+    "control_commit": "d39486601d851e31256852a24e9c1393b9046fe5",
+    "checkpoint_seq": 200,
+    "checkpoint_digest": "sha256:2cd708bb96179b7ef416ab5a7616f7dff50030567f56d7506a7182f6ceda600d",
+    "owner_generation": 5,
+    "status": "ACTIVE"
+  },
+  "source_pair": [
+    {
+      "pr_number": 342,
+      "exact_head": "b26d400af6c232ad7fcf253c48f9066cbddc2d12",
+      "tree": "a49a9686bde16155a3b3463f5cd4e5be4d3cd86f",
+      "semantic_review": "PENDING_CURRENT_HEAD"
+    },
+    {
+      "pr_number": 377,
+      "exact_head": "a5a2b134eb1501dc644678ab5ad1e6700f99bff6",
+      "tree": "3477dace4e602a9e9a77cf7c86a3884c65c1ac2d",
+      "semantic_review": "PENDING_CURRENT_HEAD"
+    }
+  ],
+  "evidence_binding_path": "governance/csg/v51/readbacks/R2-03-FROZEN-SOURCE-PAIR-EVIDENCE-BINDINGS-20261001T084950Z.json"
+}

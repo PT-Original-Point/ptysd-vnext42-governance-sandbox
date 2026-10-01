@@ -1,0 +1,78 @@
+{
+  "schema_version": "csg.v51.owner-generation-regression.v1",
+  "regression_id": "NEW_OWNER_GENERATION_MUST_EXCEED_CANONICAL_AND_AVOID_DURABLE_COLLISION",
+  "status": "DETERMINISTIC_VERIFIER_REQUIRED",
+  "invariants": [
+    "NEW_OWNER_GENERATION > CURRENT_CANONICAL_OWNER_GENERATION",
+    "NEW_OWNER_GENERATION_NOT_IN_DURABLY_CONSUMED_GENERATIONS"
+  ],
+  "expected_failure_codes": {
+    "not_greater_than_canonical": "NEW_OWNER_GENERATION_NOT_GREATER_THAN_CANONICAL",
+    "already_durably_consumed": "NEW_OWNER_GENERATION_ALREADY_DURABLY_CONSUMED"
+  },
+  "candidate_fixture": {
+    "canonical_generation": 5,
+    "durably_consumed_generations": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "prior_generation_six_classification": "GEN6_BURNED_DURABLE_IDENTITY",
+    "generation_six_provider_claim": {
+      "commit_sha": "3cf057c4b28d3c7f225823ede198ac9845e050e0",
+      "pull_request_number": 342,
+      "workflow_run_id": 36801312818,
+      "verifier_job_id": 110176050759,
+      "verifier_conclusion": "success"
+    },
+    "generation_six_historical_provider_claim": {
+      "commit_sha": "f1b95241b744bf57b924e5e7856f681fd20b216e",
+      "pull_request_number": 342,
+      "workflow_run_id": 36740121863,
+      "verifier_job_id": 109972022641,
+      "verifier_conclusion": "success"
+    },
+    "generation_seven_provider_claim": {
+      "commit_sha": "1cee612cf30e96cd5e3d7ae130948018ec6f1393",
+      "branch": "codex/r2-cp201-audit-rebuild-20261001",
+      "branch_head": true
+    },
+    "expected_available_generation": 9,
+    "generation_eight_provider_claim": {
+      "commit_sha": "7cfb1ec3711421b5ee534be19f321fbec33a82a3",
+      "tree_oid": "dee39f180c73bc997165417271627b6bce330b7b",
+      "checkpoint_blob_oid": "fee4c8451bab7a354a1196e504326460f1b6eb31",
+      "pointer_blob_oid": "f71d3175df8db0be6e6b2727145b2186cb41e215",
+      "branch": "codex/r2-cp201-generation-discipline-20261001",
+      "branch_head": true,
+      "owner_generation": 8,
+      "checkpoint_seq": 201
+    }
+  },
+  "allocation_rule": "CANDIDATE_PACKET_ONLY; choose the smallest integer greater than the canonical owner generation and absent from all provider-addressably consumed owner-generation identities; this packet does not claim a durable repository-wide allocator",
+  "fixture_scope": "CANDIDATE_PACKET_ONLY; provider-addressable owner claims, canonical selections, leases, fences, jobs, or effects consume a generation identity",
+  "unconsumed_candidate_fixture": {
+    "canonical_generation": 5,
+    "durably_consumed_generations": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "prior_candidate_generation": 6,
+    "classification": "GEN6_UNCONSUMED_CANDIDATE",
+    "provider_addressable_owner_claim": false,
+    "durable_lease_or_fence_or_job_or_receipt_or_effect": false,
+    "policy_monotonic_nonreuse_required": false,
+    "expected_available_generation": 6
+  },
+  "durable_allocator_present": false,
+  "current_policy_revision": "20260930T104733+0800-EP80",
+  "policy_monotonic_nonreuse_for_unselected_candidates_required": false
+}

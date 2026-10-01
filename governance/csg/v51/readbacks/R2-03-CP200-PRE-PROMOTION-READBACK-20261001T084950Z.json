@@ -1,0 +1,132 @@
+{
+  "schema_version": "csg.v51.r2-03-cp200-pre-promotion-readback.v1",
+  "readback_id": "R2-03-CP200-PRE-PROMOTION-READBACK-20261001T084950Z",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "observed_at_utc": "2026-10-01T08:49:50Z",
+  "source": "FRESH_GITHUB_PROVIDER_READS_IN_THIS_TURN",
+  "project_directory": {
+    "provider": "GitHub",
+    "repository_id": 1352411536,
+    "revision": 5,
+    "directory_revision": 5,
+    "source_commit": "38f4fc7cb2841e2318a97ff7a53e41b2ec07aef1",
+    "path": "directory/projects/CHATGPT_GLOBAL_SKILL_GOVERNANCE.json",
+    "blob_oid": "377dcf88279d3ba433d099a7cc9f78af8c86b8ae",
+    "status": "BOUND",
+    "registration_state": "BOUND",
+    "control_locator": {
+      "provider": "github",
+      "repository_id": 1352411536,
+      "ref": "refs/heads/v45/factory-control",
+      "current_path": "governance/csg/current.json"
+    },
+    "active_run_ref_resolution": "CURRENT_CANONICAL_CONTROL_POINTER_V1"
+  },
+  "repository": {
+    "full_name": "PT-Original-Point/ptysd-vnext42-governance-sandbox",
+    "repository_id": 1352411536,
+    "default_branch": "main",
+    "control_ref": "refs/heads/v45/factory-control",
+    "control_ref_head": "d39486601d851e31256852a24e9c1393b9046fe5",
+    "control_ref_head_readback": "https://api.github.com/repos/PT-Original-Point/ptysd-vnext42-governance-sandbox/git/ref/heads/v45/factory-control"
+  },
+  "canonical_authority": {
+    "current_pointer_path": "governance/csg/current.json",
+    "current_pointer_blob_oid": "2481db71189e0f4cef024873b07c3d26e605cc9f",
+    "checkpoint_seq": 200,
+    "checkpoint_path": "governance/csg/checkpoints/000200.json",
+    "checkpoint_blob_oid": "88524eee6c06f1fcf4b07053d5baca3324b06299",
+    "checkpoint_digest": "sha256:2cd708bb96179b7ef416ab5a7616f7dff50030567f56d7506a7182f6ceda600d",
+    "lifecycle": "ACTIVE",
+    "task_id": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION",
+    "attempt_id": "V51-R2-02-ATTEMPT-002",
+    "attempt_epoch": 2,
+    "atomic_state": "PREPARED_NOT_DISPATCHED",
+    "stop_requested": false,
+    "mission": {
+      "revision": "20260930T104733+0800",
+      "blob_oid": "2a913c7c5585bedda72d54df626cd38ae52bdade",
+      "hash": "sha256:f235c085f10e54705f7817f0ce6dee1e5b29ef1279306e4b2c280322bfacab29",
+      "status": "FINALIZED",
+      "active_unit": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION"
+    },
+    "policy": {
+      "revision": "20260930T104733+0800-EP80",
+      "blob_oid": "a31f86215c8d0fcc2cee0183f75d18158bb3d9fb",
+      "hash": "sha256:8529b4bccc66147465b066bf97d71ce2c6ae6bea11e146ca215976bf3b839c85",
+      "mission_hash": "sha256:f235c085f10e54705f7817f0ce6dee1e5b29ef1279306e4b2c280322bfacab29",
+      "status": "FINALIZED",
+      "active_unit": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION"
+    },
+    "run": {
+      "path": "governance/csg/v51/runs/V51-R2-001/run-r2-02.json",
+      "blob_oid": "09245a8ec5c320bafa287b6bafc9475b52d21d75",
+      "command_id": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION",
+      "state": "RUNNING",
+      "active_task_id": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION",
+      "attempt_id": "V51-R2-02-ATTEMPT-002",
+      "stop_requested": false
+    },
+    "owner": {
+      "owner_generation": 5,
+      "lease_until": "2026-09-29T18:44:11Z",
+      "classification": "STALE_EXECUTION_OWNER_CANDIDATE",
+      "stale_owner_confirmed": false,
+      "revocation": false
+    },
+    "active_job_refs": [],
+    "unresolved_effect_refs": []
+  },
+  "current_source_pair": [
+    {
+      "pr_number": 342,
+      "exact_head": "b26d400af6c232ad7fcf253c48f9066cbddc2d12",
+      "tree": "a49a9686bde16155a3b3463f5cd4e5be4d3cd86f",
+      "status": "OPEN_DRAFT_UNMERGED"
+    },
+    {
+      "pr_number": 377,
+      "exact_head": "a5a2b134eb1501dc644678ab5ad1e6700f99bff6",
+      "tree": "3477dace4e602a9e9a77cf7c86a3884c65c1ac2d",
+      "status": "OPEN_DRAFT_UNMERGED"
+    }
+  ],
+  "live_observation": {
+    "fixed_factory_mcp_read_route": {
+      "status": "UNAVAILABLE",
+      "reason": "No fixed-purpose Factory MCP owner-liveness read tool is exposed to this execution surface.",
+      "exposed_route_names": [],
+      "observed_at_utc": "2026-10-01T08:49:50Z"
+    },
+    "host_liveness_routes": {
+      "status": "UNAVAILABLE",
+      "reason": "No authorized Host Supervisor/provider-session read route is exposed to this execution surface.",
+      "stale_owner_confirmation": false,
+      "owner_revocation": false,
+      "host_dispatch": false
+    },
+    "prior_web_factory_aggregate": {
+      "observed_at_utc": "2026-10-01T08:22:14Z",
+      "evidence_class": "PRIOR_AGGREGATE_OBSERVATION_ONLY",
+      "active_count": 0,
+      "effective_active_count": 0,
+      "live_job_count": 0,
+      "pending_receipt_count": 0,
+      "orphan_count": 5,
+      "control_plane_status": "ok",
+      "sufficient_for_stale_owner_confirmation": false
+    }
+  },
+  "safety": {
+    "cp200_remains_canonical": true,
+    "cp201_candidate_remains_noncanonical": true,
+    "r2_02": "NOT_PASS",
+    "r2_03": "NOT_PASS",
+    "generation_5": "STALE_EXECUTION_OWNER_CANDIDATE",
+    "no_revoke": true,
+    "no_dispatch": true,
+    "no_production": true,
+    "no_paid_fallback": true,
+    "no_worker_provider_write_credentials": true
+  }
+}

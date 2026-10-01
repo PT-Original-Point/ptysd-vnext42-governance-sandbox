@@ -1,0 +1,121 @@
+{
+  "schema_version": "PTYSD_R2_03_PREPRODUCTION_INSTALL_READBACK_PLAN_V1",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "unit_id": "V51-R2-03-FIXED-READONLY-FACTORY-OBSERVATION",
+  "prepared_at_utc": "2026-10-01T02:38:53Z",
+  "status": "PREPARED_NOT_INSTALLABLE_REAL_KEYS_AND_AUTHORIZED_ROUTE_REQUIRED",
+  "install_authorized": false,
+  "host_mutation_authorized": false,
+  "target": {
+    "host_identity": null,
+    "fixed_host_path": null,
+    "runtime_repository_id": 1352411536,
+    "runtime_pr": 377,
+    "runtime_exact_head": "a5a2b134eb1501dc644678ab5ad1e6700f99bff6",
+    "runtime_base_sha": "06da5fa224b65b9346e8b250dcea686d0ed458ee",
+    "runtime_tree_sha": "3477dace4e602a9e9a77cf7c86a3884c65c1ac2d",
+    "runtime_config_path": "config/runtime-manifest.json",
+    "runtime_manifest_digest": "sha256:97bee3f46d0708fb4e54fa9f51155b18918e0d1fe7705b761f1d2928bef415c3",
+    "trust_store_path": "recovery_evidence.trust_roots.keys",
+    "publication_status": "UNAVAILABLE",
+    "publication_reason": "OWNER_LIVENESS_PUBLICATION_ROUTE_NOT_CONFIGURED"
+  },
+  "exact_source_pair": [
+    {
+      "pr": 342,
+      "head": "b26d400af6c232ad7fcf253c48f9066cbddc2d12"
+    },
+    {
+      "pr": 377,
+      "head": "a5a2b134eb1501dc644678ab5ad1e6700f99bff6"
+    }
+  ],
+  "trust_root_records": {
+    "required_count": 3,
+    "required_fields": [
+      "key_id",
+      "issuer_role",
+      "project_id",
+      "scope",
+      "generation",
+      "not_before",
+      "not_after",
+      "revoked_at",
+      "schemas",
+      "public_key_pem"
+    ],
+    "issuer_roles": [
+      "HOST_LOCAL",
+      "PROVIDER_AGENT",
+      "HOST_SUPERVISOR"
+    ],
+    "real_public_keys_available": false,
+    "synthetic_runtime_keys_allowed": false,
+    "private_key_in_package": false,
+    "worker_provider_write_credentials": 0
+  },
+  "intended_install_constraints": {
+    "fixed_path_only": true,
+    "atomic_replace": true,
+    "read_only_after_install": true,
+    "service_identity_must_be_read_back_before_acl_assignment": true,
+    "target_path_and_identity_known": false,
+    "requires_canonical_policy_transition": true,
+    "requires_same_source_readback": true
+  },
+  "package_components": [
+    {
+      "path": "governance/csg/v51/live-acceptance/r2-03/trust-provisioning-manifest.json",
+      "digest": "sha256:34400712ad798ff0f4708a358982b8cfda50369257c45e8d832281e27c16cd13",
+      "source_scope": "CP201_PROMOTION_PACKET_CANDIDATE_BYTES",
+      "blob_oid": "998010e5e13de698a8288e5074fc6f4f3a0f86ad"
+    },
+    {
+      "path": "governance/csg/v51/live-acceptance/r2-03/provider-session-route-contract.json",
+      "digest": "sha256:e98b74ee7caffb0a74a0535012be06411375817311f8a4e9b05ac689648120a8",
+      "source_scope": "CP201_PROMOTION_PACKET_CANDIDATE_BYTES",
+      "blob_oid": "b861a40dda523188e37fd189e981afce66b1083f"
+    },
+    {
+      "path": "governance/csg/v51/live-acceptance/r2-03/supervisor-heartbeat-route-contract.json",
+      "digest": "sha256:15079d2ef5626fb65cc0ef5d625403673f7f3b711687b415179181854cde433f",
+      "source_scope": "CP201_PROMOTION_PACKET_CANDIDATE_BYTES",
+      "blob_oid": "d430b95b31eed488dc23ee7200291a80e1dd20fe"
+    },
+    {
+      "path": "governance/csg/v51/live-acceptance/r2-03/live-acceptance-packet.json",
+      "digest": "sha256:f9426527bfd49b828ed7a4d4bf955d4c78045d67d18fdac873fe660906af257e",
+      "source_scope": "CP201_PROMOTION_PACKET_CANDIDATE_BYTES",
+      "blob_oid": "de4c5762b6e85ec1eab882264494d144e2e87fce"
+    }
+  ],
+  "ordered_transition_requirements": [
+    "WAIT_FOR_REAL_PRODUCER_PUBLIC_KEYS_AND_EXACT_KEY_IDENTITY_METADATA",
+    "WAIT_FOR_PROVIDER_AUTHORITATIVE_SESSION_READ_ROUTE",
+    "WAIT_FOR_DURABLE_SIGNED_HOST_SUPERVISOR_HEARTBEAT_ROUTE",
+    "WAIT_FOR_CANONICAL_POLICY_AUTHORIZATION_FOR_THIS_FIXED_PREPRODUCTION_INSTALL",
+    "READ_BACK_TARGET_HOST_SERVICE_IDENTITY_AND_FIXED_TRUST_STORE_PATH",
+    "INSTALL_ONLY_THE_THREE_AUTHENTIC_PUBLIC_TRUST_ROOTS_WITH_READ_ONLY_RUNTIME_ACCESS",
+    "READ_BACK_EXACT_INSTALLED_BYTES_AND_ACL_FROM_THE_SAME_HOST_SOURCE",
+    "RUN_REAL_HOST_POSITIVE_AND_NEGATIVE_ACCEPTANCE_AND_PERSIST_PROVIDER_ADDRESSABLE_EVIDENCE"
+  ],
+  "required_readback": [
+    "TRUST_ROOT_KEY_ID_ISSUER_PROJECT_SCOPE_GENERATION_VALIDITY_REVOCATION_SCHEMA_AND_PUBLIC_KEY",
+    "PROVIDER_SESSION_EXACT_PROJECT_TASK_ATTEMPT_EPOCH_OWNER_SESSION_PROVIDER_SESSION_JOB_STATE_TIME_AND_SOURCE",
+    "SUPERVISOR_HEARTBEAT_EXACT_PROJECT_SUPERVISOR_BOOT_SERVICE_TASK_PROCESS_ATTEMPT_GENERATION_ID_DIGEST_SIGNATURE_AND_PRODUCER",
+    "SIGNED_EVIDENCE_IMMUTABLE_REFERENCE_AND_IDENTICAL_SAME_SOURCE_BYTES",
+    "FACTORY_STATUS_EXACT_EVIDENCE_REFERENCES",
+    "RECOVERY_EVIDENCE_TRUST_VERIFIES_THE_IDENTICAL_SIGNED_BYTES",
+    "SIGNATURE_DIGEST_IDENTITY_AND_FRESHNESS_PASS",
+    "TAMPER_WRONG_KEY_AND_STALE_GENERATION_FAIL_CLOSED"
+  ],
+  "prohibited_until_reentry": [
+    "HOST_DISPATCH",
+    "OWNER_REVOCATION",
+    "PRODUCTION",
+    "PAID_FALLBACK",
+    "WORKER_PROVIDER_WRITE_CREDENTIALS"
+  ],
+  "exact_reentry_condition": "The three real producer public keys and metadata, provider session route, durable Supervisor heartbeat route, exact target host identity/path, and canonical policy authorization are all available; then perform the listed install/readback transition.",
+  "recorded_at": "2026-10-01T08:49:50Z"
+}

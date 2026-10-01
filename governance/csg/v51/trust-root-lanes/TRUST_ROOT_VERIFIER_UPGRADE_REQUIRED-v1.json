@@ -1,0 +1,46 @@
+{
+  "schema_version": "csg.v51.trust-root-verifier-upgrade-lane.v1",
+  "lane_id": "TRUST_ROOT_VERIFIER_UPGRADE_REQUIRED",
+  "status": "REQUIRED_SEPARATE_LANE_NOT_STARTED",
+  "scope": "Add the owner-allocation invariants to immutable protected trusted-verifier enforcement in a separately authorized change.",
+  "required_invariants": [
+    "NONCANONICAL_PREPARED_CANDIDATE_MUST_NOT_HAVE_ACTIVE_OWNER_LEASE",
+    "CANONICAL_OWNER_GENERATION_ALLOCATED_AT_SELECTION",
+    "CANONICAL_OWNER_LEASE_STARTS_AT_OR_AFTER_CHECKPOINT_RECORDED_AT",
+    "OWNER_GENERATION_ALLOCATION_USES_FRESH_CANONICAL_PRESTATE"
+  ],
+  "evidence_boundary": {
+    "OWNER_ALLOCATION_ARCHITECTURE_SOURCE": "IMPLEMENTED",
+    "CANDIDATE_LOCAL_OWNER_ALLOCATION_REGRESSION": "PASS",
+    "CANDIDATE_LOCAL_PROMOTION_PACKET_VERIFIER": "PASS",
+    "PROTECTED_TRUST_ROOT_ENFORCEMENT_OF_OWNER_ALLOCATION_INVARIANTS": "NOT_YET_IMPLEMENTED",
+    "candidate_local_evidence_is_protected_enforcement": false
+  },
+  "current_protected_verifier_boundary": {
+    "trusted_source_path": "governance/csg/trust-root/csg-trusted-pr-verifier.mjs",
+    "source_revision": "github.workflow_sha",
+    "checks": [
+      "AUTHORIZED_BASE",
+      "EXACT_DIRECT_PARENT",
+      "ALLOWED_PATH_SET",
+      "PROTECTED_AND_TRUST_ROOT_PATH_EXCLUSION",
+      "CLEAN_WORKTREE"
+    ],
+    "executes_candidate_local_promotion_packet_verifier": false,
+    "executes_candidate_local_owner_allocation_module": false,
+    "executes_candidate_local_owner_allocation_tests": false
+  },
+  "separation_guard": {
+    "candidate_pr_number": 342,
+    "trust_root_or_workflow_change_in_candidate_pr_prohibited": true,
+    "before_any_trust_root_or_workflow_change": [
+      "FRESH_READ_AUTHORIZED_TRUST_ROOT_UPDATE_PROCEDURE",
+      "FRESH_READ_REQUIRED_HUMAN_OR_AUTHORITY_GATE",
+      "SATISFY_REQUIRED_GATE_BEFORE_CHANGE"
+    ],
+    "procedure_read_status": "REQUIRED_BEFORE_MODIFICATION",
+    "authority_gate_status": "NOT_YET_VERIFIED",
+    "trust_root_or_workflow_mutation_performed": false
+  },
+  "acceptance_rule": "Candidate-local verifier and test PASS qualify only their exact local candidate bytes; they do not establish immutable protected trust-root enforcement."
+}

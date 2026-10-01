@@ -1,0 +1,187 @@
+{
+  "schema": "vnext5.1-r2.r2-03-trusted-integration-reconciliation.v1",
+  "readback_id": "V51-R2-03-TRUSTED-INTEGRATION-RECONCILIATION-20261001",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "status": "DRAFT_NONCANONICAL_PENDING_FINAL_HEAD_REVIEW_AND_LIVE_READBACK",
+  "observed_at_utc": "2026-10-01T00:16:08Z",
+  "authority": {
+    "project_directory_ref": "refs/heads/governance/project-directory",
+    "project_directory_revision": 5,
+    "project_directory_head": "38f4fc7cb2841e2318a97ff7a53e41b2ec07aef1",
+    "write_policy": "SINGLE_WRITER_GUARDED_CAS_NO_DUAL_WRITE",
+    "control_ref": "refs/heads/v45/factory-control",
+    "canonical_control_head": "d39486601d851e31256852a24e9c1393b9046fe5",
+    "canonical_checkpoint_seq": 200,
+    "canonical_pointer_digest": "sha256:2cd708bb96179b7ef416ab5a7616f7dff50030567f56d7506a7182f6ceda600d"
+  },
+  "supersedes_current_candidate_inference": {
+    "readback_id": "V51-R2-02-R2-03-DEPENDENCY-CYCLE-BREAK-20260930",
+    "path": "governance/csg/v51/readbacks/R2-02-R2-03-DEPENDENCY-CYCLE-BREAK-20260930.json",
+    "digest": "sha256:9257f5e9e3cc1b2aa5dcd688415fdac48407a3558f1652fe21a4f72e58ae3362",
+    "prior_observed_at_utc": "2026-09-30T05:14:26Z",
+    "prior_statement": "The publisher was not implemented at source head 26f7f4c; this was accurate for that historical observation but no longer describes the current source candidate."
+  },
+  "canonical_state": {
+    "lifecycle": "ACTIVE",
+    "mission_revision": "20260930T104733+0800",
+    "policy_revision": "20260930T104733+0800-EP80",
+    "active_unit": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION",
+    "run_id": "V51-R2-001",
+    "run_state": "RUNNING",
+    "task_id": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION",
+    "attempt_id": "V51-R2-02-ATTEMPT-002",
+    "attempt_epoch": 2,
+    "owner_generation": 5,
+    "owner_status": "STALE_EXECUTION_OWNER_CANDIDATE",
+    "stale_owner_confirmed": false,
+    "revoke": false,
+    "host_dispatch": false,
+    "host_mutation": false,
+    "active_job_refs": [],
+    "unresolved_effect_refs": []
+  },
+  "candidate_state": {
+    "canonical": false,
+    "checkpoint_seq": 201,
+    "active_unit": "V51-R2-03-FIXED-READONLY-FACTORY-OBSERVATION",
+    "r2_03_accepted": false,
+    "r2_02_overall": "NOT_PASS",
+    "previous_exact_candidate_heads": {
+      "pr342": "dc102714fc5c94c185f2fb0507ebfedba6622b1e",
+      "pr377": "504d916517e37e029f59170b8bda59051fa54d59",
+      "note": "Historical tested candidate pair; these hashes are superseded by the pending clean one-commit rebuild after this reconciliation."
+    },
+    "exact_candidate_head_binding": {
+      "method": "GITHUB_PULL_REQUEST_PROVIDER_READBACK",
+      "pr342_branch": "codex/v51-r1-03-readonly-bootstrap-20260929",
+      "pr342_target_branch": "v45/factory-control",
+      "pr342_target_base_commit": "d39486601d851e31256852a24e9c1393b9046fe5",
+      "pr342_exact_final_head": null,
+      "pr377_branch": "codex/r2-02-cross-source-liveness-runtime-direct-parent-20260930",
+      "pr377_target_branch": "main",
+      "pr377_target_base_commit": "06da5fa224b65b9346e8b250dcea686d0ed458ee",
+      "pr377_exact_final_head": null,
+      "exact_provider_readback_required": true
+    }
+  },
+  "source_reconciliation": {
+    "system_broker_durable_snapshot_publisher": "IMPLEMENTED_IN_CANDIDATE_SOURCE",
+    "fixed_four_tool_factory_status_invocation": "PASS_ON_PREVIOUS_EXACT_CANDIDATE",
+    "trusted_evidence_producer_to_recovery_composition": "PASS_ON_PREVIOUS_EXACT_CANDIDATE_PAIR",
+    "source_blobs": [
+      {
+        "role": "publisher",
+        "path": "tools/csg/factory-mcp/broker/owner-liveness-publisher.ps1",
+        "git_blob_oid": "b85101292c4e9d0fa8485a756cf1f94e9f7f4d3f",
+        "sha256": "sha256:7e09c7ce8aafa41b945a0ece6a33e5ddaadb7cd14d303ff7a53521eb69267d52",
+        "byte_length": 48919
+      },
+      {
+        "role": "factory_mcp_entry",
+        "path": "tools/csg/factory-mcp/src/index.mjs",
+        "git_blob_oid": "c4850e66cff3e6beeee437bd6b51dc7420f00ca2",
+        "sha256": "sha256:6d18047c1db400624a9844cdddc05e6c043a8c1d455ef5604b4a4bc8fd62a238",
+        "byte_length": 9894
+      },
+      {
+        "role": "diagnostic_reader",
+        "path": "tools/csg/factory-mcp/src/readonly-diagnostics.mjs",
+        "git_blob_oid": "3fbe658cccff023bf7d65305b767bc687093e2ac",
+        "sha256": "sha256:7ed21a1671d8a680d5cf6fe2807fc2ca3a27807b57d3a4e53fa1149d66048b2e",
+        "byte_length": 39057
+      },
+      {
+        "role": "powershell_diagnostic_reader",
+        "path": "tools/csg/factory-mcp/src/readonly-diagnostics.ps1",
+        "git_blob_oid": "9ccd07b28621d432991300e780893d1215980290",
+        "sha256": "sha256:fdfc4a9cfc704ff52ae3bd8fa229cbbe4b4d8275380bff95725a0ca76cac8165",
+        "byte_length": 22098
+      },
+      {
+        "role": "publisher_tests",
+        "path": "tools/csg/factory-mcp/tests/owner-liveness-publisher.test.mjs",
+        "git_blob_oid": "41c2c923d85a102515d89cb2802819576e48f29d",
+        "sha256": "sha256:2c32ae9bbf0f43bbb18c15c9885de63e2d2e57c620a474ed9c199b3ab190ae67",
+        "byte_length": 25902
+      },
+      {
+        "role": "publisher_e2e_tests",
+        "path": "tools/csg/factory-mcp/tests/owner-liveness-e2e.test.mjs",
+        "git_blob_oid": "a89739ba0b56945a8ebcb799344131398874e964",
+        "sha256": "sha256:7ae8976e599fc9ee71dabcdd7ae2b98fb92160e03d874c68fe6f652d230f5249",
+        "byte_length": 12641
+      }
+    ],
+    "live_provider_session_route": {
+      "status": "UNAVAILABLE",
+      "reason_code": "PROVIDER_AGENT_SESSION_READ_ROUTE_NOT_CONFIGURED",
+      "exact_identity_linked": false
+    },
+    "host_supervisor_heartbeat": {
+      "producer_contract": "IMPLEMENTED_IN_RUNTIME_CANDIDATE",
+      "live_read_route": "UNAVAILABLE",
+      "live_host_install_readback": false,
+      "production_trust_roots_provisioned": false
+    },
+    "previous_candidate_local_qualification": {
+      "pr342_head": "dc102714fc5c94c185f2fb0507ebfedba6622b1e",
+      "pr342_factory_mcp_tests": "26_OF_26_PASS",
+      "pr342_root_b0_tests": "8_OF_8_PASS",
+      "goal_lifecycle_and_goal_disappearance_tests": "5_OF_5_PASS",
+      "pr377_head": "504d916517e37e029f59170b8bda59051fa54d59",
+      "pr377_root_tests": "24_OF_24_PASS",
+      "cross_candidate_signed_evidence_integration": "PASS",
+      "protected_verifier": "PASS_ON_EACH_PREVIOUS_EXACT_HEAD",
+      "applicability": "Re-run full local regression after the clean rebuild because candidate governance bytes and the producer SHA will change."
+    },
+    "final_rebuild_local_regression": "PENDING"
+  },
+  "goal_lifecycle": {
+    "mission_status": "ACTIVE",
+    "local_codex_goal_status": "ACTIVE",
+    "canonical_project_control_plane_is_authority": true,
+    "bounded_batch_or_verifier_completion_terminates_mission": false,
+    "after_material_delta": "FRESH_READ_DIRECTORY_POINTER_MISSION_POLICY_CHECKPOINT_RUN_TASK_ATTEMPT_OWNER_EFFECTS_AND_PROVIDER_LOCAL_OBSERVATION_THEN_RECOMPUTE_READY",
+    "exact_lane_parking_only": true,
+    "continue_ready_work": true,
+    "r2_09_regression_id": "LOCAL_CODEX_GOAL_DISAPPEARS_WHILE_MISSION_ACTIVE",
+    "r2_09_previous_candidate_result": "PASS_1_OF_1; final rebuild re-run required"
+  },
+  "parked_lanes": [
+    {
+      "lane": "R2_02B_EXACT_GENERATION_5_LIVENESS",
+      "reason": "LIVE_PROVIDER_SESSION_ROUTE_UNAVAILABLE_AND_R2_03_NOT_ACCEPTED"
+    },
+    {
+      "lane": "R2_03_LIVE_PROVIDER_SESSION_READBACK",
+      "reason": "PROVIDER_AGENT_SESSION_READ_ROUTE_NOT_CONFIGURED"
+    },
+    {
+      "lane": "R2_03_LIVE_SUPERVISOR_HEARTBEAT_READBACK",
+      "reason": "HOST_INSTALL_AND_LIVE_READ_ROUTE_UNAVAILABLE"
+    },
+    {
+      "lane": "R2_03_LIVE_FACTORY_MCP_INSTALL_READBACK",
+      "reason": "CURRENT_EXECUTOR_HAS_NO_LIVE_FACTORY_CONNECTOR"
+    },
+    {
+      "lane": "PR342_AND_PR377_INDEPENDENT_EXACT_HEAD_REVIEW",
+      "reason": "REVIEW_REQUESTS_PENDING_ON_REBUILT_HEADS"
+    },
+    {
+      "lane": "LOCAL_HYPERV_HOSTGUARD_READ",
+      "reason": "LOCAL_OS_PRIVILEGE_REQUIRED"
+    }
+  ],
+  "next_ready_action": "COMPLETE_FINAL_LOCAL_REGRESSION_FOR_REBUILT_EXACT_PAIR; THEN PARK ONLY CURRENT-HEAD REVIEW AND LIVE READBACK LANES",
+  "safety": {
+    "production": false,
+    "paid_fallback": false,
+    "worker_provider_write_credentials": false,
+    "host_dispatch": false,
+    "owner_generation_5_revoked": false,
+    "host_mutation": false,
+    "cp200_modified": false,
+    "canonical_pointer_advanced": false
+  }
+}
