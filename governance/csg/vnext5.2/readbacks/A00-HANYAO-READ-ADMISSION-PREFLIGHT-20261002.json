@@ -1,0 +1,88 @@
+{
+  "schema": "vnext5.2.a00-hanyao-read-admission-preflight.v1",
+  "observed_at_utc": "2026-10-02T15:59:32.8909793Z",
+  "status": "A00_READ_PREFLIGHT_COMPLETE_LIVE_SCOPE_NOT_ESTABLISHED",
+  "artifact_class": "CODE_REPO_AUTHORITY_AND_READ_SCOPE_PREFLIGHT",
+  "canonical_selection_claim": false,
+  "hanyao_repository": {
+    "authenticated_user_permission": "admin",
+    "archived": false,
+    "full_name": "t14210184/hanyao",
+    "visibility": "public",
+    "permission_scope": "GITHUB_CODE_REPOSITORY_ONLY",
+    "does_not_prove_provider_database_read_authority": true,
+    "repository_id": "1272482826",
+    "default_branch": "main"
+  },
+  "pr88": {
+    "body_scope_claim": "observability only; no Production deployment and no Google Ads mutation",
+    "state": "open",
+    "draft": true,
+    "merged": false,
+    "changed_paths": 11,
+    "number": 88,
+    "title": "fix: close Ads-to-LINE observability gaps",
+    "head": "7cd87cb0f69b5586719c1265828df20879b28bf2",
+    "body_claim_is": "PR_METADATA_ONLY_NOT_INDEPENDENTLY_VERIFIED",
+    "base": "e917139e4e81a12e41ef5ead507589ae0bf48452"
+  },
+  "source_review": {
+    "redaction_observed": false,
+    "reconciliation_source_blob": "6eeb898150e5d7fd2ee00e407ec51fe5f161d093",
+    "readonly_helper_blob": "7d6ba3557387833f2de6e92222e2026d4f5a423b",
+    "no_provider_query_executed": true,
+    "outputs_raw_result_arrays": true,
+    "collector_state_query_date_window": false,
+    "explicit_row_limit": null,
+    "target_source": "HG10_PRODUCTION_D1_ID_ENV_OVERRIDE_OR_EMBEDDED_PRODUCTION_FALLBACK",
+    "target_identifier": "REDACTED_FROM_PACKET",
+    "query_shape": "READS_EVENT_CONVERSION_OUTBOX_PROVIDER_ATTEMPT_AND_MESSAGE_ASSET_METRIC_CATEGORIES",
+    "target_type": "CLOUDFLARE_D1_PRODUCTION_TARGET",
+    "identifiers_in_result_shape": "CUSTOMER_CAMPAIGN_ASSET",
+    "explicit_byte_limit": null,
+    "date_window_max_days": 120,
+    "read_only_helper": "SINGLE_SELECT_SINGLE_STATEMENT_FORBIDDEN_WRITE_KEYWORDS_AND_PROVIDER_ROWS_WRITTEN_CHANGED_DB_GUARDS",
+    "source_claims_token_printed_false": true
+  },
+  "scope": {
+    "exact_target_authorization": "NOT_ESTABLISHED",
+    "credential_custodian": "NOT_VERIFIED",
+    "oauth_or_mfa_attempted": false,
+    "credential_values_read_or_searched": false,
+    "approved_tables_fields": "NOT_ESTABLISHED",
+    "direct_d1_query": "NOT_PERFORMED",
+    "request_row_byte_limits": "NOT_ESTABLISHED",
+    "google_ads_query": "NOT_PERFORMED",
+    "business_read_scope": "NOT_ESTABLISHED",
+    "data_handling_redaction_retention": "NOT_ESTABLISHED"
+  },
+  "admission_decision": {
+    "A02_ads_live_read": "PARKED_SCOPE_CUSTODIAN_AND_CAPS",
+    "next_required": [
+      "explicit read-only provider target and permitted tables/fields/date range",
+      "credential custodian and existing least-privilege read route; do not provide credential values",
+      "maximum rows/bytes/requests and output redaction/retention rules",
+      "fixed approved query templates with result bounds"
+    ],
+    "A00_packet_only": "READY",
+    "A01_d1_live_read": "PARKED_SCOPE_CUSTODIAN_AND_CAPS",
+    "A00_provider_data_read_authority": "NOT_VERIFIED",
+    "A00_repository_metadata": "VERIFIED"
+  },
+  "human_reserved_gates": [
+    "PRODUCTION_FINAL_AUTHORIZATION",
+    "NEW_PAID_COST_OR_SERVICE",
+    "LEGAL_CONTRACT_SIGNATURE_OR_IDENTITY",
+    "OAUTH_OR_MFA",
+    "MAJOR_IRREVERSIBLE_AUTHORITY_EXPANSION",
+    "UNRECONCILABLE_AMBIGUOUS_EXTERNAL_EFFECT"
+  ],
+  "not_performed": {
+    "host_install": true,
+    "database_migration": true,
+    "host_mutation": true,
+    "ads_write": true,
+    "production": true,
+    "business_data_query": true
+  }
+}
