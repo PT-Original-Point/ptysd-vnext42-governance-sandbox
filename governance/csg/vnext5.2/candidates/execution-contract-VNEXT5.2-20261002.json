@@ -388,8 +388,8 @@
       ],
       "effect_class": "READ_ONLY",
       "mandatory_for_core": true,
-      "status": "PLANNED_NOT_EXECUTED",
-      "done_evidence": "actual trust boundary/coverage; not assume runner-group eligibility",
+      "status": "PARTIAL_READBACK_TRUST_ROUTE_NOT_QUALIFIED",
+      "done_evidence": "read-only repo/workflow survey; runner-group/Actions settings and exact attestation route remain unverified; governance/csg/vnext5.2/readbacks/T01-TRUST-BUILD-ROUTE-PREFLIGHT-20261003.md",
       "operation_authority_required": false,
       "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
       "future_phase_prerequisite": false
