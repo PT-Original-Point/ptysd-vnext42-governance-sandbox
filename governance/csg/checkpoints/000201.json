@@ -1,0 +1,233 @@
+{
+  "schema_version": "csg.checkpoint.v1",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "checkpoint_seq": 201,
+  "transition_id": "V51-R2-03-CP201-POLICY-DAG-RECONCILIATION-20261002T025808Z",
+  "previous_checkpoint_ref": {
+    "kind": "EXTERNAL_IMMUTABLE",
+    "provider": "GitHub",
+    "repository_id_or_resource_id": "1352411536",
+    "revision": "d39486601d851e31256852a24e9c1393b9046fe5",
+    "path": "governance/csg/checkpoints/000200.json",
+    "digest": "sha256:2cd708bb96179b7ef416ab5a7616f7dff50030567f56d7506a7182f6ceda600d"
+  },
+  "migration_anchor": null,
+  "event": {
+    "type": "MISSION_REBASE",
+    "reason_code": "V51_R2_POLICY_MONOTONICITY_AND_PHASE_DAG_CORRECTION",
+    "subject_id": "V51-R2-CP201-SOURCE-SEPARATED-20261001T174401Z"
+  },
+  "mission_anchor": {
+    "ref": "github://1352411536/governance/csg/v51/missions/20261002T105808+0800.json@blob:11352812fa52f2a5774c0222d70b9d34165a2b76",
+    "revision": "20261002T105808+0800",
+    "declared_hash": "sha256:d58bcf87c5aac2bce8ae2474b305599264c7108ce0a3a9da9d7ae4a295caab01",
+    "canonicalization_version": "HUMAN_TEXT_V1"
+  },
+  "policy_anchor": {
+    "ref": "github://1352411536/governance/csg/v51/policies/20261002T105808+0800-EP88.json@blob:86707e9d428434c9517a8677ca47cbd3e8db4c7d",
+    "revision": "20261002T105808+0800-EP88",
+    "declared_hash": "sha256:95e80c1783002de360d6d0e1e1082af36562cfe026882ee736a43cd39ac42144",
+    "canonicalization_version": "HUMAN_TEXT_V1"
+  },
+  "controller_contract": "V51-R2-EXECUTION-POLICY-EP88",
+  "verifier_digest": "sha256:2c8c7ebd3ee16f8d67571e32096bbedf536075c4450493cddcc7eb61d2a0b438",
+  "lifecycle": "ACTIVE",
+  "owner": null,
+  "run_ref": {
+    "kind": "EXTERNAL_IMMUTABLE",
+    "provider": "GitHub",
+    "repository_id_or_resource_id": "1352411536",
+    "revision": "blob:aa896fc84c0ec3021d47afd202078e6054c6e822",
+    "path": "governance/csg/v51/runs/V51-R2-001/run-r2-03.json",
+    "digest": "sha256:c772bf3c70ad5f516427d579e8035d3de02ce7e3d3e97620789d2278784951f9"
+  },
+  "task_id": "V51-R2-03-FIXED-READONLY-FACTORY-OBSERVATION",
+  "attempt_id": "V51-R2-03-ATTEMPT-002",
+  "attempt_epoch": 2,
+  "atomic": {
+    "state": "PREPARED_NOT_DISPATCHED",
+    "unit_id": "V51-R2-03-FIXED-READONLY-FACTORY-OBSERVATION",
+    "goal": "Qualify the fixed-purpose read-only R2-03 source candidate and current exact-head review while preserving the CP200 canonical pointer, the Human Spec R2-02 stale-owner criteria, and separate later-phase install/Supervisor acceptance.",
+    "execution_fence": null
+  },
+  "last_accepted": {
+    "unit_id": "V51-R2-01-COLD-START-CANONICAL-CONTINUITY",
+    "result": "PASS_PROVIDER_CONFIRMED",
+    "provider_ref": "refs/heads/v45/factory-control",
+    "provider_commit": "fcdcf8771ce6eaa887bd761a5e9bc42e4a99c596",
+    "readback_path": "governance/csg/v51/readbacks/R2-01-POST-CP197-ATTEMPT-003-SAME-SOURCE-READBACK-20260930.json",
+    "readback_blob_oid": "1ed26dde690e0e222b9c0571d6643fb31de23f12"
+  },
+  "remote_wip": null,
+  "active_job_refs": [],
+  "unresolved_effect_refs": [],
+  "blockers": [
+    "R2_02B_STALE_OWNER_CONTROL_TRANSITION_NOT_YET_PERSISTED",
+    "R2_04_TRUSTED_CALLER_NOT_YET_ACCEPTED",
+    "R2_05_NONCIRCULAR_HOST_REPAIR_NOT_YET_ACCEPTED",
+    "R2_06_LIVE_FACTORY_MCP_INSTALL_ACCEPTANCE_NOT_ACCEPTED",
+    "R2_07_SUPERVISOR_24X7_HEARTBEAT_DURABILITY_NOT_ACCEPTED"
+  ],
+  "last_verified_gate": {
+    "gate_id": "V51-R2-02-SOURCE-CORRECTION-EXACT-HEAD",
+    "verdict": "PASS_EXACT_HEAD_AND_SAME_SOURCE_READBACK",
+    "provider_ref": "refs/heads/v45/factory-control",
+    "provider_commit": "021b360ed43f1adc5163d55433fbed2a08d14edb",
+    "readback_path": "governance/csg/v51/readbacks/R2-02-SOURCE-CORRECTION-QUALIFICATION-READBACK-20260930.json",
+    "readback_blob_oid": "6361d1700bb800ff71c2e6efd855eb8029f7938a",
+    "directory_commit": "38f4fc7cb2841e2318a97ff7a53e41b2ec07aef1"
+  },
+  "next_legal_transition": {
+    "action": "COMPLETE_C0_CANDIDATE_NORMALIZATION_AND_EXACT_HEAD_VERIFICATION_THEN_RECOMPUTE_READY",
+    "unit_id": "V51-R2-03-FIXED-READONLY-FACTORY-OBSERVATION",
+    "requires": [
+      "CP200 remains the canonical v45/factory-control pointer and checkpoint.",
+      "PR381 and PR377 stay frozen for C0; only a concrete C3 trusted-caller defect may reopen PR381 later, and PR377 remains unchanged absent a new defect.",
+      "R2-03 records exact semantic-review status as metadata; pending review and quota do not gate source qualification.",
+      "R2-03 Host mutation is NO and its mutation fence is NOT_REQUIRED.",
+      "R2-04 trusted caller, R2-05 noncircular Host repair, R2-06 live MCP installation, and R2-07 Supervisor heartbeat belong to their own later phases.",
+      "Fresh Mission-Control audit meets the Human Spec combined stale-owner criteria; executor process existence UNKNOWN does not extend expired generation-5 authority.",
+      "R2-02 remains NOT_PASS until the stale-owner control transition and same-source readback; no revoke or dispatch is performed by this candidate."
+    ],
+    "forbidden": [
+      "ALLOCATE_EXECUTION_OWNER_GENERATION_ON_NONCANONICAL_CANDIDATE",
+      "CREATE_GEN10",
+      "MARK_R2_02_PASS",
+      "MARK_R2_03_PASS",
+      "REVOKE_GEN5",
+      "HOST_DISPATCH",
+      "HOST_MUTATION",
+      "PRODUCTION",
+      "PAID_FALLBACK",
+      "WORKER_PROVIDER_WRITE_CREDENTIALS",
+      "CREATE_CP202",
+      "GLOBAL_BLOCK_WHILE_ANY_READY_LANE_EXISTS",
+      "TERMINATE_MISSION_ON_CANDIDATE_OR_BATCH_COMPLETION",
+      "REVOKE_OR_DISPATCH_IN_SAME_STALE_OWNER_CONTROL_TRANSITION",
+      "DISPATCH_BEFORE_SAME_SOURCE_READBACK_AND_READY_RECOMPUTE",
+      "PROMOTE_CP201_WITHOUT_EXACT_C0_VERIFICATION_AND_FRESH_CANONICAL_CAS"
+    ],
+    "stale_owner_control_sequence": [
+      "FRESH_PRESTATE_AND_CAS",
+      "STALE_OWNER_CONTROL_TRANSITION_ONLY",
+      "SAME_SOURCE_READBACK",
+      "RECOMPUTE_READY",
+      "NEXT_OWNER_DISPATCH_AS_SEPARATE_LATER_TRANSITION"
+    ],
+    "phase_dag": {
+      "schema": "VNEXT5_1_R2_PHASE_DAG_V1",
+      "phase_dependencies": {
+        "R2_02A": [],
+        "R2_02B": [
+          "R2_02A"
+        ],
+        "R2_03": [
+          "R2_02A"
+        ],
+        "R2_02": [
+          "R2_02B"
+        ],
+        "R2_04": [
+          "R2_02"
+        ],
+        "R2_05": [
+          "R2_04"
+        ],
+        "R2_06": [
+          "R2_03",
+          "R2_04",
+          "R2_05"
+        ],
+        "R2_07": [
+          "R2_06"
+        ]
+      },
+      "phase_ownership": {
+        "R2_03": "FIXED_PURPOSE_READONLY_OBSERVATION",
+        "R2_04": "UNIQUE_TRUSTED_CALLER",
+        "R2_05": "NONCIRCULAR_HOST_REPAIR",
+        "R2_06": "LIVE_FACTORY_MCP_INSTALL_AND_HOST_ACCEPTANCE",
+        "R2_07": "SUPERVISOR_24X7_AND_HEARTBEAT_DURABILITY"
+      },
+      "r2_03_acceptance_requires": [
+        "EXACTLY_FOUR_PUBLIC_MCP_TOOLS",
+        "FIXED_PURPOSE_READONLY_FACTORY_STATUS_AND_DIAGNOSTICS",
+        "EXACT_FROZEN_SOURCE_AND_RUNTIME_HEAD_TREE_BLOB_BINDINGS",
+        "CAPABILITY_NON_REGRESSION_CANDIDATE_EVIDENCE",
+        "NO_ARBITRARY_HOST_MUTATION_THROUGH_R2_03",
+        "CANDIDATE_LOCAL_REGRESSIONS_PASS",
+        "EXACT_HEAD_STRUCTURAL_VERIFIER_PASS",
+        "CURRENT_EXACT_HEAD_SEMANTIC_REVIEW_STATUS_REPRESENTED"
+      ],
+      "r2_03_acceptance_excludes": [
+        "R2_04",
+        "R2_05",
+        "R2_06",
+        "R2_07"
+      ],
+      "r2_03_host_mutation": false,
+      "r2_03_mutation_fence": "NOT_REQUIRED"
+    }
+  },
+  "stop_requested": false,
+  "barrier": "ACTIVE_UNIT",
+  "evidence_refs": [
+    {
+      "kind": "BUNDLE_OBJECT",
+      "path": "governance/csg/v51/current-execution-policy.json",
+      "digest": "sha256:ab94578947071cd361d95b0f1034a54c492516c8246fc3abdb8963a31c6c8447"
+    },
+    {
+      "kind": "BUNDLE_OBJECT",
+      "path": "governance/csg/v51/missions/20261002T105808+0800.json",
+      "digest": "sha256:77044b2730a971a2cc36a79935c4b304c3654a33fa0f390a9d8ff92083150683"
+    },
+    {
+      "kind": "BUNDLE_OBJECT",
+      "path": "governance/csg/v51/plans/VNEXT5.1-R2-ROOT-CAUSE-CLOSURE-PLAN-USER-ATTACHMENT-20261002.md",
+      "digest": "sha256:c5eaa1fac7d3faa8e9a8ef6306089e46417ceceff08335a64f1902975a2e04de"
+    },
+    {
+      "kind": "BUNDLE_OBJECT",
+      "path": "governance/csg/v51/policies/20261002T105808+0800-EP88.json",
+      "digest": "sha256:ab94578947071cd361d95b0f1034a54c492516c8246fc3abdb8963a31c6c8447"
+    },
+    {
+      "kind": "BUNDLE_OBJECT",
+      "path": "governance/csg/v51/readbacks/R2-03-PROMOTION-EVIDENCE-BINDINGS-20261001.json",
+      "digest": "sha256:22e2bb3ca99b91c8a33b22d926519048d77185c95a0d8eeb0583e5622ce6f700"
+    },
+    {
+      "kind": "BUNDLE_OBJECT",
+      "path": "governance/csg/v51/runs/V51-R2-001/contract-r2-03-attempt-002.json",
+      "digest": "sha256:9c359f9d44aaa92931abf31ef67c96ee03a222b7417b857affe193f67fe3f0ac"
+    },
+    {
+      "kind": "BUNDLE_OBJECT",
+      "path": "governance/csg/v51/runs/V51-R2-001/run-r2-03.json",
+      "digest": "sha256:c772bf3c70ad5f516427d579e8035d3de02ce7e3d3e97620789d2278784951f9"
+    },
+    {
+      "kind": "BUNDLE_OBJECT",
+      "path": "governance/csg/v51/trust-root-lanes/TRUST_ROOT_VERIFIER_UPGRADE_REQUIRED-v1.json",
+      "digest": "sha256:146c7e886cafa4d6809af3db0d469994b42d49b864285be155577680ddad4193"
+    },
+    {
+      "kind": "BUNDLE_OBJECT",
+      "path": "scripts/csg-v51-governance-linter.mjs",
+      "digest": "sha256:f03d7d8dedc25951c11d73ad108ed82bed2563c7d85ef0459eff9505486640b6"
+    },
+    {
+      "kind": "BUNDLE_OBJECT",
+      "path": "scripts/csg-verify-v51-r2-promotion-packet.mjs",
+      "digest": "sha256:20ffd090adbfbf1f0b1fd0bacab73d6a3a0dae1f364448d8124fd203322404fd"
+    },
+    {
+      "kind": "BUNDLE_OBJECT",
+      "path": "tests/csg/v51-governance-linter.test.mjs",
+      "digest": "sha256:ab75beec9a4d829fe5eda5dc497529aba249c183ecfb8ca6732faccc976de38f"
+    }
+  ],
+  "recorded_at": "2026-10-02T02:58:08Z",
+  "payload_digest": "sha256:6273f6c0da1b4f046299db544973ed2224814c324563b42e209b4275ba618a57"
+}

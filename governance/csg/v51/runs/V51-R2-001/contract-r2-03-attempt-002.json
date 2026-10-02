@@ -1,0 +1,230 @@
+{
+  "schema_version": "factory.contract.v1",
+  "contract_id": "V51-R2-CONTRACT-003-R2-03-ATTEMPT-002",
+  "task_id": "V51-R2-03-FIXED-READONLY-FACTORY-OBSERVATION",
+  "run_id": "V51-R2-001",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "goal": "Qualify the fixed-purpose read-only R2-03 observation source and exact frozen source pair, preserve truthful local/structural/semantic evidence classes, and keep R2-03 independent of R2-06 installation and R2-07 Supervisor acceptance.",
+  "current_spec": {
+    "id": "VNEXT5.1-R2",
+    "source_class": "EXACT_HUMAN_PROVIDED_CONSTRUCTION_SPEC_ATTACHMENT",
+    "source_commit": null,
+    "source_path": "VNEXT5.1-R2-FULL-CONSTRUCTION-SPEC-20260929.md",
+    "canonical_path": "governance/csg/v51/specs/VNEXT5.1-R2-HUMAN-CURRENT-SPEC-20260929.md",
+    "blob_oid": "1dcd2d46a35bb3a580210ab4f0d29131587cc448",
+    "sha256": "sha256:b3b805f4dd5e88a2370c456c7f678c3264ca032090c957d69116512b563b589f",
+    "byte_length": 25222
+  },
+  "include": [
+    "Exactly four public Factory MCP tools: factory_status, worker_prepare, worker_start, and host_powershell.",
+    "Fixed-purpose factory_status and read-only diagnostics semantics; R2-03 observation performs no Host mutation and requires no mutation fence.",
+    "Exact frozen source/runtime PR head, tree, base, and required producer blob bindings for PR381 and PR377.",
+    "Candidate capability non-regression evidence, including the script-capable host_powershell lineage; this is candidate evidence, not live installation acceptance.",
+    "Candidate-local regression suites and exact-head structural verifier evidence with exact current semantic review status represented.",
+    "R2-03 semantic review remains pending until a current exact-source-pair verdict is read back; old-SHA reviews and quota failures are not verdicts.",
+    "After R2-03 source acceptance, apply the Human Spec R2-02 stale-owner criteria and keep stale-owner control, same-source readback, READY recomputation, and next-owner dispatch as separate transitions.",
+    "Candidate current-execution-policy.json projects the same EP88 revision, hash, stale-owner criteria, and acyclic phase DAG in this CP201 candidate; CP200 remains the canonical prestate until selection."
+  ],
+  "exclude": [
+    "Requiring R2-04 trusted-caller acceptance as a prerequisite for R2-03 fixed-purpose read-only observation.",
+    "Requiring R2-05 noncircular Host repair as a prerequisite for R2-03 fixed-purpose read-only observation.",
+    "Requiring R2-06 live Factory MCP installation, trust provisioning, or provider-session installation/readback as a prerequisite for R2-03 candidate acceptance.",
+    "Requiring R2-07 Supervisor heartbeat durability as a prerequisite for R2-03 candidate acceptance.",
+    "Owner generation 5 revoke, Host dispatch, Host mutation, arbitrary SYSTEM PowerShell through R2-03, fifth Factory MCP public tool, Production, paid fallback, new paid services, and worker provider-write credentials.",
+    "Treating candidate-local tests or structural verification as live install acceptance, protected trust-root enforcement, or semantic-review PASS.",
+    "Repeating completed R2-02A source/model work."
+  ],
+  "affected_surfaces": [
+    "tools/csg/factory-mcp/src",
+    "tools/csg/factory-mcp/broker",
+    "tools/csg/factory-mcp/windows",
+    "tools/csg/factory-mcp/tests",
+    "governance/csg/v51/missions",
+    "governance/csg/v51/policies",
+    "governance/csg/v51/runs/V51-R2-001",
+    "governance/csg/v51/readbacks",
+    "governance/csg/v51/regressions"
+  ],
+  "requirements": [
+    "CP200 remains canonical until protected forward-only CP201 is accepted and provider-confirmed.",
+    "R2-02 remains NOT PASS; R2-02A source/model qualification is carried from its exact-head readback; R2-02B waits only on R2-03 observation capability.",
+    "Generation 5 remains STALE_EXECUTION_OWNER_CANDIDATE; no revoke, dispatch, or Host mutation.",
+    "R2-03 must provide a real fixed-purpose SYSTEM/service publisher and intended-identity read route, not only a policy schema or unpopulated reader path.",
+    "Provider/session identity may be called unavailable until supplied by an authorized provider read route; unavailable never projects as terminal.",
+    "Mission and Policy remain ACTIVE and the work-conserving regression keeps any READY lane active despite repeated parked-lane blockers.",
+    "No direct write to refs/heads/v45/factory-control; PR #382 remains Draft while exact-head semantic review and live-acceptance lanes are pending.",
+    "CP200 remains canonical; this rebuilt CP201 branch is a candidate only.",
+    "Source-only PR #381 at e16cd05e821572061321f807841ae0145ff69bc1 (30 Factory MCP paths, direct parent CP200) and runtime PR #377 at 491493627bd6ffcd51b0cd9287ab2cb465fbf9ee (12 runtime paths, direct parent main) remain separate frozen, open, one-commit Ready for Review candidates.",
+    "Source contract and synthetic integration are candidate-qualified; live trust provisioning, provider session, Supervisor heartbeat, and signed evidence remain NOT_ACCEPTED.",
+    "The exact-head semantic review lane is pending and does not block other legal nonprivileged work.",
+    "No Host mutation while CP200 policy forbids it; no owner revoke, Host dispatch, Production, paid fallback, or worker provider-write credentials.",
+    "A noncanonical PREPARED_NOT_DISPATCHED CP201 candidate has a unique candidate_instance_id, owner_generation=null, and lease_until=null; allocate the real owner generation only in canonical promotion CAS using fresh canonical and durable-consumed-generation readbacks, then write and same-source read back the canonical checkpoint."
+  ],
+  "acceptance": [
+    "R2-03 verifies exactly four public tools and fixed-purpose read-only factory_status behavior.",
+    "R2-03 binds the exact frozen PR381 and PR377 source/runtime heads, trees, bases, and required blobs.",
+    "Candidate capability non-regression and candidate-local regressions are reported at candidate scope.",
+    "Exact-head structural verifier PASS is reported separately from semantic review.",
+    "Current semantic-review states are represented as PR381=PENDING_CURRENT_HEAD and PR377=PENDING_CURRENT_SOURCE_PAIR; R2-03 remains NOT_PASS until required review evidence is current.",
+    "R2-03 Host mutation is NO and mutation fence is NOT_REQUIRED; live installation is owned by R2-06 and Supervisor heartbeat durability by R2-07.",
+    "Generation-5 human-spec stale-owner criteria are represented without an extra exact-cross-source prerequisite; process existence UNKNOWN does not extend expired authority.",
+    "Stale-owner control transition requires fresh prestate/CAS and same-source readback; READY is recomputed before any separate later owner dispatch.",
+    "Candidate current-execution-policy.json projects the same EP88 revision, hash, stale-owner criteria, and acyclic phase DAG in this CP201 candidate; CP200 remains the canonical prestate until selection."
+  ],
+  "dependencies": [
+    "CP200 canonical authority and exact frozen source pair readback.",
+    "Candidate-local R2-03 regression qualification and protected structural verifier readback.",
+    "Current exact-head semantic review status for PR381 and PR377; pending review is represented without upgrading it to PASS.",
+    "Human Spec R2-02 combined criteria: RUNNING, generation-5 lease expired, no live factory job observed, no pending receipt, and no unresolved effect; unknown process existence does not extend expired owner authority.",
+    "R2-04, R2-05, R2-06, and R2-07 acceptance are owned by their later phases and do not back-edge into R2-03."
+  ],
+  "allowed_tools": [
+    "GitHub exact-read/content/ref APIs",
+    "local native read-only process/task/service observation",
+    "bounded JSON schema/digest validation",
+    "authorized Factory MCP factory_status read-only invocation when a live connector route exists"
+  ],
+  "allowed_effects": [
+    "reversible preproduction source changes, deterministic tests, protected forward-only draft PR publication, fresh read-only provider/local observations"
+  ],
+  "max_attempts": 1,
+  "time_budget_policy": "ONE_ACTIVE_RECOVERY_OWNER_PER_MUTABLE_ATOMIC_SCOPE",
+  "expected_parent": "d39486601d851e31256852a24e9c1393b9046fe5",
+  "prestate_checkpoint_seq": 200,
+  "attempt_id": "V51-R2-03-ATTEMPT-002",
+  "attempt_epoch": 2,
+  "owner_generation": null,
+  "owner_lease_until": null,
+  "owner_principal_id": "CODEX_THREAD_01a0ed35-6063-7912-9872-7d4122a3b125",
+  "excludes": [
+    "Installing trust roots or mutating Host state before explicit policy authorization.",
+    "Treating synthetic keys, temporary stores, aggregate job counts, or task state as live acceptance."
+  ],
+  "candidate_instance_id": "7d44cd13-4f90-4f48-b072-a020985dbbd6",
+  "proposed_owner_generation_policy": "NEXT_AVAILABLE_AT_PROMOTION",
+  "lease_duration_seconds": 14400,
+  "execution_owner_allocated": false,
+  "owner_allocation_architecture_record_path": "governance/csg/v51/readbacks/R2-03-OWNER-ALLOCATION-ARCHITECTURE-CORRECTION-20261001.json",
+  "source_pair": [
+    {
+      "pr_number": 381,
+      "exact_head": "e16cd05e821572061321f807841ae0145ff69bc1",
+      "tree": "71e5f034db151a963f4b0b71564d34fcfe6ff627",
+      "base_sha": "d39486601d851e31256852a24e9c1393b9046fe5"
+    },
+    {
+      "pr_number": 377,
+      "exact_head": "491493627bd6ffcd51b0cd9287ab2cb465fbf9ee",
+      "tree": "02dbc7f75cc80abaf4b5efd2ca7b918ff7462218",
+      "base_sha": "06da5fa224b65b9346e8b250dcea686d0ed458ee"
+    }
+  ],
+  "source_binding_path": "governance/csg/v51/readbacks/R2-03-PROMOTION-EVIDENCE-BINDINGS-20261001.json",
+  "prestate_readback_path": "governance/csg/v51/readbacks/R2-03-PROMOTION-EVIDENCE-BINDINGS-20261001.json",
+  "owner_generation_allocation": "DEFERRED_TO_CANONICAL_PROMOTION_CAS",
+  "candidate_branch": "codex/v51-r2-governance-self-lock-normalization-20261002",
+  "recorded_at": "2026-10-02T02:05:06Z",
+  "canonical_selection_status": "CANDIDATE_ONLY_CP200_REMAINS_CANONICAL",
+  "live_acceptance": "NOT_ACCEPTED",
+  "phase_dag": {
+    "schema": "VNEXT5_1_R2_PHASE_DAG_V1",
+    "phase_dependencies": {
+      "R2_02A": [],
+      "R2_02B": [
+        "R2_02A"
+      ],
+      "R2_03": [
+        "R2_02A"
+      ],
+      "R2_02": [
+        "R2_02B"
+      ],
+      "R2_04": [
+        "R2_02"
+      ],
+      "R2_05": [
+        "R2_04"
+      ],
+      "R2_06": [
+        "R2_03",
+        "R2_04",
+        "R2_05"
+      ],
+      "R2_07": [
+        "R2_06"
+      ]
+    },
+    "phase_ownership": {
+      "R2_03": "FIXED_PURPOSE_READONLY_OBSERVATION",
+      "R2_04": "UNIQUE_TRUSTED_CALLER",
+      "R2_05": "NONCIRCULAR_HOST_REPAIR",
+      "R2_06": "LIVE_FACTORY_MCP_INSTALL_AND_HOST_ACCEPTANCE",
+      "R2_07": "SUPERVISOR_24X7_AND_HEARTBEAT_DURABILITY"
+    },
+    "r2_03_acceptance_requires": [
+      "EXACTLY_FOUR_PUBLIC_MCP_TOOLS",
+      "FIXED_PURPOSE_READONLY_FACTORY_STATUS_AND_DIAGNOSTICS",
+      "EXACT_FROZEN_SOURCE_AND_RUNTIME_HEAD_TREE_BLOB_BINDINGS",
+      "CAPABILITY_NON_REGRESSION_CANDIDATE_EVIDENCE",
+      "NO_ARBITRARY_HOST_MUTATION_THROUGH_R2_03",
+      "CANDIDATE_LOCAL_REGRESSIONS_PASS",
+      "EXACT_HEAD_STRUCTURAL_VERIFIER_PASS",
+      "CURRENT_EXACT_HEAD_SEMANTIC_REVIEW_STATUS_REPRESENTED"
+    ],
+    "r2_03_acceptance_excludes": [
+      "R2_04",
+      "R2_05",
+      "R2_06",
+      "R2_07"
+    ],
+    "r2_03_host_mutation": false,
+    "r2_03_mutation_fence": "NOT_REQUIRED"
+  },
+  "r2_03_live_install_acceptance_required": false,
+  "r2_03_semantic_review_by_source": {
+    "pr381": "PENDING_CURRENT_HEAD",
+    "pr377": "PENDING_CURRENT_SOURCE_PAIR"
+  },
+  "r2_02_stale_owner_evidence": {
+    "source_class": "USER_PROVIDED_FRESH_MISSION_CONTROL_AUDIT_NOT_INDEPENDENT_PROVIDER_READBACK",
+    "run_state": "RUNNING",
+    "generation_5_lease_expired": true,
+    "factory_live_job_count": 0,
+    "active_factory_job": "NONE_OBSERVED",
+    "pending_receipt_count": 0,
+    "unresolved_effect_refs": [],
+    "executor_process_existence": "UNKNOWN",
+    "unknown_executor_process_extends_expired_owner_authority": false,
+    "assessment": "SATISFIED_PENDING_STALE_OWNER_CONTROL_TRANSITION"
+  },
+  "r2_02_stale_owner_control_sequence": [
+    "FRESH_PRESTATE_AND_CAS",
+    "STALE_OWNER_CONTROL_TRANSITION_ONLY",
+    "SAME_SOURCE_READBACK",
+    "RECOMPUTE_READY",
+    "NEXT_OWNER_DISPATCH_AS_SEPARATE_LATER_TRANSITION"
+  ],
+  "change_reason": "Human-directed correction removes policy gates stronger than the Human Current Spec and restores the acyclic R2-02/R2-03/R2-04/R2-05/R2-06/R2-07 phase ownership. R2-03 is candidate source qualification and exact-head review; live installation remains R2-06 and Supervisor heartbeat durability remains R2-07. CP200 remains canonical; no owner transition or dispatch is performed by this candidate.",
+  "future_phase_acceptance_state": {
+    "R2_04": {
+      "phase_owner": "UNIQUE_TRUSTED_CALLER",
+      "trust_provisioning": "NOT_ACCEPTED",
+      "provider_session_route": "NOT_ACCEPTED",
+      "signed_evidence_path": "NOT_ACCEPTED"
+    },
+    "R2_05": {
+      "phase_owner": "NONCIRCULAR_HOST_REPAIR",
+      "noncircular_host_repair": "NOT_ACCEPTED"
+    },
+    "R2_06": {
+      "phase_owner": "LIVE_FACTORY_MCP_INSTALL_AND_HOST_ACCEPTANCE",
+      "factory_mcp_install_acceptance": "NOT_ACCEPTED"
+    },
+    "R2_07": {
+      "phase_owner": "SUPERVISOR_24X7_AND_HEARTBEAT_DURABILITY",
+      "supervisor_24x7": "NOT_ACCEPTED",
+      "supervisor_heartbeat_route": "NOT_ACCEPTED",
+      "heartbeat_durability": "NOT_ACCEPTED"
+    }
+  }
+}
