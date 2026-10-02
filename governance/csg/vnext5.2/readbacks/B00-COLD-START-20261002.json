@@ -1,0 +1,236 @@
+{
+  "schema": "vnext5.2.b00-cold-start-readback.v1",
+  "observed_at_utc": "2026-10-02T14:59:50Z",
+  "client_date_taipei": "2026-10-02",
+  "status": "B00_COMPLETE_NONCANONICAL",
+  "artifact_class": "DURABLE_OBSERVATION_AND_READY_QUEUE",
+  "canonical_selection_claim": false,
+  "owner": null,
+  "owner_generation": null,
+  "lease_until": null,
+  "adoption_reference": {
+    "kind": "HUMAN_DIRECTIVE_IN_CURRENT_SESSION",
+    "date_taipei": "2026-10-02",
+    "instruction": "採用並執行這份 VNEXT5.2 最佳化施工規格及入口契約；先 B00 fresh-read，第一個 durable delta 後直接繼續。保留規格中的 Human gate。",
+    "scope": "Adopt the attached V5.2 construction specification for reversible pre-Production work within existing authority; this does not itself publish a canonical control selection or pass operation-specific Human gates."
+  },
+  "package_integrity": {
+    "path": "C:\\Users\\x\\Downloads\\VNEXT5.2-最佳化施工接手包-20261002.zip",
+    "sha256": "effdedb1d38cdd82ff0c4b1263c68ec23f2bae3587f22081b8015b58da7e5713",
+    "manifest_entries": 16,
+    "zip_payload_entries": 16,
+    "failures": 0,
+    "result": "ALL_MANIFEST_ENTRIES_MATCH"
+  },
+  "provider_identity": {
+    "provider": "GitHub",
+    "repository_full_name": "PT-Original-Point/ptysd-vnext42-governance-sandbox",
+    "repository_id": 1352411536,
+    "visibility": "public",
+    "archived": false,
+    "connector_permission_snapshot": {
+      "admin": true,
+      "push": true,
+      "pull": true
+    },
+    "local_checkout": false
+  },
+  "project_directory": {
+    "ref": "refs/heads/governance/project-directory",
+    "head_commit": "38f4fc7cb2841e2318a97ff7a53e41b2ec07aef1",
+    "record_path": "directory/projects/CHATGPT_GLOBAL_SKILL_GOVERNANCE.json",
+    "record_blob": "377dcf88279d3ba433d099a7cc9f78af8c86b8ae",
+    "binding_id": "CSG-GOVERNANCE-BINDING-V2",
+    "binding_generation": 2,
+    "directory_revision": 5,
+    "registration_state": "BOUND",
+    "control_locator": {
+      "ref": "refs/heads/v45/factory-control",
+      "current_path": "governance/csg/current.json"
+    }
+  },
+  "canonical_control": {
+    "ref": "refs/heads/v45/factory-control",
+    "head_commit": "d39486601d851e31256852a24e9c1393b9046fe5",
+    "current_pointer_path": "governance/csg/current.json",
+    "current_pointer_blob": "2481db71189e0f4cef024873b07c3d26e605cc9f",
+    "checkpoint_seq": 200,
+    "checkpoint_path": "governance/csg/checkpoints/000200.json",
+    "checkpoint_blob": "88524eee6c06f1fcf4b07053d5baca3324b06299",
+    "transition_id": "V51-R2-GOAL-LIFECYCLE-REBASE-200",
+    "mission_anchor": {
+      "revision": "dc3b419d8abf696b04b5bfdbdab7b3c8b70526cb",
+      "path": "governance/csg/v51/missions/20260930T104733+0800.json",
+      "blob": "2a913c7c5585bedda72d54df626cd38ae52bdade"
+    },
+    "policy_anchor": {
+      "revision": "dc3b419d8abf696b04b5bfdbdab7b3c8b70526cb",
+      "path": "governance/csg/v51/policies/20260930T104733+0800-EP80.json",
+      "blob": "a31f86215c8d0fcc2cee0183f75d18158bb3d9fb"
+    },
+    "current_spec": {
+      "revision": "021f1752448ac0d16cb6bdc0d49231976a839cf2",
+      "path": "governance/csg/v51/specs/VNEXT5.1-R2-HUMAN-CURRENT-SPEC-20260929.md",
+      "blob": "1dcd2d46a35bb3a580210ab4f0d29131587cc448"
+    },
+    "mission_status": "ACTIVE",
+    "mission_revision": "20260930T104733+0800",
+    "current_phase": "VNEXT5_1_R2_CONTROL_PLANE_RECOVERY",
+    "active_unit": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION",
+    "run_id": "V51-R2-001",
+    "run_revision": 7,
+    "run_state": "RUNNING",
+    "run_path": "governance/csg/v51/runs/V51-R2-001/run-r2-02.json",
+    "run_revision_commit": "9a7dc324f680c303a83123eb6a7b2cc7b410fda2",
+    "run_blob": "09245a8ec5c320bafa287b6bafc9475b52d21d75",
+    "attempt_id": "V51-R2-02-ATTEMPT-002",
+    "attempt_epoch": 2,
+    "attempt_contract_path": "governance/csg/v51/runs/V51-R2-001/contract-r2-02-attempt-002.json",
+    "attempt_contract_blob": "4d0b592346e42bcd74518ca312f229f11fe911ed",
+    "stop_requested": false,
+    "canonical_active_job_refs": [],
+    "canonical_unresolved_effect_refs": [],
+    "run_unresolved_operation_ids": [],
+    "owner": {
+      "principal": "CODEX_THREAD_01a0ed35-6063-7912-9872-7d4122a3b125",
+      "generation": 5,
+      "scope": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION",
+      "lease_until": "2026-09-29T18:44:11Z",
+      "status": "STALE_EXECUTION_OWNER_CANDIDATE",
+      "stale_confirmed": false,
+      "revocation": false
+    },
+    "blockers": [
+      "R2_02_AUTHORIZED_LIVE_EXECUTOR_OBSERVATION_REQUIRED_BEFORE_STALE_OWNER_CONFIRMATION_OR_HOST_DISPATCH",
+      "R2_02_GEN5_EXACT_LIVENESS_PROOF_INSUFFICIENT",
+      "R2_02_HYPERV_HOSTGUARD_LOCAL_OS_PRIVILEGE_REQUIRED"
+    ],
+    "live_executor_liveness": "UNVERIFIED; lease expiry and canonical empty job/effect arrays do not prove process termination",
+    "existing_authority": {
+      "reversible_preproduction_persistent": true,
+      "routine_per_session_reauthorization": false,
+      "production_allowed": false,
+      "paid_fallback_allowed": false,
+      "new_paid_cost_allowed": false,
+      "worker_provider_write_credentials_allowed": false,
+      "business_project_auto_admission": false,
+      "human_reserved_gates": [
+        "PRODUCTION_FINAL_AUTHORIZATION",
+        "NEW_PAID_COST_OR_SERVICE",
+        "LEGAL_CONTRACT_SIGNATURE_OR_IDENTITY",
+        "OAUTH_OR_MFA",
+        "MAJOR_IRREVERSIBLE_AUTHORITY_EXPANSION",
+        "UNRECONCILABLE_AMBIGUOUS_EXTERNAL_EFFECT"
+      ]
+    }
+  },
+  "source_candidates": [
+    {
+      "id": "PR381",
+      "state": "open",
+      "draft": false,
+      "merged": false,
+      "head": "e16cd05e821572061321f807841ae0145ff69bc1",
+      "base": "d39486601d851e31256852a24e9c1393b9046fe5",
+      "tree": "71e5f034db151a963f4b0b71564d34fcfe6ff627",
+      "current_source_path": "tools/csg/factory-mcp/broker/trusted-caller-boundary.ps1",
+      "blob": "e343cccd44e344c930981a58a19f2f3332eb0d27",
+      "finding": "Lines 1 and 42 hard-code CHATGPT_GLOBAL_SKILL_GOVERNANCE / REQUEST_PROJECT_MISMATCH; exact provider content freshly read at e16cd05."
+    },
+    {
+      "id": "PR377",
+      "state": "open",
+      "draft": false,
+      "merged": false,
+      "head": "491493627bd6ffcd51b0cd9287ab2cb465fbf9ee",
+      "tree": "02dbc7f75cc80abaf4b5efd2ca7b918ff7462218",
+      "rule": "Do not modify until PR381 source head is frozen, per adopted entry."
+    },
+    {
+      "id": "PR383",
+      "state": "open",
+      "draft": true,
+      "merged": false,
+      "head": "3b328c9ae8dbf107cbe581914ecae6773ab8f2bf",
+      "tree": "bdd24579a6df623ccef4d5a490e479ede3ec100f",
+      "canonical": false
+    },
+    {
+      "id": "HANYAO_PR88",
+      "state": "open",
+      "draft": true,
+      "merged": false,
+      "head": "7cd87cb0f69b5586719c1265828df20879b28bf2",
+      "scope_reported": "observability only"
+    }
+  ],
+  "evidence_boundaries": {
+    "pr_body_check_results": "body-reported only; no fresh workflow-job read was performed",
+    "local_tests": "not run",
+    "live_factory_or_host_observation": "not available in this B00 session",
+    "production_or_live_writes": "not performed",
+    "goal_projection": {
+      "current_codex_goal": null,
+      "canonical_mission_remains_authority": true
+    }
+  },
+  "local_environment": {
+    "workspace": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠",
+    "git_state": "empty repository, no HEAD commit, branch master, no remote",
+    "worktrees": [
+      "workspace root only; no additional worktree"
+    ],
+    "existing_workspace_artifacts": "many untracked historical V5.0/V5.1 files and directories; preserve; do not clean/reset",
+    "tools": {
+      "git": true,
+      "node": true,
+      "npm": true,
+      "powershell_5_1": true,
+      "pwsh": true,
+      "github_connector": true,
+      "factory_mcp_connector": false
+    },
+    "source_checkout": "not present"
+  },
+  "admission_and_scope": {
+    "hanyao_repository_authority": "NOT_VERIFIED",
+    "hanyao_pr88_metadata": "read-only metadata observed; no D1/Ads data query and no credential/environment search",
+    "hanyao_read_scope": "NOT_ESTABLISHED_BY_THIS_READBACK; A00 can prepare admission packet, but park live query until exact scope/target/custodian are verified",
+    "host_privileged_route": "UNAVAILABLE in current tool surface; previous provider record requires local OS privilege"
+  },
+  "ready_queue": [
+    {
+      "task": "B01",
+      "status": "READY",
+      "next": "create discoverable ownerless V5.2 contract candidate; no selection claim; preserve explicit C1 gate"
+    },
+    {
+      "task": "M01",
+      "status": "READY_LOCAL_SOURCE",
+      "next": "obtain isolated exact PR381 source checkout; map caller/project authority; edit concrete hard-code fix locally; preserve four public tools, exact Host binding, Task SID/ACL/repair/helper"
+    },
+    {
+      "task": "A00",
+      "status": "READY_FOR_READ_ADMISSION_PACKET_ONLY",
+      "next": "verify HANYAO own Directory/read target/custodian before sensitive reads"
+    },
+    {
+      "task": "C1",
+      "status": "HUMAN_AND_PROTECTED_GATE",
+      "next": "no canonical pointer/Mission/Policy transition until exact protected procedure and same-source readback authority"
+    },
+    {
+      "task": "C2",
+      "status": "PARKED_EXACT_LANE",
+      "next": "no stale-owner confirmation/revoke/dispatch until exact cross-source live proof"
+    }
+  ],
+  "publication": {
+    "status": "LOCAL_SNAPSHOT_PREPARED_FOR_NONCANONICAL_PROVIDER_PUBLICATION",
+    "intended_repository": "PT-Original-Point/ptysd-vnext42-governance-sandbox",
+    "base_commit": "d39486601d851e31256852a24e9c1393b9046fe5",
+    "intended_branch": "codex/vnext5.2-b00-cold-start-20261002",
+    "path": "governance/csg/vnext5.2/readbacks/B00-COLD-START-20261002.json",
+    "canonical_selection": false
+  }
+}
