@@ -300,8 +300,8 @@
       ],
       "effect_class": "LOCAL_SPIKE",
       "mandatory_for_core": true,
-      "status": "PLANNED_NOT_EXECUTED",
-      "done_evidence": "scorecard + chosen qualified route or bounded fallback",
+      "status": "BOUNDED_FALLBACK_SELECTED_STATIC_BAKEOFF",
+      "done_evidence": "static scorecard + bounded Supervisor source-only fallback; governance/csg/vnext5.2/readbacks/D01-RUNTIME-BAKEOFF-20261003.md",
       "operation_authority_required": false,
       "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
       "future_phase_prerequisite": false
