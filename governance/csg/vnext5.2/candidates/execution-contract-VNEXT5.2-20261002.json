@@ -1,0 +1,1082 @@
+{
+  "schema": "ptysd.v52.construction-contract.candidate.v1",
+  "spec_revision": "VNEXT5.2",
+  "document_revision": "OPTIMIZED-20261002",
+  "role": "NONCANONICAL_DOCUMENT_PROJECTION",
+  "spec_file": "01-VNEXT5.2-最佳化詳細施工規格-20261002.md",
+  "human_adoption": {
+    "status": "ACCEPTED_EXPLICIT_HUMAN_DIRECTIVE",
+    "current_request_scope": "EXECUTE_REVERSIBLE_NONPRODUCTION_CANDIDATE_WORK_WITH_RESERVED_HUMAN_GATES_PRESERVED",
+    "not_production_authorization": true
+  },
+  "observed_baseline": {
+    "checkpoint": 200,
+    "spec": "VNEXT5.1-R2",
+    "control_head": "d39486601d851e31256852a24e9c1393b9046fe5",
+    "snapshot_file": "governance/csg/vnext5.2/readbacks/B00-COLD-START-20261002.json",
+    "fresh_read_required_at_execution": true
+  },
+  "candidate_execution_owner": {
+    "owner": null,
+    "owner_generation": null,
+    "lease_until": null,
+    "execution_owner_allocated": false,
+    "proposed_owner_generation_policy": "NEXT_AVAILABLE_AT_PROMOTION",
+    "candidate_instance_id": "V52-OPTIMIZED-HANDOFF-20261002",
+    "lease_duration_seconds": "CONFIGURE_BOUNDED_TTL_AT_EXECUTION_CLAIM",
+    "allocation_transaction": "FRESH_CANONICAL_PRESTATE_AND_CONSUMED_IDENTITIES_CAS_AT_ACTUAL_SELECTION"
+  },
+  "target_executor": {
+    "model": "gpt-6-luna",
+    "reasoning_effort": "max",
+    "not_a_claim_current_model_changed": true,
+    "availability": "VERIFY_SESSION_TOOLS_AND_ACCOUNT"
+  },
+  "authority": {
+    "canonical_count": 1,
+    "runtime_journal_is_authority": false,
+    "goal_is_authority": false,
+    "report_is_authority": false,
+    "selection_requires": "AUTHORIZED_PROTECTED_FLOW_OR_ENFORCED_BACKEND_CAS_PLUS_READBACK",
+    "old_writer_quarantine_requires": "BACKEND_ENFORCED_SCOPE_REJECTION_NOT_DOCUMENT_LABEL"
+  },
+  "safety": {
+    "public_tools": [
+      "factory_status",
+      "worker_prepare",
+      "worker_start",
+      "host_powershell"
+    ],
+    "public_tool_count": 4,
+    "worker_provider_write_credentials": 0,
+    "production_default_allowed": false,
+    "host_powershell_timeout_seconds": {
+      "min": 1,
+      "max": 300
+    },
+    "unknown_effect_blind_retry_allowed": false,
+    "canonical_force_update_allowed": false,
+    "task_sid_alone_proves_remote_project_authority": false,
+    "production_false_alone_proves_script_safety": false
+  },
+  "reserved_human_gates": [
+    "PRODUCTION",
+    "NEW_PAID_COST",
+    "LEGAL_OR_IDENTITY",
+    "INTERACTIVE_OAUTH_MFA",
+    "MAJOR_IRREVERSIBLE_TRUST_EXPANSION",
+    "UNRECONCILABLE_AMBIGUOUS_EFFECT_AT_TARGET"
+  ],
+  "effects": {
+    "READ_ONLY": "No Host/business/canonical mutation; existing target read authorization still required",
+    "PROVIDER_READ": "Use admitted Project scope, least-privilege adapter, fixed queries and redacted receipts",
+    "CANDIDATE_SOURCE": "Reversible isolated source edit/local qualification; no canonical/Host selection",
+    "CANDIDATE_PUBLISH": "Existing authorized repo candidate write; expected-ref CAS; never force canonical",
+    "LOCAL_SPIKE": "Offline/isolated proof of concept with no new paid dependency",
+    "CONTROL_CAS": "Human-adopted target contract and protected actual canonical selection/readback",
+    "TARGET_FENCE": "Actual backend old-writer rejection and readback before shared mutation",
+    "HOST_REVERSIBLE": "Exact Host + authenticated trusted dispatcher + OS boundary + owned rollback + enforced target fence",
+    "PROJECT_REVERSIBLE": "Own Project non-Production authority, fixed retirement plan and rollback",
+    "ISOLATED_AGENT": "Actual qualified VM/cell route; no worker provider-write credentials; effect-specific authority for dispatch",
+    "TRUST_CONFIGURATION": "Only existing authority coverage; major expansion reserved; candidate/read tasks may proceed",
+    "LIVE_SURVIVAL": "Reversible isolated canary in authorized window; real reboot/crash not simulation"
+  },
+  "tasks": [
+    {
+      "id": "B00",
+      "title": "Cold-start authority and inventory",
+      "depends_on": [],
+      "effect_class": "READ_ONLY",
+      "mandatory_for_core": true,
+      "status": "B00_COMPLETE_NONCANONICAL",
+      "done_evidence": "durable snapshot + READY queue",
+      "operation_authority_required": false,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "future_phase_prerequisite": false
+    },
+    {
+      "id": "B01",
+      "title": "Bootstrap immutable task-contract candidate",
+      "depends_on": [
+        "B00"
+      ],
+      "effect_class": "CANDIDATE_SOURCE",
+      "mandatory_for_core": true,
+      "status": "COMPLETE_OWNERLESS_NONCANONICAL",
+      "done_evidence": "discoverable ownerless contract, no selection claim",
+      "operation_authority_required": false,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "future_phase_prerequisite": false
+    },
+    {
+      "id": "C1",
+      "title": "Protected V5.2 canonical rebase",
+      "depends_on": [
+        "B01"
+      ],
+      "effect_class": "CONTROL_CAS",
+      "mandatory_for_core": true,
+      "status": "HUMAN_AND_PROTECTED_GATE",
+      "done_evidence": "selected V5.2 pointer + same-source readback",
+      "operation_authority_required": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "future_phase_prerequisite": false
+    },
+    {
+      "id": "C2",
+      "title": "Backend old-writer quarantine",
+      "depends_on": [
+        "C1"
+      ],
+      "effect_class": "TARGET_FENCE",
+      "mandatory_for_core": true,
+      "status": "PARKED_EXACT_LANE",
+      "done_evidence": "actual backend rejection of old writer for dispatch scope",
+      "operation_authority_required": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "future_phase_prerequisite": false
+    },
+    {
+      "id": "M01",
+      "title": "Salvage Factory MCP and split Project authority",
+      "depends_on": [
+        "B00"
+      ],
+      "effect_class": "CANDIDATE_SOURCE",
+      "mandatory_for_core": true,
+      "status": "SOURCE_CANDIDATE_LOCAL_QUALIFICATION_PASS_REVIEW_PENDING",
+      "done_evidence": "four-tool parity + qualified donor helper + no project hardcode",
+      "operation_authority_required": false,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "future_phase_prerequisite": false
+    },
+    {
+      "id": "M02",
+      "title": "Dependency qualification with safe fallback",
+      "depends_on": [
+        "M01"
+      ],
+      "effect_class": "CANDIDATE_SOURCE",
+      "mandatory_for_core": true,
+      "status": "LOCAL_CANARY_PASS_REVIEW_PENDING",
+      "done_evidence": "exact qualified bundle; upgrade or qualified fallback, not fake upgrade PASS",
+      "operation_authority_required": false,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "future_phase_prerequisite": false
+    },
+    {
+      "id": "M03",
+      "title": "One-commit source freeze and exact qualification",
+      "depends_on": [
+        "M02"
+      ],
+      "effect_class": "CANDIDATE_PUBLISH",
+      "mandatory_for_core": true,
+      "status": "PLANNED_NOT_EXECUTED",
+      "done_evidence": "frozen source identity + scoped checks/review status",
+      "operation_authority_required": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "future_phase_prerequisite": false
+    },
+    {
+      "id": "M04",
+      "title": "Live Task SID, repair, install and parity",
+      "depends_on": [
+        "M03",
+        "C2"
+      ],
+      "effect_class": "HOST_REVERSIBLE",
+      "mandatory_for_core": true,
+      "status": "PLANNED_NOT_EXECUTED",
+      "done_evidence": "actual Host/boot/token/ACL/helper/tools/receipt proof",
+      "operation_authority_required": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "future_phase_prerequisite": false
+    },
+    {
+      "id": "M05",
+      "title": "Fixed read-only and native health closure",
+      "depends_on": [
+        "M04"
+      ],
+      "effect_class": "READ_ONLY",
+      "mandatory_for_core": true,
+      "status": "PLANNED_NOT_EXECUTED",
+      "done_evidence": "read-only positive and fail-closed live matrix; fallback limits explicit",
+      "operation_authority_required": false,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "future_phase_prerequisite": false
+    },
+    {
+      "id": "A00",
+      "title": "HANYAO authority admission and read preflight",
+      "depends_on": [
+        "B00"
+      ],
+      "effect_class": "READ_ONLY",
+      "mandatory_for_core": true,
+      "status": "READY_FOR_READ_ADMISSION_PACKET_ONLY",
+      "done_evidence": "own Project read-scope/target/data handling",
+      "operation_authority_required": false,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "future_phase_prerequisite": false
+    },
+    {
+      "id": "A01",
+      "title": "D1 direct bounded read",
+      "depends_on": [
+        "A00"
+      ],
+      "effect_class": "PROVIDER_READ",
+      "mandatory_for_core": true,
+      "status": "PLANNED_NOT_EXECUTED",
+      "done_evidence": "SELECT receipt + write denial on isolated fixture",
+      "operation_authority_required": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "future_phase_prerequisite": false
+    },
+    {
+      "id": "A02",
+      "title": "Google Ads direct bounded read",
+      "depends_on": [
+        "A00"
+      ],
+      "effect_class": "PROVIDER_READ",
+      "mandatory_for_core": true,
+      "status": "PLANNED_NOT_EXECUTED",
+      "done_evidence": "explicit adwords scope, Ads grant/dev token, searchStream receipt",
+      "operation_authority_required": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "future_phase_prerequisite": false
+    },
+    {
+      "id": "A03",
+      "title": "WIF credential qualification",
+      "depends_on": [
+        "A00"
+      ],
+      "effect_class": "TRUST_CONFIGURATION",
+      "mandatory_for_core": false,
+      "status": "PLANNED_NOT_EXECUTED",
+      "done_evidence": "short-lived access token + read parity + negative identity checks",
+      "operation_authority_required": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "future_phase_prerequisite": false
+    },
+    {
+      "id": "A04",
+      "title": "Business read reconciliation and PR88 readiness",
+      "depends_on": [
+        "A01",
+        "A02"
+      ],
+      "effect_class": "PROVIDER_READ",
+      "mandatory_for_core": true,
+      "status": "PLANNED_NOT_EXECUTED",
+      "done_evidence": "fresh event-window chain, no Production write",
+      "operation_authority_required": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "future_phase_prerequisite": false
+    },
+    {
+      "id": "A05",
+      "title": "Retire normal Host provider runner after parity",
+      "depends_on": [
+        "A04"
+      ],
+      "effect_class": "PROJECT_REVERSIBLE",
+      "mandatory_for_core": true,
+      "status": "PLANNED_NOT_EXECUTED",
+      "done_evidence": "normal native route; rollback and credential retirement readback",
+      "operation_authority_required": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "future_phase_prerequisite": false
+    },
+    {
+      "id": "D01",
+      "title": "Bounded Restate/DBOS/minimal-runtime bakeoff",
+      "depends_on": [
+        "B00"
+      ],
+      "effect_class": "LOCAL_SPIKE",
+      "mandatory_for_core": true,
+      "status": "PLANNED_NOT_EXECUTED",
+      "done_evidence": "scorecard + chosen qualified route or bounded fallback",
+      "operation_authority_required": false,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "future_phase_prerequisite": false
+    },
+    {
+      "id": "F01",
+      "title": "One actual isolated agent route",
+      "depends_on": [
+        "B00"
+      ],
+      "effect_class": "ISOLATED_AGENT",
+      "mandatory_for_core": true,
+      "status": "PLANNED_NOT_EXECUTED",
+      "done_evidence": "CLI/auth/capability/channel + task/cancel/receipt proof",
+      "operation_authority_required": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "future_phase_prerequisite": false
+    },
+    {
+      "id": "D02",
+      "title": "Executable runtime and non-dispatching shadow",
+      "depends_on": [
+        "D01",
+        "F01"
+      ],
+      "effect_class": "CANDIDATE_SOURCE",
+      "mandatory_for_core": true,
+      "status": "PLANNED_NOT_EXECUTED",
+      "done_evidence": "entrypoint/runtime/ports/wake/journal/restore + shadow read only",
+      "operation_authority_required": false,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "future_phase_prerequisite": false
+    },
+    {
+      "id": "D03",
+      "title": "Single active runtime cutover",
+      "depends_on": [
+        "D02",
+        "C2",
+        "T01"
+      ],
+      "effect_class": "HOST_REVERSIBLE",
+      "mandatory_for_core": true,
+      "status": "PLANNED_NOT_EXECUTED",
+      "done_evidence": "actual command-to-receipt and single dispatch role",
+      "operation_authority_required": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "future_phase_prerequisite": false
+    },
+    {
+      "id": "D04",
+      "title": "UI-gone crash reboot and restore acceptance",
+      "depends_on": [
+        "D03"
+      ],
+      "effect_class": "LIVE_SURVIVAL",
+      "mandatory_for_core": true,
+      "status": "PLANNED_NOT_EXECUTED",
+      "done_evidence": "actual crash/reboot/24h/restore evidence",
+      "operation_authority_required": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "future_phase_prerequisite": false
+    },
+    {
+      "id": "F02",
+      "title": "N2 fleet fairness and single integration lane",
+      "depends_on": [
+        "D03",
+        "F01"
+      ],
+      "effect_class": "ISOLATED_AGENT",
+      "mandatory_for_core": true,
+      "status": "PLANNED_NOT_EXECUTED",
+      "done_evidence": "real parallel nonconflicting slices + capacity release + writer serialization",
+      "operation_authority_required": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "future_phase_prerequisite": false
+    },
+    {
+      "id": "T01",
+      "title": "Evidence levels and trusted build-route qualification",
+      "depends_on": [
+        "B00"
+      ],
+      "effect_class": "READ_ONLY",
+      "mandatory_for_core": true,
+      "status": "PLANNED_NOT_EXECUTED",
+      "done_evidence": "actual trust boundary/coverage; not assume runner-group eligibility",
+      "operation_authority_required": false,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "future_phase_prerequisite": false
+    },
+    {
+      "id": "T02",
+      "title": "Attestation and telemetry improvements",
+      "depends_on": [
+        "T01"
+      ],
+      "effect_class": "TRUST_CONFIGURATION",
+      "mandatory_for_core": false,
+      "status": "PLANNED_NOT_EXECUTED",
+      "done_evidence": "eligible provenance and minimal telemetry, no second authority",
+      "operation_authority_required": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "future_phase_prerequisite": false
+    },
+    {
+      "id": "X01",
+      "title": "Core any-state closure and canonical acceptance",
+      "depends_on": [
+        "C1",
+        "C2",
+        "M05",
+        "A05",
+        "D04",
+        "F02",
+        "T01"
+      ],
+      "effect_class": "CONTROL_CAS",
+      "mandatory_for_core": true,
+      "status": "PLANNED_NOT_EXECUTED",
+      "done_evidence": "every applicable required case accepted at correct level + canonical readback",
+      "operation_authority_required": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "future_phase_prerequisite": false
+    }
+  ],
+  "acceptance_cases": [
+    {
+      "id": "H01",
+      "claim": "Raw source identity",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "H02",
+      "claim": "Mission semantic consistency",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "H03",
+      "claim": "Visibility error is not absence",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "H04",
+      "claim": "UI is not authority",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "H05",
+      "claim": "State schema integrity",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "H06",
+      "claim": "Scope authorization cannot expand",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "H07",
+      "claim": "PS5.1 encoding",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "H08",
+      "claim": "Immutable prestate",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "H09",
+      "claim": "Atomic owner claim",
+      "minimum_level": "SYSTEM_SURVIVAL",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "H10",
+      "claim": "Project-bound journal",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "H11",
+      "claim": "Worker self-report not acceptance",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "H12",
+      "claim": "Lease expiry not process death",
+      "minimum_level": "SYSTEM_SURVIVAL",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "H13",
+      "claim": "Session resume not job adoption",
+      "minimum_level": "SYSTEM_SURVIVAL",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "H14",
+      "claim": "Epoch not secret",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "H15",
+      "claim": "Unknown effect readback before replay",
+      "minimum_level": "LIVE_PROVIDER_READ",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "H16",
+      "claim": "No unauthorized side channel",
+      "minimum_level": "SYSTEM_SURVIVAL",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "H17",
+      "claim": "Failure-domain scope not fake HA",
+      "minimum_level": "SYSTEM_SURVIVAL",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "H18",
+      "claim": "No second canonical authority",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "H19",
+      "claim": "Reject duplicate JSON keys",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "H20",
+      "claim": "Project Directory before execution",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "H21",
+      "claim": "No public candidate on privileged runner",
+      "minimum_level": "PROTECTED_STRUCTURAL",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "H22",
+      "claim": "Canonical no force",
+      "minimum_level": "CANONICAL_SELECTION",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "H23",
+      "claim": "CI queue not business authority",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "H24",
+      "claim": "Source/control responsibilities separated",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "H25",
+      "claim": "Entitlement TTL",
+      "minimum_level": "SYSTEM_SURVIVAL",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "H26",
+      "claim": "Restore proof not just backup",
+      "minimum_level": "SYSTEM_SURVIVAL",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "H27",
+      "claim": "RUNNING not process liveness",
+      "minimum_level": "SYSTEM_SURVIVAL",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "H28",
+      "claim": "Outer read-only reviewer capability",
+      "minimum_level": "SYSTEM_SURVIVAL",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "H29",
+      "claim": "Voting not correctness",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "H30",
+      "claim": "Worktree not sandbox",
+      "minimum_level": "SYSTEM_SURVIVAL",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "H31",
+      "claim": "Synthetic not live",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "H32",
+      "claim": "Version not whole factory completion",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "H33",
+      "claim": "Candidate test runner isolation",
+      "minimum_level": "PROTECTED_STRUCTURAL",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "H34",
+      "claim": "Absolute SYSTEM path and controlled env",
+      "minimum_level": "LIVE_INSTALL",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "H35",
+      "claim": "Rollback preserves pre-existing assets",
+      "minimum_level": "LIVE_INSTALL",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "H36",
+      "claim": "Queued not executing",
+      "minimum_level": "SYSTEM_SURVIVAL",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "H37",
+      "claim": "Fresh-session tool schema",
+      "minimum_level": "LIVE_INSTALL",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "H38",
+      "claim": "Exact direct-parent candidate",
+      "minimum_level": "PROTECTED_STRUCTURAL",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "H39",
+      "claim": "Evidence levels distinct",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "H40",
+      "claim": "Unique accepted source identity",
+      "minimum_level": "CANONICAL_SELECTION",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "R52-01",
+      "claim": "Spec-policy monotonicity",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "R52-02",
+      "claim": "Phase DAG acyclic",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "R52-03",
+      "claim": "No metadata transport deny",
+      "minimum_level": "LIVE_INSTALL",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "R52-04",
+      "claim": "Authorized capability non-regression",
+      "minimum_level": "LIVE_INSTALL",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "R52-05",
+      "claim": "Unique OS caller",
+      "minimum_level": "LIVE_INSTALL",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "R52-06",
+      "claim": "Authority/process/job/effect orthogonal",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "R52-07",
+      "claim": "Ownerless inert candidate",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "R52-08",
+      "claim": "Self-generated SHA not churn reset",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "R52-09",
+      "claim": "No invented review gate",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "R52-10",
+      "claim": "Scoped blockers",
+      "minimum_level": "SYSTEM_SURVIVAL",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "R52-11",
+      "claim": "No Human progress relay",
+      "minimum_level": "SYSTEM_SURVIVAL",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "R52-12",
+      "claim": "Wake carries locator not authority",
+      "minimum_level": "SYSTEM_SURVIVAL",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "R52-13",
+      "claim": "No evidence collapse",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "R52-14",
+      "claim": "Provider-native route not Host dependency",
+      "minimum_level": "LIVE_PROVIDER_READ",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "R52-15",
+      "claim": "Shared transport not single Project",
+      "minimum_level": "LIVE_INSTALL",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "R52-16",
+      "claim": "Responsibility delete map",
+      "minimum_level": "DOCUMENT_REVIEW",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "R52-17",
+      "claim": "Project reports are historical",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "R52-18",
+      "claim": "Document supersession not backend revocation",
+      "minimum_level": "SYSTEM_SURVIVAL",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "R52-19",
+      "claim": "production=false not script sandbox",
+      "minimum_level": "SYSTEM_SURVIVAL",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "R52-20",
+      "claim": "Upgrade not bootstrap hard gate",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "R52-21",
+      "claim": "One authority not one datastore",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "R52-22",
+      "claim": "Optional parked is not total PASS",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "R52-23",
+      "claim": "Bounded bakeoff",
+      "minimum_level": "DOCUMENT_REVIEW",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    },
+    {
+      "id": "R52-24",
+      "claim": "Finite chat turn is not durable runtime",
+      "minimum_level": "SYSTEM_SURVIVAL",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true
+    }
+  ],
+  "completion": {
+    "core_requires_all_mandatory_tasks": true,
+    "requires_applicable_cases_at_correct_level": true,
+    "requires_canonical_same_source_readback": true,
+    "source_milestone_is_mission_completion": false,
+    "optional_deferred_is_pass": false,
+    "production_separate": true,
+    "conditional_scope": "HANYAO live read requires its own admission; not auto-authorized by Factory spec"
+  },
+  "reuse": {
+    "local": "same input bytes + environment/contract qualified; scoped reuse",
+    "protected_structural": "same exact head and trusted verifier coverage only",
+    "semantic": "same exact reviewed head/pair and covered paths only",
+    "live": "freshness and resource/boot/config/source all match; reobserve for dispatch",
+    "history": "preserve original bytes, no portable current verdict"
+  },
+  "anti_loop": {
+    "logical_work_key_excludes": [
+      "own_output_head",
+      "session_id",
+      "goal_state",
+      "report_time",
+      "new_receipt_id"
+    ],
+    "logical_work_key_includes": [
+      "project",
+      "logical_unit",
+      "slice",
+      "contract_digest",
+      "exogenous_input_identity"
+    ],
+    "max_evidence_based_fault_strategies": 3,
+    "no_new_fact_cycles_before_lane_wait": 3,
+    "bakeoff_effective_hours_budget": 8,
+    "bakeoff_max_challengers": 2,
+    "no_intermediate_push": true,
+    "no_known_bad_topology_verifier": true,
+    "no_unchanged_head_verifier_repeat": true
+  },
+  "survival_candidate_profile": {
+    "reconcile_seconds": 30,
+    "component_stale_ttl_seconds": 120,
+    "crash_restart_target_seconds": 120,
+    "post_reboot_ready_target_seconds": 600,
+    "actual_supervisor_crash_repetitions": 2,
+    "actual_windows_reboots": 1,
+    "actual_vm_reboots": 1,
+    "ui_gone_minutes": 30,
+    "soak_hours": 24,
+    "profile_changes_require_explicit_contract_revision": true
+  },
+  "continuation": {
+    "on_material_delta": "FRESH_REQUIRED_READS_REUSE_EVIDENCE_RECOMPUTE_READY_CONTINUE",
+    "waiting_scope": "EXACT_LANE_OR_CONFLICTING_RESOURCE",
+    "global_blocker_requires": "ENUMERATE_ALL_REMAINING_MANDATORY_TASKS_AND_SHOW_NO_LEGAL_READY_TASK",
+    "finite_turn_exit": "DURABLE_REENTRY_PACKET_NOT_MISSION_COMPLETION",
+    "ui_gone_execution_requires_real_installed_runtime": true,
+    "stop_and_human_pause_always_honored": true
+  },
+  "planned_first_ready": [
+    "M02",
+    "A00",
+    "D01",
+    "F01",
+    "T01"
+  ],
+  "dependencies_are_completion_not_transport_authorization": true,
+  "protected_trust_root_enforcement_of_new_invariants": "NOT_YET_IMPLEMENTED_AS_OF_THIS_HANDOFF",
+  "not_self_bound": {
+    "own_commit_sha": null,
+    "own_sha_must_only_appear_in_external_post_commit_receipt": true
+  }
+}
