@@ -1,0 +1,39 @@
+{
+  "schema": "vnext5.1-r2.goal-lifecycle-regression.v1",
+  "regression_id": "LOCAL_CODEX_GOAL_DISAPPEARS_WHILE_MISSION_ACTIVE",
+  "unit_id": "V51-R2-09-ANY-STATE-CROSS-SESSION-REGRESSION",
+  "status": "LOCAL_DETERMINISTIC_REGRESSION_ONLY_R2_09_NOT_ACCEPTED",
+  "canonical_prestate": {
+    "control_ref": "refs/heads/v45/factory-control",
+    "control_commit": "d39486601d851e31256852a24e9c1393b9046fe5",
+    "checkpoint_seq": 200,
+    "checkpoint_path": "governance/csg/checkpoints/000200.json"
+  },
+  "input": {
+    "canonical_mission_status": "ACTIVE",
+    "local_codex_goal_status": "DISAPPEARED",
+    "completed_unit": "V51-R2-01-COLD-START-CANONICAL-CONTINUITY",
+    "ready_unit": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION",
+    "exact_liveness_lane": "PARKED",
+    "identical_blocker_count": 3,
+    "candidate_checkpoint_seq": 201,
+    "candidate_is_canonical": false
+  },
+  "expected": {
+    "canonical_mission_remains_active": true,
+    "new_executor_recovers_current_unit": true,
+    "completed_work_is_not_repeated": true,
+    "next_ready_work_continues_without_human_reinjection": true,
+    "noncanonical_candidate_is_not_selected": true,
+    "global_goal_is_not_blocked_while_a_ready_lane_exists": true
+  },
+  "test": {
+    "path": "tests/csg/v51-goal-disappears-regression.test.mjs",
+    "module": "scripts/csg-v51-goal-lifecycle.mjs",
+    "command": "node --test tests/csg/v51-goal-disappears-regression.test.mjs",
+    "total": 1,
+    "passed": 1,
+    "failed": 0
+  },
+  "limitation": "This deterministic test uses pinned CP200 Git evidence and a simulated executor restart. It is not provider-confirmed R2-09 acceptance and does not prove Windows reboot recovery, Supervisor crash restart, Codex UI or GPT Web independence, or provider-addressable checkpoint persistence."
+}

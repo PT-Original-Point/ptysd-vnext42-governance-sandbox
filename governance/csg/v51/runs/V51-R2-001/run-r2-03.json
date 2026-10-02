@@ -1,0 +1,203 @@
+{
+  "schema_version": "factory.run.v1",
+  "run_id": "V51-R2-001",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "revision": 23,
+  "command_id": "V51-R2-03-FIXED-READONLY-FACTORY-OBSERVATION",
+  "contract_ref": "governance/csg/v51/runs/V51-R2-001/contract-r2-03-attempt-002.json",
+  "state": "PREPARED_NOT_DISPATCHED",
+  "wait_reason": "NONCANONICAL_CP201_CANDIDATE; OWNER_GENERATION_AND_LEASE_DEFERRED_UNTIL_CANONICAL_PROMOTION_CAS",
+  "active_task_id": "V51-R2-03-FIXED-READONLY-FACTORY-OBSERVATION",
+  "attempt_id": "V51-R2-03-ATTEMPT-002",
+  "attempt_epoch": 2,
+  "latest_checkpoint_ref": "governance/csg/checkpoints/000201.json",
+  "unresolved_operation_ids": [],
+  "stop_requested": false,
+  "completed_stage_receipts": [
+    "R2_00_SAME_SOURCE_READBACK_PASS",
+    "R2_01_POST_CP197_READBACK_PROVIDER_CONFIRMED_PR359",
+    "R2_02_CP198_POST_SELECTION_READBACK_PASS",
+    "R2_02_SOURCE_CORRECTION_EXACT_HEAD_PASS"
+  ],
+  "evidence_refs": [
+    "governance/csg/v51/current-execution-policy.json",
+    "governance/csg/v51/missions/20261002T105808+0800.json",
+    "governance/csg/v51/policies/20261002T105808+0800-EP88.json",
+    "governance/csg/v51/readbacks/R2-03-PROMOTION-EVIDENCE-BINDINGS-20261001.json",
+    "governance/csg/v51/runs/V51-R2-001/contract-r2-03-attempt-002.json",
+    "governance/csg/v51/specs/VNEXT5.1-R2-HUMAN-CURRENT-SPEC-20260929.md"
+  ],
+  "remaining_attempts": 0,
+  "execution_owner": null,
+  "canonical_selection_status": "CANDIDATE_ONLY_CP200_REMAINS_CANONICAL",
+  "goal_lifecycle_recovery": {
+    "mission_status": "ACTIVE",
+    "active_unit": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION",
+    "run_state": "RUNNING",
+    "local_codex_goal_state_authoritative": false,
+    "bounded_batch_completion_terminates_mission": false,
+    "after_material_delta": "FRESH_DIRECTORY_POINTER_SPEC_MISSION_POLICY_CHECKPOINT_RUN_TASK_ATTEMPT_OWNER_EFFECTS_AND_PROVIDER_LOCAL_READ_RECOMPUTE_READY_CONTINUE_HIGHEST_PRIORITY",
+    "exact_lane_parking_only": true,
+    "continue_other_ready_work": true,
+    "global_block_requires": "ALL_LEGAL_READY_LANES_EXHAUSTED_AND_REMAINDER_REQUIRES_GENUINE_EXTERNAL_OR_HUMAN_PREREQUISITE",
+    "ready_lanes": [
+      "C0_CANDIDATE_LOCAL_GOVERNANCE_NORMALIZATION_AND_PACKET_VERIFICATION",
+      "R2_03_FIXED_READONLY_SOURCE_CANDIDATE_QUALIFICATION"
+    ],
+    "parked_lanes": [
+      "PR377_EXACT_HEAD_PAIR_SEMANTIC_REVIEW",
+      "PR381_EXACT_HEAD_SEMANTIC_REVIEW",
+      "R2_02B_HYPERV_HOSTGUARD_CONTROL_READ",
+      "R2_06_LIVE_FACTORY_MCP_INSTALL_ACCEPTANCE",
+      "R2_07_SUPERVISOR_24X7_HEARTBEAT_DURABILITY"
+    ],
+    "r2_02_status": "NOT_PASS",
+    "r2_03_status": "NOT_PASS",
+    "r2_02b_status": "READY_INDEPENDENT_OF_R2_03_FRESH_LIVE_EVIDENCE_REQUIRED",
+    "r2_07_acceptance_status": "REQUIRED_NOT_YET_ACCEPTED",
+    "r2_09_regression_id": "LOCAL_CODEX_GOAL_DISAPPEARS_WHILE_MISSION_ACTIVE",
+    "r2_09_acceptance_status": "REQUIRED_NOT_YET_ACCEPTED",
+    "ready_lane_observed_at_utc": "2026-10-02T02:58:08Z",
+    "global_blocked": false,
+    "phase_dag": {
+      "schema": "VNEXT5_1_R2_PHASE_DAG_V1",
+      "phase_dependencies": {
+        "R2_02A": [],
+        "R2_02B": [
+          "R2_02A"
+        ],
+        "R2_03": [
+          "R2_02A"
+        ],
+        "R2_02": [
+          "R2_02B"
+        ],
+        "R2_04": [
+          "R2_02"
+        ],
+        "R2_05": [
+          "R2_04"
+        ],
+        "R2_06": [
+          "R2_03",
+          "R2_04",
+          "R2_05"
+        ],
+        "R2_07": [
+          "R2_06"
+        ]
+      },
+      "phase_ownership": {
+        "R2_03": "FIXED_PURPOSE_READONLY_OBSERVATION",
+        "R2_04": "UNIQUE_TRUSTED_CALLER",
+        "R2_05": "NONCIRCULAR_HOST_REPAIR",
+        "R2_06": "LIVE_FACTORY_MCP_INSTALL_AND_HOST_ACCEPTANCE",
+        "R2_07": "SUPERVISOR_24X7_AND_HEARTBEAT_DURABILITY"
+      },
+      "r2_03_acceptance_requires": [
+        "EXACTLY_FOUR_PUBLIC_MCP_TOOLS",
+        "FIXED_PURPOSE_READONLY_FACTORY_STATUS_AND_DIAGNOSTICS",
+        "EXACT_FROZEN_SOURCE_AND_RUNTIME_HEAD_TREE_BLOB_BINDINGS",
+        "CAPABILITY_NON_REGRESSION_CANDIDATE_EVIDENCE",
+        "NO_ARBITRARY_HOST_MUTATION_THROUGH_R2_03",
+        "CANDIDATE_LOCAL_REGRESSIONS_PASS",
+        "EXACT_HEAD_STRUCTURAL_VERIFIER_PASS",
+        "CURRENT_EXACT_HEAD_SEMANTIC_REVIEW_STATUS_REPRESENTED"
+      ],
+      "r2_03_acceptance_excludes": [
+        "R2_04",
+        "R2_05",
+        "R2_06",
+        "R2_07"
+      ],
+      "r2_03_host_mutation": false,
+      "r2_03_mutation_fence": "NOT_REQUIRED"
+    },
+    "r2_03_not_pass_reason": "CANDIDATE_NOT_CANONICALLY_SELECTED; SEMANTIC_REVIEW_STATUS_IS_METADATA; LIVE_INSTALL_ACCEPTANCE_REMAINS_R2_06",
+    "lane_parking_scope": "EXACT_LANE_ONLY"
+  },
+  "liveness_reconciliation": {
+    "owner_generation": 5,
+    "status": "STALE_EXECUTION_OWNER_CANDIDATE",
+    "owner_authority_validity": "EXPIRED",
+    "lease_expired": true,
+    "active_factory_job": "NONE_OBSERVED",
+    "factory_live_job_count": 0,
+    "pending_receipt_count": 0,
+    "unresolved_effects": [],
+    "executor_process_existence": "UNKNOWN",
+    "unknown_executor_process_extends_expired_owner_authority": false,
+    "evidence_source_class": "USER_PROVIDED_FRESH_MISSION_CONTROL_AUDIT_NOT_INDEPENDENT_PROVIDER_READBACK",
+    "human_spec_criteria_status": "SATISFIED_PENDING_CONTROL_TRANSITION",
+    "stale_owner_confirmed": false,
+    "revocation": false,
+    "host_dispatch": false,
+    "host_mutation": false,
+    "evidence_basis": "FRESH_MISSION_CONTROL_AUDIT_COMBINED_HUMAN_SPEC_CRITERIA; CANDIDATE_DOES_NOT_CLAIM_AN_INDEPENDENT_PROVIDER_ARTIFACT",
+    "fresh_exact_generation_5_observation_in_this_candidate": false,
+    "next_action": "FRESH_PRESTATE_AND_CAS_STALE_OWNER_CONTROL_TRANSITION",
+    "post_transition": "SAME_SOURCE_READBACK_THEN_RECOMPUTE_READY",
+    "next_owner_dispatch": "SEPARATE_LATER_TRANSITION_AFTER_READBACK_AND_READY_RECOMPUTE"
+  },
+  "evidence_binding_state": {
+    "source_contract": "QUALIFIED_CANDIDATE",
+    "synthetic_integration": "PASS",
+    "candidate_local_promotion_verifier": {
+      "implementation_path": "scripts/csg-verify-v51-r2-promotion-packet.mjs",
+      "regression_path": "tests/csg/v51-r2-promotion-packet.test.mjs",
+      "scope": "CANDIDATE_LOCAL_ONLY",
+      "protected_trust_root_enforcement": false,
+      "exact_head_verdict_storage": "PR_METADATA_AFTER_FINAL_HEAD"
+    },
+    "protected_trust_root_enforcement_of_owner_allocation_invariants": "NOT_YET_IMPLEMENTED"
+  },
+  "owner_generation": null,
+  "owner_lease_until": null,
+  "candidate_instance_id": "7d44cd13-4f90-4f48-b072-a020985dbbd6",
+  "proposed_owner_generation_policy": "NEXT_AVAILABLE_AT_PROMOTION",
+  "lease_duration_seconds": 14400,
+  "owner_allocation_architecture_record_path": "governance/csg/v51/readbacks/R2-03-OWNER-ALLOCATION-ARCHITECTURE-CORRECTION-20261001.json",
+  "source_pair_readback_status": "EXACT_SOURCE_HEADS_AND_STRUCTURAL_VERIFIERS_PASS; SEMANTIC_REVIEWS_PENDING; LIVE_ACCEPTANCE_NOT_ACCEPTED",
+  "execution_owner_allocated": false,
+  "source_pair_readback": [
+    {
+      "pr_number": 381,
+      "head": "e16cd05e821572061321f807841ae0145ff69bc1",
+      "tree": "71e5f034db151a963f4b0b71564d34fcfe6ff627",
+      "base": "d39486601d851e31256852a24e9c1393b9046fe5",
+      "structural_verifier": "PASS_EXACT_HEAD",
+      "semantic_review": "PENDING_CURRENT_HEAD"
+    },
+    {
+      "pr_number": 377,
+      "head": "491493627bd6ffcd51b0cd9287ab2cb465fbf9ee",
+      "tree": "02dbc7f75cc80abaf4b5efd2ca7b918ff7462218",
+      "base": "06da5fa224b65b9346e8b250dcea686d0ed458ee",
+      "structural_verifier": "PASS_EXACT_HEAD",
+      "semantic_review": "PENDING_CURRENT_SOURCE_PAIR"
+    }
+  ],
+  "future_phase_acceptance_state": {
+    "R2_04": {
+      "phase_owner": "UNIQUE_TRUSTED_CALLER",
+      "trust_provisioning": "NOT_ACCEPTED",
+      "provider_session_route": "NOT_ACCEPTED",
+      "signed_evidence_path": "NOT_ACCEPTED"
+    },
+    "R2_05": {
+      "phase_owner": "NONCIRCULAR_HOST_REPAIR",
+      "noncircular_host_repair": "NOT_ACCEPTED"
+    },
+    "R2_06": {
+      "phase_owner": "LIVE_FACTORY_MCP_INSTALL_AND_HOST_ACCEPTANCE",
+      "factory_mcp_install_acceptance": "NOT_ACCEPTED"
+    },
+    "R2_07": {
+      "phase_owner": "SUPERVISOR_24X7_AND_HEARTBEAT_DURABILITY",
+      "supervisor_24x7": "NOT_ACCEPTED",
+      "supervisor_heartbeat_route": "NOT_ACCEPTED",
+      "heartbeat_durability": "NOT_ACCEPTED"
+    }
+  },
+  "r2_03_not_pass_reason": "CANDIDATE_NOT_CANONICALLY_SELECTED; SEMANTIC_REVIEW_STATUS_IS_METADATA; LIVE_INSTALL_ACCEPTANCE_REMAINS_R2_06"
+}

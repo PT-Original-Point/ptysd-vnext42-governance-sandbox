@@ -1,0 +1,98 @@
+{
+  "schema": "V51_R2_GOVERNANCE_SELF_LOCK_NORMALIZATION_V1",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "scope": "STATIC_PROMOTION_REGRESSION_ONLY",
+  "runtime_transport_gate": false,
+  "human_direction": "2026-10-02 eliminate repeated self-lock, self-resetting churn, prompt-stack governance, and Human progress relay dependence without weakening unknown-effect or Production safety.",
+  "rules": {
+    "delete_first": true,
+    "human_progress_relay_required": false,
+    "new_safety_finding_default": "STATIC_VALIDATION_ADVISORY_OR_PROMOTION_CHECK",
+    "runtime_blocker_scope": "EXACT_AFFECTED_LANE_ONLY",
+    "runtime_blocker_requires": [
+      "CONCRETE_SIDE_EFFECT_RISK",
+      "EXPLICIT_UNLOCK_AUTHORITY",
+      "NO_FUTURE_PHASE_DEPENDENCY",
+      "NO_CIRCULAR_DEPENDENCY"
+    ],
+    "logical_work_fingerprint_fields": [
+      "project_id",
+      "human_spec_or_mission_revision",
+      "logical_active_unit",
+      "acceptance_contract",
+      "upstream_authority_or_input_anchor"
+    ],
+    "logical_work_fingerprint_forbidden_fields": [
+      "candidate_output_sha",
+      "candidate_head_sha",
+      "reviewer_status",
+      "session_id",
+      "checkpoint_rollover_only"
+    ],
+    "logical_work_fingerprint_excludes_candidate_output_sha": true,
+    "self_generated_head_change_resets_loop_counters": false,
+    "loop_reset_requires_exogenous_material_delta": true,
+    "exogenous_loop_reset_delta_types": [
+      "HUMAN_SPEC_OR_MISSION_CHANGE",
+      "ACCEPTANCE_CONTRACT_MATERIAL_CHANGE",
+      "UPSTREAM_AUTHORITY_OR_INPUT_CHANGE",
+      "CANONICAL_PRESTATE_EXTERNAL_TRANSITION",
+      "CONCRETE_NEW_SOURCE_DEFECT"
+    ],
+    "freeze_scope": "EXACT_COVERED_BYTES_AND_ACCEPTANCE_CONTRACT",
+    "review_requirement_source": "HUMAN_SPEC_OR_ACCEPTANCE_CONTRACT_ONLY",
+    "controller_status_required": false,
+    "execution_receipt_contract_unchanged": true,
+    "canonical_owner_allocated_before_promotion": false,
+    "candidate_build_test_executor_identity_allowed": true,
+    "role_separation_only_when_roles_exist": true,
+    "explicit_deprecation_is_capability_regression": false,
+    "blocker_scope_required": true,
+    "global_block_requires_all_ready_lanes_exhausted": true,
+    "governance_linter_invariants": [
+      "POLICY_NOT_STRONGER_THAN_HUMAN_SPEC",
+      "PHASE_DAG_ACYCLIC",
+      "NO_FUTURE_PHASE_AS_CURRENT_PREREQUISITE",
+      "NO_STALE_PHASE_NAMES",
+      "NO_INVENTED_HUMAN_GATE",
+      "NO_INVENTED_REVIEW_GATE",
+      "NO_CANDIDATE_CANONICAL_OWNER",
+      "NO_PATH_REVISION_ID_MISMATCH",
+      "NO_STALE_PR_OR_SHA_AUTHORITY",
+      "NO_DUPLICATE_BLOCKED_LANE",
+      "NO_METADATA_TRANSPORT_DENIAL",
+      "NO_CAPABILITY_REGRESSION",
+      "NO_SELF_RESETTING_CHURN_FINGERPRINT"
+    ]
+  },
+  "continuation_contract": {
+    "role": "CONTINUING_EXECUTION_CONTRACT_NOT_NEW_MISSION_SPEC_OR_CANONICAL_STORE",
+    "authority": "USER_EXPLICITLY_AUTHORIZED_THIS_SESSION",
+    "source_filename": "VNEXT5.1-R2-ROOT-CAUSE-CLOSURE-CONSTRUCTION-PLAN-20261002.md",
+    "source_attachment_sha256": "sha256:c5eaa1fac7d3faa8e9a8ef6306089e46417ceceff08335a64f1902975a2e04de",
+    "source_attachment_bytes": 20543,
+    "source_attachment_line_count": 701,
+    "path": "governance/csg/v51/plans/VNEXT5.1-R2-ROOT-CAUSE-CLOSURE-PLAN-USER-ATTACHMENT-20261002.md",
+    "sha256": "sha256:c5eaa1fac7d3faa8e9a8ef6306089e46417ceceff08335a64f1902975a2e04de",
+    "bytes": 20543,
+    "line_count": 701,
+    "spec_family": "VNEXT5.1-R2",
+    "closure_units": [
+      "C0",
+      "C1",
+      "C2",
+      "C3",
+      "C4",
+      "C5",
+      "C6",
+      "C7",
+      "C8",
+      "C9",
+      "C10",
+      "C11"
+    ],
+    "mission_or_spec_change": false,
+    "parent_plan_commit": "6a530d599ff05439089644e3949dcfbab6143d1b",
+    "content_newline_format": "UTF8_LF"
+  }
+}

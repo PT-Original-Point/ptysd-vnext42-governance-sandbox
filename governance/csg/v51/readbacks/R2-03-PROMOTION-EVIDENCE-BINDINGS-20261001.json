@@ -1,0 +1,736 @@
+{
+  "schema_version": "csg.v51.promotion.evidence-bindings.v2",
+  "packet_id": "V51-R2-03-POLICY-DAG-CORRECTION-PROMOTION-BINDINGS-20261002T025808Z",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "observed_at_utc": "2026-10-02T02:58:08Z",
+  "canonical_authority": {
+    "provider": "GitHub",
+    "repository_id": 1352411536,
+    "repository_full_name": "PT-Original-Point/ptysd-vnext42-governance-sandbox",
+    "control_ref": "refs/heads/v45/factory-control",
+    "control_commit": "d39486601d851e31256852a24e9c1393b9046fe5",
+    "checkpoint_seq": 200,
+    "checkpoint_path": "governance/csg/checkpoints/000200.json",
+    "checkpoint_blob_oid": "88524eee6c06f1fcf4b07053d5baca3324b06299",
+    "checkpoint_digest": "sha256:2cd708bb96179b7ef416ab5a7616f7dff50030567f56d7506a7182f6ceda600d",
+    "pointer_path": "governance/csg/current.json",
+    "pointer_blob_oid": "2481db71189e0f4cef024873b07c3d26e605cc9f",
+    "pointer_checkpoint_seq": 200,
+    "pointer_checkpoint_path": "governance/csg/checkpoints/000200.json",
+    "pointer_checkpoint_digest": "sha256:2cd708bb96179b7ef416ab5a7616f7dff50030567f56d7506a7182f6ceda600d",
+    "mission_revision": "20260930T104733+0800",
+    "mission_hash": "sha256:f235c085f10e54705f7817f0ce6dee1e5b29ef1279306e4b2c280322bfacab29",
+    "policy_revision": "20260930T104733+0800-EP80",
+    "policy_hash": "sha256:8529b4bccc66147465b066bf97d71ce2c6ae6bea11e146ca215976bf3b839c85",
+    "mission_blob_oid": "2a913c7c5585bedda72d54df626cd38ae52bdade",
+    "policy_blob_oid": "a31f86215c8d0fcc2cee0183f75d18158bb3d9fb",
+    "owner_generation": 5,
+    "owner_liveness": "STALE_EXECUTION_OWNER_CANDIDATE",
+    "stale_owner_confirmed": false,
+    "unresolved_effect_refs": [],
+    "project_directory": {
+      "provider": "GitHub",
+      "ref": "governance/project-directory",
+      "head": "38f4fc7cb2841e2318a97ff7a53e41b2ec07aef1",
+      "path": "directory/projects/CHATGPT_GLOBAL_SKILL_GOVERNANCE.json",
+      "blob_oid": "377dcf88279d3ba433d099a7cc9f78af8c86b8ae",
+      "directory_revision": 5,
+      "registration_state": "BOUND",
+      "control_ref": "refs/heads/v45/factory-control"
+    }
+  },
+  "candidate_status": "NONCANONICAL_PREPARED_NOT_DISPATCHED",
+  "candidate_branch_role": "SEPARATE_CP201_PROMOTION_PACKET; SOURCE_ONLY_PR381_AND_RUNTIME_PR377_ARE_FROZEN_AND_UNMODIFIED",
+  "promotion_candidate": {
+    "checkpoint_seq": 201,
+    "previous_checkpoint_seq": 200,
+    "expected_parent": "d39486601d851e31256852a24e9c1393b9046fe5",
+    "candidate_id": "V51-R2-CP201-SOURCE-SEPARATED-20261001T174401Z",
+    "candidate_instance_id": "7d44cd13-4f90-4f48-b072-a020985dbbd6",
+    "branch": "codex/v51-r2-governance-self-lock-normalization-20261002",
+    "canonical_selection_status": "CANDIDATE_ONLY_CP200_REMAINS_CANONICAL",
+    "current_json_mutated": true,
+    "target_canonical_pointer_remains_cp200": true,
+    "candidate_pointer_proposes_cp201": true,
+    "owner": null,
+    "owner_generation": null,
+    "lease_duration_seconds": 14400,
+    "lease_until": null,
+    "execution_owner_allocated": false,
+    "proposed_owner_generation_policy": "NEXT_AVAILABLE_AT_PROMOTION",
+    "allocation_phase": "CANONICAL_PROMOTION_CAS",
+    "fresh_canonical_prestate_required": true,
+    "fresh_durable_consumed_generation_readback_required": true,
+    "same_source_readback_after_canonical_write_required": true,
+    "new_owner_generation_invariant": "GREATER_THAN_CURRENT_CANONICAL_AND_NOT_COLLIDING_WITH_ANY_DURABLY_CONSUMED_IDENTITY",
+    "generation_6_through_9": "HISTORICAL_CANDIDATE_EVIDENCE_NOT_EXECUTION_OWNER_ALLOCATION",
+    "no_gen10": true
+  },
+  "candidate_documents": [
+    {
+      "path": "governance/csg/v51/missions/20261002T105808+0800.json",
+      "blob_oid": "11352812fa52f2a5774c0222d70b9d34165a2b76",
+      "sha256": "sha256:77044b2730a971a2cc36a79935c4b304c3654a33fa0f390a9d8ff92083150683",
+      "size": 25269
+    },
+    {
+      "path": "governance/csg/v51/policies/20261002T105808+0800-EP88.json",
+      "blob_oid": "86707e9d428434c9517a8677ca47cbd3e8db4c7d",
+      "sha256": "sha256:ab94578947071cd361d95b0f1034a54c492516c8246fc3abdb8963a31c6c8447",
+      "size": 29740
+    },
+    {
+      "path": "governance/csg/v51/current-execution-policy.json",
+      "blob_oid": "86707e9d428434c9517a8677ca47cbd3e8db4c7d",
+      "sha256": "sha256:ab94578947071cd361d95b0f1034a54c492516c8246fc3abdb8963a31c6c8447",
+      "size": 29740
+    },
+    {
+      "path": "governance/csg/v51/runs/V51-R2-001/run-r2-03.json",
+      "blob_oid": "aa896fc84c0ec3021d47afd202078e6054c6e822",
+      "sha256": "sha256:c772bf3c70ad5f516427d579e8035d3de02ce7e3d3e97620789d2278784951f9",
+      "size": 8512
+    },
+    {
+      "path": "governance/csg/v51/runs/V51-R2-001/contract-r2-03-attempt-002.json",
+      "blob_oid": "89b7008db88398c211affa289e0009065ac64937",
+      "sha256": "sha256:9c359f9d44aaa92931abf31ef67c96ee03a222b7417b857affe193f67fe3f0ac",
+      "size": 13520
+    },
+    {
+      "path": "governance/csg/v51/trust-root-lanes/TRUST_ROOT_VERIFIER_UPGRADE_REQUIRED-v1.json",
+      "blob_oid": "bfee7d0f9fb0723104562619c1913a592e5248a8",
+      "sha256": "sha256:146c7e886cafa4d6809af3db0d469994b42d49b864285be155577680ddad4193",
+      "size": 4460
+    }
+  ],
+  "source_candidates": [
+    {
+      "provider": "GitHub",
+      "repository_id": 1352411536,
+      "repository_full_name": "PT-Original-Point/ptysd-vnext42-governance-sandbox",
+      "pr_number": 381,
+      "role": "R2_03_SOURCE_ONLY_FACTORY_MCP",
+      "origin_branch": "codex/v51-r2-03-source-only-20261001",
+      "origin_exact_sha": "e16cd05e821572061321f807841ae0145ff69bc1",
+      "base_branch": "v45/factory-control",
+      "base_sha": "d39486601d851e31256852a24e9c1393b9046fe5",
+      "tree_sha": "71e5f034db151a963f4b0b71564d34fcfe6ff627",
+      "pr_state": "OPEN",
+      "draft": false,
+      "merged": false,
+      "commit_count": 1,
+      "covered_paths": [
+        {
+          "path": "tools/csg/factory-mcp/.gitattributes",
+          "blob_oid": "8b29ffefce4f01cf4c9f36b16703421a49616ae9",
+          "sha256": "sha256:deeab48d1bb8c47da0e63509f550f13ad270c61819f8e944c8e3773a38de1a14"
+        },
+        {
+          "path": "tools/csg/factory-mcp/broker/host-powershell-exec.ps1",
+          "blob_oid": "5c60aa21c8347cb2bdc4b3de16efb11744a73323",
+          "sha256": "sha256:e8241856f34a7ed255125f83a24fed2cb47540aa49b72367685b468e831959d9"
+        },
+        {
+          "path": "tools/csg/factory-mcp/broker/hostguard-broker.ps1",
+          "blob_oid": "c1f82f1c4f4e75f1880c2d05a0680cace3266b73",
+          "sha256": "sha256:4dd3a63e52f91abcb1fa54500413b3f383be54be29c3974f3a496461d86a3913"
+        },
+        {
+          "path": "tools/csg/factory-mcp/broker/owner-liveness-publisher.ps1",
+          "blob_oid": "a396ea8d6ffcefcc1d5ba374af2da19d63a4a3df",
+          "sha256": "sha256:6066da1f4ef6b30daaf65fee3430c91e2d447869546d28cabfbe363bb7a09793"
+        },
+        {
+          "path": "tools/csg/factory-mcp/broker/trusted-caller-boundary.ps1",
+          "blob_oid": "e343cccd44e344c930981a58a19f2f3332eb0d27",
+          "sha256": "sha256:29340a7d503066ac891ccec4e91978061918395f4fdedc51da6529cb6a3595cc"
+        },
+        {
+          "path": "tools/csg/factory-mcp/package-lock.json",
+          "blob_oid": "5beb7f1df645b35851894df0189a436cba5293bf",
+          "sha256": "sha256:af41a08cce406c4c145ef1c0ac32ebcc2d5f773c925b039b8b662aebf30e824e"
+        },
+        {
+          "path": "tools/csg/factory-mcp/package.json",
+          "blob_oid": "02fea14b65da7173472437ebe7ff534f234c03c8",
+          "sha256": "sha256:641427dce33c260eb7ecdc2cbb0dc29eb69841221463841a3b69551003355d96"
+        },
+        {
+          "path": "tools/csg/factory-mcp/src/index.mjs",
+          "blob_oid": "62ef03c17f75274c546c466b1b9b326f2ac3361f",
+          "sha256": "sha256:8a4a0dcff42945686737f00f5add9447d5e30539b23b098067d197dc8dd907df"
+        },
+        {
+          "path": "tools/csg/factory-mcp/src/invoke-hostguard.ps1",
+          "blob_oid": "2f9b3fe7a07357069fa0e4e6aaec604e315f3402",
+          "sha256": "sha256:c9391b50a31278aa1bcb72afea21877b2e68b4a508f7618e90ccc0f2bcc12f5f"
+        },
+        {
+          "path": "tools/csg/factory-mcp/src/readonly-diagnostics.mjs",
+          "blob_oid": "00c588b3dc029cc12453ba21f66fca13d5bc3498",
+          "sha256": "sha256:8cde53826865989f79e43e3f024f6f8addb5a9660cd77c272a44ec275133366f"
+        },
+        {
+          "path": "tools/csg/factory-mcp/src/readonly-diagnostics.ps1",
+          "blob_oid": "2a4ec6018db18da2ec0579132821bf2d4dc2b442",
+          "sha256": "sha256:027519bb0d1dd12d5e4fce5ecf7de40e3a53c447ff00e12d6cb9af1c14034c11"
+        },
+        {
+          "path": "tools/csg/factory-mcp/tests/capability-parity.test.mjs",
+          "blob_oid": "1e50e164ae96124ae630768c2c19cb1e3aa27d5f",
+          "sha256": "sha256:10f40dce1194651d0fa7b5ae86f5443c75c03c3db53a4d4b34f2a4db396b5e2f"
+        },
+        {
+          "path": "tools/csg/factory-mcp/tests/credential-ingest-smoke.ps1",
+          "blob_oid": "9c083846f44c4e87c3d61dd682a408201d069127",
+          "sha256": "sha256:a3431662e66e54f7909a944d8ae816d76cfc0d68fb6a9ed115381d800c6f5a25"
+        },
+        {
+          "path": "tools/csg/factory-mcp/tests/fixtures/candidate-runtime-capability-matrix.json",
+          "blob_oid": "a569a509dd1e8dd5136b0719291384589c9553b6",
+          "sha256": "sha256:4023bc088d9c9344226915f698e03865f912a802ac34a717c60d522b0417ab39"
+        },
+        {
+          "path": "tools/csg/factory-mcp/tests/fixtures/installed-runtime-capability-baseline.json",
+          "blob_oid": "7873f173301e01b6ccc37aa0c07c090e9e7976da",
+          "sha256": "sha256:72cd257388ea8737ac67a5028c6a07986511878d5a2fae7d3eaf9333ae973e3b"
+        },
+        {
+          "path": "tools/csg/factory-mcp/tests/host-powershell-exec-smoke.ps1",
+          "blob_oid": "6c44fda9354c73a6a022386e63c098f7f4c4c5ad",
+          "sha256": "sha256:e6a369fa9d15143aea6ce385bb437954041af4ab84104f43b47dbbb21cca7181"
+        },
+        {
+          "path": "tools/csg/factory-mcp/tests/live-status-smoke.mjs",
+          "blob_oid": "6353abcc9073b335919316ca91975bb87347168c",
+          "sha256": "sha256:c3128b0680d46dc2c9045b90cac233aa5bf2bf85697c4c2b79fe25e624f29b41"
+        },
+        {
+          "path": "tools/csg/factory-mcp/tests/official-inspector-equivalence.mjs",
+          "blob_oid": "47753b8094cfb7a1016f682959dfa933872a90b5",
+          "sha256": "sha256:67fffeadda5a4717cfa2e4b296f371c65704f668c6390d78013a5793e9dd44f8"
+        },
+        {
+          "path": "tools/csg/factory-mcp/tests/owner-liveness-e2e.test.mjs",
+          "blob_oid": "a89739ba0b56945a8ebcb799344131398874e964",
+          "sha256": "sha256:7ae8976e599fc9ee71dabcdd7ae2b98fb92160e03d874c68fe6f652d230f5249"
+        },
+        {
+          "path": "tools/csg/factory-mcp/tests/owner-liveness-publisher.test.mjs",
+          "blob_oid": "ff856d826b0f5f906dd868d9185d7a37360277ec",
+          "sha256": "sha256:2ef01572c4a22af7b3c921af0e28b9eac0de21e3c4991bea30d69d290ca5a77a"
+        },
+        {
+          "path": "tools/csg/factory-mcp/tests/read-only-diagnostics.test.mjs",
+          "blob_oid": "3b3a4d29b15e343fc31e5ca6df1a19375907fbde",
+          "sha256": "sha256:f893cdb983b2c5690583519e8fcd9754e3022672e9b321e73fa0f277ac382612"
+        },
+        {
+          "path": "tools/csg/factory-mcp/tests/repair-lane-smoke.ps1",
+          "blob_oid": "4d0bbe4e3823f7c966ee79044fd124dbd129fc06",
+          "sha256": "sha256:c5e18d6f5355aa6e997207b9bba979eb4c0f8a0351bb35e75795f1ebefb56cd0"
+        },
+        {
+          "path": "tools/csg/factory-mcp/tests/repair-lane.test.mjs",
+          "blob_oid": "cd7764b8e60bd56b26e865b247975659d8a21c0c",
+          "sha256": "sha256:ae9f496fde876dd44c889f2772de82db58a119467caaa228a8b00119f741f156"
+        },
+        {
+          "path": "tools/csg/factory-mcp/tests/trusted-caller-boundary-smoke.ps1",
+          "blob_oid": "fafb5f44bed7a2e868b6d2c1d4e2e6512ca39e0e",
+          "sha256": "sha256:55e4eef25ba4d9d27d537ab45b1fdb21fe116dca58689f40420d7c06315a2a3f"
+        },
+        {
+          "path": "tools/csg/factory-mcp/tests/trusted-caller-boundary.test.mjs",
+          "blob_oid": "c7a18e53facb1b84a722c32df3a8dfe2acec9e5f",
+          "sha256": "sha256:299bb6ee92283dd8fa172763a01843b0cc0c02901865099db4a744db14a1eeb9"
+        },
+        {
+          "path": "tools/csg/factory-mcp/windows/import-tunnel-credentials.ps1",
+          "blob_oid": "a1110d8344d7ff173feb0e1ee0d88561113175f3",
+          "sha256": "sha256:975902442d86c1b481c0d5b7de30c686f2a92b64b94647ac3e9d00f35e945bea"
+        },
+        {
+          "path": "tools/csg/factory-mcp/windows/install-broker.ps1",
+          "blob_oid": "6feb382d4319f51e43f042dbe8ec2387e16f4378",
+          "sha256": "sha256:f297e3003537c6aebfd4bf60c98491c7c749b1155265c78aac80492029410d5f"
+        },
+        {
+          "path": "tools/csg/factory-mcp/windows/qualify-tunnel.ps1",
+          "blob_oid": "daed6992f9b76273df3006d2bb77d37c474689f8",
+          "sha256": "sha256:ad714fc3ef86c12cf87b96018c01607149f4bc997c67dfcd1ffb4c4e76e59a8b"
+        },
+        {
+          "path": "tools/csg/factory-mcp/windows/repair-factory-mcp.ps1",
+          "blob_oid": "516f0a60b8e71162a9e9f0041e0b8e158e2e1e30",
+          "sha256": "sha256:47552cee4bc9e5f7b9fc947d61d6017ea7a9967701358983c8887dd6b105387f"
+        },
+        {
+          "path": "tools/csg/factory-mcp/windows/repair-manifest.json",
+          "blob_oid": "43498ab16fd22b04879bf1913df644de752d527e",
+          "sha256": "sha256:920f1f5246c3ebd32e7f9c3663cad2866e951fb24d25283e452ca209bfd49b38"
+        }
+      ],
+      "checks": [
+        {
+          "name": "csg-trusted-verifier",
+          "run_id": 36990926717,
+          "job_id": 110786707347,
+          "status": "completed",
+          "conclusion": "success",
+          "verdict": "PASS_EXACT_HEAD",
+          "scope": "IMMUTABLE_STRUCTURAL_VERIFIER_ONLY"
+        },
+        {
+          "name": "bounded-driver-acceptance",
+          "run_id": 36990926717,
+          "job_id": 110786708863,
+          "status": "completed",
+          "conclusion": "skipped",
+          "verdict": "SKIPPED_NOT_PASS"
+        }
+      ],
+      "semantic_review": {
+        "requested_reviewer": "wfvupu1212",
+        "requested": true,
+        "review_route_available": true,
+        "verdict": "PENDING_CURRENT_HEAD",
+        "reviews_seen": 0,
+        "prior_review_disposition": "COPILOT_QUOTA_FAILURE_NO_VERDICT",
+        "non_verdict_observations": [
+          {
+            "author": "copilot-pull-request-reviewer",
+            "state": "COMMENTED",
+            "submitted_at": "2026-10-01T11:09:07Z",
+            "classification": "QUOTA_FAILURE_NOT_A_VERDICT",
+            "exact_head_binding": "NOT_EXPOSED_BY_REVIEW_METADATA"
+          }
+        ],
+        "exact_head": "e16cd05e821572061321f807841ae0145ff69bc1"
+      }
+    },
+    {
+      "provider": "GitHub",
+      "repository_id": 1352411536,
+      "repository_full_name": "PT-Original-Point/ptysd-vnext42-governance-sandbox",
+      "pr_number": 377,
+      "role": "R2_02_RUNTIME_CROSS_SOURCE_INTEGRATION",
+      "origin_branch": "codex/r2-02-cross-source-liveness-runtime-direct-parent-20260930",
+      "origin_exact_sha": "491493627bd6ffcd51b0cd9287ab2cb465fbf9ee",
+      "base_branch": "main",
+      "base_sha": "06da5fa224b65b9346e8b250dcea686d0ed458ee",
+      "tree_sha": "02dbc7f75cc80abaf4b5efd2ca7b918ff7462218",
+      "pr_state": "OPEN",
+      "draft": false,
+      "merged": false,
+      "commit_count": 1,
+      "covered_paths": [
+        {
+          "path": "config/runtime-manifest.json",
+          "blob_oid": "a31e06717e095f1c0b411d69951c28a2fedf7f55",
+          "sha256": "sha256:97bee3f46d0708fb4e54fa9f51155b18918e0d1fe7705b761f1d2928bef415c3"
+        },
+        {
+          "path": "package.json",
+          "blob_oid": "a8d87394037e5c1d0fbfaa0fab4426edbbdbc331",
+          "sha256": "sha256:14ec57f942b0a1992cc242fa10c15ba7d1eb4a50992607b35c0f69500c13b1a4"
+        },
+        {
+          "path": "schemas/task-envelope.schema.json",
+          "blob_oid": "30b39d7e22f674763c21856696f01c63abd0505c",
+          "sha256": "sha256:3ca3dcf7d77c091816a553829aacd7bac5aca8cab15ed88139cda6d22fcaec63"
+        },
+        {
+          "path": "src/core.ts",
+          "blob_oid": "fa5f100a56b34b6f2e138d2c1c3b21564a56c994",
+          "sha256": "sha256:295788614485231358c4f5bb0865e7da55a4e8a4dd99aba3588ca29957a3fd37"
+        },
+        {
+          "path": "src/missionctl.ts",
+          "blob_oid": "078fd8e054463125666d69a7f58e619b9b9b863b",
+          "sha256": "sha256:710f866108514c91fdb1cd91a57f8c7807aa4abbf0c3df66199214c740acfce7"
+        },
+        {
+          "path": "src/recovery-evidence-producer.ts",
+          "blob_oid": "3c550b1a8c8d06b9b52ded92319b099e76717830",
+          "sha256": "sha256:8ceda2eea6e9419c7ed32a91c4503b1d8f2f63e0d7c5e5d038e07e8c2659887d"
+        },
+        {
+          "path": "src/recovery-evidence.ts",
+          "blob_oid": "c8ab14ccd11e3efb2aa4b75514078ca5e2f0d736",
+          "sha256": "sha256:662d550cf79a4a97ad09e6e9714d31b3b1654d510e58a6b33e84065575f7d29c"
+        },
+        {
+          "path": "src/supervisor-heartbeat.ts",
+          "blob_oid": "b80cbce7d83c6d609d4c12f5cdf5da8520ac1911",
+          "sha256": "sha256:23d40e51e96f1c3c268cbe00f9f1c76e935cb05519c43435fc72ebf7d87c5a63"
+        },
+        {
+          "path": "tests/b0.test.ts",
+          "blob_oid": "772364b1cd6afdf2e5d8f77cbd0011787e796b6f",
+          "sha256": "sha256:4fed59b3c2ba12d8cef0f869abdae7e4bccbc50fd1168672386c0947eebddab5"
+        },
+        {
+          "path": "tests/cross-candidate-integration.mjs",
+          "blob_oid": "8baca01e5d7822381ae121ad07006ba336906e3a",
+          "sha256": "sha256:66b29386d61c0f2ca38fe8824848880790a63f46821af5259ad52b1b600feb5c"
+        },
+        {
+          "path": "tests/cross-candidate-positive-integration.mjs",
+          "blob_oid": "10e565356064cfc8eb65ae828e56031e980cbe87",
+          "sha256": "sha256:7a5dd1f2ffed1785f139d7e2bf957bc92263c82d5115f68f429ef60804c0486d"
+        },
+        {
+          "path": "tests/envelope-e2e.json",
+          "blob_oid": "8cdb93b9cfea89ba84341b8b6a1bd2fffcad69a0",
+          "sha256": "sha256:f037915c99ea1288cdeeb4cd805f44629ef979de24f203c91c4a517ea2f0e927"
+        }
+      ],
+      "checks": [
+        {
+          "name": "csg-trusted-verifier",
+          "run_id": 36991970368,
+          "job_id": 110790034921,
+          "status": "completed",
+          "conclusion": "success",
+          "verdict": "PASS_EXACT_HEAD",
+          "scope": "IMMUTABLE_STRUCTURAL_VERIFIER_ONLY"
+        },
+        {
+          "name": "bounded-driver-acceptance",
+          "run_id": 36991970368,
+          "job_id": 110790030977,
+          "status": "completed",
+          "conclusion": "skipped",
+          "verdict": "SKIPPED_NOT_PASS"
+        }
+      ],
+      "semantic_review": {
+        "requested_reviewer": "wfvupu1212",
+        "requested": true,
+        "review_route_available": true,
+        "verdict": "PENDING_CURRENT_SOURCE_PAIR",
+        "prior_reviews": [
+          {
+            "target_sha": "6c5050da0dcea785a2900733a7493baa6893850a",
+            "disposition": "NONPORTABLE_OLD_SHA"
+          },
+          {
+            "review_pipeline": "copilot-pull-request-reviewer",
+            "disposition": "QUOTA_FAILURE_NOT_A_VERDICT"
+          }
+        ],
+        "exact_head": "491493627bd6ffcd51b0cd9287ab2cb465fbf9ee"
+      }
+    }
+  ],
+  "verifier_boundary": {
+    "csg_trusted_verifier": "PASS_EXACT_HEAD_ON_EACH_FROZEN_SOURCE_HEAD",
+    "verifier_scope": "IMMUTABLE_STRUCTURAL_VERIFIER_ONLY",
+    "candidate_local_promotion_verifier": {
+      "implementation_path": "scripts/csg-verify-v51-r2-promotion-packet.mjs",
+      "regression_path": "tests/csg/v51-r2-promotion-packet.test.mjs",
+      "scope": "CANDIDATE_LOCAL_ONLY",
+      "protected_trust_root_enforcement": false,
+      "exact_head_verdict_storage": "PR_METADATA_AFTER_FINAL_HEAD"
+    },
+    "protected_trust_root_enforcement_of_owner_allocation_invariants": "NOT_YET_IMPLEMENTED",
+    "bounded_driver": "SKIPPED_NOT_PASS",
+    "semantic_review": "PENDING_CURRENT_EXACT_HEADS",
+    "trust_root_upgrade_lane": {
+      "lane_id": "TRUST_ROOT_VERIFIER_UPGRADE_REQUIRED",
+      "path": "governance/csg/v51/trust-root-lanes/TRUST_ROOT_VERIFIER_UPGRADE_REQUIRED-v1.json",
+      "status": "REQUIRED_SEPARATE_LANE_NOT_STARTED",
+      "required_human_gate": "HG47-TRUST",
+      "gate_applicability": "NOT_YET_VERIFIED",
+      "provider_admin_prestate": "NOT_CAPTURED",
+      "mutation_performed": false
+    }
+  },
+  "candidate_local_qualification": {
+    "promotion_packet_verifier": {
+      "implementation_path": "scripts/csg-verify-v51-r2-promotion-packet.mjs",
+      "regression_path": "tests/csg/v51-r2-promotion-packet.test.mjs",
+      "scope": "CANDIDATE_LOCAL_ONLY",
+      "protected_trust_root_enforcement": false,
+      "verdict": "RECORDED_PER_FINAL_EXACT_HEAD_IN_PR_METADATA"
+    },
+    "source_pr381": {
+      "factory_mcp_package_suite": "PASS_39_OF_39",
+      "official_inspector_equivalence": "PASS",
+      "diff_check": "PASS",
+      "live_status_smoke": {
+        "result": "FAIL",
+        "failure_code": "HOSTGUARD_READ_STATUS_UNAVAILABLE",
+        "provider_response_isError": false,
+        "observation_window_start_utc": "2026-10-01T11:49:41.961Z",
+        "factory_status_schema": "v51.factory-mcp.readonly-diagnostics.v1",
+        "hostguard_read_status": "UNAVAILABLE",
+        "owner_liveness_read_status": "MISSING",
+        "broker_read_status": "MISSING",
+        "task_read_status": "PARTIAL",
+        "classification": "HISTORICAL_OBSERVATION_EVIDENCE",
+        "source_candidate_head": "2f8ef108daccca1f8036dab30616fd6aaed99e07",
+        "portability_to_current_exact_head": "NOT_PORTABLE_TO_CURRENT_HEAD",
+        "live_acceptance": "NOT_ACCEPTED"
+      },
+      "powershell_static_parsing": "PASS",
+      "tested_exact_head": "e16cd05e821572061321f807841ae0145ff69bc1",
+      "package_version": "0.2.3",
+      "capability_parity_candidate": "QUALIFIED",
+      "live_install_acceptance": "NOT_ACCEPTED",
+      "powershell_static_parse_file_count": 16,
+      "trusted_caller_regressions": "PASS_9_OF_9",
+      "repair_lane_regressions": "PASS_9_OF_9"
+    },
+    "runtime_pr377": {
+      "cross_candidate_fail_closed_matrix": "PASS",
+      "cross_candidate_positive_matrix": "PASS",
+      "npm_test": "PASS_26_OF_26",
+      "test_v45": "PASS_3_OF_3",
+      "verify": "PASS_150_FILES_ZERO_DEPENDENCY_VIOLATIONS_CLEAN_SECRET_SCAN_AND_RUNTIME_GUARD",
+      "tested_exact_head": "491493627bd6ffcd51b0cd9287ab2cb465fbf9ee",
+      "verify_v45_bounded": "PASS",
+      "source_authority": "PASS_PROJECT_DATA_SOURCE_FIRST",
+      "local_e2e": "PASS_SYNTHETIC_PROVIDER_ROUTES_UNAVAILABLE",
+      "protected_verifier": "PASS_EXACT_HEAD_STRUCTURAL_ONLY",
+      "protected_verifier_run_id": 36991970368,
+      "protected_verifier_job_id": 110790034921,
+      "bounded_driver": "SKIPPED_NOT_PASS",
+      "bounded_driver_job_id": 110790030977
+    },
+    "synthetic_integration_is_live_acceptance": false,
+    "evidence_scope": "CANDIDATE_LOCAL_REPORTED_TEST_RESULTS_FROM_FRESH_PR_PROVIDER_METADATA; NOT_PROTECTED_TRUST_ROOT_ENFORCEMENT"
+  },
+  "acceptance_boundary": {
+    "current_spec": "VNEXT5.1-R2",
+    "mission_lifecycle": "ACTIVE",
+    "r2_02": "NOT_PASS",
+    "r2_03": "NOT_PASS",
+    "generation_5": "STALE_EXECUTION_OWNER_CANDIDATE",
+    "stale_owner_confirmed": false,
+    "live_trust_provisioning": "NOT_ACCEPTED",
+    "live_provider_session_route": "NOT_ACCEPTED",
+    "live_supervisor_heartbeat_route": "NOT_ACCEPTED",
+    "live_signed_evidence_path": "NOT_ACCEPTED",
+    "host_dispatch": false,
+    "host_mutation": false,
+    "owner_revoke": false,
+    "production": false,
+    "paid_fallback": false,
+    "worker_provider_write_credentials": false,
+    "stale_owner_control_transition": "NOT_EXECUTED",
+    "gen5_spec_criteria": "SATISFIED_PENDING_CONTROL_TRANSITION",
+    "executor_process_existence": "UNKNOWN",
+    "unknown_executor_process_extends_expired_authority": false,
+    "r2_03_live_install_acceptance_required": false,
+    "r2_03_live_install_acceptance_owner": "R2_06",
+    "r2_07_heartbeat_owner": "R2_07"
+  },
+  "historical_evidence": {
+    "pr342": {
+      "classification": "HISTORICAL_COMPOSITE_CANDIDATE",
+      "exact_head": "b26d400af6c232ad7fcf253c48f9066cbddc2d12",
+      "merge_ready": false,
+      "source_bytes_not_updated": true,
+      "scope": "COMPOSITE_SOURCE_AND_CANONICAL_SELECTION",
+      "canonical_pointer_transition_included": true,
+      "checkpoint_000201_included": true,
+      "factory_mcp_source_and_tests_included": true
+    },
+    "pr378": {
+      "classification": "HISTORICAL_OBSERVATION_EVIDENCE",
+      "verdict_portability": "VERDICT_NOT_PORTABLE_TO_CURRENT_SOURCE_PAIR",
+      "original_bytes_preserved": true,
+      "rebuilt_for_source_sha_drift": false,
+      "duplicate_observation_or_verifier_work_performed": false
+    }
+  },
+  "promotion_requirements": {
+    "exact_source_pair": [
+      "e16cd05e821572061321f807841ae0145ff69bc1",
+      "491493627bd6ffcd51b0cd9287ab2cb465fbf9ee"
+    ],
+    "exact_head_verifier_and_semantic_status_must_remain_target_specific": true,
+    "any_source_byte_change_invalidates_source_verifier_and_semantic_review": true,
+    "live_acceptance_requires_provider_addressable_exact_identity_readback": true,
+    "promotion_requires_cas_from_fresh_cp200_prestate": true,
+    "owner_allocation_and_lease_start_only_inside_canonical_promotion_cas": true,
+    "after_canonical_write_same_source_readback_required": true,
+    "no_source_pr_self_binding": true
+  },
+  "provider_readback_basis": "Fresh GET-only provider readback at 2026-10-02T12:17:24Z: Project Directory branch governance/project-directory is at 38f4fc7cb2841e2318a97ff7a53e41b2ec07aef1; directory/projects/CHATGPT_GLOBAL_SKILL_GOVERNANCE.json blob 377dcf88279d3ba433d099a7cc9f78af8c86b8ae; registration BOUND revision 5 binds refs/heads/v45/factory-control. That control ref remains CP200 d39486601d851e31256852a24e9c1393b9046fe5; current pointer blob 2481db71189e0f4cef024873b07c3d26e605cc9f selects checkpoint 200 with digest sha256:2cd708bb96179b7ef416ab5a7616f7dff50030567f56d7506a7182f6ceda600d; checkpoint blob 88524eee6c06f1fcf4b07053d5baca3324b06299 records Mission ACTIVE, R2-02 attempt 002, owner generation 5 lease expired at 2026-09-29T18:44:11Z, no canonical active job or unresolved effects, and STALE_EXECUTION_OWNER_CANDIDATE. PR381 remains open and ready for review, one direct-parent commit at e16cd05e821572061321f807841ae0145ff69bc1, tree 71e5f034db151a963f4b0b71564d34fcfe6ff627, 30 Factory MCP paths; exact-head structural verifier PASS run 36990926717 job 110786707347; bounded driver SKIPPED_NOT_PASS job 110786708863; source-reported local package tests 39/39, PowerShell parse 16 files, trusted-caller tests 9/9, repair tests 9/9; exact-head semantic review PENDING. PR377 remains open and ready for review, one direct-parent commit at 491493627bd6ffcd51b0cd9287ab2cb465fbf9ee, tree 02dbc7f75cc80abaf4b5efd2ca7b918ff7462218, 12 runtime paths; exact-head structural verifier PASS run 36991970368 job 110790034921; bounded driver SKIPPED_NOT_PASS job 110790030977; source-reported local runtime tests 26/26, V45 tests 3/3, bounded/source checks PASS and synthetic E2E only; exact-head semantic review PENDING. Native read-only executor observation found only PTYSD-VNext42-Supervisor-Candidate1, disabled, user x, RestartCount 0, last run 2026-09-09; live Factory package/ACL and Hyper-V reads remain unavailable to this executor, so live job/receipt counts are NOT independently observed and C1 remains lane-local WAITING_EXTERNAL. No revoke, dispatch, Host mutation, Production, paid fallback, or worker provider-write credentials.",
+  "rebuild_history": {
+    "supersedes_pr382_exact_head": true,
+    "superseded_candidate_instance_id": "7c1e24ef-f5d7-47dc-a50a-6e91c3f27522",
+    "new_candidate_instance_id": "7d44cd13-4f90-4f48-b072-a020985dbbd6",
+    "reason": "REBIND_TO_FROZEN_PR381_CAPABILITY_PARITY_HEAD_AND_REBUILT_PR377_RUNTIME_HEAD",
+    "rebuilt_directly_from_cp200": "d39486601d851e31256852a24e9c1393b9046fe5",
+    "execution_owner_generation_allocated": false,
+    "owner_generation": null,
+    "lease_until": null,
+    "superseded_authority_classification": "HISTORICAL_OBSERVATION_EVIDENCE_NOT_CURRENT_PACKET_AUTHORITY"
+  },
+  "phase_dag": {
+    "schema": "VNEXT5_1_R2_PHASE_DAG_V1",
+    "phase_dependencies": {
+      "R2_02A": [],
+      "R2_02B": [
+        "R2_02A"
+      ],
+      "R2_03": [
+        "R2_02A"
+      ],
+      "R2_02": [
+        "R2_02B"
+      ],
+      "R2_04": [
+        "R2_02"
+      ],
+      "R2_05": [
+        "R2_04"
+      ],
+      "R2_06": [
+        "R2_03",
+        "R2_04",
+        "R2_05"
+      ],
+      "R2_07": [
+        "R2_06"
+      ]
+    },
+    "phase_ownership": {
+      "R2_03": "FIXED_PURPOSE_READONLY_OBSERVATION",
+      "R2_04": "UNIQUE_TRUSTED_CALLER",
+      "R2_05": "NONCIRCULAR_HOST_REPAIR",
+      "R2_06": "LIVE_FACTORY_MCP_INSTALL_AND_HOST_ACCEPTANCE",
+      "R2_07": "SUPERVISOR_24X7_AND_HEARTBEAT_DURABILITY"
+    },
+    "r2_03_acceptance_requires": [
+      "EXACTLY_FOUR_PUBLIC_MCP_TOOLS",
+      "FIXED_PURPOSE_READONLY_FACTORY_STATUS_AND_DIAGNOSTICS",
+      "EXACT_FROZEN_SOURCE_AND_RUNTIME_HEAD_TREE_BLOB_BINDINGS",
+      "CAPABILITY_NON_REGRESSION_CANDIDATE_EVIDENCE",
+      "NO_ARBITRARY_HOST_MUTATION_THROUGH_R2_03",
+      "CANDIDATE_LOCAL_REGRESSIONS_PASS",
+      "EXACT_HEAD_STRUCTURAL_VERIFIER_PASS",
+      "CURRENT_EXACT_HEAD_SEMANTIC_REVIEW_STATUS_REPRESENTED"
+    ],
+    "r2_03_acceptance_excludes": [
+      "R2_04",
+      "R2_05",
+      "R2_06",
+      "R2_07"
+    ],
+    "r2_03_host_mutation": false,
+    "r2_03_mutation_fence": "NOT_REQUIRED"
+  },
+  "r2_03_candidate_acceptance_scope": {
+    "candidate_source_pair": [
+      {
+        "pr_number": 381,
+        "exact_head": "e16cd05e821572061321f807841ae0145ff69bc1",
+        "tree": "71e5f034db151a963f4b0b71564d34fcfe6ff627"
+      },
+      {
+        "pr_number": 377,
+        "exact_head": "491493627bd6ffcd51b0cd9287ab2cb465fbf9ee",
+        "tree": "02dbc7f75cc80abaf4b5efd2ca7b918ff7462218"
+      }
+    ],
+    "public_tool_count": 4,
+    "tool_names": [
+      "factory_status",
+      "worker_prepare",
+      "worker_start",
+      "host_powershell"
+    ],
+    "factory_status": "FIXED_PURPOSE_READ_ONLY",
+    "readonly_diagnostics": true,
+    "capability_non_regression_candidate_evidence": "PASS_CANDIDATE_LOCAL",
+    "candidate_local_regressions": "PASS",
+    "structural_verifier": "PASS_EXACT_HEAD",
+    "semantic_review_by_source": {
+      "pr381": "PENDING_CURRENT_HEAD",
+      "pr377": "PENDING_CURRENT_SOURCE_PAIR"
+    },
+    "host_mutation": false,
+    "mutation_fence": "NOT_REQUIRED",
+    "live_install_acceptance": "NOT_REQUIRED_FOR_R2_03; NOT_ACCEPTED; OWNED_BY_R2_06",
+    "supervisor_heartbeat_durability": "NOT_REQUIRED_FOR_R2_03; NOT_ACCEPTED; OWNED_BY_R2_07",
+    "semantic_review_is_hard_gate": false,
+    "review_status_role": "EXACT_TARGET_METADATA_ONLY"
+  },
+  "r2_02_stale_owner_audit": {
+    "source_class": "USER_PROVIDED_FRESH_MISSION_CONTROL_AUDIT_NOT_INDEPENDENT_PROVIDER_READBACK",
+    "run_state": "RUNNING",
+    "generation_5_lease_expired": true,
+    "factory_live_job_count": 0,
+    "active_factory_job": "NONE_OBSERVED",
+    "pending_receipt_count": 0,
+    "unresolved_effect_refs": [],
+    "executor_process_existence": "UNKNOWN",
+    "unknown_executor_process_extends_expired_owner_authority": false,
+    "assessment": "SATISFIED_PENDING_STALE_OWNER_CONTROL_TRANSITION",
+    "policy_basis": "VNEXT5.1-R2_HUMAN_CURRENT_SPEC_R2_02_COMBINED_CRITERIA",
+    "strict_extra_cross_source_gate": false,
+    "stale_owner_confirmed": false,
+    "control_transition_status": "NOT_EXECUTED",
+    "revoke": false,
+    "dispatch": false,
+    "same_source_readback_required": true,
+    "ready_recompute_required": true,
+    "next_owner_dispatch": "SEPARATE_LATER_TRANSITION_AFTER_READBACK_AND_READY_RECOMPUTE",
+    "owner_authority_validity": "EXPIRED",
+    "human_spec_criteria_status": "SATISFIED_PENDING_CONTROL_TRANSITION",
+    "revocation": false,
+    "host_dispatch": false
+  },
+  "future_phase_acceptance_state": {
+    "R2_04": {
+      "phase_owner": "UNIQUE_TRUSTED_CALLER",
+      "trust_provisioning": "NOT_ACCEPTED",
+      "provider_session_route": "NOT_ACCEPTED",
+      "signed_evidence_path": "NOT_ACCEPTED"
+    },
+    "R2_05": {
+      "phase_owner": "NONCIRCULAR_HOST_REPAIR",
+      "noncircular_host_repair": "NOT_ACCEPTED"
+    },
+    "R2_06": {
+      "phase_owner": "LIVE_FACTORY_MCP_INSTALL_AND_HOST_ACCEPTANCE",
+      "factory_mcp_install_acceptance": "NOT_ACCEPTED"
+    },
+    "R2_07": {
+      "phase_owner": "SUPERVISOR_24X7_AND_HEARTBEAT_DURABILITY",
+      "supervisor_24x7": "NOT_ACCEPTED",
+      "supervisor_heartbeat_route": "NOT_ACCEPTED",
+      "heartbeat_durability": "NOT_ACCEPTED"
+    }
+  },
+  "candidate_policy_alignment": {
+    "source_class": "HUMAN_CURRENT_SPEC_AND_CANDIDATE_POLICY_RECONCILIATION",
+    "human_spec_id": "VNEXT5.1-R2",
+    "human_spec_path": "governance/csg/v51/specs/VNEXT5.1-R2-HUMAN-CURRENT-SPEC-20260929.md",
+    "canonical_prestate_checkpoint": 200,
+    "canonical_prestate_policy_revision_id": "20260930T104733+0800-EP80",
+    "canonical_prestate_exact_cross_source_liveness_observation_required": true,
+    "candidate_policy_revision_id": "20261002T105808+0800-EP88",
+    "candidate_policy_hash": "sha256:95e80c1783002de360d6d0e1e1082af36562cfe026882ee736a43cd39ac42144",
+    "candidate_exact_cross_source_liveness_observation_required": false,
+    "candidate_current_policy_projection_path": "governance/csg/v51/current-execution-policy.json",
+    "candidate_current_policy_projection_matches_policy": true,
+    "strictly_stronger_than_human_spec": false,
+    "stricter_rule_justification": null,
+    "human_approval_required_for_stricter_rule": false,
+    "owner_authority_validity": "EXPIRED",
+    "active_factory_job": "NONE_OBSERVED",
+    "executor_process_existence": "UNKNOWN",
+    "unknown_executor_process_extends_expired_owner_authority": false,
+    "combined_human_spec_criteria_status": "SATISFIED_PENDING_CONTROL_TRANSITION",
+    "stale_owner_control_transition_status": "NOT_EXECUTED",
+    "revoke": false,
+    "dispatch": false
+  }
+}
