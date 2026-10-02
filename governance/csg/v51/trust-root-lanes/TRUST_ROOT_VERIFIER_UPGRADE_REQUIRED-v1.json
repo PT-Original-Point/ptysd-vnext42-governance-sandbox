@@ -1,0 +1,83 @@
+{
+  "schema_version": "csg.v51.trust-root-verifier-upgrade-lane.v1",
+  "lane_id": "TRUST_ROOT_VERIFIER_UPGRADE_REQUIRED",
+  "status": "REQUIRED_SEPARATE_LANE_NOT_STARTED",
+  "packet_pr_number": 382,
+  "canonical_prestate": {
+    "control_ref": "refs/heads/v45/factory-control",
+    "control_commit": "d39486601d851e31256852a24e9c1393b9046fe5",
+    "checkpoint_seq": 200
+  },
+  "frozen_source_pair": [
+    {
+      "pr_number": 381,
+      "role": "R2_03_SOURCE_ONLY_FACTORY_MCP",
+      "head": "af50480a00f8a307058ef171468d553a0ef61101",
+      "tree": "61cf8c22e34b63803dbc4bba2c3b3641411b1000",
+      "semantic_review": "PENDING_CURRENT_HEAD"
+    },
+    {
+      "pr_number": 377,
+      "role": "R2_02_RUNTIME_CROSS_SOURCE_INTEGRATION",
+      "head": "070555ab3753f35fa250f651f5175adb9bd5cd25",
+      "tree": "011247a2a18606dcc74dd4313d3b2a2974175c96",
+      "semantic_review": "PENDING_CURRENT_SOURCE_PAIR"
+    }
+  ],
+  "required_invariants": [
+    "NONCANONICAL_PREPARED_CANDIDATE_MUST_NOT_HAVE_ACTIVE_OWNER_LEASE",
+    "CANONICAL_OWNER_GENERATION_ALLOCATED_AT_SELECTION",
+    "CANONICAL_OWNER_LEASE_STARTS_AT_OR_AFTER_CHECKPOINT_RECORDED_AT",
+    "OWNER_GENERATION_ALLOCATION_USES_FRESH_CANONICAL_PRESTATE"
+  ],
+  "evidence_boundary": {
+    "candidate_packet_ownerless_contract": "IMPLEMENTED",
+    "candidate_local_promotion_packet_verifier": "PASS_CANDIDATE_LOCAL_ONLY",
+    "candidate_local_ownerless_candidate_regression": "PASS_CANDIDATE_LOCAL_ONLY",
+    "immutable_protected_trust_root_enforcement": "NOT_YET_IMPLEMENTED",
+    "candidate_local_evidence_is_protected_enforcement": false
+  },
+  "current_trusted_verifier": {
+    "workflow_path": ".github/workflows/factory-bounded.yml",
+    "trusted_verifier_path": "governance/csg/trust-root/csg-trusted-pr-verifier.mjs",
+    "trusted_source_selector": "github.workflow_sha",
+    "checks": [
+      "AUTHORIZED_BASE",
+      "EXACT_DIRECT_PARENT",
+      "ALLOWED_PATH_SET",
+      "PROTECTED_AND_TRUST_ROOT_PATH_EXCLUSION",
+      "CLEAN_WORKTREE"
+    ],
+    "owner_allocation_invariants_enforced": false,
+    "candidate_local_promotion_verifier_executed": false,
+    "candidate_local_owner_allocation_tests_executed": false
+  },
+  "procedure_and_gate": {
+    "procedure_path": "governance/csg/csg-03b-target-trust-plan-v1.json",
+    "procedure_read_from_commit": "d39486601d851e31256852a24e9c1393b9046fe5",
+    "required_human_gate": "HG47-TRUST",
+    "authorization_record_path": "governance/csg/csg-03b-provider-runner-access-blocker-v2.json",
+    "authorization_scope_recorded": "repo PT-Original-Point/ptysd-vnext42-governance-sandbox; refs/heads/v45/factory-control and necessary verifier/writer trust root only; no Production, business projects, paid services, or worker provider-write credentials",
+    "prior_authorization_recorded": true,
+    "applicability_to_this_exact_owner_allocation_verifier_upgrade": "NOT_YET_VERIFIED",
+    "provider_admin_prestate": "NOT_CAPTURED",
+    "trust_root_or_workflow_mutation_performed": false
+  },
+  "required_procedure_steps_before_acceptance": [
+    "Verify HG47-TRUST authorization and its exact applicability to this owner-allocation verifier upgrade.",
+    "Use an authorized provider-admin channel to verify capability and capture exact branch-protection/ruleset prestate.",
+    "Publish the approved trusted verifier/workflow change as immutable bootstrap source.",
+    "Require exact ruleset/protection with no normal bypass and pin the trusted workflow/check source.",
+    "Read back exact provider protection, verifier source, and workflow source.",
+    "Prove normal raw update_ref is rejected and a compliant PR plus trusted verifier is accepted.",
+    "Prove candidate-modified verifier/expected-set cannot satisfy the trusted gate.",
+    "Prove the scoped recovery path cannot become the normal writer, then record the resulting acceptance."
+  ],
+  "separation": {
+    "source_only_pr381_unchanged": true,
+    "runtime_pr377_unchanged": true,
+    "promotion_packet_pr382_is_not_trust_root_source": true,
+    "no_trust_root_or_workflow_file_modified": true,
+    "no_canonical_pointer_selection": true
+  }
+}
