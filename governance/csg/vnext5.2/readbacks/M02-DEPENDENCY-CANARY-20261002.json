@@ -1,0 +1,65 @@
+{
+  "schema": "vnext5.2.m02-dependency-canary-readback.v1",
+  "observed_at_utc": "2026-10-02T15:55:11.4388324Z",
+  "result": "M02_LOCAL_CANARY_PASS_REVIEW_PENDING",
+  "artifact_class": "DEPENDENCY_PROVENANCE_AND_LOCAL_QUALIFICATION",
+  "canonical_selection_claim": false,
+  "production_claim": false,
+  "dependency": {
+    "license": "MIT",
+    "npm_registry": "https://registry.npmjs.org/@modelcontextprotocol/server/-/server-2.2.0.tgz",
+    "lock_integrity": "sha512-qFnltjus6Gk8Lx6J1w2RXmr3YPN22MNT6qD6zjAkaiWIlFIFxWClz0rXHNuJF/KSUyn5YGhkSvXkWDbQHVLFEQ==",
+    "official_release_url": "https://github.com/modelcontextprotocol/typescript-sdk/releases/tag/v2.2.0",
+    "name": "@modelcontextprotocol/server",
+    "registry_integrity_matches_lock": true,
+    "license_file_sha256": "0382b0057770ca05e9c350a50aa3b1c1fea84da0bc81d723bf00b9aa841be58a",
+    "installed_version": "2.2.0",
+    "version": "2.2.0"
+  },
+  "local_qualification": {
+    "wire_protocol_version": "2026-07-28",
+    "package_version_and_wire_protocol_treated_separately": true,
+    "powershell_51_static_parse": "PASS",
+    "official_inspector_equivalence": "PASS",
+    "negatives_include": "PROJECT_SCOPE_CROSS_PROJECT_WRONG_HOST_DUPLICATE_KEYS",
+    "npm_test": "43/43 PASS",
+    "failures": 0,
+    "skipped": 0
+  },
+  "fallback": {
+    "fallback_status": "HISTORICAL_SOURCE_AVAILABLE_NOT_LIVE_ACCEPTANCE",
+    "package_version": "0.2.3",
+    "sdk_lock_integrity": "sha512-YhHWdHfpFMQfd0prsEnxKeS3Qz3ytIGmsS0sth4KDjnacIT7hxk6hXHkJ9KysxlkvTM+WZAtQbbcUhdoP4Hvtw==",
+    "helper_blob_oid": "5c60aa21c8347cb2bdc4b3de16efb11744a73323",
+    "helper_unchanged": true,
+    "source_commit": "e16cd05e821572061321f807841ae0145ff69bc1",
+    "sdk_version": "2.0.0"
+  },
+  "provider_source_candidate": {
+    "source_freeze": "NOT_CLAIMED",
+    "semantic_review": "PENDING",
+    "base": "d39486601d851e31256852a24e9c1393b9046fe5",
+    "tree": "67d660765b15982e17c5d316597f920c67f19e1f",
+    "repository_full_name": "PT-Original-Point/ptysd-vnext42-governance-sandbox",
+    "head": "7775891344b82886b9dbb7c7c7bf8fb369c026bf",
+    "checks": "NO_CHECKS_REPORTED",
+    "pr": 381
+  },
+  "not_performed": {
+    "remote_project_authentication": true,
+    "production": true,
+    "live_runtime_acceptance": true,
+    "host_mutation": true,
+    "new_paid_service": true,
+    "supervisor_acceptance": true,
+    "host_install": true
+  },
+  "human_reserved_gates": [
+    "PRODUCTION_FINAL_AUTHORIZATION",
+    "NEW_PAID_COST_OR_SERVICE",
+    "LEGAL_CONTRACT_SIGNATURE_OR_IDENTITY",
+    "OAUTH_OR_MFA",
+    "MAJOR_IRREVERSIBLE_AUTHORITY_EXPANSION",
+    "UNRECONCILABLE_AMBIGUOUS_EXTERNAL_EFFECT"
+  ]
+}
