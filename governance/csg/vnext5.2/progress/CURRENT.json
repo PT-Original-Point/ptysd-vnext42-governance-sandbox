@@ -3,13 +3,13 @@
   "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
   "noncanonical": true,
   "writer": "ROOT_SINGLE_INTEGRATOR",
-  "sequence": 14,
-  "previous_locator_head": "31f0d79917295b69e7c6769fe01b2ca487e32cf1",
+  "sequence": 15,
+  "previous_locator_head": "c0010364f2726fd666f23a884edd86630ab3be20",
   "progress": {
     "repository": "PT-Original-Point/ptysd-vnext42-governance-sandbox",
-    "exact_head": "211e64c03586a9be171119858be20897d43babc3",
+    "exact_head": "6f40a83f9732c1af7aa8b58ece03aa833565f026",
     "current_path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/CURRENT.json",
-    "current_sha256": "sha256:f913ee1af410a2697f522cebb0df8f3180ca0210409b1332efd64a7bf5068217",
+    "current_sha256": "sha256:95006a4352f42bf08c6b4dc053ef016632683c53f29bcfc5a659108c6316a73b",
     "manifest_path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/manifest.json"
   },
   "dispatch_authority": false,
@@ -54,10 +54,11 @@
     },
     "running_source": [
       "F02.FLEET_SOURCE"
-    ]
+    ],
+    "f02": "FIVE_ROOT_NEGATIVE_PROBE_FINDINGS_REWORK_ASSIGNED_SAME_LOCKED_NATIVE_SOURCE_CONVERSATION"
   },
   "root_role": "INDEPENDENT_AUDIT_PLAN_DISPATCH_COLLECTION_ARBITRATION_NO_PRODUCT_CODE",
   "model_lock_path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/MODEL-LOCK-20261004.json",
   "historical_progress_head": "5f0afa8db7b981234370024359c6061c202d4f72",
-  "active_manifest_policy": "CURRENT_DECISION_PROJECTIONS_ONLY_39_FILES_MAX40_NO_HISTORY_REEXECUTION"
+  "active_manifest_policy": "CURRENT_DECISION_PROJECTIONS_ONLY_40_FILES_MAX40_NO_HISTORY_REEXECUTION"
 }
