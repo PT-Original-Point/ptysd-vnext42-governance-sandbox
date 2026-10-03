@@ -1,0 +1,26 @@
+{
+  "schema": "vnext5.2.progress-locator.v1",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "noncanonical": true,
+  "writer": "ROOT_SINGLE_INTEGRATOR",
+  "sequence": 1,
+  "previous_locator_head": null,
+  "progress": {
+    "repository": "PT-Original-Point/ptysd-vnext42-governance-sandbox",
+    "exact_head": "0544e760a4138214cd980758e074a09efa05c119",
+    "current_path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/CURRENT.json",
+    "current_sha256": "sha256:3b3b5c2490967d619067123cd0503a6b4fb7bf9fe356f993960f663115db822c",
+    "manifest_path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/manifest.json"
+  },
+  "dispatch_authority": false,
+  "canonical_selection": false,
+  "execution_owner_allocated": false,
+  "consumer_rule": "Resolve exact progress bytes and verify digest; refresh expired facts; construction/canonical/installed remain distinct. Branch readability is not Host authority.",
+  "source_baseline": {
+    "mcp_pr": 385,
+    "mcp_head": "da8e1a767d54e67ba7bb15d7d35e9ae535e50034",
+    "runtime_pr": 386,
+    "runtime_head": "c2bfa038121782a3ae903591981a0b05f52a7b38",
+    "semantic": "FINDINGS_REPAIR_IN_PROGRESS"
+  }
+}
