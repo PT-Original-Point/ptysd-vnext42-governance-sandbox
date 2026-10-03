@@ -1,15 +1,15 @@
 {
   "schema": "vnext5.2.operation-facts.v1",
   "catalog_sha256": "sha256:ee769422b5d587e771d09c4e95af1af9a3a7cf0a7c0e493d86071e2df57304de",
-  "captured_at_utc": "2026-10-03T10:56:40.144Z",
+  "captured_at_utc": "2026-10-03T12:07:21.749Z",
   "freshness": {
     "max_age_seconds": 900,
     "max_future_skew_seconds": 60
   },
   "source_inventory": {
     "ref": "auto-continuation:dispatch.json",
-    "sha256": "sha256:f98399d6f49c411ac375ba26be538564dcc9db8f2010cc87b3d60d078f9349ab",
-    "observed_at_utc": "2026-10-03T10:56:40.144Z"
+    "sha256": "sha256:3bfe9ebc10fbeb60724c9d659c93998b5fb86e59cc966ab924d2468b6604e23b",
+    "observed_at_utc": "2026-10-03T12:07:21.749Z"
   },
   "canonical_binding": {
     "control_ref": "refs/heads/v45/factory-control",
@@ -25,8 +25,8 @@
       "evidence": [
         {
           "ref": "auto-continuation:fresh-provider.json",
-          "sha256": "sha256:126dd787df5b3c7de4d90d1489362035692612d349a42ed813edc046493e9507",
-          "observed_at_utc": "2026-10-03T10:56:40.144Z"
+          "sha256": "sha256:64f8a369bbc940bbf3dc9ee800677f2755f4e5b0a2725503f9733e5ef2ab6da7",
+          "observed_at_utc": "2026-10-03T12:07:21.749Z"
         }
       ],
       "evidence_class": "FRESH_CANONICAL_READBACK"
@@ -92,8 +92,9 @@
       "authorization_state": "AUTHORIZED",
       "evidence": [],
       "evidence_class": "LOCAL_SOURCE_QUALIFIED",
-      "owner_authority": "VALID",
-      "reason": "AUTHORIZED_SOURCE_REPAIR_OR_ROUTE_QUALIFICATION_IN_PROGRESS"
+      "owner_authority": "UNKNOWN",
+      "execution_owner_allocated": false,
+      "reason": "HUMAN_AUTHORIZED_NATIVE_SOURCE_TASK_NO_CANONICAL_EXECUTION_OWNER_CLAIM"
     },
     {
       "id": "M02.LOCAL_CANARY",
@@ -248,8 +249,9 @@
       "authorization_state": "AUTHORIZED",
       "evidence": [],
       "evidence_class": "LOCAL_SOURCE_QUALIFIED",
-      "owner_authority": "VALID",
-      "reason": "AUTHORIZED_SOURCE_REPAIR_OR_ROUTE_QUALIFICATION_IN_PROGRESS"
+      "owner_authority": "UNKNOWN",
+      "execution_owner_allocated": false,
+      "reason": "HUMAN_AUTHORIZED_NATIVE_SOURCE_TASK_NO_CANONICAL_EXECUTION_OWNER_CLAIM"
     },
     {
       "id": "D02.PLAN_SHADOW",
@@ -326,14 +328,16 @@
       "state": "RUNNING",
       "authorization_state": "AUTHORIZED",
       "evidence": [],
-      "owner_authority": "VALID",
-      "reason": "AUTHORIZED_SOURCE_REPAIR_OR_ROUTE_QUALIFICATION_IN_PROGRESS"
+      "owner_authority": "UNKNOWN",
+      "execution_owner_allocated": false,
+      "reason": "HUMAN_AUTHORIZED_NATIVE_SOURCE_TASK_NO_CANONICAL_EXECUTION_OWNER_CLAIM"
     },
     {
       "id": "P52.INTAKE_SOURCE",
-      "state": "NOT_STARTED",
+      "state": "WAITING_REVIEW",
       "authorization_state": "AUTHORIZED",
-      "evidence": []
+      "evidence": [],
+      "reason": "COLLECTED_SOURCE_AND_ROOT_EDITS_REQUIRE_WORKER_HANDOFF_AND_FINAL_INDEPENDENT_REVIEW"
     },
     {
       "id": "P52.RESEARCH_OPTIONS_SOURCE",
@@ -414,5 +418,5 @@
       "evidence": []
     }
   ],
-  "facts_sha256": "sha256:a370ca0f16a09c0dbef157d8f8fc90eda2a0369863e0c231866cee4aa60aa5b8"
+  "facts_sha256": "sha256:87d62ac73e0978a18a62f487a47704464d47aae4d69af10ff0d867bbd6691d97"
 }

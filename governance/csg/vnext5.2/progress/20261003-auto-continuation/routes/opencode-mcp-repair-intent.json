@@ -1,0 +1,33 @@
+{
+  "schema": "vnext5.2.native-task-intent.v1",
+  "task_id": "S-MCP-SEMANTIC-REPAIR-OPENCODE-20261003",
+  "recorded_at": "2026-10-03T11:56:36.778Z",
+  "base": "da8e1a767d54e67ba7bb15d7d35e9ae535e50034",
+  "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-MCP-SEMANTIC-REPAIR-WORK-20261003",
+  "write_set": [
+    "tools/csg/factory-mcp/**",
+    "outputs/S-MCP-SEMANTIC-REPAIR/**"
+  ],
+  "route": "OPENCODE_NATIVE_DEFAULT_SERVICE_ENCAPSULATED_AUTH",
+  "model": "opencode/fledge-alpha-free",
+  "status": "SUBMITTED_OUTCOME_PENDING",
+  "session_id": "ses_efe606f6cffeBxLiIedexWKrH5",
+  "paid_fallback": false,
+  "model_selection_basis": "Fresh configured prior native source worktree default; new worktree has no default. Explicitly bind SAME zero-cost existing model, no paid fallback.",
+  "native_args": [
+    "run",
+    "--session",
+    "ses_efe606f6cffeBxLiIedexWKrH5",
+    "--model",
+    "opencode/fledge-alpha-free",
+    "--format",
+    "json",
+    "--file",
+    "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-AUTO-CONTINUATION-20261003\\routes\\MCP-OPENCODE-TASK.md",
+    "--title",
+    "S-MCP-SEMANTIC-REPAIR-OPENCODE-20261003",
+    "Execute the attached bounded source repair and write the required durable result."
+  ],
+  "task_sha256": "aca4db7702d45cd2230db8293b2906391c121f4d5fb6f0380bd2e280bece117a",
+  "pid": 23536
+}

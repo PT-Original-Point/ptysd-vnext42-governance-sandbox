@@ -1,33 +1,40 @@
 {
   "schema": "vnext5.2.coordinator-dispatch.v1",
-  "observed_at": "2026-10-03T10:56:40.144Z",
+  "observed_at": "2026-10-03T12:07:21.749Z",
   "single_integrator": "root",
   "tasks": [
     {
       "id": "S-MCP-SEMANTIC-REPAIR",
-      "route": "CODEX_EXISTING_THREAD",
-      "thread": "01a0fd19-df99-7013-8a8b-eb952c647e3d",
+      "route": "OPENCODE_NATIVE",
+      "session": "ses_efe606f6cffeBxLiIedexWKrH5",
       "base": "da8e1a767d54e67ba7bb15d7d35e9ae535e50034",
       "worktree": "VNEXT5.2-MCP-SEMANTIC-REPAIR-WORK-20261003",
       "write_set": [
         "tools/csg/factory-mcp/**"
       ],
-      "status": "DISPATCHED",
+      "status": "SUBMITTED_OUTCOME_PENDING",
       "result_path": "outputs/S-MCP-SEMANTIC-REPAIR/result.json",
-      "dispatch_source": "native send_message_to_thread acknowledged"
+      "dispatch_source": "routes/opencode-mcp-repair-intent.json"
     },
     {
       "id": "S-RUNTIME-SEMANTIC-REPAIR",
-      "route": "NATIVE_SUBAGENT",
-      "agent": "/root/v52_runtime_exact_review",
+      "route": "CODEX_EXISTING_THREAD",
+      "thread": "01a0fd19-df99-7013-8a8b-eb952c647e3d",
       "base": "c2bfa038121782a3ae903591981a0b05f52a7b38",
       "worktree": "VNEXT5.2-RUNTIME-SEMANTIC-REPAIR-WORK-20261003",
       "write_set": [
         "tools/csg/v51-supervisor/**"
       ],
-      "status": "DISPATCHED",
+      "status": "ACTIVE_NATIVE_THREAD_READBACK",
       "result_path": "outputs/S-RUNTIME-SEMANTIC-REPAIR/result.json",
-      "dispatch_source": "native followup_task acknowledged"
+      "dispatch_source": "native send_message_to_thread and wait_threads"
+    },
+    {
+      "id": "S-ADS",
+      "route": "ANTIGRAVITY",
+      "status": "TRANSPORT_BOOTSTRAP_IN_PROGRESS_NOT_YET_ANTIGRAVITY_DISPATCHED",
+      "bootstrap_session": "ses_efe5a0099ffeieQJn8IEJ3t8lq",
+      "result_path": "routes/antigravity-bootstrap-result.json"
     },
     {
       "id": "P52.NATIVE_ROUTE_DISCOVERY",

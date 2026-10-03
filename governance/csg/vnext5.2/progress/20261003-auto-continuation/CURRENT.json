@@ -1,7 +1,7 @@
 {
   "schema": "vnext5.2.construction-progress.v2",
   "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
-  "observed_at": "2026-10-03T10:56:40.144Z",
+  "observed_at": "2026-10-03T12:07:21.749Z",
   "columns": {
     "construction": {
       "spec": "VNEXT5.2",
@@ -23,12 +23,18 @@
     }
   },
   "goal": {
-    "root": "ACTIVE_REAL_API_READBACK",
-    "worker_luna": "PAUSED_REPORTED_NOT_AUTHORITY",
+    "root": "usageLimited",
+    "worker_luna": "LOCAL_GOAL_NOT_PROJECT_AUTHORITY_THREAD_ACTIVE_READBACK",
     "automation_id": "vnext5-2",
     "heartbeat": "ACTIVE_REAL_TOOL_READBACK_30_MINUTES",
     "app_running_required": true
   },
+  "role_contract": "ROOT_AUDIT_PLAN_DISPATCH_COLLECT_ARBITRATE_ONLY_NO_PRODUCT_SOURCE_CODING",
+  "worker_set": [
+    "CODEX_LUNA_MAX",
+    "ANTIGRAVITY",
+    "OPENCODE"
+  ],
   "reviews": {
     "pr385": {
       "head": "da8e1a767d54e67ba7bb15d7d35e9ae535e50034",
@@ -53,15 +59,14 @@
     "F01.PREFLIGHT",
     "C1.PREPARE",
     "C2.PREFLIGHT",
-    "T01.BASELINE",
-    "P52.INTAKE_SOURCE"
+    "T01.BASELINE"
   ],
   "running_ids": [
     "M01.SOURCE",
     "D02.SOURCE",
     "P52.NATIVE_ROUTE_DISCOVERY"
   ],
-  "valid_until": "2026-10-03T11:11:40.144Z",
+  "valid_until": "2026-10-03T12:22:21.749Z",
   "all_legal_ready_lanes_exhausted": false,
   "canonical_write": false,
   "host_install": false,

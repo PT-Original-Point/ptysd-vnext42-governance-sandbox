@@ -1,0 +1,291 @@
+{
+  "schema": "vnext5.2.automatic-collection.v1",
+  "observed_at": "2026-10-03T11:59:45.551Z",
+  "tasks": [
+    {
+      "task": "S-RUNTIME-SEMANTIC-REPAIR",
+      "observed_at": "2026-10-03T11:59:45.217Z",
+      "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-RUNTIME-SEMANTIC-REPAIR-WORK-20261003",
+      "base": "c2bfa038121782a3ae903591981a0b05f52a7b38",
+      "source_files": [
+        {
+          "path": "tools/csg/v51-supervisor/.gitattributes",
+          "bytes": 101,
+          "sha256": "sha256:f3e333480e68e5bcda84f3b5741773f8abff0d1bb846906c54d21fc985d6c2d3"
+        },
+        {
+          "path": "tools/csg/v51-supervisor/bin/host-supervisor.mjs",
+          "bytes": 3779,
+          "sha256": "sha256:2d3517caf704c415a87a31948cc7a19f56edb93033c4299560f4617fda6c4227"
+        },
+        {
+          "path": "tools/csg/v51-supervisor/lib/evidence-contract.mjs",
+          "bytes": 9540,
+          "sha256": "sha256:aeafff07f19f343e283766931b2539fa3b4ac7beb4b4fbe29d23a6d23a45354d"
+        },
+        {
+          "path": "tools/csg/v51-supervisor/lib/evidence-ledger.mjs",
+          "bytes": 4046,
+          "sha256": "sha256:212482c167cfd28976a98fbc9159aadca3e8ce5ea2d8c18a476c274f6c121782"
+        },
+        {
+          "path": "tools/csg/v51-supervisor/lib/f01-executor-adapter.mjs",
+          "bytes": 15644,
+          "sha256": "sha256:c202bdc0d988f8de9ed1b97653b75356a9cfe4159595f333c34894603d1c2198"
+        },
+        {
+          "path": "tools/csg/v51-supervisor/lib/fingerprint.mjs",
+          "bytes": 4502,
+          "sha256": "sha256:1efa74d7c811a3064829f6949dd03037ded7a0ccf739a162ee5a668790216f71"
+        },
+        {
+          "path": "tools/csg/v51-supervisor/lib/fleet.mjs",
+          "bytes": 9265,
+          "sha256": "sha256:f23811638de2cbc469cb2119e1714870eb540b2413f4eeff4ce6b5f84cb3cc5e"
+        },
+        {
+          "path": "tools/csg/v51-supervisor/lib/github-readonly.mjs",
+          "bytes": 9599,
+          "sha256": "sha256:621c9156600095b450f5e287fc73662a35c0f6779be9caad86da5fde6054da51"
+        },
+        {
+          "path": "tools/csg/v51-supervisor/lib/operation-catalog.mjs",
+          "bytes": 4461,
+          "sha256": "sha256:412329fc69f13e696b9cdb18113840f7d17b3a6b0c1508b1634c0e4541c4f214"
+        },
+        {
+          "path": "tools/csg/v51-supervisor/lib/operation-planner.mjs",
+          "bytes": 16450,
+          "sha256": "sha256:8842acb104bb67003697c3522e51a10aeba4d9d345e423798b36ef257487631e"
+        },
+        {
+          "path": "tools/csg/v51-supervisor/lib/reconcile.mjs",
+          "bytes": 16622,
+          "sha256": "sha256:df88b7de5996486fae9fb3f4c69ffe08c5dcce84b79988f41bfcae6d1e8e3a0e"
+        },
+        {
+          "path": "tools/csg/v51-supervisor/lib/scheduler.mjs",
+          "bytes": 8984,
+          "sha256": "sha256:99c5071b8aa6d67a1ff6cbb3405cf592f821d5152a5980f08df2be7b42027076"
+        },
+        {
+          "path": "tools/csg/v51-supervisor/lib/shadow-journal.mjs",
+          "bytes": 17601,
+          "sha256": "sha256:02f54576253b1e232d39577e481784f544858ba3a28126ab57108206ed70d68f"
+        },
+        {
+          "path": "tools/csg/v51-supervisor/lib/shadow-runtime.mjs",
+          "bytes": 10637,
+          "sha256": "sha256:0c70b56f71c3028ac9d9a02270f0bdbc39c8d1e150c18d2dd476cdb940285cbd"
+        },
+        {
+          "path": "tools/csg/v51-supervisor/lib/supervisor.mjs",
+          "bytes": 4312,
+          "sha256": "sha256:29f760c74b6e341293cbcdbc042259699e7363ad809df64f1fa7f2353e3fbafb"
+        },
+        {
+          "path": "tools/csg/v51-supervisor/lib/windows-task-profile.mjs",
+          "bytes": 3174,
+          "sha256": "sha256:3ab47ae271b898c90655cb60bc32f0f8160fd5bea006ccdd7aea44699b4b5829"
+        },
+        {
+          "path": "tools/csg/v51-supervisor/operation-plan.p52-extension.json",
+          "bytes": 13053,
+          "sha256": "sha256:d44c5ad728bd1e38b2b7bd7ef8147dd211494e2d8bbe40483d9335627d0d185b"
+        },
+        {
+          "path": "tools/csg/v51-supervisor/operation-plan.union-59.json",
+          "bytes": 41864,
+          "sha256": "sha256:6512a57369bfc5a47a4c11310d669552cefa39848b233bdc0b27b3651715080e"
+        },
+        {
+          "path": "tools/csg/v51-supervisor/operation-plan.vnext5.2.json",
+          "bytes": 29294,
+          "sha256": "sha256:d0f82978679ba8abb720499eeec65ef981f94619b7849e26c7a1c8ac0cab33b5"
+        },
+        {
+          "path": "tools/csg/v51-supervisor/package.json",
+          "bytes": 205,
+          "sha256": "sha256:abe66d9ee1c7d787ae4549b6b56b70e2450b5455b226139d94c47c7eb519d9a1"
+        },
+        {
+          "path": "tools/csg/v51-supervisor/README.md",
+          "bytes": 7874,
+          "sha256": "sha256:778bfbf6d4eaf7329e0c506ee6536f57722b7240d0f7210b64bc3d20c6c5d195"
+        },
+        {
+          "path": "tools/csg/v51-supervisor/tests/any-state-regression.test.mjs",
+          "bytes": 8592,
+          "sha256": "sha256:62952dea58632ad8c51cf37ab70f9f36ca18c29f4462386f3ec06c82ee5c7380"
+        },
+        {
+          "path": "tools/csg/v51-supervisor/tests/evidence-contract.test.mjs",
+          "bytes": 6735,
+          "sha256": "sha256:8ed8314f545949fe13d2a778dccb849cc59cfffea1365466184f62ad1af445ff"
+        },
+        {
+          "path": "tools/csg/v51-supervisor/tests/evidence-ledger.test.mjs",
+          "bytes": 5186,
+          "sha256": "sha256:cbb1f965b2069448a97dd9b8e06d36cc37c21265065182faee38ad6153e01f26"
+        },
+        {
+          "path": "tools/csg/v51-supervisor/tests/f01-executor-adapter.test.mjs",
+          "bytes": 10063,
+          "sha256": "sha256:470a96dcdb248a4913b27cda266ecd9d08d83c7cec46128148eb648f153815e2"
+        },
+        {
+          "path": "tools/csg/v51-supervisor/tests/fleet.test.mjs",
+          "bytes": 9391,
+          "sha256": "sha256:a553808a4726c635715296337addc18b6476a4eb2cebfedad299aae82721ab13"
+        },
+        {
+          "path": "tools/csg/v51-supervisor/tests/github-readonly.test.mjs",
+          "bytes": 7939,
+          "sha256": "sha256:fe38b46579e37a71e541a11334e7ace2a594fb5c86eb2d7eb745222f340fc4d3"
+        },
+        {
+          "path": "tools/csg/v51-supervisor/tests/operation-planner.test.mjs",
+          "bytes": 7280,
+          "sha256": "sha256:d3781636478d150d81555c81512adde5b63572996babb71e55b1fe0df3d4bb8d"
+        },
+        {
+          "path": "tools/csg/v51-supervisor/tests/reconcile-scheduler.test.mjs",
+          "bytes": 29063,
+          "sha256": "sha256:451860da5cdaa5ec44bdf56617357d403f75315a76984805b9b1bb3662c1d250"
+        },
+        {
+          "path": "tools/csg/v51-supervisor/tests/runtime-shadow.test.mjs",
+          "bytes": 15510,
+          "sha256": "sha256:f96c69a044db071e8b527fb8d91c7933445064405c77ca4188764dc72f3f2e61"
+        },
+        {
+          "path": "tools/csg/v51-supervisor/tests/s-recovery-regression.test.mjs",
+          "bytes": 16147,
+          "sha256": "sha256:9a2d8f8a5dcb3dd3c4c3f23c56e044c1f5716e32de1599cf2bad55ed5a81399a"
+        },
+        {
+          "path": "tools/csg/v51-supervisor/tests/semantic-repair.test.mjs",
+          "bytes": 10057,
+          "sha256": "sha256:6a60ec37b12ac578c1f460de74f9a8be842b6185ee6a76a5ba90ba49b7dd6e01"
+        },
+        {
+          "path": "tools/csg/v51-supervisor/tests/supervisor.test.mjs",
+          "bytes": 6340,
+          "sha256": "sha256:4b6eaff4a4ab43eb514e0387ccc7a816ed0be3714c18a39b9f2c14176f3ef29c"
+        },
+        {
+          "path": "tools/csg/v51-supervisor/tests/windows-task-profile.test.mjs",
+          "bytes": 3801,
+          "sha256": "sha256:ccee9f7d63310630c26a0f0ab4fb304769291a371cf8288e59800bee5020e1bc"
+        },
+        {
+          "path": "tools/csg/v51-supervisor/windows/register-supervisor-task.ps1",
+          "bytes": 11297,
+          "sha256": "sha256:f4c260ed80e2c730827de5d3f4728d09150931706509908c5c6547c8282fce63"
+        },
+        {
+          "path": "tools/csg/v51-supervisor/windows/remove-supervisor-task.ps1",
+          "bytes": 1985,
+          "sha256": "sha256:cbed9b5c7fe1e0ea0a821b20e27fdfa11685ae589d284cd6157557f2b4248dce"
+        },
+        {
+          "path": "tools/csg/v51-supervisor/windows/supervisor-task-profile.json",
+          "bytes": 1112,
+          "sha256": "sha256:36f6028c6a676e89b5ae6a32645cf27c602705e6dac87a13081f48adf53f4215"
+        }
+      ],
+      "local_test": {
+        "command": [
+          "C:\\Program Files\\nodejs\\node.exe",
+          "--test"
+        ],
+        "exit": 0,
+        "passed": true,
+        "expected_tests": 130,
+        "log_digest": "sha256:c06375ce53b995c6cd282699f0fe309232bf8c3cc04a3494e2f3bbe62317c7ac"
+      },
+      "semantic": "ROOT_REVIEW_PENDING_FINAL_EXACT_CANDIDATE",
+      "live": "NOT_ACCEPTED",
+      "source_only": true,
+      "canonical_write": false,
+      "host_dispatch": false,
+      "production": false
+    },
+    {
+      "task": "P52-INTAKE",
+      "observed_at": "2026-10-03T11:59:45.551Z",
+      "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-INTAKE-OPENCODE-WORK-20261003",
+      "base": "06da5fa224b65b9346e8b250dcea686d0ed458ee",
+      "source_files": [
+        {
+          "path": "tools/csg/v52-intake/cli.mjs",
+          "bytes": 3220,
+          "sha256": "sha256:7fd86f047ab907a0a20602a7f981a1dbe76187ee01457f64533f52ba610f91ef"
+        },
+        {
+          "path": "tools/csg/v52-intake/intake-request.schema.json",
+          "bytes": 998,
+          "sha256": "sha256:77bc62f617a313d75a75904a86e4da794cce35d180c226092362dbc39ec73c82"
+        },
+        {
+          "path": "tools/csg/v52-intake/intake.mjs",
+          "bytes": 10186,
+          "sha256": "sha256:b6d8cab58ac6aee51ba6f471bf5804d61dc3e34ce733302102bfcf527e19f90b"
+        },
+        {
+          "path": "tools/csg/v52-intake/README.md",
+          "bytes": 1620,
+          "sha256": "sha256:8f0c4bf21d70915fd5a25d89cb215603d4c98e9bb9a4bdb577a01e7732a8b903"
+        },
+        {
+          "path": "tools/csg/v52-intake/scripts/make-result.mjs",
+          "bytes": 3341,
+          "sha256": "sha256:e1f7e7bfbb2faf7d3a182b135be7e513bae49e2f40079592c5a73d7362ece774"
+        },
+        {
+          "path": "tools/csg/v52-intake/scripts/make-sample.mjs",
+          "bytes": 997,
+          "sha256": "sha256:fd72c5f41df66fd3e33c586a12634546dd99034c37b633dbc6c327601f0723e8"
+        },
+        {
+          "path": "tools/csg/v52-intake/test/intake.test.mjs",
+          "bytes": 7744,
+          "sha256": "sha256:0315db08c49f3a800e7fa04f36f99e6fed718b0aebca04d091cf4db4752e907d"
+        }
+      ],
+      "local_test": {
+        "command": [
+          "C:\\Program Files\\nodejs\\node.exe",
+          "--test",
+          "tools/csg/v52-intake/test/intake.test.mjs"
+        ],
+        "exit": 0,
+        "passed": true,
+        "expected_tests": 14,
+        "log_digest": "sha256:7f8e30242628e6fb10f0fa10d71caf5e2409f18c1f957eb0a71d464e27af598b"
+      },
+      "semantic": "ROOT_REVIEW_PENDING_FINAL_EXACT_CANDIDATE",
+      "live": "NOT_ACCEPTED",
+      "source_only": true,
+      "canonical_write": false,
+      "host_dispatch": false,
+      "production": false
+    }
+  ],
+  "native_intake_session": {
+    "id": "ses_efe9643b8ffe2M31oHPXU53XjR",
+    "cost": 0,
+    "tokens": {
+      "input": 40588,
+      "output": 20727,
+      "reasoning": 0,
+      "cache": {
+        "read": 1092992,
+        "write": 0
+      }
+    },
+    "outcome": "succeeded"
+  },
+  "worker_raw_receipt": "Original worker output preserved; self-hash claim is not accepted, root recomputed source hashes.",
+  "mission_complete": false
+}

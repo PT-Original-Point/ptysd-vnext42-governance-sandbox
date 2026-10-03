@@ -1,0 +1,68 @@
+{
+  "schema": "vnext5.2.opencode-native-qualification.v1",
+  "recorded_at": "2026-10-03T10:58:13.068Z",
+  "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-INTAKE-OPENCODE-WORK-20261003",
+  "server": {
+    "version": "2.0.22",
+    "pid": 12936,
+    "urls": [
+      "http://127.0.0.1:49374"
+    ]
+  },
+  "model_default": {
+    "id": "fledge-alpha-free",
+    "provider_id": "opencode",
+    "model_id": "fledge-alpha-free",
+    "enabled": true,
+    "status": "active",
+    "cost": [
+      {
+        "input": 0,
+        "output": 0,
+        "cache": {
+          "read": 0,
+          "write": 0
+        }
+      }
+    ],
+    "tools": true
+  },
+  "model_invocations": 0,
+  "credentials_read": false,
+  "paid_fallback": false,
+  "system_isolation_qualified": false,
+  "selected_existing_model": {
+    "id": "fledge-alpha-free",
+    "provider_id": "opencode",
+    "model_id": "fledge-alpha-free",
+    "enabled": true,
+    "status": "active",
+    "cost": [
+      {
+        "input": 0,
+        "output": 0,
+        "cache": {
+          "read": 0,
+          "write": 0
+        }
+      }
+    ],
+    "tools": true
+  },
+  "empty_session_qualification": {
+    "session_id": "ses_efe9643b8ffe2M31oHPXU53XjR",
+    "interrupt_response": {
+      "interrupted": false
+    },
+    "readback_id": "ses_efe9643b8ffe2M31oHPXU53XjR",
+    "readback_location": {
+      "directory": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-INTAKE-OPENCODE-WORK-20261003"
+    },
+    "exported_shape": [
+      "info",
+      "messages"
+    ],
+    "active_job_cancellation_tested": false,
+    "model_invocations": 0
+  }
+}

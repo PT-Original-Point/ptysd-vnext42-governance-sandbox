@@ -2,6 +2,11 @@
 
 採用日期：2026-10-03。沿用完整59 operations、64 acceptance、PF30/PRG28與原Human契約；本契約修正協調流程，沒有宣告產品上線。
 
+## Human最新角色修正（最高優先）
+
+root只負責獨立稽核、制定計劃、分派、回收、要求返工與接受/拒絕仲裁，不直接施工產品原始碼。三個施工代理為Codex Luna Max、Antigravity、OpenCode。施工結果由root自動取得；不要求Human在三者間搬運。root先前對intake的三個檔案變更屬待施工代理接手的候選，不能由root自行宣告獨立驗收PASS。
+施工路線缺失/平台credits錯誤應如實park該route並安排其他可用施工代理；缺席品牌不可冒名宣稱已開工。沒有費用/身份授權不得自行付費或消耗帳號reset。
+
 ## 施工責任
 
 Human已授權自動發包、回收、返工與續工；不再要求Human人工貼prompt或搬patch。root是唯一整合者。子片可完成並回報，root必須消費結果、重算READY並續派。Goal API實際ACTIVE是continuation工具，不能作canonical/Host授權。
