@@ -3,13 +3,13 @@
   "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
   "noncanonical": true,
   "writer": "ROOT_SINGLE_INTEGRATOR",
-  "sequence": 9,
-  "previous_locator_head": "c3b1486a0f09c8f99acf0145dd1560d675fd7ced",
+  "sequence": 10,
+  "previous_locator_head": "cde4a6844454cee01c15371953db138f45eb48f6",
   "progress": {
     "repository": "PT-Original-Point/ptysd-vnext42-governance-sandbox",
-    "exact_head": "766e9dd0e42c64252de9347d06b5952831a932a7",
+    "exact_head": "4a424cb422f66fe55b8100a34d207232e8d72a75",
     "current_path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/CURRENT.json",
-    "current_sha256": "sha256:9b82a905a52d9f48bf687df638ffd3fee336ff4e4734bba8ebb21a60d34cd389",
+    "current_sha256": "sha256:7550983ed743bd58514451b597185915a80c29397a30c6531b89a5c5290badaa",
     "manifest_path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/manifest.json"
   },
   "dispatch_authority": false,
