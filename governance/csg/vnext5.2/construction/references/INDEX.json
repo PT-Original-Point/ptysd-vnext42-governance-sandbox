@@ -1,0 +1,138 @@
+{
+  "references": [
+    {
+      "path": "references/research/0928# 全自動軟體工廠整合生態監控與 CURRENT BASELINE 對齊報告.txt",
+      "sha256": "f89f3e39962fa80e141251732dcc7c9777445146499601966589d573cc8acc37",
+      "bytes": 22226,
+      "role": "USER_RESEARCH_HISTORICAL_NOT_EXECUTION_AUTHORITY",
+      "availability": "LOCAL_ZIP_ONLY"
+    },
+    {
+      "path": "references/research/0929# 全自動軟體工廠整合生態監控與 CURRENT BASELINE 對齊報告.txt",
+      "sha256": "85b117389f77cbd0cf4d7f70c560beb693d07c02b1150096adcaa1427927dcc3",
+      "bytes": 21558,
+      "role": "USER_RESEARCH_HISTORICAL_NOT_EXECUTION_AUTHORITY",
+      "availability": "LOCAL_ZIP_ONLY"
+    },
+    {
+      "path": "references/research/0930# 全自動軟體工廠整合生態監控與 CURRENT BASELINE 對齊報告.txt",
+      "sha256": "b6066c6b243a3d7c36a60a8d4a9c7e6ec49df88aa2a55dc7c154e0e47fb47667",
+      "bytes": 26282,
+      "role": "USER_RESEARCH_HISTORICAL_NOT_EXECUTION_AUTHORITY",
+      "availability": "LOCAL_ZIP_ONLY"
+    },
+    {
+      "path": "references/research/1001# 全自動軟體工廠整合生態監控與 CURRENT BASELINE 對齊報告.txt",
+      "sha256": "0d7a76196c0ca5e82d8ebe4a175dc2f3fddd75696a423bc4d42cf02a0aaf9702",
+      "bytes": 22546,
+      "role": "USER_RESEARCH_HISTORICAL_NOT_EXECUTION_AUTHORITY",
+      "availability": "LOCAL_ZIP_ONLY"
+    },
+    {
+      "path": "references/research/1002# 全自動軟體工廠整合生態監控與 CURRENT BASELINE 對齊報告.txt",
+      "sha256": "18122954aaaa2a8bd874dd7ae0f5fe2807fd4505a896f1a7dbd5e53d6f2a6b46",
+      "bytes": 26163,
+      "role": "USER_RESEARCH_HISTORICAL_NOT_EXECUTION_AUTHORITY",
+      "availability": "LOCAL_ZIP_ONLY"
+    },
+    {
+      "path": "references/research/1003# 全自動軟體工廠整合生態監控與 CURRENT BASELINE 對齊報告.txt",
+      "sha256": "8dfe7284b9e9e2d38d49342a128b5e43545d99e805185d6ca01024cca46c1bd4",
+      "bytes": 24552,
+      "role": "USER_RESEARCH_HISTORICAL_NOT_EXECUTION_AUTHORITY",
+      "availability": "LOCAL_ZIP_ONLY"
+    },
+    {
+      "path": "references/contracts/original-full-spec.md",
+      "sha256": "6b3ab17c9c13737656b13f77c0d71b3a28fea03f69dd86791bc80f7b30803f21",
+      "bytes": 57626,
+      "role": "ADOPTED_BASELINE_DEFINITIONS_REUSE_VALID_RECEIPTS",
+      "availability": "PUBLIC_SHARED_BRANCH_AND_LOCAL_ZIP"
+    },
+    {
+      "path": "references/contracts/original-execution-contract.json",
+      "sha256": "130c22bd328d22538e439e3e444b84c478c22200e73e33455b8e1e35f7e50600",
+      "bytes": 40058,
+      "role": "ADOPTED_BASELINE_DEFINITIONS_REUSE_VALID_RECEIPTS",
+      "availability": "PUBLIC_SHARED_BRANCH_AND_LOCAL_ZIP"
+    },
+    {
+      "path": "references/contracts/rev2-operation-plan.json",
+      "sha256": "d0f82978679ba8abb720499eeec65ef981f94619b7849e26c7a1c8ac0cab33b5",
+      "bytes": 29294,
+      "role": "ADOPTED_BASELINE_DEFINITIONS_REUSE_VALID_RECEIPTS",
+      "availability": "PUBLIC_SHARED_BRANCH_AND_LOCAL_ZIP"
+    },
+    {
+      "path": "references/contracts/rev2-acceptance-map.json",
+      "sha256": "19de036572d18729b69f3f4b74ab869773673130c385fcb0322125f2ae71759a",
+      "bytes": 49286,
+      "role": "ADOPTED_BASELINE_DEFINITIONS_REUSE_VALID_RECEIPTS",
+      "availability": "PUBLIC_SHARED_BRANCH_AND_LOCAL_ZIP"
+    },
+    {
+      "path": "references/contracts/product-contract.json",
+      "sha256": "deb2cfa3356dd10b38441425ab8f9903ef4f76506a37688ab77dcdde70f2c6a2",
+      "bytes": 18184,
+      "role": "PRODUCT_OUTCOME_DEFINITIONS_NOT_PASS",
+      "availability": "PUBLIC_SHARED_BRANCH_AND_LOCAL_ZIP"
+    },
+    {
+      "path": "references/contracts/operation-plan-extension.json",
+      "sha256": "d634252fd0fc35582a1b9486084904f4a9b99f3d4be293b7d05d9802c08ff39f",
+      "bytes": 12709,
+      "role": "PRODUCT_OUTCOME_DEFINITIONS_NOT_PASS",
+      "availability": "PUBLIC_SHARED_BRANCH_AND_LOCAL_ZIP"
+    },
+    {
+      "path": "references/contracts/product-architecture.md",
+      "sha256": "bf6e7fcc25ddc5401a4e5ddb951832ea73098d2c92ec9f21e1c934ed3bdc7e22",
+      "bytes": 9195,
+      "role": "PRODUCT_OUTCOME_DEFINITIONS_NOT_PASS",
+      "availability": "PUBLIC_SHARED_BRANCH_AND_LOCAL_ZIP"
+    },
+    {
+      "path": "references/D01-prior-static-decision.md",
+      "sha256": "ff0f69b449fcd586d37c16a11ab14ed38a4cda39b4200a4af0d06cde81b2d123",
+      "bytes": 9719,
+      "role": "HISTORICAL_STATIC_FALLBACK_NOT_LIVE_ACCEPTANCE",
+      "availability": "LOCAL_ZIP_ONLY"
+    },
+    {
+      "path": "references/contracts/slim-contract.json",
+      "sha256": "0779a4c12114c520557a1a9814927655a7ea99236dc3b8679b9f3f2eeff13483",
+      "bytes": 12929,
+      "role": "ADOPTED_IMPLEMENTATION_RECIPE_NOT_LIVE_STATE",
+      "availability": "PUBLIC_SHARED_BRANCH_AND_LOCAL_ZIP"
+    },
+    {
+      "path": "references/contracts/priority-recovery-contract.json",
+      "sha256": "21d29253c3b9c11ebe2a2d8b4cd69af9828c1d56d23b98ef4d2d4dbd94241bc7",
+      "bytes": 3252,
+      "role": "ADOPTED_IMPLEMENTATION_RECIPE_NOT_LIVE_STATE",
+      "availability": "PUBLIC_SHARED_BRANCH_AND_LOCAL_ZIP"
+    },
+    {
+      "path": "references/lineage/V4-to-V52-root-causes.md",
+      "sha256": "fdfd775a580c3408ec04dbfe2d1e56818b135446a51b07ca9cb5ab6053b64e09",
+      "bytes": 61913,
+      "role": "HISTORICAL_LINEAGE_RECONCILED_WITH_LATEST_HUMAN_INTENT",
+      "availability": "LOCAL_ZIP_ONLY"
+    },
+    {
+      "path": "references/contracts/ready-and-exit-admission.md",
+      "sha256": "5d0b5bd035ec13e17c7d2230199c4c804bed0c2e5844840f02176e37958bf659",
+      "bytes": 4241,
+      "role": "ADOPTED_SCOPE_CONTINUATION_REFERENCE",
+      "availability": "PUBLIC_SHARED_BRANCH_AND_LOCAL_ZIP"
+    },
+    {
+      "path": "references/contracts/cross-session-recovery.md",
+      "sha256": "c8e4e1421a3221259d71fd5eae059f0be8abe35117d50255ce1ebc6425d362fb",
+      "bytes": 2738,
+      "role": "ADOPTED_SCOPE_CONTINUATION_REFERENCE",
+      "availability": "PUBLIC_SHARED_BRANCH_AND_LOCAL_ZIP"
+    }
+  ],
+  "scope": "Contracts are public; research and historical lineage retained only in local ZIP. Historical snapshots are not current authority."
+}

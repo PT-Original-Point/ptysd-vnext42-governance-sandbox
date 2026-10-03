@@ -1,0 +1,346 @@
+{
+  "schema": "vnext5.2.construction-work-index.v1",
+  "observed_at": "2026-10-03T07:39:52.415Z",
+  "role": "SOURCE_CHECKPOINTS_NOT_LIVE_ACCEPTANCE",
+  "entries": [
+    {
+      "slice_id": "S-MCP",
+      "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+      "local_worktree": "VNEXT5.2-M01-FINAL-CP200-WORK",
+      "head": "257318f78271b4a737785d756732915e5a835fe4",
+      "staged_tree": "a55bd093db10fbfa697a78d3d400e702cf4b9474",
+      "changed_paths": [],
+      "state": "SOURCE_PROVIDER_CANDIDATE",
+      "live": "NOT_ACCEPTED_BY_THIS_CAPTURE",
+      "inputs": [],
+      "provider_source": {
+        "repository": "PT-Original-Point/ptysd-vnext42-governance-sandbox",
+        "pr": 381,
+        "exact_head": "257318f78271b4a737785d756732915e5a835fe4",
+        "path_prefix": "tools/csg/factory-mcp/"
+      }
+    },
+    {
+      "slice_id": "S-RECOVERY",
+      "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+      "local_worktree": "VNEXT5.2-D02-RUNTIME-WORK",
+      "head": "6f73909c268ca26502848a2304b4ad6228d2fb22",
+      "staged_tree": "2a6531a908f6e366fa10c9e4d0d311c3f429d574",
+      "changed_paths": [
+        "A  tools/csg/v51-supervisor/README.md",
+        "A  tools/csg/v51-supervisor/bin/host-supervisor.mjs",
+        "A  tools/csg/v51-supervisor/lib/evidence-contract.mjs",
+        "A  tools/csg/v51-supervisor/lib/evidence-ledger.mjs",
+        "A  tools/csg/v51-supervisor/lib/f01-executor-adapter.mjs",
+        "A  tools/csg/v51-supervisor/lib/fingerprint.mjs",
+        "A  tools/csg/v51-supervisor/lib/fleet.mjs",
+        "A  tools/csg/v51-supervisor/lib/github-readonly.mjs",
+        "A  tools/csg/v51-supervisor/lib/operation-planner.mjs",
+        "A  tools/csg/v51-supervisor/lib/reconcile.mjs",
+        "A  tools/csg/v51-supervisor/lib/scheduler.mjs",
+        "A  tools/csg/v51-supervisor/lib/shadow-journal.mjs",
+        "A  tools/csg/v51-supervisor/lib/shadow-runtime.mjs",
+        "A  tools/csg/v51-supervisor/lib/supervisor.mjs",
+        "A  tools/csg/v51-supervisor/lib/windows-task-profile.mjs",
+        "A  tools/csg/v51-supervisor/operation-plan.vnext5.2.json",
+        "A  tools/csg/v51-supervisor/package.json",
+        "A  tools/csg/v51-supervisor/tests/any-state-regression.test.mjs",
+        "A  tools/csg/v51-supervisor/tests/evidence-contract.test.mjs",
+        "A  tools/csg/v51-supervisor/tests/evidence-ledger.test.mjs",
+        "A  tools/csg/v51-supervisor/tests/f01-executor-adapter.test.mjs",
+        "A  tools/csg/v51-supervisor/tests/fleet.test.mjs",
+        "A  tools/csg/v51-supervisor/tests/github-readonly.test.mjs",
+        "A  tools/csg/v51-supervisor/tests/operation-planner.test.mjs",
+        "A  tools/csg/v51-supervisor/tests/reconcile-scheduler.test.mjs",
+        "A  tools/csg/v51-supervisor/tests/runtime-shadow.test.mjs",
+        "A  tools/csg/v51-supervisor/tests/supervisor.test.mjs",
+        "A  tools/csg/v51-supervisor/tests/windows-task-profile.test.mjs",
+        "A  tools/csg/v51-supervisor/windows/register-supervisor-task.ps1",
+        "A  tools/csg/v51-supervisor/windows/remove-supervisor-task.ps1",
+        "A  tools/csg/v51-supervisor/windows/supervisor-task-profile.json"
+      ],
+      "state": "LOCAL_SOURCE_CANDIDATE_NOT_INSTALLED",
+      "live": "NOT_ACCEPTED_BY_THIS_CAPTURE",
+      "inputs": [
+        {
+          "source_path": "tools/csg/v51-supervisor/README.md",
+          "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/README.md",
+          "sha256": "6bf3ff9eea8fd367652d3d892d7ceb51b9aa818b95d135085d164d3ebb697f02",
+          "bytes": 6958,
+          "role": "INTENDED_SOURCE_BYTES_NOT_EXECUTION"
+        },
+        {
+          "source_path": "tools/csg/v51-supervisor/bin/host-supervisor.mjs",
+          "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/bin/host-supervisor.mjs",
+          "sha256": "50df8b24908e3ae916e08494e5c78b38fe047f3af92119e54daf8c2bf045c9eb",
+          "bytes": 2966,
+          "role": "INTENDED_SOURCE_BYTES_NOT_EXECUTION"
+        },
+        {
+          "source_path": "tools/csg/v51-supervisor/lib/evidence-contract.mjs",
+          "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/lib/evidence-contract.mjs",
+          "sha256": "8b2244f2e2dde071ba448599ec8917dc30ecd53c02492944a6b8254f8ff6bd82",
+          "bytes": 9350,
+          "role": "INTENDED_SOURCE_BYTES_NOT_EXECUTION"
+        },
+        {
+          "source_path": "tools/csg/v51-supervisor/lib/evidence-ledger.mjs",
+          "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/lib/evidence-ledger.mjs",
+          "sha256": "f96ec3200f6ad9cc318f807b4659577f02ee8349a2013895978e4954020722bf",
+          "bytes": 3945,
+          "role": "INTENDED_SOURCE_BYTES_NOT_EXECUTION"
+        },
+        {
+          "source_path": "tools/csg/v51-supervisor/lib/f01-executor-adapter.mjs",
+          "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/lib/f01-executor-adapter.mjs",
+          "sha256": "2b7b573884d10c033613916d0a154e81eebf047215451f30390ed7f00b74298b",
+          "bytes": 13438,
+          "role": "INTENDED_SOURCE_BYTES_NOT_EXECUTION"
+        },
+        {
+          "source_path": "tools/csg/v51-supervisor/lib/fingerprint.mjs",
+          "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/lib/fingerprint.mjs",
+          "sha256": "a095eaa6dc0a019aad8d005226b554ed8c85ac968ae66f9d6ddaee7155ae74aa",
+          "bytes": 4379,
+          "role": "INTENDED_SOURCE_BYTES_NOT_EXECUTION"
+        },
+        {
+          "source_path": "tools/csg/v51-supervisor/lib/fleet.mjs",
+          "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/lib/fleet.mjs",
+          "sha256": "4b37c7bbbc4d0eb1da3d917b62bfabcbfbc032c033e627a818ed5a71ed7aec75",
+          "bytes": 9086,
+          "role": "INTENDED_SOURCE_BYTES_NOT_EXECUTION"
+        },
+        {
+          "source_path": "tools/csg/v51-supervisor/lib/github-readonly.mjs",
+          "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/lib/github-readonly.mjs",
+          "sha256": "4389473cfbd3dbfa5373eb6229df251aad0324c43bb8db384b4abc3b15709ec7",
+          "bytes": 9399,
+          "role": "INTENDED_SOURCE_BYTES_NOT_EXECUTION"
+        },
+        {
+          "source_path": "tools/csg/v51-supervisor/lib/operation-planner.mjs",
+          "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/lib/operation-planner.mjs",
+          "sha256": "4c715f3047bc8ee9087bacf675d94748f492b90d9bc40cd3b3862dd4b94db775",
+          "bytes": 10235,
+          "role": "INTENDED_SOURCE_BYTES_NOT_EXECUTION"
+        },
+        {
+          "source_path": "tools/csg/v51-supervisor/lib/reconcile.mjs",
+          "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/lib/reconcile.mjs",
+          "sha256": "327c19460199a0abc5b7d4a3ed2918c058e1f93bec5521e821f3410f1fef8485",
+          "bytes": 15965,
+          "role": "INTENDED_SOURCE_BYTES_NOT_EXECUTION"
+        },
+        {
+          "source_path": "tools/csg/v51-supervisor/lib/scheduler.mjs",
+          "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/lib/scheduler.mjs",
+          "sha256": "a869c8531369d2e9a2e268b82326a8d0890ee84f0efbdfbd384963f604ce5375",
+          "bytes": 8787,
+          "role": "INTENDED_SOURCE_BYTES_NOT_EXECUTION"
+        },
+        {
+          "source_path": "tools/csg/v51-supervisor/lib/shadow-journal.mjs",
+          "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/lib/shadow-journal.mjs",
+          "sha256": "adea8275bf0e694504b83769fbdabfb0a9684b272ffa96ef5e4cc0f12f222590",
+          "bytes": 16036,
+          "role": "INTENDED_SOURCE_BYTES_NOT_EXECUTION"
+        },
+        {
+          "source_path": "tools/csg/v51-supervisor/lib/shadow-runtime.mjs",
+          "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/lib/shadow-runtime.mjs",
+          "sha256": "d09eed6ceaf80586d39e81c7b615b039f9b8be675af80d26e0361563d81b6a50",
+          "bytes": 7915,
+          "role": "INTENDED_SOURCE_BYTES_NOT_EXECUTION"
+        },
+        {
+          "source_path": "tools/csg/v51-supervisor/lib/supervisor.mjs",
+          "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/lib/supervisor.mjs",
+          "sha256": "97acc156d277f117c6cd7a784136793196bf5f6ceae1b922dbc473837aa74ff9",
+          "bytes": 4218,
+          "role": "INTENDED_SOURCE_BYTES_NOT_EXECUTION"
+        },
+        {
+          "source_path": "tools/csg/v51-supervisor/lib/windows-task-profile.mjs",
+          "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/lib/windows-task-profile.mjs",
+          "sha256": "58f06574f7742bee81f570dccf3899a25b13d4340e943ebf70a2b7359b5c0558",
+          "bytes": 3001,
+          "role": "INTENDED_SOURCE_BYTES_NOT_EXECUTION"
+        },
+        {
+          "source_path": "tools/csg/v51-supervisor/operation-plan.vnext5.2.json",
+          "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/operation-plan.vnext5.2.json",
+          "sha256": "d0f82978679ba8abb720499eeec65ef981f94619b7849e26c7a1c8ac0cab33b5",
+          "bytes": 29294,
+          "role": "INTENDED_SOURCE_BYTES_NOT_EXECUTION"
+        },
+        {
+          "source_path": "tools/csg/v51-supervisor/package.json",
+          "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/package.json",
+          "sha256": "3ce390cf76667745a6971cbf99a7ba8a83983776a540d10d7a980a01b7f24586",
+          "bytes": 193,
+          "role": "INTENDED_SOURCE_BYTES_NOT_EXECUTION"
+        },
+        {
+          "source_path": "tools/csg/v51-supervisor/tests/any-state-regression.test.mjs",
+          "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/tests/any-state-regression.test.mjs",
+          "sha256": "b36dab324b339093f083f77a097ced099681078ef3e67a2ab5dd27bb711a3956",
+          "bytes": 8452,
+          "role": "INTENDED_SOURCE_BYTES_NOT_EXECUTION"
+        },
+        {
+          "source_path": "tools/csg/v51-supervisor/tests/evidence-contract.test.mjs",
+          "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/tests/evidence-contract.test.mjs",
+          "sha256": "a380dd1ae2120292c94f4e5065e568bbe8deb72572773f00f759063af2667f32",
+          "bytes": 6612,
+          "role": "INTENDED_SOURCE_BYTES_NOT_EXECUTION"
+        },
+        {
+          "source_path": "tools/csg/v51-supervisor/tests/evidence-ledger.test.mjs",
+          "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/tests/evidence-ledger.test.mjs",
+          "sha256": "e3eb867ed99a285eaff54f900e8a57254c0ac74504f5b54af307d61fee546441",
+          "bytes": 5083,
+          "role": "INTENDED_SOURCE_BYTES_NOT_EXECUTION"
+        },
+        {
+          "source_path": "tools/csg/v51-supervisor/tests/f01-executor-adapter.test.mjs",
+          "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/tests/f01-executor-adapter.test.mjs",
+          "sha256": "43b5483ae608d48e2cf767f0c683bf1c99f1418e60ba68a8cdb0aeb9af58d114",
+          "bytes": 9659,
+          "role": "INTENDED_SOURCE_BYTES_NOT_EXECUTION"
+        },
+        {
+          "source_path": "tools/csg/v51-supervisor/tests/fleet.test.mjs",
+          "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/tests/fleet.test.mjs",
+          "sha256": "63ec38ac17d7dd85171467e0ad9d7436af8e07b0a9a45dd85b92fe81950ce64e",
+          "bytes": 9196,
+          "role": "INTENDED_SOURCE_BYTES_NOT_EXECUTION"
+        },
+        {
+          "source_path": "tools/csg/v51-supervisor/tests/github-readonly.test.mjs",
+          "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/tests/github-readonly.test.mjs",
+          "sha256": "fd3780a04518f36bb9a04a3c0d2e86198f1dffb86a203a83ede3ed8a00695aad",
+          "bytes": 7796,
+          "role": "INTENDED_SOURCE_BYTES_NOT_EXECUTION"
+        },
+        {
+          "source_path": "tools/csg/v51-supervisor/tests/operation-planner.test.mjs",
+          "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/tests/operation-planner.test.mjs",
+          "sha256": "03ab66fe45c4ffffaaf02b1185768b2a2157bfa35756a7ee3cbdf9e4ba95f63a",
+          "bytes": 5846,
+          "role": "INTENDED_SOURCE_BYTES_NOT_EXECUTION"
+        },
+        {
+          "source_path": "tools/csg/v51-supervisor/tests/reconcile-scheduler.test.mjs",
+          "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/tests/reconcile-scheduler.test.mjs",
+          "sha256": "430314d1a3bfcb6ba1ef70cc56b0c9807302298c2dd5745f9486457b228de8d2",
+          "bytes": 28536,
+          "role": "INTENDED_SOURCE_BYTES_NOT_EXECUTION"
+        },
+        {
+          "source_path": "tools/csg/v51-supervisor/tests/runtime-shadow.test.mjs",
+          "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/tests/runtime-shadow.test.mjs",
+          "sha256": "dab92aa4fe0c126731fd0c0830d56f114ecc8c23b31a44c6630d599fc03ca42a",
+          "bytes": 15089,
+          "role": "INTENDED_SOURCE_BYTES_NOT_EXECUTION"
+        },
+        {
+          "source_path": "tools/csg/v51-supervisor/tests/supervisor.test.mjs",
+          "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/tests/supervisor.test.mjs",
+          "sha256": "c4f6d48aee24a59014fc6ce000436fe25f1edc9ef3f751af21b396594e0a10cb",
+          "bytes": 6218,
+          "role": "INTENDED_SOURCE_BYTES_NOT_EXECUTION"
+        },
+        {
+          "source_path": "tools/csg/v51-supervisor/tests/windows-task-profile.test.mjs",
+          "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/tests/windows-task-profile.test.mjs",
+          "sha256": "d025a88b13467fbc33def67af12e69bd84d466d9281ac3188d8fdd022cc5fafc",
+          "bytes": 3815,
+          "role": "INTENDED_SOURCE_BYTES_NOT_EXECUTION"
+        },
+        {
+          "source_path": "tools/csg/v51-supervisor/windows/register-supervisor-task.ps1",
+          "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/windows/register-supervisor-task.ps1",
+          "sha256": "96087c60ff55fa66a7e36b0be1c4751603feb8376ad05b1da1dedccadd2697fb",
+          "bytes": 11006,
+          "role": "INTENDED_SOURCE_BYTES_NOT_EXECUTION"
+        },
+        {
+          "source_path": "tools/csg/v51-supervisor/windows/remove-supervisor-task.ps1",
+          "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/windows/remove-supervisor-task.ps1",
+          "sha256": "4bc1cabe5c4d5c4f8d91783ee270e52d8ace86848d55e47201879376480f2974",
+          "bytes": 2027,
+          "role": "INTENDED_SOURCE_BYTES_NOT_EXECUTION"
+        },
+        {
+          "source_path": "tools/csg/v51-supervisor/windows/supervisor-task-profile.json",
+          "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/windows/supervisor-task-profile.json",
+          "sha256": "cbbbe10e4cdf76c66b41c0b36f9139222de317604969834f68af46eefe0ce02c",
+          "bytes": 1068,
+          "role": "INTENDED_SOURCE_BYTES_NOT_EXECUTION"
+        }
+      ]
+    },
+    {
+      "slice_id": "S-ADS",
+      "project_id": "HANYAO_ADS_LINE_PROD",
+      "local_worktree": "VNEXT5.2-A00-HANYAO-WORK",
+      "head": "3890e1d317c796f48e03af97051f02d3ef241d33",
+      "staged_tree": "b8f430f0adeef495c7d1c3fb18cef2051ac138e6",
+      "changed_paths": [
+        "M  scripts/ads-line-production-reconciliation.mjs",
+        "M  scripts/ads-line-production-reconciliation.test.mjs",
+        " M scripts/google-ads-provider-auth.test.ts",
+        " M scripts/google-ads-provider-auth.ts",
+        "?? scripts/google-ads-read-scope.test.ts",
+        "?? scripts/google-ads-read-scope.ts"
+      ],
+      "state": "LOCAL_SOURCE_CANDIDATE_NOT_INSTALLED",
+      "live": "NOT_ACCEPTED_BY_THIS_CAPTURE",
+      "inputs": [
+        {
+          "source_path": "scripts/ads-line-production-reconciliation.mjs",
+          "artifact_path": "inputs/S-ADS/scripts/ads-line-production-reconciliation.mjs",
+          "sha256": "8e6104391f90cda5c1dcb9c27ba61549a3807a357165cc1edc9f0b2f51553bb4",
+          "bytes": 17380,
+          "role": "INTENDED_SOURCE_BYTES_NOT_EXECUTION"
+        },
+        {
+          "source_path": "scripts/ads-line-production-reconciliation.test.mjs",
+          "artifact_path": "inputs/S-ADS/scripts/ads-line-production-reconciliation.test.mjs",
+          "sha256": "b4251d2ddecb936dcd6fe3e87cf36818435dd93267a9a28e508aaf7977064ec0",
+          "bytes": 8483,
+          "role": "INTENDED_SOURCE_BYTES_NOT_EXECUTION"
+        },
+        {
+          "source_path": "scripts/google-ads-provider-auth.ts",
+          "artifact_path": "inputs/S-ADS/scripts/google-ads-provider-auth.ts",
+          "sha256": "c46c407b00c992392a8585d27ecc7884e506fba1886be7fd148528516fb41a8c",
+          "bytes": 2077,
+          "role": "INTENDED_SOURCE_BYTES_NOT_EXECUTION"
+        },
+        {
+          "source_path": "scripts/google-ads-provider-auth.test.ts",
+          "artifact_path": "inputs/S-ADS/scripts/google-ads-provider-auth.test.ts",
+          "sha256": "0a3571a2cbb006fc0a573660d3d426bf497abdbed04d851ba123504c3548d383",
+          "bytes": 2807,
+          "role": "INTENDED_SOURCE_BYTES_NOT_EXECUTION"
+        },
+        {
+          "source_path": "scripts/google-ads-read-scope.ts",
+          "artifact_path": "inputs/S-ADS/scripts/google-ads-read-scope.ts",
+          "sha256": "18e23076dc91c6057fe2641ee65cae9ce23c0076c64c9aa13cdaddaf639af60d",
+          "bytes": 7451,
+          "role": "INTENDED_SOURCE_BYTES_NOT_EXECUTION"
+        },
+        {
+          "source_path": "scripts/google-ads-read-scope.test.ts",
+          "artifact_path": "inputs/S-ADS/scripts/google-ads-read-scope.test.ts",
+          "sha256": "3b82d0d2fe6b84349856912fe101fce26c1ecbc4b324a04accec76ee9afa520e",
+          "bytes": 5174,
+          "role": "INTENDED_SOURCE_BYTES_NOT_EXECUTION"
+        }
+      ]
+    }
+  ]
+}

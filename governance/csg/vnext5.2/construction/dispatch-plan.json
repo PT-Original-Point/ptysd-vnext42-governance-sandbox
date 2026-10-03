@@ -1,0 +1,65 @@
+{
+  "schema": "vnext5.2.manual-dispatch.v1",
+  "actual_dispatch": false,
+  "shared_context_revision": "V52-INTEGRATED-20261003-R1",
+  "base_policy": "fresh-read provider and preserve original working trees; snapshots are not selection",
+  "slices": [
+    {
+      "id": "S-MCP",
+      "application": "Codex",
+      "model": "Human-selected Luna Max; no paid/model substitution",
+      "repository": "PT-Original-Point/ptysd-vnext42-governance-sandbox",
+      "input_worktree": "VNEXT5.2-M01-FINAL-CP200-WORK",
+      "observed_source_head": "257318f78271b4a737785d756732915e5a835fe4",
+      "write_prefixes": [
+        "tools/csg/factory-mcp/"
+      ],
+      "prompt": "prompts/CODEX-LUNA-MAX-MCP.md"
+    },
+    {
+      "id": "S-ADS",
+      "application": "Antigravity",
+      "repository": "t14210184/hanyao",
+      "input_worktree": "VNEXT5.2-A00-HANYAO-WORK",
+      "observed_source_head": "3890e1d317c796f48e03af97051f02d3ef241d33",
+      "preserve": "staged + unstaged + untracked source; review before export; no secret files",
+      "write_prefixes": [],
+      "write_paths": [
+        "scripts/ads-line-production-reconciliation.mjs",
+        "scripts/ads-line-production-reconciliation.test.mjs",
+        "scripts/google-ads-provider-auth.ts",
+        "scripts/google-ads-provider-auth.test.ts",
+        "scripts/google-ads-read-scope.ts",
+        "scripts/google-ads-read-scope.test.ts"
+      ],
+      "optional_new_paths": "Only dedicated date-scoped read-only adapter/test paths agreed with integrator before edit",
+      "prompt": "prompts/ANTIGRAVITY-ADS.md"
+    },
+    {
+      "id": "S-RECOVERY",
+      "application": "OpenCode",
+      "repository": "PT-Original-Point/ptysd-vnext42-governance-sandbox",
+      "input_worktree": "VNEXT5.2-D02-RUNTIME-WORK",
+      "observed_source_head": "6f73909c268ca26502848a2304b4ad6228d2fb22",
+      "preserve": "existing staged aggregate; exact patch/hash to new isolated worktree",
+      "write_prefixes": [
+        "tools/csg/v51-supervisor/"
+      ],
+      "prompt": "prompts/OPENCODE-RECOVERY.md"
+    }
+  ],
+  "integration_writer": "S-COORD",
+  "shared_paths_owner": "S-COORD only",
+  "forbidden": [
+    "canonical pointer writes by builders",
+    "trust-root/workflow/root package edits by builders",
+    "Production/provider writes",
+    "worker provider-write credentials",
+    "second dispatcher",
+    "remote intermediate verifier cycles"
+  ],
+  "outputs": "outputs/<slice-id>/result.json and exact final patch/bundle with SHA256",
+  "recovery_rule": "park exact unavailable route; continue other legal READY source/read work; no side-effect unknown retry",
+  "human_gates": "retain actual cost/identity/OAuth/MFA/Production/irreversible gates; reuse existing valid grants"
+}
+

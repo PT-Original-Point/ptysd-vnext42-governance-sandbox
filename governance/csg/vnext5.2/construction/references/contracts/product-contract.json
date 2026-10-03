@@ -1,0 +1,484 @@
+{
+  "schema": "vnext5.2.product-architecture-supplement.v1",
+  "spec": "VNEXT5.2",
+  "date": "2026-10-03",
+  "role": "ADDITIVE_CONSTRUCTION_DEFINITIONS_NOT_CURRENT_STATE",
+  "authority": "Human latest stated outcome; canonical selection remains protected per operation",
+  "no_automatic_runtime_change": true,
+  "preserves_parent_completed_receipts": true,
+  "parent_operation_plan_sha256": "d0f82978679ba8abb720499eeec65ef981f94619b7849e26c7a1c8ac0cab33b5",
+  "requirement_count": 30,
+  "regression_count": 28,
+  "requirements": [
+    {
+      "id": "PF01",
+      "title": "一段命令形成可追溯 Request",
+      "required_proof": "自然語言fixture、必要資訊與限制抽取、Request digest/readback",
+      "construction_trace": "B01＋P52.INTAKE_SOURCE",
+      "mandatory": true,
+      "status": "NOT_ACCEPTED_DEFINITION_ONLY",
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "PF02",
+      "title": "自動搜尋研究，資料可核對",
+      "required_proof": "真實只讀搜尋、primary links、日期、相衝來源處理、未知標記",
+      "construction_trace": "P52.RESEARCH_OPTIONS_SOURCE／FRONTDOOR_ACCEPTANCE",
+      "mandatory": true,
+      "status": "NOT_ACCEPTED_DEFINITION_ONLY",
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "PF03",
+      "title": "多個實質不同方案及推薦",
+      "required_proof": "通常≥3方案；技術/成本/交付/風險比較；不足時有淘汰依據；推薦符合Human限制",
+      "construction_trace": "P52.FRONTDOOR_ACCEPTANCE",
+      "mandatory": true,
+      "status": "NOT_ACCEPTED_DEFINITION_ONLY",
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "PF04",
+      "title": "Human確認綁定exact方案",
+      "required_proof": "approval receipt含plan/options digest與scope，舊選定不可授權新方案",
+      "construction_trace": "C1＋P52.SELECTION_CONTRACT",
+      "mandatory": true,
+      "status": "NOT_ACCEPTED_DEFINITION_ONLY",
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "PF05",
+      "title": "詳設及可執行切片",
+      "required_proof": "component/interface/data/security/design decisions、slice DAG、acceptance trace",
+      "construction_trace": "P52.SHARD_REVIEW_INTEGRATION_SOURCE",
+      "mandatory": true,
+      "status": "NOT_ACCEPTED_DEFINITION_ONLY",
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "PF06",
+      "title": "分片互不干擾",
+      "required_proof": "不重疊write sets、獨立cell/worktree、shared mutation鎖、衝突negative proof",
+      "construction_trace": "F02＋P52.THREE_VENDOR_E2E",
+      "mandatory": true,
+      "status": "NOT_ACCEPTED_DEFINITION_ONLY",
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "PF07",
+      "title": "Codex真實worker可用",
+      "required_proof": "exactversion/authscope、實際task/cancel/receipt/artifact/reviewer",
+      "construction_trace": "F01＋P52.CODEX_ACCEPTANCE",
+      "mandatory": true,
+      "status": "NOT_ACCEPTED_DEFINITION_ONLY",
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "PF08",
+      "title": "OpenCode真實worker可用",
+      "required_proof": "nativeCLI或ACP advertisedcapabilities與同等實測",
+      "construction_trace": "P52.OPENCODE_SOURCE／ACCEPTANCE",
+      "mandatory": true,
+      "status": "NOT_ACCEPTED_DEFINITION_ONLY",
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "PF09",
+      "title": "Antigravity真實worker可用",
+      "required_proof": "actualchannel/version/OS、headlessAPI可用性與同等實測",
+      "construction_trace": "P52.ANTIGRAVITY_SOURCE／ACCEPTANCE",
+      "mandatory": true,
+      "status": "NOT_ACCEPTED_DEFINITION_ONLY",
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "PF10",
+      "title": "異步調度及公平回收",
+      "required_proof": "N2/N3並行時間線、同projectintegration=1、crossprojectaging、無slot leak",
+      "construction_trace": "F02.N2_ACCEPTANCE＋P52.THREE_VENDOR_E2E",
+      "mandatory": true,
+      "status": "NOT_ACCEPTED_DEFINITION_ONLY",
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "PF11",
+      "title": "durable原生task身份及receipt",
+      "required_proof": "session/job/attempt/epoch、digest、flush、restore、外部publisher readback",
+      "construction_trace": "F01／D02／T01",
+      "mandatory": true,
+      "status": "NOT_ACCEPTED_DEFINITION_ONLY",
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "PF12",
+      "title": "獨立semantic reviewer",
+      "required_proof": "readonly邊界、不同invocation、exacttree、findings與resolution",
+      "construction_trace": "M03.SEMANTIC＋P52.VERTICAL_E2E",
+      "mandatory": true,
+      "status": "NOT_ACCEPTED_DEFINITION_ONLY",
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "PF13",
+      "title": "回收合併整體拼圖",
+      "required_proof": "當前integrationbase、每片reviewPASS、衝突處理、合併後完整tree",
+      "construction_trace": "F02＋P52.VERTICAL_E2E",
+      "mandatory": true,
+      "status": "NOT_ACCEPTED_DEFINITION_ONLY",
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "PF14",
+      "title": "全部必要功能可用",
+      "required_proof": "unit/integration/system/E2E、使用者情境、必需功能可追溯至oracle",
+      "construction_trace": "X01＋P52.VERTICAL_E2E",
+      "mandatory": true,
+      "status": "NOT_ACCEPTED_DEFINITION_ONLY",
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "PF15",
+      "title": "安全與供應鏈gate",
+      "required_proof": "credential/path/network negatives、dependency/secret/static/dynamic檢查、漏洞處置",
+      "construction_trace": "T01／T02＋P52.BENCHMARK_REGRESSION",
+      "mandatory": true,
+      "status": "NOT_ACCEPTED_DEFINITION_ONLY",
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "PF16",
+      "title": "返工優化有界而可持續",
+      "required_proof": "injectedfinding→repair→exactrevalidation；不重复无delta；耗盡停exactlane",
+      "construction_trace": "D02＋P52.VERTICAL_E2E",
+      "mandatory": true,
+      "status": "NOT_ACCEPTED_DEFINITION_ONLY",
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "PF17",
+      "title": "成品與完成通知",
+      "required_proof": "install/run指南、artifactmanifest、验收/限制/rollback、dedup通知receipt",
+      "construction_trace": "X01＋P52.FINAL_PRODUCT_ACCEPTANCE",
+      "mandatory": true,
+      "status": "NOT_ACCEPTED_DEFINITION_ONLY",
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "PF18",
+      "title": "UI/GPTWeb關閉持續工作",
+      "required_proof": "service／qualifiednativeworker仍產生真實receipt；UIclosed30min＋24hsoak",
+      "construction_trace": "D03／D04",
+      "mandatory": true,
+      "status": "NOT_ACCEPTED_DEFINITION_ONLY",
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "PF19",
+      "title": "跨Session恢复无重复",
+      "required_proof": "新session从durablecurrent恢复pending/completed/unknown，不重跑completed或unknownwrite",
+      "construction_trace": "D02.LOCAL_RESTORE／D04",
+      "mandatory": true,
+      "status": "NOT_ACCEPTED_DEFINITION_ONLY",
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "PF20",
+      "title": "STOP與cancel正確",
+      "required_proof": "新dispatch立即受阻、在途取消policy、nativeownedtree/readback、slotrelease",
+      "construction_trace": "F01／F02／X01",
+      "mandatory": true,
+      "status": "NOT_ACCEPTED_DEFINITION_ONLY",
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "PF21",
+      "title": "authority/effect唯一及CAS",
+      "required_proof": "staleversion拒絕、ownerselectiontimeallocation、externalunknown先讀回、单active",
+      "construction_trace": "C1／C2／D03",
+      "mandatory": true,
+      "status": "NOT_ACCEPTED_DEFINITION_ONLY",
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "PF22",
+      "title": "MCP可選transport不自鎖",
+      "required_proof": "四tools保持；缺MCP不封nativepreflight/source；factory_status無mutation",
+      "construction_trace": "M01／M04＋F01",
+      "mandatory": true,
+      "status": "NOT_ACCEPTED_DEFINITION_ONLY",
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "PF23",
+      "title": "credential及privilege最小化",
+      "required_proof": "workerproviderwrite=0；controller与SYSTEM分离；inferenceauth不泄露到repo/tooloutput",
+      "construction_trace": "F01／C2／T01",
+      "mandatory": true,
+      "status": "NOT_ACCEPTED_DEFINITION_ONLY",
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "PF24",
+      "title": "quota/cost/resource可控",
+      "required_proof": "已有entitlementfreshness、429backoff、无paidfallback、fairness与boundedresource",
+      "construction_trace": "F02＋P52.BENCHMARK_REGRESSION",
+      "mandatory": true,
+      "status": "NOT_ACCEPTED_DEFINITION_ONLY",
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "PF25",
+      "title": "source/包/provenance可重算",
+      "required_proof": "exacthead/tree/paths/blobs、helper实际安装hash、artifactmanifest/readback",
+      "construction_trace": "M03／M04／T01",
+      "mandatory": true,
+      "status": "NOT_ACCEPTED_DEFINITION_ONLY",
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "PF26",
+      "title": "性能与可靠性可测",
+      "required_proof": "规定场景、hardware/version/workload、latency/throughput/correctness原始数据",
+      "construction_trace": "D04＋P52.BENCHMARK_REGRESSION",
+      "mandatory": true,
+      "status": "NOT_ACCEPTED_DEFINITION_ONLY",
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "PF27",
+      "title": "自我完善不篡改oracle",
+      "required_proof": "固定baseline/held-out任务、受控改善candidate、不可删失败test或越Humangate",
+      "construction_trace": "P52.BENCHMARK_REGRESSION",
+      "mandatory": true,
+      "status": "NOT_ACCEPTED_DEFINITION_ONLY",
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "PF28",
+      "title": "安装不退化已授权capability",
+      "required_proof": "installed/candidate四tool矩阵、version/helper/receipt/output/STOP对比",
+      "construction_trace": "M01～M05",
+      "mandatory": true,
+      "status": "NOT_ACCEPTED_DEFINITION_ONLY",
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "PF29",
+      "title": "每vendor cancel/error语义正确",
+      "required_proof": "nativecancel/timeout/softdenial/partial/error分别判定；退出0不冒PASS",
+      "construction_trace": "F01＋三vendoracceptance",
+      "mandatory": true,
+      "status": "NOT_ACCEPTED_DEFINITION_ONLY",
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "PF30",
+      "title": "可观测并可运维",
+      "required_proof": "tasktimeline/queue/health/failure/report，secretredaction，telemetrydownreceipt不丢",
+      "construction_trace": "D04／T02／X01",
+      "mandatory": true,
+      "status": "NOT_ACCEPTED_DEFINITION_ONLY",
+      "actual_evidence_refs": []
+    }
+  ],
+  "regressions": [
+    {
+      "id": "PRG01",
+      "scenario": "LOCAL_CODEX_GOAL_DISAPPEARS_WHILE_MISSION_ACTIVE",
+      "expected": "canonical仍ACTIVE，实际新executor从receipt恢复，下一READY继续",
+      "status": "NOT_RUN_DEFINITION_ONLY",
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "PRG02",
+      "scenario": "局部batch完成仍有READY",
+      "expected": "Goal不complete，继续全目录最高优先合法单位",
+      "status": "NOT_RUN_DEFINITION_ONLY",
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "PRG03",
+      "scenario": "subset无READY",
+      "expected": "不可声明ALL_LEGAL_READY_LANES_EXHAUSTED",
+      "status": "NOT_RUN_DEFINITION_ONLY",
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "PRG04",
+      "scenario": "MCP缺席但nativeCLI可发现",
+      "expected": "仅MCPtransportpark，nativepreflight/source继续",
+      "status": "NOT_RUN_DEFINITION_ONLY",
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "PRG05",
+      "scenario": "missingtransport与Human授权",
+      "expected": "不由toolcatalog改写authorizationstate",
+      "status": "NOT_RUN_DEFINITION_ONLY",
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "PRG06",
+      "scenario": "F01前置需要F01finalPASS",
+      "expected": "有已授权bootstrapcanary路径，DAG无循环",
+      "status": "NOT_RUN_DEFINITION_ONLY",
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "PRG07",
+      "scenario": "未来install/heartbeat倒挂readonlyphase",
+      "expected": "readonlysource不被未来phase veto",
+      "status": "NOT_RUN_DEFINITION_ONLY",
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "PRG08",
+      "scenario": "lease expired／process UNKNOWN",
+      "expected": "authorityvalidity与processliveness分开，不凭UNKNOWN延长owner权",
+      "status": "NOT_RUN_DEFINITION_ONLY",
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "PRG09",
+      "scenario": "candidate发布、等待review、lease老化",
+      "expected": "inertcandidate无owner/generation/lease，promotion才freshCAS分配",
+      "status": "NOT_RUN_DEFINITION_ONLY",
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "PRG10",
+      "scenario": "多commit intermediatehead已知parentfail",
+      "expected": "本地修，finalonecommit，一次exactstructuralcheck",
+      "status": "NOT_RUN_DEFINITION_ONLY",
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "PRG11",
+      "scenario": "包含selfSHA的sourcecandidate",
+      "expected": "source/promotion分开，避免追SHA churn",
+      "status": "NOT_RUN_DEFINITION_ONLY",
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "PRG12",
+      "scenario": "bytes变更但旧review/checkPASS",
+      "expected": "targetverdict失效，只重验受影响新exacthead",
+      "status": "NOT_RUN_DEFINITION_ONLY",
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "PRG13",
+      "scenario": "localregression被叫protectedverification",
+      "expected": "coverage分类准确，trustrootupgrade独立lane",
+      "status": "NOT_RUN_DEFINITION_ONLY",
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "PRG14",
+      "scenario": "installedscriptcapable工具被candidate锁死",
+      "expected": "capabilitymatrix拒绝退化，保留四tool/version/helper",
+      "status": "NOT_RUN_DEFINITION_ONLY",
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "PRG15",
+      "scenario": "auth/quota缺失或403/429",
+      "expected": "scopedpark/backoff/合格替代route，不盲重试、不付费偷偷fallback",
+      "status": "NOT_RUN_DEFINITION_ONLY",
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "PRG16",
+      "scenario": "GitHub匿名拒绝但connector可用",
+      "expected": "使用已授权readroute，诊断partial而非全局noauthority",
+      "status": "NOT_RUN_DEFINITION_ONLY",
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "PRG17",
+      "scenario": "CLI exit0但tools被softdenied/partial",
+      "expected": "读取structuredstatus与实际artifact/oracle，不接受文字完成",
+      "status": "NOT_RUN_DEFINITION_ONLY",
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "PRG18",
+      "scenario": "cancel后child未退／PIDreuse",
+      "expected": "准确ownedtree身份、unknowneffectreadback、无误杀/slotleak",
+      "status": "NOT_RUN_DEFINITION_ONLY",
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "PRG19",
+      "scenario": "restore时截断/篡改journal",
+      "expected": "不接受损坏receipt，不覆盖历史；只隔离受影响lane并恢复其他合法工作",
+      "status": "NOT_RUN_DEFINITION_ONLY",
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "PRG20",
+      "scenario": "crash在write与receipt之间",
+      "expected": "effectUNKNOWN，先same-source readback，无重复effect",
+      "status": "NOT_RUN_DEFINITION_ONLY",
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "PRG21",
+      "scenario": "worker写sharedfile/窃credential/改oracle",
+      "expected": "OS/ACL/egress实际阻挡、负测证据；不是prompt自称安全",
+      "status": "NOT_RUN_DEFINITION_ONLY",
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "PRG22",
+      "scenario": "stalecanonical/owner尝试dispatchwrite",
+      "expected": "backendCAS/fence拒绝，candidate不能自授权",
+      "status": "NOT_RUN_DEFINITION_ONLY",
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "PRG23",
+      "scenario": "UIclosed/Supervisorcrash/WindowsVMreboot",
+      "expected": "原survival目标内真实恢复与持续receipt，不靠Human重贴prompt",
+      "status": "NOT_RUN_DEFINITION_ONLY",
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "PRG24",
+      "scenario": "同projectmerge或sharedmutation竞争",
+      "expected": "integration=1，mutationkey独占，nonconflicting其他project继续",
+      "status": "NOT_RUN_DEFINITION_ONLY",
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "PRG25",
+      "scenario": "通知超时重试",
+      "expected": "dedupkey/readback优先，完成通知不重复、未授权其他收件人不发送",
+      "status": "NOT_RUN_DEFINITION_ONLY",
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "PRG26",
+      "scenario": "优化造成oracle放宽或样本污染",
+      "expected": "固定baseline拒绝，held-out失败不隐瞒",
+      "status": "NOT_RUN_DEFINITION_ONLY",
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "PRG27",
+      "scenario": "新productunits加进来但旧catalog宣称全局耗尽",
+      "expected": "mergedcatalogdigest/count一致，所有适用units已评估",
+      "status": "NOT_RUN_DEFINITION_ONLY",
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "PRG28",
+      "scenario": "只有治理与shadowPASS",
+      "expected": "完整PF/E2E仍NOT_ACCEPTED，不宣称工厂完工",
+      "status": "NOT_RUN_DEFINITION_ONLY",
+      "actual_evidence_refs": []
+    }
+  ],
+  "acceptance_scope": "Original applicable 64 cases plus REV2 plus these product definitions; reuse exact valid evidence",
+  "no_zero_defect_guarantee": true
+}

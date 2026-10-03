@@ -1,0 +1,85 @@
+{
+  "schema": "vnext5.2.business-recovery-priority.v1",
+  "revision": "REV2-20261003",
+  "role": "LATEST_IMPLEMENTATION_ORDER_AND_PROOF_OBLIGATIONS_NOT_STATE_OR_NEW_AUTHORITY",
+  "supersedes_order": "F01_N1_FIRST_THEN_RESTATE_IN_PREVIOUS_SLIM_PACKAGE",
+  "parent_definition_union": 59,
+  "no_new_operation_ids": true,
+  "no_dependency_override": true,
+  "no_implicit_scope_grant": true,
+  "mandatory_fresh_recovery_first": true,
+  "priority_hint_overrides": {
+    "B00.RECOVER": 0,
+    "B01.OPERATIONS": 1,
+    "A00.ADMISSION": 2,
+    "A00.SOURCE_BOUNDS": 3,
+    "A01.READ_PREPARE": 4,
+    "A02.READ_PREPARE": 4,
+    "A01.LIVE_READ": 5,
+    "A02.LIVE_READ": 5,
+    "A04.RECONCILE": 6,
+    "B01.PUBLISH": 7,
+    "M01.SOURCE": 8,
+    "M02.LOCAL_CANARY": 9,
+    "M03.FINAL_SOURCE": 10,
+    "M03.STRUCTURAL": 11,
+    "M03.SEMANTIC": 11,
+    "M04.INSTALL_PREPARE": 12,
+    "M04.LIVE_INSTALL": 13,
+    "M05.LIVE_HEALTH": 14
+  },
+  "default_remaining_priority_floor": 20,
+  "readiness_rule": "Apply priority only after fresh operation admission and unchanged dependencies; preserve prior valid receipts; evaluate full applicable catalog; scoped blocking does not starve other legal READY.",
+  "business_proof_obligations": [
+    "EXACT_A00_PROJECT_ACCOUNT_D1_SCOPE",
+    "A01_LIVE_READ_WITH_BOUND_AND_SAME_SOURCE_RECEIPT",
+    "A02_LIVE_READ_WITH_BOUND_AND_SAME_SOURCE_RECEIPT",
+    "A04_FRESH_SOURCE_PAIR_RECONCILIATION_AND_USEFUL_ANALYSIS",
+    "WEB_MCP_TOOL_DISCOVERY_AND_FIXED_PURPOSE_BUSINESS_READ_IF_REQUIRED"
+  ],
+  "factory_mcp_public_tools": [
+    "factory_status",
+    "worker_prepare",
+    "worker_start",
+    "host_powershell"
+  ],
+  "factory_mcp_tool_count": 4,
+  "factory_health_is_ads_acceptance": false,
+  "codex_native_requires_session_factory_mcp": false,
+  "restate_or_f01_or_wif_or_three_brands_prerequisite_to_admitted_business_read": false,
+  "session_recovery": {
+    "locator": "EXISTING_PROJECT_DIRECTORY_CSG_AND_NONSELECTING_RECEIPTS_RUNTIME_LOCATORS",
+    "no_second_authority": true,
+    "no_new_mailbox_or_database": true,
+    "goal_status_not_authority": true,
+    "require_real_second_session_proof": true,
+    "read_does_not_claim_mutation_owner": true,
+    "mutations_require_actual_fence_cas": true,
+    "preserve_completed_work": true,
+    "scope": "NEW_SESSION_WITH_VALID_PROJECT_ACCESS_AND_OPERATION_AUTHORIZATION",
+    "proof": [
+      "LATEST_RECEIPT_VISIBLE",
+      "COMPLETE_READY_RECOMPUTATION",
+      "NO_COMPLETED_OPERATION_REPEATED",
+      "OVERLAPPING_STALE_MUTATION_DENIED",
+      "AUTHORIZED_FIXED_READ_NOT_DENIED_BY_ROLLOVER"
+    ]
+  },
+  "preserved_gates": [
+    "STOP_OR_HUMAN_PAUSE",
+    "EXACT_PROJECT_HOST_CALLER",
+    "REAL_AUTH_AND_RESOURCE_ACCESS",
+    "UNKNOWN_EFFECT_READBACK_FIRST",
+    "MUTATION_OWNER_EPOCH_AND_PROVIDER_CAS",
+    "PRODUCTION_AND_ADS_LIVE_WRITE",
+    "NEW_PAID_COST",
+    "IDENTITY_OAUTH_MFA_MAJOR_TRUST_EXPANSION"
+  ],
+  "candidate_or_live_verdicts": {
+    "business_recovery": "RESOLVE_FROM_FRESH_REAL_EVIDENCE_NOT_PACKAGE",
+    "cross_session_recovery": "RESOLVE_FROM_FRESH_REAL_EVIDENCE_NOT_PACKAGE",
+    "mcp_recovery": "RESOLVE_FROM_FRESH_REAL_EVIDENCE_NOT_PACKAGE"
+  },
+  "zero_defect_or_uninterrupted_platform_guarantee": false,
+  "package_dispatches_or_installs": false
+}
