@@ -1,18 +1,18 @@
 {
   "name": "@ptysd/factory-mcp",
-  "version": "0.1.3",
+  "version": "0.2.3",
   "private": true,
   "type": "module",
-  "description": "Minimal governed MCP surface for PTYSD HostGuard.",
+  "description": "Governed PTYSD Factory MCP with bounded read-only diagnostics and the qualified v0.2.1 SYSTEM-brokered PowerShell route.",
   "engines": {
     "node": ">=20"
   },
   "scripts": {
     "start": "node src/index.mjs",
-    "test": "node tests/official-inspector-equivalence.mjs"
+    "test": "node tests/official-inspector-equivalence.mjs && node --test tests/capability-parity.test.mjs tests/read-only-diagnostics.test.mjs tests/project-scope.test.mjs tests/owner-liveness-publisher.test.mjs tests/owner-liveness-e2e.test.mjs tests/trusted-caller-boundary.test.mjs tests/repair-lane.test.mjs"
   },
   "dependencies": {
-    "@modelcontextprotocol/server": "2.0.0",
+    "@modelcontextprotocol/server": "2.2.0",
     "zod": "4.6.5"
   }
 }
