@@ -1,6 +1,6 @@
 {
   "schema": "vnext5.2.coordinator-dispatch.v1",
-  "observed_at": "2026-10-03T17:03:59.689Z",
+  "observed_at": "2026-10-03T17:44:51.656Z",
   "single_integrator": "root",
   "tasks": [
     {
@@ -35,19 +35,19 @@
     {
       "id": "S-ADS",
       "route": "ANTIGRAVITY_NATIVE_CLI",
-      "status": "SOFT_DENIED_EMPTY_RESPONSE",
-      "attempt": 4,
+      "status": "RESPONSE_RECEIVED_REVIEW_REQUIRED",
+      "attempt": 5,
       "conversation_id": "87630a5f-9aae-4f2e-af9a-6a0718b52ee8",
       "version": "1.2.16",
       "model": "gemini-3.8-flash-high",
       "worktree": "VNEXT5.2-S-ADS-ANTIGRAVITY-WORK-20261003",
       "result_path": "outputs/S-ADS/result.json",
-      "dispatch_source": "outputs/S-ADS/attempt4/attempt4.intent.json",
+      "dispatch_source": "outputs/S-ADS/attempt5/attempt5.intent.json",
       "admission_readback": "routes/antigravity-sads-admission-readback.json",
       "recovery": "NATIVE_EXACT_PERMISSION_PROFILE_GRANTED_NO_GLOBAL_BYPASS",
       "prior_attempt_status": "RESPONSE_RECEIVED_REVIEW_REQUIRED",
-      "closed_at": "2026-10-03T16:37:03.364Z",
-      "denied_action_count": 1
+      "closed_at": "2026-10-03T17:32:27.499Z",
+      "denied_action_count": 0
     },
     {
       "id": "S-RUNTIME-PACKAGING-REWORK",
@@ -72,7 +72,7 @@
       "id": "S-MCP-SOURCE-REASSIGNMENT",
       "route": "CODEX_EXISTING_THREAD",
       "thread": "01a0fd19-df99-7013-8a8b-eb952c647e3d",
-      "status": "QUEUED_NOT_DUPLICATE",
+      "status": "LOCAL_SOURCE_AND_REGRESSION_IN_PROGRESS_EXACT_NATIVE_ACTIVITY",
       "write_set": [
         "tools/csg/factory-mcp/**"
       ],
@@ -88,8 +88,40 @@
     "status": "active",
     "turn_id": "01a10295-e6c6-7f91-a72c-f53a46eecb02",
     "turn_status": "inProgress",
-    "observed_at": "2026-10-03T17:03:51.595Z",
+    "observed_at": "2026-10-03T17:44:42.492Z",
     "receipt": "routes/luna-thread-readback.json",
     "source_execution": "NOT_INFERRED_FROM_THREAD_STATUS"
+  },
+  "model_lock": {
+    "codex": {
+      "display": "GPT-6 Luna Max",
+      "model": "gpt-6-luna",
+      "reasoning_effort": "max",
+      "thread_id": "01a0fd19-df99-7013-8a8b-eb952c647e3d",
+      "native_setting_request": "SENT_EXPLICIT_MODEL_AND_THINKING_PARAMETERS",
+      "runtime_settings_readback": "REQUIRED_PER_NEW_TURN_NOT_INFERRED_FROM_REQUEST"
+    },
+    "antigravity": {
+      "display": "Gemini 3.8 Flash High",
+      "model": "gemini-3.8-flash-high",
+      "conversation_id": "87630a5f-9aae-4f2e-af9a-6a0718b52ee8",
+      "latest_native_attempt": 5,
+      "explicit_cli_flag": "--model gemini-3.8-flash-high",
+      "actual_native_init": "CONFIRMED_SAME_MODEL_AND_CONVERSATION"
+    },
+    "opencode": {
+      "display": "Muse Spark 1.3 Free",
+      "provider_model_id": "opencode/muse-spark-1.3-contributor-free",
+      "provider_model_id_status": "EXACT_NATIVE_MODEL_LIST_READBACK_NAME_MUSE_SPARK_1.3_FREE_ACTIVE_ENABLED",
+      "native_catalog_cost": {
+        "input": 0,
+        "output": 0,
+        "cache_read": 0,
+        "cache_write": 0
+      },
+      "runtime_quota": "NOT_PROVEN_BY_MODEL_CATALOG",
+      "previous_fledge_alpha_free": "HISTORICAL_ONLY_FORBIDDEN_FOR_NEW_DISPATCH",
+      "prior_provider_quota": "PARKED_NO_BLIND_RETRY"
+    }
   }
 }

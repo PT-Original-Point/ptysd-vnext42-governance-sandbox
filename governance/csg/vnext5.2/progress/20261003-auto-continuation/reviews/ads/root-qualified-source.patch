@@ -1,0 +1,867 @@
+diff --git a/scripts/ads-line-production-reconciliation.mjs b/scripts/ads-line-production-reconciliation.mjs
+index 4ab7069..0ce5642 100644
+--- a/scripts/ads-line-production-reconciliation.mjs
++++ b/scripts/ads-line-production-reconciliation.mjs
+@@ -19,6 +19,10 @@ export const ADS_LINE_READ_REQUIRED_SCOPE = Object.freeze({
+   message_asset_metrics_daily: ["clicks", "cost_micros", "impressions", "interactions", "message_chats", "message_impressions", "metric_date"],
+   message_asset_metrics_collector_state: ["last_failure_code", "last_row_count"],
+ });
++const CREDENTIAL_ENV_BY_REF = Object.freeze({
++  "env:CLOUDFLARE_API_TOKEN": "CLOUDFLARE_API_TOKEN",
++  "env:WRANGLER_AUTH_TOKEN": "WRANGLER_AUTH_TOKEN",
++});
+ 
+ const TIMEZONE = "Asia/Taipei";
+ const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
+@@ -78,14 +82,16 @@ export const buildLineReasonExpression = (hasMatchReason) => hasMatchReason
+       "END",
+     ].join("\n");
+ 
+-export const validateAdmittedReadScope = (receipt, { databaseId, now = new Date().toISOString() } = {}) => {
++export const validateAdmittedReadScope = (receipt, { accountId, databaseId, now = new Date().toISOString() } = {}) => {
+   if (!receipt || typeof receipt !== "object" || Array.isArray(receipt)) fail("SCOPE_RECEIPT_REQUIRED");
+   if (receipt.schema !== ADS_LINE_READ_SCOPE_SCHEMA || receipt.status !== "ADMITTED") fail("SCOPE_NOT_ADMITTED");
+   if (receipt.repository_full_name !== "t14210184/hanyao" || receipt.query_id !== ADS_LINE_READ_QUERY_ID) fail("SCOPE_BINDING_MISMATCH");
+   if (typeof receipt.approval_ref !== "string" || !receipt.approval_ref || receipt.approval_ref.length > 256 ||
+       !/^(?:env|secretref|vault):[A-Za-z0-9._/:-]{1,200}$/i.test(receipt.credential_ref ?? "")) fail("SCOPE_REFERENCE_INVALID");
++  if (!Object.hasOwn(CREDENTIAL_ENV_BY_REF, receipt.credential_ref)) fail("CREDENTIAL_REFERENCE_UNSUPPORTED");
+   if (receipt.read_only !== true || receipt.raw_rows_allowed !== false || receipt.timezone !== TIMEZONE) fail("SCOPE_MODE_INVALID");
+-  if (!databaseId || receipt.target_database_id_sha256 !== hash(databaseId)) fail("TARGET_MISMATCH");
++  if (!accountId || !databaseId || receipt.target_account_id_sha256 !== hash(accountId) ||
++      receipt.target_database_id_sha256 !== hash(databaseId)) fail("TARGET_MISMATCH");
+   const expiry = Date.parse(receipt.expires_at ?? "");
+   const current = Date.parse(now);
+   if (!Number.isFinite(expiry) || !Number.isFinite(current) || current >= expiry) fail("SCOPE_EXPIRED");
+@@ -116,6 +122,14 @@ export const validateAdmittedReadScope = (receipt, { databaseId, now = new Date(
+   };
+ };
+ 
++export const resolveAdmittedCredential = (receipt, environment = process.env) => {
++  const environmentName = CREDENTIAL_ENV_BY_REF[receipt?.credential_ref];
++  if (!environmentName) fail("CREDENTIAL_REFERENCE_UNSUPPORTED");
++  const token = environment?.[environmentName]?.trim();
++  if (!token) fail("SCOPED_CREDENTIAL_UNAVAILABLE");
++  return token;
++};
++
+ const dailyTotals = (inputRows, countField, from, to, outputField) => {
+   const totals = new Map();
+   for (const row of inputRows) {
+@@ -133,7 +147,7 @@ export async function runAdsLineReconciliation({
+   query = queryD1ReadOnly, now = new Date().toISOString(),
+ }) {
+   const window = validateDateWindow(from, to);
+-  const scope = validateAdmittedReadScope(scopeReceipt, { databaseId, now });
++  const scope = validateAdmittedReadScope(scopeReceipt, { accountId, databaseId, now });
+   if (window.days > scope.limits.window_days) fail("WINDOW_EXCEEDS_ADMITTED_SCOPE");
+   if (!accountId || !token) fail("CLOUDFLARE_READ_CREDENTIAL_REQUIRED");
+ 
+@@ -291,16 +305,20 @@ async function main() {
+     return;
+   }
+   const scopeReceipt = JSON.parse(readFileSync(path.resolve(scopeReceiptPath), "utf8"));
++  const accountId = process.env.CLOUDFLARE_ACCOUNT_ID?.trim();
++  const databaseId = process.env.HG10_PRODUCTION_D1_ID?.trim();
++  validateAdmittedReadScope(scopeReceipt, { accountId, databaseId });
++  const token = resolveAdmittedCredential(scopeReceipt, process.env);
+   const result = await runAdsLineReconciliation({
+     from: arg("--from"),
+     to: arg("--to"),
+-    accountId: process.env.CLOUDFLARE_ACCOUNT_ID?.trim(),
+-    token: process.env.CLOUDFLARE_API_TOKEN?.trim() || process.env.WRANGLER_AUTH_TOKEN?.trim(),
+-    databaseId: process.env.HG10_PRODUCTION_D1_ID?.trim(),
++    accountId,
++    token,
++    databaseId,
+     scopeReceipt,
+   });
+   console.log(JSON.stringify(result));
+ }
+ 
+ const invokedPath = process.argv[1] ? path.resolve(process.argv[1]) : "";
+-if (invokedPath && fileURLToPath(import.meta.url) === invokedPath) await main();
+\ No newline at end of file
++if (invokedPath && fileURLToPath(import.meta.url) === invokedPath) await main();
+diff --git a/scripts/ads-line-production-reconciliation.test.mjs b/scripts/ads-line-production-reconciliation.test.mjs
+index ded2ff6..3fc6d73 100644
+--- a/scripts/ads-line-production-reconciliation.test.mjs
++++ b/scripts/ads-line-production-reconciliation.test.mjs
+@@ -7,12 +7,14 @@ import {
+   ADS_LINE_READ_REQUIRED_SCOPE,
+   ADS_LINE_READ_SCOPE_SCHEMA,
+   buildLineReasonExpression,
++  resolveAdmittedCredential,
+   runAdsLineReconciliation,
+   validateAdmittedReadScope,
+   validateDateWindow,
+ } from "./ads-line-production-reconciliation.mjs";
+ 
+ const databaseId = "test-database-id";
++const accountId = "account";
+ const now = "2026-10-03T12:00:00.000Z";
+ const digest = (value) => "sha256:" + createHash("sha256").update(value).digest("hex");
+ const makeReceipt = (overrides = {}) => ({
+@@ -21,7 +23,8 @@ const makeReceipt = (overrides = {}) => ({
+   repository_full_name: "t14210184/hanyao",
+   query_id: ADS_LINE_READ_QUERY_ID,
+   approval_ref: "read-scope-approval:test-fixture",
+-  credential_ref: "env:HANYAO_D1_READ_TOKEN",
++  credential_ref: "env:CLOUDFLARE_API_TOKEN",
++  target_account_id_sha256: digest(accountId),
+   target_database_id_sha256: digest(databaseId),
+   expires_at: "2026-10-04T00:00:00.000Z",
+   read_only: true,
+@@ -89,9 +92,17 @@ test("requires an admitted exact-target scope receipt before the first query", a
+   }), /SCOPE_RECEIPT_REQUIRED/);
+   assert.equal(fixture.calls.length, 0);
+ 
+-  assert.throws(() => validateAdmittedReadScope(makeReceipt({ status: "PENDING" }), { databaseId, now }), /SCOPE_NOT_ADMITTED/);
+-  assert.throws(() => validateAdmittedReadScope(makeReceipt(), { databaseId: "other-db", now }), /TARGET_MISMATCH/);
+-  assert.throws(() => validateAdmittedReadScope(makeReceipt({ expires_at: "2026-10-03T11:59:59Z" }), { databaseId, now }), /SCOPE_EXPIRED/);
++  assert.throws(() => validateAdmittedReadScope(makeReceipt({ status: "PENDING" }), { accountId, databaseId, now }), /SCOPE_NOT_ADMITTED/);
++  assert.throws(() => validateAdmittedReadScope(makeReceipt(), { accountId, databaseId: "other-db", now }), /TARGET_MISMATCH/);
++  assert.throws(() => validateAdmittedReadScope(makeReceipt(), { accountId: "other-account", databaseId, now }), /TARGET_MISMATCH/);
++  assert.throws(() => validateAdmittedReadScope(makeReceipt({ credential_ref: "env:HANYAO_D1_READ_TOKEN" }), { accountId, databaseId, now }), /CREDENTIAL_REFERENCE_UNSUPPORTED/);
++  assert.throws(() => validateAdmittedReadScope(makeReceipt({ expires_at: "2026-10-03T11:59:59Z" }), { accountId, databaseId, now }), /SCOPE_EXPIRED/);
++});
++
++test("binds the admitted credential reference to one exact supported environment variable", () => {
++  assert.equal(resolveAdmittedCredential(makeReceipt(), { CLOUDFLARE_API_TOKEN: "scoped-test-token" }), "scoped-test-token");
++  assert.throws(() => resolveAdmittedCredential(makeReceipt(), { WRANGLER_AUTH_TOKEN: "unrelated-token" }), /SCOPED_CREDENTIAL_UNAVAILABLE/);
++  assert.throws(() => resolveAdmittedCredential(makeReceipt({ credential_ref: "vault:HG10_READ" }), { CLOUDFLARE_API_TOKEN: "token" }), /CREDENTIAL_REFERENCE_UNSUPPORTED/);
+ });
+ 
+ test("uses fixed capped queries and returns only bounded redacted aggregates", async () => {
+@@ -131,7 +142,7 @@ test("rejects provider results above the per-query cap before continuing", async
+ 
+ test("an admitted receipt can narrow limits but cannot widen any hard cap", () => {
+   const narrow = makeReceipt({ limits: { ...makeReceipt().limits, window_days: 7, rows_per_query: 25 } });
+-  assert.equal(validateAdmittedReadScope(narrow, { databaseId, now }).limits.window_days, 7);
++  assert.equal(validateAdmittedReadScope(narrow, { accountId, databaseId, now }).limits.window_days, 7);
+   const wide = makeReceipt({ limits: { ...makeReceipt().limits, response_bytes: ADS_LINE_READ_HARD_LIMITS.responseBytes + 1 } });
+-  assert.throws(() => validateAdmittedReadScope(wide, { databaseId, now }), /SCOPE_LIMITS_INVALID/);
+-});
+\ No newline at end of file
++  assert.throws(() => validateAdmittedReadScope(wide, { accountId, databaseId, now }), /SCOPE_LIMITS_INVALID/);
++});
+diff --git a/scripts/google-ads-provider-auth.test.ts b/scripts/google-ads-provider-auth.test.ts
+index 36f0f18..7f111f2 100644
+--- a/scripts/google-ads-provider-auth.test.ts
++++ b/scripts/google-ads-provider-auth.test.ts
+@@ -1,94 +1,96 @@
+-import assert from "node:assert/strict";
+-import test from "node:test";
+-import { GOOGLE_ADS_SCOPE } from "../workers/google-ads-uploader/src/types.ts";
+-import {
+-  hasGoogleAdsAuthInput,
+-  resolveGoogleAdsAccessToken,
+-  type GoogleAdsTokenExchange,
+-} from "./google-ads-provider-auth.ts";
+-
+-test("direct short-lived Google Ads access token takes precedence without exchange", async () => {
+-  let exchangeCalled = false;
+-  const exchange = (async () => {
+-    exchangeCalled = true;
+-    throw new Error("exchange must not be called");
+-  }) as GoogleAdsTokenExchange;
+-
+-  const result = await resolveGoogleAdsAccessToken(
+-    {
+-      GOOGLE_ADS_ACCESS_TOKEN: "short-lived-access-token-123",
+-      GOOGLE_DATA_MANAGER_SERVICE_ACCOUNT_JSON: '{"type":"service_account"}',
+-    },
+-    exchange
+-  );
+-
+-  assert.deepEqual(result, {
+-    accessToken: "short-lived-access-token-123",
+-    source: "ACCESS_TOKEN",
+-  });
+-  assert.equal(exchangeCalled, false);
+-});
+-
+-test("service-account JSON remains the fallback and requests only adwords scope", async () => {
+-  const calls: Array<{
+-    credential: string;
+-    scopes: readonly string[];
+-  }> = [];
+-  const exchange = (async (credential, scopes) => {
+-    calls.push({ credential, scopes });
+-    return { accessToken: "fallback-token", expiresIn: 3600 };
+-  }) as GoogleAdsTokenExchange;
+-
+-  const result = await resolveGoogleAdsAccessToken(
+-    {
+-      GOOGLE_DATA_MANAGER_SERVICE_ACCOUNT_JSON: "serialized-service-account",
+-    },
+-    exchange
+-  );
+-
+-  assert.deepEqual(result, {
+-    accessToken: "fallback-token",
+-    source: "SERVICE_ACCOUNT_JSON",
+-  });
+-  assert.deepEqual(calls, [
+-    {
+-      credential: "serialized-service-account",
+-      scopes: [GOOGLE_ADS_SCOPE],
+-    },
+-  ]);
+-});
+-
+-test("missing auth input fails closed", async () => {
+-  assert.equal(hasGoogleAdsAuthInput({}), false);
+-  await assert.rejects(
+-    resolveGoogleAdsAccessToken({}, async () => {
+-      throw new Error("must not be called");
+-    }),
+-    /GOOGLE_ADS_PROVIDER_AUTH_REQUIRED/
+-  );
+-});
+-
+-test("access tokens containing whitespace fail closed", async () => {
+-  await assert.rejects(
+-    resolveGoogleAdsAccessToken(
+-      { GOOGLE_ADS_ACCESS_TOKEN: "bad token" },
+-      async () => {
+-        throw new Error("must not be called");
+-      }
+-    ),
+-    /GOOGLE_ADS_ACCESS_TOKEN_INVALID/
+-  );
+-});
+-
+-test("auth availability accepts either supported input without exposing values", () => {
+-  assert.equal(
+-    hasGoogleAdsAuthInput({ GOOGLE_ADS_ACCESS_TOKEN: "opaque-token" }),
+-    true
+-  );
+-  assert.equal(
+-    hasGoogleAdsAuthInput({
+-      GOOGLE_DATA_MANAGER_SERVICE_ACCOUNT_JSON: "opaque-service-account-json",
+-    }),
+-    true
+-  );
+-});
++import assert from "node:assert/strict";
++import test from "node:test";
++import { GOOGLE_ADS_SCOPE } from "../workers/google-ads-uploader/src/types.ts";
++import {
++  hasGoogleAdsAuthInput,
++  resolveGoogleAdsAccessToken,
++  type GoogleAdsTokenExchange,
++} from "./google-ads-provider-auth.ts";
++
++test("direct short-lived Google Ads access token takes precedence without exchange", async () => {
++  let exchangeCalled = false;
++  const exchange = (async () => {
++    exchangeCalled = true;
++    throw new Error("exchange must not be called");
++  }) as GoogleAdsTokenExchange;
++
++  const result = await resolveGoogleAdsAccessToken(
++    {
++      GOOGLE_ADS_ACCESS_TOKEN: "short-lived-access-token-123",
++      GOOGLE_DATA_MANAGER_SERVICE_ACCOUNT_JSON: '{"type":"service_account"}',
++    },
++    exchange
++  );
++
++  assert.deepEqual(result, {
++    accessToken: "short-lived-access-token-123",
++    source: "ACCESS_TOKEN",
++    tokenExpiresInSeconds: null,
++  });
++  assert.equal(exchangeCalled, false);
++});
++
++test("service-account JSON remains the fallback and requests only adwords scope", async () => {
++  const calls: Array<{
++    credential: string;
++    scopes: readonly string[];
++  }> = [];
++  const exchange = (async (credential, scopes) => {
++    calls.push({ credential, scopes });
++    return { accessToken: "fallback-token", expiresIn: 3600 };
++  }) as GoogleAdsTokenExchange;
++
++  const result = await resolveGoogleAdsAccessToken(
++    {
++      GOOGLE_DATA_MANAGER_SERVICE_ACCOUNT_JSON: "serialized-service-account",
++    },
++    exchange
++  );
++
++  assert.deepEqual(result, {
++    accessToken: "fallback-token",
++    source: "SERVICE_ACCOUNT_JSON",
++    tokenExpiresInSeconds: 3600,
++  });
++  assert.deepEqual(calls, [
++    {
++      credential: "serialized-service-account",
++      scopes: [GOOGLE_ADS_SCOPE],
++    },
++  ]);
++});
++
++test("missing auth input fails closed", async () => {
++  assert.equal(hasGoogleAdsAuthInput({}), false);
++  await assert.rejects(
++    resolveGoogleAdsAccessToken({}, async () => {
++      throw new Error("must not be called");
++    }),
++    /GOOGLE_ADS_PROVIDER_AUTH_REQUIRED/
++  );
++});
++
++test("access tokens containing whitespace fail closed", async () => {
++  await assert.rejects(
++    resolveGoogleAdsAccessToken(
++      { GOOGLE_ADS_ACCESS_TOKEN: "bad token" },
++      async () => {
++        throw new Error("must not be called");
++      }
++    ),
++    /GOOGLE_ADS_ACCESS_TOKEN_INVALID/
++  );
++});
++
++test("auth availability accepts either supported input without exposing values", () => {
++  assert.equal(
++    hasGoogleAdsAuthInput({ GOOGLE_ADS_ACCESS_TOKEN: "opaque-token" }),
++    true
++  );
++  assert.equal(
++    hasGoogleAdsAuthInput({
++      GOOGLE_DATA_MANAGER_SERVICE_ACCOUNT_JSON: "opaque-service-account-json",
++    }),
++    true
++  );
++});
+diff --git a/scripts/google-ads-provider-auth.ts b/scripts/google-ads-provider-auth.ts
+index b5033c5..99ca064 100644
+--- a/scripts/google-ads-provider-auth.ts
++++ b/scripts/google-ads-provider-auth.ts
+@@ -1,62 +1,65 @@
+-import { exchangeServiceAccountTokenForScopes } from "../workers/google-ads-uploader/src/auth.ts";
+-import { GOOGLE_ADS_SCOPE } from "../workers/google-ads-uploader/src/types.ts";
+-
+-export type GoogleAdsProviderAuthSource =
+-  | "ACCESS_TOKEN"
+-  | "SERVICE_ACCOUNT_JSON";
+-
+-export type GoogleAdsAuthEnvironment = {
+-  [key: string]: string | undefined;
+-  GOOGLE_ADS_ACCESS_TOKEN?: string;
+-  GOOGLE_DATA_MANAGER_SERVICE_ACCOUNT_JSON?: string;
+-};
+-
+-export type GoogleAdsTokenExchange = (
+-  serializedServiceAccount: string,
+-  scopes: readonly string[]
+-) => Promise<{ accessToken: string; expiresIn: number | null }>;
+-
+-const nonEmpty = (value: string | undefined): string | null => {
+-  const trimmed = value?.trim();
+-  return trimmed ? trimmed : null;
+-};
+-
+-export const hasGoogleAdsAuthInput = (
+-  env: GoogleAdsAuthEnvironment = process.env
+-): boolean =>
+-  Boolean(
+-    nonEmpty(env.GOOGLE_ADS_ACCESS_TOKEN) ||
+-      nonEmpty(env.GOOGLE_DATA_MANAGER_SERVICE_ACCOUNT_JSON)
+-  );
+-
+-export const resolveGoogleAdsAccessToken = async (
+-  env: GoogleAdsAuthEnvironment = process.env,
+-  exchange: GoogleAdsTokenExchange = exchangeServiceAccountTokenForScopes
+-): Promise<{
+-  accessToken: string;
+-  source: GoogleAdsProviderAuthSource;
+-}> => {
+-  const directAccessToken = nonEmpty(env.GOOGLE_ADS_ACCESS_TOKEN);
+-  if (directAccessToken) {
+-    if (/\s/.test(directAccessToken)) {
+-      throw new Error("GOOGLE_ADS_ACCESS_TOKEN_INVALID");
+-    }
+-    return {
+-      accessToken: directAccessToken,
+-      source: "ACCESS_TOKEN",
+-    };
+-  }
+-
+-  const serializedServiceAccount = nonEmpty(
+-    env.GOOGLE_DATA_MANAGER_SERVICE_ACCOUNT_JSON
+-  );
+-  if (!serializedServiceAccount) {
+-    throw new Error("GOOGLE_ADS_PROVIDER_AUTH_REQUIRED");
+-  }
+-
+-  const exchanged = await exchange(serializedServiceAccount, [GOOGLE_ADS_SCOPE]);
+-  return {
+-    accessToken: exchanged.accessToken,
+-    source: "SERVICE_ACCOUNT_JSON",
+-  };
+-};
++import { exchangeServiceAccountTokenForScopes } from "../workers/google-ads-uploader/src/auth.ts";
++import { GOOGLE_ADS_SCOPE } from "../workers/google-ads-uploader/src/types.ts";
++
++export type GoogleAdsProviderAuthSource =
++  | "ACCESS_TOKEN"
++  | "SERVICE_ACCOUNT_JSON";
++
++export type GoogleAdsAuthEnvironment = {
++  [key: string]: string | undefined;
++  GOOGLE_ADS_ACCESS_TOKEN?: string;
++  GOOGLE_DATA_MANAGER_SERVICE_ACCOUNT_JSON?: string;
++};
++
++export type GoogleAdsTokenExchange = (
++  serializedServiceAccount: string,
++  scopes: readonly string[]
++) => Promise<{ accessToken: string; expiresIn: number | null }>;
++
++const nonEmpty = (value: string | undefined): string | null => {
++  const trimmed = value?.trim();
++  return trimmed ? trimmed : null;
++};
++
++export const hasGoogleAdsAuthInput = (
++  env: GoogleAdsAuthEnvironment = process.env
++): boolean =>
++  Boolean(
++    nonEmpty(env.GOOGLE_ADS_ACCESS_TOKEN) ||
++      nonEmpty(env.GOOGLE_DATA_MANAGER_SERVICE_ACCOUNT_JSON)
++  );
++
++export const resolveGoogleAdsAccessToken = async (
++  env: GoogleAdsAuthEnvironment = process.env,
++  exchange: GoogleAdsTokenExchange = exchangeServiceAccountTokenForScopes
++): Promise<{
++  accessToken: string;
++  source: GoogleAdsProviderAuthSource;
++  tokenExpiresInSeconds: number | null;
++}> => {
++  const directAccessToken = nonEmpty(env.GOOGLE_ADS_ACCESS_TOKEN);
++  if (directAccessToken) {
++    if (/\s/.test(directAccessToken)) {
++      throw new Error("GOOGLE_ADS_ACCESS_TOKEN_INVALID");
++    }
++    return {
++      accessToken: directAccessToken,
++      source: "ACCESS_TOKEN",
++      tokenExpiresInSeconds: null,
++    };
++  }
++
++  const serializedServiceAccount = nonEmpty(
++    env.GOOGLE_DATA_MANAGER_SERVICE_ACCOUNT_JSON
++  );
++  if (!serializedServiceAccount) {
++    throw new Error("GOOGLE_ADS_PROVIDER_AUTH_REQUIRED");
++  }
++
++  const exchanged = await exchange(serializedServiceAccount, [GOOGLE_ADS_SCOPE]);
++  return {
++    accessToken: exchanged.accessToken,
++    source: "SERVICE_ACCOUNT_JSON",
++    tokenExpiresInSeconds: exchanged.expiresIn,
++  };
++};
+diff --git a/scripts/google-ads-read-scope.test.ts b/scripts/google-ads-read-scope.test.ts
+new file mode 100644
+index 0000000..ce3bbeb
+--- /dev/null
++++ b/scripts/google-ads-read-scope.test.ts
+@@ -0,0 +1,176 @@
++import assert from "node:assert/strict";
++import test from "node:test";
++import {
++  GOOGLE_ADS_READ_SCOPE,
++  GOOGLE_ADS_REPORTING_LIMITS,
++  readResponseTextBounded,
++  validateGoogleAdsReadScopeReceipt,
++  type GoogleAdsReadScopeReceipt,
++} from "./google-ads-read-scope.ts";
++
++const NOW = Date.parse("2026-10-03T05:00:00.000Z");
++const EXPECTED = {
++  targetCustomerId: "4801404246",
++  apiVersion: "v25",
++  loginCustomerId: null,
++};
++
++const validReceipt = (
++  overrides: Partial<GoogleAdsReadScopeReceipt> = {}
++): GoogleAdsReadScopeReceipt => ({
++  schema: "hanyao.google-ads.read-scope.v1",
++  operation: "ADS_REPORTING_MONITOR_V1",
++  approval_ref: "approval:ads-read:20261003",
++  custodian_ref: "custodian:ads-read",
++  credential_ref: "env:GOOGLE_DATA_MANAGER_SERVICE_ACCOUNT_JSON",
++  google_cloud_project_id: "ads-read-project-123",
++  google_cloud_project_api_access: "BASIC",
++  project_access_evidence_ref: "cloud-console:ads-api-access",
++  target_customer_id: EXPECTED.targetCustomerId,
++  account_access: "DIRECT",
++  login_customer_id: null,
++  api_version: EXPECTED.apiVersion,
++  oauth_scope: GOOGLE_ADS_READ_SCOPE,
++  read_only: true,
++  raw_rows: false,
++  max_queries: GOOGLE_ADS_REPORTING_LIMITS.maxQueries,
++  max_rows: GOOGLE_ADS_REPORTING_LIMITS.maxRows,
++  max_response_bytes: GOOGLE_ADS_REPORTING_LIMITS.maxResponseBytes,
++  max_total_response_bytes: GOOGLE_ADS_REPORTING_LIMITS.maxTotalResponseBytes,
++  expires_at_utc: "2026-10-03T05:20:00.000Z",
++  credential_expires_at_utc: null,
++  ...overrides,
++});
++
++const serialized = (
++  receipt: GoogleAdsReadScopeReceipt
++): string => JSON.stringify(receipt);
++
++test("exact bounded read receipt validates for the fixed Ads reporting route", () => {
++  const result = validateGoogleAdsReadScopeReceipt(
++    serialized(validReceipt()),
++    EXPECTED,
++    NOW
++  );
++  assert.equal(result.ok, true);
++  if (result.ok) {
++    assert.equal(result.receipt.target_customer_id, EXPECTED.targetCustomerId);
++    assert.equal(result.receipt.oauth_scope, GOOGLE_ADS_READ_SCOPE);
++  }
++});
++
++test("missing receipt fails closed before any provider credentials are needed", () => {
++  assert.deepEqual(
++    validateGoogleAdsReadScopeReceipt(undefined, EXPECTED, NOW),
++    { ok: false, reason: "ADS_READ_SCOPE_RECEIPT_MISSING_OR_OVERSIZED" }
++  );
++});
++
++test("wrong target, login customer, API version, or scope fails closed", () => {
++  const cases = [
++    [
++      validReceipt({ target_customer_id: "4801404247" }),
++      EXPECTED,
++      "ADS_READ_SCOPE_TARGET_MISMATCH",
++    ],
++    [
++      validReceipt({
++        account_access: "MANAGER",
++        login_customer_id: "9876543210",
++      }),
++      EXPECTED,
++      "ADS_READ_SCOPE_LOGIN_CUSTOMER_MISMATCH",
++    ],
++    [
++      validReceipt({ api_version: "v24" }),
++      EXPECTED,
++      "ADS_READ_SCOPE_API_OR_OAUTH_SCOPE_MISMATCH",
++    ],
++    [
++      validReceipt({ oauth_scope: "https://www.googleapis.com/auth/cloud-platform" }),
++      EXPECTED,
++      "ADS_READ_SCOPE_API_OR_OAUTH_SCOPE_MISMATCH",
++    ],
++  ] as const;
++  for (const [receipt, expected, reason] of cases) {
++    const result = validateGoogleAdsReadScopeReceipt(
++      serialized(receipt),
++      expected,
++      NOW
++    );
++    assert.deepEqual(result, { ok: false, reason });
++  }
++});
++
++test("unsupported credential references and unbounded receipts fail closed", () => {
++  const unsupported = {
++    ...validReceipt(),
++    credential_ref: "file:C:/private/key.json",
++  };
++  assert.deepEqual(
++    validateGoogleAdsReadScopeReceipt(
++      JSON.stringify(unsupported),
++      EXPECTED,
++      NOW
++    ),
++    { ok: false, reason: "ADS_READ_SCOPE_CREDENTIAL_REF_UNSUPPORTED" }
++  );
++
++  assert.deepEqual(
++    validateGoogleAdsReadScopeReceipt(
++      serialized(validReceipt({ max_response_bytes: 65_537 })),
++      EXPECTED,
++      NOW
++    ),
++    { ok: false, reason: "ADS_READ_SCOPE_READ_BOUND_MISMATCH" }
++  );
++});
++
++test("expired receipt and unbounded direct-token expiry fail closed", () => {
++  assert.deepEqual(
++    validateGoogleAdsReadScopeReceipt(
++      serialized(validReceipt({ expires_at_utc: "2026-10-03T04:59:59.000Z" })),
++      EXPECTED,
++      NOW
++    ),
++    { ok: false, reason: "ADS_READ_SCOPE_RECEIPT_EXPIRED_OR_TOO_LONG" }
++  );
++
++  assert.deepEqual(
++    validateGoogleAdsReadScopeReceipt(
++      serialized(
++        validReceipt({
++          credential_ref: "env:GOOGLE_ADS_ACCESS_TOKEN",
++          credential_expires_at_utc: null,
++        })
++      ),
++      EXPECTED,
++      NOW
++    ),
++    { ok: false, reason: "ADS_READ_SCOPE_ACCESS_TOKEN_EXPIRY_REQUIRED" }
++  );
++});
++
++test("response body byte cap is enforced while reading the stream", async () => {
++  const accepted = await readResponseTextBounded(
++    new Response('{"results":[]}', {
++      headers: { "content-length": "14" },
++    }),
++    32
++  );
++  assert.deepEqual(accepted, { text: '{"results":[]}', bytes: 14 });
++
++  const oversized = new Response(
++    new ReadableStream({
++      start(controller) {
++        controller.enqueue(new TextEncoder().encode("123456"));
++        controller.enqueue(new TextEncoder().encode("7890"));
++        controller.close();
++      },
++    })
++  );
++  await assert.rejects(
++    readResponseTextBounded(oversized, 8),
++    /GOOGLE_ADS_RESPONSE_BYTE_CAP_EXCEEDED/
++  );
++});
+diff --git a/scripts/google-ads-read-scope.ts b/scripts/google-ads-read-scope.ts
+new file mode 100644
+index 0000000..31c779e
+--- /dev/null
++++ b/scripts/google-ads-read-scope.ts
+@@ -0,0 +1,206 @@
++export const GOOGLE_ADS_READ_SCOPE = "https://www.googleapis.com/auth/adwords";
++
++export const GOOGLE_ADS_REPORTING_LIMITS = Object.freeze({
++  maxQueries: 2,
++  maxRows: 201,
++  maxResponseBytes: 65_536,
++  maxTotalResponseBytes: 131_072,
++});
++
++export type GoogleAdsReadScopeExpected = {
++  targetCustomerId: string;
++  apiVersion: string;
++  loginCustomerId: string | null;
++};
++
++export type GoogleAdsCredentialRef =
++  | "env:GOOGLE_ADS_ACCESS_TOKEN"
++  | "env:GOOGLE_DATA_MANAGER_SERVICE_ACCOUNT_JSON";
++
++export type GoogleAdsReadScopeReceipt = {
++  schema: "hanyao.google-ads.read-scope.v1";
++  operation: "ADS_REPORTING_MONITOR_V1";
++  approval_ref: string;
++  custodian_ref: string;
++  credential_ref: GoogleAdsCredentialRef;
++  google_cloud_project_id: string;
++  google_cloud_project_api_access: "EXPLORER" | "BASIC" | "STANDARD";
++  project_access_evidence_ref: string;
++  target_customer_id: string;
++  account_access: "DIRECT" | "MANAGER";
++  login_customer_id: string | null;
++  api_version: string;
++  oauth_scope: typeof GOOGLE_ADS_READ_SCOPE;
++  read_only: true;
++  raw_rows: false;
++  max_queries: 2;
++  max_rows: 201;
++  max_response_bytes: 65_536;
++  max_total_response_bytes: 131_072;
++  expires_at_utc: string;
++  credential_expires_at_utc: string | null;
++};
++
++export type GoogleAdsReadScopeResult =
++  | {
++      ok: true;
++      receipt: GoogleAdsReadScopeReceipt;
++    }
++  | {
++      ok: false;
++      reason: string;
++    };
++
++const isRecord = (value: unknown): value is Record<string, unknown> =>
++  Boolean(value) && typeof value === "object" && !Array.isArray(value);
++
++const hasBoundedText = (value: unknown): value is string =>
++  typeof value === "string" &&
++  value.trim().length > 0 &&
++  value.trim().length <= 256;
++
++const validCustomerId = (value: unknown): value is string =>
++  typeof value === "string" && /^\d{10}$/.test(value);
++
++const parseFutureExpiry = (
++  value: unknown,
++  now: number,
++  maximumFutureMs: number
++): value is string => {
++  if (typeof value !== "string") return false;
++  const parsed = Date.parse(value);
++  return Number.isFinite(parsed) && parsed > now && parsed <= now + maximumFutureMs;
++};
++
++export const validateGoogleAdsReadScopeReceipt = (
++  serializedReceipt: string | undefined,
++  expected: GoogleAdsReadScopeExpected,
++  now = Date.now()
++): GoogleAdsReadScopeResult => {
++  if (!serializedReceipt || serializedReceipt.length > 16_384) {
++    return { ok: false, reason: "ADS_READ_SCOPE_RECEIPT_MISSING_OR_OVERSIZED" };
++  }
++
++  let parsed: unknown;
++  try {
++    parsed = JSON.parse(serializedReceipt);
++  } catch {
++    return { ok: false, reason: "ADS_READ_SCOPE_RECEIPT_INVALID_JSON" };
++  }
++  if (!isRecord(parsed)) {
++    return { ok: false, reason: "ADS_READ_SCOPE_RECEIPT_INVALID" };
++  }
++
++  const receipt = parsed;
++  if (receipt.schema !== "hanyao.google-ads.read-scope.v1" ||
++      receipt.operation !== "ADS_REPORTING_MONITOR_V1") {
++    return { ok: false, reason: "ADS_READ_SCOPE_RECEIPT_SCHEMA_MISMATCH" };
++  }
++  if (!hasBoundedText(receipt.approval_ref) ||
++      !hasBoundedText(receipt.custodian_ref) ||
++      !hasBoundedText(receipt.project_access_evidence_ref)) {
++    return { ok: false, reason: "ADS_READ_SCOPE_AUTHORITY_FACTS_MISSING" };
++  }
++  if (receipt.credential_ref !== "env:GOOGLE_ADS_ACCESS_TOKEN" &&
++      receipt.credential_ref !== "env:GOOGLE_DATA_MANAGER_SERVICE_ACCOUNT_JSON") {
++    return { ok: false, reason: "ADS_READ_SCOPE_CREDENTIAL_REF_UNSUPPORTED" };
++  }
++  if (typeof receipt.google_cloud_project_id !== "string" ||
++      !/^[a-z][a-z0-9-]{4,28}[a-z0-9]$/.test(receipt.google_cloud_project_id)) {
++    return { ok: false, reason: "ADS_READ_SCOPE_CLOUD_PROJECT_INVALID" };
++  }
++  if (receipt.google_cloud_project_api_access !== "EXPLORER" &&
++      receipt.google_cloud_project_api_access !== "BASIC" &&
++      receipt.google_cloud_project_api_access !== "STANDARD") {
++    return { ok: false, reason: "ADS_READ_SCOPE_PROJECT_ACCESS_UNVERIFIED" };
++  }
++  if (!validCustomerId(receipt.target_customer_id) ||
++      receipt.target_customer_id !== expected.targetCustomerId) {
++    return { ok: false, reason: "ADS_READ_SCOPE_TARGET_MISMATCH" };
++  }
++  if (receipt.account_access !== "DIRECT" && receipt.account_access !== "MANAGER") {
++    return { ok: false, reason: "ADS_READ_SCOPE_ACCOUNT_ACCESS_INVALID" };
++  }
++  if (receipt.login_customer_id !== expected.loginCustomerId ||
++      (receipt.login_customer_id !== null &&
++       !validCustomerId(receipt.login_customer_id)) ||
++      (receipt.account_access === "DIRECT" && receipt.login_customer_id !== null) ||
++      (receipt.account_access === "MANAGER" && receipt.login_customer_id === null)) {
++    return { ok: false, reason: "ADS_READ_SCOPE_LOGIN_CUSTOMER_MISMATCH" };
++  }
++  if (receipt.api_version !== expected.apiVersion ||
++      receipt.oauth_scope !== GOOGLE_ADS_READ_SCOPE) {
++    return { ok: false, reason: "ADS_READ_SCOPE_API_OR_OAUTH_SCOPE_MISMATCH" };
++  }
++  if (receipt.read_only !== true || receipt.raw_rows !== false ||
++      receipt.max_queries !== GOOGLE_ADS_REPORTING_LIMITS.maxQueries ||
++      receipt.max_rows !== GOOGLE_ADS_REPORTING_LIMITS.maxRows ||
++      receipt.max_response_bytes !== GOOGLE_ADS_REPORTING_LIMITS.maxResponseBytes ||
++      receipt.max_total_response_bytes !==
++        GOOGLE_ADS_REPORTING_LIMITS.maxTotalResponseBytes) {
++    return { ok: false, reason: "ADS_READ_SCOPE_READ_BOUND_MISMATCH" };
++  }
++  if (!parseFutureExpiry(receipt.expires_at_utc, now, 24 * 60 * 60 * 1000)) {
++    return { ok: false, reason: "ADS_READ_SCOPE_RECEIPT_EXPIRED_OR_TOO_LONG" };
++  }
++  if (receipt.credential_ref === "env:GOOGLE_ADS_ACCESS_TOKEN") {
++    if (!parseFutureExpiry(receipt.credential_expires_at_utc, now, 60 * 60 * 1000)) {
++      return { ok: false, reason: "ADS_READ_SCOPE_ACCESS_TOKEN_EXPIRY_REQUIRED" };
++    }
++  } else if (receipt.credential_expires_at_utc !== null) {
++    return { ok: false, reason: "ADS_READ_SCOPE_SERVICE_ACCOUNT_EXPIRY_INVALID" };
++  }
++
++  return {
++    ok: true,
++    receipt: receipt as unknown as GoogleAdsReadScopeReceipt,
++  };
++};
++
++export const readResponseTextBounded = async (
++  response: Response,
++  maximumBytes: number
++): Promise<{ text: string; bytes: number }> => {
++  if (!response.body || !Number.isSafeInteger(maximumBytes) || maximumBytes < 1) {
++    throw new Error("GOOGLE_ADS_RESPONSE_STREAM_UNAVAILABLE");
++  }
++  const contentLength = response.headers.get("content-length");
++  if (contentLength && /^\d+$/.test(contentLength) &&
++      Number(contentLength) > maximumBytes) {
++    await response.body.cancel();
++    throw new Error("GOOGLE_ADS_RESPONSE_BYTE_CAP_EXCEEDED");
++  }
++
++  const reader = response.body.getReader();
++  const chunks: Uint8Array[] = [];
++  let bytes = 0;
++  try {
++    while (true) {
++      const next = await reader.read();
++      if (next.done) break;
++      bytes += next.value.byteLength;
++      if (bytes > maximumBytes) {
++        await reader.cancel();
++        throw new Error("GOOGLE_ADS_RESPONSE_BYTE_CAP_EXCEEDED");
++      }
++      chunks.push(next.value);
++    }
++  } catch (error) {
++    if (error instanceof Error && error.message === "GOOGLE_ADS_RESPONSE_BYTE_CAP_EXCEEDED") {
++      throw error;
++    }
++    throw new Error("GOOGLE_ADS_RESPONSE_READ_FAILED");
++  }
++
++  const body = new Uint8Array(bytes);
++  let offset = 0;
++  for (const chunk of chunks) {
++    body.set(chunk, offset);
++    offset += chunk.byteLength;
++  }
++  try {
++    return { text: new TextDecoder("utf-8", { fatal: true }).decode(body), bytes };
++  } catch {
++    throw new Error("GOOGLE_ADS_RESPONSE_MALFORMED_UTF8");
++  }
++};

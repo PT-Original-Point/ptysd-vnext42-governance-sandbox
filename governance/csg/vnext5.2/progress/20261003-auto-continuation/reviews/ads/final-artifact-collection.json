@@ -1,0 +1,78 @@
+{
+  "schema": "vnext5.2.independent-final-artifact-collection.v1",
+  "observed_at": "2026-10-03T17:43:02.866Z",
+  "reviewer": "root",
+  "producer": "ANTIGRAVITY_NATIVE_CLI",
+  "actual_model": "gemini-3.8-flash-high",
+  "base": "3890e1d317c796f48e03af97051f02d3ef241d33",
+  "source_tree": "07692db0bb56b699792c55402072c8757bf901ca",
+  "patch_applied_tree": "054144887ff7e2bc44768f40712d97f1f9412203",
+  "patch_sha256": "2650b33d8758d43fd677aa5b025ef7f5fe9e91ca6b3412c14d023236a911bbdf",
+  "patch_bytes": 23941,
+  "paths": [
+    "scripts/ads-line-production-reconciliation.mjs",
+    "scripts/ads-line-production-reconciliation.test.mjs",
+    "scripts/google-ads-provider-auth.test.ts",
+    "scripts/google-ads-provider-auth.ts",
+    "scripts/google-ads-read-scope.test.ts",
+    "scripts/google-ads-read-scope.ts"
+  ],
+  "exact_tests_reused": "17/17_ROOT_TESTED_SOURCE_HASHES_UNCHANGED_NO_DUPLICATE_RUN",
+  "native_denied_actions": 0,
+  "source_bytes_match": true,
+  "patch_bytes_match": false,
+  "worker_index_changed": false,
+  "root_product_source_changes": 0,
+  "verdict": "ROOT_PACKAGED_SOURCE_ARTIFACT_QUALIFIED_WORKER_PATCH_FINDING_PRESERVED",
+  "findings": [
+    {
+      "id": "SADS-PATCH-TREE-01",
+      "reason": "PATCH_APPLIED_TREE_DIFFERS_FROM_RAW_TESTED_TREE",
+      "applied_tree": "054144887ff7e2bc44768f40712d97f1f9412203",
+      "byte_matches": [
+        {
+          "path": "scripts/ads-line-production-reconciliation.mjs",
+          "matches": true
+        },
+        {
+          "path": "scripts/ads-line-production-reconciliation.test.mjs",
+          "matches": true
+        },
+        {
+          "path": "scripts/google-ads-provider-auth.ts",
+          "matches": false
+        },
+        {
+          "path": "scripts/google-ads-provider-auth.test.ts",
+          "matches": false
+        },
+        {
+          "path": "scripts/google-ads-read-scope.ts",
+          "matches": true
+        },
+        {
+          "path": "scripts/google-ads-read-scope.test.ts",
+          "matches": true
+        }
+      ]
+    }
+  ],
+  "source_semantic": "MODULE_SCOPE_ONLY_REVIEW_RECORDED_SEPARATE_CONSUMER_INTEGRATION_PENDING",
+  "next_lane": "SADS-INTEGRATION-01",
+  "live_ads": "NOT_ACCEPTED",
+  "live_d1": "NOT_ACCEPTED",
+  "canonical_write": false,
+  "host_dispatch": false,
+  "production": false,
+  "mission_complete": false,
+  "worker_artifact_verdict": "FINDINGS",
+  "root_integration_package": {
+    "path": "reviews/ads/root-qualified-source.patch",
+    "sha256": "4ab5ffa3614a8a75f0f0bc46789f7efe0d5669ec93eb0af786897d055d5ecd62",
+    "bytes": 32424,
+    "source_tree": "07692db0bb56b699792c55402072c8757bf901ca",
+    "exact_apply_tree": "PASS",
+    "product_source_changes": 0,
+    "raw_vs_filtered_git": "Worker patch normalized two CRLF TypeScript blobs; root package preserves raw tested producer tree bytes"
+  }
+}

@@ -2,6 +2,10 @@
 
 採用日期：2026-10-03。沿用完整59 operations、64 acceptance、PF30/PRG28與原Human契約；本契約修正協調流程，沒有宣告產品上線。
 
+## 2026-10-04 Human 模型鎖定（覆蓋舊模型選擇）
+
+全部產品施工只能交 Codex GPT-6 Luna / reasoning max（gpt-6-luna）、Antigravity Gemini 3.8 Flash High（gemini-3.8-flash-high）、OpenCode Muse Spark 1.3 Free（native model.list 已實讀 provider/model ID：opencode/muse-spark-1.3-contributor-free，active/enabled，catalog cost=0；這不是 quota恢復證明）。過去 fledge-alpha-free 僅為歷史證據，禁止續派。禁止偷偷替換模型、自動 fallback、改帳號或新付費路線；指定模型不可用只 park 該 route，保留其 source，其他指定模型的合法 lane 續做。每次派工/receipt 必須帶指定模型與實際模型讀回範圍；未能確認的欄位標 UNVERIFIED，不以文字意圖當實際鎖定成功。root/Sol 仍只做稽核、計劃、派工、回收與仲裁。
+
 ## Human最新角色修正（最高優先）
 
 root只負責獨立稽核、制定計劃、分派、回收、要求返工與接受/拒絕仲裁，不直接施工產品原始碼。三個施工代理為Codex Luna Max、Antigravity、OpenCode。施工結果由root自動取得；不要求Human在三者間搬運。root先前對intake的三個檔案變更屬待施工代理接手的候選，不能由root自行宣告獨立驗收PASS。

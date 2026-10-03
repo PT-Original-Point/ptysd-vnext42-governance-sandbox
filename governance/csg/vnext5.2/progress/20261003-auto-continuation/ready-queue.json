@@ -3,7 +3,7 @@
   "mode": "SHADOW_PLAN_ONLY",
   "facts_schema": "vnext5.2.operation-facts.v1",
   "catalog_sha256": "sha256:ee769422b5d587e771d09c4e95af1af9a3a7cf0a7c0e493d86071e2df57304de",
-  "facts_sha256": "sha256:d0ca53486f9855e39e4aabfa867d98e90bb32727f3d2ca80aaed0c52c1c13f25",
+  "facts_sha256": "sha256:8852d60bc9e1e5dbdc42effb3c27ca60dc98f49cb364b304ed0268ad184e0995",
   "facts_fresh": true,
   "input_completeness": "COMPLETE",
   "input_reasons": [],
@@ -131,7 +131,6 @@
   ],
   "ready_ids": [
     "D02.SOURCE",
-    "M01.SOURCE",
     "C1.PREPARE",
     "C2.PREFLIGHT",
     "T01.BASELINE",
@@ -308,7 +307,7 @@
     },
     {
       "id": "M01.SOURCE",
-      "state": "READY",
+      "state": "RUNNING",
       "priority": 5,
       "mandatory": true,
       "effect_class": "CANDIDATE_SOURCE",
@@ -318,7 +317,8 @@
       "completion_dependencies": [],
       "start_blockers": [],
       "completion_blockers": [],
-      "reason": null,
+      "owner_authority": "UNKNOWN",
+      "reason": "ACTUAL_LOCAL_SOURCE_ACTIVITY_NOT_CANONICAL_EXECUTION_OWNER_ALLOCATION",
       "execution_scope": "SHADOW_PLAN_ONLY",
       "effects": [],
       "plan_only": true
