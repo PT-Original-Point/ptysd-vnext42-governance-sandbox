@@ -1,0 +1,15 @@
+{
+  "observed_at": "2026-10-03T21:51:32.094Z",
+  "pr": 89,
+  "exact_head": "2c1021758d8b5ecbc3a126ad4a54b16cda1eac0b",
+  "base": "e917139e4e81a12e41ef5ead507589ae0bf48452",
+  "finding": "TS2322_NEGATIVE_FIXTURE_LITERAL_ASSIGNMENT",
+  "source": "PROVIDER_ACTIONS_JOBS_111272234850_AND_111272234780",
+  "errors": [
+    "scripts/google-ads-read-scope.test.ts(90,22): cloud-platform is not assignable to adwords literal",
+    "scripts/google-ads-read-scope.test.ts(121,33): 65537 is not assignable to 65536 literal"
+  ],
+  "local48_pass": true,
+  "provider_typecheck": "FAIL",
+  "no_acceptance_override": true
+}

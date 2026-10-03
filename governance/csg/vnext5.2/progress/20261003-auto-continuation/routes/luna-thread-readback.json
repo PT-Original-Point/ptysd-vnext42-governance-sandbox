@@ -1,13 +1,13 @@
 {
-  "observed_at": "2026-10-03T18:54:51.574Z",
+  "observed_at": "2026-10-03T22:03:25.647Z",
   "native": {
     "timedOut": true,
     "wake": null,
     "polls": [
       {
         "schemaVersion": 1,
-        "cursor": "298be436-3629-441e-badc-baf007d62540:40",
-        "revision": 40,
+        "cursor": "298be436-3629-441e-badc-baf007d62540:48",
+        "revision": 48,
         "changed": true,
         "thread": {
           "id": "01a0fd19-df99-7013-8a8b-eb952c647e3d",
@@ -18,24 +18,24 @@
           }
         },
         "latestTurn": {
-          "id": "01a1031a-d5ce-7611-abd1-c4ad595a87ec",
+          "id": "01a103c5-ee2d-7f41-abbd-c7d371fe38b3",
           "status": "inProgress",
           "error": null,
-          "startedAt": 1791053452,
+          "startedAt": 1791064665,
           "completedAt": null,
           "durationMs": null
         },
-        "latestAssistantMessageId": "msg_05fe48d0724a727b016ac14ec7445087d09f082221d05beb84",
+        "latestAssistantMessageId": "msg_05fe48d0724a727b016ac17a8c89d887d0b5c6ad3e7341b708",
         "latestAssistantMessage": {
-          "id": "msg_05fe48d0724a727b016ac14ec7445087d09f082221d05beb84",
-          "turnId": "01a1031a-d5ce-7611-abd1-c4ad595a87ec",
+          "id": "msg_05fe48d0724a727b016ac17a8c89d887d0b5c6ad3e7341b708",
+          "turnId": "01a103c5-ee2d-7f41-abbd-c7d371fe38b3",
           "phase": "commentary",
-          "text": "S-MCP 已完成，但原始 VNEXT5.2 指令要求在其他合法施工仍可進行時繼續。我會先新鮮讀取完整 queue 與 runtime／MCP finding 的 exact receipts；只依當前 provider 狀態判斷下一個可施工 source lane，不沿用過期 READY 快照。"
+          "text": "收到另一條 Session 傳來的 F01 派工資訊；我會先把它當作待核實的狀態線索，不把它當新 Human 授權。上一份 queue 已過期，我先重讀時間、provider 最新 locator／全目錄 queue、Goal 實際狀態及 F01 preflight，再確認目前是否有直接授權且無 owner 衝突的 READY source work。"
         },
-        "latestToolMarkerId": "exec-84580b13-56ad-4d57-b218-eb46bf8553b4",
+        "latestToolMarkerId": "exec-b3608ea8-7831-42a0-a826-04d141e29820",
         "latestToolMarker": {
-          "id": "exec-84580b13-56ad-4d57-b218-eb46bf8553b4",
-          "turnId": "01a1031a-d5ce-7611-abd1-c4ad595a87ec",
+          "id": "exec-b3608ea8-7831-42a0-a826-04d141e29820",
+          "turnId": "01a103c5-ee2d-7f41-abbd-c7d371fe38b3",
           "type": "commandExecution",
           "name": "commandExecution",
           "status": "completed"
@@ -44,14 +44,6 @@
     ]
   },
   "operation_activity": [],
-  "dispatch_acceptance": "CURRENT_TURN_FRESH_PREFLIGHT_ACTUAL_SOURCE_START_UNCONFIRMED",
-  "prior_turn": {
-    "id": "01a10312-8160-7260-96b4-d6a2844a2a5f",
-    "status": "COMPLETED_WITHOUT_REQUESTED_RUNTIME_SOURCE_ACTION"
-  },
-  "worker_goal": {
-    "status": "paused",
-    "scope": "LATEST_WORKER_REPORTED_READBACK_NOT_ROOT_GET_GOAL",
-    "project_authority": false
-  }
+  "goal_last_actual_readback": "paused",
+  "goal_scope": "LAST_WORKER_ACTUAL_GOAL_NOT_ROOT_GET_GOAL"
 }

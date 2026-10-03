@@ -3,7 +3,7 @@
   "mode": "SHADOW_PLAN_ONLY",
   "facts_schema": "vnext5.2.operation-facts.v1",
   "catalog_sha256": "sha256:ee769422b5d587e771d09c4e95af1af9a3a7cf0a7c0e493d86071e2df57304de",
-  "facts_sha256": "sha256:e81934bbe4587398b6549b540753bda3a928d390af250313a46887aa945ae72e",
+  "facts_sha256": "sha256:7eedc22c9113c2c48b4bac48e5aff3d94d9f90f44b8b7d08d9ec537dd88e7899",
   "facts_fresh": true,
   "input_completeness": "COMPLETE",
   "input_reasons": [],
@@ -130,13 +130,13 @@
     "X01.ACCEPT"
   ],
   "ready_ids": [
-    "D02.SOURCE",
     "C2.PREFLIGHT",
     "T01.BASELINE",
-    "F01.ADAPTER_SOURCE"
+    "F01.ADAPTER_SOURCE",
+    "M04.INSTALL_PREPARE"
   ],
   "planned_decision": "CONTINUE_READY",
-  "planned_unit": "D02.SOURCE",
+  "planned_unit": "C2.PREFLIGHT",
   "queue_scope": "FULL_CATALOG",
   "queue_unit_count": 59,
   "full_union_count": 59,
@@ -204,7 +204,7 @@
       "completion_dependencies": [],
       "start_blockers": [],
       "completion_blockers": [],
-      "reason": "NATIVE_PARTIAL_PROPOSAL_COLLECTED_EXACT_REVIEW_OR_REWORK_REQUIRED_NO_CANONICAL_SELECTION",
+      "reason": "PROPOSAL_CONCEPTS_REVIEWED_ACTUAL_CONTROL_PACKET_REMAINS_READY_CONSTRUCTION_WORK",
       "execution_scope": "SHADOW_PLAN_ONLY",
       "effects": [],
       "plan_only": true
@@ -306,7 +306,7 @@
     },
     {
       "id": "M01.SOURCE",
-      "state": "WAITING_REVIEW",
+      "state": "DONE",
       "priority": 5,
       "mandatory": true,
       "effect_class": "CANDIDATE_SOURCE",
@@ -316,14 +316,14 @@
       "completion_dependencies": [],
       "start_blockers": [],
       "completion_blockers": [],
-      "reason": "DELIVERED_EXACT_LOCAL_SOURCE_NOT_REPEATABLE_AS_NOT_STARTED_P2_REPAIR_AND_FINAL_REVIEW_PENDING",
+      "reason": "EXACT_FROZEN_SOURCE_ONLY_QUALIFICATION_NOT_INSTALLED_CONSUMER_OR_LIVE_ACCEPTANCE",
       "execution_scope": "SHADOW_PLAN_ONLY",
       "effects": [],
       "plan_only": true
     },
     {
       "id": "M02.LOCAL_CANARY",
-      "state": "WAITING_EXTERNAL",
+      "state": "DONE",
       "priority": 12,
       "mandatory": true,
       "effect_class": "LOCAL_SPIKE",
@@ -331,18 +331,16 @@
         "M01.SOURCE"
       ],
       "completion_dependencies": [],
-      "start_blockers": [
-        "M01.SOURCE"
-      ],
+      "start_blockers": [],
       "completion_blockers": [],
-      "reason": "START_DEPENDENCIES_NOT_ACCEPTED",
+      "reason": "EXACT_FROZEN_SOURCE_ONLY_QUALIFICATION_NOT_INSTALLED_CONSUMER_OR_LIVE_ACCEPTANCE",
       "execution_scope": "SHADOW_PLAN_ONLY",
       "effects": [],
       "plan_only": true
     },
     {
       "id": "M03.FINAL_SOURCE",
-      "state": "WAITING_EXTERNAL",
+      "state": "DONE",
       "priority": 8,
       "mandatory": true,
       "effect_class": "CANDIDATE_SOURCE",
@@ -350,18 +348,16 @@
         "M02.LOCAL_CANARY"
       ],
       "completion_dependencies": [],
-      "start_blockers": [
-        "M02.LOCAL_CANARY"
-      ],
+      "start_blockers": [],
       "completion_blockers": [],
-      "reason": "START_DEPENDENCIES_NOT_ACCEPTED",
+      "reason": "EXACT_FROZEN_SOURCE_ONLY_QUALIFICATION_NOT_INSTALLED_CONSUMER_OR_LIVE_ACCEPTANCE",
       "execution_scope": "SHADOW_PLAN_ONLY",
       "effects": [],
       "plan_only": true
     },
     {
       "id": "M03.STRUCTURAL",
-      "state": "WAITING_EXTERNAL",
+      "state": "DONE",
       "priority": 40,
       "mandatory": true,
       "effect_class": "CANDIDATE_PUBLISH",
@@ -369,18 +365,16 @@
         "M03.FINAL_SOURCE"
       ],
       "completion_dependencies": [],
-      "start_blockers": [
-        "M03.FINAL_SOURCE"
-      ],
+      "start_blockers": [],
       "completion_blockers": [],
-      "reason": "START_DEPENDENCIES_NOT_ACCEPTED",
+      "reason": "EXACT_FROZEN_SOURCE_ONLY_QUALIFICATION_NOT_INSTALLED_CONSUMER_OR_LIVE_ACCEPTANCE",
       "execution_scope": "SHADOW_PLAN_ONLY",
       "effects": [],
       "plan_only": true
     },
     {
       "id": "M03.SEMANTIC",
-      "state": "WAITING_REVIEW",
+      "state": "DONE",
       "priority": 42,
       "mandatory": true,
       "effect_class": "READ_ONLY",
@@ -388,18 +382,16 @@
         "M03.FINAL_SOURCE"
       ],
       "completion_dependencies": [],
-      "start_blockers": [
-        "M03.FINAL_SOURCE"
-      ],
+      "start_blockers": [],
       "completion_blockers": [],
-      "reason": "EXACT_HEAD_REVIEW_FINDINGS_REPAIR_IN_PROGRESS",
+      "reason": "EXACT_FROZEN_SOURCE_ONLY_QUALIFICATION_NOT_INSTALLED_CONSUMER_OR_LIVE_ACCEPTANCE",
       "execution_scope": "SHADOW_PLAN_ONLY",
       "effects": [],
       "plan_only": true
     },
     {
       "id": "M04.INSTALL_PREPARE",
-      "state": "WAITING_EXTERNAL",
+      "state": "READY",
       "priority": 45,
       "mandatory": true,
       "effect_class": "READ_ONLY",
@@ -407,11 +399,9 @@
         "M03.FINAL_SOURCE"
       ],
       "completion_dependencies": [],
-      "start_blockers": [
-        "M03.FINAL_SOURCE"
-      ],
+      "start_blockers": [],
       "completion_blockers": [],
-      "reason": "START_DEPENDENCIES_NOT_ACCEPTED",
+      "reason": null,
       "execution_scope": "SHADOW_PLAN_ONLY",
       "effects": [],
       "plan_only": true
@@ -430,8 +420,6 @@
       ],
       "completion_dependencies": [],
       "start_blockers": [
-        "M03.STRUCTURAL",
-        "M03.SEMANTIC",
         "M04.INSTALL_PREPARE",
         "C2.QUARANTINE"
       ],
@@ -755,7 +743,7 @@
     },
     {
       "id": "D02.SOURCE",
-      "state": "READY",
+      "state": "RUNNING",
       "priority": 3,
       "mandatory": true,
       "effect_class": "CANDIDATE_SOURCE",
@@ -766,7 +754,8 @@
       "completion_dependencies": [],
       "start_blockers": [],
       "completion_blockers": [],
-      "reason": null,
+      "owner_authority": "UNKNOWN",
+      "reason": "NATIVE_INSTALLER_TRANSITIVE_CLOSURE_REWORK_ONLY_PRIOR_140_LOCAL_PASS_NOT_SEMANTIC_ACCEPTANCE",
       "execution_scope": "SHADOW_PLAN_ONLY",
       "effects": [],
       "plan_only": true

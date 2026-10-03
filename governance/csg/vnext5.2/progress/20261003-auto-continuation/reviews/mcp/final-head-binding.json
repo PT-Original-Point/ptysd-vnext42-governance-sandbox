@@ -1,0 +1,32 @@
+{
+  "schema": "vnext5.2.root-final-exact-head-binding.v1",
+  "observed_at": "2026-10-03T22:03:34.273Z",
+  "repository": "PT-Original-Point/ptysd-vnext42-governance-sandbox",
+  "pr": 385,
+  "head": "e1c99a7cf3201ac5c1eddad71f3d6ea1ea7a955e",
+  "tree": "0b418ec8a631ce9e681d25b87f70408df4231305",
+  "direct_parent": "d39486601d851e31256852a24e9c1393b9046fe5",
+  "commits": 1,
+  "changed_paths": 37,
+  "draft": true,
+  "reviewed_tree": "0b418ec8a631ce9e681d25b87f70408df4231305",
+  "source_bytes_changed_after_review": false,
+  "source_semantic": "INDEPENDENT_SOURCE_SCOPE_PASS_ON_IDENTICAL_WHOLE_TREE_ROOT_BOUND_TO_EXACT_FINAL_HEAD",
+  "independent_review_ref": "reviews/mcp/repair-review-20261004.json",
+  "independent_review_sha256": "sha256:c5e8ea2dfe7d29828dacbaba6dc821aa81ee871a233966ded77d4007744e3969",
+  "root_local_regression": {
+    "pass": 59,
+    "fail": 0
+  },
+  "structural": "PASS",
+  "protected_run": 37147331343,
+  "protected_job": 111273872789,
+  "bounded_driver": "SKIPPED_NOT_PASS",
+  "separate_post_publication_helper_route": "PARKED_WORKSPACE_CREDITS_NO_RETRY",
+  "live_acceptance": "NOT_ACCEPTED",
+  "owner_currentness": "UNVERIFIED",
+  "canonical_write": false,
+  "host_install": false,
+  "production": false,
+  "root_product_source_changes": 0
+}

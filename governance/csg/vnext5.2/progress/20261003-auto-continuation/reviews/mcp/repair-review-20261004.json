@@ -1,33 +1,20 @@
 {
   "schema": "vnext5.2.independent-semantic-repair-review.v1",
   "reviewer": "v52_mcp_exact_review",
-  "reviewed_at": "2026-10-03T18:45:13.829Z",
+  "reviewed_at": "2026-10-03T19:07:05.400Z",
   "repository": "PT-Original-Point/ptysd-vnext42-governance-sandbox",
   "base_commit": "257318f78271b4a737785d756732915e5a835fe4",
   "base_tree": "a55bd093db10fbfa697a78d3d400e702cf4b9474",
   "source_commit": null,
-  "source_tree": "e8416c738d567de9aa54c13ddca28f4e95816258",
-  "patch_sha256": "sha256:152b744a3f863fbdb77a707b130040df73ffa66bb2e3b6dbd2e7c1a4c9b09b64",
-  "patch_bytes": 151054,
-  "verdict": "FINDINGS_SCOPED_P2_CURRENT_TARGET_LABEL",
+  "source_tree": "0b418ec8a631ce9e681d25b87f70408df4231305",
+  "patch_sha256": "sha256:40528a4f792371efd9e2e7b3359f3334d94ea33a2b5d00f51d208f9cb7299cbe",
+  "patch_bytes": 151818,
+  "verdict": "SOURCE_SCOPE_SEMANTIC_PASS_ON_EXACT_LOCAL_TREE",
   "p1_source_findings_remaining": 0,
-  "source_integration_assessment": "Installer/receipt fallback/exact scoped binding corrections accepted on this immutable local tree. Fresh-current-owner diagnostic labeling remains unqualified.",
+  "source_integration_assessment": "All known source semantic findings closed on this exact local tree. This is not protected verification, current-owner proof or live acceptance.",
   "current_worktree_changed_during_this_reaudit": false,
-  "prior_review": "repair-review-20261004-edd703-historical.json",
-  "findings": [
-    {
-      "id": "MCP-R2-04",
-      "priority": "P2",
-      "file": "tools/csg/factory-mcp/broker/owner-liveness-publisher.ps1",
-      "blob_oid": "4e21f0337ed04f3c19189772fb2674544b6f7558",
-      "start_line": 60,
-      "end_line": 96,
-      "title": "Protected identity-only context is still labeled current without current/fresh binding",
-      "evidence": "Publisher blob is unchanged from edd703. A protected shape-valid identity-only target returns PROTECTED_CURRENT_CONTEXT without schema/time expiry/canonical prestate or a verified target-source freshness binding.",
-      "impact": "A stale protected identity surviving rollover can still appear current in read-only diagnostics. It does not grant broker transport authority and must not be turned into a Session/generation execution gate.",
-      "required_fix": "Rename the claim to a protected but unverified-current/historical diagnostic state, or accept CURRENT only with fresh protected canonical/source readback binding. Missing or stale context must not deny the existing Host transport or independent shared reader."
-    }
-  ],
+  "prior_review": "repair-review-20261004-e8416c-historical.json",
+  "findings": [],
   "finding_closure": [
     {
       "id": "MCP-R2-01",
@@ -48,8 +35,9 @@
     },
     {
       "id": "MCP-R2-04",
-      "status": "REMAINS_SCOPED_P2",
-      "evidence": "Identity-only current label unchanged; fresh-current-owner acceptance cannot be declared."
+      "status": "RESOLVED",
+      "evidence": "Publisher returns PROTECTED_IDENTITY_CURRENTNESS_UNVERIFIED at line96 for identity-only protected context. Historical gen5 remains explicit. Source does not claim fresh-current-owner proof; no execution transport gate added.",
+      "blob_oid": "992d66622f4745e7d448d998cc3b5f30944a8064"
     }
   ],
   "scope": {
@@ -102,8 +90,8 @@
         "path": "tools/csg/factory-mcp/broker/owner-liveness-publisher.ps1",
         "mode": "100644",
         "type": "blob",
-        "git_blob_oid": "4e21f0337ed04f3c19189772fb2674544b6f7558",
-        "sha256": "sha256:92456f2d668bb27bc2651fc8018d49e1caae805779511c823a03cc85322ab5e4"
+        "git_blob_oid": "992d66622f4745e7d448d998cc3b5f30944a8064",
+        "sha256": "sha256:cc2e3f95b7675bf3f48c143b0092fc49694015ed335da759c58c0c8bb0f04bad"
       },
       {
         "path": "tools/csg/factory-mcp/package-lock.json",
@@ -186,8 +174,8 @@
         "path": "tools/csg/factory-mcp/tests/owner-liveness-publisher.test.mjs",
         "mode": "100644",
         "type": "blob",
-        "git_blob_oid": "52ee920bc94c1af0f6a1640149e8b6e67516491f",
-        "sha256": "sha256:b770e13f8d95f6f0eec79cd525b3d562fa0c611d253b0b5d521aa5bac52dff8e"
+        "git_blob_oid": "7ff66ac422338b0fa1c81e7682afe87511d51c90",
+        "sha256": "sha256:01b2a62c081cc1db8ee1a4446729e4164bee52368152f225eaa0d4e4735fdef6"
       },
       {
         "path": "tools/csg/factory-mcp/tests/read-only-diagnostics.test.mjs",
@@ -228,48 +216,48 @@
         "path": "tools/csg/factory-mcp/windows/repair-factory-mcp.ps1",
         "mode": "100644",
         "type": "blob",
-        "git_blob_oid": "51014d7334ae1c68838d17028189b6898fe26885",
-        "sha256": "sha256:cbcbdad1323aedd0d424232fc275ca8026943d567da10490a70f74dbb07610c7"
+        "git_blob_oid": "5e39f72972fe64ffd990efbef17cafe261e7cdf6",
+        "sha256": "sha256:1b57bf379dca28a10002fdb640a9a7728386a201539982791fce39c7c48f64fc"
       },
       {
         "path": "tools/csg/factory-mcp/windows/repair-manifest.json",
         "mode": "100644",
         "type": "blob",
-        "git_blob_oid": "f905d42d1d903cd18d7d77f84ac1a3a244de0bb3",
-        "sha256": "sha256:99c0c39b9561ed0f9d3d9422a8ba27a67dd29beeb5a9fabff14b3e5c09033e99"
+        "git_blob_oid": "9a639a543fea98002cbbbfa4d01dfe1bedc0752f",
+        "sha256": "sha256:bb472910a7fab69be8e6b43b887e57d56e7db4c6d575be5499cfc15efec87eed"
       }
     ]
   },
   "package_checks": {
     "repair_payload_exact_hashes": "16/16",
-    "manifest_sha256": "99c0c39b9561ed0f9d3d9422a8ba27a67dd29beeb5a9fabff14b3e5c09033e99",
+    "manifest_sha256": "bb472910a7fab69be8e6b43b887e57d56e7db4c6d575be5499cfc15efec87eed",
     "installer_npm_test_closure": "PASS",
     "imports_and_fixed_tool_surface": "STATIC_VERIFIED"
   },
   "independent_local_tests": {
-    "command": "node --test tests/hostguard-request-replay.test.mjs tests/repair-lane.test.mjs",
-    "passed": 7,
+    "command": "node --test tests/owner-liveness-publisher.test.mjs tests/repair-lane.test.mjs",
+    "passed": 15,
     "failed": 0,
     "skipped": 0,
-    "scope": "Pure local fixture/AST/package closure only. No Host repair, installer or dispatch.",
+    "scope": "Pure local fixture/AST/package qualification; no Host install, repair or broker dispatch.",
     "cases": [
-      "Replay state readback and stable request identity",
-      "StrictModeLatest receipt and artifact response variants",
-      "Exact manifest target/hash chain",
-      "Repair local manifest smoke without Host repair",
-      "Installer complete npm test asset closure"
+      "Missing/late/shape-invalid/ACL-invalid fixed target remains explicitly historical or protected-currentness-unverified",
+      "Publisher exact cross-component readback validation",
+      "Publisher snapshot/health/schema/ACL pure fixtures",
+      "Exact repair manifest/pin/payload hashes and installer npm-test closure"
     ]
   },
   "worker_evidence": {
     "result_present": true,
     "reported_full_suite": "59/59 local PASS; not rerun in this independent audit",
-    "reported_targeted_suite": "7/7 local PASS independently confirmed",
-    "reported_patch_roundtrip": "PASS; immutable tree resolves and patch digest independently matches",
-    "status": "SOURCE_QUALIFIED_SEMANTIC_AND_LIVE_PENDING"
+    "reported_targeted_suite": "15/15 local PASS independently confirmed",
+    "reported_patch_roundtrip": "PASS; immutable tree and patch digest independently checked",
+    "status": "SOURCE_QUALIFIED_REVIEW_PENDING"
   },
   "evidence_classes": {
-    "semantic": "INDEPENDENT_EXACT_LOCAL_TREE_REVIEW_WITH_P2_FINDING",
+    "semantic": "SOURCE_SCOPE_PASS_ON_EXACT_LOCAL_TREE",
     "protected_structural": "NOT_RUN_ON_THIS_UNCOMMITTED_TREE",
+    "current_owner_authority": "NOT_PROVEN_BY_IDENTITY_ONLY_PROTECTED_CONTEXT",
     "live_install": "NOT_ACCEPTED",
     "web_consumer": "NOT_ACCEPTED",
     "ads": "NOT_ACCEPTED",
@@ -277,5 +265,21 @@
     "production": "NOT_ACCEPTED"
   },
   "progress_budget_note": "Keep bounded active manifest<=40 and compact historical entries externally; do not widen source budget just for receipt growth. Root is implementing active/history separation.",
-  "next_legal_work": "Root may proceed with source-only CP200 integration preparation and current-source behavioral qualification. Preserve explicit P2 diagnostic limitation or apply the minimal diagnostic-label repair and rebind the changed source before claiming all semantic findings closed."
+  "next_legal_work": "Root performs fresh CP200 source-only one-commit integration. Bind the final provider head and all source blob identities to an exact final review before attributing this local-tree verdict to that final head.",
+  "p2_source_findings_remaining": 0,
+  "change_scope_from_prior": {
+    "prior_tree": "e8416c738d567de9aa54c13ddca28f4e95816258",
+    "changed_files": [
+      "broker/owner-liveness-publisher.ps1",
+      "tests/owner-liveness-publisher.test.mjs",
+      "windows/repair-factory-mcp.ps1",
+      "windows/repair-manifest.json"
+    ],
+    "added_lines": 6,
+    "deleted_lines": 4,
+    "transport_source_changed": false,
+    "index_source_changed": false,
+    "shared_reader_source_changed": false
+  },
+  "source_currentness_contract": "Identity-only protected context is shape/ACL qualified and diagnostic only; currentness remains explicitly UNVERIFIED. Missing/stale/unknown observation metadata does not deny authorized transport."
 }

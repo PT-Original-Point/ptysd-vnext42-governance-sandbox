@@ -1,0 +1,30 @@
+{
+  "schema": "vnext5.2.native-task-attempt.v1",
+  "task_id": "R386-REPAIR-08",
+  "attempt": 2,
+  "status": "SUBMITTED_OUTCOME_PENDING",
+  "created_at": "2026-10-03T22:01:12.912Z",
+  "conversation_id": "87630a5f-9aae-4f2e-af9a-6a0718b52ee8",
+  "model": "gemini-3.8-flash-high",
+  "actual_model": "gemini-3.8-flash-high",
+  "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-RUNTIME07-AG-WORK-20261004",
+  "worktree_head": "c2bfa038121782a3ae903591981a0b05f52a7b38",
+  "route": "ANTIGRAVITY_NATIVE_CLI",
+  "prompt_sha256": "80454beefa8ef31c03bad86ddb97f33e940c1d68cf5c982eb7906eb736466dec",
+  "permission_backup_sha256": "37550231e181fefe8925405c6fa23b688f94435089dc8b9bc8e75b4462369c6f",
+  "settings_sha256": "d638f7de9fa952a330e15869d2c17b1b6ff7c0ae40dd49b20cad13748ef16f2e",
+  "write_set": [
+    "tools/csg/v51-supervisor/windows/register-supervisor-task.ps1",
+    "tools/csg/v51-supervisor/tests/runtime07-package-closure.test.mjs",
+    "tools/csg/v51-supervisor/tests/windows-task-profile.test.mjs",
+    "outputs/R386-REPAIR-07/**"
+  ],
+  "paid_fallback": false,
+  "canonical_write": false,
+  "host_dispatch": false,
+  "production": false,
+  "submitted_at": "2026-10-03T22:01:13.589Z",
+  "pid": 67316,
+  "observed_conversation_id": "87630a5f-9aae-4f2e-af9a-6a0718b52ee8",
+  "init_observed_at": "2026-10-03T22:01:16.384Z"
+}

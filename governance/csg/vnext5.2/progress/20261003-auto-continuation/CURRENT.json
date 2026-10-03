@@ -1,7 +1,7 @@
 {
   "schema": "vnext5.2.construction-progress.v2",
   "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
-  "observed_at": "2026-10-03T18:55:01.482Z",
+  "observed_at": "2026-10-03T22:03:34.273Z",
   "model_lock": {
     "codex": {
       "display": "GPT-6 Luna Max",
@@ -56,7 +56,7 @@
   },
   "goal": {
     "root": "usageLimited",
-    "worker_luna": "LOCAL_GOAL_NOT_PROJECT_AUTHORITY_THREAD_ACTIVE_READBACK",
+    "worker_luna": "LAST_ACTUAL_WORKER_GOAL_PAUSED_THREAD_ACTIVITY_SEPARATE_NO_FAKE_ACTIVE",
     "automation_id": "vnext5-2",
     "heartbeat": "ACTIVE_REAL_TOOL_READBACK_30_MINUTES",
     "app_running_required": true
@@ -69,12 +69,25 @@
   ],
   "reviews": {
     "pr385": {
-      "head": "da8e1a767d54e67ba7bb15d7d35e9ae535e50034",
-      "semantic": "FINDINGS"
+      "head": "e1c99a7cf3201ac5c1eddad71f3d6ea1ea7a955e",
+      "tree": "0b418ec8a631ce9e681d25b87f70408df4231305",
+      "semantic": "INDEPENDENT_SOURCE_SCOPE_PASS_ON_IDENTICAL_WHOLE_TREE_ROOT_BOUND_TO_EXACT_FINAL_HEAD",
+      "structural": "PASS",
+      "bounded_driver": "SKIPPED_NOT_PASS",
+      "live": "NOT_ACCEPTED"
     },
     "pr386": {
       "head": "c2bfa038121782a3ae903591981a0b05f52a7b38",
-      "semantic": "FINDINGS"
+      "semantic": "R386_REPAIR_08_RUNNING_140_LOCAL_PASS_WITH_TRANSITIVE_CLOSURE_FINDING",
+      "local_candidate_tree": "a397681601b7d4c029a29995835a00fc811d83be"
+    },
+    "ads_pr89": {
+      "head": "2c1021758d8b5ecbc3a126ad4a54b16cda1eac0b",
+      "provider_ci": "FAIL",
+      "repaired_tree": "48b63a49656be8fd45cc05d8e6c02a026f3d775c",
+      "local": "TYPECHECK_AND_48_PASS",
+      "publication": "PARKED_CAS_ROUTE_ONLY",
+      "live": "NOT_ACCEPTED"
     }
   },
   "progress_locator": {
@@ -88,20 +101,21 @@
   "queue_path": "ready-queue.json",
   "queue_decision": "READY_AVAILABLE",
   "ready_ids": [
-    "D02.SOURCE",
     "C2.PREFLIGHT",
     "T01.BASELINE",
-    "F01.ADAPTER_SOURCE"
+    "F01.ADAPTER_SOURCE",
+    "M04.INSTALL_PREPARE"
   ],
   "running_ids": [
+    "D02.SOURCE",
     "P52.NATIVE_ROUTE_DISCOVERY"
   ],
-  "valid_until": "2026-10-03T19:10:01.482Z",
+  "valid_until": "2026-10-03T22:18:34.273Z",
   "all_legal_ready_lanes_exhausted": false,
   "canonical_write": false,
   "host_install": false,
   "host_dispatch": false,
   "production": false,
   "unknown_external_effects": [],
-  "continuation": "Root automatically collects repairs, recomputes full READY and dispatches next work; expired queue is evidence only. Structural PASS does not override semantic FINDINGS."
+  "continuation": "Source milestones are scoped only. Root automatically collects runtime08 and F01; Ads local repair complete, exact CAS publication route parked. No duplicate task or Mission completion."
 }

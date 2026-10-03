@@ -1,0 +1,75 @@
+{
+  "schema": "vnext5.2.root-exact-ads-repair-review.v1",
+  "observed_at": "2026-10-03T22:00:14.072Z",
+  "base": "e917139e4e81a12e41ef5ead507589ae0bf48452",
+  "source_tree": "48b63a49656be8fd45cc05d8e6c02a026f3d775c",
+  "source_commit": null,
+  "files": [
+    {
+      "path": "scripts/ads-line-production-reconciliation.mjs",
+      "blob": "0ce5642eb7d65b951e24a004db9e5d136e701ba6",
+      "sha256": "sha256:8e6104391f90cda5c1dcb9c27ba61549a3807a357165cc1edc9f0b2f51553bb4",
+      "bytes": 17380
+    },
+    {
+      "path": "scripts/ads-line-production-reconciliation.test.mjs",
+      "blob": "3fc6d736d80653c75ecd2a859e0af9232ea6f6f8",
+      "sha256": "sha256:b4251d2ddecb936dcd6fe3e87cf36818435dd93267a9a28e508aaf7977064ec0",
+      "bytes": 8483
+    },
+    {
+      "path": "scripts/google-ads-provider-auth.ts",
+      "blob": "99ca064acbfd22f7a23a37bbc82226100c28d528",
+      "sha256": "sha256:c46c407b00c992392a8585d27ecc7884e506fba1886be7fd148528516fb41a8c",
+      "bytes": 2077
+    },
+    {
+      "path": "scripts/google-ads-provider-auth.test.ts",
+      "blob": "7f111f25c5ea03575716fc5199f246ab6324e261",
+      "sha256": "sha256:0a3571a2cbb006fc0a573660d3d426bf497abdbed04d851ba123504c3548d383",
+      "bytes": 2807
+    },
+    {
+      "path": "scripts/google-ads-read-scope.ts",
+      "blob": "31c779ed51200fc03333fb98c0b046f9853d16db",
+      "sha256": "sha256:18e23076dc91c6057fe2641ee65cae9ce23c0076c64c9aa13cdaddaf639af60d",
+      "bytes": 7451
+    },
+    {
+      "path": "scripts/google-ads-read-scope.test.ts",
+      "blob": "d01780280948b7fbdc07e04f71d2a26e51eaaeae",
+      "sha256": "sha256:8768f2658c1ae6f89d8a317dc3169ad0979f907152409bb4f6a616765109259f",
+      "bytes": 5400
+    },
+    {
+      "path": "scripts/line4d-google-ads-reporting-monitor.ts",
+      "blob": "337b3c0a63a3a9755eda83cd4dea2af6fcc69775",
+      "sha256": "sha256:cba33d494d849e7694bb872a2de42cf01bb2820b4bfd8c217db9ecc686e33972",
+      "bytes": 28034
+    },
+    {
+      "path": "scripts/line4d-google-ads-reporting-monitor.test.ts",
+      "blob": "77f4cd10fb8836cf49f7601cf3f6bb10aa00a1ac",
+      "sha256": "sha256:4d54ac2e61227d1f21ba347c75c9a5c55f6ca93538882de6faf66de5f9af640e",
+      "bytes": 36283
+    }
+  ],
+  "patch_sha256": "sha256:b30a5bed1f166cbeecc3023343b10ed25738871de6b2270babead6a983ff689d",
+  "root_product_source_edits": 0,
+  "repository": "t14210184/hanyao",
+  "superseded_head": "2c1021758d8b5ecbc3a126ad4a54b16cda1eac0b",
+  "actual_model": "gemini-3.8-flash-high",
+  "root_tests": {
+    "typecheck": "PASS",
+    "regressions": 48,
+    "fail": 0
+  },
+  "semantic": "ROOT_INDEPENDENT_EXACT_BYTES_PASS_TEST_ONLY_TWO_TARGETED_EXPECT_ERROR_COMMENTS",
+  "production_validators_unchanged": true,
+  "negative_runtime_assertions_unchanged": true,
+  "publication": "PARKED_NATIVE_WRITE_DENIED_CONNECTOR_REF_UPDATE_HAS_NO_CAS_PARAMETER",
+  "reentry": "Existing authorized route must demonstrate exact-prestate conditional branch replacement; no account switch or unguarded force.",
+  "live_ads": "NOT_ACCEPTED",
+  "canonical_write": false,
+  "production": false
+}

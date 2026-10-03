@@ -1,0 +1,50 @@
+{
+  "schema": "vnext5.2.root-proposal-collection.v1",
+  "observed_at": "2026-10-03T19:03:25.517Z",
+  "native_closed_at": "2026-10-03T18:58:57.448Z",
+  "actual_model": "gemini-3.8-flash-high",
+  "actual_conversation": "87630a5f-9aae-4f2e-af9a-6a0718b52ee8",
+  "base": "d39486601d851e31256852a24e9c1393b9046fe5",
+  "scope": "OWNERLESS_NONSELECTING_PREFLIGHT_PROPOSAL_ONLY",
+  "verdict": "PROPOSAL_CONCEPTS_QUALIFIED_CONTROL_PACKET_NOT_READY",
+  "outputs": [
+    {
+      "path": "outputs/C1-PREPARE/C1-proposal.json",
+      "sha256": "sha256:752e14be9f1f2b636b35f56b4edc6fd28f7f31e74a470b5454eca72bce121e2a"
+    },
+    {
+      "path": "outputs/C1-PREPARE/procedure-review.md",
+      "sha256": "sha256:989937477ce247af63c9bda23f7088e4bc8a1622c645472abd8f114d4ca1d72b"
+    },
+    {
+      "path": "outputs/C1-PREPARE/result.json",
+      "sha256": "sha256:9994baa7a98324f2f7675391811ad1dd410cc4232fb7882a3b3847b13735bdb7"
+    }
+  ],
+  "reference_bindings_verified": 4,
+  "write_set": "OUTPUTS_ONLY_CONFIRMED",
+  "ownerless": true,
+  "monotonicity": "EXPIRED_AUTHORITY_NOT_EXTENDED_BY_PROCESS_UNKNOWN",
+  "assignment_boundary": "NO_GLOBAL_PERMANENT_HUMAN_CAS_GATE",
+  "denied_resource_retried": false,
+  "remaining": [
+    {
+      "id": "C1-FINAL-PACKET",
+      "reason": "Prepared proposal is not yet exact control Mission/Policy/checkpoint/run source packet qualified for canonical CAS; source pair still undergoing concrete repair."
+    },
+    {
+      "id": "C1-METADATA",
+      "reason": "Local prior e841 is a Git tree, although result calls it local_prior_commit. Historical progress5f0 is not latest locator head. Keep these claims scoped; fix in final packet without redoing completed source."
+    },
+    {
+      "id": "C1-OBSERVATION",
+      "reason": "NONE_OBSERVED factory counts are historical canonical/run references, not fresh live Factory observation. They cannot alone be reported as current live readback."
+    }
+  ],
+  "fresh_authority_refs": "CP200_LAST_ROOT_PROVIDER_CAPTURE_2026-10-03T18:55:01.482Z",
+  "canonical_write": false,
+  "host_dispatch": false,
+  "live_acceptance": "NOT_ACCEPTED",
+  "mission_complete": false,
+  "next": "Freeze repaired source pair then assign exact nonselecting control packet; meanwhile continue disjoint source/native preflight work"
+}

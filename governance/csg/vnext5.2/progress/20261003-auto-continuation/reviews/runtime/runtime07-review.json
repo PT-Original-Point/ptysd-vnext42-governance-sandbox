@@ -1,0 +1,153 @@
+{
+  "schema": "vnext5.2.root-independent-runtime07-review.v1",
+  "observed_at": "2026-10-03T22:00:13.293Z",
+  "base": "c2bfa038121782a3ae903591981a0b05f52a7b38",
+  "source_tree": "a397681601b7d4c029a29995835a00fc811d83be",
+  "source_commit": null,
+  "files": [
+    {
+      "path": "tools/csg/v51-supervisor/README.md",
+      "blob": "55cb42ecba4b80a045dd7c634b2a7a944809132a",
+      "sha256": "sha256:89900c01bf98e6aade1c1ec01a7db30d621d63e31999b1bfab9a9115760203c1",
+      "bytes": 8636
+    },
+    {
+      "path": "tools/csg/v51-supervisor/bin/host-supervisor.mjs",
+      "blob": "dc60e2b66e3d497f33295a8473925531740ba423",
+      "sha256": "sha256:b17384ff44d6d67559a59bd2c6adaa3e70111b33d5d8f6d71987663aed82ea53",
+      "bytes": 7171
+    },
+    {
+      "path": "tools/csg/v51-supervisor/lib/f01-executor-adapter.mjs",
+      "blob": "df03dcd816971177c7ca2b474f6b94a397048fe0",
+      "sha256": "sha256:ae2125c89e81b70e39a5bf353c3a755745d06566eb825512d10d2c772a3d14de",
+      "bytes": 17016
+    },
+    {
+      "path": "tools/csg/v51-supervisor/lib/github-readonly.mjs",
+      "blob": "a43a58212c73acbf683015b4b26cbd032bc374a3",
+      "sha256": "sha256:6ce5534c6e439b3fb60c54259d889bab9c2663391e65035a5dfa0caaacd224dd",
+      "bytes": 9751
+    },
+    {
+      "path": "tools/csg/v51-supervisor/lib/operation-planner.mjs",
+      "blob": "5791635dffe77a9871144214d50d7f6ebc4291ce",
+      "sha256": "sha256:2bdfd23c5e190c049c89d3e25ca3364006412d318be0187b24b165c3e7c3bab3",
+      "bytes": 17482
+    },
+    {
+      "path": "tools/csg/v51-supervisor/lib/reconcile.mjs",
+      "blob": "27734f496217d490f4d105f13c846bf99329505b",
+      "sha256": "sha256:df88b7de5996486fae9fb3f4c69ffe08c5dcce84b79988f41bfcae6d1e8e3a0e",
+      "bytes": 16622
+    },
+    {
+      "path": "tools/csg/v51-supervisor/lib/scheduler.mjs",
+      "blob": "7ee336ee093a37da3ac21bbf272ef0b47bf4661f",
+      "sha256": "sha256:99c5071b8aa6d67a1ff6cbb3405cf592f821d5152a5980f08df2be7b42027076",
+      "bytes": 8984
+    },
+    {
+      "path": "tools/csg/v51-supervisor/lib/shadow-journal.mjs",
+      "blob": "7120c021a3c5308f13eca388102da9087361c199",
+      "sha256": "sha256:de10e79e0d8c2c6cfa73e073cbd121e3fdca844e353aa70d74d5488593f81bf8",
+      "bytes": 18241
+    },
+    {
+      "path": "tools/csg/v51-supervisor/lib/shadow-runtime.mjs",
+      "blob": "d8d751c24ff0b5606d2b3e543584bcad2c8c6dce",
+      "sha256": "sha256:7a2e23136a008f26f3a2b8e7da4dc34b8088b03dfff21e68c558bc26b87c6742",
+      "bytes": 10771
+    },
+    {
+      "path": "tools/csg/v51-supervisor/lib/supervisor.mjs",
+      "blob": "dea2f07753314b1ffde18118ef9c182c390084f5",
+      "sha256": "sha256:411daf5d5115c22528c69a0ec06c97ee301f4a643af99b9b16e86a545c0f49be",
+      "bytes": 4315
+    },
+    {
+      "path": "tools/csg/v51-supervisor/lib/windows-task-profile.mjs",
+      "blob": "18f68bd89437d961d55bc5d1166fa7d9b15637dc",
+      "sha256": "sha256:cf5aff1a703298935b8db6be2ccc00383da986274850e47c1101fd5333f21c1e",
+      "bytes": 3188
+    },
+    {
+      "path": "tools/csg/v51-supervisor/tests/f01-executor-adapter.test.mjs",
+      "blob": "d43f7689bd8e595a73bc8cce6ef3c664110f952c",
+      "sha256": "sha256:14529a5d4bfddba5f19ae254e7ed6a24466e64a2dbc421cf20870f9ddc86a56d",
+      "bytes": 13344
+    },
+    {
+      "path": "tools/csg/v51-supervisor/tests/github-readonly.test.mjs",
+      "blob": "dc96cad30dd569fdcbbef675f8a6cf332ad5271e",
+      "sha256": "sha256:43bebe2652ffa58a0130e4a4161260990f9593e6e6ad05388acc78736118f385",
+      "bytes": 8060
+    },
+    {
+      "path": "tools/csg/v51-supervisor/tests/windows-task-profile.test.mjs",
+      "blob": "f54dd81cf16799732451dce3514242137d651120",
+      "sha256": "sha256:36603ee61ee3d973adafdc46b7cf36c98e207fe1bb3ccfe124b98fd9fa669374",
+      "bytes": 4855
+    },
+    {
+      "path": "tools/csg/v51-supervisor/windows/register-supervisor-task.ps1",
+      "blob": "1219ce9784f1b320b48dbbddb3193126b5d3e656",
+      "sha256": "sha256:df5896d880b5db3ed38c5b976a3645140ae8c37eb0df7aa36856badef28d432c",
+      "bytes": 14715
+    },
+    {
+      "path": "tools/csg/v51-supervisor/windows/remove-supervisor-task.ps1",
+      "blob": "ffaa8859e54f81c18be69c83bbec24efd70498d1",
+      "sha256": "sha256:2bba6b7f5b8fcbd6cc284943ac0803d31a92bdf7b9e6d8ac15e1e8b8a86300ed",
+      "bytes": 2075
+    },
+    {
+      "path": "tools/csg/v51-supervisor/windows/supervisor-task-profile.json",
+      "blob": "52d90137f08df21a26296272d18c21997455db20",
+      "sha256": "sha256:85b4e8918dd581598f9c3cb4383f4e2dec740afea47099c4defbf2d4ae69d0fb",
+      "bytes": 1240
+    },
+    {
+      "path": "tools/csg/v51-supervisor/tests/runtime07-package-closure.test.mjs",
+      "blob": "b3a1d7ef6460438a14d801a22cca3837a3a522d2",
+      "sha256": "sha256:8a8ba1620b71f1764992d84fec405da58ad06e4ac519851d949bba620f051d93",
+      "bytes": 11933
+    },
+    {
+      "path": "tools/csg/v51-supervisor/tests/semantic-repair.test.mjs",
+      "blob": "2f8a73e0a29fc1e1f6a5f185010e3c5003f6ed63",
+      "sha256": "sha256:be671adb0711188d01f5e087e98519fdcd2cb0a6a0994374f668cf8cbe86fe09",
+      "bytes": 14272
+    }
+  ],
+  "patch_sha256": "sha256:7600709b81befbdfc0de0f4560f8741dd7149edf099bb48892750eea88662165",
+  "root_product_source_edits": 0,
+  "actual_model": "gemini-3.8-flash-high",
+  "root_tests": {
+    "pass": 140,
+    "fail": 0,
+    "scope": "PURE_LOCAL_NO_INSTALLER_HOST_EXECUTION"
+  },
+  "verdict": "FINDINGS",
+  "findings": [
+    {
+      "id": "R386-REPAIR-08",
+      "priority": 1,
+      "code": "REQUIRED_TRANSITIVE_DEPENDENCY_CLOSURE_INCOMPLETE",
+      "missing_paths": [
+        "lib/fingerprint.mjs",
+        "operation-plan.vnext5.2.json",
+        "operation-plan.p52-extension.json"
+      ],
+      "evidence": [
+        "operation-catalog.mjs imports fingerprint.mjs line3 and reads parent/extension at lines20-21",
+        "Existing fixture positive package omits these real dependencies yet preflight accepts it. Manifest hash only binds supplied files and cannot require omitted dependencies."
+      ],
+      "fix": "Require transitive import/data closure in authenticated manifest before any TaskScheduler call. Derive deterministic complete closure or freeze exhaustive graph; test deletion of each required module/data asset from BOTH manifest and disk, and representative actual packaged entrypoint load using pure fixture."
+    }
+  ],
+  "semantic_pass": false,
+  "live_acceptance": "NOT_ACCEPTED",
+  "canonical_write": false,
+  "production": false
+}
