@@ -1,6 +1,6 @@
 {
   "schema": "vnext5.2.coordinator-dispatch.v1",
-  "observed_at": "2026-10-03T16:28:57.236Z",
+  "observed_at": "2026-10-03T17:03:59.689Z",
   "single_integrator": "root",
   "tasks": [
     {
@@ -35,17 +35,19 @@
     {
       "id": "S-ADS",
       "route": "ANTIGRAVITY_NATIVE_CLI",
-      "status": "PREPARED",
-      "attempt": 3,
+      "status": "SOFT_DENIED_EMPTY_RESPONSE",
+      "attempt": 4,
       "conversation_id": "87630a5f-9aae-4f2e-af9a-6a0718b52ee8",
       "version": "1.2.16",
       "model": "gemini-3.8-flash-high",
       "worktree": "VNEXT5.2-S-ADS-ANTIGRAVITY-WORK-20261003",
       "result_path": "outputs/S-ADS/result.json",
-      "dispatch_source": "outputs/S-ADS/attempt3/attempt3.intent.json",
+      "dispatch_source": "outputs/S-ADS/attempt4/attempt4.intent.json",
       "admission_readback": "routes/antigravity-sads-admission-readback.json",
       "recovery": "NATIVE_EXACT_PERMISSION_PROFILE_GRANTED_NO_GLOBAL_BYPASS",
-      "prior_attempt_status": "RESPONSE_RECEIVED_REVIEW_REQUIRED"
+      "prior_attempt_status": "RESPONSE_RECEIVED_REVIEW_REQUIRED",
+      "closed_at": "2026-10-03T16:37:03.364Z",
+      "denied_action_count": 1
     },
     {
       "id": "S-RUNTIME-PACKAGING-REWORK",
@@ -86,7 +88,7 @@
     "status": "active",
     "turn_id": "01a10295-e6c6-7f91-a72c-f53a46eecb02",
     "turn_status": "inProgress",
-    "observed_at": "2026-10-03T16:28:21.548Z",
+    "observed_at": "2026-10-03T17:03:51.595Z",
     "receipt": "routes/luna-thread-readback.json",
     "source_execution": "NOT_INFERRED_FROM_THREAD_STATUS"
   }

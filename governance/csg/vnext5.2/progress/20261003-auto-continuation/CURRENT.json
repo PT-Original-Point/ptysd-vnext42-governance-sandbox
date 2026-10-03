@@ -1,7 +1,7 @@
 {
   "schema": "vnext5.2.construction-progress.v2",
   "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
-  "observed_at": "2026-10-03T16:28:57.236Z",
+  "observed_at": "2026-10-03T17:03:59.689Z",
   "columns": {
     "construction": {
       "spec": "VNEXT5.2",
@@ -66,7 +66,7 @@
   "running_ids": [
     "P52.NATIVE_ROUTE_DISCOVERY"
   ],
-  "valid_until": "2026-10-03T16:43:57.236Z",
+  "valid_until": "2026-10-03T17:18:59.689Z",
   "all_legal_ready_lanes_exhausted": false,
   "canonical_write": false,
   "host_install": false,

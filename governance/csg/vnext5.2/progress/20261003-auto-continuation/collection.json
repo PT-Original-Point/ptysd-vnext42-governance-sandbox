@@ -1,6 +1,6 @@
 {
   "schema": "vnext5.2.automatic-collection.v2",
-  "observed_at": "2026-10-03T16:29:20Z",
+  "observed_at": "2026-10-03T17:04:31.391Z",
   "reviewer": "root",
   "role": "AUDIT_PLAN_DISPATCH_COLLECT_REWORK_ARBITRATE_ONLY",
   "historical_collection": "collection-historical-20261003T115945.json",
@@ -27,11 +27,19 @@
     {
       "task": "S-ADS",
       "receipt": "reviews/ads/collection.json",
-      "semantic": "FINDINGS_EXACT_BYTES_TREE_AND_VERDICT_SCOPE",
-      "native_attempt3": "PREPARED_NOT_EXECUTION_PROOF",
+      "semantic": "FINDINGS_PATCH_AND_SCOPE_LABEL_INTEGRATION_PENDING",
+      "native_attempt3": "CLOSED_SOFT_DENIED_NO_BLIND_RETRY",
       "prior_root_tests": 17,
       "test_scope": "PREVIOUS_COLLECTED_EXACT_BYTES_ONLY",
-      "next": "LUNA_COORDINATES_SAME_ANTIGRAVITY_CONVERSATION_AFTER_IN_FLIGHT_READBACK"
+      "next": "LUNA_COORDINATES_SAME_ANTIGRAVITY_CONVERSATION_AFTER_IN_FLIGHT_READBACK",
+      "native_attempt4": "CLOSED_SOFT_DENIED_AFTER_EXACT_SOURCE_FIX",
+      "resolved": [
+        "ALL_THREE_SOURCE_COPY_AND_RECEIPT_BYTE_FINDINGS",
+        "ROOT_RESOLVABLE_TREE_BINDING"
+      ],
+      "current_root_tests": 17,
+      "tree_receipt": "reviews/ads/tree-binding.json",
+      "next_phase": "reviews/ads/integration-review-20261004.json"
     },
     {
       "task": "P52-INTAKE",

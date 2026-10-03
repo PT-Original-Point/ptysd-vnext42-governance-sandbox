@@ -3,11 +3,11 @@
   "files": [
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/CURRENT.json",
-      "sha256": "sha256:9bffc62fb7f87f106aa08772f892cfc3cb480eb7e8a4c6d4f6c4bb09fb51f016"
+      "sha256": "sha256:79024d643aa4e6471308f145941823149e946c7f5ec687f11c8f04d7320da901"
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/dispatch.json",
-      "sha256": "sha256:7a7efe83386267497fbbd7133a797bbf0a80cbe42ca48a1712ac54b214a02a61"
+      "sha256": "sha256:d47497299a77d6a68e639391b9123e9430778281b79524891b9a4a5d0d5e1c52"
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/CONTINUATION-CONTRACT.md",
@@ -19,23 +19,23 @@
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/goal-readback.json",
-      "sha256": "sha256:b54a74c9542dafcef17484889cab28468d79bc965e25605ed17a0278da05f115"
+      "sha256": "sha256:5cfe49bdd5ec40f4fc4104b2fb845879e99bd0b19cb5ac3ed7361f95c64a89c4"
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/collection.json",
-      "sha256": "sha256:38f3d3fcf737c33850a5271af275f9900c089e5c2df0491c9a36491ebf62c45b"
+      "sha256": "sha256:64f1f2358fb3596e9047e4cf1248fb09cb41dcec54499ce83a05d6534ff9bd35"
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/fresh-provider.json",
-      "sha256": "sha256:14780c63fe84d503e773809e5db0e03c23b37496d971ced112b3ba58d5343f70"
+      "sha256": "sha256:2355cc0990b4ee971b8144f26d29438cf201d4ad082a59bf9103305d763741f3"
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/operation-facts.json",
-      "sha256": "sha256:101c26221d26e39eca2ecd4613016b4ea96589a43b5c6611e82d3194692bf049"
+      "sha256": "sha256:1dc2072c385b7476fce2333a3d24653e7bec44f8709503f68e342d7e2bfeb30a"
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/ready-queue.json",
-      "sha256": "sha256:ade2979af676df0db901833be2959379e16c3e4c61a8fbeb048030d27cb4e4dd"
+      "sha256": "sha256:a02ed46001d0c7f987250d8ffa59d312ef2e5baf83e0181f3c0a76705c8ab030"
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/reviews/mcp/review-pr385.json",
@@ -127,7 +127,7 @@
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/reviews/ads/collection.json",
-      "sha256": "sha256:7728f1b6c6d1b6badf43dfc15f668d5f01f02f326fe709e4b767333e708aef52"
+      "sha256": "sha256:e4a2b5d43088b02c30d34a0ac0aa99b8e88134c10e9d960d9314eddee8f5846c"
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/luna-role-reentry-20261004.json",
@@ -135,7 +135,15 @@
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/luna-thread-readback.json",
-      "sha256": "sha256:2a01de1387a04db38b514472234def5abee818469fc5dedda7c9dfe787f58070"
+      "sha256": "sha256:ce8806951f9b02b98c0cd5cf6517230ebc0509759ed772ade4eb3bd7c19731f5"
+    },
+    {
+      "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/reviews/ads/tree-binding.json",
+      "sha256": "sha256:b666efdfd4bbd4f84c086e9a51bcc72dc760f5dd8549cade17c3ec3a7883b4fa"
+    },
+    {
+      "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/reviews/ads/integration-review-20261004.json",
+      "sha256": "sha256:b1964b4da30cb1b0bd850d67ae638ac550472da51e6a14e54338b06ccb516e6b"
     }
   ]
 }

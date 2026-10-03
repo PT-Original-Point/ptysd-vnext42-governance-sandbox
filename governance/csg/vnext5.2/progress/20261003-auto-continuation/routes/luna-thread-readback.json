@@ -1,14 +1,14 @@
 {
-  "observed_at": "2026-10-03T16:28:21.548Z",
+  "observed_at": "2026-10-03T17:03:51.595Z",
   "native": {
     "timedOut": true,
     "wake": null,
     "polls": [
       {
         "schemaVersion": 1,
-        "cursor": "298be436-3629-441e-badc-baf007d62540:20",
-        "revision": 20,
-        "changed": false,
+        "cursor": "298be436-3629-441e-badc-baf007d62540:23",
+        "revision": 23,
+        "changed": true,
         "thread": {
           "id": "01a0fd19-df99-7013-8a8b-eb952c647e3d",
           "hostId": "local",
@@ -25,16 +25,16 @@
           "completedAt": null,
           "durationMs": null
         },
-        "latestAssistantMessageId": "msg_05fe48d0724a727b016ac12c964b0c87d0988225718c7a60a5",
+        "latestAssistantMessageId": "msg_05fe48d0724a727b016ac133fb9c8887d0b5abcb6261b00faa",
         "latestAssistantMessage": {
-          "id": "msg_05fe48d0724a727b016ac12c964b0c87d0988225718c7a60a5",
+          "id": "msg_05fe48d0724a727b016ac133fb9c8887d0b5abcb6261b00faa",
           "turnId": "01a10295-e6c6-7f91-a72c-f53a46eecb02",
           "phase": "commentary",
-          "text": "收到 10/04 的接手順序。我先 fresh-read continuation contract、三份指定 review/dispatch 文件與實際 Goal 狀態；再核對 S-ADS attempt3 使用的絕對 worktree、HEAD、permission readback 和 conversation 在途狀態。確認後先提交 S-ADS exact-artifact 返工，隨即並行推進 runtime 與 MCP 的不重疊 source write-set，不做安裝、dispatch、push 或 canonical 操作。"
+          "text": "隔離樹已有的變更確實涵蓋六項 PR385 semantic findings，但發現兩個仍需補齊的點：broker 只在啟動時 target 檔已存在才註冊其固定路徑，晚到的合法 target 永遠讀不到；progress projection 目前把任意小型 columns／reviews JSON 原樣送進 Factory status，超出明確 allowlist。接著我會先讀實際 progress 來源結構與受保護 target 檢查，再作窄幅修正與回歸。"
         },
-        "latestToolMarkerId": "exec-5d69de42-a2a7-4b10-a095-7daed9358b3f",
+        "latestToolMarkerId": "exec-41c4f678-d520-4fc2-8970-31beb8238da7",
         "latestToolMarker": {
-          "id": "exec-5d69de42-a2a7-4b10-a095-7daed9358b3f",
+          "id": "exec-41c4f678-d520-4fc2-8970-31beb8238da7",
           "turnId": "01a10295-e6c6-7f91-a72c-f53a46eecb02",
           "type": "commandExecution",
           "name": "commandExecution",
@@ -43,5 +43,5 @@
       }
     ]
   },
-  "source_execution_claim": "THREAD_ACTIVE_IS_NOT_SOURCE_TASK_COMPLETION_OR_QUOTA_RECOVERY"
+  "source_execution_claim": "READ_NATIVE_TASK_COMMENTARY_AND_EXACT_RESULTS_NOT_THREAD_ALONE"
 }

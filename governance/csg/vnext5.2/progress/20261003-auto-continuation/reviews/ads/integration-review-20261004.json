@@ -1,0 +1,33 @@
+{
+  "schema": "vnext5.2.independent-source-integration-review.v1",
+  "reviewer": "root",
+  "observed_at": "2026-10-03T17:02:00Z",
+  "producer": "ANTIGRAVITY_NATIVE_CLI",
+  "base": "3890e1d317c796f48e03af97051f02d3ef241d33",
+  "reviewed_source_tree": "07692db0bb56b699792c55402072c8757bf901ca",
+  "tree_receipt": "reviews/ads/tree-binding.json",
+  "local_tests": "17/17_ROOT_PASS_EXACT_UNCHANGED_BYTES",
+  "resolved": ["SADS-BYTES-01_ALL_THREE", "SADS-TREE-02_ROOT_GIT_BINDING_ONLY"],
+  "remaining_artifact_findings": ["GENUINE_WORKER_PATCH_NOT_YET_DELIVERED", "WORKER_SEMANTIC_LABEL_MUST_REMAIN_PENDING_INDEPENDENT_REVIEW"],
+  "source_module_scope": "SIX_READ_SCOPE_AND_RECONCILIATION_FILES",
+  "full_ads_recovery_verdict": "NOT_ACCEPTED_INTEGRATION_PENDING",
+  "findings": [
+    {
+      "id": "SADS-INTEGRATION-01",
+      "priority": "P1",
+      "classification": "NEXT_CONSUMER_INTEGRATION_LANE_NOT_RETROACTIVE_ARTIFACT_SCOPE_EXPANSION",
+      "file": "scripts/line4d-google-ads-reporting-monitor.ts",
+      "evidence": "Existing consumer has no import or call to validateGoogleAdsReadScopeReceipt/readResponseTextBounded. Its queryRows still uses await response.text() without the candidate byte cap; the optional date query has no row cap. Validator appears only in its own source/tests.",
+      "required": "After six-file artifact freeze, dispatch a separate isolated source-only consumer integration slice to bind existing inherited read authority and typed receipt before token exchange/fetch, use fixed target/date/query/row/byte/total/time limits, return bounded sanitized results. Add injected no-network positive and fail-closed integration tests.",
+      "do_not": "No new Human grant per Session; no live call, identity/OAuth/MFA change or Ads write. Do not call isolated helper tests end-to-end route acceptance."
+    }
+  ],
+  "live_ads": "NOT_ACCEPTED",
+  "live_d1": "NOT_ACCEPTED",
+  "system_acceptance": "NOT_ACCEPTED",
+  "product_source_changes_by_root": 0,
+  "canonical_write": false,
+  "host_dispatch": false,
+  "production": false,
+  "mission_complete": false
+}

@@ -1,0 +1,67 @@
+{
+  "schema": "vnext5.2.exact-source-tree-binding.v1",
+  "observed_at": "2026-10-03T17:00:21.191Z",
+  "reviewer": "root",
+  "producer": "ANTIGRAVITY_NATIVE_CLI",
+  "base": "3890e1d317c796f48e03af97051f02d3ef241d33",
+  "source_tree": "07692db0bb56b699792c55402072c8757bf901ca",
+  "source_commit": null,
+  "files": [
+    {
+      "path": "scripts/ads-line-production-reconciliation.mjs",
+      "bytes": 17380,
+      "raw_sha256": "8e6104391f90cda5c1dcb9c27ba61549a3807a357165cc1edc9f0b2f51553bb4",
+      "git_blob_oid": "0ce5642eb7d65b951e24a004db9e5d136e701ba6",
+      "blob_mode": "100644",
+      "hash_profile": "EXACT_RAW_TESTED_BYTES_NO_FILTER"
+    },
+    {
+      "path": "scripts/ads-line-production-reconciliation.test.mjs",
+      "bytes": 8483,
+      "raw_sha256": "b4251d2ddecb936dcd6fe3e87cf36818435dd93267a9a28e508aaf7977064ec0",
+      "git_blob_oid": "3fc6d736d80653c75ecd2a859e0af9232ea6f6f8",
+      "blob_mode": "100644",
+      "hash_profile": "EXACT_RAW_TESTED_BYTES_NO_FILTER"
+    },
+    {
+      "path": "scripts/google-ads-provider-auth.ts",
+      "bytes": 2077,
+      "raw_sha256": "c46c407b00c992392a8585d27ecc7884e506fba1886be7fd148528516fb41a8c",
+      "git_blob_oid": "99ca064acbfd22f7a23a37bbc82226100c28d528",
+      "blob_mode": "100644",
+      "hash_profile": "EXACT_RAW_TESTED_BYTES_NO_FILTER"
+    },
+    {
+      "path": "scripts/google-ads-provider-auth.test.ts",
+      "bytes": 2807,
+      "raw_sha256": "0a3571a2cbb006fc0a573660d3d426bf497abdbed04d851ba123504c3548d383",
+      "git_blob_oid": "7f111f25c5ea03575716fc5199f246ab6324e261",
+      "blob_mode": "100644",
+      "hash_profile": "EXACT_RAW_TESTED_BYTES_NO_FILTER"
+    },
+    {
+      "path": "scripts/google-ads-read-scope.ts",
+      "bytes": 7451,
+      "raw_sha256": "18e23076dc91c6057fe2641ee65cae9ce23c0076c64c9aa13cdaddaf639af60d",
+      "git_blob_oid": "31c779ed51200fc03333fb98c0b046f9853d16db",
+      "blob_mode": "100644",
+      "hash_profile": "EXACT_RAW_TESTED_BYTES_NO_FILTER"
+    },
+    {
+      "path": "scripts/google-ads-read-scope.test.ts",
+      "bytes": 5174,
+      "raw_sha256": "3b82d0d2fe6b84349856912fe101fce26c1ecbc4b324a04accec76ee9afa520e",
+      "git_blob_oid": "ce3bbeb566c9dea91e2bdcc35fbb687c05d50bc1",
+      "blob_mode": "100644",
+      "hash_profile": "EXACT_RAW_TESTED_BYTES_NO_FILTER"
+    }
+  ],
+  "resolvable_in_producer_git": true,
+  "actual_worker_index_changed": false,
+  "actual_product_bytes_changed": false,
+  "source_semantic": "PENDING_INDEPENDENT_REVIEW",
+  "worker_artifact": "FINDINGS_PATCH_AND_SCOPE",
+  "canonical_write": false,
+  "host_dispatch": false,
+  "production": false
+}

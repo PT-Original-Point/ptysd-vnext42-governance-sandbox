@@ -1,6 +1,6 @@
 {
   "schema": "vnext5.2.independent-slice-collection.v1",
-  "observed_at": "2026-10-03T13:12:00.519Z",
+  "observed_at": "2026-10-03T16:59:26.088Z",
   "reviewer": "root",
   "worker": "ANTIGRAVITY_NATIVE_CLI",
   "conversation": "87630a5f-9aae-4f2e-af9a-6a0718b52ee8",
@@ -15,24 +15,24 @@
     },
     {
       "path": "scripts/ads-line-production-reconciliation.test.mjs",
-      "raw_sha256": "843851c537bb3235d2d31e78572d2e36c31fc9782e9a63c7e6e62484aaa544cf",
-      "bytes": 8484,
-      "receipt_matches": false,
-      "source_copy_matches": false
+      "raw_sha256": "b4251d2ddecb936dcd6fe3e87cf36818435dd93267a9a28e508aaf7977064ec0",
+      "bytes": 8483,
+      "receipt_matches": true,
+      "source_copy_matches": true
     },
     {
       "path": "scripts/google-ads-provider-auth.ts",
       "raw_sha256": "c46c407b00c992392a8585d27ecc7884e506fba1886be7fd148528516fb41a8c",
       "bytes": 2077,
       "receipt_matches": true,
-      "source_copy_matches": false
+      "source_copy_matches": true
     },
     {
       "path": "scripts/google-ads-provider-auth.test.ts",
       "raw_sha256": "0a3571a2cbb006fc0a573660d3d426bf497abdbed04d851ba123504c3548d383",
       "bytes": 2807,
       "receipt_matches": true,
-      "source_copy_matches": false
+      "source_copy_matches": true
     },
     {
       "path": "scripts/google-ads-read-scope.ts",
@@ -58,35 +58,11 @@
     "expected": 17,
     "exit": 0,
     "unchanged": true,
-    "log_sha256": "ce664a44839a96b2e0b28c4145c1fb445a40f569715b53dc4e1983d6795c9257"
+    "log_sha256": "ed805ec9d6885d6077305ff2ed2455e966f5f2f8dc4f97563149cda3b3713fec"
   },
-  "diff_check": false,
+  "diff_check": true,
   "verdict": "FINDINGS",
   "findings": [
-    {
-      "id": "SADS-BYTES-01",
-      "file": "scripts/ads-line-production-reconciliation.test.mjs",
-      "actual_bytes": 8484,
-      "actual_sha256": "843851c537bb3235d2d31e78572d2e36c31fc9782e9a63c7e6e62484aaa544cf",
-      "receipt_matches": false,
-      "source_copy_matches": false
-    },
-    {
-      "id": "SADS-BYTES-01",
-      "file": "scripts/google-ads-provider-auth.ts",
-      "actual_bytes": 2077,
-      "actual_sha256": "c46c407b00c992392a8585d27ecc7884e506fba1886be7fd148528516fb41a8c",
-      "receipt_matches": true,
-      "source_copy_matches": false
-    },
-    {
-      "id": "SADS-BYTES-01",
-      "file": "scripts/google-ads-provider-auth.test.ts",
-      "actual_bytes": 2807,
-      "actual_sha256": "0a3571a2cbb006fc0a573660d3d426bf497abdbed04d851ba123504c3548d383",
-      "receipt_matches": true,
-      "source_copy_matches": false
-    },
     {
       "id": "SADS-TREE-02",
       "reason": "SOURCE_TREE_NOT_PROVIDED"

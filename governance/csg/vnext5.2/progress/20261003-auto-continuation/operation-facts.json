@@ -1,15 +1,15 @@
 {
   "schema": "vnext5.2.operation-facts.v1",
   "catalog_sha256": "sha256:ee769422b5d587e771d09c4e95af1af9a3a7cf0a7c0e493d86071e2df57304de",
-  "captured_at_utc": "2026-10-03T16:28:57.236Z",
+  "captured_at_utc": "2026-10-03T17:03:59.689Z",
   "freshness": {
     "max_age_seconds": 900,
     "max_future_skew_seconds": 60
   },
   "source_inventory": {
     "ref": "auto-continuation:dispatch.json",
-    "sha256": "sha256:7a7efe83386267497fbbd7133a797bbf0a80cbe42ca48a1712ac54b214a02a61",
-    "observed_at_utc": "2026-10-03T16:28:57.236Z"
+    "sha256": "sha256:d47497299a77d6a68e639391b9123e9430778281b79524891b9a4a5d0d5e1c52",
+    "observed_at_utc": "2026-10-03T17:03:59.689Z"
   },
   "canonical_binding": {
     "control_ref": "refs/heads/v45/factory-control",
@@ -26,8 +26,8 @@
       "evidence": [
         {
           "ref": "auto-continuation:fresh-provider.json",
-          "sha256": "sha256:14780c63fe84d503e773809e5db0e03c23b37496d971ced112b3ba58d5343f70",
-          "observed_at_utc": "2026-10-03T16:28:57.236Z"
+          "sha256": "sha256:2355cc0990b4ee971b8144f26d29438cf201d4ad082a59bf9103305d763741f3",
+          "observed_at_utc": "2026-10-03T17:03:59.689Z"
         }
       ],
       "evidence_class": "FRESH_CANONICAL_READBACK"
@@ -424,5 +424,5 @@
       "evidence": []
     }
   ],
-  "facts_sha256": "sha256:c00e834c86ae242e4548ab082c1785e5064bd48036812a08d251ce27f6138662"
+  "facts_sha256": "sha256:d0ca53486f9855e39e4aabfa867d98e90bb32727f3d2ca80aaed0c52c1c13f25"
 }
