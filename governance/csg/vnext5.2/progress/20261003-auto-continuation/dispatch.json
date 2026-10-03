@@ -1,6 +1,6 @@
 {
   "schema": "vnext5.2.coordinator-dispatch.v1",
-  "observed_at": "2026-10-03T12:59:51.215Z",
+  "observed_at": "2026-10-03T16:28:57.236Z",
   "single_integrator": "root",
   "tasks": [
     {
@@ -12,7 +12,7 @@
       "write_set": [
         "tools/csg/factory-mcp/**"
       ],
-      "status": "SUBMITTED_OUTCOME_PENDING",
+      "status": "PARKED_PROVIDER_QUOTA",
       "attempt": 3,
       "prior_cancel": "INTERRUPTED_EXACT_SESSION_READBACK_CONFIRMED",
       "rework": "ACTUAL_PUBLISHED_MANIFEST_SCHEMA_FRESHNESS_AND_POST_EFFECT_UNKNOWN_HANDLING",
@@ -28,28 +28,30 @@
       "write_set": [
         "tools/csg/v51-supervisor/**"
       ],
-      "status": "ACTIVE_NATIVE_THREAD_READBACK",
+      "status": "REWORK_ASSIGNED_EXISTING_THREAD_ACTIVE_EXACT_SOURCE_START_UNCONFIRMED",
       "result_path": "outputs/S-RUNTIME-SEMANTIC-REPAIR/result.json",
       "dispatch_source": "native send_message_to_thread and wait_threads"
     },
     {
       "id": "S-ADS",
       "route": "ANTIGRAVITY_NATIVE_CLI",
-      "status": "PARKED_HEADLESS_COMMAND_ADMISSION",
+      "status": "PREPARED",
+      "attempt": 3,
       "conversation_id": "87630a5f-9aae-4f2e-af9a-6a0718b52ee8",
       "version": "1.2.16",
       "model": "gemini-3.8-flash-high",
       "worktree": "VNEXT5.2-S-ADS-ANTIGRAVITY-WORK-20261003",
       "result_path": "outputs/S-ADS/result.json",
-      "dispatch_source": "routes/antigravity-sads-intent.json",
+      "dispatch_source": "outputs/S-ADS/attempt3/attempt3.intent.json",
       "admission_readback": "routes/antigravity-sads-admission-readback.json",
-      "recovery": "CODEX_LUNA_NATIVE_SCOPED_PERMISSION_REPAIR_IN_PROGRESS_NO_GLOBAL_BYPASS"
+      "recovery": "NATIVE_EXACT_PERMISSION_PROFILE_GRANTED_NO_GLOBAL_BYPASS",
+      "prior_attempt_status": "RESPONSE_RECEIVED_REVIEW_REQUIRED"
     },
     {
       "id": "S-RUNTIME-PACKAGING-REWORK",
       "route": "CODEX_EXISTING_THREAD",
       "thread": "01a0fd19-df99-7013-8a8b-eb952c647e3d",
-      "status": "QUEUED_AFTER_NATIVE_PERMISSION_REPAIR",
+      "status": "QUEUED_EXISTING_ACTIVE_THREAD",
       "finding": "R386-REPAIR-07",
       "source_tree": "d2afc4114eb867685aff0d94231e8551c6bf4ba3",
       "review": "reviews/runtime/repair-collection.json",
@@ -63,8 +65,29 @@
       "status": "TRANSPORT_DELTA_CONFIRMED_LIVE_WORKER_ACCEPTANCE_PENDING",
       "antigravity": "INSTALLED_1.2.16_SIGNATURE_VALID_SAVED_LOGIN_AND_NATIVE_INIT_CONFIRMED",
       "opencode": "INSTALLED_2.0.22_ACTUAL_INTERRUPT_AND_IDLE_READBACK_CONFIRMED_SOURCE_SCOPE_ONLY"
+    },
+    {
+      "id": "S-MCP-SOURCE-REASSIGNMENT",
+      "route": "CODEX_EXISTING_THREAD",
+      "thread": "01a0fd19-df99-7013-8a8b-eb952c647e3d",
+      "status": "QUEUED_NOT_DUPLICATE",
+      "write_set": [
+        "tools/csg/factory-mcp/**"
+      ],
+      "old_brand": "PARKED_PROVIDER_QUOTA",
+      "old_job": "FAILED_IDLE_NATIVE_READBACK",
+      "reentry": "Fresh provider quota availability or existing-authorized worker brand takes preserved source slice"
     }
   ],
   "collection": "root reads native thread/subagent updates then exact result paths; Human copying unnecessary",
-  "unknown_external_effects": []
+  "unknown_external_effects": [],
+  "worker_thread": {
+    "thread_id": "01a0fd19-df99-7013-8a8b-eb952c647e3d",
+    "status": "active",
+    "turn_id": "01a10295-e6c6-7f91-a72c-f53a46eecb02",
+    "turn_status": "inProgress",
+    "observed_at": "2026-10-03T16:28:21.548Z",
+    "receipt": "routes/luna-thread-readback.json",
+    "source_execution": "NOT_INFERRED_FROM_THREAD_STATUS"
+  }
 }

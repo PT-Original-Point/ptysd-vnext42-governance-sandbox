@@ -1,5 +1,5 @@
 {
-  "observed_at": "2026-10-03T12:52:56.863Z",
+  "observed_at": "2026-10-03T16:27:58.354Z",
   "observations": [
     {
       "label": "mcp",
@@ -10,20 +10,20 @@
         "directory": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-MCP-SEMANTIC-REPAIR-WORK-20261003"
       },
       "created": 1791028597068,
-      "updated": 1791030692907,
-      "idle_at": 1791031893037,
-      "outcome": "interrupted",
+      "updated": 1791032154090,
+      "idle_at": 1791032449280,
+      "outcome": "failed",
       "cost": 0,
       "tokens": {
-        "input": 886914,
-        "output": 90650,
+        "input": 901088,
+        "output": 103635,
         "reasoning": 0,
         "cache": {
-          "read": 34110720,
+          "read": 38870016,
           "write": 0
         }
       },
-      "messages": 209,
+      "messages": 230,
       "intent_status": "UNKNOWN_READBACK_REQUIRED"
     },
     {

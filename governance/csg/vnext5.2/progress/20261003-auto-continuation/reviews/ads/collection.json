@@ -1,0 +1,107 @@
+{
+  "schema": "vnext5.2.independent-slice-collection.v1",
+  "observed_at": "2026-10-03T13:12:00.519Z",
+  "reviewer": "root",
+  "worker": "ANTIGRAVITY_NATIVE_CLI",
+  "conversation": "87630a5f-9aae-4f2e-af9a-6a0718b52ee8",
+  "base": "3890e1d317c796f48e03af97051f02d3ef241d33",
+  "files": [
+    {
+      "path": "scripts/ads-line-production-reconciliation.mjs",
+      "raw_sha256": "8e6104391f90cda5c1dcb9c27ba61549a3807a357165cc1edc9f0b2f51553bb4",
+      "bytes": 17380,
+      "receipt_matches": true,
+      "source_copy_matches": true
+    },
+    {
+      "path": "scripts/ads-line-production-reconciliation.test.mjs",
+      "raw_sha256": "843851c537bb3235d2d31e78572d2e36c31fc9782e9a63c7e6e62484aaa544cf",
+      "bytes": 8484,
+      "receipt_matches": false,
+      "source_copy_matches": false
+    },
+    {
+      "path": "scripts/google-ads-provider-auth.ts",
+      "raw_sha256": "c46c407b00c992392a8585d27ecc7884e506fba1886be7fd148528516fb41a8c",
+      "bytes": 2077,
+      "receipt_matches": true,
+      "source_copy_matches": false
+    },
+    {
+      "path": "scripts/google-ads-provider-auth.test.ts",
+      "raw_sha256": "0a3571a2cbb006fc0a573660d3d426bf497abdbed04d851ba123504c3548d383",
+      "bytes": 2807,
+      "receipt_matches": true,
+      "source_copy_matches": false
+    },
+    {
+      "path": "scripts/google-ads-read-scope.ts",
+      "raw_sha256": "18e23076dc91c6057fe2641ee65cae9ce23c0076c64c9aa13cdaddaf639af60d",
+      "bytes": 7451,
+      "receipt_matches": true,
+      "source_copy_matches": true
+    },
+    {
+      "path": "scripts/google-ads-read-scope.test.ts",
+      "raw_sha256": "3b82d0d2fe6b84349856912fe101fce26c1ecbc4b324a04accec76ee9afa520e",
+      "bytes": 5174,
+      "receipt_matches": true,
+      "source_copy_matches": true
+    }
+  ],
+  "patch": {
+    "sha256": "446d0845606bc41d80e8ff15890fc24b6d5d2a8783aa9e977e0296d56d337a0e",
+    "worker_digest_matches": true
+  },
+  "local_test": {
+    "pass": true,
+    "expected": 17,
+    "exit": 0,
+    "unchanged": true,
+    "log_sha256": "ce664a44839a96b2e0b28c4145c1fb445a40f569715b53dc4e1983d6795c9257"
+  },
+  "diff_check": false,
+  "verdict": "FINDINGS",
+  "findings": [
+    {
+      "id": "SADS-BYTES-01",
+      "file": "scripts/ads-line-production-reconciliation.test.mjs",
+      "actual_bytes": 8484,
+      "actual_sha256": "843851c537bb3235d2d31e78572d2e36c31fc9782e9a63c7e6e62484aaa544cf",
+      "receipt_matches": false,
+      "source_copy_matches": false
+    },
+    {
+      "id": "SADS-BYTES-01",
+      "file": "scripts/google-ads-provider-auth.ts",
+      "actual_bytes": 2077,
+      "actual_sha256": "c46c407b00c992392a8585d27ecc7884e506fba1886be7fd148528516fb41a8c",
+      "receipt_matches": true,
+      "source_copy_matches": false
+    },
+    {
+      "id": "SADS-BYTES-01",
+      "file": "scripts/google-ads-provider-auth.test.ts",
+      "actual_bytes": 2807,
+      "actual_sha256": "0a3571a2cbb006fc0a573660d3d426bf497abdbed04d851ba123504c3548d383",
+      "receipt_matches": true,
+      "source_copy_matches": false
+    },
+    {
+      "id": "SADS-TREE-02",
+      "reason": "SOURCE_TREE_NOT_PROVIDED"
+    },
+    {
+      "id": "SADS-SCOPE-03",
+      "reason": "WORKER_VERIFIED_IS_NOT_INDEPENDENT_SEMANTIC_PASS"
+    }
+  ],
+  "source_semantic": "PENDING_EXACT_SOURCE_REVIEW",
+  "live_ads": "NOT_ACCEPTED",
+  "live_d1": "NOT_ACCEPTED",
+  "canonical_write": false,
+  "host_dispatch": false,
+  "production": false,
+  "mission_complete": false,
+  "reentry": "Same native conversation corrects exact bytes/copies/patch/tree and scope labels, then root recollects; live credential absence in worker is not global absence or a new Human grant loop"
+}

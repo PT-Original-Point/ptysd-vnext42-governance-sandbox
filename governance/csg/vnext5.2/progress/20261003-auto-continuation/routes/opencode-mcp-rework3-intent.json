@@ -6,7 +6,7 @@
   "recorded_at": "2026-10-03T12:55:53.970Z",
   "attempt": 3,
   "prior_outcome_readback": "INTERRUPTED_IDLE_EXACT_SESSION",
-  "status": "SUBMITTED_OUTCOME_PENDING",
+  "status": "PROCESS_EXITED_RECEIPT_VERIFICATION_REQUIRED",
   "native_args": [
     "run",
     "--session",
@@ -20,5 +20,7 @@
     "Execute exact rework on preserved partial source using local worktree inputs; persist required result."
   ],
   "paid_fallback": false,
-  "pid": 48100
+  "pid": 48100,
+  "exit_code": 1,
+  "closed_at": "2026-10-03T13:00:49.326Z"
 }

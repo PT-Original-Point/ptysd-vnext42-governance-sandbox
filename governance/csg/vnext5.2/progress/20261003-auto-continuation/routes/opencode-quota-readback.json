@@ -1,0 +1,23 @@
+{
+  "schema": "vnext5.2.native-route-failure.v1",
+  "observed_at": "2026-10-03T13:02:55.440Z",
+  "route": "OPENCODE_NATIVE",
+  "session": "ses_efe606f6cffeBxLiIedexWKrH5",
+  "attempt": 3,
+  "status": "PARKED_PROVIDER_QUOTA",
+  "provider_error": "FreeUsageLimitError",
+  "http_status": 429,
+  "process_exit": 1,
+  "exact_native_outcome": "failed",
+  "native_active": {},
+  "cost": 0,
+  "partial_source_preserved": true,
+  "source_task": "S-MCP-SEMANTIC-REPAIR",
+  "source_reassignment": "CODEX_LUNA_QUEUED_AFTER_EXISTING_ROUTE_AND_RUNTIME_REPAIR",
+  "do_not": ["blind retry", "reset", "buy credits", "paid fallback", "claim Mission completed"],
+  "reentry": "Fresh provider quota availability or existing-authorized worker brand takes preserved source slice",
+  "global_blocker": false,
+  "canonical_write": false,
+  "host_dispatch": false,
+  "Production": false
+}

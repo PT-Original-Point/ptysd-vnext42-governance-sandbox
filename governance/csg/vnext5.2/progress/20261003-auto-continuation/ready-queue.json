@@ -3,7 +3,7 @@
   "mode": "SHADOW_PLAN_ONLY",
   "facts_schema": "vnext5.2.operation-facts.v1",
   "catalog_sha256": "sha256:ee769422b5d587e771d09c4e95af1af9a3a7cf0a7c0e493d86071e2df57304de",
-  "facts_sha256": "sha256:1c199f2d93ef8b8a9458c8a270ae1014c36500dc46f8463d4aadd434b44c05f9",
+  "facts_sha256": "sha256:c00e834c86ae242e4548ab082c1785e5064bd48036812a08d251ce27f6138662",
   "facts_fresh": true,
   "input_completeness": "COMPLETE",
   "input_reasons": [],
@@ -130,13 +130,15 @@
     "X01.ACCEPT"
   ],
   "ready_ids": [
+    "D02.SOURCE",
+    "M01.SOURCE",
     "C1.PREPARE",
     "C2.PREFLIGHT",
     "T01.BASELINE",
     "F01.ADAPTER_SOURCE"
   ],
   "planned_decision": "CONTINUE_READY",
-  "planned_unit": "C1.PREPARE",
+  "planned_unit": "D02.SOURCE",
   "queue_scope": "FULL_CATALOG",
   "queue_unit_count": 59,
   "full_union_count": 59,
@@ -306,7 +308,7 @@
     },
     {
       "id": "M01.SOURCE",
-      "state": "RUNNING",
+      "state": "READY",
       "priority": 5,
       "mandatory": true,
       "effect_class": "CANDIDATE_SOURCE",
@@ -316,8 +318,7 @@
       "completion_dependencies": [],
       "start_blockers": [],
       "completion_blockers": [],
-      "owner_authority": "UNKNOWN",
-      "reason": "HUMAN_AUTHORIZED_NATIVE_SOURCE_TASK_NO_CANONICAL_EXECUTION_OWNER_CLAIM",
+      "reason": null,
       "execution_scope": "SHADOW_PLAN_ONLY",
       "effects": [],
       "plan_only": true
@@ -756,7 +757,7 @@
     },
     {
       "id": "D02.SOURCE",
-      "state": "RUNNING",
+      "state": "READY",
       "priority": 3,
       "mandatory": true,
       "effect_class": "CANDIDATE_SOURCE",
@@ -767,8 +768,7 @@
       "completion_dependencies": [],
       "start_blockers": [],
       "completion_blockers": [],
-      "owner_authority": "UNKNOWN",
-      "reason": "HUMAN_AUTHORIZED_NATIVE_SOURCE_TASK_NO_CANONICAL_EXECUTION_OWNER_CLAIM",
+      "reason": null,
       "execution_scope": "SHADOW_PLAN_ONLY",
       "effects": [],
       "plan_only": true
@@ -1029,7 +1029,7 @@
       "start_blockers": [],
       "completion_blockers": [],
       "owner_authority": "UNKNOWN",
-      "reason": "HUMAN_AUTHORIZED_NATIVE_SOURCE_TASK_NO_CANONICAL_EXECUTION_OWNER_CLAIM",
+      "reason": "NATIVE_ROUTE_ADMISSION_AND_REUSABLE_SOURCE_RECEIPT_QUALIFICATION_ACTIVE_NO_CANONICAL_EXECUTION_OWNER_CLAIM",
       "execution_scope": "SHADOW_PLAN_ONLY",
       "effects": [],
       "plan_only": true

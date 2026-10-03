@@ -5,6 +5,7 @@
   "producer": "CODEX_LUNA_MAX_EXISTING_THREAD",
   "base": "c2bfa038121782a3ae903591981a0b05f52a7b38",
   "source_tree": "d2afc4114eb867685aff0d94231e8551c6bf4ba3",
+  "source_tree_verification": "UNVERIFIED_NOT_RESOLVABLE_IN_PRODUCER_GIT_WORKTREE",
   "source_commit": null,
   "patch_sha256": "sha256:65ad33860a3c448c28c9c9f196dc26b740b0b75e2f3fbbcb6e1ab7ab7bf07ac9",
   "write_set": "PASS",

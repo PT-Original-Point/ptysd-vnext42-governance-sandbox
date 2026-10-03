@@ -1,0 +1,47 @@
+{
+  "observed_at": "2026-10-03T16:28:21.548Z",
+  "native": {
+    "timedOut": true,
+    "wake": null,
+    "polls": [
+      {
+        "schemaVersion": 1,
+        "cursor": "298be436-3629-441e-badc-baf007d62540:20",
+        "revision": 20,
+        "changed": false,
+        "thread": {
+          "id": "01a0fd19-df99-7013-8a8b-eb952c647e3d",
+          "hostId": "local",
+          "status": {
+            "type": "active",
+            "activeFlags": []
+          }
+        },
+        "latestTurn": {
+          "id": "01a10295-e6c6-7f91-a72c-f53a46eecb02",
+          "status": "inProgress",
+          "error": null,
+          "startedAt": 1791044740,
+          "completedAt": null,
+          "durationMs": null
+        },
+        "latestAssistantMessageId": "msg_05fe48d0724a727b016ac12c964b0c87d0988225718c7a60a5",
+        "latestAssistantMessage": {
+          "id": "msg_05fe48d0724a727b016ac12c964b0c87d0988225718c7a60a5",
+          "turnId": "01a10295-e6c6-7f91-a72c-f53a46eecb02",
+          "phase": "commentary",
+          "text": "收到 10/04 的接手順序。我先 fresh-read continuation contract、三份指定 review/dispatch 文件與實際 Goal 狀態；再核對 S-ADS attempt3 使用的絕對 worktree、HEAD、permission readback 和 conversation 在途狀態。確認後先提交 S-ADS exact-artifact 返工，隨即並行推進 runtime 與 MCP 的不重疊 source write-set，不做安裝、dispatch、push 或 canonical 操作。"
+        },
+        "latestToolMarkerId": "exec-5d69de42-a2a7-4b10-a095-7daed9358b3f",
+        "latestToolMarker": {
+          "id": "exec-5d69de42-a2a7-4b10-a095-7daed9358b3f",
+          "turnId": "01a10295-e6c6-7f91-a72c-f53a46eecb02",
+          "type": "commandExecution",
+          "name": "commandExecution",
+          "status": "completed"
+        }
+      }
+    ]
+  },
+  "source_execution_claim": "THREAD_ACTIVE_IS_NOT_SOURCE_TASK_COMPLETION_OR_QUOTA_RECOVERY"
+}

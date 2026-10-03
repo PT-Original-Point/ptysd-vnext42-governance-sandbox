@@ -1,7 +1,7 @@
 {
   "schema": "vnext5.2.construction-progress.v2",
   "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
-  "observed_at": "2026-10-03T12:59:51.215Z",
+  "observed_at": "2026-10-03T16:28:57.236Z",
   "columns": {
     "construction": {
       "spec": "VNEXT5.2",
@@ -56,17 +56,17 @@
   "queue_path": "ready-queue.json",
   "queue_decision": "READY_AVAILABLE",
   "ready_ids": [
+    "D02.SOURCE",
+    "M01.SOURCE",
     "C1.PREPARE",
     "C2.PREFLIGHT",
     "T01.BASELINE",
     "F01.ADAPTER_SOURCE"
   ],
   "running_ids": [
-    "M01.SOURCE",
-    "D02.SOURCE",
     "P52.NATIVE_ROUTE_DISCOVERY"
   ],
-  "valid_until": "2026-10-03T13:14:51.215Z",
+  "valid_until": "2026-10-03T16:43:57.236Z",
   "all_legal_ready_lanes_exhausted": false,
   "canonical_write": false,
   "host_install": false,

@@ -47,3 +47,17 @@ local/structural PASS不等semantic/live/system/Ads/Production PASS。不可承�
 使用成熟native CLI/SDK及原有journal/ledger，不自行複製成熟調度器。任何新adapter限工具差異、身份/receipt正規化與write-set校驗；先量測再替換。Restate/DBOS仍依原bounded spike契約選型；不能為追求架構名稱重做已可用source。剩餘工程以業務可讀時間、false-block、重複派工、返工、netcustomLOC、恢復成功率衡量。
 
 官方App排程運行條件：https://learn.chatgpt.com/docs/automations?surface=app
+# 13:18Z material re-entry update
+
+Root role remains audit/plan/dispatch/collect/arbitrate only. Product source construction belongs to native workers. Source review is bound to raw bytes and actual Git tree separately; a claimed tree that cannot be resolved is unverified, never semantic PASS.
+
+OpenCode MCP attempt3 ended with HTTP429 FreeUsageLimitError; fresh native Session readback shows failed/idle and no active jobs. Do not retry that provider or reset/buy credits. Preserve partial MCP bytes and pass remaining exact findings to the existing Luna thread, which has already received the queue. Queued source is READY, not falsely RUNNING.
+
+Antigravity same-conversation attempt2 admitted exact command successfully and passed 17 tests with denied_actions=0. Its source copies/receipt still have exact-byte findings. Read reviews/ads/collection.json and the actual worker paths: VNEXT5.2-S-ADS-ANTIGRAVITY-WORK-20261003/outputs/S-ADS/attempt*/attempt*.intent.json. Luna coordinates minimal artifact rework without writing S-ADS product bytes. Do not redispatch while a native attempt is running or unknown.
+
+Luna runtime 18 payloads and root 137 tests were collected, but installer dependency closure and resolvable Git tree need rework; reviews/runtime/repair-collection.json is not acceptance. After Antigravity rework admission, Luna should continue its disjoint runtime/MCP source queue while Antigravity works. Then F01 adapter source follows; source availability is independent of live MCP/SYSTEM/OS-cell qualification.
+
+Antigravity may continue C1.PREPARE after its artifact is stable: only read protected procedure and produce a nonselecting ownerless proposal under outputs/C1-PREPARE/**. No canonical pointer, trust-root, owner, lease, Production or live provider mutation. Root collects and arbitrates before candidate promotion or source publication.
+
+The latest locator is a noncanonical construction index. It must distinguish construction VNEXT5.2, canonical CP200 VNEXT5.1-R2 and installed UNKNOWN. No App heartbeat or CLI source task proves reboot/UI-closed Supervisor survival.
+
