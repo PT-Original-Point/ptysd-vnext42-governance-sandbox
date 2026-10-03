@@ -3,15 +3,15 @@
   "files": [
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/CURRENT.json",
-      "sha256": "sha256:c0c2ffaeb6fb1b7e230cf729a275785c47a5d9794bb319ff32bae02308ef0148"
+      "sha256": "sha256:a6c898d009142cc08ca0c9684866c83836892c002b5aef79f061da2598fcfa92"
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/dispatch.json",
-      "sha256": "sha256:714af6a17af7db568771f1672e3bd203173cee659421eead852fcb955f055f2b"
+      "sha256": "sha256:b95ffa9f7e41b2d84ae2c4585d4fe7796e2f7791ce633d280e52bd9f55d4bba7"
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/CONTINUATION-CONTRACT.md",
-      "sha256": "sha256:b03a72c618f1658c6a12b2d7eababf380dbdebc83435bc9b81524ddcb5ba7a4d"
+      "sha256": "sha256:cef492c00fc4eb339b23ec9df4f2f8639070731074b3eb6dba1f1b4d676171b1"
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/ARBITRATION-AND-THREE-WORKERS.md",
@@ -19,23 +19,23 @@
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/goal-readback.json",
-      "sha256": "sha256:5cfe49bdd5ec40f4fc4104b2fb845879e99bd0b19cb5ac3ed7361f95c64a89c4"
+      "sha256": "sha256:a637ce0ca54c16e3ab6b252177253e509fa37eb5e0084ad09a70c9aef2b94c79"
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/collection.json",
-      "sha256": "sha256:64f1f2358fb3596e9047e4cf1248fb09cb41dcec54499ce83a05d6534ff9bd35"
+      "sha256": "sha256:09a79a481df1bf8adaa93e6691414de0e140543639395bbb4b3e9ffd26585191"
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/fresh-provider.json",
-      "sha256": "sha256:b9e6a314c94d6f699bb628522cedb6bd4496ffba2dc552952f4cf38e18ba13fe"
+      "sha256": "sha256:257ef4838ab19e70ea4f6bfbbd237174f32359aae17f1d0ce1266e0ee5be90fe"
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/operation-facts.json",
-      "sha256": "sha256:7eda7ebc99dfdd54e1a3dd4648e581cbb34a614dc6f5f18049236088f2d18b0a"
+      "sha256": "sha256:bad6aaa63cac09ac570e09c3aa627e5ed3ab8c236754983c8b46df2610546a66"
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/ready-queue.json",
-      "sha256": "sha256:b4af31422a93882c0428d288ad4e5dd1eee79c92e93f3f7f92cb0624bcbc8ae7"
+      "sha256": "sha256:c241427dd2a42579c11f460b19e7ad5a2469c1ddcbb10768e24d4e0234451f81"
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/reviews/mcp/review-pr385.json",
@@ -98,10 +98,6 @@
       "sha256": "sha256:9df420e31ad4c5c114095a0238fc60c8d5e30cac4dffdd532d19180c6fef3d58"
     },
     {
-      "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/MCP-REWORK-ATTEMPT2.md",
-      "sha256": "sha256:d0585f2d7c82a134860a47b719760bccb0d845adfea7f16fd4ffd342990700d4"
-    },
-    {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/antigravity-sads-admission-readback.json",
       "sha256": "sha256:d59e6f1ba9a2a25791d3285135c426f0cdd5de77b598f1056cbd320076b9c516"
     },
@@ -135,7 +131,7 @@
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/luna-thread-readback.json",
-      "sha256": "sha256:9ed3ab79cf5880f54714612264a528f8d94a2da196620b96307f805e9728eca1"
+      "sha256": "sha256:9c02576aa4934f12d7f6f2b8c44f3ccdcf902a01ff447e5cdd79d76dcfd0cd2d"
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/reviews/ads/tree-binding.json",
@@ -156,6 +152,10 @@
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/reviews/ads/root-qualified-source.patch",
       "sha256": "sha256:4ab5ffa3614a8a75f0f0bc46789f7efe0d5669ec93eb0af786897d055d5ecd62"
+    },
+    {
+      "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/antigravity-integration-intent.json",
+      "sha256": "sha256:76125e267954b571c22c4ab8a1a5f09131380e0557cb57f3d7d38b4bbef72f59"
     }
   ]
 }

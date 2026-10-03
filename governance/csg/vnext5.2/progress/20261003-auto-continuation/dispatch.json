@@ -1,6 +1,6 @@
 {
   "schema": "vnext5.2.coordinator-dispatch.v1",
-  "observed_at": "2026-10-03T17:44:51.656Z",
+  "observed_at": "2026-10-03T18:10:45.234Z",
   "single_integrator": "root",
   "tasks": [
     {
@@ -79,6 +79,28 @@
       "old_brand": "PARKED_PROVIDER_QUOTA",
       "old_job": "FAILED_IDLE_NATIVE_READBACK",
       "reentry": "Fresh provider quota availability or existing-authorized worker brand takes preserved source slice"
+    },
+    {
+      "id": "SADS-INTEGRATION-01",
+      "route": "ANTIGRAVITY_NATIVE_CLI",
+      "conversation_id": "87630a5f-9aae-4f2e-af9a-6a0718b52ee8",
+      "model": "gemini-3.8-flash-high",
+      "actual_model": "gemini-3.8-flash-high",
+      "status": "SUBMITTED_OUTCOME_PENDING",
+      "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-SADS-INTEGRATION-WORK-20261004",
+      "base": "3890e1d317c796f48e03af97051f02d3ef241d33",
+      "inherited_source_tree": "07692db0bb56b699792c55402072c8757bf901ca",
+      "write_set": [
+        "scripts/line4d-google-ads-reporting-monitor.ts",
+        "scripts/line4d-google-ads-reporting-monitor.test.ts",
+        "outputs/S-ADS-INTEGRATION/**"
+      ],
+      "submitted_at": "2026-10-03T18:02:30.312Z",
+      "closed_at": null,
+      "source_execution": "ACTUAL_NATIVE_INIT_AND_SOURCE_ACTIVITY_RECEIPT_REQUIRED",
+      "result_path": "outputs/S-ADS-INTEGRATION/result.json",
+      "dispatch_source": "routes/antigravity-integration-intent.json",
+      "live_ads": "NOT_ACCEPTED"
     }
   ],
   "collection": "root reads native thread/subagent updates then exact result paths; Human copying unnecessary",
@@ -88,7 +110,7 @@
     "status": "active",
     "turn_id": "01a10295-e6c6-7f91-a72c-f53a46eecb02",
     "turn_status": "inProgress",
-    "observed_at": "2026-10-03T17:44:42.492Z",
+    "observed_at": "2026-10-03T18:10:36.834Z",
     "receipt": "routes/luna-thread-readback.json",
     "source_execution": "NOT_INFERRED_FROM_THREAD_STATUS"
   },

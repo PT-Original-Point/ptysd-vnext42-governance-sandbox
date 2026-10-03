@@ -1,6 +1,6 @@
 {
   "schema": "vnext5.2.automatic-collection.v2",
-  "observed_at": "2026-10-03T17:04:31.391Z",
+  "observed_at": "2026-10-03T18:06:42.297Z",
   "reviewer": "root",
   "role": "AUDIT_PLAN_DISPATCH_COLLECT_REWORK_ARBITRATE_ONLY",
   "historical_collection": "collection-historical-20261003T115945.json",
@@ -22,24 +22,26 @@
       "partial_source": "PRESERVED_UNACCEPTED",
       "opencode_actual_outcome": "failed",
       "opencode_active_readback": {},
-      "next": "LUNA_REASSIGNMENT_ALREADY_ASSIGNED"
+      "next": "LUNA_REASSIGNMENT_ALREADY_ASSIGNED",
+      "latest_worker_regression": "57/57_LOCAL_REPORTED_NOT_ROOT_FINAL_SOURCE_ACCEPTANCE"
     },
     {
       "task": "S-ADS",
-      "receipt": "reviews/ads/collection.json",
-      "semantic": "FINDINGS_PATCH_AND_SCOPE_LABEL_INTEGRATION_PENDING",
-      "native_attempt3": "CLOSED_SOFT_DENIED_NO_BLIND_RETRY",
+      "receipt": "reviews/ads/final-artifact-collection.json",
+      "semantic": "MODULE_SCOPE_ONLY_CONSUMER_INTEGRATION_PENDING",
       "prior_root_tests": 17,
       "test_scope": "PREVIOUS_COLLECTED_EXACT_BYTES_ONLY",
-      "next": "LUNA_COORDINATES_SAME_ANTIGRAVITY_CONVERSATION_AFTER_IN_FLIGHT_READBACK",
-      "native_attempt4": "CLOSED_SOFT_DENIED_AFTER_EXACT_SOURCE_FIX",
+      "next": "ROOT_NATIVE_ANTIGRAVITY_SADS_INTEGRATION_01_SUBMITTED_ACTUAL_FIXED_MODEL_CONFIRMED",
       "resolved": [
         "ALL_THREE_SOURCE_COPY_AND_RECEIPT_BYTE_FINDINGS",
         "ROOT_RESOLVABLE_TREE_BINDING"
       ],
       "current_root_tests": 17,
       "tree_receipt": "reviews/ads/tree-binding.json",
-      "next_phase": "reviews/ads/integration-review-20261004.json"
+      "next_phase": "routes/antigravity-integration-intent.json",
+      "native_attempt5": "CLOSED_SUCCESS_DENIED0",
+      "artifact": "ROOT_PACKAGED_EXACT_RAW_SOURCE_TREE_WORKER_PATCH_FINDING_PRESERVED",
+      "source_tree": "07692db0bb56b699792c55402072c8757bf901ca"
     },
     {
       "task": "P52-INTAKE",

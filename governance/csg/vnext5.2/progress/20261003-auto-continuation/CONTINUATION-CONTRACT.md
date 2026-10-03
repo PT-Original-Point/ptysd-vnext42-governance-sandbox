@@ -19,6 +19,8 @@ Human已授權自動發包、回收、返工與續工；不再要求Human人工�
 
 ## 每次協調循環
 
+2026-10-04 最新回收與 route ownership：舊 S-ADS 六檔 raw tree `07692db0bb56b699792c55402072c8757bf901ca` 已完成 root exact-byte packaging；worker patch 的兩個 CRLF normalization finding 保留，root package 不修改 source 語意。獨立下一片 `SADS-INTEGRATION-01` 由 root 直接管理既有 Antigravity conversation，在 `VNEXT5.2-SADS-INTEGRATION-WORK-20261004` 只改 monitor／新 integration test／outputs。Luna 不再管理該 Antigravity native permission profile 或重派該片，繼續 MCP／runtime／F01 source queue。實際模型以 init receipt 為準；舊段落的 Luna AG-coordination 描述為歷史，不再是當前派工權。沒有 provider quota 恢復證據，不重試 OpenCode 429；Muse model catalog active/cost0 不等 quota PASS。
+
 1. fresh Directory→canonical pointer→checkpoint/Mission/Policy/run→unresolved effects→provider refs；分別報construction、canonical、installed。
 2. 讀持久dispatch與worker實際狀態。在途task不重派；不以UI/thread消失推定完成。unknown effect先同來源readback。
 3. 驗證結果write-set、base/tree/patch digest、local tests、exact structural與independent semantic各自範圍。

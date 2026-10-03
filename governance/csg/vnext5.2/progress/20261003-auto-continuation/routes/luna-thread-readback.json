@@ -1,13 +1,13 @@
 {
-  "observed_at": "2026-10-03T17:44:42.492Z",
+  "observed_at": "2026-10-03T18:10:36.834Z",
   "native": {
     "timedOut": true,
     "wake": null,
     "polls": [
       {
         "schemaVersion": 1,
-        "cursor": "298be436-3629-441e-badc-baf007d62540:28",
-        "revision": 28,
+        "cursor": "298be436-3629-441e-badc-baf007d62540:34",
+        "revision": 34,
         "changed": true,
         "thread": {
           "id": "01a0fd19-df99-7013-8a8b-eb952c647e3d",
@@ -25,16 +25,16 @@
           "completedAt": null,
           "durationMs": null
         },
-        "latestAssistantMessageId": "msg_05fe48d0724a727b016ac13e24feb087d08bab05d0906dda24",
+        "latestAssistantMessageId": "msg_05fe48d0724a727b016ac1424f5cc887d0b897970b330574c1",
         "latestAssistantMessage": {
-          "id": "msg_05fe48d0724a727b016ac13e24feb087d08bab05d0906dda24",
+          "id": "msg_05fe48d0724a727b016ac1424f5cc887d0b897970b330574c1",
           "turnId": "01a10295-e6c6-7f91-a72c-f53a46eecb02",
           "phase": "commentary",
-          "text": "PR381 exact head 仍為 257318f…，PR385 仍是既有 draft da8e1a…，兩者遠端身份都未改。PR381 隔離候選樹的套件回歸也已 56/56 通過；我正做最後 source/receipt 核對，將把候選 tree 與 patch 綁定到 PR381 base，並明確保留 semantic/live/Goal 尚未接受的狀態。"
+          "text": "我补上了 broker 的 exact request-id 重送抑制：已存在 response/receipt 不再触发二次 dispatch；仅有 durable intent、异常或未知 receipt 时返回带路径与 SHA-256 的 readback-required 结果。新增隔离回归并确认 57/57 全通过。现在用已连结的 GitHub provider reader 核验最新完整 progress manifest；公开 API reader 遇 403，我不会把旧的过期 READY 快照当现况。"
         },
-        "latestToolMarkerId": "exec-c220724d-b3ad-418f-aa9f-fab3fa4d1cdd",
+        "latestToolMarkerId": "exec-59c20a87-e9f3-466f-a3e7-4c3e69576202",
         "latestToolMarker": {
-          "id": "exec-c220724d-b3ad-418f-aa9f-fab3fa4d1cdd",
+          "id": "exec-59c20a87-e9f3-466f-a3e7-4c3e69576202",
           "turnId": "01a10295-e6c6-7f91-a72c-f53a46eecb02",
           "type": "commandExecution",
           "name": "commandExecution",
@@ -48,10 +48,9 @@
       "id": "M01.SOURCE",
       "state": "RUNNING",
       "scope": "LOCAL_SOURCE_CANDIDATE_AND_REGRESSION_ONLY",
-      "basis": "Actual native source changes, 56-test repair and 39/39 byte transplant readback",
+      "basis": "Actual57/57 source regression while final source binding proceeds; independent final collection pending",
       "acceptance": "NOT_ACCEPTED",
       "canonical_execution_owner_allocated": false
     }
-  ],
-  "source_execution_claim": "EXACT_NATIVE_SOURCE_ACTIVITY_NOT_THREAD_STATUS_ALONE"
+  ]
 }
