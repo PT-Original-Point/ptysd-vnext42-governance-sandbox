@@ -1,0 +1,206 @@
+{
+  "schema": "vnext5.2.hanyao-existing-read-authority.v1",
+  "role": "FRESH_EXISTING_GRANT_READBACK_NOT_NEW_GRANT_OR_CREDENTIAL_PROOF",
+  "project_id": "HANYAO_ADS_LINE_PROD",
+  "mission_source": "https://github.com/t14210184/hanyao/blob/4c8f7fca94d0de9f7b2077b9488f17c282607d72/governance/hanyao/mission/20260919T151100%2B0800.json",
+  "policy_source": "https://github.com/t14210184/hanyao/blob/fac58786d5a78973518aa214feb79ce0fd570d78/governance/hanyao/policy/20260919T151100%2B0800-EP-HG10.json",
+  "mission": {
+    "record_type": "MISSION_REVISION",
+    "schema": "MISSION_CONTRACT_V2_RECOVERY_PUBLICATION",
+    "project_id": "HANYAO_ADS_LINE_PROD",
+    "mission_revision_id": "20260919T151100+0800",
+    "effective_at": "2026-09-19T15:11:00+08:00",
+    "status": "FINALIZED",
+    "authorized_by": "HUMAN",
+    "authorization_gate": "CHAT_20260919_HG10_READBACK_RELIABILITY_OPEN_WORK",
+    "supersedes": null,
+    "change_reason": "Human authorized implementation of the readback reliability, Project Directory repair, and 2026-09-17 conversion closure plan.",
+    "canonicalization_version": "HUMAN_TEXT_V1",
+    "mission_hash": "sha256:e01d8175eaa447544734cb455d8a7cb6399cfb83eb1c9d3fe019b0d3982987c4",
+    "payload": {
+      "final_strategic_goal": "Make HANYAO Google Ads -> LINE conversion tracking independently auditable and cross-session resumable so any target date can be classified from canonical D1 lineage and fresh Google Ads reporting without blind resend or inferred project identity.",
+      "success_criteria": "PROJECT_DIRECTORY_EXACT_RESOLUTION=PASS; HG10_READBACK_WORKFLOW=PASS; D1_READ_ONLY_GUARD=PASS; GOOGLE_ADS_DATE_READBACK=PASS; TARGET_DATE_VERDICT=CLASSIFIED; NO_BLIND_REINGEST=true; PRODUCTION_DELIVERY_PATH_UNCHANGED=true; CROSS_SESSION_RESUME_LOCATOR=PASS",
+      "current_phase": "READBACK_RELIABILITY_AND_CONTROL_REBASE",
+      "phase_acceptance": "Publish exact HANYAO project binding and GitHub bounded control locator; ship read-only D1 + Google Ads date-scoped inspector; execute fresh 2026-09-17 readback; preserve provider-write and delivery invariants.",
+      "next_phase": "NATURAL_E2E_MONITORING",
+      "next_business_event": "Run a fresh date-scoped closure readback for the next real Ads-attributed LINE contact and compare D1 lineage, Data Manager evidence, and Google Ads reporting.",
+      "forbidden_until_phase_complete": "BLIND_CONVERSION_REINGEST; D1_MUTATION_FROM_READBACK; GOOGLE_ADS_GOAL_BID_BUDGET_MUTATION; PROJECT_IDENTITY_INFERENCE_FROM_RECENCY; SHADOW_STATE_AS_PRODUCTION_AUTHORITY; FORCE_UPDATE_CANONICAL_CONTROL",
+      "governance_invariants": "HUMAN_MISSION_SOVEREIGNTY; EXACT_PROJECT_DIRECTORY_IDENTITY; FRESH_PROVIDER_READBACK; READ_ONLY_INSPECTION_ZERO_WRITES; UNKNOWN_EFFECT_READBACK_FIRST; SINGLE_CANONICAL_PRODUCTION_D1; SINGLE_PRODUCTION_UPLOADER; IMMUTABLE_ATTRIBUTION_SNAPSHOT; GOOGLE_ADS_REPORTING_REQUIRED_FOR_CLOSURE; NO_BLIND_RETRY",
+      "non_goals": "No campaign creative optimization; no bidding/budget/goal strategy changes; no duplicate conversion upload; no replacement of the Production uploader/outbox architecture; no second workflow engine."
+    },
+    "routing_authority": "NONE"
+  },
+  "policy": {
+    "schema": "CHATGPT_EXECUTION_POLICY_V3",
+    "project_id": "HANYAO_ADS_LINE_PROD",
+    "mission_revision_id": "20260919T151100+0800",
+    "mission_hash": "sha256:e01d8175eaa447544734cb455d8a7cb6399cfb83eb1c9d3fe019b0d3982987c4",
+    "policy_revision_id": "20260919T151100+0800-EP-HG10",
+    "controller_contract_version": "CHAT_EXECUTION_POLICY_CONTRACT_V9_1_CANDIDATE",
+    "payload": {
+      "active_module": "hanyao_readback_reliability_and_control_rebase",
+      "atomic_unit_kind": "bounded_stage",
+      "module_acceptance": "PROJECT_DIRECTORY_EXACT_RESOLUTION_AND_HG10_DATE_SCOPED_READBACK_PASS",
+      "known_good_path": "GITHUB_DIRECTORY_EXACT_BINDING_PLUS_GITHUB_ACTIONS_BOUNDED_READBACK_PLUS_FACTORY_MCP_SYSTEM_ADS_READBACK",
+      "fallback_paths": [],
+      "allowed_tool_classes": [
+        "github",
+        "project_directory",
+        "factory_mcp",
+        "factory_mcp_host_powershell",
+        "google_ads_read_only",
+        "cloudflare_d1_read_only",
+        "isolated_test"
+      ],
+      "forbidden_tool_classes": [
+        "google_ads_mutation",
+        "data_manager_ingest",
+        "cloudflare_d1_mutation",
+        "production_deploy",
+        "blind_retry",
+        "force_canonical_update",
+        "shadow_as_authority"
+      ],
+      "max_retry_per_path": 1,
+      "max_broad_search_rounds": 1,
+      "max_no_progress_operations": 5,
+      "max_stage_estimated_minutes": 60,
+      "progress_visibility_policy": "EVENT_DRIVEN",
+      "shared_mutation_policy": "FRESH_PRESTATE_EXPECTED_REVISION_AND_SAME_SOURCE_READBACK",
+      "side_effect_recovery_policy": "READBACK_FIRST_NO_BLIND_RETRY",
+      "human_authorization_policy": "CURRENT_SESSION_PLAN_SCOPE_AUTHORIZED",
+      "routing_policy": "CHAT_CAN_DO_CHAT_MUST_DO",
+      "canonical_execution_locator_policy": "PROJECT_DIRECTORY_ACTIVE_RUN_REF",
+      "remote_checkpoint_policy": "PROVIDER_READBACK_REQUIRED",
+      "production_provider_mutation_allowed": false,
+      "conversion_reingest_allowed": false,
+      "d1_readback_must_be_zero_write": true,
+      "google_ads_reporting_read_only": true,
+      "controller_contract_version": "CHAT_EXECUTION_POLICY_CONTRACT_V9_1_CANDIDATE"
+    },
+    "authorized_by": "HUMAN",
+    "authorization_gate": "CHAT_20260919_HG10_READBACK_RELIABILITY_OPEN_WORK",
+    "supersedes": null,
+    "policy_hash": "sha256:1ef1fe2774ccaf35c2591eabd30fd4f635f40df0792475e7f43f59fa77b76e42"
+  },
+  "checkpoint": {
+    "schema_version": "csg.checkpoint.v1",
+    "project_id": "HANYAO_ADS_LINE_PROD",
+    "checkpoint_seq": 2,
+    "transition_id": "HG10-PROJECT-DIRECTORY-BINDING-ACCEPTED-002",
+    "previous_checkpoint_ref": {
+      "kind": "EXTERNAL_IMMUTABLE",
+      "provider": "GitHub",
+      "repository_id_or_resource_id": "1272482826",
+      "revision": "47872d13780200297830c7b0a48a6b1dafc62e52",
+      "path": "governance/hanyao/checkpoints/000001.json",
+      "digest": "sha256:46f85fa50ab462c9a99e8f6e0528b8cdb40b0e6ec35f82e4d33adec461a15554"
+    },
+    "migration_anchor": null,
+    "event": {
+      "type": "PROJECT_DIRECTORY_BINDING_ACCEPTED",
+      "reason_code": "EXACT_ALIAS_PROJECT_CONTROL_IDENTITY_MATCH",
+      "subject_id": "HANYAO_ADS_LINE_PROD"
+    },
+    "mission_anchor": {
+      "ref": "github://1272482826/governance/hanyao/mission/20260919T151100+0800.json@4c8f7fca94d0de9f7b2077b9488f17c282607d72",
+      "revision": "20260919T151100+0800",
+      "declared_hash": "sha256:e01d8175eaa447544734cb455d8a7cb6399cfb83eb1c9d3fe019b0d3982987c4",
+      "canonicalization_version": "HUMAN_TEXT_V1"
+    },
+    "policy_anchor": {
+      "ref": "github://1272482826/governance/hanyao/policy/20260919T151100+0800-EP-HG10.json@fac58786d5a78973518aa214feb79ce0fd570d78",
+      "revision": "20260919T151100+0800-EP-HG10",
+      "declared_hash": "sha256:1ef1fe2774ccaf35c2591eabd30fd4f635f40df0792475e7f43f59fa77b76e42"
+    },
+    "controller_contract": "CHAT_EXECUTION_POLICY_CONTRACT_V9_1_CANDIDATE",
+    "verifier_digest": null,
+    "lifecycle": "ACTIVE",
+    "owner": null,
+    "run_ref": {
+      "kind": "EXTERNAL_IMMUTABLE",
+      "provider": "GitHub",
+      "repository_id_or_resource_id": "1272482826",
+      "revision": "f69468817c666c1f1ff5ebbf6d818657038d8dbc",
+      "path": "runs/HG10-READBACK-REPAIR-20260919/run.json",
+      "digest": "sha256:01ea264c6dece60db0946b2305643ad04c48763d9072ff78b637a6ffdf5ee31d"
+    },
+    "task_id": "HG10-CONTROL-REBASE",
+    "attempt_id": "HG10-CONTROL-REBASE-ATTEMPT-001",
+    "attempt_epoch": 1,
+    "atomic": {
+      "contract_ref": null,
+      "deadline_at": null,
+      "state": "COMPLETED",
+      "unit_id": "HG10-CONTROL-REBASE"
+    },
+    "last_accepted": {
+      "acceptance_transition_id": "HG10-PROJECT-DIRECTORY-BINDING-ACCEPTED-002",
+      "checkpoint_seq": 2,
+      "evidence_refs": [
+        {
+          "kind": "BUNDLE_OBJECT",
+          "path": "governance/hanyao/evidence/HG10_E17_20260917_20260919.json",
+          "digest": "sha256:1bfa9e7d0d2ce4605b800c3ced678a2680ac3dd94a9eb3ff1b62c4d92a65d61c"
+        },
+        {
+          "kind": "BUNDLE_OBJECT",
+          "path": "governance/hanyao/evidence/HG10_PROJECT_DIRECTORY_BINDING_20260919.json",
+          "digest": "sha256:a62c36c1ffd13eaefcca22393e5d05f2768969a4a138dabf3a8e4302ff9fece5"
+        }
+      ],
+      "unit_id": "HG10-CONTROL-REBASE"
+    },
+    "remote_wip": null,
+    "active_job_refs": [],
+    "unresolved_effect_refs": [],
+    "blockers": [],
+    "last_verified_gate": {
+      "evidence_refs": [
+        {
+          "kind": "BUNDLE_OBJECT",
+          "path": "governance/hanyao/evidence/HG10_E17_20260917_20260919.json",
+          "digest": "sha256:1bfa9e7d0d2ce4605b800c3ced678a2680ac3dd94a9eb3ff1b62c4d92a65d61c"
+        },
+        {
+          "kind": "BUNDLE_OBJECT",
+          "path": "governance/hanyao/evidence/HG10_PROJECT_DIRECTORY_BINDING_20260919.json",
+          "digest": "sha256:a62c36c1ffd13eaefcca22393e5d05f2768969a4a138dabf3a8e4302ff9fece5"
+        }
+      ],
+      "gate_id": "HG10_READBACK_RELIABILITY_AND_CONTROL_REBASE",
+      "verdict": "PASS"
+    },
+    "next_legal_transition": {
+      "action": "WAIT_FOR_NEXT_REAL_ADS_ATTRIBUTED_LINE_CONTACT_THEN_DATE_SCOPED_READBACK",
+      "unit_id": "HG10-NATURAL-E2E-MONITORING",
+      "requires": [
+        "REAL_ADS_ATTRIBUTED_LINE_CONTACT",
+        "FRESH_D1_READ_ONLY_READBACK",
+        "FRESH_GOOGLE_ADS_DATE_READBACK"
+      ],
+      "forbidden": [
+        "BLIND_CONVERSION_REINGEST",
+        "D1_MUTATION_FROM_READBACK",
+        "GOOGLE_ADS_GOAL_BID_BUDGET_MUTATION",
+        "RECENT_PROJECT_FALLBACK"
+      ]
+    },
+    "stop_requested": false,
+    "barrier": "WAITING_REAL_EVENT",
+    "evidence_refs": [
+      {
+        "kind": "BUNDLE_OBJECT",
+        "path": "governance/hanyao/evidence/HG10_E17_20260917_20260919.json",
+        "digest": "sha256:1bfa9e7d0d2ce4605b800c3ced678a2680ac3dd94a9eb3ff1b62c4d92a65d61c"
+      },
+      {
+        "kind": "BUNDLE_OBJECT",
+        "path": "governance/hanyao/evidence/HG10_PROJECT_DIRECTORY_BINDING_20260919.json",
+        "digest": "sha256:a62c36c1ffd13eaefcca22393e5d05f2768969a4a138dabf3a8e4302ff9fece5"
+      }
+    ],
+    "recorded_at": "2026-09-19T07:34:17.3813830Z"
+  },
+  "conclusion": "Existing Human-authorized date-scoped D1 and Google Ads readback is present. Do not classify whole read scope as absent solely from Session MCP absence. Exact credentials/account targets and data bounds still need actual read-only admission."
+}

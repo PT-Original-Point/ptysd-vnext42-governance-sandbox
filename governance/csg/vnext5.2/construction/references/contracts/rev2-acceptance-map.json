@@ -1,0 +1,1243 @@
+{
+  "schema": "vnext5.2.acceptance-mapping.v2",
+  "role": "DEFINITIONS_NOT_VERDICTS",
+  "original_case_count": 64,
+  "original_cases": [
+    {
+      "id": "H01",
+      "claim": "Raw source identity",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "B00",
+        "M01",
+        "M03"
+      ],
+      "proof_surface": "Exact source/contract/environment local negative/positive receipt; no live claim",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "H02",
+      "claim": "Mission semantic consistency",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "C1",
+        "B01"
+      ],
+      "proof_surface": "Exact source/contract/environment local negative/positive receipt; no live claim",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "H03",
+      "claim": "Visibility error is not absence",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "B00",
+        "F01",
+        "T01"
+      ],
+      "proof_surface": "Exact source/contract/environment local negative/positive receipt; no live claim",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "H04",
+      "claim": "UI is not authority",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "B00",
+        "D04"
+      ],
+      "proof_surface": "Exact source/contract/environment local negative/positive receipt; no live claim",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "H05",
+      "claim": "State schema integrity",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "B01",
+        "C1",
+        "D02"
+      ],
+      "proof_surface": "Exact source/contract/environment local negative/positive receipt; no live claim",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "H06",
+      "claim": "Scope authorization cannot expand",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "B01",
+        "F01",
+        "M04"
+      ],
+      "proof_surface": "Exact source/contract/environment local negative/positive receipt; no live claim",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "H07",
+      "claim": "PS5.1 encoding",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "M01",
+        "M04"
+      ],
+      "proof_surface": "Exact source/contract/environment local negative/positive receipt; no live claim",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "H08",
+      "claim": "Immutable prestate",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "B00",
+        "C1"
+      ],
+      "proof_surface": "Exact source/contract/environment local negative/positive receipt; no live claim",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "H09",
+      "claim": "Atomic owner claim",
+      "minimum_level": "SYSTEM_SURVIVAL",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "C2",
+        "D03"
+      ],
+      "proof_surface": "Actual qualified runtime/isolation/restart/reboot/recovery/effect evidence per original profile",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "H10",
+      "claim": "Project-bound journal",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "D02"
+      ],
+      "proof_surface": "Exact source/contract/environment local negative/positive receipt; no live claim",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "H11",
+      "claim": "Worker self-report not acceptance",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "M03",
+        "X01"
+      ],
+      "proof_surface": "Exact source/contract/environment local negative/positive receipt; no live claim",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "H12",
+      "claim": "Lease expiry not process death",
+      "minimum_level": "SYSTEM_SURVIVAL",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "C2",
+        "D04"
+      ],
+      "proof_surface": "Actual qualified runtime/isolation/restart/reboot/recovery/effect evidence per original profile",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "H13",
+      "claim": "Session resume not job adoption",
+      "minimum_level": "SYSTEM_SURVIVAL",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "F01",
+        "D04"
+      ],
+      "proof_surface": "Actual qualified runtime/isolation/restart/reboot/recovery/effect evidence per original profile",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "H14",
+      "claim": "Epoch not secret",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "C2",
+        "F01"
+      ],
+      "proof_surface": "Exact source/contract/environment local negative/positive receipt; no live claim",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "H15",
+      "claim": "Unknown effect readback before replay",
+      "minimum_level": "LIVE_PROVIDER_READ",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "C2",
+        "D03",
+        "A04"
+      ],
+      "proof_surface": "Actual admitted target read route, bounded/redacted provider receipt and exact identity",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "H16",
+      "claim": "No unauthorized side channel",
+      "minimum_level": "SYSTEM_SURVIVAL",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "F01",
+        "F02"
+      ],
+      "proof_surface": "Actual qualified runtime/isolation/restart/reboot/recovery/effect evidence per original profile",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "H17",
+      "claim": "Failure-domain scope not fake HA",
+      "minimum_level": "SYSTEM_SURVIVAL",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "D04"
+      ],
+      "proof_surface": "Actual qualified runtime/isolation/restart/reboot/recovery/effect evidence per original profile",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "H18",
+      "claim": "No second canonical authority",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "B01",
+        "D02",
+        "C1"
+      ],
+      "proof_surface": "Exact source/contract/environment local negative/positive receipt; no live claim",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "H19",
+      "claim": "Reject duplicate JSON keys",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "M01",
+        "D02"
+      ],
+      "proof_surface": "Exact source/contract/environment local negative/positive receipt; no live claim",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "H20",
+      "claim": "Project Directory before execution",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "B00",
+        "D02"
+      ],
+      "proof_surface": "Exact source/contract/environment local negative/positive receipt; no live claim",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "H21",
+      "claim": "No public candidate on privileged runner",
+      "minimum_level": "PROTECTED_STRUCTURAL",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "T01",
+        "M03"
+      ],
+      "proof_surface": "Exact candidate head plus actual immutable verifier coverage/verdict",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "H22",
+      "claim": "Canonical no force",
+      "minimum_level": "CANONICAL_SELECTION",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "C1",
+        "X01"
+      ],
+      "proof_surface": "Protected actual current/CAS selection and same-source readback",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "H23",
+      "claim": "CI queue not business authority",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "T01",
+        "D03"
+      ],
+      "proof_surface": "Exact source/contract/environment local negative/positive receipt; no live claim",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "H24",
+      "claim": "Source/control responsibilities separated",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "M03",
+        "C1"
+      ],
+      "proof_surface": "Exact source/contract/environment local negative/positive receipt; no live claim",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "H25",
+      "claim": "Entitlement TTL",
+      "minimum_level": "SYSTEM_SURVIVAL",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "F01",
+        "D04"
+      ],
+      "proof_surface": "Actual qualified runtime/isolation/restart/reboot/recovery/effect evidence per original profile",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "H26",
+      "claim": "Restore proof not just backup",
+      "minimum_level": "SYSTEM_SURVIVAL",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "D04"
+      ],
+      "proof_surface": "Actual qualified runtime/isolation/restart/reboot/recovery/effect evidence per original profile",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "H27",
+      "claim": "RUNNING not process liveness",
+      "minimum_level": "SYSTEM_SURVIVAL",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "C2",
+        "D04"
+      ],
+      "proof_surface": "Actual qualified runtime/isolation/restart/reboot/recovery/effect evidence per original profile",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "H28",
+      "claim": "Outer read-only reviewer capability",
+      "minimum_level": "SYSTEM_SURVIVAL",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "F01",
+        "M03"
+      ],
+      "proof_surface": "Actual qualified runtime/isolation/restart/reboot/recovery/effect evidence per original profile",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "H29",
+      "claim": "Voting not correctness",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "M03",
+        "X01"
+      ],
+      "proof_surface": "Exact source/contract/environment local negative/positive receipt; no live claim",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "H30",
+      "claim": "Worktree not sandbox",
+      "minimum_level": "SYSTEM_SURVIVAL",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "F01",
+        "F02"
+      ],
+      "proof_surface": "Actual qualified runtime/isolation/restart/reboot/recovery/effect evidence per original profile",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "H31",
+      "claim": "Synthetic not live",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "D02",
+        "D04"
+      ],
+      "proof_surface": "Exact source/contract/environment local negative/positive receipt; no live claim",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "H32",
+      "claim": "Version not whole factory completion",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "X01",
+        "M04"
+      ],
+      "proof_surface": "Exact source/contract/environment local negative/positive receipt; no live claim",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "H33",
+      "claim": "Candidate test runner isolation",
+      "minimum_level": "PROTECTED_STRUCTURAL",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "M03",
+        "T01"
+      ],
+      "proof_surface": "Exact candidate head plus actual immutable verifier coverage/verdict",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "H34",
+      "claim": "Absolute SYSTEM path and controlled env",
+      "minimum_level": "LIVE_INSTALL",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "M04"
+      ],
+      "proof_surface": "Actual Host/installed source/helper/version/caller/tool routes and readback",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "H35",
+      "claim": "Rollback preserves pre-existing assets",
+      "minimum_level": "LIVE_INSTALL",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "M04",
+        "D03"
+      ],
+      "proof_surface": "Actual Host/installed source/helper/version/caller/tool routes and readback",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "H36",
+      "claim": "Queued not executing",
+      "minimum_level": "SYSTEM_SURVIVAL",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "D03",
+        "F02"
+      ],
+      "proof_surface": "Actual qualified runtime/isolation/restart/reboot/recovery/effect evidence per original profile",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "H37",
+      "claim": "Fresh-session tool schema",
+      "minimum_level": "LIVE_INSTALL",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "M04",
+        "M05"
+      ],
+      "proof_surface": "Actual Host/installed source/helper/version/caller/tool routes and readback",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "H38",
+      "claim": "Exact direct-parent candidate",
+      "minimum_level": "PROTECTED_STRUCTURAL",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "M03"
+      ],
+      "proof_surface": "Exact candidate head plus actual immutable verifier coverage/verdict",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "H39",
+      "claim": "Evidence levels distinct",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "T01",
+        "X01"
+      ],
+      "proof_surface": "Exact source/contract/environment local negative/positive receipt; no live claim",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "H40",
+      "claim": "Unique accepted source identity",
+      "minimum_level": "CANONICAL_SELECTION",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "C1",
+        "X01"
+      ],
+      "proof_surface": "Protected actual current/CAS selection and same-source readback",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "R52-01",
+      "claim": "Spec-policy monotonicity",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "B01",
+        "C1"
+      ],
+      "proof_surface": "Exact source/contract/environment local negative/positive receipt; no live claim",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "R52-02",
+      "claim": "Phase DAG acyclic",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "B01",
+        "D02"
+      ],
+      "proof_surface": "Exact source/contract/environment local negative/positive receipt; no live claim",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "R52-03",
+      "claim": "No metadata transport deny",
+      "minimum_level": "LIVE_INSTALL",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "M04"
+      ],
+      "proof_surface": "Actual Host/installed source/helper/version/caller/tool routes and readback",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "R52-04",
+      "claim": "Authorized capability non-regression",
+      "minimum_level": "LIVE_INSTALL",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "M01",
+        "M04"
+      ],
+      "proof_surface": "Actual Host/installed source/helper/version/caller/tool routes and readback",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "R52-05",
+      "claim": "Unique OS caller",
+      "minimum_level": "LIVE_INSTALL",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "M04"
+      ],
+      "proof_surface": "Actual Host/installed source/helper/version/caller/tool routes and readback",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "R52-06",
+      "claim": "Authority/process/job/effect orthogonal",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "C2",
+        "D02"
+      ],
+      "proof_surface": "Exact source/contract/environment local negative/positive receipt; no live claim",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "R52-07",
+      "claim": "Ownerless inert candidate",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "B01",
+        "C1"
+      ],
+      "proof_surface": "Exact source/contract/environment local negative/positive receipt; no live claim",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "R52-08",
+      "claim": "Self-generated SHA not churn reset",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "M03",
+        "C1"
+      ],
+      "proof_surface": "Exact source/contract/environment local negative/positive receipt; no live claim",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "R52-09",
+      "claim": "No invented review gate",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "M03",
+        "C1"
+      ],
+      "proof_surface": "Exact source/contract/environment local negative/positive receipt; no live claim",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "R52-10",
+      "claim": "Scoped blockers",
+      "minimum_level": "SYSTEM_SURVIVAL",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "D02",
+        "D04"
+      ],
+      "proof_surface": "Actual qualified runtime/isolation/restart/reboot/recovery/effect evidence per original profile",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "R52-11",
+      "claim": "No Human progress relay",
+      "minimum_level": "SYSTEM_SURVIVAL",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "D03",
+        "D04"
+      ],
+      "proof_surface": "Actual qualified runtime/isolation/restart/reboot/recovery/effect evidence per original profile",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "R52-12",
+      "claim": "Wake carries locator not authority",
+      "minimum_level": "SYSTEM_SURVIVAL",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "D02",
+        "D04"
+      ],
+      "proof_surface": "Actual qualified runtime/isolation/restart/reboot/recovery/effect evidence per original profile",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "R52-13",
+      "claim": "No evidence collapse",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "T01",
+        "X01"
+      ],
+      "proof_surface": "Exact source/contract/environment local negative/positive receipt; no live claim",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "R52-14",
+      "claim": "Provider-native route not Host dependency",
+      "minimum_level": "LIVE_PROVIDER_READ",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "A01",
+        "A02"
+      ],
+      "proof_surface": "Actual admitted target read route, bounded/redacted provider receipt and exact identity",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "R52-15",
+      "claim": "Shared transport not single Project",
+      "minimum_level": "LIVE_INSTALL",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "M01",
+        "M04"
+      ],
+      "proof_surface": "Actual Host/installed source/helper/version/caller/tool routes and readback",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "R52-16",
+      "claim": "Responsibility delete map",
+      "minimum_level": "DOCUMENT_REVIEW",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "D01",
+        "M01"
+      ],
+      "proof_surface": "Bounded decision/diff/authority rationale with original source identities",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "R52-17",
+      "claim": "Project reports are historical",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "B00"
+      ],
+      "proof_surface": "Exact source/contract/environment local negative/positive receipt; no live claim",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "R52-18",
+      "claim": "Document supersession not backend revocation",
+      "minimum_level": "SYSTEM_SURVIVAL",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "C2"
+      ],
+      "proof_surface": "Actual qualified runtime/isolation/restart/reboot/recovery/effect evidence per original profile",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "R52-19",
+      "claim": "production=false not script sandbox",
+      "minimum_level": "SYSTEM_SURVIVAL",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "F01",
+        "M04"
+      ],
+      "proof_surface": "Actual qualified runtime/isolation/restart/reboot/recovery/effect evidence per original profile",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "R52-20",
+      "claim": "Upgrade not bootstrap hard gate",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "T01",
+        "M02"
+      ],
+      "proof_surface": "Exact source/contract/environment local negative/positive receipt; no live claim",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "R52-21",
+      "claim": "One authority not one datastore",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "D02",
+        "C1"
+      ],
+      "proof_surface": "Exact source/contract/environment local negative/positive receipt; no live claim",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "R52-22",
+      "claim": "Optional parked is not total PASS",
+      "minimum_level": "LOCAL_TEST",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "X01"
+      ],
+      "proof_surface": "Exact source/contract/environment local negative/positive receipt; no live claim",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "R52-23",
+      "claim": "Bounded bakeoff",
+      "minimum_level": "DOCUMENT_REVIEW",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "D01"
+      ],
+      "proof_surface": "Bounded decision/diff/authority rationale with original source identities",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "R52-24",
+      "claim": "Finite chat turn is not durable runtime",
+      "minimum_level": "SYSTEM_SURVIVAL",
+      "status": "NOT_ACCEPTED",
+      "scope": "APPLICABLE_RESOURCE_OR_CONTRACT_ONLY",
+      "history_claim": "SOURCE_REPORTED_HISTORY_NOT_REPRODUCED_THIS_TURN",
+      "not_a_bootstrap_gate_for_unrelated_read_or_source": true,
+      "mapped_tasks": [
+        "D03",
+        "D04"
+      ],
+      "proof_surface": "Actual qualified runtime/isolation/restart/reboot/recovery/effect evidence per original profile",
+      "current_verdict": "RESOLVE_FROM_VALID_RECEIPTS_NOT_THIS_DEFINITION",
+      "start_gate_for_unrelated_operations": false
+    }
+  ],
+  "rev2_regressions": [
+    {
+      "id": "REV2-01",
+      "claim": "Native Goal state observed; no fabricated ACTIVE",
+      "mapped_tasks": [
+        "B00",
+        "B01"
+      ],
+      "minimum_level": "LOCAL_TEST",
+      "proof_surface": "Actual native readback or accurately scoped unsupported condition; unavailable route not called active",
+      "status": "NOT_ACCEPTED",
+      "applicability": "RELATED_SOURCE_OR_RUNTIME_QUALIFICATION_ONLY",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "REV2-02",
+      "claim": "F01 parked while unrelated source READY survives",
+      "mapped_tasks": [
+        "D02",
+        "F01"
+      ],
+      "minimum_level": "LOCAL_TEST",
+      "proof_surface": "Full catalog fixture/facts: F01 execution parked, D02 source selectable, shadow zero effects",
+      "status": "NOT_ACCEPTED",
+      "applicability": "RELATED_SOURCE_OR_RUNTIME_QUALIFICATION_ONLY",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "REV2-03",
+      "claim": "F01 facts change recomputes planned readiness",
+      "mapped_tasks": [
+        "D02",
+        "F01"
+      ],
+      "minimum_level": "LOCAL_TEST",
+      "proof_surface": "Changed accepted route evidence changes eligible plan without hardcoded gate; no unauthorized dispatch",
+      "status": "NOT_ACCEPTED",
+      "applicability": "RELATED_SOURCE_OR_RUNTIME_QUALIFICATION_ONLY",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "REV2-04",
+      "claim": "Shadow READY does not dispatch",
+      "mapped_tasks": [
+        "D02"
+      ],
+      "minimum_level": "LOCAL_TEST",
+      "proof_surface": "READY queue nonempty, selected plan recorded, all four effect flags false",
+      "status": "NOT_ACCEPTED",
+      "applicability": "RELATED_SOURCE_OR_RUNTIME_QUALIFICATION_ONLY",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "REV2-05",
+      "claim": "Incomplete/subset inventory cannot prove global exhaustion",
+      "mapped_tasks": [
+        "D02",
+        "B01"
+      ],
+      "minimum_level": "LOCAL_TEST",
+      "proof_surface": "Missing required unit/fact rejects global certificate; queue-local NO_READY stays local",
+      "status": "NOT_ACCEPTED",
+      "applicability": "RELATED_SOURCE_OR_RUNTIME_QUALIFICATION_ONLY",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "REV2-06",
+      "claim": "Author failure only blocks publication",
+      "mapped_tasks": [
+        "M03",
+        "B01"
+      ],
+      "minimum_level": "LOCAL_TEST",
+      "proof_surface": "Publication unavailable still permits other covered source/preflight; no fabricated identity",
+      "status": "NOT_ACCEPTED",
+      "applicability": "RELATED_SOURCE_OR_RUNTIME_QUALIFICATION_ONLY",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "REV2-07",
+      "claim": "Known direct-parent failure not rerun",
+      "mapped_tasks": [
+        "M03"
+      ],
+      "minimum_level": "PROTECTED_STRUCTURAL",
+      "proof_surface": "Final one-parent exact base check; one new-head verdict; local/protected evidence distinct",
+      "status": "NOT_ACCEPTED",
+      "applicability": "RELATED_SOURCE_OR_RUNTIME_QUALIFICATION_ONLY",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "REV2-08",
+      "claim": "Optional provenance does not block baseline",
+      "mapped_tasks": [
+        "T01",
+        "T02"
+      ],
+      "minimum_level": "LOCAL_TEST",
+      "proof_surface": "Optional route 401/unsupported does not deny source/baseline",
+      "status": "NOT_ACCEPTED",
+      "applicability": "RELATED_SOURCE_OR_RUNTIME_QUALIFICATION_ONLY",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "REV2-09",
+      "claim": "Review pending is exact merge/install gate",
+      "mapped_tasks": [
+        "M03",
+        "M04"
+      ],
+      "minimum_level": "LOCAL_TEST",
+      "proof_surface": "Pending exact review holds covered action only; source/preflight continues",
+      "status": "NOT_ACCEPTED",
+      "applicability": "RELATED_SOURCE_OR_RUNTIME_QUALIFICATION_ONLY",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "REV2-10",
+      "claim": "New Session recovers without Human progress relay",
+      "mapped_tasks": [
+        "D04",
+        "F01"
+      ],
+      "minimum_level": "SYSTEM_SURVIVAL",
+      "proof_surface": "Actual new executor reads current/accepted receipts; completed fingerprints not repeated; next READY proceeds",
+      "status": "NOT_ACCEPTED",
+      "applicability": "RELATED_SOURCE_OR_RUNTIME_QUALIFICATION_ONLY",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "REV2-11",
+      "claim": "Executor exit with READY preserves ACTIVE and recovers",
+      "mapped_tasks": [
+        "D03",
+        "D04"
+      ],
+      "minimum_level": "SYSTEM_SURVIVAL",
+      "proof_surface": "Actual exit/restore supported route; durable next READY; no Mission complete or duplicate effects",
+      "status": "NOT_ACCEPTED",
+      "applicability": "RELATED_SOURCE_OR_RUNTIME_QUALIFICATION_ONLY",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "REV2-12",
+      "claim": "Real global exhaustion stop evidence",
+      "mapped_tasks": [
+        "D02",
+        "X01"
+      ],
+      "minimum_level": "LOCAL_TEST",
+      "proof_surface": "Full remaining required operation inventory with exact reasons/freshness/reentry and zero legal READY",
+      "status": "NOT_ACCEPTED",
+      "applicability": "RELATED_SOURCE_OR_RUNTIME_QUALIFICATION_ONLY",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "REV2-13",
+      "claim": "Candidate remains ownerless",
+      "mapped_tasks": [
+        "B01",
+        "C1"
+      ],
+      "minimum_level": "LOCAL_TEST",
+      "proof_surface": "Inert candidate no generation/lease allocation; promotion/claim contract remains separate",
+      "status": "NOT_ACCEPTED",
+      "applicability": "RELATED_SOURCE_OR_RUNTIME_QUALIFICATION_ONLY",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "REV2-14",
+      "claim": "Expiry uses observed clock without claiming process dead",
+      "mapped_tasks": [
+        "C2",
+        "D02"
+      ],
+      "minimum_level": "LOCAL_TEST",
+      "proof_surface": "Lease expiring after checkpoint but before observed time loses authority; process UNKNOWN remains separate",
+      "status": "NOT_ACCEPTED",
+      "applicability": "RELATED_SOURCE_OR_RUNTIME_QUALIFICATION_ONLY",
+      "start_gate_for_unrelated_operations": false
+    },
+    {
+      "id": "REV2-15",
+      "claim": "Historical no-dispatch does not permanently block qualified phase",
+      "mapped_tasks": [
+        "B01",
+        "D03"
+      ],
+      "minimum_level": "LOCAL_TEST",
+      "proof_surface": "Unqualified shadow denied; qualified exact-authority future phase eligibility restored without bypassing gate",
+      "status": "NOT_ACCEPTED",
+      "applicability": "RELATED_SOURCE_OR_RUNTIME_QUALIFICATION_ONLY",
+      "start_gate_for_unrelated_operations": false
+    }
+  ],
+  "original_live_profile": {
+    "reconcile_seconds": 30,
+    "component_stale_ttl_seconds": 120,
+    "crash_restart_target_seconds": 120,
+    "post_reboot_ready_target_seconds": 600,
+    "actual_supervisor_crash_repetitions": 2,
+    "actual_windows_reboots": 1,
+    "actual_vm_reboots": 1,
+    "ui_gone_minutes": 30,
+    "soak_hours": 24,
+    "profile_changes_require_explicit_contract_revision": true
+  },
+  "completion": {
+    "core_requires_all_mandatory_tasks": true,
+    "requires_applicable_cases_at_correct_level": true,
+    "requires_canonical_same_source_readback": true,
+    "source_milestone_is_mission_completion": false,
+    "optional_deferred_is_pass": false,
+    "production_separate": true,
+    "conditional_scope": "HANYAO live read requires its own admission; not auto-authorized by Factory spec"
+  },
+  "optional_deferral_is_pass": false
+}

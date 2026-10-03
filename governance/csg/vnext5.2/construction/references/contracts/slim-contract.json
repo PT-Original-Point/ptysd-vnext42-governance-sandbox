@@ -1,0 +1,384 @@
+{
+  "schema": "vnext5.2.slim-construction-recipes.v1",
+  "date": "2026-10-03",
+  "spec": "VNEXT5.2",
+  "revision": "BUSINESS-RECOVERY-FIRST-REV2-20261003",
+  "role": "IMPLEMENTATION_PRIORITY_AND_REPLACEMENT_RECIPES_NOT_LIVE_STATE",
+  "user_intent": "Maximize reuse of mature production components and reduce custom maintenance; reach operability promptly.",
+  "no_new_mission": true,
+  "no_new_operation_ids": true,
+  "no_implicit_acceptance_waiver": true,
+  "priority_contract": {
+    "path": "priority-recovery-contract.json",
+    "sha256": "21d29253c3b9c11ebe2a2d8b4cd69af9828c1d56d23b98ef4d2d4dbd94241bc7",
+    "role": "SORT_ELIGIBLE_UNITS_ONLY_NO_NEW_SCOPE_OR_DEPENDENCY_WAIVER"
+  },
+  "first_priority": "FALSE_BLOCK_REPAIR_CROSS_SESSION_RECOVERY_AND_ADMITTED_ADS_D1_BUSINESS_MCP_RECOVERY",
+  "definition_union_count": 59,
+  "workstream_projection": [
+    {
+      "operation_id": "B00.RECOVER",
+      "workstream": "RECOVERY_ADMISSION",
+      "status": "RESOLVE_FROM_CURRENT_FACTS_NOT_THIS_FILE"
+    },
+    {
+      "operation_id": "B01.OPERATIONS",
+      "workstream": "RECOVERY_ADMISSION",
+      "status": "RESOLVE_FROM_CURRENT_FACTS_NOT_THIS_FILE"
+    },
+    {
+      "operation_id": "B01.PUBLISH",
+      "workstream": "RECOVERY_ADMISSION",
+      "status": "RESOLVE_FROM_CURRENT_FACTS_NOT_THIS_FILE"
+    },
+    {
+      "operation_id": "C1.PREPARE",
+      "workstream": "RECOVERY_ADMISSION",
+      "status": "RESOLVE_FROM_CURRENT_FACTS_NOT_THIS_FILE"
+    },
+    {
+      "operation_id": "C1.QUALIFY",
+      "workstream": "RECOVERY_ADMISSION",
+      "status": "RESOLVE_FROM_CURRENT_FACTS_NOT_THIS_FILE"
+    },
+    {
+      "operation_id": "C1.SELECT",
+      "workstream": "RECOVERY_ADMISSION",
+      "status": "RESOLVE_FROM_CURRENT_FACTS_NOT_THIS_FILE"
+    },
+    {
+      "operation_id": "C2.PREFLIGHT",
+      "workstream": "RECOVERY_ADMISSION",
+      "status": "RESOLVE_FROM_CURRENT_FACTS_NOT_THIS_FILE"
+    },
+    {
+      "operation_id": "C2.FENCE_SOURCE",
+      "workstream": "RECOVERY_ADMISSION",
+      "status": "RESOLVE_FROM_CURRENT_FACTS_NOT_THIS_FILE"
+    },
+    {
+      "operation_id": "C2.QUARANTINE",
+      "workstream": "RECOVERY_ADMISSION",
+      "status": "RESOLVE_FROM_CURRENT_FACTS_NOT_THIS_FILE"
+    },
+    {
+      "operation_id": "M01.SOURCE",
+      "workstream": "MCP_BRIDGE",
+      "status": "RESOLVE_FROM_CURRENT_FACTS_NOT_THIS_FILE"
+    },
+    {
+      "operation_id": "M02.LOCAL_CANARY",
+      "workstream": "MCP_BRIDGE",
+      "status": "RESOLVE_FROM_CURRENT_FACTS_NOT_THIS_FILE"
+    },
+    {
+      "operation_id": "M03.FINAL_SOURCE",
+      "workstream": "MCP_BRIDGE",
+      "status": "RESOLVE_FROM_CURRENT_FACTS_NOT_THIS_FILE"
+    },
+    {
+      "operation_id": "M03.STRUCTURAL",
+      "workstream": "MCP_BRIDGE",
+      "status": "RESOLVE_FROM_CURRENT_FACTS_NOT_THIS_FILE"
+    },
+    {
+      "operation_id": "M03.SEMANTIC",
+      "workstream": "MCP_BRIDGE",
+      "status": "RESOLVE_FROM_CURRENT_FACTS_NOT_THIS_FILE"
+    },
+    {
+      "operation_id": "M04.INSTALL_PREPARE",
+      "workstream": "MCP_BRIDGE",
+      "status": "RESOLVE_FROM_CURRENT_FACTS_NOT_THIS_FILE"
+    },
+    {
+      "operation_id": "M04.LIVE_INSTALL",
+      "workstream": "MCP_BRIDGE",
+      "status": "RESOLVE_FROM_CURRENT_FACTS_NOT_THIS_FILE"
+    },
+    {
+      "operation_id": "M05.LIVE_HEALTH",
+      "workstream": "MCP_BRIDGE",
+      "status": "RESOLVE_FROM_CURRENT_FACTS_NOT_THIS_FILE"
+    },
+    {
+      "operation_id": "A00.ADMISSION",
+      "workstream": "BUSINESS_INDEPENDENT",
+      "status": "RESOLVE_FROM_CURRENT_FACTS_NOT_THIS_FILE"
+    },
+    {
+      "operation_id": "A00.SOURCE_BOUNDS",
+      "workstream": "BUSINESS_INDEPENDENT",
+      "status": "RESOLVE_FROM_CURRENT_FACTS_NOT_THIS_FILE"
+    },
+    {
+      "operation_id": "A01.READ_PREPARE",
+      "workstream": "BUSINESS_INDEPENDENT",
+      "status": "RESOLVE_FROM_CURRENT_FACTS_NOT_THIS_FILE"
+    },
+    {
+      "operation_id": "A01.LIVE_READ",
+      "workstream": "BUSINESS_INDEPENDENT",
+      "status": "RESOLVE_FROM_CURRENT_FACTS_NOT_THIS_FILE"
+    },
+    {
+      "operation_id": "A02.READ_PREPARE",
+      "workstream": "BUSINESS_INDEPENDENT",
+      "status": "RESOLVE_FROM_CURRENT_FACTS_NOT_THIS_FILE"
+    },
+    {
+      "operation_id": "A02.LIVE_READ",
+      "workstream": "BUSINESS_INDEPENDENT",
+      "status": "RESOLVE_FROM_CURRENT_FACTS_NOT_THIS_FILE"
+    },
+    {
+      "operation_id": "A03.OPTIONAL_WIF",
+      "workstream": "BUSINESS_INDEPENDENT",
+      "status": "RESOLVE_FROM_CURRENT_FACTS_NOT_THIS_FILE"
+    },
+    {
+      "operation_id": "A04.RECONCILE",
+      "workstream": "BUSINESS_INDEPENDENT",
+      "status": "RESOLVE_FROM_CURRENT_FACTS_NOT_THIS_FILE"
+    },
+    {
+      "operation_id": "A05.RETIRE_PREPARE",
+      "workstream": "BUSINESS_INDEPENDENT",
+      "status": "RESOLVE_FROM_CURRENT_FACTS_NOT_THIS_FILE"
+    },
+    {
+      "operation_id": "A05.RETIRE",
+      "workstream": "BUSINESS_INDEPENDENT",
+      "status": "RESOLVE_FROM_CURRENT_FACTS_NOT_THIS_FILE"
+    },
+    {
+      "operation_id": "D01.DECISION",
+      "workstream": "DURABLE_ENGINE",
+      "status": "RESOLVE_FROM_CURRENT_FACTS_NOT_THIS_FILE"
+    },
+    {
+      "operation_id": "F01.PREFLIGHT",
+      "workstream": "NATIVE_EXECUTOR",
+      "status": "RESOLVE_FROM_CURRENT_FACTS_NOT_THIS_FILE"
+    },
+    {
+      "operation_id": "F01.ADAPTER_SOURCE",
+      "workstream": "NATIVE_EXECUTOR",
+      "status": "RESOLVE_FROM_CURRENT_FACTS_NOT_THIS_FILE"
+    },
+    {
+      "operation_id": "F01.CELL_PREPARE",
+      "workstream": "NATIVE_EXECUTOR",
+      "status": "RESOLVE_FROM_CURRENT_FACTS_NOT_THIS_FILE"
+    },
+    {
+      "operation_id": "F01.ISOLATED_EXECUTION",
+      "workstream": "NATIVE_EXECUTOR",
+      "status": "RESOLVE_FROM_CURRENT_FACTS_NOT_THIS_FILE"
+    },
+    {
+      "operation_id": "D02.SOURCE",
+      "workstream": "DURABLE_ENGINE",
+      "status": "RESOLVE_FROM_CURRENT_FACTS_NOT_THIS_FILE"
+    },
+    {
+      "operation_id": "D02.PLAN_SHADOW",
+      "workstream": "DURABLE_ENGINE",
+      "status": "RESOLVE_FROM_CURRENT_FACTS_NOT_THIS_FILE"
+    },
+    {
+      "operation_id": "D02.LOCAL_RESTORE",
+      "workstream": "DURABLE_ENGINE",
+      "status": "RESOLVE_FROM_CURRENT_FACTS_NOT_THIS_FILE"
+    },
+    {
+      "operation_id": "D02.EXECUTOR_INTEGRATION",
+      "workstream": "DURABLE_ENGINE",
+      "status": "RESOLVE_FROM_CURRENT_FACTS_NOT_THIS_FILE"
+    },
+    {
+      "operation_id": "D03.BUNDLE_PREPARE",
+      "workstream": "DURABLE_ENGINE",
+      "status": "RESOLVE_FROM_CURRENT_FACTS_NOT_THIS_FILE"
+    },
+    {
+      "operation_id": "D03.ACTIVE_CUTOVER",
+      "workstream": "DURABLE_ENGINE",
+      "status": "RESOLVE_FROM_CURRENT_FACTS_NOT_THIS_FILE"
+    },
+    {
+      "operation_id": "D04.SURVIVAL",
+      "workstream": "FINAL_ACCEPTANCE",
+      "status": "RESOLVE_FROM_CURRENT_FACTS_NOT_THIS_FILE"
+    },
+    {
+      "operation_id": "F02.FLEET_SOURCE",
+      "workstream": "INTEGRATION_QUALITY",
+      "status": "RESOLVE_FROM_CURRENT_FACTS_NOT_THIS_FILE"
+    },
+    {
+      "operation_id": "F02.N2_ACCEPTANCE",
+      "workstream": "INTEGRATION_QUALITY",
+      "status": "RESOLVE_FROM_CURRENT_FACTS_NOT_THIS_FILE"
+    },
+    {
+      "operation_id": "T01.BASELINE",
+      "workstream": "INTEGRATION_QUALITY",
+      "status": "RESOLVE_FROM_CURRENT_FACTS_NOT_THIS_FILE"
+    },
+    {
+      "operation_id": "T02.OPTIONAL_UPGRADE",
+      "workstream": "INTEGRATION_QUALITY",
+      "status": "RESOLVE_FROM_CURRENT_FACTS_NOT_THIS_FILE"
+    },
+    {
+      "operation_id": "X01.ACCEPT",
+      "workstream": "FINAL_ACCEPTANCE",
+      "status": "RESOLVE_FROM_CURRENT_FACTS_NOT_THIS_FILE"
+    },
+    {
+      "operation_id": "P52.NATIVE_ROUTE_DISCOVERY",
+      "workstream": "NATIVE_EXECUTOR",
+      "status": "RESOLVE_FROM_CURRENT_FACTS_NOT_THIS_FILE"
+    },
+    {
+      "operation_id": "P52.INTAKE_SOURCE",
+      "workstream": "PRODUCT_FRONTDOOR",
+      "status": "RESOLVE_FROM_CURRENT_FACTS_NOT_THIS_FILE"
+    },
+    {
+      "operation_id": "P52.RESEARCH_OPTIONS_SOURCE",
+      "workstream": "PRODUCT_FRONTDOOR",
+      "status": "RESOLVE_FROM_CURRENT_FACTS_NOT_THIS_FILE"
+    },
+    {
+      "operation_id": "P52.FRONTDOOR_ACCEPTANCE",
+      "workstream": "PRODUCT_FRONTDOOR",
+      "status": "RESOLVE_FROM_CURRENT_FACTS_NOT_THIS_FILE"
+    },
+    {
+      "operation_id": "P52.SELECTION_CONTRACT",
+      "workstream": "PRODUCT_FRONTDOOR",
+      "status": "RESOLVE_FROM_CURRENT_FACTS_NOT_THIS_FILE"
+    },
+    {
+      "operation_id": "P52.OPENCODE_SOURCE",
+      "workstream": "NATIVE_EXECUTOR",
+      "status": "RESOLVE_FROM_CURRENT_FACTS_NOT_THIS_FILE"
+    },
+    {
+      "operation_id": "P52.ANTIGRAVITY_SOURCE",
+      "workstream": "NATIVE_EXECUTOR",
+      "status": "RESOLVE_FROM_CURRENT_FACTS_NOT_THIS_FILE"
+    },
+    {
+      "operation_id": "P52.CODEX_ACCEPTANCE",
+      "workstream": "NATIVE_EXECUTOR",
+      "status": "RESOLVE_FROM_CURRENT_FACTS_NOT_THIS_FILE"
+    },
+    {
+      "operation_id": "P52.OPENCODE_ACCEPTANCE",
+      "workstream": "NATIVE_EXECUTOR",
+      "status": "RESOLVE_FROM_CURRENT_FACTS_NOT_THIS_FILE"
+    },
+    {
+      "operation_id": "P52.ANTIGRAVITY_ACCEPTANCE",
+      "workstream": "NATIVE_EXECUTOR",
+      "status": "RESOLVE_FROM_CURRENT_FACTS_NOT_THIS_FILE"
+    },
+    {
+      "operation_id": "P52.SHARD_REVIEW_INTEGRATION_SOURCE",
+      "workstream": "INTEGRATION_QUALITY",
+      "status": "RESOLVE_FROM_CURRENT_FACTS_NOT_THIS_FILE"
+    },
+    {
+      "operation_id": "P52.VERTICAL_E2E",
+      "workstream": "INTEGRATION_QUALITY",
+      "status": "RESOLVE_FROM_CURRENT_FACTS_NOT_THIS_FILE"
+    },
+    {
+      "operation_id": "P52.THREE_VENDOR_E2E",
+      "workstream": "INTEGRATION_QUALITY",
+      "status": "RESOLVE_FROM_CURRENT_FACTS_NOT_THIS_FILE"
+    },
+    {
+      "operation_id": "P52.BENCHMARK_REGRESSION",
+      "workstream": "INTEGRATION_QUALITY",
+      "status": "RESOLVE_FROM_CURRENT_FACTS_NOT_THIS_FILE"
+    },
+    {
+      "operation_id": "P52.FINAL_PRODUCT_ACCEPTANCE",
+      "workstream": "FINAL_ACCEPTANCE",
+      "status": "RESOLVE_FROM_CURRENT_FACTS_NOT_THIS_FILE"
+    }
+  ],
+  "runtime_decision": {
+    "prior": "D01_STATIC_BOUNDED_FALLBACK_NOT_EXECUTABLE_ACCEPTANCE",
+    "candidate": "RESTATE_WHOLE_LAYER_REPLACEMENT_SINGLE_SPIKE",
+    "server_start_pin": "v1.7.13_NOT_A_LATEST_VERSION_CLAIM",
+    "sdk_version": "VERIFY_COMPATIBLE_AND_PIN_SEPARATELY",
+    "effective_engineering_budget_hours_max": 8,
+    "preserve_already_spent_budget": true,
+    "maximum_new_spikes": 1,
+    "fallback": "EXISTING_MINIMAL_NATIVE_ROUTE_IF_QUALIFIED",
+    "dbos": "ONLY_IF_RESTATE_SCOPED_BLOCKER_AND_ALREADY_QUALIFIED_POSTGRES_NOT_PARALLEL",
+    "active_dispatcher_count_max": 1,
+    "shadow_dispatch": false,
+    "license": "BSL_1_1_WITH_ADDITIONAL_USE_GRANT_SCOPE_UNQUALIFIED_UNTIL_RECORDED",
+    "deployment_target": "QUALIFIED_EXISTING_HYPERV_LINUX_ENVIRONMENT_NOT_ASSUMED_AVAILABLE",
+    "policy": "Existing source/admission scope and protected canonical/Host selection procedures remain required."
+  },
+  "deletion": {
+    "target_custom_generic_glue_reduction_fraction": 0.5,
+    "target_is_engineering_goal_not_transport_or_source_authorization_gate": true,
+    "metric": "retired active custom production LOC minus new active adapter LOC; unchanged historical/tests/vendor lines excluded",
+    "actual_production_code_deleted_by_this_package": 0,
+    "positive_net_and_behavior_qualification_required_to_claim_slimming": true,
+    "retained_seams": [
+      "CSG_SCOPE_ADMISSION_RECONCILIATION",
+      "NATIVE_JOB_CANCEL_IDENTITY",
+      "PROVIDER_CAS_EFFECT_READBACK",
+      "SLICE_REVIEW_INTEGRATION_RECEIPT_PROJECTION"
+    ]
+  },
+  "milestones": [
+    "FRESH_RECOVERY",
+    "FALSE_BLOCK_REPAIR_AND_CROSS_SESSION_ENTRYPOINT",
+    "ADMITTED_ADS_D1_BUSINESS_AND_MCP_RECOVERY",
+    "REAL_SECOND_SESSION_RECOVERY_PROOF",
+    "NATIVE_F01_QUALIFICATION",
+    "SINGLE_ENGINE_REPLACEMENT_DECISION",
+    "LIMITED_PREPRODUCTION_OPERABLE",
+    "PRODUCT_VERTICAL_SLICE",
+    "N2_AND_THREE_BRANDS",
+    "SURVIVAL_EFFICIENCY",
+    "ALL_APPLICABLE_FINAL_CLOSURE"
+  ],
+  "invariant_preservation": [
+    "STOP",
+    "EXACT_PROJECT_HOST_OS_CALLER",
+    "BACKEND_MUTATION_EPOCH_AND_CAS",
+    "UNKNOWN_EFFECT_READBACK_FIRST",
+    "BOUNDED_OUTPUT_TIMEOUT_CONCURRENCY",
+    "PRODUCTION_HUMAN_GATE",
+    "WORKER_PROVIDER_WRITE_CREDENTIALS_ZERO",
+    "OWNER_ALLOCATION_ONLY_AT_SELECTION"
+  ],
+  "delete_or_rebase": [
+    "ROLLOVER_ALONE_TRANSPORT_DENY",
+    "PER_SESSION_OR_SECOND_AI_REAUTH",
+    "FIXED_READONLY_MUTATION_FENCE",
+    "DUPLICATE_PLANNERS_JOURNALS_AND_BLIND_RETRY",
+    "MCP_TOOL_EXPOSURE_AS_NATIVE_EXECUTION_PREREQUISITE"
+  ],
+  "forbidden_new_layers": [
+    "SECOND_ACTIVE_DISPATCHER",
+    "SECOND_MISSION_AUTHORITY",
+    "ADDITIVE_GENERIC_AGENT_BUS",
+    "PARALLEL_DATABASE_FRAMEWORK_INSTALLATIONS",
+    "UNAPPROVED_PAID_MODEL_FALLBACK"
+  ],
+  "old_goal_snapshot_not_current": true,
+  "goal_resume": "USE_ACTUAL_SUPPORTED_PLATFORM_API_NEVER_FAKE_ACTIVE",
+  "package_evidence_is_not_runtime_acceptance": true
+}

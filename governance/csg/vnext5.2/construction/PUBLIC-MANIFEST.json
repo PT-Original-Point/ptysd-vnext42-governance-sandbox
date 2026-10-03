@@ -1,0 +1,176 @@
+{
+  "schema": "vnext5.2.public-artifact-manifest.v1",
+  "role": "NONSELECTING_SHARED_CONSTRUCTION_CONTEXT",
+  "files": [
+    {
+      "path": "00-總入口與人工分派.md",
+      "bytes": 2197,
+      "sha256": "5b89c196483aac1e04612cc2f5093f6a996798f8923ab43dbd5b72b71bac4115"
+    },
+    {
+      "path": "01-統一V5.2施工規格.md",
+      "bytes": 4120,
+      "sha256": "b725814aaa3ee98f3d5b1d7547801fc380aee8b19d8967c79d4ff2fea2d9bb24"
+    },
+    {
+      "path": "02-根因稽核與修正責任.md",
+      "bytes": 2558,
+      "sha256": "fc86288e7db3395884104a36c94ad69453cd13070cc8b96c6aa9ac8dd572fc03"
+    },
+    {
+      "path": "03-V4到V5.2血緣與不可重犯.md",
+      "bytes": 1669,
+      "sha256": "1dc0fca8ecf5f3e25f0b9c4b1ff6d11cec95d76d3ccc8c34e3fb065d4f726ce3"
+    },
+    {
+      "path": "04-共同接口與寫入邊界.md",
+      "bytes": 1437,
+      "sha256": "2c5af472c866ee3f8ce38bd9ffd417c01f2be3919fbbe65da43cca4d0b7daa19"
+    },
+    {
+      "path": "05-跨SESSION與Web讀回流程.md",
+      "bytes": 1345,
+      "sha256": "996c961e585b77f4a7f18df05b1eafafe6df770e62a1bb1510bbbcadf22083f1"
+    },
+    {
+      "path": "06-廣告轉換追蹤與MCP恢復.md",
+      "bytes": 1602,
+      "sha256": "44235eb35bec84acfcf0e06143da9c41546f0ba451fb6282ea8bbd921cd2186d"
+    },
+    {
+      "path": "07-回收合併與並行節奏.md",
+      "bytes": 1971,
+      "sha256": "0697b44d14233f6d3e701e8a2937399a509f8d13a668a4c2c985c3788ad6fa42"
+    },
+    {
+      "path": "08-指令仲裁與適用邊界.md",
+      "bytes": 1208,
+      "sha256": "e5dc55029de95da93fcec72ac48f2f85ecf4c25d476961fa7330e666caf4a588"
+    },
+    {
+      "path": "CURRENT.json",
+      "bytes": 2032,
+      "sha256": "f00a90f99ff56e29298ccd70328dc9093c60edc8963264b2d691e99b033e1004"
+    },
+    {
+      "path": "README.md",
+      "bytes": 787,
+      "sha256": "4c1070ca8b0cb4ced7e84cfc9a7a0caebea7ae77061bc233c1d4a821b0aac4dc"
+    },
+    {
+      "path": "dispatch-plan.json",
+      "bytes": 2737,
+      "sha256": "0e26365faab73f9759694f4f9b57ecd8fc9500b28991a5eb336fb9aff80a59e1"
+    },
+    {
+      "path": "evidence/hanyao-existing-read-authority.json",
+      "bytes": 10608,
+      "sha256": "854958ee21f4414ffe449a90a39bf6494ef1fab93803bf5c331997bc1925e715"
+    },
+    {
+      "path": "evidence/package-checks.json",
+      "bytes": 430,
+      "sha256": "e6737014cde1d42ccad220094908e5c1c164020e8e53322dadb19a32f63ad45e"
+    },
+    {
+      "path": "evidence/provider-snapshot.json",
+      "bytes": 1936,
+      "sha256": "b5878ece58769bf16b6d52359b47f340e735eb0c87183ec77fecb7f27ef9f80a"
+    },
+    {
+      "path": "prompts/ANTIGRAVITY-ADS.md",
+      "bytes": 3526,
+      "sha256": "0b68c1c827c92ebb36062ed33ff9b183c452e84da66e46f0080c84f66b59732d"
+    },
+    {
+      "path": "prompts/CODEX-LUNA-MAX-MCP.md",
+      "bytes": 3228,
+      "sha256": "80744468d317f1219c99c44bd842384f9a4dced1894f3f08dc6c6f9c7ec05e7c"
+    },
+    {
+      "path": "prompts/INTEGRATOR-LUNA-MAX.md",
+      "bytes": 3560,
+      "sha256": "21d75423c3904bd78fbc6de40a07aa55cfba048bbc6cf05950d3505bee6c0de7"
+    },
+    {
+      "path": "prompts/OPENCODE-RECOVERY.md",
+      "bytes": 3481,
+      "sha256": "c66c813f0138699dde60798deea5c2a7726451cb2ca8f65de3c4d90db044ce18"
+    },
+    {
+      "path": "references/INDEX.json",
+      "bytes": 6146,
+      "sha256": "9a0e9c9760a0aea8c24595830167413dd022beff828c48fd49a76ba819a064b3"
+    },
+    {
+      "path": "references/contracts/01-最終產品功能與架構設計.md",
+      "bytes": 9195,
+      "sha256": "bf6e7fcc25ddc5401a4e5ddb951832ea73098d2c92ec9f21e1c934ed3bdc7e22"
+    },
+    {
+      "path": "references/contracts/05-READY與退出Admission.md",
+      "bytes": 4241,
+      "sha256": "5d0b5bd035ec13e17c7d2230199c4c804bed0c2e5844840f02176e37958bf659"
+    },
+    {
+      "path": "references/contracts/07-跨SESSION與故障恢復.md",
+      "bytes": 2738,
+      "sha256": "c8e4e1421a3221259d71fd5eae059f0be8abe35117d50255ce1ebc6425d362fb"
+    },
+    {
+      "path": "references/contracts/operation-plan-extension.json",
+      "bytes": 12709,
+      "sha256": "d634252fd0fc35582a1b9486084904f4a9b99f3d4be293b7d05d9802c08ff39f"
+    },
+    {
+      "path": "references/contracts/original-execution-contract.json",
+      "bytes": 40058,
+      "sha256": "130c22bd328d22538e439e3e444b84c478c22200e73e33455b8e1e35f7e50600"
+    },
+    {
+      "path": "references/contracts/original-full-spec.md",
+      "bytes": 57626,
+      "sha256": "6b3ab17c9c13737656b13f77c0d71b3a28fea03f69dd86791bc80f7b30803f21"
+    },
+    {
+      "path": "references/contracts/priority-recovery-contract.json",
+      "bytes": 3252,
+      "sha256": "21d29253c3b9c11ebe2a2d8b4cd69af9828c1d56d23b98ef4d2d4dbd94241bc7"
+    },
+    {
+      "path": "references/contracts/product-contract.json",
+      "bytes": 18184,
+      "sha256": "deb2cfa3356dd10b38441425ab8f9903ef4f76506a37688ab77dcdde70f2c6a2"
+    },
+    {
+      "path": "references/contracts/rev2-acceptance-map.json",
+      "bytes": 49286,
+      "sha256": "19de036572d18729b69f3f4b74ab869773673130c385fcb0322125f2ae71759a"
+    },
+    {
+      "path": "references/contracts/rev2-operation-plan.json",
+      "bytes": 29294,
+      "sha256": "d0f82978679ba8abb720499eeec65ef981f94619b7849e26c7a1c8ac0cab33b5"
+    },
+    {
+      "path": "references/contracts/slim-contract.json",
+      "bytes": 12929,
+      "sha256": "0779a4c12114c520557a1a9814927655a7ea99236dc3b8679b9f3f2eeff13483"
+    },
+    {
+      "path": "result.template.json",
+      "bytes": 714,
+      "sha256": "739bf8d5309b7e6cf5fa905fdb61d6c6c31e7959db318486fc34c4bf36cd7ffc"
+    },
+    {
+      "path": "scripts/csg-read-shared-context.mjs",
+      "bytes": 7240,
+      "sha256": "9bf3553c1a16b977ccc5d0c37812b63a8fe3f07eeffb6e35effb388a0be5b090"
+    },
+    {
+      "path": "tests/context-view.test.mjs",
+      "bytes": 4980,
+      "sha256": "66a059c3954e535ed05fef1aec8584867dfc1bf1cc454771226c394f88849900"
+    }
+  ]
+}

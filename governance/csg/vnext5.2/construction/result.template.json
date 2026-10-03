@@ -1,0 +1,32 @@
+{
+  "schema": "vnext5.2.slice-result.v1",
+  "task_id": "S-...",
+  "project_id": "",
+  "status": "SOURCE_IN_PROGRESS",
+  "observed_at": "",
+  "repository": "",
+  "base_commit": "",
+  "source_commit": null,
+  "source_tree": null,
+  "changed_paths": [],
+  "patch": {
+    "path": null,
+    "sha256": null,
+    "contains_untracked_source": false
+  },
+  "tests": [],
+  "semantic_review": {
+    "exact_target": null,
+    "status": "PENDING"
+  },
+  "actual_side_effects": [],
+  "unresolved_effects": [],
+  "scoped_blockers": [],
+  "reentry_conditions": [],
+  "completed_operation_receipts": [],
+  "next_legal_ready_operations": [],
+  "live_acceptance": "NOT_ACCEPTED",
+  "canonical_write": false,
+  "Production": false
+}
+
