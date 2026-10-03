@@ -3,13 +3,13 @@
   "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
   "noncanonical": true,
   "writer": "ROOT_SINGLE_INTEGRATOR",
-  "sequence": 11,
-  "previous_locator_head": "2750c58bc534ce10eb869dd827d28a534a877bae",
+  "sequence": 12,
+  "previous_locator_head": "3d090bd296b4ef70cd05e90626f83dad240ff80f",
   "progress": {
     "repository": "PT-Original-Point/ptysd-vnext42-governance-sandbox",
-    "exact_head": "a39c219282666fca1cd3f813028da36aa7c10270",
+    "exact_head": "cc1a401e07e0025c63e15c3cd3fc925fd6ebbeae",
     "current_path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/CURRENT.json",
-    "current_sha256": "sha256:196dab3f9aff1b8c0cc118c03dd1c4a70629f118017ebd79e3aea5fbd1d36b8b",
+    "current_sha256": "sha256:d1a42185eae6a2a9db5c9172aa829e6385800111bed652d331f061f998a3f827",
     "manifest_path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/manifest.json"
   },
   "dispatch_authority": false,
@@ -24,15 +24,22 @@
     "mcp_structural": "PASS",
     "runtime_pr": 386,
     "runtime_head": "c2bfa038121782a3ae903591981a0b05f52a7b38",
-    "runtime_semantic": "REPAIR08_NATIVE_RUNNING",
+    "runtime_semantic": "KNOWN_FINDINGS07_08_CLOSED_SOURCE_BINDING_ONLY_PASS_CROSS_MATRIX_PERMISSION_PARKED",
     "ads_pr": 89,
     "ads_head": "2c1021758d8b5ecbc3a126ad4a54b16cda1eac0b",
     "ads_repaired_local_tree": "48b63a49656be8fd45cc05d8e6c02a026f3d775c",
     "ads_local": "TYPECHECK_AND_48_PASS_PUBLICATION_CAS_ROUTE_PARKED",
-    "live": "NOT_ACCEPTED"
+    "live": "NOT_ACCEPTED",
+    "runtime_local_tree": "18bef45e79a61f83a0cf4758d9f2f246c1524e01",
+    "runtime_regression": "26_CORE_AND140_SUPERVISOR_LOCAL_PASS",
+    "ads_provider_source_object": "ab136aacd4cae67ffc3784f08da3d4a791238080",
+    "ads_publication": "SAME_PR_BRANCH_CAS_ROUTE_PARKED",
+    "readonly_shadow": "FULL59_FRESH_COMPLETE_JOURNAL_AND_SEPARATE_PROCESS_RESTORE_LOCAL_PASS",
+    "f01_source": "ACTUAL_LUNA_FILE_CHANGES_WORKER12_AND123_TESTS_REVIEW_PENDING",
+    "t01": "EXACT_NATIVE_PERMISSION_DENIAL_PARKED_NO_GLOBAL_STOP"
   },
   "root_role": "INDEPENDENT_AUDIT_PLAN_DISPATCH_COLLECTION_ARBITRATION_NO_PRODUCT_CODE",
   "model_lock_path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/MODEL-LOCK-20261004.json",
   "historical_progress_head": "5f0afa8db7b981234370024359c6061c202d4f72",
-  "active_manifest_policy": "CURRENT_DECISION_PROJECTIONS_ONLY_21_FILES_MAX40_NO_HISTORY_REEXECUTION"
+  "active_manifest_policy": "CURRENT_DECISION_PROJECTIONS_ONLY_27_FILES_MAX40_NO_HISTORY_REEXECUTION"
 }
