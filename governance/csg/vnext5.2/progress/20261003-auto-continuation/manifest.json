@@ -3,11 +3,11 @@
   "files": [
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/CURRENT.json",
-      "sha256": "sha256:baeb11110b2e01dc6d9177e18967286bf14ad25ff796ac7ad7eb37286f2583a8"
+      "sha256": "sha256:ea33d7112388637fd3d8a8ec31453cabb2a2a66020d1a8ece7bd60d9d42329b6"
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/dispatch.json",
-      "sha256": "sha256:2341d637c403170221a9d63c55358c883ceede9b2305e033e190b6d01c06ca65"
+      "sha256": "sha256:1abd5624565a815fd996b9629486695bd389e68c8c70d6338fc3c825e6cd808a"
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/CONTINUATION-CONTRACT.md",
@@ -15,11 +15,11 @@
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/ARBITRATION-AND-THREE-WORKERS.md",
-      "sha256": "sha256:82b9ef474aa28808d7ccbc1fd5d97fd8ad544c51691ceb2659240ee91d6f96d8"
+      "sha256": "sha256:3210965a6dd27b36845985a84943e38e5d4a9f94f9e7f1d69d26937fe3689a12"
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/goal-readback.json",
-      "sha256": "sha256:768599b19c1e8b6b06e36b5e77e5b31b991556b1f72f4ce79440df6bb99a33df"
+      "sha256": "sha256:7c55a514f146f2462cf04b3cf30806a5afad2a522f7f9068f3b455b95b1a0b68"
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/collection.json",
@@ -27,15 +27,15 @@
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/fresh-provider.json",
-      "sha256": "sha256:a06cef59803845c50a9875404cfdab462dd1ef6c9661100374b79b01e9113e5a"
+      "sha256": "sha256:2f5466e9bf30c54b5dd467af879694a52ae6b97a8c81643e159d33cebcc2f016"
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/operation-facts.json",
-      "sha256": "sha256:4d9c69bb8548e2f921c5858109deffcefc1cc0bc86cefb17d8a347c6044bac8a"
+      "sha256": "sha256:e10a92d1f9ecb0c7a594fa2f10e84199125e7aab363510465b6dfc8d2c3987da"
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/ready-queue.json",
-      "sha256": "sha256:da7090c5f8b66bd830e0b7f9280677dfb7570ca2ac2cfa41dbdca8810741f53e"
+      "sha256": "sha256:5a4985fa43a4eccf3c65fefee8d4574ba0a9cd6e20fc6c83f7a44af019eadd39"
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/reviews/mcp/review-pr385.json",
@@ -91,15 +91,35 @@
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/opencode-mcp-rework-intent.json",
-      "sha256": "sha256:6c1ef23058c0d54815504ce8c174f02f4e6af9ec60896561a3ff4fbf23e20875"
+      "sha256": "sha256:c8869d9cf604572855c5421db011f00f3acbccb39a79fcc3e9dfdbddb8426e71"
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/native-session-readback.json",
-      "sha256": "sha256:dda804a5177f8ad466d9ecf74fa88bec8f20d5f1612efe21b9aad03f786338a7"
+      "sha256": "sha256:5408caf32075412cf1e9684976239d6d6482bea69c416d94372f5c8bbba95b21"
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/MCP-REWORK-ATTEMPT2.md",
       "sha256": "sha256:d0585f2d7c82a134860a47b719760bccb0d845adfea7f16fd4ffd342990700d4"
+    },
+    {
+      "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/antigravity-sads-admission-readback.json",
+      "sha256": "sha256:d59e6f1ba9a2a25791d3285135c426f0cdd5de77b598f1056cbd320076b9c516"
+    },
+    {
+      "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/reviews/runtime/repair-collection.json",
+      "sha256": "sha256:73467b95449869134c1770af4169b41cb68f04059d2d9faf25b9a9a0d0102e85"
+    },
+    {
+      "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/opencode-mcp-rework3-intent.json",
+      "sha256": "sha256:7cc41375037f7fecf5d57f6febcac598c2ff831ac2154c1efeca25a1b8693a21"
+    },
+    {
+      "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/MCP-REWORK-ATTEMPT3.md",
+      "sha256": "sha256:f81d0889f3160352f36d6e17ef08e65e4006ad2fab3bf9466871c7c887b82f28"
+    },
+    {
+      "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/F01-PREFLIGHT-RECEIPT.json",
+      "sha256": "sha256:edac8baec84b247b9faf45078a2bbd3052ff9fef66811177daca3ab57ac4561c"
     }
   ]
 }

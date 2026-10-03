@@ -1,0 +1,45 @@
+{
+  "schema": "vnext5.2.independent-repair-collection.v1",
+  "observed_at": "2026-10-03T12:50:54.307Z",
+  "reviewer": "root",
+  "producer": "CODEX_LUNA_MAX_EXISTING_THREAD",
+  "base": "c2bfa038121782a3ae903591981a0b05f52a7b38",
+  "source_tree": "d2afc4114eb867685aff0d94231e8551c6bf4ba3",
+  "source_commit": null,
+  "patch_sha256": "sha256:65ad33860a3c448c28c9c9f196dc26b740b0b75e2f3fbbcb6e1ab7ab7bf07ac9",
+  "write_set": "PASS",
+  "exact_payloads": 18,
+  "worker_test_log_digest": "PASS",
+  "root_local_regression": {
+    "pass": 137,
+    "fail": 0,
+    "exit": 0,
+    "log_sha256": "sha256:16b622c823d3174d44ad30bed07cfade468623bb3840fce019d908415effb459"
+  },
+  "original_findings": "SIX_SOURCE_FIXES_PRESENT_LOCAL_REGRESSIONS_PASS",
+  "semantic": "FINDINGS_PACKAGING_DEPENDENCY_COVERAGE_REQUIRES_REWORK",
+  "findings": [
+    {
+      "id": "R386-REPAIR-07",
+      "priority": "P1",
+      "file": "tools/csg/v51-supervisor/windows/register-supervisor-task.ps1",
+      "title": "Only three package entries verified before scheduled-task admission",
+      "evidence": "requiredPaths checks runtime/node.exe, bin/host-supervisor.mjs and task profile only; every other manifest entry is parsed but its bytes/ACL are not verified",
+      "consequence": "Imported lib modules, operation catalogs and package.json can differ from approved package while registration accepts the three top-level hashes",
+      "required": "Before task mutation verify complete qualified dependency closure, hashes and ACL/reparse boundaries; missing/extra/tampered dependency must fail before Get/Register-ScheduledTask. Pure/static regression only; do not install."
+    }
+  ],
+  "source_binding": "LOCAL_PATCH_TREE_ONLY_FINAL_PROVIDER_HEAD_REVIEW_REQUIRED",
+  "independent_protected_verifier": "NOT_EXECUTED",
+  "live_acceptance": "NOT_ACCEPTED",
+  "system_acceptance": "NOT_ACCEPTED",
+  "actual_side_effects": [
+    "READ_LOCAL_SOURCE",
+    "LOCAL_TEST",
+    "LOCAL_REVIEW_RECEIPT"
+  ],
+  "host_dispatch": false,
+  "canonical_write": false,
+  "production": false,
+  "mission_complete": false
+}

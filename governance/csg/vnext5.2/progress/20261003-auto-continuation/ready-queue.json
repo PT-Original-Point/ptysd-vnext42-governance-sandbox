@@ -3,7 +3,7 @@
   "mode": "SHADOW_PLAN_ONLY",
   "facts_schema": "vnext5.2.operation-facts.v1",
   "catalog_sha256": "sha256:ee769422b5d587e771d09c4e95af1af9a3a7cf0a7c0e493d86071e2df57304de",
-  "facts_sha256": "sha256:d7566972a93df7abd3c8f7c25a647dd8e789628c0edd9ae2b173d4270b17fa3b",
+  "facts_sha256": "sha256:1c199f2d93ef8b8a9458c8a270ae1014c36500dc46f8463d4aadd434b44c05f9",
   "facts_fresh": true,
   "input_completeness": "COMPLETE",
   "input_reasons": [],
@@ -130,13 +130,13 @@
     "X01.ACCEPT"
   ],
   "ready_ids": [
-    "F01.PREFLIGHT",
     "C1.PREPARE",
     "C2.PREFLIGHT",
-    "T01.BASELINE"
+    "T01.BASELINE",
+    "F01.ADAPTER_SOURCE"
   ],
   "planned_decision": "CONTINUE_READY",
-  "planned_unit": "F01.PREFLIGHT",
+  "planned_unit": "C1.PREPARE",
   "queue_scope": "FULL_CATALOG",
   "queue_unit_count": 59,
   "full_union_count": 59,
@@ -676,7 +676,7 @@
     },
     {
       "id": "F01.PREFLIGHT",
-      "state": "READY",
+      "state": "DONE",
       "priority": 4,
       "mandatory": true,
       "effect_class": "READ_ONLY",
@@ -686,14 +686,14 @@
       "completion_dependencies": [],
       "start_blockers": [],
       "completion_blockers": [],
-      "reason": null,
+      "reason": "CLI_METADATA_AUDIT_COMPLETE_ISOLATED_EXECUTION_NOT_ACCEPTED",
       "execution_scope": "SHADOW_PLAN_ONLY",
       "effects": [],
       "plan_only": true
     },
     {
       "id": "F01.ADAPTER_SOURCE",
-      "state": "WAITING_EXTERNAL",
+      "state": "READY",
       "priority": 18,
       "mandatory": true,
       "effect_class": "CANDIDATE_SOURCE",
@@ -701,11 +701,9 @@
         "F01.PREFLIGHT"
       ],
       "completion_dependencies": [],
-      "start_blockers": [
-        "F01.PREFLIGHT"
-      ],
+      "start_blockers": [],
       "completion_blockers": [],
-      "reason": "START_DEPENDENCIES_NOT_ACCEPTED",
+      "reason": null,
       "execution_scope": "SHADOW_PLAN_ONLY",
       "effects": [],
       "plan_only": true
@@ -723,7 +721,6 @@
       ],
       "completion_dependencies": [],
       "start_blockers": [
-        "F01.PREFLIGHT",
         "F01.ADAPTER_SOURCE",
         "P52.NATIVE_ROUTE_DISCOVERY"
       ],
@@ -747,7 +744,6 @@
       ],
       "completion_dependencies": [],
       "start_blockers": [
-        "F01.PREFLIGHT",
         "F01.ADAPTER_SOURCE",
         "F01.CELL_PREPARE",
         "P52.NATIVE_ROUTE_DISCOVERY"

@@ -1,0 +1,17 @@
+# Exact MCP rework 3 — do not repeat finished edits
+
+Human authorizes source repair. Root is auditor; OpenCode is worker. Previous exact Session interrupted and confirmed idle; preserve its 14 partial source paths. Root independently ran current npm test: official inspector PASS and 54/54 tests PASS. This local pass is not semantic/live/install acceptance.
+
+Worktree: VNEXT5.2-MCP-SEMANTIC-REPAIR-WORK-20261003. Only tools/csg/factory-mcp/** and outputs/S-MCP-SEMANTIC-REPAIR/**. Existing native free model/account only. Do not read outside worktree, switch accounts, buy credits, use bypass, push/commit, install or invoke SYSTEM broker.
+
+Do only the following concrete fixes, regression, package hashes and result. No unrelated cleanup, no rereading whole history:
+
+1. src/shared-context.mjs expects vnext5.2.progress-artifact-manifest.v1, but actual root publisher uses vnext5.2.progress-manifest.v1. Current live latest branch is codex/vnext5.2-construction-latest, locator governance/csg/vnext5.2/progress/CURRENT.json. Fix consumer to actual published contract; do not modify publisher to paper over mismatch. Current progress CURRENT schema construction-progress.v2 has top-level valid_until, columns, ready_ids, running_ids, goal, reviews, dispatch_path; not current.queue.valid_until. Fixture must reproduce REAL producer schema/shape. Keep exact digest/ref checks, bounded reads, no authority.
+
+2. Progress result must make current construction/canonical/installed columns and bounded READY/RUNNING/review/worker-state summary consumable, rather than merely heads/digest/count with no latest work state. Never expose raw scripts, credentials, tool messages, arbitrary paths or mutation authority. Manifest must be nonempty, no duplicate paths, exact CURRENT entry digest covered, <=40 entries. Project failure remains scoped, historical shared source remains explicitly historical. Freshness false or unknown cannot grant dispatch.
+
+3. broker/hostguard-broker.ps1 Process-Request currently labels non-RECEIPT exceptions NO_EFFECT_OR_RECEIPT_NOT_STARTED. An exception from Invoke-PTYSDHostPowerShellExec after process start/WaitForExit can be an unknown effect despite not having RECEIPT_ prefix. Preserve durable intent; maintain explicit execution phase or wrap post-launch exceptions so all post-effect ambiguous outcomes report UNKNOWN_EFFECT_READBACK_REQUIRED, never false no-effect/no replay. Keep true input/Production/ACL denials before effect as no effect. Pure tests/AST isolated functions only; no broker host dispatch.
+
+4. helper bounded test currently takes ~30sec despite 10sec capture limit because descendant survives; root observed capture_outcome incomplete, not full-stream hash. Keep bounded capture and unknown cleanup. Add test continuously writing descendant (deadline every iteration), and pipe read fault complete flag must use done AND not faulted. Receipt/result must accurately say hashes/counts represent captured bytes when incomplete.
+
+Run npm test once after fixes, save exact log. Update repair-manifest payload bytes and trust pin once to final stable bytes. Produce result.json, binary source.patch including new tests, actual raw SHA256+Git blobs/source tree with base da8e1a767d54e67ba7bb15d7d35e9ae535e50034, no author invention. Capture findings closed and remaining gate. Bound this task ten minutes; if unable finish persist partial result with exact next fix BEFORE exiting. Never spend all time rereading/exporting; never declare Mission completed.

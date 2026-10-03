@@ -1,0 +1,20 @@
+{
+  "schema": "vnext5.2.native-admission-readback.v1",
+  "observed_at": "2026-10-03T12:52:10.5804102Z",
+  "conversation_id": "87630a5f-9aae-4f2e-af9a-6a0718b52ee8",
+  "status": "PARKED_HEADLESS_COMMAND_ADMISSION",
+  "process_exit": 0,
+  "envelope_status": "SUCCESS",
+  "response_empty": true,
+  "denied_actions": [
+    "command"
+  ],
+  "denied_exact_command": "git rev-parse HEAD; git status --short",
+  "actual_source_work_accepted": false,
+  "host_dispatch": false,
+  "canonical_write": false,
+  "production": false,
+  "recovery": "LUNA_SCOPED_NATIVE_PERMISSION_RULE_REPAIR_ACTIVE",
+  "reentry": "Fresh native exact command successful admission, then resume same conversation; no global permission bypass",
+  "global_blocker": false
+}

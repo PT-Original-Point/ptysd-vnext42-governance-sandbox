@@ -7,7 +7,7 @@ Human 2026-10-03最新明示：root不直接施工產品code，負責獨立audit
 | root | 稽核、切片、優先度、回收、仲裁 | 計劃/操作收據/索引；不產品code | 本thread與原生heartbeat |
 | Codex Luna Max | S-RUNTIME-SEMANTIC-REPAIR；依READY續做Supervisor | 專用runtime worktree tools/csg/v51-supervisor/** | 既有thread 01a0fd19-df99-7013-8a8b-eb952c647e3d 已收到新派工且active |
 | OpenCode | S-MCP-SEMANTIC-REPAIR；其後intake候選接手 | 專用MCP worktree tools/csg/factory-mcp/** | 真Session ses_efe606f6cffeBxLiIedexWKrH5 已提交；沿用free model |
-| Antigravity | S-ADS與廣告日期範圍唯讀recovery | S-ADS隔離worktree既定6 paths | CLI尚缺，bootstrap由OpenCode原生Session ses_efe5a0099ffeieQJn8IEJ3t8lq施工準備；不能宣稱Antigravity已啟動 |
+| Antigravity | S-ADS與廣告日期範圍唯讀recovery | S-ADS隔離worktree既定6 paths | 官方 CLI1.2.16與saved account可用；真conversation 87630a5f-9aae-4f2e-af9a-6a0718b52ee8 已啟動但首輪headless command admission被自動拒絕，未產出施工成果；Luna修最小scoped allow後續接同conversation |
 
 bootstrap只安裝Google官方user CLI與資格確認；沿用native keyring，無credentials extraction、無API key/付費fallback。需要OAuth/MFA時精確park身份操作並繼續其他施工，不能偽造登入或讓Human搬完整工程包。
 
@@ -16,3 +16,6 @@ bootstrap只安裝Google官方user CLI與資格確認；沿用native keyring，�
 回收流程：native worker status→exact result/source tree/patch/write-set→root獨立稽核→finding返工或接受source lane→本輪優先READY→自動再派。root不以自己補code再自己review取代獨立施工。Final merge/live/system acceptance各有對應證據。
 
 Mission未完成；CP200 canonical未動。使用者保留真正Production與身份/成本/重大不可逆gate；施工scope不追加perSession人工確認。
+
+12:50Z獨立回收：Luna runtime18 payload/patch exact bytes核對與root137/137 tests PASS，但installer dependency closure僅核三入口，R386-REPAIR-07已派Luna返工。Source未接受，沒有安裝或survival PASS。
+Antigravity exit0/SUCCESS+空response+denied_actions不能視為任務成功；官方permissions.allow scoped admission修正，禁止global wildcard或dangerously-skip-permissions。

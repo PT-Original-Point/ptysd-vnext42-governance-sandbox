@@ -1,6 +1,6 @@
 {
   "schema": "vnext5.2.coordinator-dispatch.v1",
-  "observed_at": "2026-10-03T12:37:55.332Z",
+  "observed_at": "2026-10-03T12:59:51.215Z",
   "single_integrator": "root",
   "tasks": [
     {
@@ -13,11 +13,11 @@
         "tools/csg/factory-mcp/**"
       ],
       "status": "SUBMITTED_OUTCOME_PENDING",
-      "attempt": 2,
+      "attempt": 3,
       "prior_cancel": "INTERRUPTED_EXACT_SESSION_READBACK_CONFIRMED",
-      "rework": "PIPE_DRAIN_BEFORE_WAIT_AND_UNCONDITIONAL_DEADLINE_CHECK",
+      "rework": "ACTUAL_PUBLISHED_MANIFEST_SCHEMA_FRESHNESS_AND_POST_EFFECT_UNKNOWN_HANDLING",
       "result_path": "outputs/S-MCP-SEMANTIC-REPAIR/result.json",
-      "dispatch_source": "routes/opencode-mcp-rework-intent.json"
+      "dispatch_source": "routes/opencode-mcp-rework3-intent.json"
     },
     {
       "id": "S-RUNTIME-SEMANTIC-REPAIR",
@@ -35,13 +35,27 @@
     {
       "id": "S-ADS",
       "route": "ANTIGRAVITY_NATIVE_CLI",
-      "status": "PROCESS_EXITED_RECEIPT_VERIFICATION_REQUIRED",
+      "status": "PARKED_HEADLESS_COMMAND_ADMISSION",
       "conversation_id": "87630a5f-9aae-4f2e-af9a-6a0718b52ee8",
       "version": "1.2.16",
       "model": "gemini-3.8-flash-high",
       "worktree": "VNEXT5.2-S-ADS-ANTIGRAVITY-WORK-20261003",
       "result_path": "outputs/S-ADS/result.json",
-      "dispatch_source": "routes/antigravity-sads-intent.json"
+      "dispatch_source": "routes/antigravity-sads-intent.json",
+      "admission_readback": "routes/antigravity-sads-admission-readback.json",
+      "recovery": "CODEX_LUNA_NATIVE_SCOPED_PERMISSION_REPAIR_IN_PROGRESS_NO_GLOBAL_BYPASS"
+    },
+    {
+      "id": "S-RUNTIME-PACKAGING-REWORK",
+      "route": "CODEX_EXISTING_THREAD",
+      "thread": "01a0fd19-df99-7013-8a8b-eb952c647e3d",
+      "status": "QUEUED_AFTER_NATIVE_PERMISSION_REPAIR",
+      "finding": "R386-REPAIR-07",
+      "source_tree": "d2afc4114eb867685aff0d94231e8551c6bf4ba3",
+      "review": "reviews/runtime/repair-collection.json",
+      "write_set": [
+        "tools/csg/v51-supervisor/**"
+      ]
     },
     {
       "id": "P52.NATIVE_ROUTE_DISCOVERY",

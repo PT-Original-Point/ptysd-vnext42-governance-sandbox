@@ -1,0 +1,52 @@
+{
+  "schema": "vnext5.2.f01-preflight-audit.v1",
+  "operation": "F01.PREFLIGHT",
+  "observed_at_utc": "2026-10-03T12:57:59.251Z",
+  "producer": "root_independent_audit",
+  "status": "PREFLIGHT_METADATA_COMPLETE",
+  "scope": "CLI_CHANNEL_ENTITLEMENT_AND_ISOLATION_OBSERVABILITY_ONLY",
+  "native_versions": {
+    "opencode": "opencode v2.0.22",
+    "antigravity": "1.2.16"
+  },
+  "source_routes": {
+    "codex": {
+      "thread": "01a0fd19-df99-7013-8a8b-eb952c647e3d",
+      "route": "NATIVE_APP_THREAD",
+      "readback": "ACTIVE"
+    },
+    "opencode": {
+      "session": "ses_efe606f6cffeBxLiIedexWKrH5",
+      "attempt": 3,
+      "status": "SUBMITTED_OUTCOME_PENDING",
+      "cost_model": "EXISTING_FREE_MODEL",
+      "previous_cancellation": "interrupted"
+    },
+    "antigravity": {
+      "conversation": "87630a5f-9aae-4f2e-af9a-6a0718b52ee8",
+      "saved_login": "NATIVE_MODELS_AND_INIT_OBSERVED",
+      "current_gate": "HEADLESS_EXACT_COMMAND_ADMISSION_SOURCE_REPAIR_RUNNING"
+    }
+  },
+  "isolation": {
+    "worktree_is_os_sandbox": false,
+    "required": "HYPERV_UBUNTU_ISOLATED_WORKTREE",
+    "actual_cell_identity": "NOT_OBSERVED",
+    "privileged_preparation_invoked": false,
+    "execution_acceptance": "NOT_ACCEPTED"
+  },
+  "scoped_blocker": {
+    "operation": "F01.ISOLATED_EXECUTION",
+    "reason": "NO_EXACT_OS_CELL_PROVIDER_ROUTE_AND_CAPACITY_RELEASE_RECEIPT",
+    "reentry": "Qualify actual cell identity, filesystem/network boundary, native task start/read/cancel and trusted receipt; inherited exact gates apply only to those effects"
+  },
+  "no_global_blocker": true,
+  "source_construction_requires_mcp": false,
+  "source_construction_requires_system": false,
+  "host_dispatch": false,
+  "host_mutation": false,
+  "canonical_write": false,
+  "production": false,
+  "mission_complete": false,
+  "antigravity_binary_sha512": "796d9a15983bedb7db7f517d94d35a9aca93b54f4c6e14dd4ce26d5d56ee9924f96ac42f184a8ab3dfca36a3140c9a60fa3697c363fd847d3f4d32340664f7e9"
+}
