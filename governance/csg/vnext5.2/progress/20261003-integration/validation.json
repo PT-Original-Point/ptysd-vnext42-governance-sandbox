@@ -1,0 +1,66 @@
+[
+  {
+    "id": "mcp-inspector",
+    "observed_at": "2026-10-03T10:18:47.325Z",
+    "exit_code": 0,
+    "error": null,
+    "summary": []
+  },
+  {
+    "id": "mcp-suite",
+    "observed_at": "2026-10-03T10:18:55.915Z",
+    "exit_code": 0,
+    "error": null,
+    "summary": [
+      "ℹ tests 48",
+      "ℹ pass 48",
+      "ℹ fail 0",
+      "ℹ skipped 0"
+    ]
+  },
+  {
+    "id": "runtime-shadow",
+    "observed_at": "2026-10-03T10:18:56.359Z",
+    "exit_code": 0,
+    "error": null,
+    "summary": [
+      "ℹ tests 123",
+      "ℹ pass 123",
+      "ℹ fail 0",
+      "ℹ skipped 0"
+    ]
+  },
+  {
+    "id": "runtime-core",
+    "observed_at": "2026-10-03T10:18:57.528Z",
+    "exit_code": 0,
+    "error": null,
+    "summary": [
+      "ℹ tests 26",
+      "ℹ pass 26",
+      "ℹ fail 0",
+      "ℹ skipped 0"
+    ]
+  },
+  {
+    "id": "runtime-cross-fail-closed",
+    "observed_at": "2026-10-03T10:18:59.522Z",
+    "exit_code": 0,
+    "error": null,
+    "summary": []
+  },
+  {
+    "id": "runtime-cross-positive",
+    "observed_at": "2026-10-03T10:19:01.859Z",
+    "exit_code": 0,
+    "error": null,
+    "summary": []
+  },
+  {
+    "id": "runtime-source-authority",
+    "observed_at": "2026-10-03T10:19:01.917Z",
+    "exit_code": 0,
+    "error": null,
+    "summary": []
+  }
+]

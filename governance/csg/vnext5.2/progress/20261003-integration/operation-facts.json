@@ -1,0 +1,454 @@
+{
+  "schema": "vnext5.2.operation-facts.v1",
+  "catalog_sha256": "sha256:ee769422b5d587e771d09c4e95af1af9a3a7cf0a7c0e493d86071e2df57304de",
+  "captured_at_utc": "2026-10-03T10:27:12.063Z",
+  "freshness": {
+    "max_age_seconds": 900,
+    "max_future_skew_seconds": 60
+  },
+  "source_inventory": {
+    "ref": "integration-evidence:receipt-inventory.json",
+    "sha256": "sha256:3e97b970c40c3621caaf928ffe3d22d33c5fb6f82ab7405e5ea921c7ced53080",
+    "observed_at_utc": "2026-10-03T10:27:12.063Z"
+  },
+  "canonical_binding": {
+    "control_ref": "refs/heads/v45/factory-control",
+    "control_head": "d39486601d851e31256852a24e9c1393b9046fe5",
+    "checkpoint_seq": 200,
+    "checkpoint_digest": "sha256:2cd708bb96179b7ef416ab5a7616f7dff50030567f56d7506a7182f6ceda600d"
+  },
+  "units": [
+    {
+      "id": "B00.RECOVER",
+      "state": "DONE",
+      "authorization_state": "AUTHORIZED",
+      "evidence": [
+        {
+          "ref": "integration-evidence:fresh-shared-readback.json",
+          "sha256": "sha256:05cf42a955011d83461eb426debd3c762d9cc43753b0c35f2a635e62c6015512",
+          "observed_at_utc": "2026-10-03T10:27:12.063Z"
+        }
+      ],
+      "evidence_class": "FRESH_CANONICAL_READBACK"
+    },
+    {
+      "id": "B01.OPERATIONS",
+      "state": "DONE",
+      "authorization_state": "AUTHORIZED",
+      "evidence": [
+        {
+          "ref": "integration-evidence:runtime-final.json",
+          "sha256": "sha256:4ff490c780041e7044d349d0a2572c69d59168a5f006285855a39b1e9f4a54cf",
+          "observed_at_utc": "2026-10-03T10:27:12.063Z"
+        }
+      ],
+      "evidence_class": "SOURCE_CATALOG_QUALIFIED"
+    },
+    {
+      "id": "B01.PUBLISH",
+      "state": "NOT_STARTED",
+      "authorization_state": "EXACT_PRESTATE_REQUIRED",
+      "evidence": []
+    },
+    {
+      "id": "C1.PREPARE",
+      "state": "NOT_STARTED",
+      "authorization_state": "AUTHORIZED",
+      "evidence": []
+    },
+    {
+      "id": "C1.QUALIFY",
+      "state": "NOT_STARTED",
+      "authorization_state": "EXACT_PRESTATE_REQUIRED",
+      "evidence": []
+    },
+    {
+      "id": "C1.SELECT",
+      "state": "NOT_STARTED",
+      "authorization_state": "EXACT_PRESTATE_REQUIRED",
+      "evidence": []
+    },
+    {
+      "id": "C2.PREFLIGHT",
+      "state": "NOT_STARTED",
+      "authorization_state": "AUTHORIZED",
+      "evidence": []
+    },
+    {
+      "id": "C2.FENCE_SOURCE",
+      "state": "NOT_STARTED",
+      "authorization_state": "AUTHORIZED",
+      "evidence": []
+    },
+    {
+      "id": "C2.QUARANTINE",
+      "state": "NOT_STARTED",
+      "authorization_state": "EXACT_PRESTATE_REQUIRED",
+      "evidence": []
+    },
+    {
+      "id": "M01.SOURCE",
+      "state": "DONE",
+      "authorization_state": "AUTHORIZED",
+      "evidence": [
+        {
+          "ref": "integration-evidence:mcp-final.json",
+          "sha256": "sha256:792f301085422f6e679287adaa279c8aa627475f9faff544cac4863de8208165",
+          "observed_at_utc": "2026-10-03T10:27:12.063Z"
+        }
+      ],
+      "evidence_class": "LOCAL_SOURCE_QUALIFIED"
+    },
+    {
+      "id": "M02.LOCAL_CANARY",
+      "state": "DONE",
+      "authorization_state": "AUTHORIZED",
+      "evidence": [
+        {
+          "ref": "integration-evidence:mcp-suite.log",
+          "sha256": "sha256:bcce013506cf64d4f2d09d5ea18e1ba0b2defcaec4dabf40810de2726b9bab22",
+          "observed_at_utc": "2026-10-03T10:27:12.063Z"
+        }
+      ],
+      "evidence_class": "LOCAL_TEST_PASS"
+    },
+    {
+      "id": "M03.FINAL_SOURCE",
+      "state": "DONE",
+      "authorization_state": "AUTHORIZED",
+      "evidence": [
+        {
+          "ref": "integration-evidence:mcp-provider.json",
+          "sha256": "sha256:7379161a5e49261e9f3c457925e6e1a3ba7bae0c8f669c625546a33b271afbbd",
+          "observed_at_utc": "2026-10-03T10:27:12.063Z"
+        }
+      ],
+      "evidence_class": "FROZEN_SOURCE_CANDIDATE"
+    },
+    {
+      "id": "M03.STRUCTURAL",
+      "state": "DONE",
+      "authorization_state": "EXACT_PRESTATE_REQUIRED",
+      "evidence": [
+        {
+          "ref": "integration-evidence:mcp-provider.json",
+          "sha256": "sha256:7379161a5e49261e9f3c457925e6e1a3ba7bae0c8f669c625546a33b271afbbd",
+          "observed_at_utc": "2026-10-03T10:27:12.063Z"
+        }
+      ],
+      "evidence_class": "STRUCTURAL_VERIFIER_PASS"
+    },
+    {
+      "id": "M03.SEMANTIC",
+      "state": "WAITING_REVIEW",
+      "authorization_state": "AUTHORIZED",
+      "evidence": [],
+      "reason": "EXACT_PR385_INDEPENDENT_REVIEW_PENDING"
+    },
+    {
+      "id": "M04.INSTALL_PREPARE",
+      "state": "NOT_STARTED",
+      "authorization_state": "AUTHORIZED",
+      "evidence": []
+    },
+    {
+      "id": "M04.LIVE_INSTALL",
+      "state": "WAITING_EXTERNAL",
+      "authorization_state": "EXACT_PRESTATE_REQUIRED",
+      "evidence": [],
+      "reason": "EXACT_CALLER_HOST_INSTALL_SCOPE_AND_SEMANTIC_PRESTATE_REQUIRED"
+    },
+    {
+      "id": "M05.LIVE_HEALTH",
+      "state": "NOT_STARTED",
+      "authorization_state": "AUTHORIZED",
+      "evidence": []
+    },
+    {
+      "id": "A00.ADMISSION",
+      "state": "WAITING_EXTERNAL",
+      "authorization_state": "AUTHORIZED",
+      "evidence": [],
+      "reason": "S_ADS_RESULT_NOT_YET_RECEIVED;REUSE_EXISTING_DATE_SCOPED_GRANT"
+    },
+    {
+      "id": "A00.SOURCE_BOUNDS",
+      "state": "NOT_STARTED",
+      "authorization_state": "AUTHORIZED",
+      "evidence": []
+    },
+    {
+      "id": "A01.READ_PREPARE",
+      "state": "NOT_STARTED",
+      "authorization_state": "AUTHORIZED",
+      "evidence": []
+    },
+    {
+      "id": "A01.LIVE_READ",
+      "state": "NOT_STARTED",
+      "authorization_state": "EXACT_PRESTATE_REQUIRED",
+      "evidence": []
+    },
+    {
+      "id": "A02.READ_PREPARE",
+      "state": "NOT_STARTED",
+      "authorization_state": "AUTHORIZED",
+      "evidence": []
+    },
+    {
+      "id": "A02.LIVE_READ",
+      "state": "NOT_STARTED",
+      "authorization_state": "EXACT_PRESTATE_REQUIRED",
+      "evidence": []
+    },
+    {
+      "id": "A03.OPTIONAL_WIF",
+      "state": "NOT_STARTED",
+      "authorization_state": "EXACT_PRESTATE_REQUIRED",
+      "evidence": []
+    },
+    {
+      "id": "A04.RECONCILE",
+      "state": "NOT_STARTED",
+      "authorization_state": "EXACT_PRESTATE_REQUIRED",
+      "evidence": []
+    },
+    {
+      "id": "A05.RETIRE_PREPARE",
+      "state": "NOT_STARTED",
+      "authorization_state": "AUTHORIZED",
+      "evidence": []
+    },
+    {
+      "id": "A05.RETIRE",
+      "state": "NOT_STARTED",
+      "authorization_state": "EXACT_PRESTATE_REQUIRED",
+      "evidence": []
+    },
+    {
+      "id": "D01.DECISION",
+      "state": "DONE",
+      "authorization_state": "AUTHORIZED",
+      "evidence": [
+        {
+          "ref": "integration-evidence:prior-runtime-decision.md",
+          "sha256": "sha256:ff0f69b449fcd586d37c16a11ab14ed38a4cda39b4200a4af0d06cde81b2d123",
+          "observed_at_utc": "2026-10-03T10:27:12.063Z"
+        }
+      ],
+      "evidence_class": "BOUNDED_FALLBACK_DECISION_ONLY"
+    },
+    {
+      "id": "F01.PREFLIGHT",
+      "state": "NOT_STARTED",
+      "authorization_state": "AUTHORIZED",
+      "evidence": []
+    },
+    {
+      "id": "F01.ADAPTER_SOURCE",
+      "state": "NOT_STARTED",
+      "authorization_state": "AUTHORIZED",
+      "evidence": []
+    },
+    {
+      "id": "F01.CELL_PREPARE",
+      "state": "WAITING_EXTERNAL",
+      "authorization_state": "EXACT_PRESTATE_REQUIRED",
+      "evidence": [],
+      "reason": "ISOLATED_ROUTE_NOT_PROVEN;NATIVE_GET_VM_ACCESS_DENIED"
+    },
+    {
+      "id": "F01.ISOLATED_EXECUTION",
+      "state": "WAITING_EXTERNAL",
+      "authorization_state": "EXACT_PRESTATE_REQUIRED",
+      "evidence": [],
+      "reason": "TRUSTED_TASK_CANCEL_RECEIPT_AND_SANDBOX_PROOF_NOT_OBSERVED"
+    },
+    {
+      "id": "D02.SOURCE",
+      "state": "DONE",
+      "authorization_state": "AUTHORIZED",
+      "evidence": [
+        {
+          "ref": "integration-evidence:runtime-final.json",
+          "sha256": "sha256:4ff490c780041e7044d349d0a2572c69d59168a5f006285855a39b1e9f4a54cf",
+          "observed_at_utc": "2026-10-03T10:27:12.063Z"
+        }
+      ],
+      "evidence_class": "LOCAL_SOURCE_QUALIFIED"
+    },
+    {
+      "id": "D02.PLAN_SHADOW",
+      "state": "DONE",
+      "authorization_state": "AUTHORIZED",
+      "evidence": [
+        {
+          "ref": "integration-evidence:shadow-readback.json",
+          "sha256": "sha256:2cbe99dd0601463f4f19ce2e5b66d6f949e54e8f8bcde1cbb63839741e26d468",
+          "observed_at_utc": "2026-10-03T10:27:12.063Z"
+        }
+      ],
+      "evidence_class": "REAL_PROVIDER_READ_ONLY_SHADOW_NOT_EXECUTOR_ACCEPTANCE"
+    },
+    {
+      "id": "D02.LOCAL_RESTORE",
+      "state": "DONE",
+      "authorization_state": "AUTHORIZED",
+      "evidence": [
+        {
+          "ref": "integration-evidence:runtime-shadow.log",
+          "sha256": "sha256:1143144aceefffc317fb3465d7f7f1acafe48a3ad8073adf0baf79779375053d",
+          "observed_at_utc": "2026-10-03T10:27:12.063Z"
+        }
+      ],
+      "evidence_class": "LOCAL_TEST_PASS_NOT_REBOOT_PROOF"
+    },
+    {
+      "id": "D02.EXECUTOR_INTEGRATION",
+      "state": "NOT_STARTED",
+      "authorization_state": "EXACT_PRESTATE_REQUIRED",
+      "evidence": []
+    },
+    {
+      "id": "D03.BUNDLE_PREPARE",
+      "state": "NOT_STARTED",
+      "authorization_state": "AUTHORIZED",
+      "evidence": []
+    },
+    {
+      "id": "D03.ACTIVE_CUTOVER",
+      "state": "WAITING_EXTERNAL",
+      "authorization_state": "EXACT_PRESTATE_REQUIRED",
+      "evidence": [],
+      "reason": "NO_LIVE_EXECUTOR_OR_ACTIVE_CUTOVER_ACCEPTANCE"
+    },
+    {
+      "id": "D04.SURVIVAL",
+      "state": "WAITING_EXTERNAL",
+      "authorization_state": "EXACT_PRESTATE_REQUIRED",
+      "evidence": [],
+      "reason": "REAL_REBOOT_CRASH_UI_CLOSED_ACCEPTANCE_NOT_PERFORMED"
+    },
+    {
+      "id": "F02.FLEET_SOURCE",
+      "state": "NOT_STARTED",
+      "authorization_state": "AUTHORIZED",
+      "evidence": []
+    },
+    {
+      "id": "F02.N2_ACCEPTANCE",
+      "state": "NOT_STARTED",
+      "authorization_state": "EXACT_PRESTATE_REQUIRED",
+      "evidence": []
+    },
+    {
+      "id": "T01.BASELINE",
+      "state": "NOT_STARTED",
+      "authorization_state": "AUTHORIZED",
+      "evidence": []
+    },
+    {
+      "id": "T02.OPTIONAL_UPGRADE",
+      "state": "NOT_STARTED",
+      "authorization_state": "EXACT_PRESTATE_REQUIRED",
+      "evidence": []
+    },
+    {
+      "id": "X01.ACCEPT",
+      "state": "NOT_STARTED",
+      "authorization_state": "EXACT_PRESTATE_REQUIRED",
+      "evidence": []
+    },
+    {
+      "id": "P52.NATIVE_ROUTE_DISCOVERY",
+      "state": "NOT_STARTED",
+      "authorization_state": "AUTHORIZED",
+      "evidence": []
+    },
+    {
+      "id": "P52.INTAKE_SOURCE",
+      "state": "NOT_STARTED",
+      "authorization_state": "AUTHORIZED",
+      "evidence": []
+    },
+    {
+      "id": "P52.RESEARCH_OPTIONS_SOURCE",
+      "state": "NOT_STARTED",
+      "authorization_state": "AUTHORIZED",
+      "evidence": []
+    },
+    {
+      "id": "P52.FRONTDOOR_ACCEPTANCE",
+      "state": "NOT_STARTED",
+      "authorization_state": "AUTHORIZED",
+      "evidence": []
+    },
+    {
+      "id": "P52.SELECTION_CONTRACT",
+      "state": "NOT_STARTED",
+      "authorization_state": "AUTHORIZED",
+      "evidence": []
+    },
+    {
+      "id": "P52.OPENCODE_SOURCE",
+      "state": "NOT_STARTED",
+      "authorization_state": "AUTHORIZED",
+      "evidence": []
+    },
+    {
+      "id": "P52.ANTIGRAVITY_SOURCE",
+      "state": "NOT_STARTED",
+      "authorization_state": "AUTHORIZED",
+      "evidence": []
+    },
+    {
+      "id": "P52.CODEX_ACCEPTANCE",
+      "state": "NOT_STARTED",
+      "authorization_state": "EXACT_PRESTATE_REQUIRED",
+      "evidence": []
+    },
+    {
+      "id": "P52.OPENCODE_ACCEPTANCE",
+      "state": "NOT_STARTED",
+      "authorization_state": "EXACT_PRESTATE_REQUIRED",
+      "evidence": []
+    },
+    {
+      "id": "P52.ANTIGRAVITY_ACCEPTANCE",
+      "state": "NOT_STARTED",
+      "authorization_state": "EXACT_PRESTATE_REQUIRED",
+      "evidence": []
+    },
+    {
+      "id": "P52.SHARD_REVIEW_INTEGRATION_SOURCE",
+      "state": "NOT_STARTED",
+      "authorization_state": "AUTHORIZED",
+      "evidence": []
+    },
+    {
+      "id": "P52.VERTICAL_E2E",
+      "state": "NOT_STARTED",
+      "authorization_state": "EXACT_PRESTATE_REQUIRED",
+      "evidence": []
+    },
+    {
+      "id": "P52.THREE_VENDOR_E2E",
+      "state": "NOT_STARTED",
+      "authorization_state": "EXACT_PRESTATE_REQUIRED",
+      "evidence": []
+    },
+    {
+      "id": "P52.BENCHMARK_REGRESSION",
+      "state": "NOT_STARTED",
+      "authorization_state": "EXACT_PRESTATE_REQUIRED",
+      "evidence": []
+    },
+    {
+      "id": "P52.FINAL_PRODUCT_ACCEPTANCE",
+      "state": "NOT_STARTED",
+      "authorization_state": "AUTHORIZED",
+      "evidence": []
+    }
+  ],
+  "facts_sha256": "sha256:6bd436bdc3547f8bd930044c547c2281663c356b0fcc9dbc545cc7de67ae8b20"
+}

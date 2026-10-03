@@ -1,0 +1,1324 @@
+{
+  "schema": "vnext5.2.operation-readiness.v1",
+  "mode": "SHADOW_PLAN_ONLY",
+  "facts_schema": "vnext5.2.operation-facts.v1",
+  "catalog_sha256": "sha256:ee769422b5d587e771d09c4e95af1af9a3a7cf0a7c0e493d86071e2df57304de",
+  "facts_sha256": "sha256:6bd436bdc3547f8bd930044c547c2281663c356b0fcc9dbc545cc7de67ae8b20",
+  "facts_fresh": true,
+  "input_completeness": "COMPLETE",
+  "input_reasons": [],
+  "expected_ids": [
+    "A00.ADMISSION",
+    "A00.SOURCE_BOUNDS",
+    "A01.LIVE_READ",
+    "A01.READ_PREPARE",
+    "A02.LIVE_READ",
+    "A02.READ_PREPARE",
+    "A03.OPTIONAL_WIF",
+    "A04.RECONCILE",
+    "A05.RETIRE",
+    "A05.RETIRE_PREPARE",
+    "B00.RECOVER",
+    "B01.OPERATIONS",
+    "B01.PUBLISH",
+    "C1.PREPARE",
+    "C1.QUALIFY",
+    "C1.SELECT",
+    "C2.FENCE_SOURCE",
+    "C2.PREFLIGHT",
+    "C2.QUARANTINE",
+    "D01.DECISION",
+    "D02.EXECUTOR_INTEGRATION",
+    "D02.LOCAL_RESTORE",
+    "D02.PLAN_SHADOW",
+    "D02.SOURCE",
+    "D03.ACTIVE_CUTOVER",
+    "D03.BUNDLE_PREPARE",
+    "D04.SURVIVAL",
+    "F01.ADAPTER_SOURCE",
+    "F01.CELL_PREPARE",
+    "F01.ISOLATED_EXECUTION",
+    "F01.PREFLIGHT",
+    "F02.FLEET_SOURCE",
+    "F02.N2_ACCEPTANCE",
+    "M01.SOURCE",
+    "M02.LOCAL_CANARY",
+    "M03.FINAL_SOURCE",
+    "M03.SEMANTIC",
+    "M03.STRUCTURAL",
+    "M04.INSTALL_PREPARE",
+    "M04.LIVE_INSTALL",
+    "M05.LIVE_HEALTH",
+    "P52.ANTIGRAVITY_ACCEPTANCE",
+    "P52.ANTIGRAVITY_SOURCE",
+    "P52.BENCHMARK_REGRESSION",
+    "P52.CODEX_ACCEPTANCE",
+    "P52.FINAL_PRODUCT_ACCEPTANCE",
+    "P52.FRONTDOOR_ACCEPTANCE",
+    "P52.INTAKE_SOURCE",
+    "P52.NATIVE_ROUTE_DISCOVERY",
+    "P52.OPENCODE_ACCEPTANCE",
+    "P52.OPENCODE_SOURCE",
+    "P52.RESEARCH_OPTIONS_SOURCE",
+    "P52.SELECTION_CONTRACT",
+    "P52.SHARD_REVIEW_INTEGRATION_SOURCE",
+    "P52.THREE_VENDOR_E2E",
+    "P52.VERTICAL_E2E",
+    "T01.BASELINE",
+    "T02.OPTIONAL_UPGRADE",
+    "X01.ACCEPT"
+  ],
+  "evaluated_ids": [
+    "A00.ADMISSION",
+    "A00.SOURCE_BOUNDS",
+    "A01.LIVE_READ",
+    "A01.READ_PREPARE",
+    "A02.LIVE_READ",
+    "A02.READ_PREPARE",
+    "A03.OPTIONAL_WIF",
+    "A04.RECONCILE",
+    "A05.RETIRE",
+    "A05.RETIRE_PREPARE",
+    "B00.RECOVER",
+    "B01.OPERATIONS",
+    "B01.PUBLISH",
+    "C1.PREPARE",
+    "C1.QUALIFY",
+    "C1.SELECT",
+    "C2.FENCE_SOURCE",
+    "C2.PREFLIGHT",
+    "C2.QUARANTINE",
+    "D01.DECISION",
+    "D02.EXECUTOR_INTEGRATION",
+    "D02.LOCAL_RESTORE",
+    "D02.PLAN_SHADOW",
+    "D02.SOURCE",
+    "D03.ACTIVE_CUTOVER",
+    "D03.BUNDLE_PREPARE",
+    "D04.SURVIVAL",
+    "F01.ADAPTER_SOURCE",
+    "F01.CELL_PREPARE",
+    "F01.ISOLATED_EXECUTION",
+    "F01.PREFLIGHT",
+    "F02.FLEET_SOURCE",
+    "F02.N2_ACCEPTANCE",
+    "M01.SOURCE",
+    "M02.LOCAL_CANARY",
+    "M03.FINAL_SOURCE",
+    "M03.SEMANTIC",
+    "M03.STRUCTURAL",
+    "M04.INSTALL_PREPARE",
+    "M04.LIVE_INSTALL",
+    "M05.LIVE_HEALTH",
+    "P52.ANTIGRAVITY_ACCEPTANCE",
+    "P52.ANTIGRAVITY_SOURCE",
+    "P52.BENCHMARK_REGRESSION",
+    "P52.CODEX_ACCEPTANCE",
+    "P52.FINAL_PRODUCT_ACCEPTANCE",
+    "P52.FRONTDOOR_ACCEPTANCE",
+    "P52.INTAKE_SOURCE",
+    "P52.NATIVE_ROUTE_DISCOVERY",
+    "P52.OPENCODE_ACCEPTANCE",
+    "P52.OPENCODE_SOURCE",
+    "P52.RESEARCH_OPTIONS_SOURCE",
+    "P52.SELECTION_CONTRACT",
+    "P52.SHARD_REVIEW_INTEGRATION_SOURCE",
+    "P52.THREE_VENDOR_E2E",
+    "P52.VERTICAL_E2E",
+    "T01.BASELINE",
+    "T02.OPTIONAL_UPGRADE",
+    "X01.ACCEPT"
+  ],
+  "ready_ids": [
+    "F01.PREFLIGHT",
+    "C1.PREPARE",
+    "P52.NATIVE_ROUTE_DISCOVERY",
+    "C2.PREFLIGHT",
+    "T01.BASELINE",
+    "P52.INTAKE_SOURCE",
+    "M04.INSTALL_PREPARE",
+    "D03.BUNDLE_PREPARE"
+  ],
+  "planned_decision": "CONTINUE_READY",
+  "planned_unit": "F01.PREFLIGHT",
+  "queue_scope": "FULL_CATALOG",
+  "queue_unit_count": 59,
+  "full_union_count": 59,
+  "global_exhaustion": "NOT_EXHAUSTED",
+  "global_decision": "READY_AVAILABLE",
+  "units": [
+    {
+      "id": "B00.RECOVER",
+      "state": "DONE",
+      "priority": 0,
+      "mandatory": true,
+      "effect_class": "READ_ONLY",
+      "start_dependencies": [],
+      "completion_dependencies": [],
+      "start_blockers": [],
+      "completion_blockers": [],
+      "reason": null,
+      "execution_scope": "SHADOW_PLAN_ONLY",
+      "effects": [],
+      "plan_only": true
+    },
+    {
+      "id": "B01.OPERATIONS",
+      "state": "DONE",
+      "priority": 1,
+      "mandatory": true,
+      "effect_class": "CANDIDATE_SOURCE",
+      "start_dependencies": [
+        "B00.RECOVER"
+      ],
+      "completion_dependencies": [],
+      "start_blockers": [],
+      "completion_blockers": [],
+      "reason": null,
+      "execution_scope": "SHADOW_PLAN_ONLY",
+      "effects": [],
+      "plan_only": true
+    },
+    {
+      "id": "B01.PUBLISH",
+      "state": "WAITING_EXTERNAL",
+      "priority": 35,
+      "mandatory": true,
+      "effect_class": "CANDIDATE_PUBLISH",
+      "start_dependencies": [
+        "B01.OPERATIONS"
+      ],
+      "completion_dependencies": [],
+      "start_blockers": [],
+      "completion_blockers": [],
+      "reason": "EXACT_OPERATION_AUTHORITY_NOT_ESTABLISHED",
+      "execution_scope": "SHADOW_PLAN_ONLY",
+      "effects": [],
+      "plan_only": true
+    },
+    {
+      "id": "C1.PREPARE",
+      "state": "READY",
+      "priority": 10,
+      "mandatory": true,
+      "effect_class": "CANDIDATE_SOURCE",
+      "start_dependencies": [
+        "B00.RECOVER"
+      ],
+      "completion_dependencies": [],
+      "start_blockers": [],
+      "completion_blockers": [],
+      "reason": null,
+      "execution_scope": "SHADOW_PLAN_ONLY",
+      "effects": [],
+      "plan_only": true
+    },
+    {
+      "id": "C1.QUALIFY",
+      "state": "WAITING_EXTERNAL",
+      "priority": 30,
+      "mandatory": true,
+      "effect_class": "CANDIDATE_PUBLISH",
+      "start_dependencies": [
+        "C1.PREPARE"
+      ],
+      "completion_dependencies": [],
+      "start_blockers": [
+        "C1.PREPARE"
+      ],
+      "completion_blockers": [],
+      "reason": "START_DEPENDENCIES_NOT_ACCEPTED",
+      "execution_scope": "SHADOW_PLAN_ONLY",
+      "effects": [],
+      "plan_only": true
+    },
+    {
+      "id": "C1.SELECT",
+      "state": "WAITING_EXTERNAL",
+      "priority": 70,
+      "mandatory": true,
+      "effect_class": "CONTROL_CAS",
+      "start_dependencies": [
+        "C1.QUALIFY"
+      ],
+      "completion_dependencies": [],
+      "start_blockers": [
+        "C1.QUALIFY"
+      ],
+      "completion_blockers": [],
+      "reason": "START_DEPENDENCIES_NOT_ACCEPTED",
+      "execution_scope": "SHADOW_PLAN_ONLY",
+      "effects": [],
+      "plan_only": true
+    },
+    {
+      "id": "C2.PREFLIGHT",
+      "state": "READY",
+      "priority": 15,
+      "mandatory": true,
+      "effect_class": "READ_ONLY",
+      "start_dependencies": [
+        "B00.RECOVER"
+      ],
+      "completion_dependencies": [],
+      "start_blockers": [],
+      "completion_blockers": [],
+      "reason": null,
+      "execution_scope": "SHADOW_PLAN_ONLY",
+      "effects": [],
+      "plan_only": true
+    },
+    {
+      "id": "C2.FENCE_SOURCE",
+      "state": "WAITING_EXTERNAL",
+      "priority": 25,
+      "mandatory": true,
+      "effect_class": "CANDIDATE_SOURCE",
+      "start_dependencies": [
+        "C2.PREFLIGHT"
+      ],
+      "completion_dependencies": [],
+      "start_blockers": [
+        "C2.PREFLIGHT"
+      ],
+      "completion_blockers": [],
+      "reason": "START_DEPENDENCIES_NOT_ACCEPTED",
+      "execution_scope": "SHADOW_PLAN_ONLY",
+      "effects": [],
+      "plan_only": true
+    },
+    {
+      "id": "C2.QUARANTINE",
+      "state": "WAITING_EXTERNAL",
+      "priority": 75,
+      "mandatory": true,
+      "effect_class": "TARGET_FENCE",
+      "start_dependencies": [
+        "C1.SELECT",
+        "C2.FENCE_SOURCE"
+      ],
+      "completion_dependencies": [],
+      "start_blockers": [
+        "C1.SELECT",
+        "C2.FENCE_SOURCE"
+      ],
+      "completion_blockers": [],
+      "reason": "START_DEPENDENCIES_NOT_ACCEPTED",
+      "execution_scope": "SHADOW_PLAN_ONLY",
+      "effects": [],
+      "plan_only": true
+    },
+    {
+      "id": "M01.SOURCE",
+      "state": "DONE",
+      "priority": 5,
+      "mandatory": true,
+      "effect_class": "CANDIDATE_SOURCE",
+      "start_dependencies": [
+        "B00.RECOVER"
+      ],
+      "completion_dependencies": [],
+      "start_blockers": [],
+      "completion_blockers": [],
+      "reason": null,
+      "execution_scope": "SHADOW_PLAN_ONLY",
+      "effects": [],
+      "plan_only": true
+    },
+    {
+      "id": "M02.LOCAL_CANARY",
+      "state": "DONE",
+      "priority": 12,
+      "mandatory": true,
+      "effect_class": "LOCAL_SPIKE",
+      "start_dependencies": [
+        "M01.SOURCE"
+      ],
+      "completion_dependencies": [],
+      "start_blockers": [],
+      "completion_blockers": [],
+      "reason": null,
+      "execution_scope": "SHADOW_PLAN_ONLY",
+      "effects": [],
+      "plan_only": true
+    },
+    {
+      "id": "M03.FINAL_SOURCE",
+      "state": "DONE",
+      "priority": 8,
+      "mandatory": true,
+      "effect_class": "CANDIDATE_SOURCE",
+      "start_dependencies": [
+        "M02.LOCAL_CANARY"
+      ],
+      "completion_dependencies": [],
+      "start_blockers": [],
+      "completion_blockers": [],
+      "reason": null,
+      "execution_scope": "SHADOW_PLAN_ONLY",
+      "effects": [],
+      "plan_only": true
+    },
+    {
+      "id": "M03.STRUCTURAL",
+      "state": "DONE",
+      "priority": 40,
+      "mandatory": true,
+      "effect_class": "CANDIDATE_PUBLISH",
+      "start_dependencies": [
+        "M03.FINAL_SOURCE"
+      ],
+      "completion_dependencies": [],
+      "start_blockers": [],
+      "completion_blockers": [],
+      "reason": null,
+      "execution_scope": "SHADOW_PLAN_ONLY",
+      "effects": [],
+      "plan_only": true
+    },
+    {
+      "id": "M03.SEMANTIC",
+      "state": "WAITING_REVIEW",
+      "priority": 42,
+      "mandatory": true,
+      "effect_class": "READ_ONLY",
+      "start_dependencies": [
+        "M03.FINAL_SOURCE"
+      ],
+      "completion_dependencies": [],
+      "start_blockers": [],
+      "completion_blockers": [],
+      "reason": "EXACT_PR385_INDEPENDENT_REVIEW_PENDING",
+      "execution_scope": "SHADOW_PLAN_ONLY",
+      "effects": [],
+      "plan_only": true
+    },
+    {
+      "id": "M04.INSTALL_PREPARE",
+      "state": "READY",
+      "priority": 45,
+      "mandatory": true,
+      "effect_class": "READ_ONLY",
+      "start_dependencies": [
+        "M03.FINAL_SOURCE"
+      ],
+      "completion_dependencies": [],
+      "start_blockers": [],
+      "completion_blockers": [],
+      "reason": null,
+      "execution_scope": "SHADOW_PLAN_ONLY",
+      "effects": [],
+      "plan_only": true
+    },
+    {
+      "id": "M04.LIVE_INSTALL",
+      "state": "WAITING_EXTERNAL",
+      "priority": 80,
+      "mandatory": true,
+      "effect_class": "HOST_REVERSIBLE",
+      "start_dependencies": [
+        "M03.STRUCTURAL",
+        "M03.SEMANTIC",
+        "M04.INSTALL_PREPARE",
+        "C2.QUARANTINE"
+      ],
+      "completion_dependencies": [],
+      "start_blockers": [
+        "M03.SEMANTIC",
+        "M04.INSTALL_PREPARE",
+        "C2.QUARANTINE"
+      ],
+      "completion_blockers": [],
+      "reason": "EXACT_CALLER_HOST_INSTALL_SCOPE_AND_SEMANTIC_PRESTATE_REQUIRED",
+      "execution_scope": "SHADOW_PLAN_ONLY",
+      "effects": [],
+      "plan_only": true
+    },
+    {
+      "id": "M05.LIVE_HEALTH",
+      "state": "WAITING_EXTERNAL",
+      "priority": 85,
+      "mandatory": true,
+      "effect_class": "READ_ONLY",
+      "start_dependencies": [
+        "M04.LIVE_INSTALL"
+      ],
+      "completion_dependencies": [],
+      "start_blockers": [
+        "M04.LIVE_INSTALL"
+      ],
+      "completion_blockers": [],
+      "reason": "START_DEPENDENCIES_NOT_ACCEPTED",
+      "execution_scope": "SHADOW_PLAN_ONLY",
+      "effects": [],
+      "plan_only": true
+    },
+    {
+      "id": "A00.ADMISSION",
+      "state": "WAITING_EXTERNAL",
+      "priority": 20,
+      "mandatory": true,
+      "effect_class": "READ_ONLY",
+      "start_dependencies": [
+        "B00.RECOVER"
+      ],
+      "completion_dependencies": [],
+      "start_blockers": [],
+      "completion_blockers": [],
+      "reason": "S_ADS_RESULT_NOT_YET_RECEIVED;REUSE_EXISTING_DATE_SCOPED_GRANT",
+      "execution_scope": "SHADOW_PLAN_ONLY",
+      "effects": [],
+      "plan_only": true
+    },
+    {
+      "id": "A00.SOURCE_BOUNDS",
+      "state": "WAITING_EXTERNAL",
+      "priority": 30,
+      "mandatory": true,
+      "effect_class": "CANDIDATE_SOURCE",
+      "start_dependencies": [
+        "A00.ADMISSION"
+      ],
+      "completion_dependencies": [],
+      "start_blockers": [
+        "A00.ADMISSION"
+      ],
+      "completion_blockers": [],
+      "reason": "START_DEPENDENCIES_NOT_ACCEPTED",
+      "execution_scope": "SHADOW_PLAN_ONLY",
+      "effects": [],
+      "plan_only": true
+    },
+    {
+      "id": "A01.READ_PREPARE",
+      "state": "WAITING_EXTERNAL",
+      "priority": 45,
+      "mandatory": true,
+      "effect_class": "CANDIDATE_SOURCE",
+      "start_dependencies": [
+        "A00.ADMISSION"
+      ],
+      "completion_dependencies": [],
+      "start_blockers": [
+        "A00.ADMISSION"
+      ],
+      "completion_blockers": [],
+      "reason": "START_DEPENDENCIES_NOT_ACCEPTED",
+      "execution_scope": "SHADOW_PLAN_ONLY",
+      "effects": [],
+      "plan_only": true
+    },
+    {
+      "id": "A01.LIVE_READ",
+      "state": "WAITING_EXTERNAL",
+      "priority": 85,
+      "mandatory": true,
+      "effect_class": "PROVIDER_READ",
+      "start_dependencies": [
+        "A01.READ_PREPARE",
+        "A00.SOURCE_BOUNDS"
+      ],
+      "completion_dependencies": [],
+      "start_blockers": [
+        "A01.READ_PREPARE",
+        "A00.SOURCE_BOUNDS"
+      ],
+      "completion_blockers": [],
+      "reason": "START_DEPENDENCIES_NOT_ACCEPTED",
+      "execution_scope": "SHADOW_PLAN_ONLY",
+      "effects": [],
+      "plan_only": true
+    },
+    {
+      "id": "A02.READ_PREPARE",
+      "state": "WAITING_EXTERNAL",
+      "priority": 45,
+      "mandatory": true,
+      "effect_class": "CANDIDATE_SOURCE",
+      "start_dependencies": [
+        "A00.ADMISSION"
+      ],
+      "completion_dependencies": [],
+      "start_blockers": [
+        "A00.ADMISSION"
+      ],
+      "completion_blockers": [],
+      "reason": "START_DEPENDENCIES_NOT_ACCEPTED",
+      "execution_scope": "SHADOW_PLAN_ONLY",
+      "effects": [],
+      "plan_only": true
+    },
+    {
+      "id": "A02.LIVE_READ",
+      "state": "WAITING_EXTERNAL",
+      "priority": 85,
+      "mandatory": true,
+      "effect_class": "PROVIDER_READ",
+      "start_dependencies": [
+        "A02.READ_PREPARE",
+        "A00.SOURCE_BOUNDS"
+      ],
+      "completion_dependencies": [],
+      "start_blockers": [
+        "A02.READ_PREPARE",
+        "A00.SOURCE_BOUNDS"
+      ],
+      "completion_blockers": [],
+      "reason": "START_DEPENDENCIES_NOT_ACCEPTED",
+      "execution_scope": "SHADOW_PLAN_ONLY",
+      "effects": [],
+      "plan_only": true
+    },
+    {
+      "id": "A03.OPTIONAL_WIF",
+      "state": "WAITING_EXTERNAL",
+      "priority": 100,
+      "mandatory": false,
+      "effect_class": "TRUST_CONFIGURATION",
+      "start_dependencies": [
+        "A00.ADMISSION"
+      ],
+      "completion_dependencies": [],
+      "start_blockers": [
+        "A00.ADMISSION"
+      ],
+      "completion_blockers": [],
+      "reason": "START_DEPENDENCIES_NOT_ACCEPTED",
+      "execution_scope": "SHADOW_PLAN_ONLY",
+      "effects": [],
+      "plan_only": true
+    },
+    {
+      "id": "A04.RECONCILE",
+      "state": "WAITING_EXTERNAL",
+      "priority": 90,
+      "mandatory": true,
+      "effect_class": "PROVIDER_READ",
+      "start_dependencies": [
+        "A01.LIVE_READ",
+        "A02.LIVE_READ"
+      ],
+      "completion_dependencies": [],
+      "start_blockers": [
+        "A01.LIVE_READ",
+        "A02.LIVE_READ"
+      ],
+      "completion_blockers": [],
+      "reason": "START_DEPENDENCIES_NOT_ACCEPTED",
+      "execution_scope": "SHADOW_PLAN_ONLY",
+      "effects": [],
+      "plan_only": true
+    },
+    {
+      "id": "A05.RETIRE_PREPARE",
+      "state": "WAITING_EXTERNAL",
+      "priority": 60,
+      "mandatory": true,
+      "effect_class": "CANDIDATE_SOURCE",
+      "start_dependencies": [
+        "A00.ADMISSION"
+      ],
+      "completion_dependencies": [],
+      "start_blockers": [
+        "A00.ADMISSION"
+      ],
+      "completion_blockers": [],
+      "reason": "START_DEPENDENCIES_NOT_ACCEPTED",
+      "execution_scope": "SHADOW_PLAN_ONLY",
+      "effects": [],
+      "plan_only": true
+    },
+    {
+      "id": "A05.RETIRE",
+      "state": "WAITING_EXTERNAL",
+      "priority": 95,
+      "mandatory": true,
+      "effect_class": "PROJECT_REVERSIBLE",
+      "start_dependencies": [
+        "A04.RECONCILE",
+        "A05.RETIRE_PREPARE"
+      ],
+      "completion_dependencies": [],
+      "start_blockers": [
+        "A04.RECONCILE",
+        "A05.RETIRE_PREPARE"
+      ],
+      "completion_blockers": [],
+      "reason": "START_DEPENDENCIES_NOT_ACCEPTED",
+      "execution_scope": "SHADOW_PLAN_ONLY",
+      "effects": [],
+      "plan_only": true
+    },
+    {
+      "id": "D01.DECISION",
+      "state": "DONE",
+      "priority": 20,
+      "mandatory": true,
+      "effect_class": "LOCAL_SPIKE",
+      "start_dependencies": [
+        "B00.RECOVER"
+      ],
+      "completion_dependencies": [],
+      "start_blockers": [],
+      "completion_blockers": [],
+      "reason": null,
+      "execution_scope": "SHADOW_PLAN_ONLY",
+      "effects": [],
+      "plan_only": true
+    },
+    {
+      "id": "F01.PREFLIGHT",
+      "state": "READY",
+      "priority": 4,
+      "mandatory": true,
+      "effect_class": "READ_ONLY",
+      "start_dependencies": [
+        "B00.RECOVER"
+      ],
+      "completion_dependencies": [],
+      "start_blockers": [],
+      "completion_blockers": [],
+      "reason": null,
+      "execution_scope": "SHADOW_PLAN_ONLY",
+      "effects": [],
+      "plan_only": true
+    },
+    {
+      "id": "F01.ADAPTER_SOURCE",
+      "state": "WAITING_EXTERNAL",
+      "priority": 18,
+      "mandatory": true,
+      "effect_class": "CANDIDATE_SOURCE",
+      "start_dependencies": [
+        "F01.PREFLIGHT"
+      ],
+      "completion_dependencies": [],
+      "start_blockers": [
+        "F01.PREFLIGHT"
+      ],
+      "completion_blockers": [],
+      "reason": "START_DEPENDENCIES_NOT_ACCEPTED",
+      "execution_scope": "SHADOW_PLAN_ONLY",
+      "effects": [],
+      "plan_only": true
+    },
+    {
+      "id": "F01.CELL_PREPARE",
+      "state": "WAITING_EXTERNAL",
+      "priority": 60,
+      "mandatory": true,
+      "effect_class": "HOST_REVERSIBLE",
+      "start_dependencies": [
+        "F01.PREFLIGHT",
+        "F01.ADAPTER_SOURCE",
+        "P52.NATIVE_ROUTE_DISCOVERY"
+      ],
+      "completion_dependencies": [],
+      "start_blockers": [
+        "F01.PREFLIGHT",
+        "F01.ADAPTER_SOURCE",
+        "P52.NATIVE_ROUTE_DISCOVERY"
+      ],
+      "completion_blockers": [],
+      "reason": "ISOLATED_ROUTE_NOT_PROVEN;NATIVE_GET_VM_ACCESS_DENIED",
+      "execution_scope": "SHADOW_PLAN_ONLY",
+      "effects": [],
+      "plan_only": true
+    },
+    {
+      "id": "F01.ISOLATED_EXECUTION",
+      "state": "WAITING_EXTERNAL",
+      "priority": 65,
+      "mandatory": true,
+      "effect_class": "ISOLATED_AGENT",
+      "start_dependencies": [
+        "F01.PREFLIGHT",
+        "F01.ADAPTER_SOURCE",
+        "F01.CELL_PREPARE",
+        "P52.NATIVE_ROUTE_DISCOVERY"
+      ],
+      "completion_dependencies": [],
+      "start_blockers": [
+        "F01.PREFLIGHT",
+        "F01.ADAPTER_SOURCE",
+        "F01.CELL_PREPARE",
+        "P52.NATIVE_ROUTE_DISCOVERY"
+      ],
+      "completion_blockers": [],
+      "reason": "TRUSTED_TASK_CANCEL_RECEIPT_AND_SANDBOX_PROOF_NOT_OBSERVED",
+      "execution_scope": "SHADOW_PLAN_ONLY",
+      "effects": [],
+      "plan_only": true
+    },
+    {
+      "id": "D02.SOURCE",
+      "state": "DONE",
+      "priority": 3,
+      "mandatory": true,
+      "effect_class": "CANDIDATE_SOURCE",
+      "start_dependencies": [
+        "D01.DECISION",
+        "B01.OPERATIONS"
+      ],
+      "completion_dependencies": [],
+      "start_blockers": [],
+      "completion_blockers": [],
+      "reason": null,
+      "execution_scope": "SHADOW_PLAN_ONLY",
+      "effects": [],
+      "plan_only": true
+    },
+    {
+      "id": "D02.PLAN_SHADOW",
+      "state": "DONE",
+      "priority": 7,
+      "mandatory": true,
+      "effect_class": "READ_ONLY",
+      "start_dependencies": [
+        "D02.SOURCE"
+      ],
+      "completion_dependencies": [],
+      "start_blockers": [],
+      "completion_blockers": [],
+      "reason": null,
+      "execution_scope": "SHADOW_PLAN_ONLY",
+      "effects": [],
+      "plan_only": true
+    },
+    {
+      "id": "D02.LOCAL_RESTORE",
+      "state": "DONE",
+      "priority": 14,
+      "mandatory": true,
+      "effect_class": "LOCAL_SPIKE",
+      "start_dependencies": [
+        "D02.SOURCE"
+      ],
+      "completion_dependencies": [],
+      "start_blockers": [],
+      "completion_blockers": [],
+      "reason": null,
+      "execution_scope": "SHADOW_PLAN_ONLY",
+      "effects": [],
+      "plan_only": true
+    },
+    {
+      "id": "D02.EXECUTOR_INTEGRATION",
+      "state": "WAITING_EXTERNAL",
+      "priority": 68,
+      "mandatory": true,
+      "effect_class": "ISOLATED_AGENT",
+      "start_dependencies": [
+        "D02.SOURCE",
+        "F01.ISOLATED_EXECUTION"
+      ],
+      "completion_dependencies": [
+        "D02.PLAN_SHADOW",
+        "D02.LOCAL_RESTORE"
+      ],
+      "start_blockers": [
+        "F01.ISOLATED_EXECUTION"
+      ],
+      "completion_blockers": [],
+      "reason": "START_DEPENDENCIES_NOT_ACCEPTED",
+      "execution_scope": "SHADOW_PLAN_ONLY",
+      "effects": [],
+      "plan_only": true
+    },
+    {
+      "id": "D03.BUNDLE_PREPARE",
+      "state": "READY",
+      "priority": 48,
+      "mandatory": true,
+      "effect_class": "CANDIDATE_SOURCE",
+      "start_dependencies": [
+        "D02.SOURCE"
+      ],
+      "completion_dependencies": [],
+      "start_blockers": [],
+      "completion_blockers": [],
+      "reason": null,
+      "execution_scope": "SHADOW_PLAN_ONLY",
+      "effects": [],
+      "plan_only": true
+    },
+    {
+      "id": "D03.ACTIVE_CUTOVER",
+      "state": "WAITING_EXTERNAL",
+      "priority": 82,
+      "mandatory": true,
+      "effect_class": "HOST_REVERSIBLE",
+      "start_dependencies": [
+        "D02.EXECUTOR_INTEGRATION",
+        "D03.BUNDLE_PREPARE",
+        "C1.SELECT",
+        "C2.QUARANTINE",
+        "T01.BASELINE"
+      ],
+      "completion_dependencies": [],
+      "start_blockers": [
+        "D02.EXECUTOR_INTEGRATION",
+        "D03.BUNDLE_PREPARE",
+        "C1.SELECT",
+        "C2.QUARANTINE",
+        "T01.BASELINE"
+      ],
+      "completion_blockers": [],
+      "reason": "NO_LIVE_EXECUTOR_OR_ACTIVE_CUTOVER_ACCEPTANCE",
+      "execution_scope": "SHADOW_PLAN_ONLY",
+      "effects": [],
+      "plan_only": true
+    },
+    {
+      "id": "D04.SURVIVAL",
+      "state": "WAITING_EXTERNAL",
+      "priority": 92,
+      "mandatory": true,
+      "effect_class": "LIVE_SURVIVAL",
+      "start_dependencies": [
+        "D03.ACTIVE_CUTOVER"
+      ],
+      "completion_dependencies": [],
+      "start_blockers": [
+        "D03.ACTIVE_CUTOVER"
+      ],
+      "completion_blockers": [],
+      "reason": "REAL_REBOOT_CRASH_UI_CLOSED_ACCEPTANCE_NOT_PERFORMED",
+      "execution_scope": "SHADOW_PLAN_ONLY",
+      "effects": [],
+      "plan_only": true
+    },
+    {
+      "id": "F02.FLEET_SOURCE",
+      "state": "WAITING_EXTERNAL",
+      "priority": 55,
+      "mandatory": true,
+      "effect_class": "CANDIDATE_SOURCE",
+      "start_dependencies": [
+        "F01.ADAPTER_SOURCE",
+        "D02.SOURCE"
+      ],
+      "completion_dependencies": [],
+      "start_blockers": [
+        "F01.ADAPTER_SOURCE"
+      ],
+      "completion_blockers": [],
+      "reason": "START_DEPENDENCIES_NOT_ACCEPTED",
+      "execution_scope": "SHADOW_PLAN_ONLY",
+      "effects": [],
+      "plan_only": true
+    },
+    {
+      "id": "F02.N2_ACCEPTANCE",
+      "state": "WAITING_EXTERNAL",
+      "priority": 93,
+      "mandatory": true,
+      "effect_class": "ISOLATED_AGENT",
+      "start_dependencies": [
+        "D03.ACTIVE_CUTOVER",
+        "F01.ISOLATED_EXECUTION",
+        "F02.FLEET_SOURCE"
+      ],
+      "completion_dependencies": [],
+      "start_blockers": [
+        "D03.ACTIVE_CUTOVER",
+        "F01.ISOLATED_EXECUTION",
+        "F02.FLEET_SOURCE"
+      ],
+      "completion_blockers": [],
+      "reason": "START_DEPENDENCIES_NOT_ACCEPTED",
+      "execution_scope": "SHADOW_PLAN_ONLY",
+      "effects": [],
+      "plan_only": true
+    },
+    {
+      "id": "T01.BASELINE",
+      "state": "READY",
+      "priority": 16,
+      "mandatory": true,
+      "effect_class": "READ_ONLY",
+      "start_dependencies": [
+        "B00.RECOVER"
+      ],
+      "completion_dependencies": [],
+      "start_blockers": [],
+      "completion_blockers": [],
+      "reason": null,
+      "execution_scope": "SHADOW_PLAN_ONLY",
+      "effects": [],
+      "plan_only": true
+    },
+    {
+      "id": "T02.OPTIONAL_UPGRADE",
+      "state": "WAITING_EXTERNAL",
+      "priority": 100,
+      "mandatory": false,
+      "effect_class": "TRUST_CONFIGURATION",
+      "start_dependencies": [
+        "T01.BASELINE"
+      ],
+      "completion_dependencies": [],
+      "start_blockers": [
+        "T01.BASELINE"
+      ],
+      "completion_blockers": [],
+      "reason": "START_DEPENDENCIES_NOT_ACCEPTED",
+      "execution_scope": "SHADOW_PLAN_ONLY",
+      "effects": [],
+      "plan_only": true
+    },
+    {
+      "id": "X01.ACCEPT",
+      "state": "WAITING_EXTERNAL",
+      "priority": 99,
+      "mandatory": true,
+      "effect_class": "CONTROL_CAS",
+      "start_dependencies": [],
+      "completion_dependencies": [
+        "C1.SELECT",
+        "C2.QUARANTINE",
+        "M05.LIVE_HEALTH",
+        "A05.RETIRE",
+        "D04.SURVIVAL",
+        "F02.N2_ACCEPTANCE",
+        "T01.BASELINE",
+        "P52.FINAL_PRODUCT_ACCEPTANCE"
+      ],
+      "start_blockers": [],
+      "completion_blockers": [
+        "C1.SELECT",
+        "C2.QUARANTINE",
+        "M05.LIVE_HEALTH",
+        "A05.RETIRE",
+        "D04.SURVIVAL",
+        "F02.N2_ACCEPTANCE",
+        "T01.BASELINE",
+        "P52.FINAL_PRODUCT_ACCEPTANCE"
+      ],
+      "reason": "EXACT_OPERATION_AUTHORITY_NOT_ESTABLISHED",
+      "execution_scope": "SHADOW_PLAN_ONLY",
+      "effects": [],
+      "plan_only": true
+    },
+    {
+      "id": "P52.NATIVE_ROUTE_DISCOVERY",
+      "state": "READY",
+      "priority": 10,
+      "mandatory": true,
+      "effect_class": "READ_ONLY_DIAGNOSTIC",
+      "start_dependencies": [
+        "B00.RECOVER"
+      ],
+      "completion_dependencies": [],
+      "start_blockers": [],
+      "completion_blockers": [],
+      "reason": null,
+      "execution_scope": "SHADOW_PLAN_ONLY",
+      "effects": [],
+      "plan_only": true
+    },
+    {
+      "id": "P52.INTAKE_SOURCE",
+      "state": "READY",
+      "priority": 31,
+      "mandatory": true,
+      "effect_class": "CANDIDATE_SOURCE",
+      "start_dependencies": [
+        "B00.RECOVER"
+      ],
+      "completion_dependencies": [],
+      "start_blockers": [],
+      "completion_blockers": [],
+      "reason": null,
+      "execution_scope": "SHADOW_PLAN_ONLY",
+      "effects": [],
+      "plan_only": true
+    },
+    {
+      "id": "P52.RESEARCH_OPTIONS_SOURCE",
+      "state": "WAITING_EXTERNAL",
+      "priority": 32,
+      "mandatory": true,
+      "effect_class": "CANDIDATE_SOURCE",
+      "start_dependencies": [
+        "P52.INTAKE_SOURCE"
+      ],
+      "completion_dependencies": [],
+      "start_blockers": [
+        "P52.INTAKE_SOURCE"
+      ],
+      "completion_blockers": [],
+      "reason": "START_DEPENDENCIES_NOT_ACCEPTED",
+      "execution_scope": "SHADOW_PLAN_ONLY",
+      "effects": [],
+      "plan_only": true
+    },
+    {
+      "id": "P52.FRONTDOOR_ACCEPTANCE",
+      "state": "WAITING_EXTERNAL",
+      "priority": 33,
+      "mandatory": true,
+      "effect_class": "READ_ONLY_DIAGNOSTIC",
+      "start_dependencies": [
+        "P52.RESEARCH_OPTIONS_SOURCE"
+      ],
+      "completion_dependencies": [],
+      "start_blockers": [
+        "P52.RESEARCH_OPTIONS_SOURCE"
+      ],
+      "completion_blockers": [],
+      "reason": "START_DEPENDENCIES_NOT_ACCEPTED",
+      "execution_scope": "SHADOW_PLAN_ONLY",
+      "effects": [],
+      "plan_only": true
+    },
+    {
+      "id": "P52.SELECTION_CONTRACT",
+      "state": "WAITING_EXTERNAL",
+      "priority": 34,
+      "mandatory": true,
+      "effect_class": "CANDIDATE_SOURCE",
+      "start_dependencies": [
+        "P52.RESEARCH_OPTIONS_SOURCE"
+      ],
+      "completion_dependencies": [],
+      "start_blockers": [
+        "P52.RESEARCH_OPTIONS_SOURCE"
+      ],
+      "completion_blockers": [],
+      "reason": "START_DEPENDENCIES_NOT_ACCEPTED",
+      "execution_scope": "SHADOW_PLAN_ONLY",
+      "effects": [],
+      "plan_only": true
+    },
+    {
+      "id": "P52.OPENCODE_SOURCE",
+      "state": "WAITING_EXTERNAL",
+      "priority": 35,
+      "mandatory": true,
+      "effect_class": "CANDIDATE_SOURCE",
+      "start_dependencies": [
+        "F01.ADAPTER_SOURCE"
+      ],
+      "completion_dependencies": [],
+      "start_blockers": [
+        "F01.ADAPTER_SOURCE"
+      ],
+      "completion_blockers": [],
+      "reason": "START_DEPENDENCIES_NOT_ACCEPTED",
+      "execution_scope": "SHADOW_PLAN_ONLY",
+      "effects": [],
+      "plan_only": true
+    },
+    {
+      "id": "P52.ANTIGRAVITY_SOURCE",
+      "state": "WAITING_EXTERNAL",
+      "priority": 36,
+      "mandatory": true,
+      "effect_class": "CANDIDATE_SOURCE",
+      "start_dependencies": [
+        "F01.ADAPTER_SOURCE"
+      ],
+      "completion_dependencies": [],
+      "start_blockers": [
+        "F01.ADAPTER_SOURCE"
+      ],
+      "completion_blockers": [],
+      "reason": "START_DEPENDENCIES_NOT_ACCEPTED",
+      "execution_scope": "SHADOW_PLAN_ONLY",
+      "effects": [],
+      "plan_only": true
+    },
+    {
+      "id": "P52.CODEX_ACCEPTANCE",
+      "state": "WAITING_EXTERNAL",
+      "priority": 37,
+      "mandatory": true,
+      "effect_class": "ISOLATED_AGENT",
+      "start_dependencies": [
+        "P52.NATIVE_ROUTE_DISCOVERY",
+        "F01.ADAPTER_SOURCE",
+        "F01.CELL_PREPARE"
+      ],
+      "completion_dependencies": [],
+      "start_blockers": [
+        "P52.NATIVE_ROUTE_DISCOVERY",
+        "F01.ADAPTER_SOURCE",
+        "F01.CELL_PREPARE"
+      ],
+      "completion_blockers": [],
+      "reason": "START_DEPENDENCIES_NOT_ACCEPTED",
+      "execution_scope": "SHADOW_PLAN_ONLY",
+      "effects": [],
+      "plan_only": true
+    },
+    {
+      "id": "P52.OPENCODE_ACCEPTANCE",
+      "state": "WAITING_EXTERNAL",
+      "priority": 38,
+      "mandatory": true,
+      "effect_class": "ISOLATED_AGENT",
+      "start_dependencies": [
+        "P52.OPENCODE_SOURCE",
+        "F01.CELL_PREPARE"
+      ],
+      "completion_dependencies": [],
+      "start_blockers": [
+        "P52.OPENCODE_SOURCE",
+        "F01.CELL_PREPARE"
+      ],
+      "completion_blockers": [],
+      "reason": "START_DEPENDENCIES_NOT_ACCEPTED",
+      "execution_scope": "SHADOW_PLAN_ONLY",
+      "effects": [],
+      "plan_only": true
+    },
+    {
+      "id": "P52.ANTIGRAVITY_ACCEPTANCE",
+      "state": "WAITING_EXTERNAL",
+      "priority": 39,
+      "mandatory": true,
+      "effect_class": "ISOLATED_AGENT",
+      "start_dependencies": [
+        "P52.ANTIGRAVITY_SOURCE",
+        "F01.CELL_PREPARE"
+      ],
+      "completion_dependencies": [],
+      "start_blockers": [
+        "P52.ANTIGRAVITY_SOURCE",
+        "F01.CELL_PREPARE"
+      ],
+      "completion_blockers": [],
+      "reason": "START_DEPENDENCIES_NOT_ACCEPTED",
+      "execution_scope": "SHADOW_PLAN_ONLY",
+      "effects": [],
+      "plan_only": true
+    },
+    {
+      "id": "P52.SHARD_REVIEW_INTEGRATION_SOURCE",
+      "state": "WAITING_EXTERNAL",
+      "priority": 40,
+      "mandatory": true,
+      "effect_class": "CANDIDATE_SOURCE",
+      "start_dependencies": [
+        "P52.SELECTION_CONTRACT",
+        "D02.SOURCE"
+      ],
+      "completion_dependencies": [],
+      "start_blockers": [
+        "P52.SELECTION_CONTRACT"
+      ],
+      "completion_blockers": [],
+      "reason": "START_DEPENDENCIES_NOT_ACCEPTED",
+      "execution_scope": "SHADOW_PLAN_ONLY",
+      "effects": [],
+      "plan_only": true
+    },
+    {
+      "id": "P52.VERTICAL_E2E",
+      "state": "WAITING_EXTERNAL",
+      "priority": 41,
+      "mandatory": true,
+      "effect_class": "ISOLATED_AGENT",
+      "start_dependencies": [
+        "P52.FRONTDOOR_ACCEPTANCE",
+        "P52.SELECTION_CONTRACT",
+        "P52.SHARD_REVIEW_INTEGRATION_SOURCE",
+        "F01.ISOLATED_EXECUTION",
+        "D02.EXECUTOR_INTEGRATION"
+      ],
+      "completion_dependencies": [],
+      "start_blockers": [
+        "P52.FRONTDOOR_ACCEPTANCE",
+        "P52.SELECTION_CONTRACT",
+        "P52.SHARD_REVIEW_INTEGRATION_SOURCE",
+        "F01.ISOLATED_EXECUTION",
+        "D02.EXECUTOR_INTEGRATION"
+      ],
+      "completion_blockers": [],
+      "reason": "START_DEPENDENCIES_NOT_ACCEPTED",
+      "execution_scope": "SHADOW_PLAN_ONLY",
+      "effects": [],
+      "plan_only": true
+    },
+    {
+      "id": "P52.THREE_VENDOR_E2E",
+      "state": "WAITING_EXTERNAL",
+      "priority": 42,
+      "mandatory": true,
+      "effect_class": "ISOLATED_AGENT",
+      "start_dependencies": [
+        "P52.VERTICAL_E2E",
+        "P52.CODEX_ACCEPTANCE",
+        "P52.OPENCODE_ACCEPTANCE",
+        "P52.ANTIGRAVITY_ACCEPTANCE",
+        "F02.N2_ACCEPTANCE"
+      ],
+      "completion_dependencies": [],
+      "start_blockers": [
+        "P52.VERTICAL_E2E",
+        "P52.CODEX_ACCEPTANCE",
+        "P52.OPENCODE_ACCEPTANCE",
+        "P52.ANTIGRAVITY_ACCEPTANCE",
+        "F02.N2_ACCEPTANCE"
+      ],
+      "completion_blockers": [],
+      "reason": "START_DEPENDENCIES_NOT_ACCEPTED",
+      "execution_scope": "SHADOW_PLAN_ONLY",
+      "effects": [],
+      "plan_only": true
+    },
+    {
+      "id": "P52.BENCHMARK_REGRESSION",
+      "state": "WAITING_EXTERNAL",
+      "priority": 43,
+      "mandatory": true,
+      "effect_class": "ISOLATED_AGENT",
+      "start_dependencies": [
+        "P52.VERTICAL_E2E"
+      ],
+      "completion_dependencies": [],
+      "start_blockers": [
+        "P52.VERTICAL_E2E"
+      ],
+      "completion_blockers": [],
+      "reason": "START_DEPENDENCIES_NOT_ACCEPTED",
+      "execution_scope": "SHADOW_PLAN_ONLY",
+      "effects": [],
+      "plan_only": true
+    },
+    {
+      "id": "P52.FINAL_PRODUCT_ACCEPTANCE",
+      "state": "WAITING_EXTERNAL",
+      "priority": 44,
+      "mandatory": true,
+      "effect_class": "READ_ONLY_DIAGNOSTIC",
+      "start_dependencies": [
+        "P52.THREE_VENDOR_E2E",
+        "P52.BENCHMARK_REGRESSION",
+        "D04.SURVIVAL",
+        "M05.LIVE_HEALTH",
+        "T01.BASELINE"
+      ],
+      "completion_dependencies": [],
+      "start_blockers": [
+        "P52.THREE_VENDOR_E2E",
+        "P52.BENCHMARK_REGRESSION",
+        "D04.SURVIVAL",
+        "M05.LIVE_HEALTH",
+        "T01.BASELINE"
+      ],
+      "completion_blockers": [],
+      "reason": "START_DEPENDENCIES_NOT_ACCEPTED",
+      "execution_scope": "SHADOW_PLAN_ONLY",
+      "effects": [],
+      "plan_only": true
+    }
+  ],
+  "side_effects": {
+    "host_dispatch": false,
+    "host_mutation": false,
+    "canonical_write": false,
+    "local_work_dispatch": false
+  }
+}

@@ -1,0 +1,35 @@
+✔ WAL + persist-before-dispatch + deterministic hash (52.1987ms)
+✔ ingest requires exact owner and provider session identity before execution can begin (35.2293ms)
+✔ ingest requires a positive canonical owner generation independent of local worker lease count (38.2444ms)
+✔ task envelope schema requires the canonical generation and exact session identities (1.4402ms)
+✔ single worker + pending barrier + evidence completion (54.8185ms)
+✔ STOP increments epoch and permanently rejects old envelope (69.4926ms)
+✔ interrupt releases worker without changing epoch (60.1251ms)
+✔ crash restart preserves lease then expiry only reduces capability (59.995ms)
+✔ verified recovery resolution is durable, exact, and separate from one next dispatch (58.7758ms)
+✔ recovery resolution accepts only fresh empty or explicitly reconciled terminal job identity (42.8539ms)
+✔ stale attempts and unreconciled or unsupported observed jobs stay readback-only (43.8072ms)
+✔ provider empty observation alone cannot resolve stale owner recovery or dispatch (41.4437ms)
+✔ caller-shaped evidence cannot clear recovery without a trusted evidence authority (45.1717ms)
+✔ recovery evidence verifies durable bytes, trusted signatures, and exact submitted payloads (48.1431ms)
+✔ stale owner recovery requires exact fresh independent process, session, and heartbeat observations (45.3534ms)
+✔ a wrong heartbeat trust key or a changed heartbeat payload cannot clear the recovery latch (55.5451ms)
+✔ worker provider credential guard (0.1416ms)
+✔ runtime manifest disables provider write and carries no worker credentials (0.3346ms)
+✔ default recovery composition records unavailable source routes and keeps resolution parked (1.8615ms)
+✔ immutable evidence reader accepts only bounded recovery references, never caller paths (2.5611ms)
+✔ immutable evidence writer flushes signed records, reads back identical bytes, and never overwrites an id (10.272ms)
+✔ Host Supervisor heartbeat producer signs exact owner identity and publishes an immutable ref plus same-source readback (11.7767ms)
+✔ fixed provider-session and Supervisor-heartbeat routes read exact bounded identity-bound records (8.2307ms)
+✔ immutable evidence reader rejects Windows reparse-point object directories (1.1358ms)
+✔ published signed evidence composes into exact recovery while missing route keeps the latch closed (138.4872ms)
+✔ expired lease cannot be revived by heartbeat or completion (41.6636ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 26
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1109.8034
+
