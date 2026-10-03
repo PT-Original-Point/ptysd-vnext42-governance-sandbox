@@ -1,0 +1,57 @@
+{
+  "schema": "v51.factory-mcp.installed-capability-baseline.v1",
+  "evidence_class": "USER_PROVIDED_FRESH_EXTERNAL_AUDIT",
+  "exact_installed_version": null,
+  "exact_installed_source_head": null,
+  "qualified_lineage": {
+    "minimum_version": "0.2.1",
+    "donor_ref": "hotfix/factory-mcp-host-powershell-v021-20260918",
+    "donor_commit": "f07f788f94f557072dc82651146db15c012b8b06",
+    "cross_check_ref": "v48-host-powershell-governed-candidate-20260918",
+    "cross_check_commit": "79bde2e4f798c700a7879e47ee698a8cb1d9e3e2",
+    "host_exec_helper_normalized_sha256": "e8241856f34a7ed255125f83a24fed2cb47540aa49b72367685b468e831959d9",
+    "host_exec_smoke_normalized_sha256": "e6a369fa9d15143aea6ce385bb437954041af4ab84104f43b47dbbb21cca7181"
+  },
+  "public_tool_count": 4,
+  "public_tools": [
+    "factory_status",
+    "worker_prepare",
+    "worker_start",
+    "host_powershell"
+  ],
+  "reported_capabilities": {
+    "factory_status": {
+      "mode": "FIXED_PURPOSE_READ_ONLY",
+      "caller_arguments": "NONE"
+    },
+    "worker_prepare": {
+      "mode": "BOUNDED_GOVERNED_HOSTGUARD_OPERATION"
+    },
+    "worker_start": {
+      "mode": "BOUNDED_GOVERNED_HOSTGUARD_OPERATION"
+    },
+    "host_powershell": {
+      "mode": "SCRIPT_CAPABLE_SYSTEM_BROKER_ROUTE",
+      "input_fields": [
+        "runId",
+        "taskId",
+        "attemptId",
+        "attemptEpoch",
+        "script",
+        "timeoutSeconds"
+      ],
+      "run_as": "NT AUTHORITY\\SYSTEM",
+      "timeout_seconds_minimum": 1,
+      "timeout_seconds_maximum": 300,
+      "bounded_stdout_stderr": true,
+      "truncation_metadata": true,
+      "script_and_output_sha256": true,
+      "durable_execution_receipt": true
+    }
+  },
+  "safety_constraints": {
+    "production_allowed": false,
+    "worker_provider_write_credentials": 0
+  },
+  "readback_limit": "Installed package version, exact source head, and live provider readback were not independently observed in this local source task."
+}

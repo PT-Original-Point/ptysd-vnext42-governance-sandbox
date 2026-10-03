@@ -2,7 +2,8 @@
 param(
   [string]$Root='C:\ProgramData\PTYSD\MCP',
   [Parameter(Mandatory=$true)][string]$TunnelId,
-  [Security.SecureString]$RuntimeApiKey
+  [Security.SecureString]$RuntimeApiKey,
+  [string]$TrustedTaskSid
 )
 Set-StrictMode -Version Latest
 $ErrorActionPreference='Stop'
@@ -14,9 +15,17 @@ $key=Join-Path $Root 'secrets\control-plane-api-key.txt'
 $task='PTYSD-FactoryMCP-Tunnel-V47'
 $defaultRoot=[IO.Path]::GetFullPath('C:\ProgramData\PTYSD\MCP')
 if([IO.Path]::GetFullPath($Root).Equals($defaultRoot,[StringComparison]::OrdinalIgnoreCase)){
+  $trustedCallerHelper=Join-Path $Root 'FactoryMCP\broker\trusted-caller-boundary.ps1'
+  if(-not (Test-Path -LiteralPath $trustedCallerHelper)){throw 'TRUSTED_CALLER_HELPER_MISSING'}
+  . $trustedCallerHelper
+  $resolvedTaskSid=Get-FactoryScheduledTaskSid -TaskName $task
+  if($TrustedTaskSid -and $TrustedTaskSid -cne $resolvedTaskSid){throw 'TRUSTED_TASK_SID_OVERRIDE_MISMATCH'}
+  $TrustedTaskSid=$resolvedTaskSid
   $t=Get-ScheduledTask -TaskName $task -ErrorAction SilentlyContinue
   if(-not $t){throw 'TUNNEL_TASK_MISSING'}
   if($t.State.ToString() -ne 'Disabled'){throw 'TUNNEL_TASK_NOT_DISABLED'}
+} elseif($TrustedTaskSid -notmatch '^S-1-5-87(?:-\d+)+$') {
+  throw 'TRUSTED_TASK_SID_REQUIRED'
 }
 if(Test-Path -LiteralPath $profile){throw 'TUNNEL_PROFILE_ALREADY_EXISTS'}
 if(Test-Path -LiteralPath $key){throw 'CONTROL_PLANE_KEY_ALREADY_EXISTS'}
@@ -34,18 +43,19 @@ try {
   $tag=[guid]::NewGuid().ToString('N')
   $keyTmp=$key+'.'+$tag+'.tmp'; $profileTmp=$profile+'.'+$tag+'.tmp'
   [IO.File]::WriteAllText($keyTmp,$plain,$enc)
-  & icacls.exe $keyTmp /inheritance:r /grant:r 'SYSTEM:F' 'BUILTIN\Administrators:F' 'NT AUTHORITY\NETWORK SERVICE:R' | Out-Null
+  & icacls.exe $keyTmp /inheritance:r /grant:r 'SYSTEM:F' 'BUILTIN\Administrators:F' ('*' + $TrustedTaskSid + ':R') | Out-Null
   if($LASTEXITCODE -ne 0){throw 'CONTROL_PLANE_KEY_ACL_SET_FAILED'}
   $raw=Get-Content -LiteralPath $template -Raw
   if(([regex]::Matches($raw,'tunnel_REPLACE_WITH_32_HEX')).Count -ne 1){throw 'TUNNEL_TEMPLATE_PLACEHOLDER_INVALID'}
   $rendered=$raw.Replace('tunnel_REPLACE_WITH_32_HEX',$TunnelId)
   if($rendered -match [regex]::Escape($plain)){throw 'SECRET_RENDERED_IN_PROFILE'}
   [IO.File]::WriteAllText($profileTmp,$rendered,$enc)
-  & icacls.exe $profileTmp /inheritance:r /grant:r 'SYSTEM:F' 'BUILTIN\Administrators:F' 'NT AUTHORITY\NETWORK SERVICE:R' | Out-Null
+  & icacls.exe $profileTmp /inheritance:r /grant:r 'SYSTEM:F' 'BUILTIN\Administrators:F' ('*' + $TrustedTaskSid + ':R') | Out-Null
   if($LASTEXITCODE -ne 0){throw 'TUNNEL_PROFILE_ACL_SET_FAILED'}
   Move-Item -LiteralPath $keyTmp -Destination $key -Force; $keyTmp=$null
   Move-Item -LiteralPath $profileTmp -Destination $profile -Force; $profileTmp=$null
-  $qualification=& $qualify -Root $Root
+  if([IO.Path]::GetFullPath($Root).Equals($defaultRoot,[StringComparison]::OrdinalIgnoreCase)) { $qualification=& $qualify -Root $Root -TaskSid $TrustedTaskSid }
+  else { $qualification=& $qualify -Root $Root }
   if(-not $qualification){throw 'TUNNEL_PREFLIGHT_FAILED'}
   $parsed=$qualification | ConvertFrom-Json
   if($parsed.result -ne 'PASS' -or $parsed.doctor -ne 'PASS'){throw 'TUNNEL_PREFLIGHT_NOT_PASS'}
