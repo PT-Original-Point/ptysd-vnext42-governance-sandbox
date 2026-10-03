@@ -10,7 +10,7 @@
   ],
   "route": "OPENCODE_NATIVE_DEFAULT_SERVICE_ENCAPSULATED_AUTH",
   "model": "opencode/fledge-alpha-free",
-  "status": "SUBMITTED_OUTCOME_PENDING",
+  "status": "UNKNOWN_READBACK_REQUIRED",
   "session_id": "ses_efe606f6cffeBxLiIedexWKrH5",
   "paid_fallback": false,
   "model_selection_basis": "Fresh configured prior native source worktree default; new worktree has no default. Explicitly bind SAME zero-cost existing model, no paid fallback.",
@@ -29,5 +29,11 @@
     "Execute the attached bounded source repair and write the required durable result."
   ],
   "task_sha256": "aca4db7702d45cd2230db8293b2906391c121f4d5fb6f0380bd2e280bece117a",
-  "pid": 23536
+  "pid": 23536,
+  "reason": "TWENTY_MINUTE_TASK_BOUND",
+  "interrupt": {
+    "interrupted": true
+  },
+  "exit_code": 1,
+  "closed_at": "2026-10-03T12:16:37.378Z"
 }

@@ -1,21 +1,22 @@
 {
   "schema": "vnext5.2.operation-facts.v1",
   "catalog_sha256": "sha256:ee769422b5d587e771d09c4e95af1af9a3a7cf0a7c0e493d86071e2df57304de",
-  "captured_at_utc": "2026-10-03T12:07:21.749Z",
+  "captured_at_utc": "2026-10-03T12:37:55.332Z",
   "freshness": {
     "max_age_seconds": 900,
     "max_future_skew_seconds": 60
   },
   "source_inventory": {
     "ref": "auto-continuation:dispatch.json",
-    "sha256": "sha256:3bfe9ebc10fbeb60724c9d659c93998b5fb86e59cc966ab924d2468b6604e23b",
-    "observed_at_utc": "2026-10-03T12:07:21.749Z"
+    "sha256": "sha256:2341d637c403170221a9d63c55358c883ceede9b2305e033e190b6d01c06ca65",
+    "observed_at_utc": "2026-10-03T12:37:55.332Z"
   },
   "canonical_binding": {
     "control_ref": "refs/heads/v45/factory-control",
     "control_head": "d39486601d851e31256852a24e9c1393b9046fe5",
     "checkpoint_seq": 200,
-    "checkpoint_digest": "sha256:2cd708bb96179b7ef416ab5a7616f7dff50030567f56d7506a7182f6ceda600d"
+    "checkpoint_digest": "sha256:2cd708bb96179b7ef416ab5a7616f7dff50030567f56d7506a7182f6ceda600d",
+    "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE"
   },
   "units": [
     {
@@ -25,8 +26,8 @@
       "evidence": [
         {
           "ref": "auto-continuation:fresh-provider.json",
-          "sha256": "sha256:64f8a369bbc940bbf3dc9ee800677f2755f4e5b0a2725503f9733e5ef2ab6da7",
-          "observed_at_utc": "2026-10-03T12:07:21.749Z"
+          "sha256": "sha256:a06cef59803845c50a9875404cfdab462dd1ef6c9661100374b79b01e9113e5a",
+          "observed_at_utc": "2026-10-03T12:37:55.332Z"
         }
       ],
       "evidence_class": "FRESH_CANONICAL_READBACK"
@@ -418,5 +419,5 @@
       "evidence": []
     }
   ],
-  "facts_sha256": "sha256:87d62ac73e0978a18a62f487a47704464d47aae4d69af10ff0d867bbd6691d97"
+  "facts_sha256": "sha256:d7566972a93df7abd3c8f7c25a647dd8e789628c0edd9ae2b173d4270b17fa3b"
 }

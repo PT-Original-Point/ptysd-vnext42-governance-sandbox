@@ -1,0 +1,101 @@
+{
+  "schema": "vnext5.2.antigravity-bootstrap-result.v1",
+  "task_id": "ANTIGRAVITY-NATIVE-BOOTSTRAP-20261003",
+  "recorded_at": "2026-10-03T12:30:00Z",
+  "transport_status": "TRANSPORT_PREPARED_NOT_DISPATCHED",
+  "operations": {
+    "official_source_fetch": {
+      "status": "OK",
+      "url": "https://antigravity.google/cli/install.ps1",
+      "evidence_file": "routes/install.ps1.evidence",
+      "bytes": 7165,
+      "sha256": "51c2cb4fada22ce0228da71b9506370383d6544bfebcec85fe7616a52b805344"
+    },
+    "script_inspection": {
+      "status": "OK",
+      "notes": "Script downloads manifest+binary from https://antigravity-cli-auto-updater-974169037036.us-central1.run.app and storage.googleapis.com, verifies SHA512, copies to %LOCALAPPDATA%\\agy\\bin, then runs 'agy.exe install' with passthrough flags. Official origins only; no admin/destructive mutation observed."
+    },
+    "binary_download": {
+      "status": "OK_AFTER_RETRY",
+      "manifest_url": "https://antigravity-cli-auto-updater-974169037036.us-central1.run.app/manifests/windows_amd64.json",
+      "manifest_version": "1.2.16",
+      "binary_url": "https://storage.googleapis.com/antigravity-public/antigravity-cli/1.2.16-5594158052802560/windows-x64/cli_windows_x64.exe",
+      "evidence_file": "routes/agy-1.2.16-evidence.exe",
+      "bytes": 189510808,
+      "sha512": "796d9a15983bedb7db7f517d94d35a9aca93b54f4c6e14dd4ce26d5d56ee9924f96ac42f184a8ab3dfca36a3140c9a60fa3697c363fd847d3f4d32340664f7e9",
+      "anomaly": "First Invoke-WebRequest download (129,473,319 bytes) failed manifest SHA512 match; clean curl.exe re-download matched manifest exactly. Corrupt copy discarded; only verified bytes installed."
+    },
+    "signature_verification": {
+      "status": "OK",
+      "tool": "Get-AuthenticodeSignature (Windows PowerShell 5.1)",
+      "result": "Status: Valid"
+    },
+    "install": {
+      "status": "OK",
+      "target": "C:\\Users\\x\\AppData\\Local\\agy\\bin\\agy.exe",
+      "command": "agy.exe install --skip-aliases --skip-path",
+      "local_changes": "Binary copied to user-level %LOCALAPPDATA%\\agy\\bin; no Desktop shortcut, no PATH append, no alias mutation, no legacy alias purge. Existing Desktop and PATH retained.",
+      "installed_sha512": "796d9a15983bedb7db7f517d94d35a9aca93b54f4c6e14dd4ce26d5d56ee9924f96ac42f184a8ab3dfca36a3140c9a60fa3697c363fd847d3f4d32340664f7e9"
+    },
+    "version_preflight": {
+      "status": "OK",
+      "command": "agy.exe --version",
+      "output": "1.2.16"
+    },
+    "help_preflight": {
+      "status": "OK",
+      "notes": "Subcommands: agent(s), changelog, help, install, mcp, mic-serve, models, plugin(s), remote-control, update. Flags: --print/-p, --input-format stream-json, --output-format (text|json|stream-json), --json-schema, --print-timeout, --conversation, --continue, --model, --agent, --project, --add-dir, --mode (accept-edits|plan), --effort, --sandbox, --remote-control, --log-file, --dangerously-skip-permissions, --disable-slash-commands, --new-project. No 'auth' or 'login' subcommand; no direct credential extraction route used."
+    },
+    "auth_observation": {
+      "status": "SAVED_ACCOUNT_REUSE_QUALIFIED",
+      "class": "EXISTING_NATIVE_KEYRING_SILENT_REUSE_APPEARED_USABLE",
+      "evidence": "'agy.exe models' fetched the live model list without prompting for login, account selection, OAuth, MFA, or API key. No credential files read/printed. No login initiated, no new account, no billable API credentials enabled.",
+      "models_sample": ["gemini-3.8-flash-high", "gemini-3.7-flash-high", "gemini-3.6-flash-high", "gemini-3.1-pro-high", "claude-opus-5-5-low", "claude-sonnet-5-5-medium", "gpt-oss-120b-medium"]
+    }
+  },
+  "headless_route_inspection": {
+    "print_route": "agy.exe --print \"<prompt>\" --output-format json|stream-json --print-timeout <dur>",
+    "stream_route": "agy.exe --input-format stream-json --output-format stream-json (NDJSON per-line turns on stdin)",
+    "resume_route": "-c/--continue or --conversation <id>",
+    "cancel_route": "No dedicated cancel subcommand observed in official --help; use print-timeout bound and process termination.",
+    "result_route": "--output-format json emits final result object; --json-schema enforces structured output.",
+    "acceptance_note": "Existing Desktop install is NOT proof a headless job works; terminal exit is NOT worker acceptance. No model task submitted in this bootstrap."
+  },
+  "planned_sads_dispatch": {
+    "status": "PLANNED_NOT_EXECUTED",
+    "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-S-ADS-ANTIGRAVITY-WORK-20261003",
+    "branch": "codex/vnext5.2-s-ads-antigravity-20261003",
+    "handoff_refs": [
+      "VNEXT5.2-ANTIGRAVITY-SADS-LOCAL-HANDOFF-20261003/00-START-HERE.md",
+      "VNEXT5.2-ANTIGRAVITY-SADS-LOCAL-HANDOFF-20261003/01-SADS-EXECUTION.md"
+    ],
+    "write_set_limit": [
+      "scripts/ads-line-production-reconciliation.mjs",
+      "scripts/ads-line-production-reconciliation.test.mjs",
+      "scripts/google-ads-provider-auth.ts",
+      "scripts/google-ads-provider-auth.test.ts",
+      "scripts/google-ads-read-scope.ts",
+      "scripts/google-ads-read-scope.test.ts"
+    ],
+    "constraints": "Six-file write-set only; date-scoped read grant reuse; no Ads/D1 provider write; no Production; no push/merge; no campaign/budget/goal mutation; outputs under outputs/S-ADS; worker never declares global exhausted or mission complete.",
+    "exact_argument_template": [
+      "C:\\Users\\x\\AppData\\Local\\agy\\bin\\agy.exe",
+      "--print", "<S-ADS dispatch prompt derived from 00-START-HERE.md/01-SADS-EXECUTION.md>",
+      "--project", "<verified saved project name/id>",
+      "--model", "<verified account/model>",
+      "--mode", "accept-edits",
+      "--output-format", "stream-json",
+      "--print-timeout", "0",
+      "--add-dir", "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-S-ADS-ANTIGRAVITY-WORK-20261003"
+    ],
+    "gate": "HUMAN_IDENTITY_GATE_REQUIRED if saved account/model/budget cannot be confirmed before dispatch; do not submit until verified."
+  },
+  "next_route": "Human/root to verify account, model, and budget for the saved native account, then approve submission of the planned native S-ADS dispatch. Antigravity transport is otherwise ready at C:\\Users\\x\\AppData\\Local\\agy\\bin\\agy.exe (v1.2.16, SHA512-verified, signature Valid, --skip-aliases/--skip-path applied).",
+  "do_not": [
+    "No Factory MCP or runtime slice touched",
+    "No production/canonical/ref/Directory write",
+    "No paid API keys, model substitution, OAuth/MFA, or new account",
+    "No Desktop/PATH/global permission mutation",
+    "No model task submitted"
+  ]
+}

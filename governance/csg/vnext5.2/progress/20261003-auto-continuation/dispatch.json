@@ -1,6 +1,6 @@
 {
   "schema": "vnext5.2.coordinator-dispatch.v1",
-  "observed_at": "2026-10-03T12:07:21.749Z",
+  "observed_at": "2026-10-03T12:37:55.332Z",
   "single_integrator": "root",
   "tasks": [
     {
@@ -13,8 +13,11 @@
         "tools/csg/factory-mcp/**"
       ],
       "status": "SUBMITTED_OUTCOME_PENDING",
+      "attempt": 2,
+      "prior_cancel": "INTERRUPTED_EXACT_SESSION_READBACK_CONFIRMED",
+      "rework": "PIPE_DRAIN_BEFORE_WAIT_AND_UNCONDITIONAL_DEADLINE_CHECK",
       "result_path": "outputs/S-MCP-SEMANTIC-REPAIR/result.json",
-      "dispatch_source": "routes/opencode-mcp-repair-intent.json"
+      "dispatch_source": "routes/opencode-mcp-rework-intent.json"
     },
     {
       "id": "S-RUNTIME-SEMANTIC-REPAIR",
@@ -31,19 +34,21 @@
     },
     {
       "id": "S-ADS",
-      "route": "ANTIGRAVITY",
-      "status": "TRANSPORT_BOOTSTRAP_IN_PROGRESS_NOT_YET_ANTIGRAVITY_DISPATCHED",
-      "bootstrap_session": "ses_efe5a0099ffeieQJn8IEJ3t8lq",
-      "result_path": "routes/antigravity-bootstrap-result.json"
+      "route": "ANTIGRAVITY_NATIVE_CLI",
+      "status": "PROCESS_EXITED_RECEIPT_VERIFICATION_REQUIRED",
+      "conversation_id": "87630a5f-9aae-4f2e-af9a-6a0718b52ee8",
+      "version": "1.2.16",
+      "model": "gemini-3.8-flash-high",
+      "worktree": "VNEXT5.2-S-ADS-ANTIGRAVITY-WORK-20261003",
+      "result_path": "outputs/S-ADS/result.json",
+      "dispatch_source": "routes/antigravity-sads-intent.json"
     },
     {
       "id": "P52.NATIVE_ROUTE_DISCOVERY",
-      "route": "NATIVE_SUBAGENT",
-      "agent": "/root/v52_native_routes",
-      "status": "QUALIFICATION_IN_PROGRESS",
-      "model_invocation": "NOT_YET_DISPATCHED",
-      "antigravity": "CLI_NOT_FOUND_LANE_LOCAL",
-      "opencode": "INSTALLED_2.0.22_SERVER_INFO_CONFIRMED_CANCEL_PENDING"
+      "route": "NATIVE_CLI",
+      "status": "TRANSPORT_DELTA_CONFIRMED_LIVE_WORKER_ACCEPTANCE_PENDING",
+      "antigravity": "INSTALLED_1.2.16_SIGNATURE_VALID_SAVED_LOGIN_AND_NATIVE_INIT_CONFIRMED",
+      "opencode": "INSTALLED_2.0.22_ACTUAL_INTERRUPT_AND_IDLE_READBACK_CONFIRMED_SOURCE_SCOPE_ONLY"
     }
   ],
   "collection": "root reads native thread/subagent updates then exact result paths; Human copying unnecessary",

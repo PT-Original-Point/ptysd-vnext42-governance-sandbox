@@ -3,7 +3,7 @@
   "mode": "SHADOW_PLAN_ONLY",
   "facts_schema": "vnext5.2.operation-facts.v1",
   "catalog_sha256": "sha256:ee769422b5d587e771d09c4e95af1af9a3a7cf0a7c0e493d86071e2df57304de",
-  "facts_sha256": "sha256:87d62ac73e0978a18a62f487a47704464d47aae4d69af10ff0d867bbd6691d97",
+  "facts_sha256": "sha256:d7566972a93df7abd3c8f7c25a647dd8e789628c0edd9ae2b173d4270b17fa3b",
   "facts_fresh": true,
   "input_completeness": "COMPLETE",
   "input_reasons": [],

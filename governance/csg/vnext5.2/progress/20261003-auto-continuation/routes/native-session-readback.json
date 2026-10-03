@@ -1,0 +1,60 @@
+{
+  "observed_at": "2026-10-03T12:24:55.811Z",
+  "observations": [
+    {
+      "label": "mcp",
+      "session_id": "ses_efe606f6cffeBxLiIedexWKrH5",
+      "expected_session_id": "ses_efe606f6cffeBxLiIedexWKrH5",
+      "exact_identity": true,
+      "location": {
+        "directory": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-MCP-SEMANTIC-REPAIR-WORK-20261003"
+      },
+      "created": 1791028597068,
+      "updated": 1791028597221,
+      "idle_at": 1791029797342,
+      "outcome": "interrupted",
+      "cost": 0,
+      "tokens": {
+        "input": 201540,
+        "output": 44636,
+        "reasoning": 0,
+        "cache": {
+          "read": 14423296,
+          "write": 0
+        }
+      },
+      "messages": 116,
+      "intent_status": "UNKNOWN_READBACK_REQUIRED"
+    },
+    {
+      "label": "antigravity-bootstrap",
+      "session_id": "ses_efe5a0099ffeieQJn8IEJ3t8lq",
+      "expected_session_id": "ses_efe5a0099ffeieQJn8IEJ3t8lq",
+      "exact_identity": true,
+      "location": {
+        "directory": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-AUTO-CONTINUATION-20261003\\routes"
+      },
+      "created": 1791029018620,
+      "updated": 1791029082753,
+      "idle_at": 1791030213965,
+      "outcome": "succeeded",
+      "cost": 0,
+      "tokens": {
+        "input": 94604,
+        "output": 9762,
+        "reasoning": 0,
+        "cache": {
+          "read": 1108352,
+          "write": 0
+        }
+      },
+      "messages": 40,
+      "intent_status": "PROCESS_EXITED_RECEIPT_VERIFICATION_REQUIRED"
+    }
+  ],
+  "active": {
+    "data": {}
+  },
+  "read_only": true,
+  "model_invocations": 0
+}

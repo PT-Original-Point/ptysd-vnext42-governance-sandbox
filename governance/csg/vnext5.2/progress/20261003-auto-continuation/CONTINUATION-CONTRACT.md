@@ -33,7 +33,7 @@ Directory/installed reader尚未整合locator時明確標示，不能宣稱所�
 
 ## 持續執行與停止
 
-root Goal已實際create/readback ACTIVE。App原生heartbeat `vnext5-2` 每30分鐘回到本thread補充中斷恢復；不建立重複dispatch。App需運行與本機開機，並非Supervisor24x7已驗收。
+root Goal初次實際create/readback ACTIVE；目前狀態必須fresh get_goal，已出現usageLimited，不能將歷史ACTIVE當成現在。App原生heartbeat `vnext5-2` 每30分鐘回到本thread補充中斷恢復；不建立重複dispatch。App需運行與本機開機，並非Supervisor24x7已驗收。
 局部source/test/PR/worker completion不完成Mission。完整fresh catalog沒有READY時仍檢查RUNNING/RETRY/recoverable讀取；只park精確lane。保留Production、成本擴張、identity/OAuth/MFA、重大不可逆trust與未知效果readback等真Human gate。
 
 ## 此輪驗收優先序

@@ -1,0 +1,24 @@
+{
+  "schema": "vnext5.2.native-task-intent.v1",
+  "task_id": "S-MCP-SEMANTIC-REPAIR-REWORK2",
+  "session_id": "ses_efe606f6cffeBxLiIedexWKrH5",
+  "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-MCP-SEMANTIC-REPAIR-WORK-20261003",
+  "recorded_at": "2026-10-03T12:31:32.789Z",
+  "attempt": 2,
+  "prior_outcome_readback": "INTERRUPTED_IDLE_EXACT_SESSION",
+  "status": "SUBMITTED_OUTCOME_PENDING",
+  "native_args": [
+    "run",
+    "--session",
+    "ses_efe606f6cffeBxLiIedexWKrH5",
+    "--model",
+    "opencode/fledge-alpha-free",
+    "--format",
+    "json",
+    "--file",
+    "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-AUTO-CONTINUATION-20261003\\routes\\MCP-REWORK-ATTEMPT2.md",
+    "Execute exact rework on preserved partial source using local worktree inputs; persist required result."
+  ],
+  "paid_fallback": false,
+  "pid": 17016
+}
