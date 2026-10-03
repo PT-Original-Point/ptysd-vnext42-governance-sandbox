@@ -1,0 +1,14 @@
+{
+  "checked_at": "2026-10-03T07:47:07.694Z",
+  "kind": "LOCAL_PACKAGE_DEFINITION_CHECK_NOT_RUNTIME_ACCEPTANCE",
+  "full_operation_count": 59,
+  "dag_acyclic": true,
+  "manual_slices": 3,
+  "source_write_sets_disjoint": true,
+  "reader_tests": "10/10 LOCAL PASS",
+  "preserved_original_acceptance": true,
+  "canonical_write": false,
+  "live_mcp": "NOT_ACCEPTED",
+  "live_ads": "NOT_ACCEPTED",
+  "real_new_session": "NOT_ACCEPTED"
+}

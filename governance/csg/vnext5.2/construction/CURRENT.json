@@ -1,0 +1,56 @@
+{
+  "schema": "vnext5.2.shared-construction-context.v1",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "human_requested_spec": "VNEXT5.2",
+  "architecture_revision": "V52-INTEGRATED-20261003-R1",
+  "artifact_revision": "SHARED-READER-COMPAT-R2",
+  "shared_locator": {
+    "repository": "PT-Original-Point/ptysd-vnext42-governance-sandbox",
+    "ref": "codex/vnext5.2-shared-construction-20261003-r2",
+    "path": "governance/csg/vnext5.2/construction/CURRENT.json"
+  },
+  "architecture_path": "01-integrated-spec.md",
+  "role": "HUMAN_REQUESTED_CONSTRUCTION_INTENT_AND_EVIDENCE_INDEX_NOT_CANONICAL_EXECUTION_SELECTION",
+  "priority": [
+    "SCOPED_FALSE_LOCK_REMOVAL",
+    "SHARED_CONTEXT_AND_WEB_MCP_DISCOVERY",
+    "ADS_LINE_CONVERSION_READBACK_RECOVERY",
+    "NATIVE_ISOLATED_WORKER_ROUTE",
+    "WHOLE_LAYER_SLIMMING",
+    "FULL_PRODUCT_AND_SURVIVAL_CLOSURE"
+  ],
+  "canonical_locator": {
+    "repository": "PT-Original-Point/ptysd-vnext42-governance-sandbox",
+    "ref": "v45/factory-control",
+    "current_path": "governance/csg/current.json"
+  },
+  "canonical_observation": {
+    "control_head": "d39486601d851e31256852a24e9c1393b9046fe5",
+    "checkpoint": 200,
+    "spec": "VNEXT5.1-R2",
+    "role": "OBSERVATION_THIS_TURN_NOT_FUTURE_CURRENT"
+  },
+  "canonical_selection_changed": false,
+  "installed_runtime_version": "NOT_OBSERVED_THIS_TURN",
+  "factory_mcp_live_acceptance": "NOT_ACCEPTED_BY_THIS_PACKET",
+  "business_project": "HANYAO_ADS_LINE_PROD",
+  "business_control_locator": {
+    "repository": "t14210184/hanyao",
+    "ref": "governance/hanyao-control",
+    "current_path": "governance/hanyao/current.json"
+  },
+  "business_read_authority_evidence": "evidence/hanyao-existing-read-authority.json",
+  "cross_session_live_acceptance": "PENDING_REAL_CONSUMER_SESSION_TEST",
+  "ready_queue": "RECOMPUTE_FROM_CURRENT_COMPLETE_APPLICABLE_CATALOG_NOT_THIS_DOCUMENT",
+  "worker_dispatch_by_this_packet": false,
+  "source_pair_observation": {
+    "factory_pr": 381,
+    "factory_head": "257318f78271b4a737785d756732915e5a835fe4",
+    "runtime_pr": 377,
+    "runtime_head": "491493627bd6ffcd51b0cd9287ab2cb465fbf9ee",
+    "role": "FRESH_PROVIDER_METADATA_NOT_SEMANTIC_OR_LIVE_PASS"
+  },
+  "manual_dispatch_plan": "dispatch-plan.json",
+  "construction_work_index": "evidence/local-work-index.json",
+  "references_index": "references/INDEX.json"
+}

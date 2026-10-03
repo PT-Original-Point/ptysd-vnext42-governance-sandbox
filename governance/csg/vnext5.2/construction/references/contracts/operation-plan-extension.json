@@ -1,0 +1,344 @@
+{
+  "schema": "vnext5.2.operation-plan-extension.v1",
+  "role": "DEFINITIONS_ONLY_MERGE_AND_VALIDATE_BEFORE_PLANNER_USE",
+  "parent_operation_plan_sha256": "d0f82978679ba8abb720499eeec65ef981f94619b7849e26c7a1c8ac0cab33b5",
+  "parent_unit_count": 44,
+  "added_unit_count": 15,
+  "expected_union_count": 59,
+  "preserves_current_states_and_receipts": true,
+  "units": [
+    {
+      "id": "P52.NATIVE_ROUTE_DISCOVERY",
+      "task": "P52",
+      "title": "Discover native CLI, target privilege, auth scope and isolation separately",
+      "effect_class": "READ_ONLY_DIAGNOSTIC",
+      "start_dependencies": [
+        "B00.RECOVER"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 10,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true,
+      "target_cell_admission_required": false,
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "P52.INTAKE_SOURCE",
+      "task": "P52",
+      "title": "Natural-language request schema and native/UI intake",
+      "effect_class": "CANDIDATE_SOURCE",
+      "start_dependencies": [
+        "B00.RECOVER"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 31,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true,
+      "target_cell_admission_required": false,
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "P52.RESEARCH_OPTIONS_SOURCE",
+      "task": "P52",
+      "title": "Research sources, alternatives and recommendation source",
+      "effect_class": "CANDIDATE_SOURCE",
+      "start_dependencies": [
+        "P52.INTAKE_SOURCE"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 32,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true,
+      "target_cell_admission_required": false,
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "P52.FRONTDOOR_ACCEPTANCE",
+      "task": "P52",
+      "title": "Read-only research/options and input contract qualification",
+      "effect_class": "READ_ONLY_DIAGNOSTIC",
+      "start_dependencies": [
+        "P52.RESEARCH_OPTIONS_SOURCE"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 33,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true,
+      "target_cell_admission_required": false,
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "P52.SELECTION_CONTRACT",
+      "task": "P52",
+      "title": "Exact solution approval, scope and stale approval rejection source/tests",
+      "effect_class": "CANDIDATE_SOURCE",
+      "start_dependencies": [
+        "P52.RESEARCH_OPTIONS_SOURCE"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 34,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true,
+      "target_cell_admission_required": false,
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "P52.OPENCODE_SOURCE",
+      "task": "P52",
+      "title": "OpenCode native CLI or negotiated ACP thin adapter source",
+      "effect_class": "CANDIDATE_SOURCE",
+      "start_dependencies": [
+        "F01.ADAPTER_SOURCE"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 35,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true,
+      "target_cell_admission_required": false,
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "P52.ANTIGRAVITY_SOURCE",
+      "task": "P52",
+      "title": "Antigravity actual channel/version thin adapter source",
+      "effect_class": "CANDIDATE_SOURCE",
+      "start_dependencies": [
+        "F01.ADAPTER_SOURCE"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 36,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true,
+      "target_cell_admission_required": false,
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "P52.CODEX_ACCEPTANCE",
+      "task": "P52",
+      "title": "Actual Codex isolated task/cancel/receipt/reviewer qualification",
+      "effect_class": "ISOLATED_AGENT",
+      "start_dependencies": [
+        "P52.NATIVE_ROUTE_DISCOVERY",
+        "F01.ADAPTER_SOURCE",
+        "F01.CELL_PREPARE"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 37,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true,
+      "target_cell_admission_required": true,
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "P52.OPENCODE_ACCEPTANCE",
+      "task": "P52",
+      "title": "Actual OpenCode isolated task/cancel/receipt/reviewer qualification",
+      "effect_class": "ISOLATED_AGENT",
+      "start_dependencies": [
+        "P52.OPENCODE_SOURCE",
+        "F01.CELL_PREPARE"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 38,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true,
+      "target_cell_admission_required": true,
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "P52.ANTIGRAVITY_ACCEPTANCE",
+      "task": "P52",
+      "title": "Actual Antigravity isolated task/cancel/receipt/reviewer qualification",
+      "effect_class": "ISOLATED_AGENT",
+      "start_dependencies": [
+        "P52.ANTIGRAVITY_SOURCE",
+        "F01.CELL_PREPARE"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 39,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true,
+      "target_cell_admission_required": true,
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "P52.SHARD_REVIEW_INTEGRATION_SOURCE",
+      "task": "P52",
+      "title": "Slice DAG, write-set arbitration, review, integration and bounded repair source",
+      "effect_class": "CANDIDATE_SOURCE",
+      "start_dependencies": [
+        "P52.SELECTION_CONTRACT",
+        "D02.SOURCE"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 40,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true,
+      "target_cell_admission_required": false,
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "P52.VERTICAL_E2E",
+      "task": "P52",
+      "title": "One qualified route builds a real bounded sample end to end",
+      "effect_class": "ISOLATED_AGENT",
+      "start_dependencies": [
+        "P52.FRONTDOOR_ACCEPTANCE",
+        "P52.SELECTION_CONTRACT",
+        "P52.SHARD_REVIEW_INTEGRATION_SOURCE",
+        "F01.ISOLATED_EXECUTION",
+        "D02.EXECUTOR_INTEGRATION"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 41,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true,
+      "target_cell_admission_required": true,
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "P52.THREE_VENDOR_E2E",
+      "task": "P52",
+      "title": "All three brands build distinct slices with bounded async integration",
+      "effect_class": "ISOLATED_AGENT",
+      "start_dependencies": [
+        "P52.VERTICAL_E2E",
+        "P52.CODEX_ACCEPTANCE",
+        "P52.OPENCODE_ACCEPTANCE",
+        "P52.ANTIGRAVITY_ACCEPTANCE",
+        "F02.N2_ACCEPTANCE"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 42,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true,
+      "target_cell_admission_required": true,
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "P52.BENCHMARK_REGRESSION",
+      "task": "P52",
+      "title": "Security, performance and held-out repair/efficiency evaluation",
+      "effect_class": "ISOLATED_AGENT",
+      "start_dependencies": [
+        "P52.VERTICAL_E2E"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 43,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true,
+      "target_cell_admission_required": true,
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "P52.FINAL_PRODUCT_ACCEPTANCE",
+      "task": "P52",
+      "title": "Complete product evidence packet; never select canonical by itself",
+      "effect_class": "READ_ONLY_DIAGNOSTIC",
+      "start_dependencies": [
+        "P52.THREE_VENDOR_E2E",
+        "P52.BENCHMARK_REGRESSION",
+        "D04.SURVIVAL",
+        "M05.LIVE_HEALTH",
+        "T01.BASELINE"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 44,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true,
+      "target_cell_admission_required": false,
+      "actual_evidence_refs": []
+    }
+  ],
+  "required_parent_adjustments": [
+    {
+      "unit": "F01.PREFLIGHT",
+      "change": "Preserve session-tool subcheck receipt; overall coverage requires native discovery. Do not edit historical receipt."
+    },
+    {
+      "unit": "F01.CELL_PREPARE",
+      "add_start_dependency": "P52.NATIVE_ROUTE_DISCOVERY",
+      "change": "Missing MCP gates only MCP route; admission requires target-specific native/privilege/authority/isolation evidence."
+    },
+    {
+      "unit": "F01.ISOLATED_EXECUTION",
+      "add_start_dependency": "P52.NATIVE_ROUTE_DISCOVERY",
+      "change": "Any qualified native or ACP route is eligible; no mandatory Factory MCP transport dependency."
+    },
+    {
+      "unit": "X01.ACCEPT",
+      "add_completion_dependency": "P52.FINAL_PRODUCT_ACCEPTANCE",
+      "change": "Final product closure includes all required product evidence. Existing X01 scope remains unchanged."
+    }
+  ],
+  "merge_invariants": [
+    "UNIQUE_IDS_AND_EXACT_PARENT_DIGEST",
+    "DAG_ACYCLIC_FOR_START_AND_COMPLETION_DEPENDENCIES",
+    "NO_LIVE_STATE_IMPORTED_FROM_DEFINITIONS",
+    "ALL_APPLICABLE_UNION_UNITS_EVALUATED_BEFORE_GLOBAL_EXHAUSTION",
+    "NO_SOURCE_WORK_DEPENDS_ON_FUTURE_LIVE_INSTALL",
+    "PER_TARGET_AUTHORIZATION_AND_SANDBOX_ADMISSION",
+    "BOOTSTRAP_CANARY_DOES_NOT_REQUIRE_ITS_OWN_FINAL_PASS"
+  ],
+  "canonical_or_host_side_effect_authorized_by_this_file": false
+}

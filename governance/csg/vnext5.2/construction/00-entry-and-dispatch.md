@@ -1,0 +1,24 @@
+# VNEXT5.2 統一基線與人工分派入口
+
+本包整合至本輪最新 Human 要求；它取代多輪 ZIP 拼接作為施工閱讀入口。原證據、未提交成果與 staged 工作樹保留。Human 要求 V5.2；canonical control 目前 CP200／V5.1-R2；安裝 runtime 未實測。三者必須同時報告，不能把其中任一項當另一項。
+
+先讀 CURRENT.json→01→02→04，按任務讀對應 agent Prompt。所有新 Session 都應讀共用 branch 的最新 CURRENT.json；先解析 branch head，再用同一 immutable commit 讀文件，避免半套新舊混讀。仍需獨立 fresh-read Project Directory、選定 Mission／Policy、checkpoint、run／owner／effects 和 live facts。此入口不是第二 Mission 或 mutation permit。
+
+## 人工分派
+
+同一 ZIP 分別附給 Win11 上三個應用，貼對應 Prompt：
+
+- Codex／目前 Luna Max：prompts/CODEX-LUNA-MAX-MCP.md。
+- Antigravity：prompts/ANTIGRAVITY-ADS.md。
+- OpenCode：prompts/OPENCODE-RECOVERY.md。
+- 回收統合：貼 prompts/INTEGRATOR-LUNA-MAX.md，只有此角色修改共用 contracts、publication pointer 與整合 branch。
+
+品牌代表人工分配，不代表本輪已啟動 agents 或證明其登入／sandbox。支援 source/read 的路線先進行；真正 auth/OS/cell gate 只停精確 execution。普通 source 工作不需反覆批准。模型保持既有 Human 指定，禁止新增付費 fallback。
+
+每片工作先接續現有 exact 成果；只做具體未完項，不重建整個系統。不修改原工作樹，使用獨立 workspace。三片可並行改來源；live mutation 仍由既有授權／fence／CAS 控制。
+
+evidence/local-work-index.json 指向這輪保全的 source bytes：D02 31 個 runtime source／test／package 檔及廣告 6 個 read-only 檔。inputs 是可攜 source snapshot；M01 從 PR381 exact provider head 讀取。先核 hash／完整檔案與 fresh worktree，再在隔離 target base 套用，禁止把已前進的 source 覆寫成較舊 snapshot。這些資料不是安裝或 acceptance 收據。
+
+第一批成果：跨 Session 可讀的 V5.2 入口；MCP 具體拒絕 trace 的修復；Ads→LINE 日期讀回可用成果。Restate、三品牌 fleet 和 24h soak 不作這三項的前置。局部成果不結束 Mission；合法 READY 要續做。
+
+交付的每片成果要包含 result.json、patch／bundle、source identity、測試與未完 gates，按 07 回收。worker 不持 provider-write credentials，不自行推 main／control／current 或合併他人的 branch。不要建立新的 mailbox、控制 DB 或同時兩個 dispatcher。

@@ -1,0 +1,58 @@
+{
+  "schema": "vnext5.2.provider-observation.v1",
+  "observed_at": "2026-10-03 07:31:32 UTC",
+  "role": "FRESH_READ_EVIDENCE_NOT_RUNTIME_ACCEPTANCE",
+  "factory": {
+    "repository": "PT-Original-Point/ptysd-vnext42-governance-sandbox",
+    "control_head": "d39486601d851e31256852a24e9c1393b9046fe5",
+    "checkpoint": 200,
+    "spec": "VNEXT5.1-R2",
+    "current_blob": "2481db71189e0f4cef024873b07c3d26e605cc9f",
+    "directory_commit": "38f4fc7cb2841e2318a97ff7a53e41b2ec07aef1",
+    "directory_record_blob": "377dcf88279d3ba433d099a7cc9f78af8c86b8ae"
+  },
+  "business": {
+    "project_id": "HANYAO_ADS_LINE_PROD",
+    "repository": "t14210184/hanyao",
+    "control_head": "46f59cdcd918a08fb4a42040b8d4724c15c812e4",
+    "checkpoint": 2,
+    "existing_read_scope": "HUMAN_FINALIZED_DATE_SCOPED_D1_ADS_READBACK",
+    "receipt_path": "evidence/hanyao-existing-read-authority.json",
+    "actual_credential_availability": "NOT_OBSERVED_THIS_TURN",
+    "actual_provider_query": "NOT_EXECUTED_THIS_TURN"
+  },
+  "sources": [
+    {
+      "pr": 381,
+      "head": "257318f78271b4a737785d756732915e5a835fe4",
+      "base": "d39486601d851e31256852a24e9c1393b9046fe5",
+      "draft": false
+    },
+    {
+      "pr": 377,
+      "head": "491493627bd6ffcd51b0cd9287ab2cb465fbf9ee",
+      "base": "06da5fa224b65b9346e8b250dcea686d0ed458ee",
+      "draft": false
+    },
+    {
+      "pr": 88,
+      "repository": "t14210184/hanyao",
+      "head": "7cd87cb0f69b5586719c1265828df20879b28bf2",
+      "base": "e917139e4e81a12e41ef5ead507589ae0bf48452",
+      "draft": true
+    }
+  ],
+  "root_session_tool_catalog": {
+    "factory_public_tools_exposed": [],
+    "interpretation": "ONLY_CURRENT_ROOT_SESSION_TOOL_ROUTE_ABSENCE_NOT_HOST_OR_WEB_SERVICE_ABSENCE"
+  },
+  "side_effects": {
+    "canonical": false,
+    "owner_allocation": false,
+    "Host_dispatch": false,
+    "Production": false,
+    "paid_fallback": false,
+    "provider_queries": false
+  }
+}
+

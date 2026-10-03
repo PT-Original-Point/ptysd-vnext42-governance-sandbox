@@ -1,0 +1,376 @@
+{
+  "schema": "vnext5.2.public-artifact-manifest.v1",
+  "role": "NONSELECTING_SHARED_CONSTRUCTION_CONTEXT",
+  "files": [
+    {
+      "path": "00-entry-and-dispatch.md",
+      "bytes": 2608,
+      "sha256": "cc9461f111d7bfd7779bd3f06b8474382df478ccc68844d329345fbb5e13af91"
+    },
+    {
+      "path": "01-integrated-spec.md",
+      "bytes": 4120,
+      "sha256": "b725814aaa3ee98f3d5b1d7547801fc380aee8b19d8967c79d4ff2fea2d9bb24"
+    },
+    {
+      "path": "02-root-cause-audit.md",
+      "bytes": 2558,
+      "sha256": "fc86288e7db3395884104a36c94ad69453cd13070cc8b96c6aa9ac8dd572fc03"
+    },
+    {
+      "path": "03-architecture-lineage.md",
+      "bytes": 1669,
+      "sha256": "1dc0fca8ecf5f3e25f0b9c4b1ff6d11cec95d76d3ccc8c34e3fb065d4f726ce3"
+    },
+    {
+      "path": "04-interfaces-and-write-scope.md",
+      "bytes": 1437,
+      "sha256": "2c5af472c866ee3f8ce38bd9ffd417c01f2be3919fbbe65da43cca4d0b7daa19"
+    },
+    {
+      "path": "05-cross-session-readback.md",
+      "bytes": 1785,
+      "sha256": "62dd21749afd486dbd83bf157db1c03a30a23003b87ee1a3403644fc27218ff9"
+    },
+    {
+      "path": "06-ads-and-mcp-recovery.md",
+      "bytes": 1602,
+      "sha256": "44235eb35bec84acfcf0e06143da9c41546f0ba451fb6282ea8bbd921cd2186d"
+    },
+    {
+      "path": "07-collection-and-integration.md",
+      "bytes": 1971,
+      "sha256": "0697b44d14233f6d3e701e8a2937399a509f8d13a668a4c2c985c3788ad6fa42"
+    },
+    {
+      "path": "08-instruction-precedence.md",
+      "bytes": 1208,
+      "sha256": "e5dc55029de95da93fcec72ac48f2f85ecf4c25d476961fa7330e666caf4a588"
+    },
+    {
+      "path": "CURRENT.json",
+      "bytes": 2362,
+      "sha256": "6d5879b964c1331f1bbb379f7308d960f8d2ff3228eaaf192b29e7e82c553beb"
+    },
+    {
+      "path": "README.md",
+      "bytes": 787,
+      "sha256": "4c1070ca8b0cb4ced7e84cfc9a7a0caebea7ae77061bc233c1d4a821b0aac4dc"
+    },
+    {
+      "path": "dispatch-plan.json",
+      "bytes": 2737,
+      "sha256": "0e26365faab73f9759694f4f9b57ecd8fc9500b28991a5eb336fb9aff80a59e1"
+    },
+    {
+      "path": "evidence/hanyao-cp2-observed.json",
+      "bytes": 3805,
+      "sha256": "372ba9620f6e4192cb4863c4a6cab2706fff6e450ae19815236f0dcf85408d93"
+    },
+    {
+      "path": "evidence/hanyao-existing-read-authority.json",
+      "bytes": 10608,
+      "sha256": "854958ee21f4414ffe449a90a39bf6494ef1fab93803bf5c331997bc1925e715"
+    },
+    {
+      "path": "evidence/local-work-index.json",
+      "bytes": 17561,
+      "sha256": "670d40a99ea579b017de539d960164cf31d874f0d449fe155655610c03babc85"
+    },
+    {
+      "path": "evidence/package-checks.json",
+      "bytes": 432,
+      "sha256": "1ecb01d8c6093726afecc0f57796a8a9d1cd5b2778361fe2bd09b158348ad10f"
+    },
+    {
+      "path": "evidence/provider-snapshot.json",
+      "bytes": 1936,
+      "sha256": "b5878ece58769bf16b6d52359b47f340e735eb0c87183ec77fecb7f27ef9f80a"
+    },
+    {
+      "path": "inputs/S-ADS/scripts/ads-line-production-reconciliation.mjs",
+      "bytes": 17380,
+      "sha256": "8e6104391f90cda5c1dcb9c27ba61549a3807a357165cc1edc9f0b2f51553bb4"
+    },
+    {
+      "path": "inputs/S-ADS/scripts/ads-line-production-reconciliation.test.mjs",
+      "bytes": 8483,
+      "sha256": "b4251d2ddecb936dcd6fe3e87cf36818435dd93267a9a28e508aaf7977064ec0"
+    },
+    {
+      "path": "inputs/S-ADS/scripts/google-ads-provider-auth.test.ts",
+      "bytes": 2807,
+      "sha256": "0a3571a2cbb006fc0a573660d3d426bf497abdbed04d851ba123504c3548d383"
+    },
+    {
+      "path": "inputs/S-ADS/scripts/google-ads-provider-auth.ts",
+      "bytes": 2077,
+      "sha256": "c46c407b00c992392a8585d27ecc7884e506fba1886be7fd148528516fb41a8c"
+    },
+    {
+      "path": "inputs/S-ADS/scripts/google-ads-read-scope.test.ts",
+      "bytes": 5174,
+      "sha256": "3b82d0d2fe6b84349856912fe101fce26c1ecbc4b324a04accec76ee9afa520e"
+    },
+    {
+      "path": "inputs/S-ADS/scripts/google-ads-read-scope.ts",
+      "bytes": 7451,
+      "sha256": "18e23076dc91c6057fe2641ee65cae9ce23c0076c64c9aa13cdaddaf639af60d"
+    },
+    {
+      "path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/README.md",
+      "bytes": 6958,
+      "sha256": "6bf3ff9eea8fd367652d3d892d7ceb51b9aa818b95d135085d164d3ebb697f02"
+    },
+    {
+      "path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/bin/host-supervisor.mjs",
+      "bytes": 2966,
+      "sha256": "50df8b24908e3ae916e08494e5c78b38fe047f3af92119e54daf8c2bf045c9eb"
+    },
+    {
+      "path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/lib/evidence-contract.mjs",
+      "bytes": 9350,
+      "sha256": "8b2244f2e2dde071ba448599ec8917dc30ecd53c02492944a6b8254f8ff6bd82"
+    },
+    {
+      "path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/lib/evidence-ledger.mjs",
+      "bytes": 3945,
+      "sha256": "f96ec3200f6ad9cc318f807b4659577f02ee8349a2013895978e4954020722bf"
+    },
+    {
+      "path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/lib/f01-executor-adapter.mjs",
+      "bytes": 13438,
+      "sha256": "2b7b573884d10c033613916d0a154e81eebf047215451f30390ed7f00b74298b"
+    },
+    {
+      "path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/lib/fingerprint.mjs",
+      "bytes": 4379,
+      "sha256": "a095eaa6dc0a019aad8d005226b554ed8c85ac968ae66f9d6ddaee7155ae74aa"
+    },
+    {
+      "path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/lib/fleet.mjs",
+      "bytes": 9086,
+      "sha256": "4b37c7bbbc4d0eb1da3d917b62bfabcbfbc032c033e627a818ed5a71ed7aec75"
+    },
+    {
+      "path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/lib/github-readonly.mjs",
+      "bytes": 9399,
+      "sha256": "4389473cfbd3dbfa5373eb6229df251aad0324c43bb8db384b4abc3b15709ec7"
+    },
+    {
+      "path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/lib/operation-planner.mjs",
+      "bytes": 10235,
+      "sha256": "4c715f3047bc8ee9087bacf675d94748f492b90d9bc40cd3b3862dd4b94db775"
+    },
+    {
+      "path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/lib/reconcile.mjs",
+      "bytes": 15965,
+      "sha256": "327c19460199a0abc5b7d4a3ed2918c058e1f93bec5521e821f3410f1fef8485"
+    },
+    {
+      "path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/lib/scheduler.mjs",
+      "bytes": 8787,
+      "sha256": "a869c8531369d2e9a2e268b82326a8d0890ee84f0efbdfbd384963f604ce5375"
+    },
+    {
+      "path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/lib/shadow-journal.mjs",
+      "bytes": 16036,
+      "sha256": "adea8275bf0e694504b83769fbdabfb0a9684b272ffa96ef5e4cc0f12f222590"
+    },
+    {
+      "path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/lib/shadow-runtime.mjs",
+      "bytes": 7915,
+      "sha256": "d09eed6ceaf80586d39e81c7b615b039f9b8be675af80d26e0361563d81b6a50"
+    },
+    {
+      "path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/lib/supervisor.mjs",
+      "bytes": 4218,
+      "sha256": "97acc156d277f117c6cd7a784136793196bf5f6ceae1b922dbc473837aa74ff9"
+    },
+    {
+      "path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/lib/windows-task-profile.mjs",
+      "bytes": 3001,
+      "sha256": "58f06574f7742bee81f570dccf3899a25b13d4340e943ebf70a2b7359b5c0558"
+    },
+    {
+      "path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/operation-plan.vnext5.2.json",
+      "bytes": 29294,
+      "sha256": "d0f82978679ba8abb720499eeec65ef981f94619b7849e26c7a1c8ac0cab33b5"
+    },
+    {
+      "path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/package.json",
+      "bytes": 193,
+      "sha256": "3ce390cf76667745a6971cbf99a7ba8a83983776a540d10d7a980a01b7f24586"
+    },
+    {
+      "path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/tests/any-state-regression.test.mjs",
+      "bytes": 8452,
+      "sha256": "b36dab324b339093f083f77a097ced099681078ef3e67a2ab5dd27bb711a3956"
+    },
+    {
+      "path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/tests/evidence-contract.test.mjs",
+      "bytes": 6612,
+      "sha256": "a380dd1ae2120292c94f4e5065e568bbe8deb72572773f00f759063af2667f32"
+    },
+    {
+      "path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/tests/evidence-ledger.test.mjs",
+      "bytes": 5083,
+      "sha256": "e3eb867ed99a285eaff54f900e8a57254c0ac74504f5b54af307d61fee546441"
+    },
+    {
+      "path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/tests/f01-executor-adapter.test.mjs",
+      "bytes": 9659,
+      "sha256": "43b5483ae608d48e2cf767f0c683bf1c99f1418e60ba68a8cdb0aeb9af58d114"
+    },
+    {
+      "path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/tests/fleet.test.mjs",
+      "bytes": 9196,
+      "sha256": "63ec38ac17d7dd85171467e0ad9d7436af8e07b0a9a45dd85b92fe81950ce64e"
+    },
+    {
+      "path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/tests/github-readonly.test.mjs",
+      "bytes": 7796,
+      "sha256": "fd3780a04518f36bb9a04a3c0d2e86198f1dffb86a203a83ede3ed8a00695aad"
+    },
+    {
+      "path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/tests/operation-planner.test.mjs",
+      "bytes": 5846,
+      "sha256": "03ab66fe45c4ffffaaf02b1185768b2a2157bfa35756a7ee3cbdf9e4ba95f63a"
+    },
+    {
+      "path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/tests/reconcile-scheduler.test.mjs",
+      "bytes": 28536,
+      "sha256": "430314d1a3bfcb6ba1ef70cc56b0c9807302298c2dd5745f9486457b228de8d2"
+    },
+    {
+      "path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/tests/runtime-shadow.test.mjs",
+      "bytes": 15089,
+      "sha256": "dab92aa4fe0c126731fd0c0830d56f114ecc8c23b31a44c6630d599fc03ca42a"
+    },
+    {
+      "path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/tests/supervisor.test.mjs",
+      "bytes": 6218,
+      "sha256": "c4f6d48aee24a59014fc6ce000436fe25f1edc9ef3f751af21b396594e0a10cb"
+    },
+    {
+      "path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/tests/windows-task-profile.test.mjs",
+      "bytes": 3815,
+      "sha256": "d025a88b13467fbc33def67af12e69bd84d466d9281ac3188d8fdd022cc5fafc"
+    },
+    {
+      "path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/windows/register-supervisor-task.ps1",
+      "bytes": 11006,
+      "sha256": "96087c60ff55fa66a7e36b0be1c4751603feb8376ad05b1da1dedccadd2697fb"
+    },
+    {
+      "path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/windows/remove-supervisor-task.ps1",
+      "bytes": 2027,
+      "sha256": "4bc1cabe5c4d5c4f8d91783ee270e52d8ace86848d55e47201879376480f2974"
+    },
+    {
+      "path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/windows/supervisor-task-profile.json",
+      "bytes": 1068,
+      "sha256": "cbbbe10e4cdf76c66b41c0b36f9139222de317604969834f68af46eefe0ce02c"
+    },
+    {
+      "path": "prompts/ANTIGRAVITY-ADS.md",
+      "bytes": 3526,
+      "sha256": "0b68c1c827c92ebb36062ed33ff9b183c452e84da66e46f0080c84f66b59732d"
+    },
+    {
+      "path": "prompts/CODEX-LUNA-MAX-MCP.md",
+      "bytes": 3228,
+      "sha256": "80744468d317f1219c99c44bd842384f9a4dced1894f3f08dc6c6f9c7ec05e7c"
+    },
+    {
+      "path": "prompts/INTEGRATOR-LUNA-MAX.md",
+      "bytes": 3560,
+      "sha256": "21d75423c3904bd78fbc6de40a07aa55cfba048bbc6cf05950d3505bee6c0de7"
+    },
+    {
+      "path": "prompts/OPENCODE-RECOVERY.md",
+      "bytes": 3481,
+      "sha256": "c66c813f0138699dde60798deea5c2a7726451cb2ca8f65de3c4d90db044ce18"
+    },
+    {
+      "path": "references/INDEX.json",
+      "bytes": 6122,
+      "sha256": "659a0ed693963280b942aac5bf453fd13990cb15f65a3e8ee0c6fb10893659da"
+    },
+    {
+      "path": "references/contracts/cross-session-recovery.md",
+      "bytes": 2738,
+      "sha256": "c8e4e1421a3221259d71fd5eae059f0be8abe35117d50255ce1ebc6425d362fb"
+    },
+    {
+      "path": "references/contracts/operation-plan-extension.json",
+      "bytes": 12709,
+      "sha256": "d634252fd0fc35582a1b9486084904f4a9b99f3d4be293b7d05d9802c08ff39f"
+    },
+    {
+      "path": "references/contracts/original-execution-contract.json",
+      "bytes": 40058,
+      "sha256": "130c22bd328d22538e439e3e444b84c478c22200e73e33455b8e1e35f7e50600"
+    },
+    {
+      "path": "references/contracts/original-full-spec.md",
+      "bytes": 57626,
+      "sha256": "6b3ab17c9c13737656b13f77c0d71b3a28fea03f69dd86791bc80f7b30803f21"
+    },
+    {
+      "path": "references/contracts/priority-recovery-contract.json",
+      "bytes": 3252,
+      "sha256": "21d29253c3b9c11ebe2a2d8b4cd69af9828c1d56d23b98ef4d2d4dbd94241bc7"
+    },
+    {
+      "path": "references/contracts/product-architecture.md",
+      "bytes": 9195,
+      "sha256": "bf6e7fcc25ddc5401a4e5ddb951832ea73098d2c92ec9f21e1c934ed3bdc7e22"
+    },
+    {
+      "path": "references/contracts/product-contract.json",
+      "bytes": 18184,
+      "sha256": "deb2cfa3356dd10b38441425ab8f9903ef4f76506a37688ab77dcdde70f2c6a2"
+    },
+    {
+      "path": "references/contracts/ready-and-exit-admission.md",
+      "bytes": 4241,
+      "sha256": "5d0b5bd035ec13e17c7d2230199c4c804bed0c2e5844840f02176e37958bf659"
+    },
+    {
+      "path": "references/contracts/rev2-acceptance-map.json",
+      "bytes": 49286,
+      "sha256": "19de036572d18729b69f3f4b74ab869773673130c385fcb0322125f2ae71759a"
+    },
+    {
+      "path": "references/contracts/rev2-operation-plan.json",
+      "bytes": 29294,
+      "sha256": "d0f82978679ba8abb720499eeec65ef981f94619b7849e26c7a1c8ac0cab33b5"
+    },
+    {
+      "path": "references/contracts/slim-contract.json",
+      "bytes": 12929,
+      "sha256": "0779a4c12114c520557a1a9814927655a7ea99236dc3b8679b9f3f2eeff13483"
+    },
+    {
+      "path": "result.template.json",
+      "bytes": 714,
+      "sha256": "739bf8d5309b7e6cf5fa905fdb61d6c6c31e7959db318486fc34c4bf36cd7ffc"
+    },
+    {
+      "path": "scripts/capture-source-inputs.mjs",
+      "bytes": 2966,
+      "sha256": "8fd7ac1bd3c3aecfb16745605194d13af300ca8406ce898e4b643a87e56c714e"
+    },
+    {
+      "path": "scripts/csg-read-shared-context.mjs",
+      "bytes": 9740,
+      "sha256": "aa758a9316474cf5566e515ab826a7f5c46971c8ba69cf25a223b23a68e1aba7"
+    },
+    {
+      "path": "tests/context-view.test.mjs",
+      "bytes": 6175,
+      "sha256": "89cc3339a87997a587d1e180a99fda24629ec2449d873bd11bf1ce78eb3b224e"
+    }
+  ]
+}
