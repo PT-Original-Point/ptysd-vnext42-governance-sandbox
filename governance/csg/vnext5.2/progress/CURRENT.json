@@ -3,13 +3,13 @@
   "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
   "noncanonical": true,
   "writer": "ROOT_SINGLE_INTEGRATOR",
-  "sequence": 13,
-  "previous_locator_head": "9561e3aac2e6331557ca7180021a32d3d8818b82",
+  "sequence": 14,
+  "previous_locator_head": "31f0d79917295b69e7c6769fe01b2ca487e32cf1",
   "progress": {
     "repository": "PT-Original-Point/ptysd-vnext42-governance-sandbox",
-    "exact_head": "4767a2bda3d47db196b503fc795967ae27f18ffc",
+    "exact_head": "211e64c03586a9be171119858be20897d43babc3",
     "current_path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/CURRENT.json",
-    "current_sha256": "sha256:e37955c094df83748d1d2be515a0c5f939649cbe6e56bb766a4f7b3fa4630c69",
+    "current_sha256": "sha256:f913ee1af410a2697f522cebb0df8f3180ca0210409b1332efd64a7bf5068217",
     "manifest_path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/manifest.json"
   },
   "dispatch_authority": false,
@@ -43,13 +43,21 @@
     "d03_manifest_sha256": "sha256:ed4da79ba807d79e17b73ff751a4543dc04c195947322701213432c9a648e704",
     "native_discovery": "DONE_DIAGNOSTIC_ONLY_UNKNOWN_ISOLATION_REPORTED",
     "next_source": [
-      "P52.OPENCODE_SOURCE",
-      "P52.ANTIGRAVITY_SOURCE",
+      "P52.OPENCODE_SOURCE"
+    ],
+    "p52_antigravity": {
+      "source_tree": "dadf1dad2408f4105a0c45502eabc3fb49d49fb0",
+      "semantic": "INDEPENDENT_EXACT_TWO_FILE_SOURCE_SCOPE_PASS",
+      "root_tests": 175,
+      "findings_closed": 7,
+      "live": "NOT_ACCEPTED"
+    },
+    "running_source": [
       "F02.FLEET_SOURCE"
     ]
   },
   "root_role": "INDEPENDENT_AUDIT_PLAN_DISPATCH_COLLECTION_ARBITRATION_NO_PRODUCT_CODE",
   "model_lock_path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/MODEL-LOCK-20261004.json",
   "historical_progress_head": "5f0afa8db7b981234370024359c6061c202d4f72",
-  "active_manifest_policy": "CURRENT_DECISION_PROJECTIONS_ONLY_36_FILES_MAX40_NO_HISTORY_REEXECUTION"
+  "active_manifest_policy": "CURRENT_DECISION_PROJECTIONS_ONLY_39_FILES_MAX40_NO_HISTORY_REEXECUTION"
 }
