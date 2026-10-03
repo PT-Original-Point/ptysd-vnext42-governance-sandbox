@@ -1,7 +1,7 @@
 {
   "schema": "vnext5.2.construction-progress.v2",
   "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
-  "observed_at": "2026-10-03T22:38:21.268Z",
+  "observed_at": "2026-10-03T23:06:47.716Z",
   "model_lock": {
     "codex": {
       "display": "GPT-6 Luna Max",
@@ -106,15 +106,12 @@
   "queue_path": "ready-queue.json",
   "queue_decision": "READY_AVAILABLE",
   "ready_ids": [
-    "C2.PREFLIGHT",
-    "M04.INSTALL_PREPARE",
-    "D03.BUNDLE_PREPARE"
+    "P52.OPENCODE_SOURCE",
+    "P52.ANTIGRAVITY_SOURCE",
+    "F02.FLEET_SOURCE"
   ],
-  "running_ids": [
-    "F01.ADAPTER_SOURCE",
-    "P52.NATIVE_ROUTE_DISCOVERY"
-  ],
-  "valid_until": "2026-10-03T22:53:21.268Z",
+  "running_ids": [],
+  "valid_until": "2026-10-03T23:21:47.716Z",
   "all_legal_ready_lanes_exhausted": false,
   "canonical_write": false,
   "host_install": false,

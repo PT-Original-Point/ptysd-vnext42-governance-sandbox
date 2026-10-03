@@ -1,0 +1,57 @@
+{
+  "schema": "vnext5.2.root-scoped-preflight.v1",
+  "observed_at": "2026-10-03T23:07:47.029Z",
+  "canonical_head": "d39486601d851e31256852a24e9c1393b9046fe5",
+  "checkpoint": 200,
+  "provider_readback": {
+    "ref": "reviews/runtime/preflight-provider-source.json",
+    "sha256": "sha256:88126a16a0190d7e98835b969c954f54ead538b8f9ddc6435fe45850d34e4770",
+    "observed_at": "2026-10-03T23:06:47.714Z"
+  },
+  "owner": {
+    "generation": 5,
+    "lease_until": "2026-09-29T18:44:11Z",
+    "authority_validity": "EXPIRED",
+    "executor_process_existence": "UNKNOWN",
+    "active_factory_job": "NOT_OBSERVED_THIS_AUDIT",
+    "canonical_unresolved_effect_refs": [],
+    "live_pending_receipts": "UNVERIFIED"
+  },
+  "available_current_session_public_tools": {
+    "factory_status": false,
+    "worker_prepare": false,
+    "worker_start": false,
+    "host_powershell": false,
+    "scope": "CURRENT_ENABLED_AND_DEFERRED_TOOL_CATALOG_ONLY_NOT_GLOBAL_INSTALLATION_OR_HUMAN_AUTHORIZATION",
+    "inventory_ref": "routes/current-tool-catalog.json"
+  },
+  "c2": {
+    "operation": "C2.PREFLIGHT",
+    "status": "WAITING_EXTERNAL",
+    "completed": "FRESH_CANONICAL_TARGET_OWNER_EFFECT_REF_READ",
+    "remaining": "EXACT_BACKEND_FENCE_OLD_WRITE_REJECTION_AND_TARGET_PRIVILEGED_READ_ROUTE",
+    "reentry": "A validated existing target-scoped backend/Host read route supplies fresh fence/current-target/effect observations; then recompute before distinct quarantine/dispatch transition",
+    "expired_authority_not_extended_by_unknown_process": true,
+    "no_revoke": true
+  },
+  "m04": {
+    "operation": "M04.INSTALL_PREPARE",
+    "status": "WAITING_EXTERNAL",
+    "completed": "FROZEN_SOURCE_IDENTITY_AND_TOOL_CATALOG_PREFLIGHT",
+    "remaining": "ACTUAL_TARGET_CALLER_HELPER_INSTALLED_HASH_AND_ROLLBACK_PRESTATE_READBACK",
+    "reentry": "Qualify existing authorized target/caller protected read route and actual prestate; source/bundle staging remains legal independently",
+    "not_a_new_human_gate": true,
+    "source_requires_mcp": false
+  },
+  "global_blocker": false,
+  "source_build_continues": true,
+  "host_probe": false,
+  "host_mutation": false,
+  "host_dispatch": false,
+  "canonical_write": false,
+  "owner_allocated": false,
+  "production": false,
+  "actual_effects": [
+    "LOCAL_PREFLIGHT_RECEIPT"
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "schema": "vnext5.2.root-d03-bundle-collection.v1",
+  "observed_at": "2026-10-03T22:56:25.915Z",
+  "source_tree": "7b3a5da42fbc9021bfbc27f3c9d836bb6034dd65",
+  "main_candidate_tree": "18bef45e79a61f83a0cf4758d9f2f246c1524e01",
+  "native_model": "gemini-3.8-flash-high",
+  "conversation": "87630a5f-9aae-4f2e-af9a-6a0718b52ee8",
+  "source_packet": "QUALIFIED_AFTER_EXACT_DIGEST_REWORK",
+  "semantic": "SOURCE_PACKET_AND_LOCAL_MATERIALIZATION_SCOPE_PASS",
+  "closed_findings": [
+    "D03-REVIEW-01",
+    "D03-REVIEW-02"
+  ],
+  "outputs": [
+    {
+      "path": "outputs/D03-BUNDLE-PREPARE/bundle-and-rollback-plan.md",
+      "sha256": "sha256:3a4f16f9ce1390ac7ee8406b9f26d99a8bd6cee2d8103589f560d52b029c2b1e"
+    },
+    {
+      "path": "outputs/D03-BUNDLE-PREPARE/qualification-matrix.json",
+      "sha256": "sha256:b46f9817e7e3d68c310f4f76550f80e14416fd69403d7ac64edf0b8fd418d673"
+    },
+    {
+      "path": "outputs/D03-BUNDLE-PREPARE/result.json",
+      "sha256": "sha256:5ff16eaf4e022223e377e37416b2091c458d77fa916cb061e9640346c234ebb6"
+    },
+    {
+      "path": "outputs/D03-BUNDLE-PREPARE/attempt3/result.json",
+      "sha256": "sha256:27ffdbad928a0cd18de02e47e7734288dadbd09205b6d3933889cf75cd8b16df"
+    }
+  ],
+  "stage_manifest_sha256": "sha256:ed4da79ba807d79e17b73ff751a4543dc04c195947322701213432c9a648e704",
+  "staged_payload_files": 20,
+  "required_closure": 18,
+  "source_regression": "REUSED_UNCHANGED_140_LOCAL_PASS_NOT_RERUN",
+  "stage": "ASSEMBLED_EXACT_BYTES_LOCAL_ONLY_NOT_HOST_QUALIFIED",
+  "host_acl": "NOT_ACCEPTED",
+  "live_installation": "NOT_ACCEPTED",
+  "system_survival": "NOT_ACCEPTED",
+  "license_distribution": "NOT_QUALIFIED_FOR_EXTERNAL_DISTRIBUTION",
+  "cross_matrix": "NOT_RUN_PERMISSION_DENIED",
+  "canonical_write": false,
+  "host_dispatch": false,
+  "host_mutation": false,
+  "production": false,
+  "root_product_source_edits": 0,
+  "mission_complete": false
+}

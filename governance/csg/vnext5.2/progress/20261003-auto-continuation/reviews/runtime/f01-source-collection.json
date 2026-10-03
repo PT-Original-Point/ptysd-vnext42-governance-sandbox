@@ -1,0 +1,54 @@
+{
+  "schema": "vnext5.2.root-f01-source-collection.v1",
+  "observed_at": "2026-10-03T22:55:14.911Z",
+  "source_tree": "b6dd213fdf25451043c25a93b7a7b84394f74d72",
+  "base_commit": "6f73909c268ca26502848a2304b4ad6228d2fb22",
+  "base_tree": "2a6531a908f6e366fa10c9e4d0d311c3f429d574",
+  "scope": "EXACT_TWO_FILE_OVERLAY_ONLY_NOT_WHOLE_INHERITED_D02_TREE_ACCEPTANCE",
+  "files": [
+    {
+      "path": "tools/csg/v51-supervisor/lib/f01-codex-native.mjs",
+      "sha256": "sha256:89e07954129ce0cf6df85f5cfc9c0e6c98275d044995de476db36825a0ce44a3",
+      "blob": "8cf15ec8bf0b01453319f21b063fe5ad70985616"
+    },
+    {
+      "path": "tools/csg/v51-supervisor/tests/f01-codex-native.test.mjs",
+      "sha256": "sha256:be697c7917b7adc1d33e84bb903baca5095da44f5cdba8d2a18917a99c1b566e",
+      "blob": "2ea2125eb17e7e41967c93440e39ae692c098d4c"
+    }
+  ],
+  "patch_sha256": "sha256:e2f5d2ebe337263fa58b973a7ee2ce965571d65c25f4d06309c55dd5bba04557",
+  "patch_bytes": 35394,
+  "worker_tests": {
+    "targeted": 13,
+    "package": 124
+  },
+  "root_tests": {
+    "package": 124,
+    "fail": 0,
+    "log_sha256": "sha256:52fef128941c8a6ea1ef7023580db2c777eecdcaeb58df6a05476e7f9c0e8158"
+  },
+  "closed_findings": [
+    "F01-REVIEW-01",
+    "F01-REVIEW-02"
+  ],
+  "semantic": "INDEPENDENT_EXACT_TWO_FILE_SOURCE_SCOPE_PASS",
+  "model_readback": {
+    "source": "NATIVE_CODEX_TURN_CONTEXT_SELECTED_MODEL_FIELDS_ONLY",
+    "turn_id": "01a103c5-ee2d-7f41-abbd-c7d371fe38b3",
+    "timestamp": "2026-10-03T22:40:41.867Z",
+    "model": "gpt-6-luna",
+    "effort": "max"
+  },
+  "source_phase": "QUALIFIED_ADAPTER_ENVELOPE_JSONL_CANCEL_RECEIPT_VALIDATION_ONLY",
+  "integration": "NOT_INSTALLED_NOT_WIRED_TO_LIVE_DISPATCH",
+  "isolated_execution": "NOT_ACCEPTED",
+  "capacity_release": "REQUIRES_TRUSTED_CONTROLLER_READBACK",
+  "provider_publication": "PENDING_NONCANONICAL_EVIDENCE_PUBLICATION",
+  "canonical_write": false,
+  "host_dispatch": false,
+  "host_mutation": false,
+  "production": false,
+  "root_product_source_edits": 0,
+  "mission_complete": false
+}

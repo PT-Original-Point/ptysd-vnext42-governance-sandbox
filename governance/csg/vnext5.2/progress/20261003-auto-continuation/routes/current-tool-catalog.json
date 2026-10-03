@@ -1,0 +1,10 @@
+{
+  "schema": "vnext5.2.enabled-tool-catalog-readback.v1",
+  "observed_at": "2026-10-03T22:47:47.578Z",
+  "factory_matches": [],
+  "scope": "THIS_SESSION_TOOL_NAME_INVENTORY_ONLY",
+  "permission_denials": "PRESERVED_NOT_RETRIED",
+  "actual_effects": [
+    "LOCAL_AUDIT_RECEIPT"
+  ]
+}

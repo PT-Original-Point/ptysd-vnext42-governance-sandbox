@@ -3,7 +3,7 @@
   "mode": "SHADOW_PLAN_ONLY",
   "facts_schema": "vnext5.2.operation-facts.v1",
   "catalog_sha256": "sha256:ee769422b5d587e771d09c4e95af1af9a3a7cf0a7c0e493d86071e2df57304de",
-  "facts_sha256": "sha256:8ec276c8efad9676a009d6b6593e89686b966c439f052347d74e00035c92f3e2",
+  "facts_sha256": "sha256:0abde19a60d4b919af8b537bd3cd896d9ed74454fbe17998efcda324f673092a",
   "facts_fresh": true,
   "input_completeness": "COMPLETE",
   "input_reasons": [],
@@ -130,12 +130,12 @@
     "X01.ACCEPT"
   ],
   "ready_ids": [
-    "C2.PREFLIGHT",
-    "M04.INSTALL_PREPARE",
-    "D03.BUNDLE_PREPARE"
+    "P52.OPENCODE_SOURCE",
+    "P52.ANTIGRAVITY_SOURCE",
+    "F02.FLEET_SOURCE"
   ],
   "planned_decision": "CONTINUE_READY",
-  "planned_unit": "C2.PREFLIGHT",
+  "planned_unit": "P52.OPENCODE_SOURCE",
   "queue_scope": "FULL_CATALOG",
   "queue_unit_count": 59,
   "full_union_count": 59,
@@ -248,7 +248,7 @@
     },
     {
       "id": "C2.PREFLIGHT",
-      "state": "READY",
+      "state": "WAITING_EXTERNAL",
       "priority": 15,
       "mandatory": true,
       "effect_class": "READ_ONLY",
@@ -258,7 +258,7 @@
       "completion_dependencies": [],
       "start_blockers": [],
       "completion_blockers": [],
-      "reason": null,
+      "reason": "EXACT_BACKEND_FENCE_OLD_WRITE_REJECTION_AND_TARGET_PRIVILEGED_READ_ROUTE",
       "execution_scope": "SHADOW_PLAN_ONLY",
       "effects": [],
       "plan_only": true
@@ -390,7 +390,7 @@
     },
     {
       "id": "M04.INSTALL_PREPARE",
-      "state": "READY",
+      "state": "WAITING_EXTERNAL",
       "priority": 45,
       "mandatory": true,
       "effect_class": "READ_ONLY",
@@ -400,7 +400,7 @@
       "completion_dependencies": [],
       "start_blockers": [],
       "completion_blockers": [],
-      "reason": null,
+      "reason": "ACTUAL_TARGET_CALLER_HELPER_INSTALLED_HASH_AND_ROLLBACK_PRESTATE_READBACK",
       "execution_scope": "SHADOW_PLAN_ONLY",
       "effects": [],
       "plan_only": true
@@ -679,7 +679,7 @@
     },
     {
       "id": "F01.ADAPTER_SOURCE",
-      "state": "RUNNING",
+      "state": "DONE",
       "priority": 18,
       "mandatory": true,
       "effect_class": "CANDIDATE_SOURCE",
@@ -689,8 +689,7 @@
       "completion_dependencies": [],
       "start_blockers": [],
       "completion_blockers": [],
-      "owner_authority": "UNKNOWN",
-      "reason": "ACTUAL_NATIVE_F01_SOURCE_FILE_CHANGES_REPORTED_LOCAL_TESTS_EXACT_REVIEW_PENDING_NO_DUPLICATE",
+      "reason": "EXACT_TWO_FILE_SOURCE_OVERLAY_124_ROOT_PASS_AND_TWO_REVIEW_FINDINGS_CLOSED_NOT_LIVE_ISOLATED_EXECUTION",
       "execution_scope": "SHADOW_PLAN_ONLY",
       "effects": [],
       "plan_only": true
@@ -707,12 +706,9 @@
         "P52.NATIVE_ROUTE_DISCOVERY"
       ],
       "completion_dependencies": [],
-      "start_blockers": [
-        "F01.ADAPTER_SOURCE",
-        "P52.NATIVE_ROUTE_DISCOVERY"
-      ],
+      "start_blockers": [],
       "completion_blockers": [],
-      "reason": "ISOLATED_ROUTE_NOT_PROVEN;NATIVE_GET_VM_ACCESS_DENIED",
+      "reason": "EXACT_AUTHORIZED_NATIVE_CELL_ID_ROUTE_ENTITLEMENT_CONTROLLER_BOUNDARY_PROOF_NOT_OBSERVED_SOURCE_LANES_CONTINUE",
       "execution_scope": "SHADOW_PLAN_ONLY",
       "effects": [],
       "plan_only": true
@@ -731,12 +727,10 @@
       ],
       "completion_dependencies": [],
       "start_blockers": [
-        "F01.ADAPTER_SOURCE",
-        "F01.CELL_PREPARE",
-        "P52.NATIVE_ROUTE_DISCOVERY"
+        "F01.CELL_PREPARE"
       ],
       "completion_blockers": [],
-      "reason": "TRUSTED_TASK_CANCEL_RECEIPT_AND_SANDBOX_PROOF_NOT_OBSERVED",
+      "reason": "EXACT_AUTHORIZED_NATIVE_CELL_ID_ROUTE_ENTITLEMENT_CONTROLLER_BOUNDARY_PROOF_NOT_OBSERVED_SOURCE_LANES_CONTINUE",
       "execution_scope": "SHADOW_PLAN_ONLY",
       "effects": [],
       "plan_only": true
@@ -818,7 +812,7 @@
     },
     {
       "id": "D03.BUNDLE_PREPARE",
-      "state": "READY",
+      "state": "DONE",
       "priority": 48,
       "mandatory": true,
       "effect_class": "CANDIDATE_SOURCE",
@@ -828,7 +822,7 @@
       "completion_dependencies": [],
       "start_blockers": [],
       "completion_blockers": [],
-      "reason": null,
+      "reason": "SOURCE_PACKET_AND20_EXACT_PAYLOAD_LOCAL_STAGE_ONLY_HOST_ACL_INSTALL_CUTOVER_SURVIVAL_NOT_ACCEPTED",
       "execution_scope": "SHADOW_PLAN_ONLY",
       "effects": [],
       "plan_only": true
@@ -849,7 +843,6 @@
       "completion_dependencies": [],
       "start_blockers": [
         "D02.EXECUTOR_INTEGRATION",
-        "D03.BUNDLE_PREPARE",
         "C1.SELECT",
         "C2.QUARANTINE",
         "T01.BASELINE"
@@ -881,7 +874,7 @@
     },
     {
       "id": "F02.FLEET_SOURCE",
-      "state": "WAITING_EXTERNAL",
+      "state": "READY",
       "priority": 55,
       "mandatory": true,
       "effect_class": "CANDIDATE_SOURCE",
@@ -890,11 +883,9 @@
         "D02.SOURCE"
       ],
       "completion_dependencies": [],
-      "start_blockers": [
-        "F01.ADAPTER_SOURCE"
-      ],
+      "start_blockers": [],
       "completion_blockers": [],
-      "reason": "START_DEPENDENCIES_NOT_ACCEPTED",
+      "reason": null,
       "execution_scope": "SHADOW_PLAN_ONLY",
       "effects": [],
       "plan_only": true
@@ -994,7 +985,7 @@
     },
     {
       "id": "P52.NATIVE_ROUTE_DISCOVERY",
-      "state": "RUNNING",
+      "state": "DONE",
       "priority": 10,
       "mandatory": true,
       "effect_class": "READ_ONLY_DIAGNOSTIC",
@@ -1004,8 +995,7 @@
       "completion_dependencies": [],
       "start_blockers": [],
       "completion_blockers": [],
-      "owner_authority": "UNKNOWN",
-      "reason": "NATIVE_ROUTE_ADMISSION_AND_REUSABLE_SOURCE_RECEIPT_QUALIFICATION_ACTIVE_NO_CANONICAL_EXECUTION_OWNER_CLAIM",
+      "reason": "THREE_NATIVE_CLI_VERSION_HELP_IDENTITY_DIAGNOSTIC_DONE_UNKNOWN_ISOLATION_REPORTED_TARGET_CELL_ADMISSION_NOT_REQUIRED_FOR_DISCOVERY",
       "execution_scope": "SHADOW_PLAN_ONLY",
       "effects": [],
       "plan_only": true
@@ -1086,7 +1076,7 @@
     },
     {
       "id": "P52.OPENCODE_SOURCE",
-      "state": "WAITING_EXTERNAL",
+      "state": "READY",
       "priority": 35,
       "mandatory": true,
       "effect_class": "CANDIDATE_SOURCE",
@@ -1094,18 +1084,16 @@
         "F01.ADAPTER_SOURCE"
       ],
       "completion_dependencies": [],
-      "start_blockers": [
-        "F01.ADAPTER_SOURCE"
-      ],
+      "start_blockers": [],
       "completion_blockers": [],
-      "reason": "START_DEPENDENCIES_NOT_ACCEPTED",
+      "reason": null,
       "execution_scope": "SHADOW_PLAN_ONLY",
       "effects": [],
       "plan_only": true
     },
     {
       "id": "P52.ANTIGRAVITY_SOURCE",
-      "state": "WAITING_EXTERNAL",
+      "state": "READY",
       "priority": 36,
       "mandatory": true,
       "effect_class": "CANDIDATE_SOURCE",
@@ -1113,11 +1101,9 @@
         "F01.ADAPTER_SOURCE"
       ],
       "completion_dependencies": [],
-      "start_blockers": [
-        "F01.ADAPTER_SOURCE"
-      ],
+      "start_blockers": [],
       "completion_blockers": [],
-      "reason": "START_DEPENDENCIES_NOT_ACCEPTED",
+      "reason": null,
       "execution_scope": "SHADOW_PLAN_ONLY",
       "effects": [],
       "plan_only": true
@@ -1135,8 +1121,6 @@
       ],
       "completion_dependencies": [],
       "start_blockers": [
-        "P52.NATIVE_ROUTE_DISCOVERY",
-        "F01.ADAPTER_SOURCE",
         "F01.CELL_PREPARE"
       ],
       "completion_blockers": [],

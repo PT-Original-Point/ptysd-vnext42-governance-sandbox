@@ -1,0 +1,64 @@
+{
+  "schema": "vnext5.2.f01-native-preflight.v1",
+  "observed_at_utc": "2026-10-03T23:05:24.5230887Z",
+  "current_windows_identity": "DESKTOP-1B6PD2P\\x",
+  "is_administrator": false,
+  "is_system": false,
+  "hyperv_get_vm_cmdlet_available": true,
+  "exact_target_cell_id": "NOT_OBSERVED",
+  "target_vm_enumerated": false,
+  "vm_acl_probed": false,
+  "cli_readonly_probes_only": true,
+  "model_task_invocations": 0,
+  "paid_invocations": 0,
+  "host_dispatch": false,
+  "host_mutation": false,
+  "codex_login_status": "CHATGPT_LOGIN_REPORTED",
+  "cli": [
+    {
+      "name": "codex",
+      "path": "C:\\Users\\x\\AppData\\Local\\OpenAI\\Codex\\bin\\8aaf1547b825b104\\codex.exe",
+      "exists": true,
+      "sha256": "sha256:37762753b554982eef1c109303d1be652b6397f1479e844794353a85650199c6",
+      "version": "codex-cli 0.160.0",
+      "help_features": [
+        "--json",
+        "--sandbox",
+        "--cd",
+        "--model",
+        "--config",
+        "--strict-config"
+      ]
+    },
+    {
+      "name": "opencode",
+      "path": "C:\\Users\\x\\AppData\\Local\\Programs\\@opencodedesktop\\resources\\opencode-cli.exe",
+      "exists": true,
+      "sha256": "sha256:df486482ad71124552bb09b2bbca586f13d06219ad5e98cec1805c674fb56214",
+      "version": "opencode v2.0.22",
+      "help_features": [
+        "--model",
+        "--format"
+      ]
+    },
+    {
+      "name": "antigravity",
+      "path": "C:\\Users\\x\\AppData\\Local\\agy\\bin\\agy.exe",
+      "exists": true,
+      "sha256": "sha256:871e1eeb205dd3269b762e81808b7a86fe7cf73b59da51b14e3d8ac005581bfe",
+      "version": "1.2.16",
+      "help_features": []
+    }
+  ],
+  "isolation_status": "NOT_QUALIFIED",
+  "required_cell": "HYPERV_UBUNTU_ISOLATED_WORKTREE",
+  "isolation_reason": "No exact authorized cell ID or trusted controller isolation proof was observed; a Git worktree is not an OS sandbox.",
+  "task_start_capability": "LOCAL_CLI_METADATA_ONLY",
+  "task_cancel_capability": "NOT_PROVEN",
+  "task_receipt_read_capability": "NOT_PROVEN",
+  "sandbox_proof_read_capability": "NOT_PROVEN",
+  "worker_entitlement": "NOT_PROVEN",
+  "actual_task_dispatched": false,
+  "canonical_write": false,
+  "production": false
+}

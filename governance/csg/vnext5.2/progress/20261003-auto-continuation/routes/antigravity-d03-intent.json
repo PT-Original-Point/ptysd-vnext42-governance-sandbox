@@ -1,0 +1,33 @@
+{
+  "schema": "vnext5.2.native-task-attempt.v1",
+  "task_id": "D03.BUNDLE_PREPARE",
+  "attempt": 3,
+  "status": "RESPONSE_RECEIVED_REVIEW_REQUIRED",
+  "created_at": "2026-10-03T22:52:04.371Z",
+  "conversation_id": "87630a5f-9aae-4f2e-af9a-6a0718b52ee8",
+  "model": "gemini-3.8-flash-high",
+  "actual_model": "gemini-3.8-flash-high",
+  "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-RUNTIME07-AG-WORK-20261004",
+  "source_tree": "7b3a5da42fbc9021bfbc27f3c9d836bb6034dd65",
+  "worktree_head": "c2bfa038121782a3ae903591981a0b05f52a7b38",
+  "route": "ANTIGRAVITY_NATIVE_CLI",
+  "write_set": [
+    "outputs/D03-BUNDLE-PREPARE/**"
+  ],
+  "prompt_sha256": "d24f1625c78e1a88e10c54f40ce8535c305659d291b34f51b7c0bf3bd58767a5",
+  "canonical_write": false,
+  "host_dispatch": false,
+  "production": false,
+  "paid_fallback": false,
+  "permission_profile_changed": false,
+  "submitted_at": "2026-10-03T22:52:05.035Z",
+  "pid": 65748,
+  "observed_conversation_id": "87630a5f-9aae-4f2e-af9a-6a0718b52ee8",
+  "init_observed_at": "2026-10-03T22:52:07.691Z",
+  "result_status": "SUCCESS",
+  "response_length": 8077,
+  "denied_action_count": 0,
+  "exit_code": 0,
+  "signal": null,
+  "closed_at": "2026-10-03T22:54:07.910Z"
+}

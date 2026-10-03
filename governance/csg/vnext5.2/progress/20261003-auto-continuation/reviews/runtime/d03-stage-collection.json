@@ -1,0 +1,174 @@
+{
+  "schema": "vnext5.2.root-reviewed-byte-materialization.v1",
+  "observed_at": "2026-10-03T22:50:59.807Z",
+  "source_tree": "7b3a5da42fbc9021bfbc27f3c9d836bb6034dd65",
+  "staged_bundle": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-AUTO-CONTINUATION-20261003\\reviews\\runtime\\d03-staged-bundle",
+  "payload_count": 20,
+  "required_closure": 18,
+  "manifest_sha256": "sha256:ed4da79ba807d79e17b73ff751a4543dc04c195947322701213432c9a648e704",
+  "files": [
+    {
+      "path": "bin/host-supervisor.mjs",
+      "sha256": "b17384ff44d6d67559a59bd2c6adaa3e70111b33d5d8f6d71987663aed82ea53",
+      "bytes": 7171
+    },
+    {
+      "path": "lib/f01-executor-adapter.mjs",
+      "sha256": "ae2125c89e81b70e39a5bf353c3a755745d06566eb825512d10d2c772a3d14de",
+      "bytes": 17016
+    },
+    {
+      "path": "lib/fingerprint.mjs",
+      "sha256": "1efa74d7c811a3064829f6949dd03037ded7a0ccf739a162ee5a668790216f71",
+      "bytes": 4502
+    },
+    {
+      "path": "lib/github-readonly.mjs",
+      "sha256": "6ce5534c6e439b3fb60c54259d889bab9c2663391e65035a5dfa0caaacd224dd",
+      "bytes": 9751
+    },
+    {
+      "path": "lib/operation-catalog.mjs",
+      "sha256": "412329fc69f13e696b9cdb18113840f7d17b3a6b0c1508b1634c0e4541c4f214",
+      "bytes": 4461
+    },
+    {
+      "path": "lib/operation-planner.mjs",
+      "sha256": "2bdfd23c5e190c049c89d3e25ca3364006412d318be0187b24b165c3e7c3bab3",
+      "bytes": 17482
+    },
+    {
+      "path": "lib/reconcile.mjs",
+      "sha256": "df88b7de5996486fae9fb3f4c69ffe08c5dcce84b79988f41bfcae6d1e8e3a0e",
+      "bytes": 16622
+    },
+    {
+      "path": "lib/scheduler.mjs",
+      "sha256": "99c5071b8aa6d67a1ff6cbb3405cf592f821d5152a5980f08df2be7b42027076",
+      "bytes": 8984
+    },
+    {
+      "path": "lib/shadow-journal.mjs",
+      "sha256": "de10e79e0d8c2c6cfa73e073cbd121e3fdca844e353aa70d74d5488593f81bf8",
+      "bytes": 18241
+    },
+    {
+      "path": "lib/shadow-runtime.mjs",
+      "sha256": "7a2e23136a008f26f3a2b8e7da4dc34b8088b03dfff21e68c558bc26b87c6742",
+      "bytes": 10771
+    },
+    {
+      "path": "lib/supervisor.mjs",
+      "sha256": "411daf5d5115c22528c69a0ec06c97ee301f4a643af99b9b16e86a545c0f49be",
+      "bytes": 4315
+    },
+    {
+      "path": "lib/windows-task-profile.mjs",
+      "sha256": "cf5aff1a703298935b8db6be2ccc00383da986274850e47c1101fd5333f21c1e",
+      "bytes": 3188
+    },
+    {
+      "path": "operation-plan.p52-extension.json",
+      "sha256": "d44c5ad728bd1e38b2b7bd7ef8147dd211494e2d8bbe40483d9335627d0d185b",
+      "bytes": 13053
+    },
+    {
+      "path": "operation-plan.union-59.json",
+      "sha256": "6512a57369bfc5a47a4c11310d669552cefa39848b233bdc0b27b3651715080e",
+      "bytes": 41864
+    },
+    {
+      "path": "operation-plan.vnext5.2.json",
+      "sha256": "d0f82978679ba8abb720499eeec65ef981f94619b7849e26c7a1c8ac0cab33b5",
+      "bytes": 29294
+    },
+    {
+      "path": "package.json",
+      "sha256": "abe66d9ee1c7d787ae4549b6b56b70e2450b5455b226139d94c47c7eb519d9a1",
+      "bytes": 205
+    },
+    {
+      "path": "windows/supervisor-task-profile.json",
+      "sha256": "85b4e8918dd581598f9c3cb4383f4e2dec740afea47099c4defbf2d4ae69d0fb",
+      "bytes": 1240
+    },
+    {
+      "path": "windows/register-supervisor-task.ps1",
+      "sha256": "e23b6f58be97e1b5d38059734c16128f252793fad8087d1d8947746dfecf6310",
+      "bytes": 15810
+    },
+    {
+      "path": "windows/remove-supervisor-task.ps1",
+      "sha256": "2bba6b7f5b8fcbd6cc284943ac0803d31a92bdf7b9e6d8ac15e1e8b8a86300ed",
+      "bytes": 2075
+    },
+    {
+      "path": "runtime/node.exe",
+      "sha256": "3602f2bb1a10f2cbab4c36886218a33c1ab3db87290e73b033c46c77147d0237",
+      "bytes": 92825416
+    }
+  ],
+  "independent_hash_mismatches": [
+    {
+      "path": "lib/fingerprint.mjs",
+      "claimed": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "actual": "sha256:1efa74d7c811a3064829f6949dd03037ded7a0ccf739a162ee5a668790216f71",
+      "claimed_bytes": 4502,
+      "actual_bytes": 4502
+    },
+    {
+      "path": "lib/operation-catalog.mjs",
+      "claimed": "sha256:1a84f932f91eb87d0d3c0157053e1645e7f1d8c07e0c4a4f89d5f76b88ef3914",
+      "actual": "sha256:412329fc69f13e696b9cdb18113840f7d17b3a6b0c1508b1634c0e4541c4f214",
+      "claimed_bytes": 4461,
+      "actual_bytes": 4461
+    },
+    {
+      "path": "operation-plan.p52-extension.json",
+      "claimed": "sha256:47d6df38a7c29e1eb1626fbc1c9a6ef7b819fbc41c0e3952179836932c02dc85",
+      "actual": "sha256:d44c5ad728bd1e38b2b7bd7ef8147dd211494e2d8bbe40483d9335627d0d185b",
+      "claimed_bytes": 13053,
+      "actual_bytes": 13053
+    },
+    {
+      "path": "operation-plan.union-59.json",
+      "claimed": "sha256:54f2528cf0efdcf457bc83773ba518fa881e93e558b13a3191ba42942f399280",
+      "actual": "sha256:6512a57369bfc5a47a4c11310d669552cefa39848b233bdc0b27b3651715080e",
+      "claimed_bytes": 40709,
+      "actual_bytes": 41864
+    },
+    {
+      "path": "operation-plan.vnext5.2.json",
+      "claimed": "sha256:d0f82978679ba8abb720499eeec65ef981f94619b7849e26c7a1c8ac0cab33b5",
+      "actual": "sha256:d0f82978679ba8abb720499eeec65ef981f94619b7849e26c7a1c8ac0cab33b5",
+      "claimed_bytes": 35420,
+      "actual_bytes": 29294
+    },
+    {
+      "path": "package.json",
+      "claimed": "sha256:c0ef854a6dbb4a3a60db6e355f3684a0d9e830bf9bb4ff4a37b3dfd2a58b68aa",
+      "actual": "sha256:abe66d9ee1c7d787ae4549b6b56b70e2450b5455b226139d94c47c7eb519d9a1",
+      "claimed_bytes": 205,
+      "actual_bytes": 205
+    }
+  ],
+  "native_node": {
+    "original_path": "C:/Program Files/nodejs/node.exe",
+    "version": "v24.19.0",
+    "sha256": "sha256:3602f2bb1a10f2cbab4c36886218a33c1ab3db87290e73b033c46c77147d0237",
+    "authenticode": "VALID_OPENJS_FOUNDATION_PRE_COPY_ROOT_READBACK",
+    "engine": ">=24",
+    "new_download": false
+  },
+  "qualification": "STAGED_EXACT_BYTES_ONLY_NOT_HOST_ACL_INSTALL_OR_SYSTEM_ACCEPTANCE",
+  "license_distribution": "NOT_QUALIFIED_FOR_EXTERNAL_DISTRIBUTION",
+  "root_product_source_edits": 0,
+  "host_mutation": false,
+  "host_dispatch": false,
+  "canonical_write": false,
+  "production": false,
+  "actual_effects": [
+    "LOCAL_NEW_STAGED_ARTIFACT_BYTES_AND_MANIFEST"
+  ],
+  "mission_complete": false
+}

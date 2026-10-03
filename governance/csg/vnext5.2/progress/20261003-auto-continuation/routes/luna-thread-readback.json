@@ -1,13 +1,13 @@
 {
-  "observed_at": "2026-10-03T22:36:29.622Z",
+  "observed_at": "2026-10-03T23:06:39.920Z",
   "native": {
     "timedOut": true,
     "wake": null,
     "polls": [
       {
         "schemaVersion": 1,
-        "cursor": "298be436-3629-441e-badc-baf007d62540:58",
-        "revision": 58,
+        "cursor": "298be436-3629-441e-badc-baf007d62540:64",
+        "revision": 64,
         "changed": true,
         "thread": {
           "id": "01a0fd19-df99-7013-8a8b-eb952c647e3d",
@@ -25,16 +25,16 @@
           "completedAt": null,
           "durationMs": null
         },
-        "latestAssistantMessageId": "msg_05fe48d0724a727b016ac182b1ca3c87d0b65191ce7b7df235",
+        "latestAssistantMessageId": "msg_05fe48d0724a727b016ac188c4f6f087d08b4f4977aa83c32c",
         "latestAssistantMessage": {
-          "id": "msg_05fe48d0724a727b016ac182b1ca3c87d0b65191ce7b7df235",
+          "id": "msg_05fe48d0724a727b016ac188c4f6f087d08b4f4977aa83c32c",
           "turnId": "01a103c5-ee2d-7f41-abbd-c7d371fe38b3",
           "phase": "commentary",
-          "text": "F01 adapter 的 targeted 12/12、整個 supervisor package 123/123 與 diff hygiene 都通過。provider queue 原本只新鮮到 22:18:34Z，現在已過期；我不再拿那份 queue 當 READY truth，先重讀最新 provider CURRENT/manifest/全目錄 queue，再產出這片的最終 receipt與候選 overlay。Goal 工具讀回仍為 paused，沒有 supported ACTIVE/resume。"
+          "text": "fresh canonical ref 再讀一致：目錄仍綁定 CP200，HANYAO 仍 CP2；舊 59-unit queue 已逾時。我用工作樹內 44-unit planner 重算時，工具正確拒絕把它當完整 queue（catalog/ID-set mismatch），所以不會拿它代替 59-unit authority。我正在找包內的完整 union catalog；如果沒有可驗證來源，會明確標成「READY 未知、不可派工」，不宣稱耗盡。"
         },
-        "latestToolMarkerId": "exec-43c9cfac-ac02-49ec-a70a-304ccbbbb9cf",
+        "latestToolMarkerId": "exec-68eef4d4-da92-44d0-8d18-166b2ebb0aeb",
         "latestToolMarker": {
-          "id": "exec-43c9cfac-ac02-49ec-a70a-304ccbbbb9cf",
+          "id": "exec-68eef4d4-da92-44d0-8d18-166b2ebb0aeb",
           "turnId": "01a103c5-ee2d-7f41-abbd-c7d371fe38b3",
           "type": "commandExecution",
           "name": "commandExecution",
@@ -46,43 +46,15 @@
   "operation_activity": [
     {
       "id": "F01.ADAPTER_SOURCE",
-      "state": "RUNNING",
-      "scope": "SOURCE_ONLY_PENDING_EXACT_RECEIPT_REVIEW",
-      "observed_at": "2026-10-03T22:36:29.622Z",
-      "file_changes": [
-        {
-          "marker": "exec-28fcefb4-f228-4518-ad88-f20b9ecde690",
-          "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-F01-ADAPTER-WORK-20261004\\tools\\csg\\v51-supervisor\\lib\\f01-codex-native.mjs"
-        },
-        {
-          "marker": "exec-ea64c762-2e8a-42e6-99da-f2dd87bdeb2d",
-          "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-F01-ADAPTER-WORK-20261004\\tools\\csg\\v51-supervisor\\lib\\f01-codex-native.mjs"
-        },
-        {
-          "marker": "exec-4e6e23c6-7bd8-4e4a-9498-10c92aef221a",
-          "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-F01-ADAPTER-WORK-20261004\\tools\\csg\\v51-supervisor\\tests\\f01-codex-native.test.mjs"
-        },
-        {
-          "marker": "exec-2cf1e67e-113d-4b1a-8274-243ba80bce0e",
-          "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-F01-ADAPTER-WORK-20261004\\tools\\csg\\v51-supervisor\\lib\\f01-codex-native.mjs"
-        },
-        {
-          "marker": "exec-f43e9d87-ad23-4f16-930a-727f1e412e6e",
-          "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-F01-ADAPTER-WORK-20261004\\tools\\csg\\v51-supervisor\\tests\\f01-codex-native.test.mjs"
-        },
-        {
-          "marker": "exec-f5b47701-0dfe-4e81-916e-724d022f0789",
-          "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-F01-ADAPTER-WORK-20261004\\tools\\csg\\v51-supervisor\\tests\\f01-codex-native.test.mjs"
-        }
-      ],
-      "reported_tests": {
-        "targeted": 12,
-        "package": 123,
-        "scope": "WORKER_REPORTED_LOCAL_NOT_LIVE"
-      },
+      "state": "DELIVERED_AND_ROOT_SOURCE_REVIEWED",
+      "source_tree": "b6dd213fdf25451043c25a93b7a7b84394f74d72",
+      "review": "reviews/runtime/f01-source-collection.json"
+    },
+    {
+      "id": "P52.OPENCODE_SOURCE",
+      "state": "ASSIGNED_SOURCE_START_UNCONFIRMED",
       "requested_model": "gpt-6-luna",
-      "requested_reasoning": "max",
-      "actual_model": "UNVERIFIED_FROM_TOOL_SETTINGS"
+      "reasoning_effort": "max"
     }
   ]
 }
