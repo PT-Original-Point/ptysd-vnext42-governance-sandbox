@@ -7,5 +7,33 @@
   "provider_write_enabled": false,
   "worker_provider_credentials": [],
   "browser_authority": false,
-  "llm_authority": false
+  "llm_authority": false,
+  "recovery_evidence": {
+    "schema": "PTYSD_RECOVERY_EVIDENCE_TRUST_V1",
+    "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+    "trust_root_generation": 1,
+    "store": {
+      "kind": "APPEND_ONLY_ID_ADDRESSED_WITH_DIGEST",
+      "route_id": "PTYSD_FACTORY_MCP_RECOVERY_EVIDENCE_STORE_V1",
+      "max_bytes": 1048576
+    },
+    "trust_roots": {
+      "keys": []
+    },
+    "publication": {
+      "status": "UNAVAILABLE",
+      "route_id": "PTYSD_FACTORY_MCP_OWNER_LIVENESS_PUBLICATION_V1",
+      "reason_code": "OWNER_LIVENESS_PUBLICATION_ROUTE_NOT_CONFIGURED"
+    },
+    "dependencies": {
+      "provider_session": {
+        "status": "UNAVAILABLE",
+        "reason_code": "PROVIDER_AGENT_SESSION_READ_ROUTE_NOT_CONFIGURED"
+      },
+      "supervisor_heartbeat": {
+        "status": "UNAVAILABLE",
+        "reason_code": "SUPERVISOR_HEARTBEAT_READ_ROUTE_NOT_CONFIGURED"
+      }
+    }
+  }
 }
