@@ -1,0 +1,32 @@
+{
+  "schema": "vnext5.2.native-task-attempt.v1",
+  "task_id": "F02.FLEET_SOURCE",
+  "attempt": 2,
+  "status": "SUBMITTED_OUTCOME_PENDING",
+  "created_at": "2026-10-03T23:43:56.446Z",
+  "conversation_id": "c9c18097-ff7b-49d4-812b-38879d53465a",
+  "model": "gemini-3.8-flash-high",
+  "actual_model": "gemini-3.8-flash-high",
+  "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-ANTIGRAVITY-SOURCE-WORK-20261004",
+  "worktree_head": "06da5fa224b65b9346e8b250dcea686d0ed458ee",
+  "qualified_parent_tree": "dadf1dad2408f4105a0c45502eabc3fb49d49fb0",
+  "route": "ANTIGRAVITY_NATIVE_CLI",
+  "write_set": [
+    "tools/csg/v51-supervisor/lib/fleet.mjs",
+    "tools/csg/v51-supervisor/tests/fleet.test.mjs"
+  ],
+  "prompt_sha256": "15b4742ddf8a4e757451aaae2e82cea2568a9eafa4706cbe2c4cda1b9ab20096",
+  "denied_action": {
+    "command": "Get-ChildItem -Path outputs\\F02-FLEET -Recurse",
+    "status": "PRESERVED_NO_RETRY_OR_PROXY",
+    "scope": "OUTPUT_DIRECTORY_ENUMERATION_NOT_SOURCE_ACTION"
+  },
+  "canonical_write": false,
+  "host_dispatch": false,
+  "production": false,
+  "paid_fallback": false,
+  "submitted_at": "2026-10-03T23:44:34.311Z",
+  "pid": 53348,
+  "observed_conversation_id": "c9c18097-ff7b-49d4-812b-38879d53465a",
+  "init_observed_at": "2026-10-03T23:44:36.993Z"
+}

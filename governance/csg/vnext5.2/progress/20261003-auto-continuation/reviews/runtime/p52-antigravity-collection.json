@@ -1,0 +1,49 @@
+{
+  "schema": "vnext5.2.root-source-collection.v1",
+  "observed_at": "2026-10-03T23:40:32.339Z",
+  "operation_id": "P52.ANTIGRAVITY_SOURCE",
+  "base": "06da5fa224b65b9346e8b250dcea686d0ed458ee",
+  "source_tree": "dadf1dad2408f4105a0c45502eabc3fb49d49fb0",
+  "qualified_write_set": [
+    "tools/csg/v51-supervisor/lib/f01-antigravity-native.mjs",
+    "tools/csg/v51-supervisor/tests/f01-antigravity-native.test.mjs"
+  ],
+  "raw_file_digests": [
+    {
+      "path": "tools/csg/v51-supervisor/lib/f01-antigravity-native.mjs",
+      "sha256": "sha256:18339098fa7c0ac23dcccd329d0ad57707e05cdf73936ded7d190eff688a456a"
+    },
+    {
+      "path": "tools/csg/v51-supervisor/tests/f01-antigravity-native.test.mjs",
+      "sha256": "sha256:995abbe08f221ab65e3fa6ce75326169db1d37152043caa45273617e4ec29abc"
+    }
+  ],
+  "inherited_files_verified": 40,
+  "actual_model": "gemini-3.8-flash-high",
+  "actual_conversation": "c9c18097-ff7b-49d4-812b-38879d53465a",
+  "semantic": "INDEPENDENT_EXACT_TWO_FILE_SOURCE_SCOPE_PASS",
+  "closed_findings": [
+    "P52-AG-REVIEW-01",
+    "P52-AG-REVIEW-02",
+    "P52-AG-REVIEW-03",
+    "P52-AG-REVIEW-04",
+    "P52-AG-REVIEW-05",
+    "P52-AG-REVIEW-06",
+    "P52-AG-REVIEW-07"
+  ],
+  "independent_local_regression": {
+    "command": "node --test tools/csg/v51-supervisor/tests/*.test.mjs",
+    "pass": 175,
+    "fail": 0,
+    "exit_code": 0,
+    "source_unchanged_after_run": true
+  },
+  "independent_probe_ref": "reviews/runtime/p52-antigravity-recheck.json",
+  "live_acceptance": "NOT_ACCEPTED",
+  "native_os_isolation": "UNVERIFIED",
+  "host_dispatch": false,
+  "canonical_write": false,
+  "production": false,
+  "execution_owner_allocated": false,
+  "root_product_source_edits": 0
+}

@@ -1,6 +1,6 @@
 {
   "schema": "vnext5.2.automatic-collection.v3",
-  "observed_at": "2026-10-03T23:06:47.716Z",
+  "observed_at": "2026-10-03T23:46:36.775Z",
   "reviewer": "root",
   "role": "AUDIT_PLAN_DISPATCH_COLLECTION_REWORK_ARBITRATION_ONLY",
   "historical_collection": "Previous immutable progress snapshots including seq10 retained",
@@ -49,6 +49,41 @@
       "task": "F01",
       "native_thread_status": "active",
       "source_execution": "NOT_INFERRED_FROM_ACTIVE_THREAD"
+    },
+    {
+      "task": "F01_CODEX_TWO_FILE_SOURCE",
+      "tree": "b6dd213fdf25451043c25a93b7a7b84394f74d72",
+      "semantic": "INDEPENDENT_EXACT_TWO_FILE_SOURCE_SCOPE_PASS",
+      "local_tests": 124,
+      "live": "NOT_ACCEPTED"
+    },
+    {
+      "task": "D03_SOURCE_PACKET_AND_LOCAL_STAGE",
+      "semantic": "SOURCE_PACKET_AND_LOCAL_MATERIALIZATION_SCOPE_PASS",
+      "live": "NOT_ACCEPTED"
+    },
+    {
+      "task": "P52_ANTIGRAVITY_TWO_FILE_SOURCE",
+      "tree": "dadf1dad2408f4105a0c45502eabc3fb49d49fb0",
+      "semantic": "INDEPENDENT_EXACT_TWO_FILE_SOURCE_SCOPE_PASS",
+      "local_tests": 175,
+      "closed_findings": [
+        "P52-AG-REVIEW-01",
+        "P52-AG-REVIEW-02",
+        "P52-AG-REVIEW-03",
+        "P52-AG-REVIEW-04",
+        "P52-AG-REVIEW-05",
+        "P52-AG-REVIEW-06",
+        "P52-AG-REVIEW-07"
+      ],
+      "live": "NOT_ACCEPTED"
+    },
+    {
+      "task": "F02_SOURCE",
+      "native_status": "SUBMITTED_OUTCOME_PENDING",
+      "actual_model": "gemini-3.8-flash-high",
+      "review": "PENDING",
+      "live": "NOT_ACCEPTED"
     }
   ],
   "root_product_source_edits": 0,

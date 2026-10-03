@@ -3,7 +3,7 @@
   "mode": "SHADOW_PLAN_ONLY",
   "facts_schema": "vnext5.2.operation-facts.v1",
   "catalog_sha256": "sha256:ee769422b5d587e771d09c4e95af1af9a3a7cf0a7c0e493d86071e2df57304de",
-  "facts_sha256": "sha256:0abde19a60d4b919af8b537bd3cd896d9ed74454fbe17998efcda324f673092a",
+  "facts_sha256": "sha256:0fd7c280c5d3e08d8540080d33baa2e670e08d025b18757644dbce3b28289d13",
   "facts_fresh": true,
   "input_completeness": "COMPLETE",
   "input_reasons": [],
@@ -130,9 +130,7 @@
     "X01.ACCEPT"
   ],
   "ready_ids": [
-    "P52.OPENCODE_SOURCE",
-    "P52.ANTIGRAVITY_SOURCE",
-    "F02.FLEET_SOURCE"
+    "P52.OPENCODE_SOURCE"
   ],
   "planned_decision": "CONTINUE_READY",
   "planned_unit": "P52.OPENCODE_SOURCE",
@@ -874,7 +872,7 @@
     },
     {
       "id": "F02.FLEET_SOURCE",
-      "state": "READY",
+      "state": "RUNNING",
       "priority": 55,
       "mandatory": true,
       "effect_class": "CANDIDATE_SOURCE",
@@ -885,7 +883,8 @@
       "completion_dependencies": [],
       "start_blockers": [],
       "completion_blockers": [],
-      "reason": null,
+      "owner_authority": "UNKNOWN",
+      "reason": "SOURCE_ONLY_BOUNDED_N2_NATIVE_DELEGATION_DENIED_OUTPUT_DIRECTORY_INVENTORY_NOT_RETRIED",
       "execution_scope": "SHADOW_PLAN_ONLY",
       "effects": [],
       "plan_only": true
@@ -1093,7 +1092,7 @@
     },
     {
       "id": "P52.ANTIGRAVITY_SOURCE",
-      "state": "READY",
+      "state": "DONE",
       "priority": 36,
       "mandatory": true,
       "effect_class": "CANDIDATE_SOURCE",
@@ -1103,7 +1102,7 @@
       "completion_dependencies": [],
       "start_blockers": [],
       "completion_blockers": [],
-      "reason": null,
+      "reason": "EXACT_TWO_FILE_SOURCE_SEVEN_FINDINGS_CLOSED_ROOT175_PASS_NATIVE_WIRE_REPLAY_NOT_LIVE_ROUTE",
       "execution_scope": "SHADOW_PLAN_ONLY",
       "effects": [],
       "plan_only": true
@@ -1162,7 +1161,6 @@
       ],
       "completion_dependencies": [],
       "start_blockers": [
-        "P52.ANTIGRAVITY_SOURCE",
         "F01.CELL_PREPARE"
       ],
       "completion_blockers": [],

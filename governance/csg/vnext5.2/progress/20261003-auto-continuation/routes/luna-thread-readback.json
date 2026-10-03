@@ -1,13 +1,13 @@
 {
-  "observed_at": "2026-10-03T23:06:39.920Z",
+  "observed_at": "2026-10-03T23:45:32.796Z",
   "native": {
     "timedOut": true,
     "wake": null,
     "polls": [
       {
         "schemaVersion": 1,
-        "cursor": "298be436-3629-441e-badc-baf007d62540:64",
-        "revision": 64,
+        "cursor": "298be436-3629-441e-badc-baf007d62540:70",
+        "revision": 70,
         "changed": true,
         "thread": {
           "id": "01a0fd19-df99-7013-8a8b-eb952c647e3d",
@@ -18,24 +18,24 @@
           }
         },
         "latestTurn": {
-          "id": "01a103c5-ee2d-7f41-abbd-c7d371fe38b3",
+          "id": "01a10407-a9be-7a50-9baa-d4dc6e393249",
           "status": "inProgress",
           "error": null,
-          "startedAt": 1791064665,
+          "startedAt": 1791068973,
           "completedAt": null,
           "durationMs": null
         },
-        "latestAssistantMessageId": "msg_05fe48d0724a727b016ac188c4f6f087d08b4f4977aa83c32c",
+        "latestAssistantMessageId": "msg_05fe48d0724a727b016ac19377e51487d0bf5c92060ec57b32",
         "latestAssistantMessage": {
-          "id": "msg_05fe48d0724a727b016ac188c4f6f087d08b4f4977aa83c32c",
-          "turnId": "01a103c5-ee2d-7f41-abbd-c7d371fe38b3",
+          "id": "msg_05fe48d0724a727b016ac19377e51487d0bf5c92060ec57b32",
+          "turnId": "01a10407-a9be-7a50-9baa-d4dc6e393249",
           "phase": "commentary",
-          "text": "fresh canonical ref 再讀一致：目錄仍綁定 CP200，HANYAO 仍 CP2；舊 59-unit queue 已逾時。我用工作樹內 44-unit planner 重算時，工具正確拒絕把它當完整 queue（catalog/ID-set mismatch），所以不會拿它代替 59-unit authority。我正在找包內的完整 union catalog；如果沒有可驗證來源，會明確標成「READY 未知、不可派工」，不宣稱耗盡。"
+          "text": "PR385 的 exact head 確認含固定 factory_status shared-context reader、完整四工具 schema、installer 封裝與 repair manifest；provider 已把它記為 source-frozen，whole-tree semantic PASS 和 structural PASS，並明確標示 live MCP NOT_ACCEPTED。我正在核對該 PASS 收據與包內 result schema，將本地 PR381 草案留作 superseded evidence，不把它誤交成目前候選。"
         },
-        "latestToolMarkerId": "exec-68eef4d4-da92-44d0-8d18-166b2ebb0aeb",
+        "latestToolMarkerId": "exec-bb6d5be0-a82e-4f89-bb2d-079490a9fb23",
         "latestToolMarker": {
-          "id": "exec-68eef4d4-da92-44d0-8d18-166b2ebb0aeb",
-          "turnId": "01a103c5-ee2d-7f41-abbd-c7d371fe38b3",
+          "id": "exec-bb6d5be0-a82e-4f89-bb2d-079490a9fb23",
+          "turnId": "01a10407-a9be-7a50-9baa-d4dc6e393249",
           "type": "commandExecution",
           "name": "commandExecution",
           "status": "completed"
@@ -43,18 +43,25 @@
       }
     ]
   },
+  "actual_model_readback": {
+    "model": "gpt-6-luna",
+    "reasoning_effort": "max",
+    "turn_id": "01a10407-a9be-7a50-9baa-d4dc6e393249",
+    "observed_turn_context_at": "2026-10-03T23:13:35.656Z",
+    "scope": "SELECTED_NATIVE_TURN_CONTEXT_FIELDS"
+  },
   "operation_activity": [
     {
       "id": "F01.ADAPTER_SOURCE",
       "state": "DELIVERED_AND_ROOT_SOURCE_REVIEWED",
-      "source_tree": "b6dd213fdf25451043c25a93b7a7b84394f74d72",
-      "review": "reviews/runtime/f01-source-collection.json"
+      "source_tree": "b6dd213fdf25451043c25a93b7a7b84394f74d72"
     },
     {
       "id": "P52.OPENCODE_SOURCE",
       "state": "ASSIGNED_SOURCE_START_UNCONFIRMED",
       "requested_model": "gpt-6-luna",
-      "reasoning_effort": "max"
+      "reasoning_effort": "max",
+      "reentry": "ROOT_QUEUED_SCOPE_CORRECTION_TO_SKIP_SUPERSEDED_MCP_BYTES"
     }
   ]
 }

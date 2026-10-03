@@ -1,0 +1,134 @@
+{
+  "schema": "vnext5.2.root-antigravity-recheck.v1",
+  "observed_at": "2026-10-03T23:40:31.971Z",
+  "source_sha256": "sha256:18339098fa7c0ac23dcccd329d0ad57707e05cdf73936ded7d190eff688a456a",
+  "test_sha256": "sha256:995abbe08f221ab65e3fa6ce75326169db1d37152043caa45273617e4ec29abc",
+  "observations": {
+    "wire": {
+      "status": "NATIVE_TURN_COMPLETE_ARTIFACT_ORACLE_AND_REVIEW_REQUIRED",
+      "conversation_id": "c9c18097-ff7b-49d4-812b-38879d53465a",
+      "actual_model": "gemini-3.8-flash-high",
+      "terminal_event": "result",
+      "terminal_status": "SUCCESS",
+      "process_exit_code": 0,
+      "event_count": 3,
+      "event_types": [
+        "init",
+        "step_update",
+        "result"
+      ],
+      "denied_actions": [],
+      "stdout_bytes": 495,
+      "truncated_or_invalid_reason": null,
+      "usage": {
+        "input_tokens": 226127,
+        "cached_input_tokens": 2419250,
+        "output_tokens": 73214,
+        "thinking_tokens": 51840,
+        "total_tokens": 299341,
+        "cumulative": true,
+        "accounting_scope": "CUMULATIVE_SESSION_NOT_PER_ATTEMPT"
+      },
+      "timeout_metadata": null,
+      "assistant_text_captured": false,
+      "command_output_captured": false,
+      "live_acceptance": "NOT_ACCEPTED"
+    },
+    "wrong_model_override": {
+      "status": "REJECTED",
+      "reason": "F01_ANTIGRAVITY_MODEL_LOCK_NOT_VERIFIED"
+    },
+    "missing_expected_conversation": {
+      "status": "UNKNOWN_INVALID_OR_BOUNDED_STREAM",
+      "conversation_id": null,
+      "actual_model": "gemini-3.8-flash-high",
+      "terminal_event": "result",
+      "terminal_status": "SUCCESS",
+      "process_exit_code": 0,
+      "event_count": 2,
+      "event_types": [
+        "init",
+        "result"
+      ],
+      "denied_actions": [],
+      "stdout_bytes": 149,
+      "truncated_or_invalid_reason": "EXPECTED_CONVERSATION_NOT_OBSERVED",
+      "usage": null,
+      "timeout_metadata": null,
+      "assistant_text_captured": false,
+      "command_output_captured": false,
+      "live_acceptance": "NOT_ACCEPTED"
+    },
+    "missing_init": {
+      "status": "UNKNOWN_INVALID_OR_BOUNDED_STREAM",
+      "conversation_id": null,
+      "actual_model": "UNVERIFIED",
+      "terminal_event": null,
+      "terminal_status": null,
+      "process_exit_code": 0,
+      "event_count": 0,
+      "event_types": [],
+      "denied_actions": [],
+      "stdout_bytes": 148,
+      "truncated_or_invalid_reason": "INIT_EVENT_REQUIRED",
+      "usage": null,
+      "timeout_metadata": null,
+      "assistant_text_captured": false,
+      "command_output_captured": false,
+      "live_acceptance": "NOT_ACCEPTED"
+    },
+    "wrong_conversation": {
+      "status": "UNKNOWN_INVALID_OR_BOUNDED_STREAM",
+      "conversation_id": null,
+      "actual_model": "gemini-3.8-flash-high",
+      "terminal_event": null,
+      "terminal_status": null,
+      "process_exit_code": 0,
+      "event_count": 0,
+      "event_types": [],
+      "denied_actions": [],
+      "stdout_bytes": 263,
+      "truncated_or_invalid_reason": "CONVERSATION_MISMATCH",
+      "usage": null,
+      "timeout_metadata": null,
+      "assistant_text_captured": false,
+      "command_output_captured": false,
+      "live_acceptance": "NOT_ACCEPTED"
+    },
+    "malformed_denials": {
+      "status": "UNKNOWN_INVALID_OR_BOUNDED_STREAM",
+      "conversation_id": "c9c18097-ff7b-49d4-812b-38879d53465a",
+      "actual_model": "gemini-3.8-flash-high",
+      "terminal_event": null,
+      "terminal_status": null,
+      "process_exit_code": 0,
+      "event_count": 1,
+      "event_types": [
+        "init"
+      ],
+      "denied_actions": [],
+      "stdout_bytes": 281,
+      "truncated_or_invalid_reason": "DENIED_ACTIONS_SCHEMA_INVALID",
+      "usage": null,
+      "timeout_metadata": null,
+      "assistant_text_captured": false,
+      "command_output_captured": false,
+      "live_acceptance": "NOT_ACCEPTED"
+    },
+    "fresh_mode": "FRESH",
+    "duration_0s": "F01_ANTIGRAVITY_TIMEOUT_OVERRIDE_INVALID",
+    "duration_60": "F01_ANTIGRAVITY_TIMEOUT_OVERRIDE_INVALID",
+    "duration_16m": "F01_ANTIGRAVITY_TIMEOUT_OVERRIDE_INVALID",
+    "local_isolated": "F01_ANTIGRAVITY_ISOLATION_NOT_VERIFIED"
+  },
+  "findings": [],
+  "closed_findings": [
+    "P52-AG-REVIEW-01",
+    "P52-AG-REVIEW-02",
+    "P52-AG-REVIEW-03",
+    "P52-AG-REVIEW-04"
+  ],
+  "verdict": "SOURCE_PROBE_PASS_REQUIRES_SCOPE_AND_FULL_REGRESSION",
+  "live_acceptance": "NOT_ACCEPTED",
+  "root_product_source_edits": 0
+}
