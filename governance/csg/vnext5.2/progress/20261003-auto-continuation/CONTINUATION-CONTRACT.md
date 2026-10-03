@@ -31,6 +31,8 @@ Human已授權自動發包、回收、返工與續工；不再要求Human人工�
 
 ## 最新狀態定位
 
+2026-10-04 compact-index 規則：最新 manifest 只列當前決策投影與當前 review/route receipt，預計20檔，publication preflight 不得超過 consumer40檔資源上限。舊 attempt prompt、已關閉 route、原始 patch等保留 immutable sequence8 progress head `5f0afa8db7b981234370024359c6061c202d4f72` 及更早歷史，不刪歷史bytes，不以擴大reader限制掩蓋index無限增長。已驗證immutable snapshot可作歷史source/evidence身份；新locator變化要求更新current/freshfacts，不要求重做已完成source或逐一重驗未變的歷史payload。installed consumer/live acceptance仍獨立，不以root冷讀索引PASS代稱MCP已上線。
+
 固定非canonical ref：`codex/vnext5.2-construction-latest`。
 固定檔：`governance/csg/vnext5.2/progress/CURRENT.json`。
 locator引用immutable progress commit/path/byte digest；progress不引用自身commit。架構凍結包、來源候選、進度locator各分離。由root單寫者fresh-prestate CAS更新；衝突readback，不強行覆蓋。新consumer冷啟動讀locator→exactprogress bytes→digest→freshness→重算。舊snapshot保留historical，過期facts不能作dispatch依據。

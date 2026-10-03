@@ -1,6 +1,6 @@
 {
   "schema": "vnext5.2.automatic-collection.v2",
-  "observed_at": "2026-10-03T18:06:42.297Z",
+  "observed_at": "2026-10-03T18:30:05.409Z",
   "reviewer": "root",
   "role": "AUDIT_PLAN_DISPATCH_COLLECT_REWORK_ARBITRATE_ONLY",
   "historical_collection": "collection-historical-20261003T115945.json",
@@ -23,7 +23,11 @@
       "opencode_actual_outcome": "failed",
       "opencode_active_readback": {},
       "next": "LUNA_REASSIGNMENT_ALREADY_ASSIGNED",
-      "latest_worker_regression": "57/57_LOCAL_REPORTED_NOT_ROOT_FINAL_SOURCE_ACCEPTANCE"
+      "latest_worker_regression": "57/57_LOCAL_REPORTED_NOT_ROOT_FINAL_SOURCE_ACCEPTANCE",
+      "latest_independent_review": "reviews/mcp/repair-review-20261004.json",
+      "review_tree": "edd703027d009539244c0512b5b29aa8aa60d2c3",
+      "semantic": "FINDINGS_INSTALL_CLOSURE_UNKNOWN_EFFECT_WRAPPER_RAW_TREE_BINDING",
+      "source": "CURRENT_WORKTREE_CHANGED_REFREEZE_REQUIRED"
     },
     {
       "task": "S-ADS",
@@ -48,6 +52,18 @@
       "source": "PRESERVED_ROOT_PROVISIONAL_EDITS_REQUIRE_WORKER_HANDOFF",
       "semantic": "PENDING_INDEPENDENT_REVIEW",
       "prior_local_tests": 14
+    },
+    {
+      "task": "SADS-INTEGRATION-01",
+      "route": "ANTIGRAVITY_NATIVE_CLI",
+      "model": "gemini-3.8-flash-high",
+      "receipt": "reviews/ads/integration-collection.json",
+      "review_tree": "91df8fc975887709e0f3b5769f82afb29361754e",
+      "root_existing_regression": "38/38_PASS",
+      "root_edge_regression": "3/3_FAIL",
+      "semantic": "FINDINGS",
+      "next": "EXACT_REWORK_ATTEMPT3_SUBMITTED",
+      "live_ads": "NOT_ACCEPTED"
     }
   ],
   "worker_thread_readback": "routes/luna-thread-readback.json",

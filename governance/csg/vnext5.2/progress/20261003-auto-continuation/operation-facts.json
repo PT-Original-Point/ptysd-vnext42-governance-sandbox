@@ -1,15 +1,15 @@
 {
   "schema": "vnext5.2.operation-facts.v1",
   "catalog_sha256": "sha256:ee769422b5d587e771d09c4e95af1af9a3a7cf0a7c0e493d86071e2df57304de",
-  "captured_at_utc": "2026-10-03T18:10:45.234Z",
+  "captured_at_utc": "2026-10-03T18:30:14.409Z",
   "freshness": {
     "max_age_seconds": 900,
     "max_future_skew_seconds": 60
   },
   "source_inventory": {
     "ref": "auto-continuation:dispatch.json",
-    "sha256": "sha256:b95ffa9f7e41b2d84ae2c4585d4fe7796e2f7791ce633d280e52bd9f55d4bba7",
-    "observed_at_utc": "2026-10-03T18:10:45.234Z"
+    "sha256": "sha256:02ac9cede982c1918d18dfcf5d408d90a1133855d8ecaadcba00caf7176fac0f",
+    "observed_at_utc": "2026-10-03T18:30:14.409Z"
   },
   "canonical_binding": {
     "control_ref": "refs/heads/v45/factory-control",
@@ -26,8 +26,8 @@
       "evidence": [
         {
           "ref": "auto-continuation:fresh-provider.json",
-          "sha256": "sha256:257ef4838ab19e70ea4f6bfbbd237174f32359aae17f1d0ce1266e0ee5be90fe",
-          "observed_at_utc": "2026-10-03T18:10:45.234Z"
+          "sha256": "sha256:1116acdcee0bfac7bfecc3e67221841631c93fd7940ad9aeab636a4464860058",
+          "observed_at_utc": "2026-10-03T18:30:14.409Z"
         }
       ],
       "evidence_class": "FRESH_CANONICAL_READBACK"
@@ -94,8 +94,8 @@
       "evidence": [
         {
           "ref": "auto-continuation:routes/luna-thread-readback.json",
-          "sha256": "sha256:9c02576aa4934f12d7f6f2b8c44f3ccdcf902a01ff447e5cdd79d76dcfd0cd2d",
-          "observed_at_utc": "2026-10-03T18:10:36.834Z"
+          "sha256": "sha256:8b8b77b9ad9f50e20a360de63fda6ba9be886a024bc7825a6eaff2423ee7244c",
+          "observed_at_utc": "2026-10-03T18:30:04.408Z"
         }
       ],
       "evidence_class": "LOCAL_SOURCE_QUALIFIED",
@@ -431,5 +431,5 @@
       "evidence": []
     }
   ],
-  "facts_sha256": "sha256:2d14fb44e770334140836cbe02ce7f0c6f1cc4ec84ad1b712d88bfd4dc7da139"
+  "facts_sha256": "sha256:bf7530f6bc8276362b3060d585e6a63e5aff9b6e414dd178c68225931ba6cfcf"
 }

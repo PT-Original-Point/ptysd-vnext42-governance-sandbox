@@ -1,7 +1,7 @@
 {
   "schema": "vnext5.2.construction-progress.v2",
   "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
-  "observed_at": "2026-10-03T18:10:45.234Z",
+  "observed_at": "2026-10-03T18:30:14.409Z",
   "model_lock": {
     "codex": {
       "display": "GPT-6 Luna Max",
@@ -98,7 +98,7 @@
     "M01.SOURCE",
     "P52.NATIVE_ROUTE_DISCOVERY"
   ],
-  "valid_until": "2026-10-03T18:25:45.234Z",
+  "valid_until": "2026-10-03T18:45:14.409Z",
   "all_legal_ready_lanes_exhausted": false,
   "canonical_write": false,
   "host_install": false,

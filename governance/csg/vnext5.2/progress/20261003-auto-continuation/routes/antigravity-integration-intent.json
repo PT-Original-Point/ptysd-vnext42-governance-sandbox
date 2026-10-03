@@ -1,9 +1,9 @@
 {
   "schema": "vnext5.2.native-task-attempt.v1",
   "task_id": "SADS-INTEGRATION-01",
-  "attempt": 1,
+  "attempt": 3,
   "status": "SUBMITTED_OUTCOME_PENDING",
-  "created_at": "2026-10-03T18:02:19.656Z",
+  "created_at": "2026-10-03T18:27:19.802Z",
   "conversation_id": "87630a5f-9aae-4f2e-af9a-6a0718b52ee8",
   "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-SADS-INTEGRATION-WORK-20261004",
   "worktree_head": "3890e1d317c796f48e03af97051f02d3ef241d33",
@@ -13,8 +13,8 @@
   "cli_version": "1.2.16",
   "model": "gemini-3.8-flash-high",
   "actual_model": "gemini-3.8-flash-high",
-  "prompt_sha256": "ff9cd6119d1af15f64e7a82009da87b171587e57dde641ff664e7ecf7effcbc5",
-  "settings_sha256": "a81ba0036591ff2bbca9bb463aecfae41d7835b66b81c84746d3007b395e7a07",
+  "prompt_sha256": "199fe89f4f41536c1e934cae81ccd8f1f865f19708903eeeb56ee55783bab2eb",
+  "settings_sha256": "99ec7021837f44aa33ca37d260906840b5855c5f155936d2b9feb7c4482ad35c",
   "permission_backup_sha256": "37550231e181fefe8925405c6fa23b688f94435089dc8b9bc8e75b4462369c6f",
   "write_set": [
     "scripts/line4d-google-ads-reporting-monitor.ts",
@@ -27,8 +27,25 @@
   "canonical_write": false,
   "host_dispatch": false,
   "production": false,
-  "submitted_at": "2026-10-03T18:02:30.312Z",
-  "pid": 37368,
+  "previous_attempt": "attempt2/attempt2.intent.json",
+  "previous_outcome": "CLOSED_SUCCESS38LOCALPASS_ROOT_EDGE_FINDINGS",
+  "prestate": [
+    {
+      "path": "scripts/line4d-google-ads-reporting-monitor.ts",
+      "sha256": "53ff3e47d41784a7052a73215bfd4888ea99acc56efa13ba2391870eb5a4641f",
+      "bytes": 25600,
+      "git_blob_oid": "8a040a7beb2db29be467b362209df7af1431f707"
+    },
+    {
+      "path": "scripts/line4d-google-ads-reporting-monitor.test.ts",
+      "sha256": "03ebcee376b6f6fb578af76d44ddc96c29666ca2f90ca60b975f1eadb3717eed",
+      "bytes": 22672,
+      "git_blob_oid": "b75e3509d43d257e547e5126965474050cd1a8a1"
+    }
+  ],
+  "reentry_basis": "NEW_EXACT_INDEPENDENT_FINDINGS_05_06_07",
+  "submitted_at": "2026-10-03T18:27:20.437Z",
+  "pid": 62424,
   "observed_conversation_id": "87630a5f-9aae-4f2e-af9a-6a0718b52ee8",
-  "init_observed_at": "2026-10-03T18:02:34.705Z"
+  "init_observed_at": "2026-10-03T18:27:26.784Z"
 }

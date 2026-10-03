@@ -1,6 +1,6 @@
 {
   "schema": "vnext5.2.coordinator-dispatch.v1",
-  "observed_at": "2026-10-03T18:10:45.234Z",
+  "observed_at": "2026-10-03T18:30:14.409Z",
   "single_integrator": "root",
   "tasks": [
     {
@@ -95,7 +95,7 @@
         "scripts/line4d-google-ads-reporting-monitor.test.ts",
         "outputs/S-ADS-INTEGRATION/**"
       ],
-      "submitted_at": "2026-10-03T18:02:30.312Z",
+      "submitted_at": "2026-10-03T18:27:20.437Z",
       "closed_at": null,
       "source_execution": "ACTUAL_NATIVE_INIT_AND_SOURCE_ACTIVITY_RECEIPT_REQUIRED",
       "result_path": "outputs/S-ADS-INTEGRATION/result.json",
@@ -110,7 +110,7 @@
     "status": "active",
     "turn_id": "01a10295-e6c6-7f91-a72c-f53a46eecb02",
     "turn_status": "inProgress",
-    "observed_at": "2026-10-03T18:10:36.834Z",
+    "observed_at": "2026-10-03T18:30:04.408Z",
     "receipt": "routes/luna-thread-readback.json",
     "source_execution": "NOT_INFERRED_FROM_THREAD_STATUS"
   },
