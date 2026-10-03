@@ -1,0 +1,211 @@
+{
+  "schema": "vnext5.2.slice-result.v1",
+  "task_id": "S-RECOVERY",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "status": "SOURCE_IN_PROGRESS",
+  "observed_at": "2026-10-03T09:30:00.000Z",
+  "repository": "PT-Original-Point/ptysd-vnext42-governance-sandbox",
+  "base_commit": "6f73909c268ca26502848a2304b4ad6228d2fb22",
+  "source_commit": null,
+  "source_tree": "5f7c1280f0ffb4f2c3685c4da8d733c8e5f81fa2",
+  "changed_paths": [
+    "tools/csg/v51-supervisor/README.md",
+    "tools/csg/v51-supervisor/bin/host-supervisor.mjs",
+    "tools/csg/v51-supervisor/lib/evidence-contract.mjs",
+    "tools/csg/v51-supervisor/lib/evidence-ledger.mjs",
+    "tools/csg/v51-supervisor/lib/f01-executor-adapter.mjs",
+    "tools/csg/v51-supervisor/lib/fingerprint.mjs",
+    "tools/csg/v51-supervisor/lib/fleet.mjs",
+    "tools/csg/v51-supervisor/lib/github-readonly.mjs",
+    "tools/csg/v51-supervisor/lib/operation-catalog.mjs",
+    "tools/csg/v51-supervisor/lib/operation-planner.mjs",
+    "tools/csg/v51-supervisor/lib/reconcile.mjs",
+    "tools/csg/v51-supervisor/lib/scheduler.mjs",
+    "tools/csg/v51-supervisor/lib/shadow-journal.mjs",
+    "tools/csg/v51-supervisor/lib/shadow-runtime.mjs",
+    "tools/csg/v51-supervisor/lib/supervisor.mjs",
+    "tools/csg/v51-supervisor/lib/windows-task-profile.mjs",
+    "tools/csg/v51-supervisor/operation-plan.p52-extension.json",
+    "tools/csg/v51-supervisor/operation-plan.union-59.json",
+    "tools/csg/v51-supervisor/operation-plan.vnext5.2.json",
+    "tools/csg/v51-supervisor/package.json",
+    "tools/csg/v51-supervisor/tests/any-state-regression.test.mjs",
+    "tools/csg/v51-supervisor/tests/evidence-contract.test.mjs",
+    "tools/csg/v51-supervisor/tests/evidence-ledger.test.mjs",
+    "tools/csg/v51-supervisor/tests/f01-executor-adapter.test.mjs",
+    "tools/csg/v51-supervisor/tests/fleet.test.mjs",
+    "tools/csg/v51-supervisor/tests/github-readonly.test.mjs",
+    "tools/csg/v51-supervisor/tests/operation-planner.test.mjs",
+    "tools/csg/v51-supervisor/tests/reconcile-scheduler.test.mjs",
+    "tools/csg/v51-supervisor/tests/runtime-shadow.test.mjs",
+    "tools/csg/v51-supervisor/tests/s-recovery-regression.test.mjs",
+    "tools/csg/v51-supervisor/tests/supervisor.test.mjs",
+    "tools/csg/v51-supervisor/tests/windows-task-profile.test.mjs",
+    "tools/csg/v51-supervisor/windows/register-supervisor-task.ps1",
+    "tools/csg/v51-supervisor/windows/remove-supervisor-task.ps1",
+    "tools/csg/v51-supervisor/windows/supervisor-task-profile.json"
+  ],
+  "patch": {
+    "path": "outputs/S-RECOVERY/candidate.patch",
+    "sha256": "bd6f94d5022f7be59a15705b96941e9997eab4b207169bf4b45bccd7394f644b",
+    "contains_untracked_source": true
+  },
+  "tests": [
+    {
+      "command": "node --test",
+      "workdir": "tools/csg/v51-supervisor",
+      "result": "121/121 LOCAL PASS",
+      "note": "SOURCE_LOCAL_ONLY_NOT_LIVE_SYSTEM_PROOF"
+    },
+    {
+      "command": "node --test tests/s-recovery-regression.test.mjs",
+      "workdir": "tools/csg/v51-supervisor",
+      "result": "10/10 LOCAL PASS",
+      "covers": [
+        "toolgap",
+        "no-global-stop",
+        "full-catalog-59",
+        "receipt-identity",
+        "stale-livefact",
+        "unknown-effect",
+        "goal-disappearance",
+        "lease-vs-process",
+        "actual-cold-reader",
+        "three-column-separation",
+        "source-not-live-system",
+        "worktree-not-sandbox"
+      ]
+    },
+    {
+      "command": "node --test tests/operation-planner.test.mjs tests/runtime-shadow.test.mjs",
+      "workdir": "tools/csg/v51-supervisor",
+      "result": "13/13 LOCAL PASS",
+      "note": "union-59 enforced; 44-subset never GLOBAL_EXHAUSTED"
+    }
+  ],
+  "semantic_review": {
+    "exact_target": null,
+    "status": "PENDING"
+  },
+  "actual_side_effects": [],
+  "unresolved_effects": [
+    "F01_ISOLATED_AGENT_ROUTE_NOT_PROVEN",
+    "M04_LIVE_INSTALL_NOT_AUTHORIZED",
+    "D03_ACTIVE_CUTOVER_NOT_AUTHORIZED",
+    "D04_SURVIVAL_LIVE_ACCEPTANCE_PENDING",
+    "F02_N2_ACCEPTANCE_PENDING",
+    "X01_ACCEPT_CANONICAL_SELECTION_PENDING",
+    "P52_THREE_VENDOR_E2E_PENDING",
+    "PRODUCTION_HUMAN_GATE"
+  ],
+  "scoped_blockers": [
+    {
+      "unit": "F01.CELL_PREPARE",
+      "state": "WAITING_EXTERNAL",
+      "reason": "START_DEPENDENCIES_NOT_ACCEPTED",
+      "start_blockers": [
+        "P52.NATIVE_ROUTE_DISCOVERY"
+      ],
+      "note": "Missing MCP gates only MCP route; F01 lane parked without hiding D02 source"
+    },
+    {
+      "unit": "F01.ISOLATED_EXECUTION",
+      "state": "WAITING_EXTERNAL",
+      "reason": "START_DEPENDENCIES_NOT_ACCEPTED",
+      "start_blockers": [
+        "F01.CELL_PREPARE",
+        "P52.NATIVE_ROUTE_DISCOVERY"
+      ],
+      "note": "Unproven task/cancel/receipt parks dispatch only"
+    },
+    {
+      "unit": "D02.EXECUTOR_INTEGRATION",
+      "state": "WAITING_EXTERNAL",
+      "reason": "START_DEPENDENCIES_NOT_ACCEPTED",
+      "start_blockers": [
+        "F01.ISOLATED_EXECUTION"
+      ],
+      "completion_blockers": [
+        "D02.PLAN_SHADOW",
+        "D02.LOCAL_RESTORE"
+      ]
+    },
+    {
+      "unit": "M04.LIVE_INSTALL",
+      "state": "WAITING_EXTERNAL",
+      "reason": "EXACT_EFFECT_AUTHORITY_REQUIRED:HOST_REVERSIBLE",
+      "note": "Future install phase never gates native source work"
+    }
+  ],
+  "reentry_conditions": [
+    "Fresh Directory/current/Checkpoint/Mission/Policy/run/effects via public GitHub GET at exact control head",
+    "Valid project access plus exact operation authorization for next unit",
+    "Fresh operation facts bound to union digest sha256:54f2528cf0efdcf457bc83773ba518fa881e93e558b13a3191ba42942f399280",
+    "Durable journal restore in new state dir; no completed work repeated; UNKNOWN effects read back first"
+  ],
+  "completed_operation_receipts": [],
+  "next_legal_ready_operations": [
+    {
+      "unit": "D02.SOURCE",
+      "reason": "D01.DECISION DONE and B01.OPERATIONS DONE unlock CANDIDATE_SOURCE repair",
+      "effect": "LOCAL_SOURCE_WRITE",
+      "reversible": true
+    },
+    {
+      "unit": "P52.NATIVE_ROUTE_DISCOVERY",
+      "reason": "B00.RECOVER DONE unlocks READ_ONLY_DIAGNOSTIC discovery",
+      "effect": "READ_ONLY",
+      "reversible": true
+    },
+    {
+      "unit": "B01.OPERATIONS",
+      "reason": "B00.RECOVER DONE unlocks operation graph reconciliation candidate",
+      "effect": "LOCAL_SOURCE_WRITE",
+      "reversible": true
+    }
+  ],
+  "live_acceptance": "NOT_ACCEPTED",
+  "canonical_write": false,
+  "Production": false,
+  "fresh_read": {
+    "worktree_head": "6f73909c268ca26502848a2304b4ad6228d2fb22",
+    "worktree_branch": "detached HEAD (isolated S-RECOVERY worktree)",
+    "provider_control_head": "d39486601d851e31256852a24e9c1393b9046fe5",
+    "provider_control_match": true,
+    "provider_directory_head": "38f4fc7cb2841e2318a97ff7a53e41b2ec07aef1",
+    "provider_directory_match": true,
+    "provider_pr381_head": "257318f78271b4a737785d756732915e5a835fe4",
+    "provider_pr381_match": true,
+    "provider_pr377_head": "491493627bd6ffcd51b0cd9287ab2cb465fbf9ee",
+    "provider_pr377_match": true,
+    "provider_shared_r2_head": "fa1d9c00a8bd0586683e840e367b2c67f6016291",
+    "d02_branch_provider_presence": "LOCAL_ONLY_NOT_ON_PROVIDER",
+    "original_staged_preserved": true,
+    "git_author_identity": "ABSENT_NO_COMMIT_FABRICATED_PATCH_TREE_ONLY"
+  },
+  "columns": {
+    "construction": {
+      "human_requested_spec": "VNEXT5.2",
+      "architecture_revision": "V52-UNION59-20261003",
+      "operation_union": "59/59",
+      "union_digest": "sha256:54f2528cf0efdcf457bc83773ba518fa881e93e558b13a3191ba42942f399280",
+      "role": "HUMAN_REQUESTED_CONSTRUCTION_INTENT_NOT_CANONICAL_SELECTION"
+    },
+    "canonical": {
+      "control_head": "d39486601d851e31256852a24e9c1393b9046fe5",
+      "checkpoint": 200,
+      "spec": "VNEXT5.1-R2",
+      "role": "OBSERVATION_THIS_TURN_NOT_FUTURE_CURRENT"
+    },
+    "installed": {
+      "runtime_version": "UNKNOWN",
+      "role": "NOT_OBSERVED_THIS_TURN"
+    }
+  },
+  "ready_truth": {
+    "catalog": "59-operation union (44 parent d0f82978679ba8abb720499eeec65ef981f94619b7849e26c7a1c8ac0cab33b5 + 15 P52)",
+    "dag_acyclic": true,
+    "global_exhaustion": "NOT_EVALUATED_SUBSET_NEVER_GLOBAL",
+    "note": "Partial milestone is not Goal closure; Mission completion decided by full contract only"
+  }
+}

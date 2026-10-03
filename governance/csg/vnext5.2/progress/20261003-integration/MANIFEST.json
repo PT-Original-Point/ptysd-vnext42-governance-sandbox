@@ -1,0 +1,99 @@
+{
+  "schema": "vnext5.2.progress-artifact-manifest.v1",
+  "observed_at": "2026-10-03T10:27:12.835Z",
+  "role": "NONSELECTING_EVIDENCE_NOT_MISSION_ACCEPTANCE",
+  "files": [
+    {
+      "path": "CURRENT.json",
+      "sha256": "f013c279d14dcee0d0926abb50a146ba4b45082e34f541205e5c20f73217f604"
+    },
+    {
+      "path": "README.md",
+      "sha256": "43baf311bf1adc843b561a02d67f723712ca4a83c95f2da6e36756ac4d9f2211"
+    },
+    {
+      "path": "operation-facts.json",
+      "sha256": "e96e16516b90b48aaa0e2fed553fd7cd3acfc88ffd327fa36687b7c52baecec8"
+    },
+    {
+      "path": "ready-queue.json",
+      "sha256": "1e61d482f48fd4e128714d4acb66b9893db313addcbccbd7ad4597b3546418e5"
+    },
+    {
+      "path": "receipt-inventory.json",
+      "sha256": "3e97b970c40c3621caaf928ffe3d22d33c5fb6f82ab7405e5ea921c7ced53080"
+    },
+    {
+      "path": "fresh-shared-readback.json",
+      "sha256": "05cf42a955011d83461eb426debd3c762d9cc43753b0c35f2a635e62c6015512"
+    },
+    {
+      "path": "shadow-readback.json",
+      "sha256": "2cbe99dd0601463f4f19ce2e5b66d6f949e54e8f8bcde1cbb63839741e26d468"
+    },
+    {
+      "path": "mcp-provider.json",
+      "sha256": "7379161a5e49261e9f3c457925e6e1a3ba7bae0c8f669c625546a33b271afbbd"
+    },
+    {
+      "path": "runtime-provider.json",
+      "sha256": "970889f45b7e5f698c89d233b35f33729e6092b05c5515abdf66b3287da2dca9"
+    },
+    {
+      "path": "import-readback.json",
+      "sha256": "8c499f16d00ab0af0c428694f4137a8457cfa3b2a3311a6342e539a06f366e7c"
+    },
+    {
+      "path": "mcp-final.json",
+      "sha256": "792f301085422f6e679287adaa279c8aa627475f9faff544cac4863de8208165"
+    },
+    {
+      "path": "runtime-final.json",
+      "sha256": "4ff490c780041e7044d349d0a2572c69d59168a5f006285855a39b1e9f4a54cf"
+    },
+    {
+      "path": "validation.json",
+      "sha256": "e87bd3d49322a66d2bbd7a2dbd4b4822ddb1668ce5ce5cea2fad6c6b11268def"
+    },
+    {
+      "path": "prior-runtime-decision.md",
+      "sha256": "ff0f69b449fcd586d37c16a11ab14ed38a4cda39b4200a4af0d06cde81b2d123"
+    },
+    {
+      "path": "native-route-discovery.json",
+      "sha256": "854a01c77ae4699dcd59f23522bb6ba5dd184aba92b4e379f5f8950aad6a1d33"
+    },
+    {
+      "path": "mcp-suite.log",
+      "sha256": "bcce013506cf64d4f2d09d5ea18e1ba0b2defcaec4dabf40810de2726b9bab22"
+    },
+    {
+      "path": "runtime-shadow.log",
+      "sha256": "1143144aceefffc317fb3465d7f7f1acafe48a3ad8073adf0baf79779375053d"
+    },
+    {
+      "path": "runtime-core.log",
+      "sha256": "ee393da0f1c99c736a1fa097c1748d60fdaf206da11c9fd2180f0bdbd77c544e"
+    },
+    {
+      "path": "runtime-cross-fail-closed.log",
+      "sha256": "105336824c7bdba7ced0e8cd33fa757df007d38a804249c396ad012a05fcbb19"
+    },
+    {
+      "path": "runtime-cross-positive.log",
+      "sha256": "d6ea667021988df7751b913d5caf07301277eef9715edbc71c3e97fd26ae437a"
+    },
+    {
+      "path": "runtime-source-authority.log",
+      "sha256": "3b786a4254e3e9ae1a05a4ad4630d834df22ede7fae39f0724a58033edbb35e0"
+    },
+    {
+      "path": "original-s-mcp-result.json",
+      "sha256": "8bb596966deccd34f965438694025a98fdbbcc3a87ee18f7fa6b89f3ce2a986d"
+    },
+    {
+      "path": "original-s-recovery-result.json",
+      "sha256": "663cd6f745bae227f5e36979fbdeacd6214fbb92d0b9328f3d18199560d68b9d"
+    }
+  ]
+}

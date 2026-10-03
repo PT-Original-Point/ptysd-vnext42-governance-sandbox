@@ -1,0 +1,186 @@
+{
+  "schema": "vnext5.2.slice-result.v1",
+  "task_id": "S-MCP",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "status": "SOURCE_LOCAL_PASS_PENDING_EXACT_SOURCE_AND_LIVE_ACCEPTANCE",
+  "observed_at": "2026-10-03T09:49:42Z",
+  "repository": "PT-Original-Point/ptysd-vnext42-governance-sandbox",
+  "base_commit": "257318f78271b4a737785d756732915e5a835fe4",
+  "source_commit": null,
+  "source_tree": "f2957cc450d3ca967d766217f161cd90b1afe8eb",
+  "changed_paths": [
+    "tools/csg/factory-mcp/package-lock.json",
+    "tools/csg/factory-mcp/package.json",
+    "tools/csg/factory-mcp/src/index.mjs",
+    "tools/csg/factory-mcp/src/readonly-diagnostics.mjs",
+    "tools/csg/factory-mcp/src/shared-context.mjs",
+    "tools/csg/factory-mcp/tests/fixtures/candidate-runtime-capability-matrix.json",
+    "tools/csg/factory-mcp/tests/read-only-diagnostics.test.mjs",
+    "tools/csg/factory-mcp/tests/repair-lane-smoke.ps1",
+    "tools/csg/factory-mcp/tests/repair-lane.test.mjs",
+    "tools/csg/factory-mcp/tests/shared-context.test.mjs",
+    "tools/csg/factory-mcp/windows/install-broker.ps1",
+    "tools/csg/factory-mcp/windows/repair-factory-mcp.ps1",
+    "tools/csg/factory-mcp/windows/repair-manifest.json"
+  ],
+  "patch": {
+    "path": "outputs/S-MCP/candidate.patch",
+    "sha256": "44dd1daeab8e955c8e98e3cf954d2d81b4a11ce333b5c073ff3675b53c6e0c6c",
+    "contains_untracked_source": true
+  },
+  "tests": [
+    {
+      "name": "npm test",
+      "status": "PASS",
+      "evidence": "FACTORY_MCP_OFFICIAL_INSPECTOR_EQUIVALENCE=PASS; 48 tests, 48 passed, 0 failed, 0 skipped. Includes capability parity, dynamic Session/attempt/generation projection, four-tool local MCP tools/list and factory_status test mode, installer/package, repair manifest trust pin, broker/caller boundary, and Windows PowerShell 5.1 parse/mocked regressions."
+    },
+    {
+      "name": "git diff --cached --check HEAD",
+      "status": "PASS",
+      "evidence": "No whitespace or patch errors after final source normalization."
+    },
+    {
+      "name": "fixed shared-context provider read",
+      "status": "PASS_READ_ONLY",
+      "evidence": "2026-10-03T09:33:34.494Z; shared head fa1d9c00a8bd0586683e840e367b2c67f6016291; project-directory head 38f4fc7cb2841e2318a97ff7a53e41b2ec07aef1; governance control head d39486601d851e31256852a24e9c1393b9046fe5 checkpoint 200; HANYAO_ADS_LINE_PROD control head 46f59cdcd918a08fb4a42040b8d4724c15c812e4 checkpoint 2. Read-only projection also observed the S-MCP, S-ADS, and S-RECOVERY source snapshots. Runtime/live MCP NOT_OBSERVED; dispatch and all writes false. The construction work index inside that readback was observed_at 2026-10-03T07:39:52.415Z and is only a source snapshot."
+    },
+    {
+      "name": "latest candidate fixed shared-reader attempt",
+      "status": "SCOPED_UNAVAILABLE",
+      "evidence": "2026-10-03T09:45Z; unauthenticated fixed GitHub GET returned GITHUB_READ_403 before a complete shared-context read. No blind retry was made."
+    },
+    {
+      "name": "connected GitHub read-connector fallback",
+      "status": "PASS_READ_ONLY",
+      "evidence": "Fresh refs at 2026-10-03T09:45Z: shared construction fa1d9c00a8bd0586683e840e367b2c67f6016291; project-directory 38f4fc7cb2841e2318a97ff7a53e41b2ec07aef1; governance control d39486601d851e31256852a24e9c1393b9046fe5; Hanyao control 46f59cdcd918a08fb4a42040b8d4724c15c812e4. Both Project directory locators and control pointers were re-read. This connector result does not prove that the installed Factory runtime can access those refs."
+    },
+    {
+      "name": "provider PR #381 metadata readback",
+      "status": "PASS_READ_ONLY_BASELINE_IDENTITY",
+      "evidence": "At readback PR #381 remained OPEN, non-draft, head 257318f78271b4a737785d756732915e5a835fe4, parent/base CP200 d39486601d851e31256852a24e9c1393b9046fe5. The recorded protected verifier PASS and semantic review pending apply to that baseline head only, not this candidate tree."
+    },
+    {
+      "name": "actual connected Web consumer tools/list and factory_status",
+      "status": "NOT_OBSERVED",
+      "evidence": "The current Codex session tool surface does not expose the Factory MCP consumer. This is scoped to this session and does not prove that a native route or authorization is absent globally. Local TEST_MODE tools/list coverage is not live consumer acceptance."
+    }
+  ],
+  "semantic_review": {
+    "exact_target": "git-tree:f2957cc450d3ca967d766217f161cd90b1afe8eb based on commit:257318f78271b4a737785d756732915e5a835fe4",
+    "status": "PENDING_NOT_PROVIDER_ADDRESSABLE"
+  },
+  "exact_source_verdict": {
+    "candidate_tree": "f2957cc450d3ca967d766217f161cd90b1afe8eb",
+    "status": "PENDING_EXACT_PROVIDER_HEAD",
+    "reason": "No Git author identity is configured in the isolated worktree. No author was invented and no commit/provider ref was created. Existing protected verification evidence belongs only to the baseline PR #381 head."
+  },
+  "actual_side_effects": [
+    {
+      "kind": "local_dependency_install",
+      "detail": "npm ci --ignore-scripts populated ignored node_modules in the isolated worktree for the authorized local regression."
+    },
+    {
+      "kind": "isolated_source_index",
+      "detail": "Staged only tools/csg/factory-mcp/** in the new worktree to compute exact candidate tree f2957cc450d3ca967d766217f161cd90b1afe8eb; no commit was created."
+    },
+    {
+      "kind": "read_only_provider_observation",
+      "detail": "Read PR metadata and fixed GitHub source/control refs and files; no provider write, Host dispatch, install, or repair operation was issued."
+    },
+    {
+      "kind": "local_delivery_artifacts",
+      "detail": "Created outputs/S-MCP/candidate.patch, result.json, and live-install-readback.md in the isolated worktree."
+    }
+  ],
+  "unresolved_effects": [],
+  "scoped_blockers": [
+    {
+      "scope": "EXACT_SOURCE_VERDICT",
+      "status": "PENDING",
+      "detail": "The candidate tree is locally reproducible but is not yet provider-addressable. An exact-head protected verifier and independent semantic verdict cannot be bound to it yet."
+    },
+    {
+      "scope": "LIVE_MCP_CONSUMER",
+      "status": "NOT_OBSERVED_IN_THIS_SESSION",
+      "detail": "No Factory MCP consumer tools are exposed in the current Codex tool surface. This does not establish global route absence or lack of authorization."
+    },
+    {
+      "scope": "FIXED_SHARED_READER_DIRECT_GET",
+      "status": "SCOPED_UNAVAILABLE_GITHUB_READ_403",
+      "detail": "The latest direct unauthenticated GitHub GET failed with HTTP 403. A connected GitHub read connector confirmed the fixed refs and pointers unchanged, but that does not establish the installed Factory runtime route. Do not blind-retry the failing request."
+    },
+    {
+      "scope": "SHARED_CONSTRUCTION_WORK_INDEX",
+      "status": "SOURCE_SNAPSHOT_NOT_CURRENT_FOR_THIS_CANDIDATE",
+      "detail": "The latest readable index says observed_at 2026-10-03T07:39:52.415Z and still records S-MCP at its base tree. It is a read-only handoff snapshot, not current candidate state or canonical selection."
+    },
+    {
+      "scope": "PROTECTED_HOST_READBACK",
+      "status": "NOT_OBSERVED",
+      "detail": "Actual protected Project/Host scope, trusted caller record, SYSTEM task principal, tunnel task SID/ACL, installed helper hash, and broker receipt were not read from the target Host."
+    },
+    {
+      "scope": "LIVE_INSTALL_AND_HOST_DISPATCH",
+      "status": "NOT_AUTHORIZED_BY_THIS_SLICE",
+      "detail": "Use only the existing authorized installer route coordinated by its integrator after exact-source qualification. This slice did not authorize a local direct install, repair, worker call, or host_powershell dispatch."
+    },
+    {
+      "scope": "BUSINESS_ADS_ACCEPTANCE",
+      "status": "SEPARATE_AND_PENDING",
+      "detail": "Hanyao control readback and Factory health do not prove Ads data was read. A true attributed event and authorized date-scoped Ads query evidence remain separate."
+    },
+    {
+      "scope": "NATIVE_GOAL_LIFECYCLE",
+      "status": "PAUSED",
+      "detail": "get_goal read back the existing VNEXT5.2 Goal as paused. The native Goal API has no ACTIVE/resume operation; no duplicate Goal was created and no active status was fabricated. This does not stop this authorized source slice."
+    }
+  ],
+  "reentry_conditions": [
+    "Read back the provider ref and commit before verifier submission; require an exact source identity that reconstructs tree f2957cc450d3ca967d766217f161cd90b1afe8eb from base 257318f78271b4a737785d756732915e5a835fe4.",
+    "Bind the supported protected source verifier and independent semantic review to that same provider-addressable candidate; do not reuse baseline PR #381 results as candidate results.",
+    "Use the actual authorized Web consumer for tools/list and no-argument factory_status; keep unavailable or partial Project reads scoped and read back before retrying moving or unknown effects.",
+    "For protected install, read actual scope/caller/SYSTEM/task SID/ACL and STOP/Production state, verify exact manifest/helper hashes, and proceed only through the existing authorized installer route."
+  ],
+  "completed_operation_receipts": [
+    {
+      "operation_id": "S-MCP-ROLLOVER-DIAGNOSTIC",
+      "status": "LOCAL_SOURCE_PASS",
+      "evidence": "Dynamic Session/task/attempt/epoch/generation/principal/scope metadata is accepted only within the exact Project; wrong Project and cross-component mismatches still fail closed. The broker operation schema remains bounded."
+    },
+    {
+      "operation_id": "S-MCP-SHARED-CONTEXT-PROJECTION",
+      "status": "LOCAL_SOURCE_AND_TEST_PASS",
+      "evidence": "The fixed shared reader is wired into factory_status without adding a public tool or arbitrary route; package/installer/repair manifest regressions pass."
+    }
+  ],
+  "next_legal_ready_operations": [
+    {
+      "operation_id": "S-MCP-EXACT-SOURCE-REVIEW",
+      "status": "WAITING_FOR_PROVIDER_ADDRESSABLE_EXACT_HEAD",
+      "action": "An authorized source author/integrator can import the exact patch/tree, read the provider identity back, and request supported protected source and independent semantic review."
+    },
+    {
+      "operation_id": "S-MCP-LIVE-WEB-CONSUMER-READBACK",
+      "status": "WAITING_FOR_CONNECTED_AUTHORIZED_CONSUMER",
+      "action": "Run actual tools/list and read-only factory_status through the native consumer; do not interpret this session's missing tool as global route or authority absence."
+    },
+    {
+      "operation_id": "S-MCP-SHARED-READER-RUNTIME-READBACK",
+      "status": "WAITING_FOR_AUTHORIZED_FACTORY_RUNTIME_ROUTE",
+      "action": "Read the fixed shared context through the actual Factory runtime after install/consumer availability; current candidate direct GET returned GITHUB_READ_403 while the separate GitHub connector succeeded. Do not retry the failed direct route blindly."
+    },
+    {
+      "operation_id": "S-MCP-PROTECTED-INSTALL-READBACK",
+      "status": "WAITING_FOR_EXISTING_AUTHORIZED_INSTALLER_ROUTE_AND_EXACT_GATES",
+      "action": "Follow live-install-readback.md after exact-source qualification; no direct install or Host dispatch from this slice."
+    },
+    {
+      "operation_id": "HANYAO-ADS-DATA-ACCEPTANCE",
+      "status": "SEPARATE_BUSINESS_LANE_PENDING",
+      "action": "Requires its own real attributed line contact and authorized date-scoped Ads read evidence; S-MCP does not claim or perform it."
+    }
+  ],
+  "live_acceptance": "NOT_ACCEPTED",
+  "canonical_write": false,
+  "Production": false
+}

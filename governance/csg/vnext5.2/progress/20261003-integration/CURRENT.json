@@ -1,0 +1,115 @@
+{
+  "schema": "vnext5.2.construction-progress.v1",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "observed_at": "2026-10-03T10:27:12.063Z",
+  "columns": {
+    "construction": {
+      "spec": "VNEXT5.2",
+      "revision": "V52-UNION59-20261003",
+      "source_pair": {
+        "mcp": {
+          "pr": 385,
+          "head": "da8e1a767d54e67ba7bb15d7d35e9ae535e50034",
+          "tree": "04e09372fb6b35e7de98304f107ce3d6976819c2",
+          "base": "d39486601d851e31256852a24e9c1393b9046fe5",
+          "structural": "PASS",
+          "job": 111182016024,
+          "run": 37115710979,
+          "semantic": "PENDING",
+          "live": "NOT_ACCEPTED"
+        },
+        "runtime": {
+          "pr": 386,
+          "head": "c2bfa038121782a3ae903591981a0b05f52a7b38",
+          "tree": "a25630fac30e3c474c797c2dbf9a5a4ddff05ce0",
+          "base": "06da5fa224b65b9346e8b250dcea686d0ed458ee",
+          "structural": "PASS",
+          "job": 111183022230,
+          "run": 37116067356,
+          "semantic": "PENDING",
+          "live": "NOT_ACCEPTED"
+        }
+      }
+    },
+    "canonical": {
+      "spec": "VNEXT5.1-R2",
+      "control_ref": "refs/heads/v45/factory-control",
+      "control_head": "d39486601d851e31256852a24e9c1393b9046fe5",
+      "checkpoint_seq": 200,
+      "checkpoint_digest": "sha256:2cd708bb96179b7ef416ab5a7616f7dff50030567f56d7506a7182f6ceda600d",
+      "lifecycle": "ACTIVE",
+      "owner_generation": 5
+    },
+    "installed": {
+      "version": "UNKNOWN",
+      "live_mcp": "NOT_ACCEPTED",
+      "live_ads": "NOT_ACCEPTED",
+      "real_session_recovery": "NOT_ACCEPTED"
+    }
+  },
+  "queue": {
+    "scope": "FULL_CATALOG",
+    "operations": 59,
+    "decision": "READY_AVAILABLE",
+    "ready_ids": [
+      "F01.PREFLIGHT",
+      "C1.PREPARE",
+      "P52.NATIVE_ROUTE_DISCOVERY",
+      "C2.PREFLIGHT",
+      "T01.BASELINE",
+      "P52.INTAKE_SOURCE",
+      "M04.INSTALL_PREPARE",
+      "D03.BUNDLE_PREPARE"
+    ],
+    "facts_path": "operation-facts.json",
+    "readiness_path": "ready-queue.json",
+    "valid_until": "2026-10-03T10:42:12.063Z"
+  },
+  "old_shared_artifact": {
+    "head": "fa1d9c00a8bd0586683e840e367b2c67f6016291",
+    "work_index_role": "HISTORICAL_SOURCE_SNAPSHOT_NOT_LATEST_PROGRESS",
+    "automatic_progress_locator": "NOT_YET_INTEGRATED_IN_DIRECTORY_OR_INSTALLED_READER"
+  },
+  "root_session_goal": "NULL_AT_READBACK;NOT_MISSION_AUTHORITY",
+  "reported_worker_goal": "S_MCP_REPORTED_PAUSED;NO_API_RESUME_ACTION;DO_NOT_GATE_NATIVE_SOURCE",
+  "source_originals_preserved": true,
+  "canonical_write": false,
+  "host_dispatch": false,
+  "host_install": false,
+  "production": false,
+  "mission_complete": false,
+  "all_legal_ready_lanes_exhausted": false,
+  "unresolved_external_effects": [],
+  "parked_lanes": {
+    "M03.SEMANTIC": [
+      "WAITING_REVIEW",
+      "EXACT_PR385_INDEPENDENT_REVIEW_PENDING"
+    ],
+    "F01.CELL_PREPARE": [
+      "WAITING_EXTERNAL",
+      "ISOLATED_ROUTE_NOT_PROVEN;NATIVE_GET_VM_ACCESS_DENIED"
+    ],
+    "F01.ISOLATED_EXECUTION": [
+      "WAITING_EXTERNAL",
+      "TRUSTED_TASK_CANCEL_RECEIPT_AND_SANDBOX_PROOF_NOT_OBSERVED"
+    ],
+    "M04.LIVE_INSTALL": [
+      "WAITING_EXTERNAL",
+      "EXACT_CALLER_HOST_INSTALL_SCOPE_AND_SEMANTIC_PRESTATE_REQUIRED"
+    ],
+    "A00.ADMISSION": [
+      "WAITING_EXTERNAL",
+      "S_ADS_RESULT_NOT_YET_RECEIVED;REUSE_EXISTING_DATE_SCOPED_GRANT"
+    ],
+    "D03.ACTIVE_CUTOVER": [
+      "WAITING_EXTERNAL",
+      "NO_LIVE_EXECUTOR_OR_ACTIVE_CUTOVER_ACCEPTANCE"
+    ],
+    "D04.SURVIVAL": [
+      "WAITING_EXTERNAL",
+      "REAL_REBOOT_CRASH_UI_CLOSED_ACCEPTANCE_NOT_PERFORMED"
+    ]
+  },
+  "receipt_hygiene": "Original worker bytes preserved. Worker unresolved_effects listed gates, not unknown provider effects. Local source/index/output writes are side effects; zero refers only to external mutations.",
+  "continuation": "Re-read provider/control and evidence after freshness expiry. Consume returned slices into the single integration lane. Select READY operations; do not close Mission on source PASS or worker exit. Do not copy this transient queue as future truth."
+}

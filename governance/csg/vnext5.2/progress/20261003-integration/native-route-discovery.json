@@ -1,0 +1,40 @@
+{
+  "observed_at": "2026-10-03T10:10:48.9944395Z",
+  "shell": "7.6.5",
+  "commands": [
+    {
+      "Name": "node.exe",
+      "Source": "C:\\Program Files\\nodejs\\node.exe",
+      "CommandType": 32
+    },
+    {
+      "Name": "git.exe",
+      "Source": "C:\\Program Files\\Git\\cmd\\git.exe",
+      "CommandType": 32
+    },
+    {
+      "Name": "codex.exe",
+      "Source": "C:\\Users\\x\\AppData\\Local\\OpenAI\\Codex\\bin\\8aaf1547b825b104\\codex.exe",
+      "CommandType": 32
+    },
+    {
+      "Name": "Get-VM",
+      "Source": "Hyper-V",
+      "CommandType": 8
+    }
+  ],
+  "applications": [
+    {
+      "Name": "Antigravity",
+      "AppID": "electron.app.Antigravity"
+    },
+    {
+      "Name": "OpenCode",
+      "AppID": "ai.opencode.desktop"
+    }
+  ],
+  "isolated_execution": "NOT_PROVEN",
+  "cancel_receipt": "NOT_PROVEN",
+  "host_dispatch": false,
+  "canonical_write": false
+}

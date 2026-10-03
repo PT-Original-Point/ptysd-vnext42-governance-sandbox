@@ -1,0 +1,74 @@
+{
+  "schema": "vnext5.2.integration-receipt-inventory.v1",
+  "observed_at": "2026-10-03T10:27:12.063Z",
+  "source_pair": {
+    "mcp": {
+      "pr": 385,
+      "head": "da8e1a767d54e67ba7bb15d7d35e9ae535e50034",
+      "tree": "04e09372fb6b35e7de98304f107ce3d6976819c2",
+      "base": "d39486601d851e31256852a24e9c1393b9046fe5",
+      "structural": "PASS",
+      "job": 111182016024,
+      "run": 37115710979,
+      "semantic": "PENDING",
+      "live": "NOT_ACCEPTED"
+    },
+    "runtime": {
+      "pr": 386,
+      "head": "c2bfa038121782a3ae903591981a0b05f52a7b38",
+      "tree": "a25630fac30e3c474c797c2dbf9a5a4ddff05ce0",
+      "base": "06da5fa224b65b9346e8b250dcea686d0ed458ee",
+      "structural": "PASS",
+      "job": 111183022230,
+      "run": 37116067356,
+      "semantic": "PENDING",
+      "live": "NOT_ACCEPTED"
+    }
+  },
+  "completed_local_operations": {
+    "B00.RECOVER": [
+      "fresh-shared-readback.json",
+      "FRESH_CANONICAL_READBACK"
+    ],
+    "B01.OPERATIONS": [
+      "runtime-final.json",
+      "SOURCE_CATALOG_QUALIFIED"
+    ],
+    "M01.SOURCE": [
+      "mcp-final.json",
+      "LOCAL_SOURCE_QUALIFIED"
+    ],
+    "M02.LOCAL_CANARY": [
+      "mcp-suite.log",
+      "LOCAL_TEST_PASS"
+    ],
+    "M03.FINAL_SOURCE": [
+      "mcp-provider.json",
+      "FROZEN_SOURCE_CANDIDATE"
+    ],
+    "M03.STRUCTURAL": [
+      "mcp-provider.json",
+      "STRUCTURAL_VERIFIER_PASS"
+    ],
+    "D01.DECISION": [
+      "prior-runtime-decision.md",
+      "BOUNDED_FALLBACK_DECISION_ONLY"
+    ],
+    "D02.SOURCE": [
+      "runtime-final.json",
+      "LOCAL_SOURCE_QUALIFIED"
+    ],
+    "D02.LOCAL_RESTORE": [
+      "runtime-shadow.log",
+      "LOCAL_TEST_PASS_NOT_REBOOT_PROOF"
+    ],
+    "D02.PLAN_SHADOW": [
+      "shadow-readback.json",
+      "REAL_PROVIDER_READ_ONLY_SHADOW_NOT_EXECUTOR_ACCEPTANCE"
+    ]
+  },
+  "independent_semantic_review": "PENDING",
+  "live_acceptance": "NOT_ACCEPTED",
+  "mission_complete": false,
+  "canonical_write": false
+}
