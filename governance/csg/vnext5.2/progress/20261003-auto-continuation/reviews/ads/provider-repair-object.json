@@ -1,0 +1,19 @@
+{
+  "schema": "vnext5.2.nonselecting-source-object-readback.v1",
+  "repository": "t14210184/hanyao",
+  "source_commit": "ab136aacd4cae67ffc3784f08da3d4a791238080",
+  "source_tree": "48b63a49656be8fd45cc05d8e6c02a026f3d775c",
+  "sole_parent": "e917139e4e81a12e41ef5ead507589ae0bf48452",
+  "provider_readback": "EXACT_COMMIT_TREE_SINGLE_PARENT_PASS",
+  "local_qualification": "ROOT_TYPECHECK_AND_48_REGRESSIONS_PASS_TWO_TEST_ONLY_EXPECT_ERROR_COMMENTS",
+  "pr": 89,
+  "selected_pr_head": "2c1021758d8b5ecbc3a126ad4a54b16cda1eac0b",
+  "same_pr_branch_updated": false,
+  "publication": "FINAL_SOURCE_OBJECT_ONLY_BRANCH_CAS_ROUTE_PARKED",
+  "structural_ci": "NOT_RUN_ON_NEW_OBJECT",
+  "reentry": "Existing authorized exact-prestate branch replacement route. Git CLI current account cannot write this repository; connector update_ref exposes no expected-old-head parameter. No account switch or unguarded force.",
+  "actual_root_provider_effects": ["CREATE_IMMUTABLE_GIT_TREE", "CREATE_ONE_DIRECT_PARENT_SOURCE_COMMIT_OBJECT"],
+  "canonical_write": false,
+  "live_ads": "NOT_ACCEPTED",
+  "production": false
+}

@@ -1,0 +1,381 @@
+{
+  "schema": "vnext5.2.root-final-runtime-source-binding.v1",
+  "observed_at": "2026-10-03T22:20:36.760Z",
+  "base": "06da5fa224b65b9346e8b250dcea686d0ed458ee",
+  "source_tree": "18bef45e79a61f83a0cf4758d9f2f246c1524e01",
+  "source_commit": null,
+  "files": [
+    {
+      "path": "config/runtime-manifest.json",
+      "blob": "a31e06717e095f1c0b411d69951c28a2fedf7f55",
+      "sha256": "sha256:97bee3f46d0708fb4e54fa9f51155b18918e0d1fe7705b761f1d2928bef415c3",
+      "bytes": 1228
+    },
+    {
+      "path": "package.json",
+      "blob": "a8d87394037e5c1d0fbfaa0fab4426edbbdbc331",
+      "sha256": "sha256:14ec57f942b0a1992cc242fa10c15ba7d1eb4a50992607b35c0f69500c13b1a4",
+      "bytes": 860
+    },
+    {
+      "path": "schemas/task-envelope.schema.json",
+      "blob": "30b39d7e22f674763c21856696f01c63abd0505c",
+      "sha256": "sha256:3ca3dcf7d77c091816a553829aacd7bac5aca8cab15ed88139cda6d22fcaec63",
+      "bytes": 1661
+    },
+    {
+      "path": "src/core.ts",
+      "blob": "fa5f100a56b34b6f2e138d2c1c3b21564a56c994",
+      "sha256": "sha256:295788614485231358c4f5bb0865e7da55a4e8a4dd99aba3588ca29957a3fd37",
+      "bytes": 28835
+    },
+    {
+      "path": "src/missionctl.ts",
+      "blob": "078fd8e054463125666d69a7f58e619b9b9b863b",
+      "sha256": "sha256:710f866108514c91fdb1cd91a57f8c7807aa4abbf0c3df66199214c740acfce7",
+      "bytes": 1889
+    },
+    {
+      "path": "tests/b0.test.ts",
+      "blob": "772364b1cd6afdf2e5d8f77cbd0011787e796b6f",
+      "sha256": "sha256:4fed59b3c2ba12d8cef0f869abdae7e4bccbc50fd1168672386c0947eebddab5",
+      "bytes": 52600
+    },
+    {
+      "path": "tests/envelope-e2e.json",
+      "blob": "8cdb93b9cfea89ba84341b8b6a1bd2fffcad69a0",
+      "sha256": "sha256:f037915c99ea1288cdeeb4cd805f44629ef979de24f203c91c4a517ea2f0e927",
+      "bytes": 466
+    },
+    {
+      "path": "src/recovery-evidence-producer.ts",
+      "blob": "3c550b1a8c8d06b9b52ded92319b099e76717830",
+      "sha256": "sha256:8ceda2eea6e9419c7ed32a91c4503b1d8f2f63e0d7c5e5d038e07e8c2659887d",
+      "bytes": 8964
+    },
+    {
+      "path": "src/recovery-evidence.ts",
+      "blob": "c8ab14ccd11e3efb2aa4b75514078ca5e2f0d736",
+      "sha256": "sha256:662d550cf79a4a97ad09e6e9714d31b3b1654d510e58a6b33e84065575f7d29c",
+      "bytes": 39133
+    },
+    {
+      "path": "src/supervisor-heartbeat.ts",
+      "blob": "b80cbce7d83c6d609d4c12f5cdf5da8520ac1911",
+      "sha256": "sha256:23d40e51e96f1c3c268cbe00f9f1c76e935cb05519c43435fc72ebf7d87c5a63",
+      "bytes": 13832
+    },
+    {
+      "path": "tests/cross-candidate-integration.mjs",
+      "blob": "b724b3d6e62d9e52a6b9ac6ec33583d4445ac739",
+      "sha256": "sha256:6b9666f1a4d47c6455793e92f17aba2fc5f96754562612bd04bd0ce9670c427b",
+      "bytes": 24812
+    },
+    {
+      "path": "tests/cross-candidate-positive-integration.mjs",
+      "blob": "5f0b1b470493a839f1e5e3e68986a527e6959fa3",
+      "sha256": "sha256:5650b36ac82269e7b79327597cad06bd6e3e714756d3c74b2525c96f82bdcdf8",
+      "bytes": 19995
+    },
+    {
+      "path": "tools/csg/v51-supervisor/.gitattributes",
+      "blob": "cb2faea07c5297cb8603b8fc63e8a0321e728d76",
+      "sha256": "sha256:2e03334808331e844a8206103e8291b5aa353ccaa0ff234f1adc1aebd8d5fea5",
+      "bytes": 99
+    },
+    {
+      "path": "tools/csg/v51-supervisor/README.md",
+      "blob": "55cb42ecba4b80a045dd7c634b2a7a944809132a",
+      "sha256": "sha256:89900c01bf98e6aade1c1ec01a7db30d621d63e31999b1bfab9a9115760203c1",
+      "bytes": 8636
+    },
+    {
+      "path": "tools/csg/v51-supervisor/bin/host-supervisor.mjs",
+      "blob": "dc60e2b66e3d497f33295a8473925531740ba423",
+      "sha256": "sha256:b17384ff44d6d67559a59bd2c6adaa3e70111b33d5d8f6d71987663aed82ea53",
+      "bytes": 7171
+    },
+    {
+      "path": "tools/csg/v51-supervisor/lib/evidence-contract.mjs",
+      "blob": "c31851df93f5652a958789e7882f48ee33c8f901",
+      "sha256": "sha256:8b2244f2e2dde071ba448599ec8917dc30ecd53c02492944a6b8254f8ff6bd82",
+      "bytes": 9350
+    },
+    {
+      "path": "tools/csg/v51-supervisor/lib/evidence-ledger.mjs",
+      "blob": "28b7840809cb56fea6278f17ded2fc1715095035",
+      "sha256": "sha256:f96ec3200f6ad9cc318f807b4659577f02ee8349a2013895978e4954020722bf",
+      "bytes": 3945
+    },
+    {
+      "path": "tools/csg/v51-supervisor/lib/f01-executor-adapter.mjs",
+      "blob": "df03dcd816971177c7ca2b474f6b94a397048fe0",
+      "sha256": "sha256:ae2125c89e81b70e39a5bf353c3a755745d06566eb825512d10d2c772a3d14de",
+      "bytes": 17016
+    },
+    {
+      "path": "tools/csg/v51-supervisor/lib/fingerprint.mjs",
+      "blob": "5d57e9496673309e3dd1d8656f688f01eb5fb698",
+      "sha256": "sha256:a095eaa6dc0a019aad8d005226b554ed8c85ac968ae66f9d6ddaee7155ae74aa",
+      "bytes": 4379
+    },
+    {
+      "path": "tools/csg/v51-supervisor/lib/fleet.mjs",
+      "blob": "664be554ad8bfc33e20a90eca4e19ed216e1bf93",
+      "sha256": "sha256:4b37c7bbbc4d0eb1da3d917b62bfabcbfbc032c033e627a818ed5a71ed7aec75",
+      "bytes": 9086
+    },
+    {
+      "path": "tools/csg/v51-supervisor/lib/github-readonly.mjs",
+      "blob": "a43a58212c73acbf683015b4b26cbd032bc374a3",
+      "sha256": "sha256:6ce5534c6e439b3fb60c54259d889bab9c2663391e65035a5dfa0caaacd224dd",
+      "bytes": 9751
+    },
+    {
+      "path": "tools/csg/v51-supervisor/lib/operation-catalog.mjs",
+      "blob": "d7ee49e2a139ca6bd4e2a6d6117a887fe5c5e064",
+      "sha256": "sha256:c9efe1ed37df315c77a07611f11a6df762a568cddc2a8e39a446513e5041f4fe",
+      "bytes": 4372
+    },
+    {
+      "path": "tools/csg/v51-supervisor/lib/operation-planner.mjs",
+      "blob": "5791635dffe77a9871144214d50d7f6ebc4291ce",
+      "sha256": "sha256:2bdfd23c5e190c049c89d3e25ca3364006412d318be0187b24b165c3e7c3bab3",
+      "bytes": 17482
+    },
+    {
+      "path": "tools/csg/v51-supervisor/lib/reconcile.mjs",
+      "blob": "27734f496217d490f4d105f13c846bf99329505b",
+      "sha256": "sha256:df88b7de5996486fae9fb3f4c69ffe08c5dcce84b79988f41bfcae6d1e8e3a0e",
+      "bytes": 16622
+    },
+    {
+      "path": "tools/csg/v51-supervisor/lib/scheduler.mjs",
+      "blob": "7ee336ee093a37da3ac21bbf272ef0b47bf4661f",
+      "sha256": "sha256:99c5071b8aa6d67a1ff6cbb3405cf592f821d5152a5980f08df2be7b42027076",
+      "bytes": 8984
+    },
+    {
+      "path": "tools/csg/v51-supervisor/lib/shadow-journal.mjs",
+      "blob": "7120c021a3c5308f13eca388102da9087361c199",
+      "sha256": "sha256:de10e79e0d8c2c6cfa73e073cbd121e3fdca844e353aa70d74d5488593f81bf8",
+      "bytes": 18241
+    },
+    {
+      "path": "tools/csg/v51-supervisor/lib/shadow-runtime.mjs",
+      "blob": "d8d751c24ff0b5606d2b3e543584bcad2c8c6dce",
+      "sha256": "sha256:7a2e23136a008f26f3a2b8e7da4dc34b8088b03dfff21e68c558bc26b87c6742",
+      "bytes": 10771
+    },
+    {
+      "path": "tools/csg/v51-supervisor/lib/supervisor.mjs",
+      "blob": "dea2f07753314b1ffde18118ef9c182c390084f5",
+      "sha256": "sha256:411daf5d5115c22528c69a0ec06c97ee301f4a643af99b9b16e86a545c0f49be",
+      "bytes": 4315
+    },
+    {
+      "path": "tools/csg/v51-supervisor/lib/windows-task-profile.mjs",
+      "blob": "18f68bd89437d961d55bc5d1166fa7d9b15637dc",
+      "sha256": "sha256:cf5aff1a703298935b8db6be2ccc00383da986274850e47c1101fd5333f21c1e",
+      "bytes": 3188
+    },
+    {
+      "path": "tools/csg/v51-supervisor/operation-plan.p52-extension.json",
+      "blob": "d37a7f46cddf908632b3cb5217a1beb3723fad4c",
+      "sha256": "sha256:d634252fd0fc35582a1b9486084904f4a9b99f3d4be293b7d05d9802c08ff39f",
+      "bytes": 12709
+    },
+    {
+      "path": "tools/csg/v51-supervisor/operation-plan.union-59.json",
+      "blob": "68f83170bc663674c7e420d2b85ca9b6e5c9e9d6",
+      "sha256": "sha256:4021f4a44779126b41de902e5231ce86fd930b5fd13022562e88f56b06e8fa1a",
+      "bytes": 40709
+    },
+    {
+      "path": "tools/csg/v51-supervisor/operation-plan.vnext5.2.json",
+      "blob": "b8f544f9ee68e6b79b315a7f48d4fe03bae9e8fa",
+      "sha256": "sha256:d0f82978679ba8abb720499eeec65ef981f94619b7849e26c7a1c8ac0cab33b5",
+      "bytes": 29294
+    },
+    {
+      "path": "tools/csg/v51-supervisor/package.json",
+      "blob": "43322c4565cf999a2ce3b72b056e13884488fe29",
+      "sha256": "sha256:3ce390cf76667745a6971cbf99a7ba8a83983776a540d10d7a980a01b7f24586",
+      "bytes": 193
+    },
+    {
+      "path": "tools/csg/v51-supervisor/tests/any-state-regression.test.mjs",
+      "blob": "2ddd301a0246ffd97dc7fcddc90d5a2531f01b66",
+      "sha256": "sha256:b36dab324b339093f083f77a097ced099681078ef3e67a2ab5dd27bb711a3956",
+      "bytes": 8452
+    },
+    {
+      "path": "tools/csg/v51-supervisor/tests/evidence-contract.test.mjs",
+      "blob": "9ad80d51ee79fb6c16cd300625593779f7a7157e",
+      "sha256": "sha256:a380dd1ae2120292c94f4e5065e568bbe8deb72572773f00f759063af2667f32",
+      "bytes": 6612
+    },
+    {
+      "path": "tools/csg/v51-supervisor/tests/evidence-ledger.test.mjs",
+      "blob": "a0500d7089e95a4e71c29361e76661fedbbe1af0",
+      "sha256": "sha256:e3eb867ed99a285eaff54f900e8a57254c0ac74504f5b54af307d61fee546441",
+      "bytes": 5083
+    },
+    {
+      "path": "tools/csg/v51-supervisor/tests/f01-executor-adapter.test.mjs",
+      "blob": "d43f7689bd8e595a73bc8cce6ef3c664110f952c",
+      "sha256": "sha256:14529a5d4bfddba5f19ae254e7ed6a24466e64a2dbc421cf20870f9ddc86a56d",
+      "bytes": 13344
+    },
+    {
+      "path": "tools/csg/v51-supervisor/tests/fleet.test.mjs",
+      "blob": "fc5972cbaab59ad088f916a1834cd781754cb984",
+      "sha256": "sha256:63ec38ac17d7dd85171467e0ad9d7436af8e07b0a9a45dd85b92fe81950ce64e",
+      "bytes": 9196
+    },
+    {
+      "path": "tools/csg/v51-supervisor/tests/github-readonly.test.mjs",
+      "blob": "dc96cad30dd569fdcbbef675f8a6cf332ad5271e",
+      "sha256": "sha256:43bebe2652ffa58a0130e4a4161260990f9593e6e6ad05388acc78736118f385",
+      "bytes": 8060
+    },
+    {
+      "path": "tools/csg/v51-supervisor/tests/operation-planner.test.mjs",
+      "blob": "79352b469c986d08b5b7b5bec9bac31e7b85d5e1",
+      "sha256": "sha256:599e8687ea73f898815e93eb2badd903de660fb19f7f4b2663e183e9e5285363",
+      "bytes": 7133
+    },
+    {
+      "path": "tools/csg/v51-supervisor/tests/reconcile-scheduler.test.mjs",
+      "blob": "2a009c4ffd69d8b8da93c4df8cab3db5d6cead6f",
+      "sha256": "sha256:430314d1a3bfcb6ba1ef70cc56b0c9807302298c2dd5745f9486457b228de8d2",
+      "bytes": 28536
+    },
+    {
+      "path": "tools/csg/v51-supervisor/tests/runtime-shadow.test.mjs",
+      "blob": "6bb3ba38afeb0a811ada413253b7a9d7c1b09e9b",
+      "sha256": "sha256:b63550958a52141c3b347bb3e1690681d716d2d38b3876c3d19da45cb109dfc0",
+      "bytes": 15113
+    },
+    {
+      "path": "tools/csg/v51-supervisor/tests/runtime07-package-closure.test.mjs",
+      "blob": "458100547952b41b407276484b087fc7ffcef3a4",
+      "sha256": "sha256:641d4656025d2f6dcc3412f89a891d2b3136971f6ad649ed98feb5591be89c3b",
+      "bytes": 15892
+    },
+    {
+      "path": "tools/csg/v51-supervisor/tests/s-recovery-regression.test.mjs",
+      "blob": "57dd0fe3d6d15fced8ab24ecff7c98ea63d1f8f7",
+      "sha256": "sha256:15dfbf7880c4b9f584cf2e531de5a8bd5718eb800423f0c68a34a4f60289d0d4",
+      "bytes": 15908
+    },
+    {
+      "path": "tools/csg/v51-supervisor/tests/semantic-repair.test.mjs",
+      "blob": "2f8a73e0a29fc1e1f6a5f185010e3c5003f6ed63",
+      "sha256": "sha256:be671adb0711188d01f5e087e98519fdcd2cb0a6a0994374f668cf8cbe86fe09",
+      "bytes": 14272
+    },
+    {
+      "path": "tools/csg/v51-supervisor/tests/supervisor.test.mjs",
+      "blob": "1c451db594763e61186425edfb12e9a185612ce7",
+      "sha256": "sha256:c4f6d48aee24a59014fc6ce000436fe25f1edc9ef3f751af21b396594e0a10cb",
+      "bytes": 6218
+    },
+    {
+      "path": "tools/csg/v51-supervisor/tests/windows-task-profile.test.mjs",
+      "blob": "cd5b1f151fa444da78f35533c185edfe18a1d7a5",
+      "sha256": "sha256:1e3f2524d37a4c159bf3a19ac2758317ef07ea2c6c7656ffee965a1c381e4602",
+      "bytes": 5231
+    },
+    {
+      "path": "tools/csg/v51-supervisor/windows/register-supervisor-task.ps1",
+      "blob": "87b53ee8db366ca8e2ba333418b951cd848c2a68",
+      "sha256": "sha256:e23b6f58be97e1b5d38059734c16128f252793fad8087d1d8947746dfecf6310",
+      "bytes": 15810
+    },
+    {
+      "path": "tools/csg/v51-supervisor/windows/remove-supervisor-task.ps1",
+      "blob": "ffaa8859e54f81c18be69c83bbec24efd70498d1",
+      "sha256": "sha256:2bba6b7f5b8fcbd6cc284943ac0803d31a92bdf7b9e6d8ac15e1e8b8a86300ed",
+      "bytes": 2075
+    },
+    {
+      "path": "tools/csg/v51-supervisor/windows/supervisor-task-profile.json",
+      "blob": "52d90137f08df21a26296272d18c21997455db20",
+      "sha256": "sha256:85b4e8918dd581598f9c3cb4383f4e2dec740afea47099c4defbf2d4ae69d0fb",
+      "bytes": 1240
+    }
+  ],
+  "patch_sha256": "sha256:4864267388c21eda0db0475c50308b8b5b79581770a14a708b389a3f6f4cb230",
+  "producer": {
+    "pr": 385,
+    "head": "e1c99a7cf3201ac5c1eddad71f3d6ea1ea7a955e",
+    "base": "d39486601d851e31256852a24e9c1393b9046fe5",
+    "tree": "0b418ec8a631ce9e681d25b87f70408df4231305",
+    "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-MCP-EXACT-FROZEN-READ-WORK-20261004",
+    "blobs": [
+      {
+        "path": "tools/csg/factory-mcp/src/shared-context.mjs",
+        "oid": "073b18870d8750c537aa83a7be786d6967842340"
+      },
+      {
+        "path": "tools/csg/factory-mcp/broker/host-powershell-exec.ps1",
+        "oid": "68c259c12eb303157adebbbc5b855959931b7ec9"
+      },
+      {
+        "path": "tools/csg/factory-mcp/broker/hostguard-broker.ps1",
+        "oid": "cadc0472cfc0901809d82c43abcde00117b3dece"
+      },
+      {
+        "path": "tools/csg/factory-mcp/broker/owner-liveness-publisher.ps1",
+        "oid": "992d66622f4745e7d448d998cc3b5f30944a8064"
+      },
+      {
+        "path": "tools/csg/factory-mcp/package.json",
+        "oid": "992cb1b86b4e810232f6f9b4835f731776827040"
+      },
+      {
+        "path": "tools/csg/factory-mcp/src/index.mjs",
+        "oid": "3f5726d5055843810aaa33c57b5e51f04c445061"
+      },
+      {
+        "path": "tools/csg/factory-mcp/src/invoke-hostguard.ps1",
+        "oid": "59c8ada6dfd9120b75f7130096f83493c1b9bb7d"
+      },
+      {
+        "path": "tools/csg/factory-mcp/src/readonly-diagnostics.mjs",
+        "oid": "463ca0119738a28477a18061750e87dd7fd56186"
+      },
+      {
+        "path": "tools/csg/factory-mcp/src/readonly-diagnostics.ps1",
+        "oid": "1c16dd9321683c6ee4ae16ab0a0e48220f887567"
+      },
+      {
+        "path": "tools/csg/factory-mcp/windows/install-broker.ps1",
+        "oid": "2f59bc39e96a1695ed86d392572801df510de22e"
+      }
+    ]
+  },
+  "actual_model": "gemini-3.8-flash-high",
+  "source_changes": "TWO_EXACT_IDENTITY_CONSTANT_TABLES_ONLY_ALL_ASSERTIONS_UNCHANGED",
+  "inherited_runtime_bytes": "ALL_UNRELATED_BYTES_UNCHANGED_FROM_RUNTIME08",
+  "root_core_tests": {
+    "pass": 26,
+    "fail": 0
+  },
+  "root_source_authority": "PASS_PROJECT_DATA_SOURCE_FIRST",
+  "supervisor_regression": {
+    "root_prior_exact_unchanged_bytes": 140,
+    "worker_this_candidate": 140,
+    "live": false
+  },
+  "cross_matrix": "NOT_RUN_PERMISSION_DENIED",
+  "denied_resource": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-MCP-EXACT-FROZEN-READ-WORK-20261004\\tools\\csg\\factory-mcp\\broker\\owner-liveness-publisher.ps1",
+  "semantic": "SOURCE_BINDING_SCOPE_PASS_CROSS_SOURCE_MATRIX_PARKED_NOT_PASS",
+  "protected_structural": "NO_NEW_REMOTE_VERIFIER",
+  "publication": "NO_PR386_UPDATE_UNTIL_REQUIRED_CROSS_MATRIX_QUALIFIED",
+  "live_acceptance": "NOT_ACCEPTED",
+  "canonical_write": false,
+  "production": false,
+  "root_product_source_edits": 0
+}

@@ -1,0 +1,14 @@
+{
+  "schema": "vnext5.2.protected-verifier-source-readback.v1",
+  "observed_at": "2026-10-03T22:22:11.818Z",
+  "run": 37147331343,
+  "job": 111273872789,
+  "exact_candidate_head": "e1c99a7cf3201ac5c1eddad71f3d6ea1ea7a955e",
+  "trusted_workflow_source": "06da5fa224b65b9346e8b250dcea686d0ed458ee",
+  "evidence_lines": [
+    "2026-10-03T19:17:18.6932472Z if /I not \"%TRUSTED_SHA%\"==\"06da5fa224b65b9346e8b250dcea686d0ed458ee\" exit /b 43",
+    "2026-10-03T19:17:26.5074331Z ##[group]Run node trusted/governance/csg/trust-root/csg-trusted-pr-verifier.mjs candidate d39486601d851e31256852a24e9c1393b9046fe5 e1c99a7cf3201ac5c1eddad71f3d6ea1ea7a955e v45/factory-control"
+  ],
+  "scope": "STRUCTURAL_ONLY",
+  "local_semantic_not_protected": true
+}

@@ -1,6 +1,6 @@
 {
   "schema": "vnext5.2.coordinator-dispatch.v1",
-  "observed_at": "2026-10-03T22:03:34.273Z",
+  "observed_at": "2026-10-03T22:38:21.268Z",
   "single_integrator": "root",
   "tasks": [
     {
@@ -53,10 +53,10 @@
       "id": "S-RUNTIME-PACKAGING-REWORK",
       "route": "ANTIGRAVITY_NATIVE_CLI",
       "thread": null,
-      "status": "SUBMITTED_OUTCOME_PENDING",
+      "status": "COLLECTED_SOURCE_FINDINGS07_08_CLOSED",
       "finding": "R386-REPAIR-08",
-      "source_tree": "a397681601b7d4c029a29995835a00fc811d83be",
-      "review": "reviews/runtime/runtime07-review.json",
+      "source_tree": "7b3a5da42fbc9021bfbc27f3c9d836bb6034dd65",
+      "review": "reviews/runtime/runtime08-collection.json",
       "write_set": [
         "tools/csg/v51-supervisor/**"
       ],
@@ -64,7 +64,7 @@
       "actual_model": "gemini-3.8-flash-high",
       "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-RUNTIME07-AG-WORK-20261004",
       "dispatch_source": "routes/antigravity-runtime08-intent.json",
-      "source_execution": "NATIVE_INIT_CONFIRMED_INSTALLER_REWORK_ONLY"
+      "source_execution": "NATIVE_RESULT_AND_ROOT_INDEPENDENT_140_REGRESSION_AND_AST_PASS"
     },
     {
       "id": "P52.NATIVE_ROUTE_DISCOVERY",
@@ -163,6 +163,36 @@
       ],
       "no_runtime_installer_overlap": true,
       "source_execution": "NOT_INFERRED_FROM_THREAD_STATUS"
+    },
+    {
+      "id": "RUNTIME-FINAL-INTEGRATION",
+      "route": "ANTIGRAVITY_NATIVE_CLI",
+      "model": "gemini-3.8-flash-high",
+      "actual_model": "gemini-3.8-flash-high",
+      "status": "SOURCE_BINDING_COLLECTED_MATRIX_PERMISSION_PARKED",
+      "source_tree": "18bef45e79a61f83a0cf4758d9f2f246c1524e01",
+      "review": "reviews/runtime/final-binding-collection.json",
+      "dispatch_source": "routes/antigravity-runtime-final-integration-intent.json",
+      "write_set": [
+        "tests/cross-candidate-integration.mjs",
+        "tests/cross-candidate-positive-integration.mjs",
+        "outputs/RUNTIME-FINAL-INTEGRATION/**"
+      ],
+      "cross_matrix": "PARKED_PERMISSION_DENIED_NO_BYPASS",
+      "denied_resource": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-MCP-EXACT-FROZEN-READ-WORK-20261004\\tools\\csg\\factory-mcp\\broker\\owner-liveness-publisher.ps1"
+    },
+    {
+      "id": "T01.BASELINE",
+      "route": "ANTIGRAVITY_NATIVE_CLI",
+      "model": "gemini-3.8-flash-high",
+      "actual_model": "gemini-3.8-flash-high",
+      "status": "SOFT_DENIED_EMPTY_RESPONSE",
+      "write_set": [
+        "outputs/T01-BASELINE/**"
+      ],
+      "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-RUNTIME-FINAL-INTEGRATION-AG-WORK-20261004",
+      "dispatch_source": "routes/antigravity-t01-baseline-intent.json",
+      "source_execution": "READ_ONLY_OUTPUT_AUDIT_NOT_PRODUCT_OR_TRUST_ROOT_MUTATION"
     }
   ],
   "collection": "root reads native thread/subagent updates then exact result paths; Human copying unnecessary",
@@ -172,7 +202,7 @@
     "status": "active",
     "turn_id": "01a103c5-ee2d-7f41-abbd-c7d371fe38b3",
     "turn_status": "inProgress",
-    "observed_at": "2026-10-03T22:03:25.647Z",
+    "observed_at": "2026-10-03T22:36:29.622Z",
     "receipt": "routes/luna-thread-readback.json",
     "source_execution": "NOT_INFERRED_FROM_THREAD_STATUS"
   },

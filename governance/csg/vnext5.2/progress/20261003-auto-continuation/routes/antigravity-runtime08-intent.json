@@ -2,7 +2,7 @@
   "schema": "vnext5.2.native-task-attempt.v1",
   "task_id": "R386-REPAIR-08",
   "attempt": 2,
-  "status": "SUBMITTED_OUTCOME_PENDING",
+  "status": "RESPONSE_RECEIVED_REVIEW_REQUIRED",
   "created_at": "2026-10-03T22:01:12.912Z",
   "conversation_id": "87630a5f-9aae-4f2e-af9a-6a0718b52ee8",
   "model": "gemini-3.8-flash-high",
@@ -26,5 +26,11 @@
   "submitted_at": "2026-10-03T22:01:13.589Z",
   "pid": 67316,
   "observed_conversation_id": "87630a5f-9aae-4f2e-af9a-6a0718b52ee8",
-  "init_observed_at": "2026-10-03T22:01:16.384Z"
+  "init_observed_at": "2026-10-03T22:01:16.384Z",
+  "result_status": "SUCCESS",
+  "response_length": 4136,
+  "denied_action_count": 0,
+  "exit_code": 0,
+  "signal": null,
+  "closed_at": "2026-10-03T22:04:52.840Z"
 }

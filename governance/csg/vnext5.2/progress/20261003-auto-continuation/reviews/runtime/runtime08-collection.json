@@ -1,0 +1,171 @@
+{
+  "schema": "vnext5.2.root-runtime08-exact-collection.v1",
+  "observed_at": "2026-10-03T22:08:35.860Z",
+  "base": "c2bfa038121782a3ae903591981a0b05f52a7b38",
+  "source_tree": "7b3a5da42fbc9021bfbc27f3c9d836bb6034dd65",
+  "source_commit": null,
+  "actual_model": "gemini-3.8-flash-high",
+  "conversation": "87630a5f-9aae-4f2e-af9a-6a0718b52ee8",
+  "files": [
+    {
+      "path": "tools/csg/v51-supervisor/README.md",
+      "blob": "55cb42ecba4b80a045dd7c634b2a7a944809132a",
+      "sha256": "sha256:89900c01bf98e6aade1c1ec01a7db30d621d63e31999b1bfab9a9115760203c1",
+      "bytes": 8636
+    },
+    {
+      "path": "tools/csg/v51-supervisor/bin/host-supervisor.mjs",
+      "blob": "dc60e2b66e3d497f33295a8473925531740ba423",
+      "sha256": "sha256:b17384ff44d6d67559a59bd2c6adaa3e70111b33d5d8f6d71987663aed82ea53",
+      "bytes": 7171
+    },
+    {
+      "path": "tools/csg/v51-supervisor/lib/f01-executor-adapter.mjs",
+      "blob": "df03dcd816971177c7ca2b474f6b94a397048fe0",
+      "sha256": "sha256:ae2125c89e81b70e39a5bf353c3a755745d06566eb825512d10d2c772a3d14de",
+      "bytes": 17016
+    },
+    {
+      "path": "tools/csg/v51-supervisor/lib/github-readonly.mjs",
+      "blob": "a43a58212c73acbf683015b4b26cbd032bc374a3",
+      "sha256": "sha256:6ce5534c6e439b3fb60c54259d889bab9c2663391e65035a5dfa0caaacd224dd",
+      "bytes": 9751
+    },
+    {
+      "path": "tools/csg/v51-supervisor/lib/operation-planner.mjs",
+      "blob": "5791635dffe77a9871144214d50d7f6ebc4291ce",
+      "sha256": "sha256:2bdfd23c5e190c049c89d3e25ca3364006412d318be0187b24b165c3e7c3bab3",
+      "bytes": 17482
+    },
+    {
+      "path": "tools/csg/v51-supervisor/lib/reconcile.mjs",
+      "blob": "27734f496217d490f4d105f13c846bf99329505b",
+      "sha256": "sha256:df88b7de5996486fae9fb3f4c69ffe08c5dcce84b79988f41bfcae6d1e8e3a0e",
+      "bytes": 16622
+    },
+    {
+      "path": "tools/csg/v51-supervisor/lib/scheduler.mjs",
+      "blob": "7ee336ee093a37da3ac21bbf272ef0b47bf4661f",
+      "sha256": "sha256:99c5071b8aa6d67a1ff6cbb3405cf592f821d5152a5980f08df2be7b42027076",
+      "bytes": 8984
+    },
+    {
+      "path": "tools/csg/v51-supervisor/lib/shadow-journal.mjs",
+      "blob": "7120c021a3c5308f13eca388102da9087361c199",
+      "sha256": "sha256:de10e79e0d8c2c6cfa73e073cbd121e3fdca844e353aa70d74d5488593f81bf8",
+      "bytes": 18241
+    },
+    {
+      "path": "tools/csg/v51-supervisor/lib/shadow-runtime.mjs",
+      "blob": "d8d751c24ff0b5606d2b3e543584bcad2c8c6dce",
+      "sha256": "sha256:7a2e23136a008f26f3a2b8e7da4dc34b8088b03dfff21e68c558bc26b87c6742",
+      "bytes": 10771
+    },
+    {
+      "path": "tools/csg/v51-supervisor/lib/supervisor.mjs",
+      "blob": "dea2f07753314b1ffde18118ef9c182c390084f5",
+      "sha256": "sha256:411daf5d5115c22528c69a0ec06c97ee301f4a643af99b9b16e86a545c0f49be",
+      "bytes": 4315
+    },
+    {
+      "path": "tools/csg/v51-supervisor/lib/windows-task-profile.mjs",
+      "blob": "18f68bd89437d961d55bc5d1166fa7d9b15637dc",
+      "sha256": "sha256:cf5aff1a703298935b8db6be2ccc00383da986274850e47c1101fd5333f21c1e",
+      "bytes": 3188
+    },
+    {
+      "path": "tools/csg/v51-supervisor/tests/f01-executor-adapter.test.mjs",
+      "blob": "d43f7689bd8e595a73bc8cce6ef3c664110f952c",
+      "sha256": "sha256:14529a5d4bfddba5f19ae254e7ed6a24466e64a2dbc421cf20870f9ddc86a56d",
+      "bytes": 13344
+    },
+    {
+      "path": "tools/csg/v51-supervisor/tests/github-readonly.test.mjs",
+      "blob": "dc96cad30dd569fdcbbef675f8a6cf332ad5271e",
+      "sha256": "sha256:43bebe2652ffa58a0130e4a4161260990f9593e6e6ad05388acc78736118f385",
+      "bytes": 8060
+    },
+    {
+      "path": "tools/csg/v51-supervisor/tests/windows-task-profile.test.mjs",
+      "blob": "cd5b1f151fa444da78f35533c185edfe18a1d7a5",
+      "sha256": "sha256:1e3f2524d37a4c159bf3a19ac2758317ef07ea2c6c7656ffee965a1c381e4602",
+      "bytes": 5231
+    },
+    {
+      "path": "tools/csg/v51-supervisor/windows/register-supervisor-task.ps1",
+      "blob": "87b53ee8db366ca8e2ba333418b951cd848c2a68",
+      "sha256": "sha256:e23b6f58be97e1b5d38059734c16128f252793fad8087d1d8947746dfecf6310",
+      "bytes": 15810
+    },
+    {
+      "path": "tools/csg/v51-supervisor/windows/remove-supervisor-task.ps1",
+      "blob": "ffaa8859e54f81c18be69c83bbec24efd70498d1",
+      "sha256": "sha256:2bba6b7f5b8fcbd6cc284943ac0803d31a92bdf7b9e6d8ac15e1e8b8a86300ed",
+      "bytes": 2075
+    },
+    {
+      "path": "tools/csg/v51-supervisor/windows/supervisor-task-profile.json",
+      "blob": "52d90137f08df21a26296272d18c21997455db20",
+      "sha256": "sha256:85b4e8918dd581598f9c3cb4383f4e2dec740afea47099c4defbf2d4ae69d0fb",
+      "bytes": 1240
+    },
+    {
+      "path": "tools/csg/v51-supervisor/tests/runtime07-package-closure.test.mjs",
+      "blob": "458100547952b41b407276484b087fc7ffcef3a4",
+      "sha256": "sha256:641d4656025d2f6dcc3412f89a891d2b3136971f6ad649ed98feb5591be89c3b",
+      "bytes": 15892
+    },
+    {
+      "path": "tools/csg/v51-supervisor/tests/semantic-repair.test.mjs",
+      "blob": "2f8a73e0a29fc1e1f6a5f185010e3c5003f6ed63",
+      "sha256": "sha256:be671adb0711188d01f5e087e98519fdcd2cb0a6a0994374f668cf8cbe86fe09",
+      "bytes": 14272
+    }
+  ],
+  "patch_sha256": "sha256:d9539cfb2c28cc08ba15d8c987c809caf467f42220999033c33ee3f37aa33025",
+  "source_write_set": "PASS",
+  "prior_six_source_fixes": "PRESERVED_RAW_BYTES",
+  "closure": [
+    "bin/host-supervisor.mjs",
+    "lib/f01-executor-adapter.mjs",
+    "lib/fingerprint.mjs",
+    "lib/github-readonly.mjs",
+    "lib/operation-catalog.mjs",
+    "lib/operation-planner.mjs",
+    "lib/reconcile.mjs",
+    "lib/scheduler.mjs",
+    "lib/shadow-journal.mjs",
+    "lib/shadow-runtime.mjs",
+    "lib/supervisor.mjs",
+    "lib/windows-task-profile.mjs",
+    "operation-plan.p52-extension.json",
+    "operation-plan.union-59.json",
+    "operation-plan.vnext5.2.json",
+    "package.json",
+    "runtime/node.exe",
+    "windows/supervisor-task-profile.json"
+  ],
+  "findings": [
+    {
+      "id": "R386-REPAIR-07",
+      "status": "CLOSED_ON_CURRENT_SOURCE"
+    },
+    {
+      "id": "R386-REPAIR-08",
+      "status": "CLOSED_ON_ACTUAL_TRANSITIVE_LITERAL_IMPORT_AND_DATA_GRAPH"
+    }
+  ],
+  "local_regression": {
+    "pass": 140,
+    "fail": 0,
+    "log_sha256": "sha256:020ba95ba492a68a8b0bff92ff1b7221826413f3c803613d3b643fae70e1577c"
+  },
+  "semantic": "ROOT_SOURCE_SCOPE_PASS_KNOWN_RUNTIME_REPAIRS_FINAL_CROSS_SOURCE_BINDING_REVIEW_PENDING",
+  "protected_structural": "OLD_HEAD_ONLY_NEW_CANDIDATE_PENDING",
+  "cross_source_integration": "STALE_PRODUCER_BINDING_REPAIR_READY",
+  "live_install": "NOT_ACCEPTED",
+  "system_survival": "NOT_ACCEPTED",
+  "root_product_source_edits": 0,
+  "canonical_write": false,
+  "production": false
+}

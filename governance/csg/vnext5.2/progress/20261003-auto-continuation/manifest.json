@@ -3,11 +3,11 @@
   "files": [
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/CURRENT.json",
-      "sha256": "sha256:196dab3f9aff1b8c0cc118c03dd1c4a70629f118017ebd79e3aea5fbd1d36b8b"
+      "sha256": "sha256:d1a42185eae6a2a9db5c9172aa829e6385800111bed652d331f061f998a3f827"
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/dispatch.json",
-      "sha256": "sha256:6fd22da923a9b44eb7d154775213b5111068215acd598a39526bffb5e827a371"
+      "sha256": "sha256:0f72eef26941bdda51790dee28a8c8299b7d5104fe89ff425d17f8cf3ca2c0bf"
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/CONTINUATION-CONTRACT.md",
@@ -19,23 +19,23 @@
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/goal-readback.json",
-      "sha256": "sha256:143307a1880e1231c9c47e37697b39bc106672a7585c05c9de4053315a43551c"
+      "sha256": "sha256:8e47185088be48d825125718949d37132bb8b39068f21ecda7d056d926c009bb"
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/collection.json",
-      "sha256": "sha256:7c0d5c1f0dfd383e5988c184ee935aeabf883f271d8d6d85202a5ab3177f0941"
+      "sha256": "sha256:c7bc40bd261d7163c96de85f8c776bb4afc9ed0a694fde1b6208a367b9838d69"
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/fresh-provider.json",
-      "sha256": "sha256:6382c72f4eb4c16e5915feaf7c71f41787f3cd5ae5266314d7dcf8c413031533"
+      "sha256": "sha256:c7fdc170d48f23a0dae60af874b3f076cbb71d9d19091592fe65d80eae08c305"
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/operation-facts.json",
-      "sha256": "sha256:588672a8240aee6c52d5d51cba7825c14762be1094b4cb5843ff74a11e2fd18a"
+      "sha256": "sha256:af6d0501632c2718f2d14a5e0a0f096b4af59115a870a9a1367bb95750c20224"
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/ready-queue.json",
-      "sha256": "sha256:7e626472f0820b064e754192c1a99558453aeeef6663f4e8b29a880e26b77851"
+      "sha256": "sha256:4ecfbec8dbd9e414e0fb1ce6b6e2003f9b981c4dcf826493744b22e59e3d75ac"
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/MODEL-LOCK-20261004.json",
@@ -47,7 +47,7 @@
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/luna-thread-readback.json",
-      "sha256": "sha256:b812ad80ed8476a6fe9473952cba02219aa81dfcacd4263117bcd2ab8f87c4f6"
+      "sha256": "sha256:eaf169aeaf497991e33de86ecac601bb5320c6bc6189a565e2fd2b789563fc77"
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/opencode-quota-readback.json",
@@ -55,7 +55,7 @@
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/antigravity-runtime08-intent.json",
-      "sha256": "sha256:2bb4524a29fda3d8432d3e05ccf64d73612133e37b9691b888c551dbd97f2087"
+      "sha256": "sha256:15a35a2e20a7a616453694b9beacd2bf487704c35f25b7f57774f1501e2f052b"
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/antigravity-ads-typecheck-intent.json",
@@ -63,19 +63,35 @@
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/reviews/mcp/final-head-binding.json",
-      "sha256": "sha256:0fd0931a36abff8aeeaf1674ecd67f7658d359534f72704d5f94d2779ebeea92"
+      "sha256": "sha256:71768b082e1c0f5c95ffb4e4fa8460352d7a3fc51315a3fcde1798e8b7e110cb"
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/reviews/mcp/repair-review-20261004.json",
       "sha256": "sha256:c5e8ea2dfe7d29828dacbaba6dc821aa81ee871a233966ded77d4007744e3969"
     },
     {
-      "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/reviews/runtime/runtime07-review.json",
-      "sha256": "sha256:8c8bbdd81c836359df10efed88a2712cdd7c846193583a61f38517e9e1cd7d2e"
+      "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/reviews/runtime/runtime08-collection.json",
+      "sha256": "sha256:cf7ab55176ffea6462b8fcb875be56065323b6afb1337c6dd1a71b9abdd7c443"
+    },
+    {
+      "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/reviews/runtime/final-binding-collection.json",
+      "sha256": "sha256:36c3f5ec6f0560d36ff01f648a57c21c46f7007c014784f9fb4d3377542f731d"
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/reviews/c1-collection.json",
       "sha256": "sha256:fa19ea9230f710641a992d1959b3e1a0e06aadb014ff0cc5d429b357da4865c5"
+    },
+    {
+      "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/antigravity-runtime-final-integration-intent.json",
+      "sha256": "sha256:9e63009fd9e3af73357ccf25f3765da2e8f18a38b751924fc6712eefca973ef7"
+    },
+    {
+      "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/antigravity-t01-baseline-intent.json",
+      "sha256": "sha256:887e9455b90fddf18f4726da4b72a389200d9ddfb50c6c23e32c7290088a827e"
+    },
+    {
+      "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/reviews/mcp/protected-workflow-source.json",
+      "sha256": "sha256:6e34975ebdbefea903c9b7d56a32f9ec902eaaa60504420735db647a8f005c15"
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/reviews/ads/provider-ci-finding.json",
@@ -84,6 +100,14 @@
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/reviews/ads/typecheck-repair-collection.json",
       "sha256": "sha256:0e896d55e70fb7f7b8f0c8332df4185ec19fd8e8f092f1f7d8dad78b374b1ea9"
+    },
+    {
+      "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/reviews/ads/provider-repair-object.json",
+      "sha256": "sha256:aa2a2dd4b947332760d28f23744bcddfac5389c5617d4a474ba3cb777bd5828f"
+    },
+    {
+      "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/reviews/runtime/current-shadow-readback.json",
+      "sha256": "sha256:baaeb8a1e069ae87841c716cb6b29c38124019992e913831c53fb8ba25667612"
     }
   ]
 }

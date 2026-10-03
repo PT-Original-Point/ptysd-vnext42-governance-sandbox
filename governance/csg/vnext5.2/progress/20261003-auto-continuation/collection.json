@@ -1,96 +1,58 @@
 {
-  "schema": "vnext5.2.automatic-collection.v2",
-  "observed_at": "2026-10-03T18:54:52.950Z",
+  "schema": "vnext5.2.automatic-collection.v3",
+  "observed_at": "2026-10-03T22:38:21.268Z",
   "reviewer": "root",
-  "role": "AUDIT_PLAN_DISPATCH_COLLECT_REWORK_ARBITRATE_ONLY",
-  "historical_collection": "collection-historical-20261003T115945.json",
+  "role": "AUDIT_PLAN_DISPATCH_COLLECTION_REWORK_ARBITRATION_ONLY",
+  "historical_collection": "Previous immutable progress snapshots including seq10 retained",
   "tasks": [
     {
-      "task": "S-RUNTIME-SEMANTIC-REPAIR",
-      "receipt": "reviews/runtime/repair-collection.json",
-      "semantic": "FINDINGS_PACKAGING_DEPENDENCY_COVERAGE_REQUIRES_REWORK",
-      "remaining_finding": "R386-REPAIR-07",
-      "tree_verification": "UNVERIFIED_NOT_RESOLVABLE_IN_PRODUCER_GIT_WORKTREE",
-      "prior_root_tests": 137,
-      "test_scope": "PREVIOUS_COLLECTED_EXACT_PAYLOADS_ONLY_NEW_BYTES_REQUIRE_NEW_VERDICT",
-      "next": "LUNA_REWORK_ALREADY_ASSIGNED"
+      "task": "MCP",
+      "head": "e1c99a7cf3201ac5c1eddad71f3d6ea1ea7a955e",
+      "tree": "0b418ec8a631ce9e681d25b87f70408df4231305",
+      "semantic": "INDEPENDENT_SOURCE_SCOPE_PASS_ON_IDENTICAL_WHOLE_TREE_ROOT_BOUND_TO_EXACT_FINAL_HEAD",
+      "structural": "PASS",
+      "local_tests": 59,
+      "live": "NOT_ACCEPTED"
     },
     {
-      "task": "S-MCP-SEMANTIC-REPAIR",
-      "route_receipt": "routes/native-session-readback.json",
-      "provider_quota_receipt": "routes/opencode-quota-readback.json",
-      "partial_source": "PRESERVED_UNACCEPTED",
-      "opencode_actual_outcome": "failed",
-      "opencode_active_readback": {},
-      "next": "LUNA_P2_MINIMAL_REWORK_QUEUED_AFTER_RUNTIME07",
-      "latest_worker_regression": "59/59_LOCAL_REPORTED_EXACT_E841_TREE",
-      "latest_independent_review": "reviews/mcp/repair-review-20261004.json",
-      "review_tree": "e8416c738d567de9aa54c13ddca28f4e95816258",
-      "semantic": "FINDINGS_SCOPED_P2_CURRENT_TARGET_LABEL",
-      "source": "LOCAL_SOURCE_FROZEN_EXCEPT_CONCRETE_P2_LABEL_REPAIR",
-      "latest_independent_regression": "7/7_PASS",
-      "remaining_findings": [
-        "MCP-R2-04"
-      ]
+      "task": "RUNTIME08",
+      "tree": "7b3a5da42fbc9021bfbc27f3c9d836bb6034dd65",
+      "semantic": "ROOT_SOURCE_SCOPE_PASS_KNOWN_RUNTIME_REPAIRS_FINAL_CROSS_SOURCE_BINDING_REVIEW_PENDING",
+      "local_tests": 140
     },
     {
-      "task": "S-ADS",
-      "receipt": "reviews/ads/final-artifact-collection.json",
-      "semantic": "MODULE_SCOPE_ONLY_CONSUMER_INTEGRATION_PENDING",
-      "prior_root_tests": 17,
-      "test_scope": "PREVIOUS_COLLECTED_EXACT_BYTES_ONLY",
-      "next": "ROOT_NATIVE_ANTIGRAVITY_SADS_INTEGRATION_01_SUBMITTED_ACTUAL_FIXED_MODEL_CONFIRMED",
-      "resolved": [
-        "ALL_THREE_SOURCE_COPY_AND_RECEIPT_BYTE_FINDINGS",
-        "ROOT_RESOLVABLE_TREE_BINDING"
-      ],
-      "current_root_tests": 17,
-      "tree_receipt": "reviews/ads/tree-binding.json",
-      "next_phase": "routes/antigravity-integration-intent.json",
-      "native_attempt5": "CLOSED_SUCCESS_DENIED0",
-      "artifact": "ROOT_PACKAGED_EXACT_RAW_SOURCE_TREE_WORKER_PATCH_FINDING_PRESERVED",
-      "source_tree": "07692db0bb56b699792c55402072c8757bf901ca"
+      "task": "RUNTIME_FINAL_BINDING",
+      "tree": "18bef45e79a61f83a0cf4758d9f2f246c1524e01",
+      "semantic": "SOURCE_BINDING_SCOPE_PASS_CROSS_SOURCE_MATRIX_PARKED_NOT_PASS",
+      "core_tests": 26,
+      "cross_matrix": "NOT_RUN_PERMISSION_DENIED"
     },
     {
-      "task": "P52-INTAKE",
-      "source": "PRESERVED_ROOT_PROVISIONAL_EDITS_REQUIRE_WORKER_HANDOFF",
-      "semantic": "PENDING_INDEPENDENT_REVIEW",
-      "prior_local_tests": 14
+      "task": "ADS_TYPECHECK_REPAIR",
+      "tree": "48b63a49656be8fd45cc05d8e6c02a026f3d775c",
+      "provider_source_object": "ab136aacd4cae67ffc3784f08da3d4a791238080",
+      "tests": 48,
+      "typecheck": "PASS",
+      "same_pr_branch": "PARKED_CAS_ROUTE_ONLY",
+      "live": "NOT_ACCEPTED"
     },
     {
-      "task": "SADS-INTEGRATION-01",
-      "route": "ANTIGRAVITY_NATIVE_CLI",
-      "model": "gemini-3.8-flash-high",
-      "receipt": "reviews/ads/integration-collection.json",
-      "review_tree": "9c5403b5ebe34be7fe7295b3d838f6a75e31a859",
-      "root_existing_regression": "48/48_PASS",
-      "root_edge_regression": "3/3_PASS",
-      "semantic": "SOURCE_SLICE_QUALIFIED_ONLY",
-      "next": "FROZEN_FOR_FRESH_HANYAO_BASE_FINAL_CANDIDATE",
-      "live_ads": "NOT_ACCEPTED",
-      "native_attempt": 3
+      "task": "C1",
+      "review": "reviews/c1-collection.json",
+      "status": "PROPOSAL_CONCEPTS_QUALIFIED_CONTROL_PACKET_NOT_READY"
     },
     {
-      "task": "C1.PREPARE",
-      "route": "ANTIGRAVITY_NATIVE_CLI",
-      "model": "gemini-3.8-flash-high",
-      "receipt": "reviews/c1-collection.json",
-      "status": "NATIVE_ATTEMPT2_REWORK_SUBMITTED",
-      "scope": "NONSELECTING_OUTPUTS_ONLY_OWNERLESS_PROPOSAL",
-      "canonical_write": false,
-      "remaining_findings": [
-        "C1-01",
-        "C1-02",
-        "C1-03"
-      ],
-      "acceptance": "NOT_ACCEPTED"
+      "task": "T01",
+      "native_status": "SOFT_DENIED_EMPTY_RESPONSE"
+    },
+    {
+      "task": "F01",
+      "native_thread_status": "active",
+      "source_execution": "NOT_INFERRED_FROM_ACTIVE_THREAD"
     }
   ],
-  "worker_thread_readback": "routes/luna-thread-readback.json",
+  "root_product_source_edits": 0,
   "mission_complete": false,
-  "live": "NOT_ACCEPTED",
-  "system": "NOT_ACCEPTED",
   "canonical_write": false,
-  "host_dispatch": false,
   "production": false
 }

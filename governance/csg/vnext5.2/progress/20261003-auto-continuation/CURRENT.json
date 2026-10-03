@@ -1,7 +1,7 @@
 {
   "schema": "vnext5.2.construction-progress.v2",
   "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
-  "observed_at": "2026-10-03T22:03:34.273Z",
+  "observed_at": "2026-10-03T22:38:21.268Z",
   "model_lock": {
     "codex": {
       "display": "GPT-6 Luna Max",
@@ -78,13 +78,18 @@
     },
     "pr386": {
       "head": "c2bfa038121782a3ae903591981a0b05f52a7b38",
-      "semantic": "R386_REPAIR_08_RUNNING_140_LOCAL_PASS_WITH_TRANSITIVE_CLOSURE_FINDING",
-      "local_candidate_tree": "a397681601b7d4c029a29995835a00fc811d83be"
+      "semantic": "SOURCE_BINDING_SCOPE_PASS_CROSS_SOURCE_MATRIX_PARKED_NOT_PASS",
+      "local_candidate_tree": "18bef45e79a61f83a0cf4758d9f2f246c1524e01",
+      "known_source_findings": "07_AND08_CLOSED",
+      "local_regression": "26_CORE_AND140_SUPERVISOR_PASS",
+      "cross_matrix": "NOT_RUN_PERMISSION_DENIED",
+      "publication": "OLD_REMOTE_HEAD_UNCHANGED_NO_PREMATURE_VERIFIER"
     },
     "ads_pr89": {
       "head": "2c1021758d8b5ecbc3a126ad4a54b16cda1eac0b",
-      "provider_ci": "FAIL",
+      "provider_ci": "FAIL_ON_OLD_HEAD",
       "repaired_tree": "48b63a49656be8fd45cc05d8e6c02a026f3d775c",
+      "provider_source_object": "ab136aacd4cae67ffc3784f08da3d4a791238080",
       "local": "TYPECHECK_AND_48_PASS",
       "publication": "PARKED_CAS_ROUTE_ONLY",
       "live": "NOT_ACCEPTED"
@@ -102,15 +107,14 @@
   "queue_decision": "READY_AVAILABLE",
   "ready_ids": [
     "C2.PREFLIGHT",
-    "T01.BASELINE",
-    "F01.ADAPTER_SOURCE",
-    "M04.INSTALL_PREPARE"
+    "M04.INSTALL_PREPARE",
+    "D03.BUNDLE_PREPARE"
   ],
   "running_ids": [
-    "D02.SOURCE",
+    "F01.ADAPTER_SOURCE",
     "P52.NATIVE_ROUTE_DISCOVERY"
   ],
-  "valid_until": "2026-10-03T22:18:34.273Z",
+  "valid_until": "2026-10-03T22:53:21.268Z",
   "all_legal_ready_lanes_exhausted": false,
   "canonical_write": false,
   "host_install": false,

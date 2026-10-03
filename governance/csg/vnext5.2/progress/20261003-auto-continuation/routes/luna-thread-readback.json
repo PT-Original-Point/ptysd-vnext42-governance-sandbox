@@ -1,13 +1,13 @@
 {
-  "observed_at": "2026-10-03T22:03:25.647Z",
+  "observed_at": "2026-10-03T22:36:29.622Z",
   "native": {
     "timedOut": true,
     "wake": null,
     "polls": [
       {
         "schemaVersion": 1,
-        "cursor": "298be436-3629-441e-badc-baf007d62540:48",
-        "revision": 48,
+        "cursor": "298be436-3629-441e-badc-baf007d62540:58",
+        "revision": 58,
         "changed": true,
         "thread": {
           "id": "01a0fd19-df99-7013-8a8b-eb952c647e3d",
@@ -25,16 +25,16 @@
           "completedAt": null,
           "durationMs": null
         },
-        "latestAssistantMessageId": "msg_05fe48d0724a727b016ac17a8c89d887d0b5c6ad3e7341b708",
+        "latestAssistantMessageId": "msg_05fe48d0724a727b016ac182b1ca3c87d0b65191ce7b7df235",
         "latestAssistantMessage": {
-          "id": "msg_05fe48d0724a727b016ac17a8c89d887d0b5c6ad3e7341b708",
+          "id": "msg_05fe48d0724a727b016ac182b1ca3c87d0b65191ce7b7df235",
           "turnId": "01a103c5-ee2d-7f41-abbd-c7d371fe38b3",
           "phase": "commentary",
-          "text": "收到另一條 Session 傳來的 F01 派工資訊；我會先把它當作待核實的狀態線索，不把它當新 Human 授權。上一份 queue 已過期，我先重讀時間、provider 最新 locator／全目錄 queue、Goal 實際狀態及 F01 preflight，再確認目前是否有直接授權且無 owner 衝突的 READY source work。"
+          "text": "F01 adapter 的 targeted 12/12、整個 supervisor package 123/123 與 diff hygiene 都通過。provider queue 原本只新鮮到 22:18:34Z，現在已過期；我不再拿那份 queue 當 READY truth，先重讀最新 provider CURRENT/manifest/全目錄 queue，再產出這片的最終 receipt與候選 overlay。Goal 工具讀回仍為 paused，沒有 supported ACTIVE/resume。"
         },
-        "latestToolMarkerId": "exec-b3608ea8-7831-42a0-a826-04d141e29820",
+        "latestToolMarkerId": "exec-43c9cfac-ac02-49ec-a70a-304ccbbbb9cf",
         "latestToolMarker": {
-          "id": "exec-b3608ea8-7831-42a0-a826-04d141e29820",
+          "id": "exec-43c9cfac-ac02-49ec-a70a-304ccbbbb9cf",
           "turnId": "01a103c5-ee2d-7f41-abbd-c7d371fe38b3",
           "type": "commandExecution",
           "name": "commandExecution",
@@ -43,7 +43,46 @@
       }
     ]
   },
-  "operation_activity": [],
-  "goal_last_actual_readback": "paused",
-  "goal_scope": "LAST_WORKER_ACTUAL_GOAL_NOT_ROOT_GET_GOAL"
+  "operation_activity": [
+    {
+      "id": "F01.ADAPTER_SOURCE",
+      "state": "RUNNING",
+      "scope": "SOURCE_ONLY_PENDING_EXACT_RECEIPT_REVIEW",
+      "observed_at": "2026-10-03T22:36:29.622Z",
+      "file_changes": [
+        {
+          "marker": "exec-28fcefb4-f228-4518-ad88-f20b9ecde690",
+          "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-F01-ADAPTER-WORK-20261004\\tools\\csg\\v51-supervisor\\lib\\f01-codex-native.mjs"
+        },
+        {
+          "marker": "exec-ea64c762-2e8a-42e6-99da-f2dd87bdeb2d",
+          "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-F01-ADAPTER-WORK-20261004\\tools\\csg\\v51-supervisor\\lib\\f01-codex-native.mjs"
+        },
+        {
+          "marker": "exec-4e6e23c6-7bd8-4e4a-9498-10c92aef221a",
+          "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-F01-ADAPTER-WORK-20261004\\tools\\csg\\v51-supervisor\\tests\\f01-codex-native.test.mjs"
+        },
+        {
+          "marker": "exec-2cf1e67e-113d-4b1a-8274-243ba80bce0e",
+          "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-F01-ADAPTER-WORK-20261004\\tools\\csg\\v51-supervisor\\lib\\f01-codex-native.mjs"
+        },
+        {
+          "marker": "exec-f43e9d87-ad23-4f16-930a-727f1e412e6e",
+          "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-F01-ADAPTER-WORK-20261004\\tools\\csg\\v51-supervisor\\tests\\f01-codex-native.test.mjs"
+        },
+        {
+          "marker": "exec-f5b47701-0dfe-4e81-916e-724d022f0789",
+          "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-F01-ADAPTER-WORK-20261004\\tools\\csg\\v51-supervisor\\tests\\f01-codex-native.test.mjs"
+        }
+      ],
+      "reported_tests": {
+        "targeted": 12,
+        "package": 123,
+        "scope": "WORKER_REPORTED_LOCAL_NOT_LIVE"
+      },
+      "requested_model": "gpt-6-luna",
+      "requested_reasoning": "max",
+      "actual_model": "UNVERIFIED_FROM_TOOL_SETTINGS"
+    }
+  ]
 }
