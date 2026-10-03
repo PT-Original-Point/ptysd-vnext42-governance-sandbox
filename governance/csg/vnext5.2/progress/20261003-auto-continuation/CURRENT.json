@@ -1,0 +1,72 @@
+{
+  "schema": "vnext5.2.construction-progress.v2",
+  "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+  "observed_at": "2026-10-03T10:56:40.144Z",
+  "columns": {
+    "construction": {
+      "spec": "VNEXT5.2",
+      "contract": "V52-UNION59-20261003",
+      "operations": 59,
+      "mission_complete": false
+    },
+    "canonical": {
+      "spec": "VNEXT5.1-R2",
+      "head": "d39486601d851e31256852a24e9c1393b9046fe5",
+      "checkpoint": 200,
+      "lifecycle": "ACTIVE"
+    },
+    "installed": {
+      "version": "UNKNOWN",
+      "live_mcp": "NOT_ACCEPTED",
+      "live_ads": "NOT_ACCEPTED",
+      "survival": "NOT_ACCEPTED"
+    }
+  },
+  "goal": {
+    "root": "ACTIVE_REAL_API_READBACK",
+    "worker_luna": "PAUSED_REPORTED_NOT_AUTHORITY",
+    "automation_id": "vnext5-2",
+    "heartbeat": "ACTIVE_REAL_TOOL_READBACK_30_MINUTES",
+    "app_running_required": true
+  },
+  "reviews": {
+    "pr385": {
+      "head": "da8e1a767d54e67ba7bb15d7d35e9ae535e50034",
+      "semantic": "FINDINGS"
+    },
+    "pr386": {
+      "head": "c2bfa038121782a3ae903591981a0b05f52a7b38",
+      "semantic": "FINDINGS"
+    }
+  },
+  "progress_locator": {
+    "branch": "codex/vnext5.2-construction-latest",
+    "path": "governance/csg/vnext5.2/progress/CURRENT.json",
+    "directory_integration": "NOT_YET_ACCEPTED",
+    "installed_consumer": "NOT_YET_ACCEPTED"
+  },
+  "dispatch_path": "dispatch.json",
+  "facts_path": "operation-facts.json",
+  "queue_path": "ready-queue.json",
+  "queue_decision": "READY_AVAILABLE",
+  "ready_ids": [
+    "F01.PREFLIGHT",
+    "C1.PREPARE",
+    "C2.PREFLIGHT",
+    "T01.BASELINE",
+    "P52.INTAKE_SOURCE"
+  ],
+  "running_ids": [
+    "M01.SOURCE",
+    "D02.SOURCE",
+    "P52.NATIVE_ROUTE_DISCOVERY"
+  ],
+  "valid_until": "2026-10-03T11:11:40.144Z",
+  "all_legal_ready_lanes_exhausted": false,
+  "canonical_write": false,
+  "host_install": false,
+  "host_dispatch": false,
+  "production": false,
+  "unknown_external_effects": [],
+  "continuation": "Root automatically collects repairs, recomputes full READY and dispatches next work; expired queue is evidence only. Structural PASS does not override semantic FINDINGS."
+}

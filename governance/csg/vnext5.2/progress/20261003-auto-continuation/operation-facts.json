@@ -1,0 +1,418 @@
+{
+  "schema": "vnext5.2.operation-facts.v1",
+  "catalog_sha256": "sha256:ee769422b5d587e771d09c4e95af1af9a3a7cf0a7c0e493d86071e2df57304de",
+  "captured_at_utc": "2026-10-03T10:56:40.144Z",
+  "freshness": {
+    "max_age_seconds": 900,
+    "max_future_skew_seconds": 60
+  },
+  "source_inventory": {
+    "ref": "auto-continuation:dispatch.json",
+    "sha256": "sha256:f98399d6f49c411ac375ba26be538564dcc9db8f2010cc87b3d60d078f9349ab",
+    "observed_at_utc": "2026-10-03T10:56:40.144Z"
+  },
+  "canonical_binding": {
+    "control_ref": "refs/heads/v45/factory-control",
+    "control_head": "d39486601d851e31256852a24e9c1393b9046fe5",
+    "checkpoint_seq": 200,
+    "checkpoint_digest": "sha256:2cd708bb96179b7ef416ab5a7616f7dff50030567f56d7506a7182f6ceda600d"
+  },
+  "units": [
+    {
+      "id": "B00.RECOVER",
+      "state": "DONE",
+      "authorization_state": "AUTHORIZED",
+      "evidence": [
+        {
+          "ref": "auto-continuation:fresh-provider.json",
+          "sha256": "sha256:126dd787df5b3c7de4d90d1489362035692612d349a42ed813edc046493e9507",
+          "observed_at_utc": "2026-10-03T10:56:40.144Z"
+        }
+      ],
+      "evidence_class": "FRESH_CANONICAL_READBACK"
+    },
+    {
+      "id": "B01.OPERATIONS",
+      "state": "DONE",
+      "authorization_state": "AUTHORIZED",
+      "evidence": [
+        {
+          "ref": "integration-evidence:runtime-final.json",
+          "sha256": "sha256:4ff490c780041e7044d349d0a2572c69d59168a5f006285855a39b1e9f4a54cf",
+          "observed_at_utc": "2026-10-03T10:27:12.063Z"
+        }
+      ],
+      "evidence_class": "SOURCE_CATALOG_QUALIFIED"
+    },
+    {
+      "id": "B01.PUBLISH",
+      "state": "NOT_STARTED",
+      "authorization_state": "EXACT_PRESTATE_REQUIRED",
+      "evidence": []
+    },
+    {
+      "id": "C1.PREPARE",
+      "state": "NOT_STARTED",
+      "authorization_state": "AUTHORIZED",
+      "evidence": []
+    },
+    {
+      "id": "C1.QUALIFY",
+      "state": "NOT_STARTED",
+      "authorization_state": "EXACT_PRESTATE_REQUIRED",
+      "evidence": []
+    },
+    {
+      "id": "C1.SELECT",
+      "state": "NOT_STARTED",
+      "authorization_state": "EXACT_PRESTATE_REQUIRED",
+      "evidence": []
+    },
+    {
+      "id": "C2.PREFLIGHT",
+      "state": "NOT_STARTED",
+      "authorization_state": "AUTHORIZED",
+      "evidence": []
+    },
+    {
+      "id": "C2.FENCE_SOURCE",
+      "state": "NOT_STARTED",
+      "authorization_state": "AUTHORIZED",
+      "evidence": []
+    },
+    {
+      "id": "C2.QUARANTINE",
+      "state": "NOT_STARTED",
+      "authorization_state": "EXACT_PRESTATE_REQUIRED",
+      "evidence": []
+    },
+    {
+      "id": "M01.SOURCE",
+      "state": "RUNNING",
+      "authorization_state": "AUTHORIZED",
+      "evidence": [],
+      "evidence_class": "LOCAL_SOURCE_QUALIFIED",
+      "owner_authority": "VALID",
+      "reason": "AUTHORIZED_SOURCE_REPAIR_OR_ROUTE_QUALIFICATION_IN_PROGRESS"
+    },
+    {
+      "id": "M02.LOCAL_CANARY",
+      "state": "NOT_STARTED",
+      "authorization_state": "AUTHORIZED",
+      "evidence": [],
+      "evidence_class": "LOCAL_TEST_PASS"
+    },
+    {
+      "id": "M03.FINAL_SOURCE",
+      "state": "NOT_STARTED",
+      "authorization_state": "AUTHORIZED",
+      "evidence": [],
+      "evidence_class": "FROZEN_SOURCE_CANDIDATE"
+    },
+    {
+      "id": "M03.STRUCTURAL",
+      "state": "NOT_STARTED",
+      "authorization_state": "EXACT_PRESTATE_REQUIRED",
+      "evidence": [],
+      "evidence_class": "STRUCTURAL_VERIFIER_PASS"
+    },
+    {
+      "id": "M03.SEMANTIC",
+      "state": "WAITING_REVIEW",
+      "authorization_state": "AUTHORIZED",
+      "evidence": [],
+      "reason": "EXACT_HEAD_REVIEW_FINDINGS_REPAIR_IN_PROGRESS"
+    },
+    {
+      "id": "M04.INSTALL_PREPARE",
+      "state": "NOT_STARTED",
+      "authorization_state": "AUTHORIZED",
+      "evidence": []
+    },
+    {
+      "id": "M04.LIVE_INSTALL",
+      "state": "WAITING_EXTERNAL",
+      "authorization_state": "EXACT_PRESTATE_REQUIRED",
+      "evidence": [],
+      "reason": "EXACT_CALLER_HOST_INSTALL_SCOPE_AND_SEMANTIC_PRESTATE_REQUIRED"
+    },
+    {
+      "id": "M05.LIVE_HEALTH",
+      "state": "NOT_STARTED",
+      "authorization_state": "AUTHORIZED",
+      "evidence": []
+    },
+    {
+      "id": "A00.ADMISSION",
+      "state": "WAITING_EXTERNAL",
+      "authorization_state": "AUTHORIZED",
+      "evidence": [],
+      "reason": "S_ADS_RESULT_NOT_YET_RECEIVED;REUSE_EXISTING_DATE_SCOPED_GRANT"
+    },
+    {
+      "id": "A00.SOURCE_BOUNDS",
+      "state": "NOT_STARTED",
+      "authorization_state": "AUTHORIZED",
+      "evidence": []
+    },
+    {
+      "id": "A01.READ_PREPARE",
+      "state": "NOT_STARTED",
+      "authorization_state": "AUTHORIZED",
+      "evidence": []
+    },
+    {
+      "id": "A01.LIVE_READ",
+      "state": "NOT_STARTED",
+      "authorization_state": "EXACT_PRESTATE_REQUIRED",
+      "evidence": []
+    },
+    {
+      "id": "A02.READ_PREPARE",
+      "state": "NOT_STARTED",
+      "authorization_state": "AUTHORIZED",
+      "evidence": []
+    },
+    {
+      "id": "A02.LIVE_READ",
+      "state": "NOT_STARTED",
+      "authorization_state": "EXACT_PRESTATE_REQUIRED",
+      "evidence": []
+    },
+    {
+      "id": "A03.OPTIONAL_WIF",
+      "state": "NOT_STARTED",
+      "authorization_state": "EXACT_PRESTATE_REQUIRED",
+      "evidence": []
+    },
+    {
+      "id": "A04.RECONCILE",
+      "state": "NOT_STARTED",
+      "authorization_state": "EXACT_PRESTATE_REQUIRED",
+      "evidence": []
+    },
+    {
+      "id": "A05.RETIRE_PREPARE",
+      "state": "NOT_STARTED",
+      "authorization_state": "AUTHORIZED",
+      "evidence": []
+    },
+    {
+      "id": "A05.RETIRE",
+      "state": "NOT_STARTED",
+      "authorization_state": "EXACT_PRESTATE_REQUIRED",
+      "evidence": []
+    },
+    {
+      "id": "D01.DECISION",
+      "state": "DONE",
+      "authorization_state": "AUTHORIZED",
+      "evidence": [
+        {
+          "ref": "integration-evidence:prior-runtime-decision.md",
+          "sha256": "sha256:ff0f69b449fcd586d37c16a11ab14ed38a4cda39b4200a4af0d06cde81b2d123",
+          "observed_at_utc": "2026-10-03T10:27:12.063Z"
+        }
+      ],
+      "evidence_class": "BOUNDED_FALLBACK_DECISION_ONLY"
+    },
+    {
+      "id": "F01.PREFLIGHT",
+      "state": "NOT_STARTED",
+      "authorization_state": "AUTHORIZED",
+      "evidence": []
+    },
+    {
+      "id": "F01.ADAPTER_SOURCE",
+      "state": "NOT_STARTED",
+      "authorization_state": "AUTHORIZED",
+      "evidence": []
+    },
+    {
+      "id": "F01.CELL_PREPARE",
+      "state": "WAITING_EXTERNAL",
+      "authorization_state": "EXACT_PRESTATE_REQUIRED",
+      "evidence": [],
+      "reason": "ISOLATED_ROUTE_NOT_PROVEN;NATIVE_GET_VM_ACCESS_DENIED"
+    },
+    {
+      "id": "F01.ISOLATED_EXECUTION",
+      "state": "WAITING_EXTERNAL",
+      "authorization_state": "EXACT_PRESTATE_REQUIRED",
+      "evidence": [],
+      "reason": "TRUSTED_TASK_CANCEL_RECEIPT_AND_SANDBOX_PROOF_NOT_OBSERVED"
+    },
+    {
+      "id": "D02.SOURCE",
+      "state": "RUNNING",
+      "authorization_state": "AUTHORIZED",
+      "evidence": [],
+      "evidence_class": "LOCAL_SOURCE_QUALIFIED",
+      "owner_authority": "VALID",
+      "reason": "AUTHORIZED_SOURCE_REPAIR_OR_ROUTE_QUALIFICATION_IN_PROGRESS"
+    },
+    {
+      "id": "D02.PLAN_SHADOW",
+      "state": "NOT_STARTED",
+      "authorization_state": "AUTHORIZED",
+      "evidence": [],
+      "evidence_class": "REAL_PROVIDER_READ_ONLY_SHADOW_NOT_EXECUTOR_ACCEPTANCE"
+    },
+    {
+      "id": "D02.LOCAL_RESTORE",
+      "state": "NOT_STARTED",
+      "authorization_state": "AUTHORIZED",
+      "evidence": [],
+      "evidence_class": "LOCAL_TEST_PASS_NOT_REBOOT_PROOF"
+    },
+    {
+      "id": "D02.EXECUTOR_INTEGRATION",
+      "state": "NOT_STARTED",
+      "authorization_state": "EXACT_PRESTATE_REQUIRED",
+      "evidence": []
+    },
+    {
+      "id": "D03.BUNDLE_PREPARE",
+      "state": "NOT_STARTED",
+      "authorization_state": "AUTHORIZED",
+      "evidence": []
+    },
+    {
+      "id": "D03.ACTIVE_CUTOVER",
+      "state": "WAITING_EXTERNAL",
+      "authorization_state": "EXACT_PRESTATE_REQUIRED",
+      "evidence": [],
+      "reason": "NO_LIVE_EXECUTOR_OR_ACTIVE_CUTOVER_ACCEPTANCE"
+    },
+    {
+      "id": "D04.SURVIVAL",
+      "state": "WAITING_EXTERNAL",
+      "authorization_state": "EXACT_PRESTATE_REQUIRED",
+      "evidence": [],
+      "reason": "REAL_REBOOT_CRASH_UI_CLOSED_ACCEPTANCE_NOT_PERFORMED"
+    },
+    {
+      "id": "F02.FLEET_SOURCE",
+      "state": "NOT_STARTED",
+      "authorization_state": "AUTHORIZED",
+      "evidence": []
+    },
+    {
+      "id": "F02.N2_ACCEPTANCE",
+      "state": "NOT_STARTED",
+      "authorization_state": "EXACT_PRESTATE_REQUIRED",
+      "evidence": []
+    },
+    {
+      "id": "T01.BASELINE",
+      "state": "NOT_STARTED",
+      "authorization_state": "AUTHORIZED",
+      "evidence": []
+    },
+    {
+      "id": "T02.OPTIONAL_UPGRADE",
+      "state": "NOT_STARTED",
+      "authorization_state": "EXACT_PRESTATE_REQUIRED",
+      "evidence": []
+    },
+    {
+      "id": "X01.ACCEPT",
+      "state": "NOT_STARTED",
+      "authorization_state": "EXACT_PRESTATE_REQUIRED",
+      "evidence": []
+    },
+    {
+      "id": "P52.NATIVE_ROUTE_DISCOVERY",
+      "state": "RUNNING",
+      "authorization_state": "AUTHORIZED",
+      "evidence": [],
+      "owner_authority": "VALID",
+      "reason": "AUTHORIZED_SOURCE_REPAIR_OR_ROUTE_QUALIFICATION_IN_PROGRESS"
+    },
+    {
+      "id": "P52.INTAKE_SOURCE",
+      "state": "NOT_STARTED",
+      "authorization_state": "AUTHORIZED",
+      "evidence": []
+    },
+    {
+      "id": "P52.RESEARCH_OPTIONS_SOURCE",
+      "state": "NOT_STARTED",
+      "authorization_state": "AUTHORIZED",
+      "evidence": []
+    },
+    {
+      "id": "P52.FRONTDOOR_ACCEPTANCE",
+      "state": "NOT_STARTED",
+      "authorization_state": "AUTHORIZED",
+      "evidence": []
+    },
+    {
+      "id": "P52.SELECTION_CONTRACT",
+      "state": "NOT_STARTED",
+      "authorization_state": "AUTHORIZED",
+      "evidence": []
+    },
+    {
+      "id": "P52.OPENCODE_SOURCE",
+      "state": "NOT_STARTED",
+      "authorization_state": "AUTHORIZED",
+      "evidence": []
+    },
+    {
+      "id": "P52.ANTIGRAVITY_SOURCE",
+      "state": "NOT_STARTED",
+      "authorization_state": "AUTHORIZED",
+      "evidence": []
+    },
+    {
+      "id": "P52.CODEX_ACCEPTANCE",
+      "state": "NOT_STARTED",
+      "authorization_state": "EXACT_PRESTATE_REQUIRED",
+      "evidence": []
+    },
+    {
+      "id": "P52.OPENCODE_ACCEPTANCE",
+      "state": "NOT_STARTED",
+      "authorization_state": "EXACT_PRESTATE_REQUIRED",
+      "evidence": []
+    },
+    {
+      "id": "P52.ANTIGRAVITY_ACCEPTANCE",
+      "state": "NOT_STARTED",
+      "authorization_state": "EXACT_PRESTATE_REQUIRED",
+      "evidence": []
+    },
+    {
+      "id": "P52.SHARD_REVIEW_INTEGRATION_SOURCE",
+      "state": "NOT_STARTED",
+      "authorization_state": "AUTHORIZED",
+      "evidence": []
+    },
+    {
+      "id": "P52.VERTICAL_E2E",
+      "state": "NOT_STARTED",
+      "authorization_state": "EXACT_PRESTATE_REQUIRED",
+      "evidence": []
+    },
+    {
+      "id": "P52.THREE_VENDOR_E2E",
+      "state": "NOT_STARTED",
+      "authorization_state": "EXACT_PRESTATE_REQUIRED",
+      "evidence": []
+    },
+    {
+      "id": "P52.BENCHMARK_REGRESSION",
+      "state": "NOT_STARTED",
+      "authorization_state": "EXACT_PRESTATE_REQUIRED",
+      "evidence": []
+    },
+    {
+      "id": "P52.FINAL_PRODUCT_ACCEPTANCE",
+      "state": "NOT_STARTED",
+      "authorization_state": "AUTHORIZED",
+      "evidence": []
+    }
+  ],
+  "facts_sha256": "sha256:a370ca0f16a09c0dbef157d8f8fc90eda2a0369863e0c231866cee4aa60aa5b8"
+}

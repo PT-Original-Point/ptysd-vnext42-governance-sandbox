@@ -1,0 +1,44 @@
+{
+  "schema": "vnext5.2.coordinator-dispatch.v1",
+  "observed_at": "2026-10-03T10:56:40.144Z",
+  "single_integrator": "root",
+  "tasks": [
+    {
+      "id": "S-MCP-SEMANTIC-REPAIR",
+      "route": "CODEX_EXISTING_THREAD",
+      "thread": "01a0fd19-df99-7013-8a8b-eb952c647e3d",
+      "base": "da8e1a767d54e67ba7bb15d7d35e9ae535e50034",
+      "worktree": "VNEXT5.2-MCP-SEMANTIC-REPAIR-WORK-20261003",
+      "write_set": [
+        "tools/csg/factory-mcp/**"
+      ],
+      "status": "DISPATCHED",
+      "result_path": "outputs/S-MCP-SEMANTIC-REPAIR/result.json",
+      "dispatch_source": "native send_message_to_thread acknowledged"
+    },
+    {
+      "id": "S-RUNTIME-SEMANTIC-REPAIR",
+      "route": "NATIVE_SUBAGENT",
+      "agent": "/root/v52_runtime_exact_review",
+      "base": "c2bfa038121782a3ae903591981a0b05f52a7b38",
+      "worktree": "VNEXT5.2-RUNTIME-SEMANTIC-REPAIR-WORK-20261003",
+      "write_set": [
+        "tools/csg/v51-supervisor/**"
+      ],
+      "status": "DISPATCHED",
+      "result_path": "outputs/S-RUNTIME-SEMANTIC-REPAIR/result.json",
+      "dispatch_source": "native followup_task acknowledged"
+    },
+    {
+      "id": "P52.NATIVE_ROUTE_DISCOVERY",
+      "route": "NATIVE_SUBAGENT",
+      "agent": "/root/v52_native_routes",
+      "status": "QUALIFICATION_IN_PROGRESS",
+      "model_invocation": "NOT_YET_DISPATCHED",
+      "antigravity": "CLI_NOT_FOUND_LANE_LOCAL",
+      "opencode": "INSTALLED_2.0.22_SERVER_INFO_CONFIRMED_CANCEL_PENDING"
+    }
+  ],
+  "collection": "root reads native thread/subagent updates then exact result paths; Human copying unnecessary",
+  "unknown_external_effects": []
+}

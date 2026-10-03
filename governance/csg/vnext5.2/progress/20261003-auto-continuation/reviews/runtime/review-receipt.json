@@ -1,0 +1,123 @@
+{
+  "schema": "vnext5.2.independent-exact-head-review.v1",
+  "reviewer_invocation_id": "/root/v52_runtime_exact_review",
+  "producer_invocation_id": "/root",
+  "observed_at": "2026-10-03T10:53:15.665Z",
+  "provider": {
+    "repository": "PT-Original-Point/ptysd-vnext42-governance-sandbox",
+    "pull_request": 386,
+    "provider_read_at": "2026-10-03T10:47:35.872Z",
+    "head": "c2bfa038121782a3ae903591981a0b05f52a7b38",
+    "base": "06da5fa224b65b9346e8b250dcea686d0ed458ee",
+    "commits": 1,
+    "draft": true
+  },
+  "local_binding": {
+    "head": "c2bfa038121782a3ae903591981a0b05f52a7b38",
+    "tree": "a25630fac30e3c474c797c2dbf9a5a4ddff05ce0",
+    "parent": "06da5fa224b65b9346e8b250dcea686d0ed458ee",
+    "clean": true
+  },
+  "verdict": "FINDINGS",
+  "verdict_scope": "SOURCE_SEMANTICS_SUPERVISOR_CATALOG_PLANNER_F01_SHADOW_CONTINUITY_TASK_PROFILE",
+  "not_reviewed": [
+    "entire_repository",
+    "actual_provider_adapter_implementation",
+    "live_system",
+    "Production"
+  ],
+  "findings": [
+    {
+      "id": "R386-01",
+      "priority": "P1",
+      "file": "tools/csg/v51-supervisor/bin/host-supervisor.mjs",
+      "line": 16,
+      "title": "Task-profile arguments incompatible with actual CLI",
+      "reproduced": true
+    },
+    {
+      "id": "R386-02",
+      "priority": "P1",
+      "file": "tools/csg/v51-supervisor/lib/operation-planner.mjs",
+      "line": 221,
+      "title": "Global exhaustion ignores running and safe retry lanes",
+      "reproduced": true
+    },
+    {
+      "id": "R386-03",
+      "priority": "P1",
+      "file": "tools/csg/v51-supervisor/lib/operation-planner.mjs",
+      "line": 179,
+      "title": "Qualified provider read cannot become READY",
+      "reproduced": true
+    },
+    {
+      "id": "R386-04",
+      "priority": "P1",
+      "file": "tools/csg/v51-supervisor/lib/f01-executor-adapter.mjs",
+      "line": 116,
+      "title": "Task receipt freshness not enforced",
+      "reproduced": true
+    },
+    {
+      "id": "R386-05",
+      "priority": "P1",
+      "file": "tools/csg/v51-supervisor/lib/shadow-runtime.mjs",
+      "line": 194,
+      "title": "Canonical spec still hardcoded",
+      "reproduced": true
+    },
+    {
+      "id": "R386-06",
+      "priority": "P2",
+      "file": "tools/csg/v51-supervisor/lib/shadow-journal.mjs",
+      "line": 313,
+      "title": "Journal writer lacks interprocess exclusion",
+      "reproduced": false
+    }
+  ],
+  "evidence": [
+    {
+      "path": "review.md",
+      "sha256": "sha256:22c065eca59674e24cff3e383847eedc408fb3b8793f5d488ebe0182887e4a68"
+    },
+    {
+      "path": "reproduce.mjs",
+      "sha256": "sha256:92edf48c7e30af060dfcdcfdcb0743c6c375ecba3d374abe040f42b1e283c717"
+    },
+    {
+      "path": "reproduction-results.json",
+      "sha256": "sha256:6197d5981ad562eb1b9c3befa38fa045b560b6799dc74c86fc5eb5d1a48ecd32"
+    }
+  ],
+  "actual_side_effects": [
+    "LOCAL_REVIEW_ARTIFACT_WRITE",
+    "READ_ONLY_PROVIDER_PR_FETCH",
+    "SYNTHETIC_PORT_REPRODUCTIONS"
+  ],
+  "forbidden_effects": {
+    "provider_write": false,
+    "source_write": false,
+    "host_dispatch": false,
+    "host_mutation": false,
+    "install": false,
+    "canonical_write": false,
+    "owner_revoke": false,
+    "Production": false
+  },
+  "live_acceptance": "NOT_ACCEPTED",
+  "system_acceptance": "NOT_ACCEPTED",
+  "protected_verifier_authority": "NOT_CLAIMED_BY_THIS_REVIEW",
+  "continuation": {
+    "global_blocker": false,
+    "human_gate_for_source_corrections": "NONE",
+    "ready_work": [
+      "Correct confirmed runtime source defects in isolated worktree",
+      "Discover and qualify native bounded read route",
+      "Connect coordinator receipt consumption and READY recomputation"
+    ],
+    "reentry": "New stable exact source head/tree with five reproductions corrected; rerun independent semantic review on that exact identity"
+  },
+  "history_preservation": "Frozen source and all original worker journals/worktrees untouched",
+  "receipt_sha256": "sha256:89fb69398ff7a95e2a5ec67ffc5c82f39be3637f271eb7d89a4a150ff5cdd0a4"
+}

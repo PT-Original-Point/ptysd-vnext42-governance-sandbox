@@ -1,0 +1,121 @@
+{
+  "schema": "vnext5.2.independent-semantic-review.v1",
+  "reviewer": "v52_mcp_exact_review",
+  "reviewed_at": "2026-10-03T10:51:22.494Z",
+  "repository": "PT-Original-Point/ptysd-vnext42-governance-sandbox",
+  "pr": 385,
+  "exact_head": "da8e1a767d54e67ba7bb15d7d35e9ae535e50034",
+  "exact_tree": "04e09372fb6b35e7de98304f107ce3d6976819c2",
+  "direct_parent": "d39486601d851e31256852a24e9c1393b9046fe5",
+  "provider_head_matches": true,
+  "provider_base_matches": true,
+  "commits": 1,
+  "scope": "SOURCE_ONLY_INDEPENDENT_STATIC_SEMANTIC_REVIEW",
+  "verdict": "FINDINGS",
+  "findings": [
+    {
+      "id": "MCP-SR-01",
+      "priority": "P1",
+      "title": "Host diagnostic failure suppresses independent shared-context read",
+      "file": "tools/csg/factory-mcp/src/index.mjs",
+      "start_line": 233,
+      "end_line": 255,
+      "evidence": "shared context is acquired only after the PowerShell probe and installed-runtime acquisition succeed; the single catch throws instead of returning a scoped probe failure and independent shared context.",
+      "impact": "A broken/missing probe or damaged Host component prevents factory_status from exposing otherwise valid V5.2 construction/canonical state, recreating the diagnostic self-lock.",
+      "required_fix": "Acquire and project Host, installed runtime and shared context independently with component-local unavailable states; keep no-argument fixed-purpose semantics and four tools.",
+      "required_regression": "Factory status returns valid shared context when Host probe throws/times out or local installed-runtime evidence acquisition fails."
+    },
+    {
+      "id": "MCP-SR-02",
+      "priority": "P1",
+      "title": "Publisher still binds an obsolete execution-owner identity",
+      "file": "tools/csg/factory-mcp/broker/owner-liveness-publisher.ps1",
+      "start_line": 16,
+      "end_line": 25,
+      "evidence": "Expected identity pins generation 5, attempt 2 and old Codex thread; lines115-119 reject other identities; only ProjectId is configurable.",
+      "impact": "The JS projector supports rollover, but its producer rejects or relabels evidence for later legitimate task/attempt/session/generation. Scope-specific gen5 historical observation must not be represented as a universal current-owner publisher.",
+      "required_fix": "Bind current observation target from verified protected canonical/readback context, or explicitly separate bounded historical gen5 observation from current-owner projection. Never grant transport by owner generation.",
+      "required_regression": "After a canonical owner rollover, fresh protected target identity is accepted; stale identity is explicitly historical; cross-project and inconsistent components remain rejected."
+    },
+    {
+      "id": "MCP-SR-03",
+      "priority": "P1",
+      "title": "Output capture is not bounded and can block after nominal timeout",
+      "file": "tools/csg/factory-mcp/broker/host-powershell-exec.ps1",
+      "start_line": 97,
+      "end_line": 130,
+      "evidence": "ReadToEndAsync stores complete stdout/stderr in memory; truncation happens after completion. GetAwaiter().GetResult has no deadline. Descendants retaining inherited pipes can keep capture incomplete even when the parent exited, and only non-exited parents trigger taskkill.",
+      "impact": "High output can exhaust the SYSTEM broker memory; retained pipes can stall its serial queue and health publishing indefinitely despite timeoutSeconds.",
+      "required_fix": "Stream bounded retained output with incremental total-byte/hash accounting; enforce an overall capture deadline and tree cleanup/cancel with explicit unknown effect when cleanup cannot be confirmed. Preserve existing capability, timeout shape and receipts.",
+      "required_regression": "High-volume stdout/stderr stays within memory/storage bounds; a parent exiting while a child retains pipes cannot exceed bounded completion/cancel deadline."
+    },
+    {
+      "id": "MCP-SR-04",
+      "priority": "P1",
+      "title": "Execution receipts do not establish crash-durable same-source completion",
+      "file": "tools/csg/factory-mcp/broker/hostguard-broker.ps1",
+      "start_line": 49,
+      "end_line": 53,
+      "evidence": "Write-AtomicJson uses WriteAllText and Move-Item with no Flush(true), receipt digest or same-source readback. Invoke-BrokerPowerShell uses it at lines124-125 after effects have occurred.",
+      "impact": "A reported completed operation can lose durable receipt on crash/power loss, leaving an executed effect without reliable readback and inviting unsafe retry.",
+      "required_fix": "Use durable flush, final exact-byte readback/digest and explicit receipt persistence result before reporting completion. Persist intent/unknown-effect handling for effect/receipt failure; do not blind replay.",
+      "required_regression": "Injected failure after effect but before receipt acknowledgement remains unknown until exact receipt readback; successful completion has durable exact-source receipt."
+    },
+    {
+      "id": "MCP-SR-05",
+      "priority": "P1",
+      "title": "Fixed construction snapshot cannot discover subsequent integrated work",
+      "file": "tools/csg/factory-mcp/src/shared-context.mjs",
+      "start_line": 95,
+      "end_line": 114,
+      "evidence": "Reader loads CURRENT and local-work-index only from the fixed shared-construction branch. Fresh exact fa1d9c00 CURRENT still names PR381/PR377 baseline and historical work snapshot; no progress locator/subsequent receipt-chain is consumed.",
+      "impact": "Real Web or new Session can read V5.2 architecture but cannot find current PR385/PR386/PR387 progress, results or continuing READY work without manual handoff.",
+      "required_fix": "Read a stable noncanonical single-writer CAS progress locator and exact receipt/index identities separately from frozen architecture/source documents. Do not edit a source candidate to bind its own head and do not mutate canonical CP200.",
+      "required_regression": "Publish a new bounded progress receipt, then a cold consumer discovers it through the stable locator without user copying a prompt; historical snapshot remains historical."
+    },
+    {
+      "id": "MCP-SR-06",
+      "priority": "P2",
+      "title": "Tests require the stale implementation instead of qualification behavior",
+      "file": "tools/csg/factory-mcp/tests/capability-parity.test.mjs",
+      "start_line": 119,
+      "end_line": 126,
+      "evidence": "Candidate test requires exact donor helper normalized hash and ReadToEndAsync. Publisher test separately requires gen5 and old owner principal at lines93-95.",
+      "impact": "Correct bounded capture/current-target fixes would fail the current suite, encouraging source churn or retaining the defects.",
+      "required_fix": "Preserve donor baseline as historical lineage and verify candidate semantic capability parity through behavior, bounds, cancellation, fresh identity binding and exact package hashes."
+    }
+  ],
+  "positive_checks": {
+    "source_scope": "35 paths all tools/csg/factory-mcp; no canonical/trust-root/workflow changes",
+    "four_public_tools": "PRESERVED",
+    "factory_status": "NO_ARGUMENT_FIXED_PURPOSE",
+    "host_powershell": "SIX_ARGUMENT_SCRIPT_ROUTE_RETAINED",
+    "package_version": "0.2.4",
+    "project_host_scope": "PROTECTED_TARGET_SCOPE_AND_TASK_SID_ACL_PRESENT",
+    "repair_payload_digest_match": "16/16 independently verified exact bytes",
+    "repair_manifest_sha256": "f6fe178735228d3cdca07368c53d9c3bee9a29b99be84e2890db26f12b2a3bb8"
+  },
+  "evidence_classes": {
+    "protected_structural": [
+      {
+        "head": "da8e1a767d54e67ba7bb15d7d35e9ae535e50034",
+        "id": 111182016024,
+        "conclusion": "success"
+      }
+    ],
+    "bounded_driver": "SKIPPED_NOT_PASS",
+    "reported_local_tests": "48/48 previously reported; suite inspected, not rerun in this independent audit",
+    "semantic": "FINDINGS_ON_EXACT_HEAD",
+    "live_consumer": "NOT_ACCEPTED",
+    "live_install": "NOT_ACCEPTED",
+    "ads": "NOT_ACCEPTED",
+    "system_survival": "NOT_ACCEPTED",
+    "production": "NOT_ACCEPTED"
+  },
+  "limitations": [
+    "Static control-flow findings, no high-output/retained-pipe live reproduction performed.",
+    "Production-scope false is a declared request boundary; arbitrary SYSTEM script intent enforcement remains a separate trusted-caller/execution policy acceptance concern.",
+    "No Host installation or dispatch; no source, refs, canonical state or original receipts modified."
+  ],
+  "continuation_rule": "Park exact merge/live-install qualification only; source corrections, progress-index and other authorized READY lanes continue."
+}

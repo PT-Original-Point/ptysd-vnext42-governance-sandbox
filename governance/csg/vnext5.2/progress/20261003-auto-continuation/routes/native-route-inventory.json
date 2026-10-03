@@ -1,0 +1,37 @@
+{
+  "schema": "vnext5.2.native-route-inventory.v1",
+  "recorded_at": "2026-10-03T10:50:55.270Z",
+  "scope": "WINDOWS_USER_NATIVE_SOURCE_CONSTRUCTION",
+  "os_sandbox_qualified": false,
+  "model_invocations": 0,
+  "paid_fallback": false,
+  "host_system_operation": false,
+  "opencode": {
+    "executable": "C:\\Users\\x\\AppData\\Local\\Programs\\@opencodedesktop\\resources\\opencode-cli.exe",
+    "exists": true,
+    "executable_sha256": "df486482ad71124552bb09b2bbca586f13d06219ad5e98cec1805c674fb56214",
+    "version": {
+      "status": "OBSERVED",
+      "output": "opencode v2.0.22"
+    },
+    "run_help": {
+      "status": "OBSERVED",
+      "output": "DESCRIPTION\n  Run OpenCode with a message\n\nUSAGE\n  opencode run [flags] [<message...>]\n\nARGUMENTS\n  message... string    Message to send (optional)\n\nFLAGS\n  --standalone            Run with a private server instead of the background service\n  --server string         Connect to a server URL instead of the background service\n  --continue, -c          Continue the last session\n  --session, -s string    Session ID to continue, or to create if it does not exist\n  --fork                  Fork the session before continuing\n  --model, -m string      Model to use in the format provider/model#variant\n  --agent string          Agent to use\n  --format choice         Output format (choices: default, json)\n  --file, -f string       File to attach to the message\n  --title string          Session title\n  --thinking              Show thinking blocks\n  --auto                  Auto-approve permissions that are not explicitly denied\n\nGLOBAL FLAGS\n  --help, -h                                                          Show help information\n  --version, -v                                                       Show version information\n  --wizard                                                            Start wizard mode for a command\n  --completions <bash|zsh|fish|sh>                                    Print shell completion script (choices: bash, zsh, fish, sh)\n  --log-level <all|trace|debug|info|warn|warning|error|fatal|none>    Sets the minimum log level (choices: all, trace, debug, info, warn, warning, error, fatal, none)\n  --print-logs                                                        Print logs to stderr (server logs require --standalone)"
+    },
+    "service_status": {
+      "status": "OBSERVED",
+      "output": "http://127.0.0.1:49374"
+    },
+    "server_info": {
+      "status": "NOT_OBSERVED",
+      "exit_code": 1,
+      "reason": "COMMAND_FAILED"
+    }
+  },
+  "antigravity": {
+    "desktop_executable": "C:\\Users\\x\\AppData\\Local\\Programs\\antigravity\\Antigravity.exe",
+    "desktop_exists": true,
+    "official_cli_default_executable": "C:\\Users\\x\\AppData\\Local\\agy\\bin\\agy.exe",
+    "official_cli_default_exists": false
+  }
+}

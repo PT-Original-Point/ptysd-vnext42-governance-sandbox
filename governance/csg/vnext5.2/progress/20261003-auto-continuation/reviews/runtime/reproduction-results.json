@@ -1,0 +1,85 @@
+{
+  "schema": "vnext5.2.independent-runtime-review-reproductions.v1",
+  "source_head": "c2bfa038121782a3ae903591981a0b05f52a7b38",
+  "source_tree": "a25630fac30e3c474c797c2dbf9a5a4ddff05ce0",
+  "observed_at": "2026-10-03T10:50:07.036Z",
+  "effects": {
+    "provider_write": false,
+    "host_dispatch": false,
+    "host_mutation": false,
+    "canonical_write": false,
+    "only_synthetic_ports": true
+  },
+  "task_profile_cli": {
+    "args": [
+      "--project-id",
+      "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+      "--locator",
+      "refs/heads/governance/project-directory"
+    ],
+    "error": "D02_ARGUMENTS_INVALID"
+  },
+  "running": {
+    "global_decision": "GLOBAL_EXHAUSTED",
+    "planned_decision": "KEEP_RUNNING",
+    "planned_unit": null,
+    "input_completeness": "COMPLETE",
+    "global_exhaustion": "EVALUATED",
+    "units": [
+      {
+        "id": "B00.RECOVER",
+        "state": "RUNNING",
+        "reason": "SCOPED_AUDIT_FIXTURE"
+      }
+    ]
+  },
+  "retry": {
+    "global_decision": "GLOBAL_EXHAUSTED",
+    "planned_decision": "RETRY_BOUNDED",
+    "planned_unit": "B00.RECOVER",
+    "input_completeness": "COMPLETE",
+    "global_exhaustion": "EVALUATED",
+    "units": [
+      {
+        "id": "B00.RECOVER",
+        "state": "FAILED_RETRYABLE",
+        "reason": "RETRY_AUTHORIZED"
+      }
+    ]
+  },
+  "provider_read_authorized": {
+    "global_decision": "GLOBAL_EXHAUSTED",
+    "planned_decision": "WAITING_EXTERNAL_NO_READY",
+    "planned_unit": null,
+    "input_completeness": "COMPLETE",
+    "global_exhaustion": "EVALUATED",
+    "units": [
+      {
+        "id": "A00.SOURCE_BOUNDS",
+        "state": "DONE",
+        "reason": "SCOPED_AUDIT_FIXTURE"
+      },
+      {
+        "id": "A01.READ_PREPARE",
+        "state": "DONE",
+        "reason": "SCOPED_AUDIT_FIXTURE"
+      },
+      {
+        "id": "A01.LIVE_READ",
+        "state": "WAITING_EXTERNAL",
+        "reason": "EXACT_EFFECT_AUTHORITY_REQUIRED:PROVIDER_READ"
+      }
+    ]
+  },
+  "stale_receipt": {
+    "receipt_observed_at": "2000-01-01T00:00:00Z",
+    "result": "PROVIDER_READBACK_CONFIRMED",
+    "fake_start_calls": 1,
+    "actual_start_calls": 0
+  },
+  "canonical_summary": {
+    "input_spec": "VNEXT5.2",
+    "output_spec": "VNEXT5.1-R2",
+    "output_checkpoint": 201
+  }
+}
