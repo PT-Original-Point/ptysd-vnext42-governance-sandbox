@@ -1,6 +1,6 @@
 {
   "schema": "vnext5.2.coordinator-dispatch.v1",
-  "observed_at": "2026-10-03T23:46:36.775Z",
+  "observed_at": "2026-10-03T23:52:14.476Z",
   "single_integrator": "root",
   "tasks": [
     {
@@ -248,7 +248,7 @@
       "model": "gemini-3.8-flash-high",
       "actual_model": "gemini-3.8-flash-high",
       "status": "SUBMITTED_OUTCOME_PENDING",
-      "attempt": 2,
+      "attempt": 3,
       "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-ANTIGRAVITY-SOURCE-WORK-20261004",
       "write_set": [
         "tools/csg/v51-supervisor/lib/fleet.mjs",
@@ -271,7 +271,7 @@
     "status": "active",
     "turn_id": "01a10407-a9be-7a50-9baa-d4dc6e393249",
     "turn_status": "inProgress",
-    "observed_at": "2026-10-03T23:45:32.796Z",
+    "observed_at": "2026-10-03T23:52:06.104Z",
     "receipt": "routes/luna-thread-readback.json",
     "source_execution": "NOT_INFERRED_FROM_THREAD_STATUS"
   },

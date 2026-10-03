@@ -1,6 +1,6 @@
 {
   "schema": "vnext5.2.automatic-collection.v3",
-  "observed_at": "2026-10-03T23:46:36.775Z",
+  "observed_at": "2026-10-03T23:52:14.476Z",
   "reviewer": "root",
   "role": "AUDIT_PLAN_DISPATCH_COLLECTION_REWORK_ARBITRATION_ONLY",
   "historical_collection": "Previous immutable progress snapshots including seq10 retained",

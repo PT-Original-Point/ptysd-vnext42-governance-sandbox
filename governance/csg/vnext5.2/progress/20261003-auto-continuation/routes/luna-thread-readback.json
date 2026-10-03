@@ -1,13 +1,13 @@
 {
-  "observed_at": "2026-10-03T23:45:32.796Z",
+  "observed_at": "2026-10-03T23:52:06.104Z",
   "native": {
     "timedOut": true,
     "wake": null,
     "polls": [
       {
         "schemaVersion": 1,
-        "cursor": "298be436-3629-441e-badc-baf007d62540:70",
-        "revision": 70,
+        "cursor": "298be436-3629-441e-badc-baf007d62540:72",
+        "revision": 72,
         "changed": true,
         "thread": {
           "id": "01a0fd19-df99-7013-8a8b-eb952c647e3d",
@@ -25,20 +25,20 @@
           "completedAt": null,
           "durationMs": null
         },
-        "latestAssistantMessageId": "msg_05fe48d0724a727b016ac19377e51487d0bf5c92060ec57b32",
+        "latestAssistantMessageId": "msg_05fe48d0724a727b016ac194717b6c87d09912368c355fe48c",
         "latestAssistantMessage": {
-          "id": "msg_05fe48d0724a727b016ac19377e51487d0bf5c92060ec57b32",
+          "id": "msg_05fe48d0724a727b016ac194717b6c87d09912368c355fe48c",
           "turnId": "01a10407-a9be-7a50-9baa-d4dc6e393249",
           "phase": "commentary",
-          "text": "PR385 的 exact head 確認含固定 factory_status shared-context reader、完整四工具 schema、installer 封裝與 repair manifest；provider 已把它記為 source-frozen，whole-tree semantic PASS 和 structural PASS，並明確標示 live MCP NOT_ACCEPTED。我正在核對該 PASS 收據與包內 result schema，將本地 PR381 草案留作 superseded evidence，不把它誤交成目前候選。"
+          "text": "剛出現更新的 provider 指標；我會直接核對目前 progress branch 和其 pinned manifest，再決定是否有更新的 READY queue。即使新 queue 指派別的 slice，也不會越出本次 S-MCP 的寫入範圍或把別 lane 的任務擅自派給自己。"
         },
-        "latestToolMarkerId": "exec-bb6d5be0-a82e-4f89-bb2d-079490a9fb23",
+        "latestToolMarkerId": "exec-a283c365-752b-412f-9c45-c0d6d45bc412",
         "latestToolMarker": {
-          "id": "exec-bb6d5be0-a82e-4f89-bb2d-079490a9fb23",
+          "id": "exec-a283c365-752b-412f-9c45-c0d6d45bc412",
           "turnId": "01a10407-a9be-7a50-9baa-d4dc6e393249",
           "type": "commandExecution",
           "name": "commandExecution",
-          "status": "completed"
+          "status": "failed"
         }
       }
     ]
@@ -47,7 +47,6 @@
     "model": "gpt-6-luna",
     "reasoning_effort": "max",
     "turn_id": "01a10407-a9be-7a50-9baa-d4dc6e393249",
-    "observed_turn_context_at": "2026-10-03T23:13:35.656Z",
     "scope": "SELECTED_NATIVE_TURN_CONTEXT_FIELDS"
   },
   "operation_activity": [
@@ -59,9 +58,7 @@
     {
       "id": "P52.OPENCODE_SOURCE",
       "state": "ASSIGNED_SOURCE_START_UNCONFIRMED",
-      "requested_model": "gpt-6-luna",
-      "reasoning_effort": "max",
-      "reentry": "ROOT_QUEUED_SCOPE_CORRECTION_TO_SKIP_SUPERSEDED_MCP_BYTES"
+      "reentry": "SKIP_FROZEN_MCP_EXISTING_NATIVE_THREAD_QUEUED_MESSAGE"
     }
   ]
 }
