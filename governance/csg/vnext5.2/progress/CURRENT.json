@@ -3,25 +3,25 @@
   "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
   "noncanonical": true,
   "writer": "ROOT_SINGLE_INTEGRATOR",
-  "sequence": 4,
-  "previous_locator_head": "d37ff00c0c3ec9f09577b8fc1b2edeb7914596be",
+  "sequence": 5,
+  "previous_locator_head": "7409956cea3944602d4c54d638bbd34dc9c567f0",
   "progress": {
     "repository": "PT-Original-Point/ptysd-vnext42-governance-sandbox",
-    "exact_head": "1ba8ce8688113081fb74df2e7e88d1d1436ccd5b",
+    "exact_head": "b9884045ac2a648f1cef91fe1f5eaf20403eb216",
     "current_path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/CURRENT.json",
-    "current_sha256": "sha256:ea33d7112388637fd3d8a8ec31453cabb2a2a66020d1a8ece7bd60d9d42329b6",
+    "current_sha256": "sha256:9bffc62fb7f87f106aa08772f892cfc3cb480eb7e8a4c6d4f6c4bb09fb51f016",
     "manifest_path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/manifest.json"
   },
   "dispatch_authority": false,
   "canonical_selection": false,
   "execution_owner_allocated": false,
-  "consumer_rule": "Resolve exact progress bytes and verify digest; refresh expired facts; construction/canonical/installed remain distinct. Branch readability is not Host authority.",
+  "consumer_rule": "Verify exact bytes and manifest. Refresh expired facts; construction/canonical/installed are separate. An active worker chat does not prove execution of a source task or acceptance.",
   "source_baseline": {
     "mcp_pr": 385,
     "mcp_head": "da8e1a767d54e67ba7bb15d7d35e9ae535e50034",
     "runtime_pr": 386,
     "runtime_head": "c2bfa038121782a3ae903591981a0b05f52a7b38",
-    "semantic": "FINDINGS_AUTO_REPAIR_IN_PROGRESS"
+    "semantic": "FINDINGS_REWORK_ASSIGNED"
   },
   "root_role": "INDEPENDENT_AUDIT_PLAN_DISPATCH_COLLECTION_ARBITRATION_NO_PRODUCT_CODE"
 }
