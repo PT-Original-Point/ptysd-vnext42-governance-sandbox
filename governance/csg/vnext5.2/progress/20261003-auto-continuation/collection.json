@@ -1,6 +1,6 @@
 {
   "schema": "vnext5.2.automatic-collection.v2",
-  "observed_at": "2026-10-03T18:30:05.409Z",
+  "observed_at": "2026-10-03T18:54:52.950Z",
   "reviewer": "root",
   "role": "AUDIT_PLAN_DISPATCH_COLLECT_REWORK_ARBITRATE_ONLY",
   "historical_collection": "collection-historical-20261003T115945.json",
@@ -22,12 +22,16 @@
       "partial_source": "PRESERVED_UNACCEPTED",
       "opencode_actual_outcome": "failed",
       "opencode_active_readback": {},
-      "next": "LUNA_REASSIGNMENT_ALREADY_ASSIGNED",
-      "latest_worker_regression": "57/57_LOCAL_REPORTED_NOT_ROOT_FINAL_SOURCE_ACCEPTANCE",
+      "next": "LUNA_P2_MINIMAL_REWORK_QUEUED_AFTER_RUNTIME07",
+      "latest_worker_regression": "59/59_LOCAL_REPORTED_EXACT_E841_TREE",
       "latest_independent_review": "reviews/mcp/repair-review-20261004.json",
-      "review_tree": "edd703027d009539244c0512b5b29aa8aa60d2c3",
-      "semantic": "FINDINGS_INSTALL_CLOSURE_UNKNOWN_EFFECT_WRAPPER_RAW_TREE_BINDING",
-      "source": "CURRENT_WORKTREE_CHANGED_REFREEZE_REQUIRED"
+      "review_tree": "e8416c738d567de9aa54c13ddca28f4e95816258",
+      "semantic": "FINDINGS_SCOPED_P2_CURRENT_TARGET_LABEL",
+      "source": "LOCAL_SOURCE_FROZEN_EXCEPT_CONCRETE_P2_LABEL_REPAIR",
+      "latest_independent_regression": "7/7_PASS",
+      "remaining_findings": [
+        "MCP-R2-04"
+      ]
     },
     {
       "task": "S-ADS",
@@ -58,12 +62,28 @@
       "route": "ANTIGRAVITY_NATIVE_CLI",
       "model": "gemini-3.8-flash-high",
       "receipt": "reviews/ads/integration-collection.json",
-      "review_tree": "91df8fc975887709e0f3b5769f82afb29361754e",
-      "root_existing_regression": "38/38_PASS",
-      "root_edge_regression": "3/3_FAIL",
-      "semantic": "FINDINGS",
-      "next": "EXACT_REWORK_ATTEMPT3_SUBMITTED",
-      "live_ads": "NOT_ACCEPTED"
+      "review_tree": "9c5403b5ebe34be7fe7295b3d838f6a75e31a859",
+      "root_existing_regression": "48/48_PASS",
+      "root_edge_regression": "3/3_PASS",
+      "semantic": "SOURCE_SLICE_QUALIFIED_ONLY",
+      "next": "FROZEN_FOR_FRESH_HANYAO_BASE_FINAL_CANDIDATE",
+      "live_ads": "NOT_ACCEPTED",
+      "native_attempt": 3
+    },
+    {
+      "task": "C1.PREPARE",
+      "route": "ANTIGRAVITY_NATIVE_CLI",
+      "model": "gemini-3.8-flash-high",
+      "receipt": "reviews/c1-collection.json",
+      "status": "NATIVE_ATTEMPT2_REWORK_SUBMITTED",
+      "scope": "NONSELECTING_OUTPUTS_ONLY_OWNERLESS_PROPOSAL",
+      "canonical_write": false,
+      "remaining_findings": [
+        "C1-01",
+        "C1-02",
+        "C1-03"
+      ],
+      "acceptance": "NOT_ACCEPTED"
     }
   ],
   "worker_thread_readback": "routes/luna-thread-readback.json",

@@ -3,7 +3,7 @@
   "mode": "SHADOW_PLAN_ONLY",
   "facts_schema": "vnext5.2.operation-facts.v1",
   "catalog_sha256": "sha256:ee769422b5d587e771d09c4e95af1af9a3a7cf0a7c0e493d86071e2df57304de",
-  "facts_sha256": "sha256:bf7530f6bc8276362b3060d585e6a63e5aff9b6e414dd178c68225931ba6cfcf",
+  "facts_sha256": "sha256:e81934bbe4587398b6549b540753bda3a928d390af250313a46887aa945ae72e",
   "facts_fresh": true,
   "input_completeness": "COMPLETE",
   "input_reasons": [],
@@ -131,7 +131,6 @@
   ],
   "ready_ids": [
     "D02.SOURCE",
-    "C1.PREPARE",
     "C2.PREFLIGHT",
     "T01.BASELINE",
     "F01.ADAPTER_SOURCE"
@@ -195,7 +194,7 @@
     },
     {
       "id": "C1.PREPARE",
-      "state": "READY",
+      "state": "WAITING_REVIEW",
       "priority": 10,
       "mandatory": true,
       "effect_class": "CANDIDATE_SOURCE",
@@ -205,7 +204,7 @@
       "completion_dependencies": [],
       "start_blockers": [],
       "completion_blockers": [],
-      "reason": null,
+      "reason": "NATIVE_PARTIAL_PROPOSAL_COLLECTED_EXACT_REVIEW_OR_REWORK_REQUIRED_NO_CANONICAL_SELECTION",
       "execution_scope": "SHADOW_PLAN_ONLY",
       "effects": [],
       "plan_only": true
@@ -307,7 +306,7 @@
     },
     {
       "id": "M01.SOURCE",
-      "state": "RUNNING",
+      "state": "WAITING_REVIEW",
       "priority": 5,
       "mandatory": true,
       "effect_class": "CANDIDATE_SOURCE",
@@ -317,8 +316,7 @@
       "completion_dependencies": [],
       "start_blockers": [],
       "completion_blockers": [],
-      "owner_authority": "UNKNOWN",
-      "reason": "ACTUAL_LOCAL_SOURCE_ACTIVITY_NOT_CANONICAL_EXECUTION_OWNER_ALLOCATION",
+      "reason": "DELIVERED_EXACT_LOCAL_SOURCE_NOT_REPEATABLE_AS_NOT_STARTED_P2_REPAIR_AND_FINAL_REVIEW_PENDING",
       "execution_scope": "SHADOW_PLAN_ONLY",
       "effects": [],
       "plan_only": true
