@@ -3,13 +3,13 @@
   "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
   "noncanonical": true,
   "writer": "ROOT_SINGLE_INTEGRATOR",
-  "sequence": 8,
-  "previous_locator_head": "1ad3ff6fb466af5d6a7188d93e413b3128cb7572",
+  "sequence": 9,
+  "previous_locator_head": "c3b1486a0f09c8f99acf0145dd1560d675fd7ced",
   "progress": {
     "repository": "PT-Original-Point/ptysd-vnext42-governance-sandbox",
-    "exact_head": "5f0afa8db7b981234370024359c6061c202d4f72",
+    "exact_head": "766e9dd0e42c64252de9347d06b5952831a932a7",
     "current_path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/CURRENT.json",
-    "current_sha256": "sha256:a6c898d009142cc08ca0c9684866c83836892c002b5aef79f061da2598fcfa92",
+    "current_sha256": "sha256:9b82a905a52d9f48bf687df638ffd3fee336ff4e4734bba8ebb21a60d34cd389",
     "manifest_path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/manifest.json"
   },
   "dispatch_authority": false,
@@ -24,5 +24,7 @@
     "semantic": "FINDINGS_REWORK_ASSIGNED"
   },
   "root_role": "INDEPENDENT_AUDIT_PLAN_DISPATCH_COLLECTION_ARBITRATION_NO_PRODUCT_CODE",
-  "model_lock_path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/MODEL-LOCK-20261004.json"
+  "model_lock_path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/MODEL-LOCK-20261004.json",
+  "historical_progress_head": "5f0afa8db7b981234370024359c6061c202d4f72",
+  "active_manifest_policy": "CURRENT_DECISION_PROJECTIONS_ONLY_20_FILES_NO_HISTORY_REEXECUTION"
 }
