@@ -1,7 +1,7 @@
 {
   "schema": "vnext5.2.readonly-progress.v2",
-  "observed_at": "2026-10-04T16:30:28.454Z",
-  "revision": "9a3b9c18e3b044543a34f3de0e7445d0b6345ef69ae356195b597df446ba6b50",
+  "observed_at": "2026-10-04T21:24:32.736Z",
+  "revision": "ee8956fd29c8aecc870322e76255af2b461805fe003501dd2b284c1a0437bf1b",
   "delta": false,
   "observer_pid": 35652,
   "observer_mode": "WATCH",
@@ -30,48 +30,73 @@
   "root_goal": "paused",
   "tasks": [
     {
-      "id": "C1.VALIDATOR_FOUR_FINDINGS_REWORK",
+      "id": "HUMAN.DASHBOARD_REPAIRED_ENTRY_INDEPENDENT_LOCAL_EXECUTION",
+      "brand": "Codex Luna",
+      "requested_model": "gpt-6-luna",
+      "actual_model": "UNVERIFIED_NATIVE_CONTEXT_UNEXPOSED",
+      "native_outcome": null,
+      "denied_action_count": 0,
+      "session": null,
+      "status": "RUNNING_OUTCOME_PENDING",
+      "native_status": "NATIVE_RUNNING_INDEPENDENT_REVIEW",
+      "submitted_at": "2026-10-04T21:23:28.078Z",
+      "last_native_activity": null,
+      "closed_at": null,
+      "collected": false,
+      "disposition": null,
+      "cost": null,
+      "intent": "routes/resume-batch-20261004/observer-entry-independent-luna/luna.intent.json",
+      "result_path": "routes/resume-batch-20261004/observer-entry-independent-luna/result.json",
+      "result_sha256": null,
+      "signature": "532899a73d6a2cf1bc1bea1f47865902b4078bccb6d8592479577e0a2c6a6993",
+      "legacy_signature": "147ad52bbb23f242cfd58a0eb02332879c7937a984f99963c2780a808578a342"
+    },
+    {
+      "id": "P52.SELECTION_SHARD_EIGHT_FINDING_SOURCE_REWORK",
       "brand": "Antigravity",
       "requested_model": "gemini-3.8-flash-high",
       "actual_model": "gemini-3.8-flash-high",
       "native_outcome": null,
       "denied_action_count": 0,
-      "session": "24007618-9463-4d46-8fbd-0f7681c2030c",
+      "session": "74484e91-1a2f-4770-928e-7269680283b3",
       "status": "UNKNOWN_READBACK_REQUIRED",
       "native_status": "SUBMITTED_OUTCOME_PENDING",
-      "submitted_at": "2026-10-04T16:28:48.351Z",
-      "last_native_activity": "2026-10-04T16:29:23.023Z",
+      "submitted_at": "2026-10-04T21:22:08.242Z",
+      "last_native_activity": "2026-10-04T21:22:36.634Z",
       "closed_at": null,
       "collected": false,
       "disposition": null,
       "cost": null,
-      "intent": "routes/resume-batch-20261004/c1-validator-four-findings-rework/ag.intent.json",
-      "result_path": "routes/resume-batch-20261004/c1-validator-four-findings-rework/ag.result.json",
+      "intent": "routes/resume-batch-20261004/selection-shard-eight-source-rework/ag.intent.json",
+      "result_path": "routes/resume-batch-20261004/selection-shard-eight-source-rework/ag.result.json",
       "result_sha256": null,
-      "signature": "58cd2a7cbcf7aa1f8a6a27b91c6e7a7e8e814606ad84e2015718a9e54e83d98c",
-      "legacy_signature": "47eed362a891d4f2c66e34072d78fe76ed81feb1f2f9f49b3a0eab4af62931e3"
+      "signature": "5305b7866bd9662c97cfdfa0a7abafd8b8812f0a93e2ff488898db5417728e4a",
+      "legacy_signature": "7352d5436bc61a4d1c5fccc21629ac15601585ae64a651dda41d62484d2053db"
     },
     {
-      "id": "C1.ACTUAL_PACKET_SCHEMA_MATCH_STATIC_REVIEW",
+      "id": "P52.SELECTION_CONTRACT_ELEVEN_FINDINGS_REWORK",
       "brand": "Antigravity",
       "requested_model": "gemini-3.8-flash-high",
-      "actual_model": "Gemini 3.8 Flash (High)",
-      "native_outcome": "FAIL_NONCONFORMANT",
+      "actual_model": {
+        "author_model": "gemini-3.8-flash-high",
+        "conversation_id": "53e728c0-9564-4e59-8980-a1906a397962"
+      },
+      "native_outcome": null,
       "denied_action_count": 0,
-      "session": "328b150c-9ea5-42b7-b2a5-82978060a0f2",
-      "status": "COMPLETED_UNCOLLECTED",
+      "session": "53e728c0-9564-4e59-8980-a1906a397962",
+      "status": "RESEARCH_BYTES_COLLECTED_DISTINCT_REVIEW_IN_PROGRESS",
       "native_status": "CLOSED_REVIEW_REQUIRED",
-      "submitted_at": "2026-10-04T16:21:11.653Z",
-      "last_native_activity": "2026-10-04T16:23:01.258Z",
-      "closed_at": "2026-10-04T16:23:02.001Z",
-      "collected": false,
-      "disposition": null,
+      "submitted_at": "2026-10-04T19:04:50.388Z",
+      "last_native_activity": "2026-10-04T19:09:08.010Z",
+      "closed_at": "2026-10-04T19:09:08.889Z",
+      "collected": true,
+      "disposition": "RESEARCH_BYTES_COLLECTED_DISTINCT_REVIEW_IN_PROGRESS",
       "cost": null,
-      "intent": "routes/resume-batch-20261004/c1-actual-packet-schema-match-review/ag.intent.json",
-      "result_path": "routes/resume-batch-20261004/c1-actual-packet-schema-match-review/ag.result.json",
-      "result_sha256": "976be4cb1366051897ab84378faee030f87e018da59c74b1fd897d17aa5d1051",
-      "signature": "047849b5fdd6e6e16c1de00cdb35b40d9de6c9487bd5c12e3ae4befce984c5a2",
-      "legacy_signature": "99b9e09cb4a26180f7a7174b714b16d1b2466cc3292b2034888ec307fac73579"
+      "intent": "routes/resume-batch-20261004/selection-contract-eleven-rework/ag.intent.json",
+      "result_path": "routes/resume-batch-20261004/selection-contract-eleven-rework/ag.result.json",
+      "result_sha256": "f1cf86e006278cf6affb2df9c87e278b69618293d7407ee669f0a9d5fbf73bac",
+      "signature": "80a98cafe8b55c54fcd169e0fe7d9099d54eb21c601af6156f3324bb57ba9574",
+      "legacy_signature": "c77e20af0b92ab3126b9d512f5c0ecdab59bf0c9349e50ac97ac102264234889"
     },
     {
       "id": "C1.VALIDATOR_FILE_DISTINCT_AG_REVIEW",
@@ -182,40 +207,6 @@
       "result_sha256": "ea375a5b5bb494724538edad58a17af9f6a5d724a99f7ab20989e353dbf89893",
       "signature": "f987440e9c5f867bb9fbbdf2b55d2489c594395ede4ea6c96eaba05d9034b769",
       "legacy_signature": "3725b50738f3eae4b4d1615e0d911f3fe058250b66d959ec9f146f9cda353a87"
-    },
-    {
-      "id": "P52.RESEARCH_OPTIONS_REPAIR6_EXACT_REVIEW",
-      "brand": "Codex Luna",
-      "requested_model": "gpt-6-luna",
-      "actual_model": {
-        "reviewer_requested_model": "gpt-6-luna/max as specified by parent authorization",
-        "reviewer_actual_model": "not independently observable; current native turn_context metadata is not exposed to this subagent",
-        "author_recorded_model": {
-          "id": "muse-spark-1.3-contributor-free",
-          "providerID": "opencode",
-          "variant": "xhigh"
-        },
-        "author_native_session": "ses_ef97d8d5effeGhcmCsX0CrfYuR",
-        "author_recorded_outcome": "succeeded",
-        "author_recorded_cost": 0,
-        "author_result_model_string": "MuseSpark1.3Free/xhigh"
-      },
-      "native_outcome": "REWORK_REQUIRED",
-      "denied_action_count": 0,
-      "session": null,
-      "status": "ACCEPTED_CLOSED",
-      "native_status": "CLOSED_HISTORICAL_REVIEW_COLLECTED",
-      "submitted_at": "2026-10-04T11:09:04.890Z",
-      "last_native_activity": null,
-      "closed_at": "2026-10-04T14:49:14.812Z",
-      "collected": true,
-      "disposition": "ACCEPTED_CLOSED",
-      "cost": null,
-      "intent": "routes/resume-batch-20261004/research-repair6-luna-review/luna.intent.json",
-      "result_path": "routes/resume-batch-20261004/research-repair6-luna-review/result.json",
-      "result_sha256": "eec03200e0c3cbfb8079ae7baab9e47f88c0c3b3674bda577c67c8cd8f1cebc4",
-      "signature": "a214f55d1619695473f75fbc2fe5488f614b60a6d13449c692c375019fc61632",
-      "legacy_signature": "a553338442bdd4b0f239f4eead87c1da3fcf63116b2edbb53b62e33471e166b7"
     },
     {
       "id": "HUMAN.DASHBOARD_FIXTURE_ONLY_DISTINCT_REVIEW",
@@ -580,17 +571,17 @@
   ],
   "alerts": [
     {
-      "id": "C1.VALIDATOR_FOUR_FINDINGS_REWORK",
+      "id": "P52.SELECTION_SHARD_EIGHT_FINDING_SOURCE_REWORK",
       "reason": "UNKNOWN_READBACK_REQUIRED",
-      "intent": "routes/resume-batch-20261004/c1-validator-four-findings-rework/ag.intent.json"
+      "intent": "routes/resume-batch-20261004/selection-shard-eight-source-rework/ag.intent.json"
     }
   ],
-  "uncollected": [
-    "routes/resume-batch-20261004/c1-actual-packet-schema-match-review/ag.intent.json"
+  "uncollected": [],
+  "running": [
+    "routes/resume-batch-20261004/observer-entry-independent-luna/luna.intent.json"
   ],
-  "running": [],
   "automatic_root_event_trigger": "UNAVAILABLE_DESKTOP_NATIVE_TRIGGER_NOT_CLAIMED",
-  "scheduled_recovery_minutes": 15,
+  "scheduled_recovery_minutes": 30,
   "acceptance": "DISPLAY_ONLY_NOT_TASK_ACCEPTANCE",
   "source_execution": false,
   "provider_write": false

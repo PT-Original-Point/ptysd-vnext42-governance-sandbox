@@ -1,12 +1,14 @@
 {
   "schema": "vnext5.2.resume-fresh-authority.v1",
-  "observed_at": "2026-10-04T16:07:05.106Z",
+  "observed_at": "2026-10-04T21:24:13.973Z",
   "provider_refs": {
-    "refs/heads/codex/vnext5.2-construction-latest": "19ebf513eaa772ccd1f49659601ef279804a8a98",
+    "refs/heads/codex/vnext5.2-construction-latest": "d1b3d7bc370991e690273d6df7bdc0f9030a6882",
     "refs/heads/governance/project-directory": "38f4fc7cb2841e2318a97ff7a53e41b2ec07aef1",
+    "refs/heads/main": "06da5fa224b65b9346e8b250dcea686d0ed458ee",
     "refs/heads/v45/factory-control": "d39486601d851e31256852a24e9c1393b9046fe5",
     "refs/pull/385/head": "f45ef980a0194c54db6f2e3d5585577154ac5754",
-    "refs/pull/386/head": "0c8a5bd23d5591571998c18ab49eb1eec0ba7968"
+    "refs/pull/386/head": "0c8a5bd23d5591571998c18ab49eb1eec0ba7968",
+    "refs/pull/388/head": "f4c754ed1e2f256b24c432511c01ae52592dd15f"
   },
   "directory": {
     "revision": "38f4fc7cb2841e2318a97ff7a53e41b2ec07aef1",
@@ -407,7 +409,7 @@
     }
   },
   "mission": {
-    "revision": "dc3b419d8abf696b04b5bfdbdab7b3c8b70526cb",
+    "revision": "d39486601d851e31256852a24e9c1393b9046fe5",
     "path": "governance/csg/v51/missions/20260930T104733+0800.json",
     "raw_sha256": "sha256:299be4909cc9354d60e97dbddcc093e8b8ade199ede139da77175412bd7aeab7",
     "data": {
@@ -600,7 +602,7 @@
     }
   },
   "policy": {
-    "revision": "dc3b419d8abf696b04b5bfdbdab7b3c8b70526cb",
+    "revision": "d39486601d851e31256852a24e9c1393b9046fe5",
     "path": "governance/csg/v51/policies/20260930T104733+0800-EP80.json",
     "raw_sha256": "sha256:89e7f085d055fde542ed65b54d17822b8acd9715274621c960a92f2ae196ab30",
     "data": {
@@ -905,7 +907,7 @@
     }
   },
   "run": {
-    "revision": "9a7dc324f680c303a83123eb6a7b2cc7b410fda2",
+    "revision": "d39486601d851e31256852a24e9c1393b9046fe5",
     "path": "governance/csg/v51/runs/V51-R2-001/run-r2-02.json",
     "raw_sha256": "sha256:9b49ae229793656985d071a823b4c13e5aff75adb6c067d66ae1a7c655a03250",
     "data": {
@@ -1015,8 +1017,9 @@
     "scope": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION",
     "lease_until": "2026-09-29T18:44:11Z"
   },
-  "authority_scope": "CANONICAL_READ_ONLY_HUMAN_V52_SOURCE_AUTHORIZATION_SEPARATE",
+  "authority_scope": "FRESH_DIRECTORY_CONTROL_AND_EXACT_SIX_FILES_READ_ONLY_NO_LIVE_OR_CANONICAL_ACCEPTANCE",
   "canonical_write": false,
   "host_dispatch": false,
-  "production": false
+  "production": false,
+  "refresh_mode": "FRESH_PROVIDER_REFS_EXACT_IMMUTABLE_OBJECT_BYTES_REUSED_AND_REHASHED"
 }

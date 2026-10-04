@@ -417,11 +417,241 @@
     "routes/resume-batch-20261004/c1-validator-file-distinct-review/ag.intent.json": {
       "signature": "8671a3c4dbb56329e5730c03f570c68fa9ced79970c41072139e9e836c0de350",
       "semantic_signature": "8671a3c4dbb56329e5730c03f570c68fa9ced79970c41072139e9e836c0de350",
-      "recorded_at": "2026-10-04T16:28:48.2901850Z",
+      "recorded_at": "2026-10-04T16:28:48.290185Z",
       "disposition": "REVIEW_FINDINGS_RETURNED_TO_AUTHOR",
       "review": "routes/resume-batch-20261004/c1-validator-file-distinct-review/ag.result.json",
       "review_sha256": "0e497b28de28c3896073a42243fdfa72ad05fe18162b82343e26cfb8686939a8",
       "acceptance_scope": "AUTHOR_UNTESTED_SOURCE_AND_DISTINCT_FOUR_FINDINGS_RETURNED; NO_EXECUTED_PASS",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/c1-actual-packet-schema-match-review/ag.intent.json": {
+      "signature": "047849b5fdd6e6e16c1de00cdb35b40d9de6c9487bd5c12e3ae4befce984c5a2",
+      "semantic_signature": "047849b5fdd6e6e16c1de00cdb35b40d9de6c9487bd5c12e3ae4befce984c5a2",
+      "recorded_at": "2026-10-04T16:39:15.5308976Z",
+      "disposition": "REVIEW_FINDINGS_RETURNED_TO_AUTHOR",
+      "review": "routes/resume-batch-20261004/c1-actual-packet-schema-match-review/ag.result.json",
+      "review_sha256": "976be4cb1366051897ab84378faee030f87e018da59c74b1fd897d17aa5d1051",
+      "acceptance_scope": "ALL5_REAL_PAYLOADS_NONCONFORMANT; SOURCE_SCHEMA_AND_PROFILE_REWORK_REQUIRED; NOT_COMPILED",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/c1-validator-four-findings-rework/ag.intent.json": {
+      "signature": "601c1e7f4828c2a69695a94427e7a1ed4538f282d0382bccfaed874f8e27f0d5",
+      "semantic_signature": "601c1e7f4828c2a69695a94427e7a1ed4538f282d0382bccfaed874f8e27f0d5",
+      "recorded_at": "2026-10-04T18:46:27.545Z",
+      "disposition": "RESEARCH_BYTES_COLLECTED_DISTINCT_REVIEW_IN_PROGRESS",
+      "review": "routes/resume-batch-20261004/c1-validator-four-findings-rework/ag.result.json",
+      "review_sha256": "94845c1cbe24f507a41869b45e8d500a7ced229211695bbd165a640e872ba08f",
+      "acceptance_scope": "AUTHOR_BYTES_COLLECTED_DISTINCT_STATIC_PASS_EXECUTION_PENDING",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/c1-real-packet-schema-rework/ag.intent.json": {
+      "signature": "6e17991d71def75a41d09043d3aee22aa8cb77b2bb426a762cf2b13991529c53",
+      "semantic_signature": "6e17991d71def75a41d09043d3aee22aa8cb77b2bb426a762cf2b13991529c53",
+      "recorded_at": "2026-10-04T18:46:27.545Z",
+      "disposition": "RESEARCH_BYTES_COLLECTED_DISTINCT_REVIEW_IN_PROGRESS",
+      "review": "routes/resume-batch-20261004/c1-real-packet-schema-rework/ag.result.json",
+      "review_sha256": "b9c772694f883f720ffcd62b0cc6c359ecb2e91e58b6c90e5571a7d811b688f6",
+      "acceptance_scope": "AUTHOR_BYTES_COLLECTED_DISTINCT_STATIC_PASS_EXECUTION_PENDING",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/c1-final-combined-static-review/ag.intent.json": {
+      "signature": "a5cfd26aa5745ce719760d41e8e0ab0abfeacc076090a9bf40b774f15a6fe752",
+      "semantic_signature": "a5cfd26aa5745ce719760d41e8e0ab0abfeacc076090a9bf40b774f15a6fe752",
+      "recorded_at": "2026-10-04T18:46:27.546Z",
+      "disposition": "RESEARCH_BYTES_COLLECTED_DISTINCT_REVIEW_IN_PROGRESS",
+      "review": "routes/resume-batch-20261004/c1-final-combined-static-review/ag.result.json",
+      "review_sha256": "d2c0955e94d78889f723021bf01664fc2829fe3f9627eb773e9fe6e74e04f5e7",
+      "acceptance_scope": "EXACT_EIGHT_SOURCE_FILES_DISTINCT_STATIC_PASS_EXECUTION_DEPENDENCY_PENDING",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/selection-contract-ag-source/ag.intent.json": {
+      "signature": "e6b79c979db0538cc032d2b7cc80855365400f1e11811cd4e3329c3f222585b8",
+      "semantic_signature": "e6b79c979db0538cc032d2b7cc80855365400f1e11811cd4e3329c3f222585b8",
+      "recorded_at": "2026-10-04T18:55:03.688Z",
+      "disposition": "RESEARCH_BYTES_COLLECTED_DISTINCT_REVIEW_IN_PROGRESS",
+      "review": "routes/resume-batch-20261004/selection-contract-ag-source/ag.result.json",
+      "review_sha256": "1f7cb0433bf527e99a7c6416af2c5c550bc58a6d8efd6886471807099daba41a",
+      "acceptance_scope": "AUTHOR_SOURCE_UNTESTED_PENDING_DISTINCT_REVIEW",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/selection-contract-distinct-review/ag.intent.json": {
+      "signature": "8c5857f91d3e284416e556b2d5de6d793dd59f4f44cd6cb0c1dcc81c8fa9bbea",
+      "semantic_signature": "8c5857f91d3e284416e556b2d5de6d793dd59f4f44cd6cb0c1dcc81c8fa9bbea",
+      "recorded_at": "2026-10-04T19:04:48.974Z",
+      "disposition": "REVIEW_FINDINGS_RETURNED_TO_AUTHOR",
+      "review": "routes/resume-batch-20261004/selection-contract-distinct-review/ag.result.json",
+      "review_sha256": "342cd843b7ca7f966a13f5f6ebdd72cab7148df552165e64c9699768eeb05f7b",
+      "acceptance_scope": "11_SOURCE_FINDINGS_REWORK_REQUIRED_NOT_ACCEPTED",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/selection-contract-eleven-rework/ag.intent.json": {
+      "signature": "80a98cafe8b55c54fcd169e0fe7d9099d54eb21c601af6156f3324bb57ba9574",
+      "semantic_signature": "80a98cafe8b55c54fcd169e0fe7d9099d54eb21c601af6156f3324bb57ba9574",
+      "recorded_at": "2026-10-04T19:34:03.016Z",
+      "disposition": "RESEARCH_BYTES_COLLECTED_DISTINCT_REVIEW_IN_PROGRESS",
+      "review": "routes/resume-batch-20261004/selection-contract-eleven-rework/ag.result.json",
+      "review_sha256": "f1cf86e006278cf6affb2df9c87e278b69618293d7407ee669f0a9d5fbf73bac",
+      "acceptance_scope": "AUTHOR_REWORK_BYTES_COLLECTED_41_DESIGNED_UNTESTED_PENDING_DISTINCT_REVIEW",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/selection-contract-eleven-distinct-review/ag.intent.json": {
+      "signature": "7fe5c28ed28d32524f909d4afec419f6c07b5aa63d5d2e128848b45eb03ac954",
+      "semantic_signature": "7fe5c28ed28d32524f909d4afec419f6c07b5aa63d5d2e128848b45eb03ac954",
+      "recorded_at": "2026-10-04T19:42:00.001Z",
+      "disposition": "ACCEPTED_CLOSED",
+      "review": "routes/resume-batch-20261004/selection-contract-eleven-distinct-review/ag.result.json",
+      "review_sha256": "96baca6d64eb968b97706b4e4d93f4a7c26f036b41e914cc8486416839d6d43f",
+      "acceptance_scope": "EXACT_TWO_FILES_STATIC_ALL11_CLOSED_41_DESIGNED_NOT_EXECUTED_NOT_LIVE",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/shard-contract-source/ag.intent.json": {
+      "signature": "5890bd3d631ad65bf2adca5ae23ced9314a9de9cee1ff7cb5f5a90e84b434349",
+      "semantic_signature": "5890bd3d631ad65bf2adca5ae23ced9314a9de9cee1ff7cb5f5a90e84b434349",
+      "recorded_at": "2026-10-04T19:46:45.860Z",
+      "disposition": "AUTHOR_BYTES_COLLECTED_REVIEW_PERMISSION_PARKED",
+      "review": "routes/resume-batch-20261004/shard-contract-source/native-denial-readback.json",
+      "review_sha256": "eb0aeb55296b880d9f8a26474c9ababa10de8b0a929cbaa7c6ac24d563560107",
+      "acceptance_scope": "NATIVE_DENIAL_EVENT_ONLY_SOURCE_NOT_COMPLETED",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/shard-contract-independent-source/ag.intent.json": {
+      "signature": "df4fcba96d9796d2da5bdaa3e012a6c9eec0fe7df1b92c13cf095007c82e7729",
+      "semantic_signature": "df4fcba96d9796d2da5bdaa3e012a6c9eec0fe7df1b92c13cf095007c82e7729",
+      "recorded_at": "2026-10-04T19:51:11.813Z",
+      "disposition": "RESEARCH_BYTES_COLLECTED_DISTINCT_REVIEW_IN_PROGRESS",
+      "review": "routes/resume-batch-20261004/shard-contract-independent-source/ag.result.json",
+      "review_sha256": "d866a5f27e0efb94439ca141e67d4dd68fab5ba03710b0d3eeea5891602b5f9e",
+      "acceptance_scope": "AUTHOR_CLAIM_ONLY_44_DESIGNED_UNTESTED_PENDING_DISTINCT_REVIEW",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/shard-contract-independent-review/ag.intent.json": {
+      "signature": "ce80c68d607aed5980010dfd2afceea0c33c6c80167763c09bde8481237612ab",
+      "semantic_signature": "ce80c68d607aed5980010dfd2afceea0c33c6c80167763c09bde8481237612ab",
+      "recorded_at": "2026-10-04T20:05:34.048Z",
+      "disposition": "REVIEW_FINDINGS_RETURNED_TO_AUTHOR",
+      "review": "routes/resume-batch-20261004/shard-contract-independent-review/ag.result.json",
+      "review_sha256": "deb6081320c8e64ec494b2385d93848a7fa30e71a94d91e6382d612dcc76455c",
+      "acceptance_scope": "REJECT_12_OPEN_DEFECTS_REVIEW_VERDICT_CONTRADICTORY_NOT_ACCEPTED",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/shard-contract-twelve-rework/ag.intent.json": {
+      "signature": "fd89f12532575fefd9b1f2443092a66388e9816c28e0d1d7d8be95fe3bd39669",
+      "semantic_signature": "fd89f12532575fefd9b1f2443092a66388e9816c28e0d1d7d8be95fe3bd39669",
+      "recorded_at": "2026-10-04T20:12:52.250Z",
+      "disposition": "RESEARCH_BYTES_COLLECTED_DISTINCT_REVIEW_IN_PROGRESS",
+      "review": "routes/resume-batch-20261004/shard-contract-twelve-rework/ag.result.json",
+      "review_sha256": "d94dce454a6b293fc535e3f4125f54242a64fac6b5ca49cc43c0348e33b35d35",
+      "acceptance_scope": "AUTHOR_12_REWORK_MAP_NOT_ACCEPTANCE_70_DESIGNED_UNTESTED",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/shard-contract-twelve-distinct-review/ag.intent.json": {
+      "signature": "6232a84c5b5cfd83a9246dc3642d43e600535c9e45075081965ec8e0fd28c826",
+      "semantic_signature": "6232a84c5b5cfd83a9246dc3642d43e600535c9e45075081965ec8e0fd28c826",
+      "recorded_at": "2026-10-04T20:21:25.444Z",
+      "disposition": "ACCEPTED_CLOSED",
+      "review": "routes/resume-batch-20261004/shard-contract-twelve-distinct-review/ag.result.json",
+      "review_sha256": "d95a4273fa5978d70ceffe8c528163f11412cbec2ac1e4b05ceee900a3d84dbd",
+      "acceptance_scope": "EXACT_2_SHARD_FILES_STATIC_12_CLOSED_70_DESIGNED_UNTESTED_NO_RUNTIME_ACCEPTANCE",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/observer-native-liveness-source/ag.intent.json": {
+      "signature": "b65af45741e337d7cab3e1d54010489e2a18deaa3ac528e2d7f1492c2f356404",
+      "semantic_signature": "b65af45741e337d7cab3e1d54010489e2a18deaa3ac528e2d7f1492c2f356404",
+      "recorded_at": "2026-10-04T20:40:51.497Z",
+      "disposition": "RESEARCH_BYTES_COLLECTED_DISTINCT_REVIEW_IN_PROGRESS",
+      "review": "routes/resume-batch-20261004/observer-native-liveness-source/ag.result.json",
+      "review_sha256": "bd2e78afc546a7261887a58fc4e3c4282b032c48a742c38fcab760812a089cb2",
+      "acceptance_scope": "AUTHOR_CANDIDATE_ONLY_UNTESTED_ACTIVE_OBSERVER_UNCHANGED",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/observer-native-liveness-review/ag.intent.json": {
+      "signature": "b170255378ec3099d3de528f7e359102551a7da51a14a957b4bd9106af2631c7",
+      "semantic_signature": "b170255378ec3099d3de528f7e359102551a7da51a14a957b4bd9106af2631c7",
+      "recorded_at": "2026-10-04T20:46:44.310Z",
+      "disposition": "REVIEW_FINDINGS_RETURNED_TO_AUTHOR",
+      "review": "routes/resume-batch-20261004/observer-native-liveness-review/ag.result.json",
+      "review_sha256": "17d0a76b4073adf723ce2989da51750fa3fdc6d01cbc04aea57eb5e273e7330b",
+      "acceptance_scope": "FIVE_REQUIRED_FIXES_PLUS_NATIVE_ROUTE_SPECIFIC_ROOT_ARBITRATION_NO_ACCEPTANCE",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/selection-shard-luna-local-qualification/luna.intent.json": {
+      "signature": "9327b6d2ffc1ead11f5369c5950a17723091dd41668421065451be27e72edfb1",
+      "semantic_signature": "9327b6d2ffc1ead11f5369c5950a17723091dd41668421065451be27e72edfb1",
+      "recorded_at": "2026-10-04T20:51:15.289Z",
+      "disposition": "REVIEW_FINDINGS_RETURNED_TO_AUTHOR",
+      "review": "routes/resume-batch-20261004/selection-shard-luna-local-qualification/result-complete.json",
+      "review_sha256": "697e7032a105ae987ddcbcc5e480e5ba4ffee4e9bda90a4d42c1260009c96a21",
+      "acceptance_scope": "LOCAL111_47PASS64FAIL_FULLLOG_BOUND_ALL_FINDINGS_REWORK_NO_LIVE_ACCEPTANCE",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/observer-liveness-findings-rework/ag.intent.json": {
+      "signature": "5937ade587b91c79d55fad799b910e21f20411f7a1e3a8d76066a41a0f7171c8",
+      "semantic_signature": "5937ade587b91c79d55fad799b910e21f20411f7a1e3a8d76066a41a0f7171c8",
+      "recorded_at": "2026-10-04T20:55:30.659Z",
+      "disposition": "RESEARCH_BYTES_COLLECTED_DISTINCT_REVIEW_IN_PROGRESS",
+      "review": "routes/resume-batch-20261004/observer-liveness-findings-rework/ag.result.json",
+      "review_sha256": "10f4fa6c6b25d701bb9e569c88299942d25db52a888a8b5b73e30b4cd43487ae",
+      "acceptance_scope": "AUTHOR_ONLY_52_DESIGNED_UNTESTED_NO_ACTIVE_OBSERVER_MUTATION",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/selection-shard-local64-rework/ag.intent.json": {
+      "signature": "bc5777400adb65a90c255cc999b3913099402461bf6db8371a5ccd7f44f231fb",
+      "semantic_signature": "bc5777400adb65a90c255cc999b3913099402461bf6db8371a5ccd7f44f231fb",
+      "recorded_at": "2026-10-04T20:59:49.525Z",
+      "disposition": "AUTHOR_BYTES_COLLECTED_REVIEW_PERMISSION_PARKED",
+      "review": "routes/resume-batch-20261004/selection-shard-local64-rework/native-command-denial-readback.json",
+      "review_sha256": "cf9371bfe5f29e9ffc347ff5389b7d9d95ac6c70bfc92114181053d66d92e788",
+      "acceptance_scope": "EXACT_DENIAL_AND_TWO_PARTIAL_SOURCE_CHANGES_OBSERVED_NOT_ACCEPTED",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/selection-shard-partial-source-receipt/ag.intent.json": {
+      "signature": "951e0bf098707237d103e00073541627d64b028b74b8601940452f17b1346c45",
+      "semantic_signature": "951e0bf098707237d103e00073541627d64b028b74b8601940452f17b1346c45",
+      "recorded_at": "2026-10-04T21:08:52.948Z",
+      "disposition": "RESEARCH_BYTES_COLLECTED_DISTINCT_REVIEW_IN_PROGRESS",
+      "review": "routes/resume-batch-20261004/selection-shard-partial-source-receipt/ag.result.json",
+      "review_sha256": "815477875a9c488ddf4bdf957ee84ee53059ec20698934c1831b38c8e6a7b00c",
+      "acceptance_scope": "CURRENT_PARTIAL_SOURCE_COMMAND_PARKED_NOT_ACCEPTED",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/observer52-luna-local-audit/luna.intent.json": {
+      "signature": "961f6d3ba014c0c994b1ec67ef1d7ff18883bcc4b4adb82e8117d1d51ebaa52a",
+      "semantic_signature": "961f6d3ba014c0c994b1ec67ef1d7ff18883bcc4b4adb82e8117d1d51ebaa52a",
+      "recorded_at": "2026-10-04T21:08:52.950Z",
+      "disposition": "REVIEW_FINDINGS_RETURNED_TO_AUTHOR",
+      "review": "routes/resume-batch-20261004/observer52-luna-local-audit/result.json",
+      "review_sha256": "5872c4bbaea6e92c95c6c358b0a0b43e69f268589610d85b269336b19093475c",
+      "acceptance_scope": "EXECUTED_ASSERTIONS0_NO_PASS_FIX_ENTRY_AND_PURE_INJECTION",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/selection-shard-muse-static-review/oc.intent.json": {
+      "signature": "46684f90bc928b988a3d6245276d57e795a19645e0599ca6c5c5d2c2b811583c",
+      "semantic_signature": "46684f90bc928b988a3d6245276d57e795a19645e0599ca6c5c5d2c2b811583c",
+      "recorded_at": "2026-10-04T21:15:47.285Z",
+      "disposition": "AUTHOR_BYTES_COLLECTED_REVIEW_PERMISSION_PARKED",
+      "review": "routes/resume-batch-20261004/selection-shard-muse-static-review/root-denial-readback.json",
+      "review_sha256": "790263a40c8f742fdd72c10cb3cb9e19c510eaa442a2c06bfd9ddb9bf291c8f1",
+      "acceptance_scope": "NATIVE_MUSE_XHIGH_COST0_WORKS_BUT_OPTIONAL_ATTACHMENT_READ_DENIED_NO_SEMANTIC_PASS",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/selection-shard-muse-project-only-review/oc.intent.json": {
+      "signature": "da0a0bcfeaf2bf565b4ceb07b8ae7233de5773cff2680077e2bd826c82fbe5da",
+      "semantic_signature": "da0a0bcfeaf2bf565b4ceb07b8ae7233de5773cff2680077e2bd826c82fbe5da",
+      "recorded_at": "2026-10-04T21:22:08.237Z",
+      "disposition": "REVIEW_FINDINGS_RETURNED_TO_AUTHOR",
+      "review": "routes/resume-batch-20261004/selection-shard-muse-project-only-review/root-collection.json",
+      "review_sha256": "3e8ee24ef54f61a38da35ee3e2897f1f0a9e5e08658512f9eb355df0d0b8102e",
+      "acceptance_scope": "CURRENT_FOUR_SOURCE_BYTES_DISTINCT_STATIC_FAIL_EIGHT_FINDINGS_NO_EXECUTION",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/observer-fixture-entry-purity-rework/ag.intent.json": {
+      "signature": "aaabcefa3ee6ed4cb856d36b112a7013c59e9016ee08fc55aa93ac9caf7057cd",
+      "semantic_signature": "aaabcefa3ee6ed4cb856d36b112a7013c59e9016ee08fc55aa93ac9caf7057cd",
+      "recorded_at": "2026-10-04T21:23:28.078Z",
+      "disposition": "RESEARCH_BYTES_COLLECTED_DISTINCT_REVIEW_IN_PROGRESS",
+      "review": "routes/resume-batch-20261004/observer-fixture-entry-purity-rework/ag.result.json",
+      "review_sha256": "7df769396cee09d11ef8a8a9af73ffe2ebd41d69ff0a64d71142c6e2252163c6",
+      "acceptance_scope": "FIXTURE_ENTRY_SOURCE_UNTESTED_NEW_DISTINCT_LUNA_SAFETY_AND_EXECUTION_RUNNING",
       "mission_complete": false
     }
   }

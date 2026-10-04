@@ -1,0 +1,24 @@
+{
+  "task": "P52.SELECTION_SHARD_EIGHT_FINDING_SOURCE_REWORK",
+  "model": "gemini-3.8-flash-high",
+  "created_at": "2026-10-04T21:22:08.242Z",
+  "status": "SUBMITTED_OUTCOME_PENDING",
+  "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-SELECTION-CONTRACT-AG-WORK-20261005",
+  "source_edit": true,
+  "result_path": "routes/resume-batch-20261004/selection-shard-eight-source-rework/ag.result.json",
+  "actual_output_path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-SELECTION-CONTRACT-AG-WORK-20261005\\outputs\\P52-SELECTION-SHARD-EIGHT-REWORK\\result.json",
+  "write_set": [
+    "tools/csg/v52-research/src/selection-contract.mjs",
+    "tools/csg/v52-research/tests/selection-contract.test.mjs",
+    "tools/csg/v52-research/src/shard-integration-contract.mjs",
+    "tools/csg/v52-research/tests/shard-integration-contract.test.mjs",
+    "outputs/P52-SELECTION-SHARD-EIGHT-REWORK/result.json"
+  ],
+  "denied_command_scope": "EXACT_SELECTION_SHARD_NODE_SUITE_PARKED_NOT_RETRIED",
+  "canonical_write": false,
+  "host_dispatch": false,
+  "production": false,
+  "pid": 23960,
+  "conversation_id": "74484e91-1a2f-4770-928e-7269680283b3",
+  "actual_model": "gemini-3.8-flash-high"
+}

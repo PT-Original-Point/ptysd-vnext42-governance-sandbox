@@ -1,0 +1,43 @@
+{
+  "recorded_at": "2026-10-04T20:59:49.523Z",
+  "scope": "EXACT_NATIVE_COMMAND_DENIAL_READBACK_NOT_SOURCE_COMPLETION",
+  "native_conversation": "fca167ec-91ce-478a-a662-3c3b51966dc4",
+  "actual_model": "gemini-3.8-flash-high",
+  "native_result": "SUCCESS_WITH_RUNCOMMAND_DENIAL_AND_NO_OWN_RECEIPT",
+  "command": "node --test tools/csg/v52-research/tests/selection-contract.test.mjs tools/csg/v52-research/tests/shard-integration-contract.test.mjs",
+  "native_step": 126,
+  "native_denial": {
+    "action": "command",
+    "display_name": "RunCommand",
+    "reason": "NOT_RETURNED_BY_NATIVE_PROVIDER"
+  },
+  "current_bytes": [
+    {
+      "path": "tools/csg/v52-research/src/selection-contract.mjs",
+      "before_sha256": "3c856b08fc3adb4f3f32e9759bf77ec56840acfaa6427d5aeee794b8b77d621d",
+      "current_sha256": "f26a54a64e7f372c3cfaf5ebaaedfbc7013ad3c92a2fceb928540065471d1640"
+    },
+    {
+      "path": "tools/csg/v52-research/tests/selection-contract.test.mjs",
+      "before_sha256": "db8ac968418a19c42c7eea3768f9e413b672454348a8fb562111f4921a8bf3fb",
+      "current_sha256": "db8ac968418a19c42c7eea3768f9e413b672454348a8fb562111f4921a8bf3fb"
+    },
+    {
+      "path": "tools/csg/v52-research/src/shard-integration-contract.mjs",
+      "before_sha256": "348c61de7df977cbad8ede8bc8fc7f06d4b8d919b07f5f83d3e9dc1f6494c249",
+      "current_sha256": "e9b3cf4f44cc675071e995302652e1a5a3de36618e4ea2e4f6b30a5a124faf7d"
+    },
+    {
+      "path": "tools/csg/v52-research/tests/shard-integration-contract.test.mjs",
+      "before_sha256": "04d437c4fca1dc25872d62808662d71685ab509db650f055f0e5029e75c8f0e3",
+      "current_sha256": "04d437c4fca1dc25872d62808662d71685ab509db650f055f0e5029e75c8f0e3"
+    }
+  ],
+  "partial_source_delta": [
+    "tools/csg/v52-research/src/selection-contract.mjs",
+    "tools/csg/v52-research/src/shard-integration-contract.mjs"
+  ],
+  "test_acceptance": "PARKED_NOT_PASS",
+  "canonical_write": false,
+  "mission_complete": false
+}

@@ -1,0 +1,177 @@
+{
+  "recorded_at": "2026-10-04T21:22:08.237Z",
+  "task": "P52.SELECTION_SHARD_PROJECT_ONLY_DISTINCT_MUSE_REVIEW",
+  "actual_model": {
+    "id": "muse-spark-1.3-contributor-free",
+    "providerID": "opencode",
+    "variant": "xhigh"
+  },
+  "session_id": "ses_ef7407546ffeGKUKC0q3LLCuqK",
+  "cost": 0,
+  "native_outcome": "succeeded",
+  "source_bindings": [
+    {
+      "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-SELECTION-CONTRACT-AG-WORK-20261005\\tools\\csg\\v52-research\\src\\selection-contract.mjs",
+      "sha256": "f26a54a64e7f372c3cfaf5ebaaedfbc7013ad3c92a2fceb928540065471d1640"
+    },
+    {
+      "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-SELECTION-CONTRACT-AG-WORK-20261005\\tools\\csg\\v52-research\\tests\\selection-contract.test.mjs",
+      "sha256": "db8ac968418a19c42c7eea3768f9e413b672454348a8fb562111f4921a8bf3fb"
+    },
+    {
+      "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-SELECTION-CONTRACT-AG-WORK-20261005\\tools\\csg\\v52-research\\src\\shard-integration-contract.mjs",
+      "sha256": "e9b3cf4f44cc675071e995302652e1a5a3de36618e4ea2e4f6b30a5a124faf7d"
+    },
+    {
+      "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-SELECTION-CONTRACT-AG-WORK-20261005\\tools\\csg\\v52-research\\tests\\shard-integration-contract.test.mjs",
+      "sha256": "04d437c4fca1dc25872d62808662d71685ab509db650f055f0e5029e75c8f0e3"
+    }
+  ],
+  "read_tools": [
+    {
+      "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-SELECTION-CONTRACT-AG-WORK-20261005\\tools\\csg\\v52-research\\src\\selection-contract.mjs",
+      "status": "completed",
+      "error": null,
+      "message": "msg_108c5dd71001y0Gulnihr25zPn"
+    },
+    {
+      "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-SELECTION-CONTRACT-AG-WORK-20261005\\tools\\csg\\v52-research\\tests\\selection-contract.test.mjs",
+      "status": "completed",
+      "error": null,
+      "message": "msg_108c5dd71001y0Gulnihr25zPn"
+    },
+    {
+      "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-SELECTION-CONTRACT-AG-WORK-20261005\\tools\\csg\\v52-research\\src\\shard-integration-contract.mjs",
+      "status": "completed",
+      "error": null,
+      "message": "msg_108c5dd71001y0Gulnihr25zPn"
+    },
+    {
+      "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-SELECTION-CONTRACT-AG-WORK-20261005\\tools\\csg\\v52-research\\src\\recommendation.mjs",
+      "status": "completed",
+      "error": null,
+      "message": "msg_108c5dd71001y0Gulnihr25zPn"
+    },
+    {
+      "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-SELECTION-CONTRACT-AG-WORK-20261005\\tools\\csg\\v52-research\\src\\alternatives.mjs",
+      "status": "completed",
+      "error": null,
+      "message": "msg_108c5dd71001y0Gulnihr25zPn"
+    },
+    {
+      "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-SELECTION-CONTRACT-AG-WORK-20261005\\tools\\csg\\v52-research\\src\\provenance.mjs",
+      "status": "completed",
+      "error": null,
+      "message": "msg_108c5dd71001y0Gulnihr25zPn"
+    },
+    {
+      "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-SELECTION-CONTRACT-AG-WORK-20261005\\tools\\csg\\v52-research\\tests\\shard-integration-contract.test.mjs",
+      "status": "completed",
+      "error": null,
+      "message": "msg_108c5dd71001y0Gulnihr25zPn"
+    },
+    {
+      "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-SELECTION-CONTRACT-AG-WORK-20261005\\tools\\csg\\v52-research\\src\\schemas.mjs",
+      "status": "completed",
+      "error": null,
+      "message": "msg_108c5dd71001y0Gulnihr25zPn"
+    }
+  ],
+  "review": {
+    "verdict": "STATIC_FAIL_DO_NOT_ACCEPT_CLOSED_STOP_CAS_OK_ARRAY_PATH_FIX_NEEDED",
+    "findings": [
+      {
+        "id": "AC1",
+        "severity": "high",
+        "file": "tools/csg/v52-research/src/selection-contract.mjs",
+        "line": 167,
+        "why": "/^\\d+$/ accepts non-canonical 01/4294967295 not array indices invisible to Array.map stableStringify digest bypass",
+        "fix": "require String(n)===k && n<4294967295 integer else E_SHAPE"
+      },
+      {
+        "id": "AC2",
+        "severity": "high",
+        "file": "tools/csg/v52-research/src/selection-contract.mjs",
+        "line": 156,
+        "why": "!Array.isArray exempts arrays from proto check allows subclass/custom prototype inherited pollution",
+        "fix": "for arrays require proto===Array.prototype"
+      },
+      {
+        "id": "AC3",
+        "severity": "medium",
+        "file": "tools/csg/v52-research/src/selection-contract.mjs",
+        "line": 177,
+        "why": "walk(curr[k]) and deepFreeze obj[key] invoke accessor getters side-effect TOCTOU",
+        "fix": "use getOwnPropertyDescriptor reject get/set walk value only"
+      },
+      {
+        "id": "AC4",
+        "severity": "medium",
+        "file": "tools/csg/v52-research/src/selection-contract.mjs",
+        "line": 162,
+        "why": "sparse holes pass keys+1 length check map/join ambiguous digest",
+        "fix": "require keys.length===length dense else reject"
+      },
+      {
+        "id": "P1",
+        "severity": "medium",
+        "file": "tools/csg/v52-research/src/shard-integration-contract.mjs",
+        "line": 204,
+        "why": "startsWith(//) unreachable after startsWith(/) dead UNC wrong code",
+        "fix": "check // before /"
+      },
+      {
+        "id": "P2",
+        "severity": "low",
+        "file": "tools/csg/v52-research/src/shard-integration-contract.mjs",
+        "line": 226,
+        "why": "p!==trim last yields misleading codes for padded paths",
+        "fix": "move trim check to top"
+      },
+      {
+        "id": "D1",
+        "severity": "medium",
+        "file": "tools/csg/v52-research/src/selection-contract.mjs",
+        "line": 149,
+        "why": "walk/stableStringify/deepFreeze recursion no depth cap size after walk stack-overflow DoS",
+        "fix": "add depth<=64 cap fail E_SHAPE"
+      },
+      {
+        "id": "FZ1",
+        "severity": "low",
+        "file": "tools/csg/v52-research/src/selection-contract.mjs",
+        "line": 137,
+        "why": "deepFreeze only getOwnPropertyNames misses symbols nested mutable",
+        "fix": "also freeze getOwnPropertySymbols"
+      }
+    ],
+    "files_actually_read": [
+      "tools/csg/v52-research/src/selection-contract.mjs",
+      "tools/csg/v52-research/tests/selection-contract.test.mjs",
+      "tools/csg/v52-research/src/shard-integration-contract.mjs",
+      "tools/csg/v52-research/tests/shard-integration-contract.test.mjs",
+      "tools/csg/v52-research/src/schemas.mjs",
+      "tools/csg/v52-research/src/provenance.mjs",
+      "tools/csg/v52-research/src/recommendation.mjs",
+      "tools/csg/v52-research/src/alternatives.mjs"
+    ],
+    "execution": "PARKED_NOT_PASS",
+    "scope": "STATIC_SOURCE_ONLY"
+  },
+  "execution": "PARKED_NOT_PASS",
+  "root_arbitration": {
+    "accepted": [
+      "AC1",
+      "AC2",
+      "AC3",
+      "AC4",
+      "D1",
+      "P1"
+    ],
+    "P2": "DO_NOT_MOVE_GENERIC_TRIM_BEFORE_SPECIFIC_TRAILING_DOT_SPACE; retain precise existing branch contract, cover padded paths",
+    "FZ1": "Symbols must be rejected at public data boundary before freeze; do not silently allow symbol payloads",
+    "scope": "ONE_KNOWN_FINDING_BATCH_NO_SOURCE_ACCEPTANCE"
+  },
+  "canonical_write": false,
+  "production": false
+}

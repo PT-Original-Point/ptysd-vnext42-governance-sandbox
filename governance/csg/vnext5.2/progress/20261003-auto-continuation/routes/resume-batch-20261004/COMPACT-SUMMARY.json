@@ -1,13 +1,15 @@
 {
   "schema": "vnext5.2.compact-reentry.v1",
-  "observed_at": "2026-10-04T19:35:15.847Z",
+  "observed_at": "2026-10-04T21:23:28.144Z",
   "goal_actual": "paused",
   "mission": "ACTIVE_NOT_COMPLETE",
   "quota_last_actual": {
-    "five_hour_used_percent": 88,
-    "weekly_used_percent": 70,
-    "scope": "SHARED_ACCOUNT_NOT_PER_SESSION",
-    "source": "Previous actual native get_usage_limits read this turn; not refreshed here"
+    "observed_at": "2026-10-04T21:23:27.384Z",
+    "five_hour_used_percent": 81,
+    "weekly_used_percent": 84,
+    "scope": "ACCOUNT_SHARED_NOT_PER_SESSION",
+    "ordinary_usage_allowed": true,
+    "reset_or_purchase_performed": false
   },
   "worker_roles": "ROOT_AUDIT_ONLY_CODEX_GPT6_LUNA_MAX_AG_GEMINI38_FLASH_HIGH_OC_MUSE_FREE_BOUNDED_REAUTHORIZED",
   "tasks": [
@@ -152,18 +154,53 @@
     "next": "EXACT_REVIEW_ROUTE_LEGAL_REENTRY_OTHER_READY_LANES_CONTINUE"
   },
   "monitoring": {
-    "free_local_seconds": 30,
+    "observer": "routes/progress-observer.mjs",
+    "dashboard": "PROGRESS.html",
+    "projection": "PROGRESS.json",
+    "active_collection_minutes": 5,
+    "full_audit_hours": 4,
+    "event_trigger": "NO_NATIVE_DESKTOP_EXTERNAL_CLI_TRIGGER",
+    "silent_no_delta": true,
+    "contract": "VNEXT5.2-施工可見性與即時回收修正契約-20261004.md",
+    "current_collection_minutes": 30,
+    "cadence_reason": "HUMAN_AUTHORIZED_LUNA_MONITOR_SHARED_QUOTA_THROTTLE_LOCAL_OBSERVER30SEC",
+    "cadence_updated_at": "2026-10-04T11:06:45.658Z",
+    "model_free_observer": true,
+    "local_checks_do_not_wake_models": true,
+    "luna_role": "LOCKED_GPT6_LUNA_MAX_BOUNDED_LOCAL_INDEPENDENT_QUALIFICATION_SOURCE_DAILY_ZERO",
+    "native_luna_callback": "ACTUAL_REVIEW_NOTIFICATION_RECEIVED_NOT_EVERY_BRAND_OR_OS_SURVIVAL_PROOF",
+    "worker_collection_rule": "TERMINAL_RESULT_READ_ONCE_EXACT_BYTES_DISTINCT_REVIEW_FINDINGS_TO_AUTHOR_REWORK_NO_HUMAN_CARRYING",
+    "root_required_only_for": "NEW_FINDINGS_AUTHORITY_CONFLICT_FINAL_ACCEPTANCE_TRUE_GATE",
+    "optional_audit_attachment": "NOT_REQUIRED_DENIED_ATTACHMENT_PARKS_ONLY_ATTACHMENT",
+    "known_old_observer_false_alerts": "Five actual already-collected terminal receipts re-ACKed with new raw-byte signatures; old source verdicts not promoted",
     "model_collection_minutes": 30,
-    "callback": "NATIVE_LUNA_CALLBACK_PROVEN_ONE_CASE_EXTERNAL_CLI_TRIGGER_NOT_AVAILABLE"
+    "free_local_seconds": 30,
+    "shared_last_observed_used_percent": 81,
+    "native_next": "routes/resume-batch-20261004/selection-shard-eight-source-rework/ag.intent.json",
+    "latest_source_readback": "AG_EXACT_EIGHT_SOURCE_REWORK_NATIVE_PID23960_LUNA_REPAIRED_FIXTURE_EXECUTION",
+    "false_unknown_correction": "Fresh native same-conversation activity confirms running; no duplicate review",
+    "weekly_used_percent": 84,
+    "quota_readback": "routes/resume-batch-20261004/quota-native-readback-20261005.json",
+    "root_goal_actual": "paused",
+    "source_luna_daily": "ZERO_EXCEPT_CURRENT_BOUNDED_INDEPENDENT_LOCAL_QUALIFICATION"
   },
   "latest_delta": {
     "workers": [
       {
-        "task": "P52.SELECTION_CONTRACT_ELEVEN_DISTINCT_STATIC_REVIEW",
-        "intent": "routes/resume-batch-20261004/selection-contract-eleven-distinct-review/ag.intent.json",
+        "task": "P52.SELECTION_SHARD_EIGHT_FINDING_SOURCE_REWORK",
+        "intent": "routes/resume-batch-20261004/selection-shard-eight-source-rework/ag.intent.json",
         "status": "SUBMITTED_OUTCOME_PENDING",
+        "model": "gemini-3.8-flash-high",
         "actual_model": "gemini-3.8-flash-high",
-        "conversation": "98a41086-4783-4caf-8c41-fe5dc68e549e"
+        "pid": 23960
+      },
+      {
+        "task": "HUMAN.DASHBOARD_REPAIRED_ENTRY_INDEPENDENT_LOCAL_EXECUTION",
+        "intent": "routes/resume-batch-20261004/observer-entry-independent-luna/luna.intent.json",
+        "status": "NATIVE_RUNNING_INDEPENDENT_REVIEW",
+        "model": "gpt-6-luna",
+        "actual_model": "UNVERIFIED_NATIVE_CONTEXT_UNEXPOSED",
+        "pid": null
       }
     ],
     "source_qualification": {
@@ -215,15 +252,20 @@
         "static_review": "routes/resume-batch-20261004/c1-final-combined-static-review/ag.result.json"
       },
       "selection_contract": {
-        "status": "ALL11_AUTHOR_REWORK_COLLECTED_NEW_EXACT_HASH_DISTINCT_REVIEW_RUNNING",
-        "author_result_sha256": "f1cf86e006278cf6affb2df9c87e278b69618293d7407ee669f0a9d5fbf73bac",
-        "source_sha256": "3c856b08fc3adb4f3f32e9759bf77ec56840acfaa6427d5aeee794b8b77d621d",
-        "test_sha256": "db8ac968418a19c42c7eea3768f9e413b672454348a8fb562111f4921a8bf3fb",
-        "author_tests": "41_CLAIMED_DESIGNED_9_POSITIVE_32_NEGATIVE_ALL_UNTESTED",
-        "cost": "UNKNOWN_NO_ZERO_COST_INFERENCE",
-        "new_review": "routes/resume-batch-20261004/selection-contract-eleven-distinct-review/ag.intent.json",
+        "status": "CURRENT_DISTINCT_MUSE_STATIC_FAIL_EIGHT_FINDINGS_NATIVE_AG_SOURCE_REWORK",
+        "tests": "HISTORICAL111_47PASS64FAIL_CURRENT_EXACT_COMMAND_NATIVE_DENIED_NOT_RETRIED",
+        "review": "routes/resume-batch-20261004/selection-shard-muse-project-only-review/root-collection.json",
+        "source_accepted": false,
         "live_acceptance": "NOT_ACCEPTED",
-        "canonical_write": false
+        "parent_operation_complete": false
+      },
+      "shard_contract": {
+        "status": "CURRENT_DISTINCT_MUSE_STATIC_FAIL_EIGHT_FINDINGS_NATIVE_AG_SOURCE_REWORK",
+        "tests": "HISTORICAL111_47PASS64FAIL_CURRENT_EXACT_COMMAND_NATIVE_DENIED_NOT_RETRIED",
+        "review": "routes/resume-batch-20261004/selection-shard-muse-project-only-review/root-collection.json",
+        "source_accepted": false,
+        "live_acceptance": "NOT_ACCEPTED",
+        "parent_operation_complete": false
       }
     },
     "mcp_author_tests": "7/7 including2 actual local stdio",
@@ -232,5 +274,11 @@
     "full_catalog": 59,
     "manual_human_prompt_required": false
   },
-  "review_receipt_collision": "ROOT_SHARED_RESULT_PATH_DEFECT_SNAPSHOT_FROZEN_NEW_WRITERS_NEED_DISTINCT_PATHS"
+  "review_receipt_collision": "ROOT_SHARED_RESULT_PATH_DEFECT_SNAPSHOT_FROZEN_NEW_WRITERS_NEED_DISTINCT_PATHS",
+  "latest_failure": {
+    "task": "HUMAN.DASHBOARD_FIXTURE_ZERO_ASSERTION_ENTRY",
+    "status": "SOURCE_REPAIRED_INDEPENDENT_LOCAL_EXECUTION_IN_PROGRESS",
+    "root_cause": "ROOT_INVOKED_EXPORTED_ONLY_FIXTURE_AS_CLI_AND_EXIT0_RAN_ZERO_ASSERTIONS",
+    "previous_exit0_acceptance": false
+  }
 }
