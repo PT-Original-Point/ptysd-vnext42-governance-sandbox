@@ -1,7 +1,7 @@
 {
   "schema": "vnext5.2.construction-progress.v2",
   "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
-  "observed_at": "2026-10-04T18:41:35.013Z",
+  "observed_at": "2026-10-04T18:50:44.610Z",
   "model_lock": {
     "codex": {
       "display": "GPT-6 Luna Max",
@@ -121,9 +121,9 @@
   "queue_decision": "WORK_IN_PROGRESS",
   "ready_ids": [],
   "running_ids": [
-    "C1.FINAL_COMBINED_DISTINCT_STATIC_REVIEW"
+    "P52.SELECTION_CONTRACT_SOURCE_PREPARATION"
   ],
-  "valid_until": "2026-10-04T18:56:35.058Z",
+  "valid_until": "2026-10-04T19:05:44.655Z",
   "all_legal_ready_lanes_exhausted": false,
   "canonical_write": false,
   "host_install": false,
@@ -147,10 +147,10 @@
     "contract": "routes/opencode-desktop-route-20261004.json"
   },
   "construction_plan": "VNEXT5.2-限額控制與優先復工施工契約-20261004.md",
-  "active_source_repairs": [],
-  "pending_independent_reviews": [
-    "C1.FINAL_COMBINED_DISTINCT_STATIC_REVIEW"
+  "active_source_repairs": [
+    "P52.SELECTION_CONTRACT_SOURCE_PREPARATION"
   ],
+  "pending_independent_reviews": [],
   "compact_reentry": "routes/resume-batch-20261004/NEXT-ACTIONS.md",
   "compact_summary": "routes/resume-batch-20261004/COMPACT-SUMMARY.json",
   "source_gate_status": "INTAKE_EXACT_NATIVE_REVIEW_READ_DENIED_NO_BYPASS_NOT_SEMANTIC_PASS",
@@ -176,10 +176,12 @@
     "optional_audit_attachment": "NOT_REQUIRED_DENIED_ATTACHMENT_PARKS_ONLY_ATTACHMENT",
     "known_old_observer_false_alerts": "Five actual already-collected terminal receipts re-ACKed with new raw-byte signatures; old source verdicts not promoted",
     "model_collection_minutes": 30,
-    "free_local_seconds": 30
+    "free_local_seconds": 30,
+    "shared_last_observed_used_percent": 88,
+    "native_next": "routes/resume-batch-20261004/selection-contract-ag-source/ag.intent.json"
   },
   "latest_native_intents": [
-    "routes/resume-batch-20261004/c1-final-combined-static-review/ag.intent.json"
+    "routes/resume-batch-20261004/selection-contract-ag-source/ag.intent.json"
   ],
   "source_qualification": {
     "research": "PR388_EXACT_HEAD_STRUCTURAL_PASS_LOCAL103_DISTINCT17_SEMANTIC_PASS_PREPARATORY_ONLY",
@@ -221,12 +223,13 @@
     "dashboard_status": "32_SYNTHETIC_PASS_OWN_NATIVE_METADATA_OBSERVER_HANDOFF_READBACK_PASS_NOT_FACTORY_LIVE",
     "c1": "C1_PACKET_SCOPED_DISTINCT_STATIC_PASS_SCHEMA_AND_PROMOTION_CONTRACT_STILL_PENDING",
     "c1_schema": {
-      "status": "REAL_PACKET_AND_HARNESS_AUTHOR_REWORK_COLLECTED_PENDING_COMBINED_DISTINCT_STATIC_REVIEW",
+      "status": "EXACT_EIGHT_SOURCE_FILES_DISTINCT_STATIC_PASS_DEPENDENCY_AND_EXECUTION_PENDING",
       "author_tests": "UNTESTED",
       "review_intent": "routes/resume-batch-20261004/c1-final-combined-static-review/ag.intent.json",
       "dependency_compilation": "PENDING_EXACT_COMMAND_LANE_PARKED",
       "native_author_model": "gemini-3.8-flash-high",
-      "canonical_write": false
+      "canonical_write": false,
+      "static_review": "routes/resume-batch-20261004/c1-final-combined-static-review/ag.result.json"
     }
   },
   "contract_source_map": "CONTRACT-SOURCE-MAP.json",
@@ -239,11 +242,19 @@
     "paid_fallback": false
   },
   "progress_publication": {
-    "sequence": 27,
-    "locator": "66454c59a38a814d8069cbcdc371aa6a631fa85f",
-    "cold_read": "PASS_40_EXACT_BYTES",
-    "mutable_snapshot": "EXPIRED_REFRESH_LOCAL_INTENTS_BEFORE_DISPATCH",
-    "failure26": "PRESERVED_AND_CORRECTED_NOT_REPORTED_PASS",
-    "next_rule": "Every publication rebuilds the complete frozen manifest. Manifest has no self-hash: never compare missing hash to missing hash or reuse it as unchanged. Validate all frozen provider bytes before CAS; cold readback after CAS required."
-  }
+    "sequence": 28,
+    "locator": "54bf4a718453706067481d6fc1d19373a38bf21a",
+    "cold_read": "PASS_FRESH_40_PROVIDER_BYTES",
+    "runtime_install": "NOT_ACCEPTED"
+  },
+  "preparatory_source_lanes": [
+    {
+      "id": "P52.SELECTION_CONTRACT_SOURCE_PREPARATION",
+      "original_operation": "P52.SELECTION_CONTRACT",
+      "base": "f4c754ed1e2f256b24c432511c01ae52592dd15f",
+      "parent_source": "FROZEN_PR388_SCOPED_SOURCE_QUALIFIED",
+      "parent_phase_acceptance": "NOT_ACCEPTED",
+      "reason": "Source preparation authorized; original59 live/parent acceptance unchanged; do not park whole source work for prior intake review"
+    }
+  ]
 }
