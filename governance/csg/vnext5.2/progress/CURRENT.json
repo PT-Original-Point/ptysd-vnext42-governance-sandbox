@@ -3,13 +3,13 @@
   "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
   "noncanonical": true,
   "writer": "ROOT_SINGLE_INTEGRATOR",
-  "sequence": 21,
-  "previous_locator_head": "0e0c1170eef460b7a158bfbdab046402f405318a",
+  "sequence": 22,
+  "previous_locator_head": "88166f9ff210310d0a2851aedb8fd5ae2676f664",
   "progress": {
     "repository": "PT-Original-Point/ptysd-vnext42-governance-sandbox",
-    "exact_head": "0efff52aa791a3d48f818c535cecc6944f6ae05c",
+    "exact_head": "e7a5c88daf32479e55eea4020d93b6c4caba65e3",
     "current_path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/CURRENT.json",
-    "current_sha256": "sha256:07ba0a6cf181b04abbb2106fca281f550b72aa0637eceaaef1fd557c7dfff40f",
+    "current_sha256": "sha256:79d4d22ef7de0eb55d8329d9a18384b577fc44195c146081aa551be97a353451",
     "manifest_path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/manifest.json"
   },
   "dispatch_authority": false,
@@ -17,46 +17,41 @@
   "execution_owner_allocated": false,
   "root_role": "INDEPENDENT_AUDIT_PLAN_DISPATCH_COLLECTION_ARBITRATION_NO_PRODUCT_CODE",
   "model_lock_path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/MODEL-LOCK-20261004.json",
-  "consumer_rule": "Verify exact manifest bytes. Refresh expired queue facts; do not replay completed work. Construction V5.2, canonical CP200/V5.1-R2 and installed UNKNOWN are separate.",
+  "consumer_rule": "Verify exact manifest bytes. Refresh mutable facts after expiry. Never repeat immutable completed source. Construction V5.2, canonical CP200/V5.1-R2, installed UNKNOWN separate.",
   "source_baseline": {
     "mcp_pr": 385,
     "mcp_head": "e1c99a7cf3201ac5c1eddad71f3d6ea1ea7a955e",
     "runtime_pr": 386,
     "runtime_head": "c2bfa038121782a3ae903591981a0b05f52a7b38",
-    "new_candidates": "EXACT_SOURCE_REPAIR_AND_REVIEW_IN_PROGRESS",
+    "new_candidates": "LOCAL_FROZEN_SOURCES_REVIEW_PASS_TREE_BINDING_AND_DASHBOARD_REWORK_IN_PROGRESS",
     "live": "NOT_ACCEPTED"
   },
   "coordination": {
     "human_resume": true,
     "actual_goal": "paused",
     "goal_resume_api": "UNSUPPORTED_NO_FAKE_ACTIVE",
-    "quota_policy": "ROOT_AUDIT_ONLY_CODEX_GPT6_LUNA_MAX_AG_FLASH_HIGH_OC_MUSE_FREE_BOUNDED_REAUTHORIZED",
-    "opencode_route": "LATEST_EXACT_NATIVE_REPAIR_SUCCEEDED_COST0_FUTURE_QUOTA_NOT_GUARANTEED",
     "running_ids": [
-      "P52.RESEARCH_OPTIONS_REPAIR6_EXACT_REVIEW"
+      "SOURCE.TREE_PACKET_DISTINCT_LUNA_REVIEW",
+      "HUMAN.DASHBOARD_SOURCE_FINDINGS_REWORK"
     ],
-    "queue_decision": "WAITING_EXTERNAL_PER_LANE",
+    "latest_native_intents": [
+      "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/resume-batch-20261004/source-tree-final-luna-review/luna.intent.json",
+      "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/resume-batch-20261004/human-dashboard-findings-rework/ag.intent.json"
+    ],
+    "queue_decision": "WORK_IN_PROGRESS",
     "global_exhausted": false,
     "mission_complete": false,
-    "quota_last_actual": {
-      "five_hour_used_percent": 0,
-      "weekly_used_percent": 42,
-      "scope": "SHARED_ACCOUNT_NOT_PER_SESSION",
-      "persisted_at": "2026-10-04T08:11:29.769Z",
-      "measurement": "ACTUAL_NATIVE_USAGE_TOOL_THIS_HEARTBEAT_NO_RESET_USED",
-      "status": "HISTORICAL_MEASUREMENT_NOT_FRESH"
+    "source_qualification": {
+      "research": "EXACT17_SOURCE_LOCAL103_DISTINCT_AG_PASS_NOT_PARENT_OR_LIVE",
+      "mcp": "EXACT_FINAL_TEST_LOCAL7_DISTINCT_AG_PASS_NOT_WEB_OR_INSTALL"
     },
-    "mcp_new_diff": "EXACT6_SOURCE_REVIEW_PLUS27_FIXTURES_PASS_FULL_LEGACY_AND_LIVE_NOT_ACCEPTED",
-    "next_actions": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/resume-batch-20261004/NEXT-ACTIONS.md",
+    "next_actions": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/resume-batch-20261004/CURRENT-HANDOFF.md",
     "recoverable_review_work": true,
-    "intake_repair": "BYTES_EXPORT_COLLECTED_23PASS1SKIP_DISTINCT_REVIEW_NATIVE_READ_DENIED",
-    "next_intent": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/resume-batch-20261004/research-repair6-luna-review/luna.intent.json",
     "active_collection_minutes": 15,
-    "full_audit_hours": 4,
-    "progress_projection": "governance/csg/vnext5.2/progress/20261003-auto-continuation/PROGRESS.json",
-    "monitoring": "LOCAL_METADATA_OBSERVER_NO_MODEL_EXTERNAL_CLI_TRIGGER_NOT_SUPPORTED",
-    "research_repair": "14_HASHES_MATCH_AUTHOR67_FIXTURES_PASS_NATIVE_LUNA_REVIEW_PENDING"
+    "monitoring": "LOCAL_METADATA_OBSERVER_NO_MODEL_EXTERNAL_CLI_IMMEDIATE_TRIGGER_NOT_PROVEN",
+    "quota_scope": "SHARED_ACCOUNT_NOT_PER_SESSION",
+    "bad_packet": "REJECTED_REPO_TREE_WAS_CP200_SOURCE_TESTS_PRESERVED"
   },
   "active_manifest_policy": "CURRENT_PROJECTIONS_40_FILES_MAX40",
-  "historical_progress_head": "00c697b7c9dff974a9c4db231370c84fd49e5bf9"
+  "historical_progress_head": "0efff52aa791a3d48f818c535cecc6944f6ae05c"
 }
