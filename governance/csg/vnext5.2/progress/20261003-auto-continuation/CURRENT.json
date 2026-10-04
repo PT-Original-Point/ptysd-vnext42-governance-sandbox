@@ -1,7 +1,7 @@
 {
   "schema": "vnext5.2.construction-progress.v2",
   "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
-  "observed_at": "2026-10-04T14:30:56.249Z",
+  "observed_at": "2026-10-04T14:56:54.980Z",
   "model_lock": {
     "codex": {
       "display": "GPT-6 Luna Max",
@@ -121,10 +121,10 @@
   "queue_decision": "WORK_IN_PROGRESS",
   "ready_ids": [],
   "running_ids": [
-    "HUMAN.DASHBOARD_FIXTURE_ONLY_DISTINCT_REVIEW",
+    "HUMAN.DASHBOARD_NATIVE_RESULT_SHAPE_REWORK",
     "C1.FINAL_SOURCE_PAIR_NONSELECTING_PACKET"
   ],
-  "valid_until": "2026-10-04T14:45:56.285Z",
+  "valid_until": "2026-10-04T15:11:55.017Z",
   "all_legal_ready_lanes_exhausted": false,
   "canonical_write": false,
   "host_install": false,
@@ -149,11 +149,10 @@
   },
   "construction_plan": "VNEXT5.2-限額控制與優先復工施工契約-20261004.md",
   "active_source_repairs": [
+    "HUMAN.DASHBOARD_NATIVE_RESULT_SHAPE_REWORK",
     "C1.FINAL_SOURCE_PAIR_NONSELECTING_PACKET"
   ],
-  "pending_independent_reviews": [
-    "HUMAN.DASHBOARD_FIXTURE_ONLY_DISTINCT_REVIEW"
-  ],
+  "pending_independent_reviews": [],
   "compact_reentry": "routes/resume-batch-20261004/NEXT-ACTIONS.md",
   "compact_summary": "routes/resume-batch-20261004/COMPACT-SUMMARY.json",
   "source_gate_status": "INTAKE_EXACT_NATIVE_REVIEW_READ_DENIED_NO_BYPASS_NOT_SEMANTIC_PASS",
@@ -179,7 +178,7 @@
     "optional_audit_attachment": "NOT_REQUIRED_DENIED_ATTACHMENT_PARKS_ONLY_ATTACHMENT"
   },
   "latest_native_intents": [
-    "routes/resume-batch-20261004/human-dashboard-fixture-only-distinct-review/luna.intent.json",
+    "routes/resume-batch-20261004/dashboard-native-result-shape-rework/ag.intent.json",
     "routes/resume-batch-20261004/c1-final-sourcepair-luna/luna.intent.json"
   ],
   "source_qualification": {
@@ -187,10 +186,12 @@
     "mcp": "PR385_EXACT_HEAD_STRUCTURAL_PASS_LOCAL7_DISTINCT_FINAL_TEST_PASS_OTHER6_REVIEW_INHERITED_NO_FULL_LEGACY_LIVE",
     "runtime": "PR386_FROZEN_EXACT_HEAD_STRUCTURAL_PASS_SCOPED_TWO_TESTS_STATIC_PASS_CROSS_E2E_PARKED",
     "dashboard": {
-      "source_static": "PASS_WITH_OBSERVER_LIFECYCLE_LIMIT",
-      "fixture": "REWORK_REQUIRED_FIXTURE_ONLY",
-      "review": "routes/resume-batch-20261004/human-dashboard-final2-distinct-review/result.json",
-      "next": "AG_FIXTURE_ONLY_REPAIR_THEN_DISTINCT_LUNA"
+      "prior_pure_fixture": "22/22_PASS",
+      "live_local_observer": "NATIVE_INTERFACE_DEFECTS_FOUND_NOT_QUALIFIED",
+      "known_false_uncollected": 3,
+      "next": "AG_NATIVE_RESULT_SHAPE_SOURCE_FIX_THEN_LUNA_DISTINCT_REVIEW",
+      "root_findings": "routes/resume-batch-20261004/observer-native-interface-root-findings.json",
+      "factory_live": "NOT_ACCEPTED"
     },
     "producer_head": "f45ef980a0194c54db6f2e3d5585577154ac5754",
     "research_head": "f4c754ed1e2f256b24c432511c01ae52592dd15f",
@@ -220,5 +221,6 @@
     },
     "runtime_head": "0c8a5bd23d5591571998c18ab49eb1eec0ba7968",
     "dashboard_status": "FROZEN_SOURCE_STATIC_PASS_NEW_FIXTURE_DISTINCT_REVIEW_RUNNING"
-  }
+  },
+  "contract_source_map": "CONTRACT-SOURCE-MAP.json"
 }

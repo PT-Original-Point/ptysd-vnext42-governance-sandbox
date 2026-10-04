@@ -102,6 +102,11 @@
       "label": "HUMAN.DASHBOARD_FIXTURE_ONLY_DISTINCT_REVIEW",
       "label_zh": "Luna檢查看板測試，確認能否換上新版",
       "intent": "routes/resume-batch-20261004/human-dashboard-fixture-only-distinct-review/luna.intent.json"
+    },
+    {
+      "brand": "Antigravity",
+      "label": "HUMAN.DASHBOARD_NATIVE_RESULT_SHAPE_REWORK",
+      "intent": "routes/resume-batch-20261004/dashboard-native-result-shape-rework/ag.intent.json"
     }
   ],
   "luna": "GPT6_LUNA_MAX_ONLY_SOURCE_AND_REVIEW_AUTHORIZED_NATIVE_REVIEW_SCOPE_READBACK_PENDING",

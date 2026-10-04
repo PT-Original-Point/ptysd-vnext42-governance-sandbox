@@ -6,7 +6,7 @@
   "actual_model": "UNVERIFIED_CONTEXT_METADATA_UNEXPOSED",
   "agent_name": "/root/v52_research_repair6_luna_review",
   "created_at": "2026-10-04T14:27:42.706Z",
-  "native_observed_at": "2026-10-04T14:27:42.706Z",
+  "native_observed_at": "2026-10-04T14:56:05.139Z",
   "native_agent_status": "running",
   "write_set": [
     "outputs/C1-FINAL-SOURCEPAIR-LUNA/**"
@@ -14,5 +14,7 @@
   "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-AUTO-CONTINUATION-20261003",
   "source_edit": true,
   "canonical_write": false,
-  "production": false
+  "production": false,
+  "native_status_evidence": "COLLABORATION_LIST_AGENTS_FILTER_EXACT_AGENT_RUNNING",
+  "result_path": "outputs/C1-FINAL-SOURCEPAIR-LUNA/result.json"
 }

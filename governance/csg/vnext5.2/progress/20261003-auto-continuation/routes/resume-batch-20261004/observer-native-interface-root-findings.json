@@ -1,0 +1,32 @@
+{
+  "recorded_at": "2026-10-04T14:55:16.897Z",
+  "kind": "LIVE_LOCAL_OBSERVER_INTERFACE_GAPS_NOT_FACTORY_HOST",
+  "product_source_root_edits": 0,
+  "prior_fixture": "22/22_PURE_SYNTHETIC_PASS_NOT_NATIVE_SHAPE_QUALIFICATION",
+  "findings": [
+    {
+      "id": "RESULT_ACQUISITION_INCORRECTLY_REQUIRES_AGENT_NAME",
+      "evidence": "Three actual nativeAG intents have conversation_id and result_path but no agent_name; result_sha256 null while exact result files exist; canAcceptAck false despitematchingsemanticSignature",
+      "effects": [
+        "FALSE_COMPLETED_UNCOLLECTED",
+        "POTENTIAL_REPEATED_MONITOR_ROOT_CALLBACK_COST"
+      ],
+      "reentry": "GENERIC_NATIVE_RESULT_PATH_READ_RAWBYTE_HASH_PARSE_ACK_POSITIVE_AG_OC_REGRESSIONS"
+    },
+    {
+      "id": "FUTURE_TERMINAL_RESULT_MISSING_DURING_ACTIVE_SOURCE",
+      "evidence": "C1 actualrunning Luna hasfuture result_path notyetcreated, no closed_at",
+      "effects": [
+        "FALSE_UNKNOWN_STATUS_DURING_NORMAL_SOURCE_JOB"
+      ],
+      "reentry": "FRESH_RUNNING_EXPECTED_ENOENT_VS_TERMINAL_MISSING_AND_PERMISSION_DENIAL_REGRESSIONS"
+    }
+  ],
+  "dispatched": "routes/resume-batch-20261004/dashboard-native-result-shape-rework/ag.intent.json",
+  "worker_model": "gemini-3.8-flash-high",
+  "observer_current_pid": 26596,
+  "new_disk_source_not_loaded_until_distinct_qualification": true,
+  "worker_cancel": false,
+  "host_write": false,
+  "mission_complete": false
+}

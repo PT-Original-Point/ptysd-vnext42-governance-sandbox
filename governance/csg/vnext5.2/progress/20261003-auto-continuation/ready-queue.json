@@ -3,7 +3,7 @@
   "mode": "SHADOW_PLAN_ONLY",
   "facts_schema": "vnext5.2.operation-facts.v1",
   "catalog_sha256": "sha256:ee769422b5d587e771d09c4e95af1af9a3a7cf0a7c0e493d86071e2df57304de",
-  "facts_sha256": "sha256:1e1843d0352be8df5de429b56463276b0588a77b517b4262f14fddfbfb7d3761",
+  "facts_sha256": "sha256:6c6460fbcd4a76ac69bf5dab09d7d41b7592f8b64eb6af5e7b7afc5f254438d7",
   "facts_fresh": true,
   "input_completeness": "COMPLETE",
   "input_reasons": [],
@@ -1303,9 +1303,9 @@
     "scope": "EXACT_SOURCE_REVIEW_AND_RECOVERY_NOT_PARENT_ACCEPTANCE",
     "tasks": [
       {
-        "id": "HUMAN.DASHBOARD_FIXTURE_ONLY_DISTINCT_REVIEW",
-        "status": "NATIVE_RUNNING_INDEPENDENT_REVIEW",
-        "intent": "routes/resume-batch-20261004/human-dashboard-fixture-only-distinct-review/luna.intent.json"
+        "id": "HUMAN.DASHBOARD_NATIVE_RESULT_SHAPE_REWORK",
+        "status": "SUBMITTED_OUTCOME_PENDING",
+        "intent": "routes/resume-batch-20261004/dashboard-native-result-shape-rework/ag.intent.json"
       },
       {
         "id": "C1.FINAL_SOURCE_PAIR_NONSELECTING_PACKET",

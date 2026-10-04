@@ -1,6 +1,6 @@
 {
   "schema": "vnext5.2.coordinator-dispatch.v1",
-  "observed_at": "2026-10-04T14:30:56.249Z",
+  "observed_at": "2026-10-04T14:56:54.980Z",
   "single_integrator": "root",
   "tasks": [
     {
@@ -1447,10 +1447,10 @@
       "requested_model_provenance": "EXPLICIT_NATIVE_COLLABORATION_SPAWN_PARAMETERS",
       "actual_model": null,
       "agent_name": "/root/v52_research_repair6_luna_review",
-      "native_agent_status": "running",
-      "native_status_evidence": "NATIVE_COLLABORATION_LIST_AGENTS_RUNNING",
+      "native_agent_status": "completed",
+      "native_status_evidence": "EXISTING_DISTINCT_REVIEW_RESULT_AND_SUBSEQUENT_COMPLETED_REWORK_SUPERSEDE_THIS_TASK",
       "created_at": "2026-10-04T11:09:04.890Z",
-      "status": "NATIVE_RUNNING_INDEPENDENT_REVIEW",
+      "status": "CLOSED_HISTORICAL_REVIEW_COLLECTED",
       "result_path": "routes/resume-batch-20261004/research-repair6-luna-review/result.json",
       "write_set": [
         "routes/resume-batch-20261004/research-repair6-luna-review/result.json"
@@ -1458,6 +1458,8 @@
       "source_write": false,
       "canonical_write": false,
       "production": false,
+      "closed_at": "2026-10-04T14:49:14.812Z",
+      "native_observed_at": "2026-10-04T14:49:14.812Z",
       "dispatch_source": "routes/resume-batch-20261004/research-repair6-luna-review/luna.intent.json"
     },
     {
@@ -1746,7 +1748,7 @@
       "status": "CLOSED_SOURCE_REVIEW_REQUIRED",
       "agent_name": "/root/v52_research_repair6_luna_review",
       "native_agent_status": "completed",
-      "native_observed_at": "2026-10-04T13:54:00.9Z",
+      "native_observed_at": "2026-10-04T14:49:14.812Z",
       "created_at": "2026-10-04T13:23:05.7083731Z",
       "worktree": "C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-RUNTIME-SOURCEPAIR-LUNA-WORK-20261004",
       "source_edit": true,
@@ -1755,12 +1757,12 @@
         "tests/cross-candidate-positive-integration.mjs",
         "outputs/RUNTIME-SOURCEPAIR-REBIND/**"
       ],
-      "result_path": "../VNEXT5.2-RUNTIME-SOURCEPAIR-LUNA-WORK-20261004/outputs/RUNTIME-SOURCEPAIR-REBIND/result.json",
+      "result_path": "routes/resume-batch-20261004/runtime-sourcepair-luna-rebind/author-result.json",
       "producer_exact_head": "f45ef980a0194c54db6f2e3d5585577154ac5754",
       "runtime_parent": "06da5fa224b65b9346e8b250dcea686d0ed458ee",
       "canonical_write": false,
       "production": false,
-      "native_status_evidence": "FRESH_COLLABORATION_LIST_AGENTS_EXACT_CANONICAL_AGENT_RUNNING_ONLY_NOT_EXECUTION_EFFECT_OR_MODEL_PROOF",
+      "native_status_evidence": "EXACT_AUTHOR_RECEIPT_COLLECTED_AND_FINAL_HEAD_REVIEW_PASS",
       "readback_status": "NATIVE_AGENT_RUNNING_EFFECT_PROGRESS_REQUESTED_NO_REDISPATCH",
       "effect_readback": {
         "observed_at": "2026-10-04T13:54:00.9Z",
@@ -1779,6 +1781,7 @@
       },
       "closed_at": "2026-10-04T14:09:12.489Z",
       "result_sha256": "ab38045251ec0ea5b19b78982cc7308bb5e89627150c559f3762b9f1b2d9a1bf",
+      "original_result_path": "../VNEXT5.2-RUNTIME-SOURCEPAIR-LUNA-WORK-20261004/outputs/RUNTIME-SOURCEPAIR-REBIND/result.json",
       "dispatch_source": "routes/resume-batch-20261004/runtime-sourcepair-luna-rebind/luna.intent.json"
     },
     {
@@ -1952,7 +1955,7 @@
       "actual_model": "UNVERIFIED_CONTEXT_METADATA_UNEXPOSED",
       "agent_name": "/root/v52_research_repair6_luna_review",
       "created_at": "2026-10-04T14:27:42.706Z",
-      "native_observed_at": "2026-10-04T14:27:42.706Z",
+      "native_observed_at": "2026-10-04T14:56:05.139Z",
       "native_agent_status": "running",
       "write_set": [
         "outputs/C1-FINAL-SOURCEPAIR-LUNA/**"
@@ -1961,6 +1964,8 @@
       "source_edit": true,
       "canonical_write": false,
       "production": false,
+      "native_status_evidence": "COLLABORATION_LIST_AGENTS_FILTER_EXACT_AGENT_RUNNING",
+      "result_path": "outputs/C1-FINAL-SOURCEPAIR-LUNA/result.json",
       "dispatch_source": "routes/resume-batch-20261004/c1-final-sourcepair-luna/luna.intent.json"
     },
     {
@@ -1970,10 +1975,10 @@
       "reasoning_effort": "max",
       "actual_model": "UNVERIFIED_CONTEXT_METADATA_UNEXPOSED",
       "agent_name": "/root/v52_dashboard_final7_luna_review",
-      "status": "NATIVE_RUNNING_INDEPENDENT_REVIEW",
-      "native_agent_status": "running",
-      "native_observed_at": "2026-10-04T14:30:56.182Z",
-      "native_status_evidence": "EXACT_FOLLOWUP_DISPATCH",
+      "status": "CLOSED_INDEPENDENT_REVIEW_PASS",
+      "native_agent_status": "completed",
+      "native_observed_at": "2026-10-04T14:49:14.812Z",
+      "native_status_evidence": "EXACT_AGENT_FINAL_MESSAGE_AND_22_OF_22_RESULT",
       "created_at": "2026-10-04T14:30:56.182Z",
       "source_edit": false,
       "write_set": [
@@ -1981,7 +1986,28 @@
       ],
       "canonical_write": false,
       "production": false,
+      "result_path": "routes/resume-batch-20261004/human-dashboard-fixture-only-distinct-review/result.json",
+      "closed_at": "2026-10-04T14:49:14.812Z",
       "dispatch_source": "routes/resume-batch-20261004/human-dashboard-fixture-only-distinct-review/luna.intent.json"
+    },
+    {
+      "id": "HUMAN.DASHBOARD_NATIVE_RESULT_SHAPE_REWORK",
+      "task": "HUMAN.DASHBOARD_NATIVE_RESULT_SHAPE_REWORK",
+      "model": "gemini-3.8-flash-high",
+      "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-AUTO-CONTINUATION-20261003",
+      "status": "SUBMITTED_OUTCOME_PENDING",
+      "created_at": "2026-10-04T14:53:51.566Z",
+      "source_edit": true,
+      "write_set": [
+        "routes/progress-observer.mjs",
+        "outputs/HUMAN-DASHBOARD-NATIVE-RESULT-REWORK/**"
+      ],
+      "canonical_write": false,
+      "production": false,
+      "pid": 43496,
+      "conversation_id": "180c8822-496b-4e34-821d-b2ffa86fb34b",
+      "actual_model": "gemini-3.8-flash-high",
+      "dispatch_source": "routes/resume-batch-20261004/dashboard-native-result-shape-rework/ag.intent.json"
     }
   ],
   "collection": "root reads native thread/subagent updates then exact result paths; Human copying unnecessary",
