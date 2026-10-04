@@ -3,13 +3,13 @@
   "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
   "noncanonical": true,
   "writer": "ROOT_SINGLE_INTEGRATOR",
-  "sequence": 15,
-  "previous_locator_head": "c0010364f2726fd666f23a884edd86630ab3be20",
+  "sequence": 16,
+  "previous_locator_head": "122ed33e5031a1342469d3358e41d4beb639b262",
   "progress": {
     "repository": "PT-Original-Point/ptysd-vnext42-governance-sandbox",
-    "exact_head": "6f40a83f9732c1af7aa8b58ece03aa833565f026",
+    "exact_head": "f734f851987f53d3cc2351141c6f418b947414a3",
     "current_path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/CURRENT.json",
-    "current_sha256": "sha256:95006a4352f42bf08c6b4dc053ef016632683c53f29bcfc5a659108c6316a73b",
+    "current_sha256": "sha256:fa9b6de8b1a174db6ab5a9ff1972f0a77c5d55d147f61ddebe5d25d20e6af71b",
     "manifest_path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/manifest.json"
   },
   "dispatch_authority": false,
@@ -39,12 +39,10 @@
     "t01": "EXACT_NATIVE_PERMISSION_DENIAL_PARKED_NO_GLOBAL_STOP",
     "f01_source_tree": "b6dd213fdf25451043c25a93b7a7b84394f74d72",
     "f01_actual_model": "gpt-6-luna/max_NATIVE_TURN_CONTEXT",
-    "d03": "20_PAYLOAD_EXACT_BYTES_LOCAL_STAGE_ONLY_NOT_HOST_ACCEPTANCE",
+    "d03": "OLD20_PAYLOAD_STAGE_HISTORICAL_NEW_F01_TRANSITIVE_CLOSURE_REQUALIFICATION_REQUIRED",
     "d03_manifest_sha256": "sha256:ed4da79ba807d79e17b73ff751a4543dc04c195947322701213432c9a648e704",
     "native_discovery": "DONE_DIAGNOSTIC_ONLY_UNKNOWN_ISOLATION_REPORTED",
-    "next_source": [
-      "P52.OPENCODE_SOURCE"
-    ],
+    "next_source": [],
     "p52_antigravity": {
       "source_tree": "dadf1dad2408f4105a0c45502eabc3fb49d49fb0",
       "semantic": "INDEPENDENT_EXACT_TWO_FILE_SOURCE_SCOPE_PASS",
@@ -53,9 +51,17 @@
       "live": "NOT_ACCEPTED"
     },
     "running_source": [
-      "F02.FLEET_SOURCE"
+      "P52.OPENCODE_SOURCE"
     ],
-    "f02": "FIVE_ROOT_NEGATIVE_PROBE_FINDINGS_REWORK_ASSIGNED_SAME_LOCKED_NATIVE_SOURCE_CONVERSATION"
+    "f02": {
+      "source_tree": "443278f6fe6ec65ed75dc99ddeb3b7e0cebaf76c",
+      "semantic": "INDEPENDENT_EXACT_TWO_FILE_SOURCE_SCOPE_PASS",
+      "root_tests": 198,
+      "findings_closed": 5,
+      "live": "NOT_ACCEPTED"
+    },
+    "opencode_source_builder": "ANTIGRAVITY_LOCKED_NATIVE_AFTER_CLOSED_LUNA_SCOPE_DECLINE",
+    "opencode_live_quota": "PARKED_NO_RETRY"
   },
   "root_role": "INDEPENDENT_AUDIT_PLAN_DISPATCH_COLLECTION_ARBITRATION_NO_PRODUCT_CODE",
   "model_lock_path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/MODEL-LOCK-20261004.json",
