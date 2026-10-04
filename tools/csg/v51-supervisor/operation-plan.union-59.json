@@ -1,0 +1,1155 @@
+{
+  "schema": "vnext5.2.operation-construction-plan.v2",
+  "role": "NONCANONICAL_DEFINITIONS_NOT_CURRENT_STATE",
+  "spec": "VNEXT5.2",
+  "revision": "CONTINUATION-REV2-20261003+P52-UNION59-20261003",
+  "original_contract_sha256": "130c22bd328d22538e439e3e444b84c478c22200e73e33455b8e1e35f7e50600",
+  "adoption_resolution": "EXISTING_EXPLICIT_HUMAN_SCOPE_AND_LATEST_DELIVERY; DO_NOT_RESET_VALID_PRIOR_ADOPTION",
+  "goal": {
+    "objective_file": "00-直接交付指令.md",
+    "startup_file": "02-Goal啟動與真實狀態讀回.md",
+    "native_state_required": true,
+    "goal_is_project_authority": false,
+    "scope": "THREAD",
+    "no_automatic_budget_invention": true
+  },
+  "safety": {
+    "public_tools": [
+      "factory_status",
+      "worker_prepare",
+      "worker_start",
+      "host_powershell"
+    ],
+    "public_tool_count": 4,
+    "worker_provider_write_credentials": 0,
+    "production_default_allowed": false,
+    "host_powershell_timeout_seconds": {
+      "min": 1,
+      "max": 300
+    },
+    "unknown_effect_blind_retry_allowed": false,
+    "canonical_force_update_allowed": false,
+    "task_sid_alone_proves_remote_project_authority": false,
+    "production_false_alone_proves_script_safety": false
+  },
+  "reserved_human_gates": [
+    "PRODUCTION",
+    "NEW_PAID_COST",
+    "LEGAL_OR_IDENTITY",
+    "INTERACTIVE_OAUTH_MFA",
+    "MAJOR_IRREVERSIBLE_TRUST_EXPANSION",
+    "UNRECONCILABLE_AMBIGUOUS_EFFECT_AT_TARGET"
+  ],
+  "units": [
+    {
+      "id": "B00.RECOVER",
+      "task": "B00",
+      "title": "Fresh authority/current/effects and existing evidence inventory",
+      "effect_class": "READ_ONLY",
+      "start_dependencies": [],
+      "completion_dependencies": [],
+      "priority_hint": 0,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true
+    },
+    {
+      "id": "B01.OPERATIONS",
+      "task": "B01",
+      "title": "Operation graph reconciliation and durable candidate",
+      "effect_class": "CANDIDATE_SOURCE",
+      "start_dependencies": [
+        "B00.RECOVER"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 1,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true
+    },
+    {
+      "id": "B01.PUBLISH",
+      "task": "B01",
+      "title": "Nonselecting contract/receipt publication",
+      "effect_class": "CANDIDATE_PUBLISH",
+      "start_dependencies": [
+        "B01.OPERATIONS"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 35,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true
+    },
+    {
+      "id": "C1.PREPARE",
+      "task": "C1",
+      "title": "Read protected procedure and prepare control-only candidate",
+      "effect_class": "CANDIDATE_SOURCE",
+      "start_dependencies": [
+        "B00.RECOVER"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 10,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true
+    },
+    {
+      "id": "C1.QUALIFY",
+      "task": "C1",
+      "title": "Actual required structural and scoped semantic control qualification",
+      "effect_class": "CANDIDATE_PUBLISH",
+      "start_dependencies": [
+        "C1.PREPARE"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 30,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true
+    },
+    {
+      "id": "C1.SELECT",
+      "task": "C1",
+      "title": "Protected canonical CAS selection and same-source readback",
+      "effect_class": "CONTROL_CAS",
+      "start_dependencies": [
+        "C1.QUALIFY"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 70,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true
+    },
+    {
+      "id": "C2.PREFLIGHT",
+      "task": "C2",
+      "title": "Exact old writer/job/effect/fence observations",
+      "effect_class": "READ_ONLY",
+      "start_dependencies": [
+        "B00.RECOVER"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 15,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true
+    },
+    {
+      "id": "C2.FENCE_SOURCE",
+      "task": "C2",
+      "title": "Backend rejection mechanism source qualification",
+      "effect_class": "CANDIDATE_SOURCE",
+      "start_dependencies": [
+        "C2.PREFLIGHT"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 25,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true
+    },
+    {
+      "id": "C2.QUARANTINE",
+      "task": "C2",
+      "title": "Trusted backend old-writer rejection/readback",
+      "effect_class": "TARGET_FENCE",
+      "start_dependencies": [
+        "C1.SELECT",
+        "C2.FENCE_SOURCE"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 75,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true
+    },
+    {
+      "id": "M01.SOURCE",
+      "task": "M01",
+      "title": "Salvage/current Project binding/helper/capability source",
+      "effect_class": "CANDIDATE_SOURCE",
+      "start_dependencies": [
+        "B00.RECOVER"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 5,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true
+    },
+    {
+      "id": "M02.LOCAL_CANARY",
+      "task": "M02",
+      "title": "Scoped dependency canary/local evidence reuse",
+      "effect_class": "LOCAL_SPIKE",
+      "start_dependencies": [
+        "M01.SOURCE"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 12,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true
+    },
+    {
+      "id": "M03.FINAL_SOURCE",
+      "task": "M03",
+      "title": "Final local matrix and exact direct-parent candidate",
+      "effect_class": "CANDIDATE_SOURCE",
+      "start_dependencies": [
+        "M02.LOCAL_CANARY"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 8,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true
+    },
+    {
+      "id": "M03.STRUCTURAL",
+      "task": "M03",
+      "title": "One exact-final-head structural verifier/readback",
+      "effect_class": "CANDIDATE_PUBLISH",
+      "start_dependencies": [
+        "M03.FINAL_SOURCE"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 40,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true
+    },
+    {
+      "id": "M03.SEMANTIC",
+      "task": "M03",
+      "title": "Required semantic verdict scoped to frozen exact source",
+      "effect_class": "READ_ONLY",
+      "start_dependencies": [
+        "M03.FINAL_SOURCE"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 42,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true
+    },
+    {
+      "id": "M04.INSTALL_PREPARE",
+      "task": "M04",
+      "title": "Actual target/caller/bundle/rollback read-only preflight",
+      "effect_class": "READ_ONLY",
+      "start_dependencies": [
+        "M03.FINAL_SOURCE"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 45,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true
+    },
+    {
+      "id": "M04.LIVE_INSTALL",
+      "task": "M04",
+      "title": "Authorized actual MCP install/caller/four-tool/helper readback",
+      "effect_class": "HOST_REVERSIBLE",
+      "start_dependencies": [
+        "M03.STRUCTURAL",
+        "M03.SEMANTIC",
+        "M04.INSTALL_PREPARE",
+        "C2.QUARANTINE"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 80,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true
+    },
+    {
+      "id": "M05.LIVE_HEALTH",
+      "task": "M05",
+      "title": "Installed fixed-purpose read-only health and projection acceptance",
+      "effect_class": "READ_ONLY",
+      "start_dependencies": [
+        "M04.LIVE_INSTALL"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 85,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true
+    },
+    {
+      "id": "A00.ADMISSION",
+      "task": "A00",
+      "title": "Business read scope/target/custodian/admission packet",
+      "effect_class": "READ_ONLY",
+      "start_dependencies": [
+        "B00.RECOVER"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 20,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true
+    },
+    {
+      "id": "A00.SOURCE_BOUNDS",
+      "task": "A00",
+      "title": "Fixed-query caps/redaction dry source preparation",
+      "effect_class": "CANDIDATE_SOURCE",
+      "start_dependencies": [
+        "A00.ADMISSION"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 30,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true
+    },
+    {
+      "id": "A01.READ_PREPARE",
+      "task": "A01",
+      "title": "D1 read adapter source and exact admission facts",
+      "effect_class": "CANDIDATE_SOURCE",
+      "start_dependencies": [
+        "A00.ADMISSION"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 45,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true
+    },
+    {
+      "id": "A01.LIVE_READ",
+      "task": "A01",
+      "title": "Admitted bounded D1 SELECT and redacted receipt",
+      "effect_class": "PROVIDER_READ",
+      "start_dependencies": [
+        "A01.READ_PREPARE",
+        "A00.SOURCE_BOUNDS"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 85,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true
+    },
+    {
+      "id": "A02.READ_PREPARE",
+      "task": "A02",
+      "title": "Ads read adapter source and exact admission facts",
+      "effect_class": "CANDIDATE_SOURCE",
+      "start_dependencies": [
+        "A00.ADMISSION"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 45,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true
+    },
+    {
+      "id": "A02.LIVE_READ",
+      "task": "A02",
+      "title": "Admitted native Ads read route/readback",
+      "effect_class": "PROVIDER_READ",
+      "start_dependencies": [
+        "A02.READ_PREPARE",
+        "A00.SOURCE_BOUNDS"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 85,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true
+    },
+    {
+      "id": "A03.OPTIONAL_WIF",
+      "task": "A03",
+      "title": "Optional qualified identity transport improvement",
+      "effect_class": "TRUST_CONFIGURATION",
+      "start_dependencies": [
+        "A00.ADMISSION"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 100,
+      "mandatory": false,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true
+    },
+    {
+      "id": "A04.RECONCILE",
+      "task": "A04",
+      "title": "Actual admitted source pair business read reconciliation",
+      "effect_class": "PROVIDER_READ",
+      "start_dependencies": [
+        "A01.LIVE_READ",
+        "A02.LIVE_READ"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 90,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true
+    },
+    {
+      "id": "A05.RETIRE_PREPARE",
+      "task": "A05",
+      "title": "Fallback TTL/credential/rollback source plan",
+      "effect_class": "CANDIDATE_SOURCE",
+      "start_dependencies": [
+        "A00.ADMISSION"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 60,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true
+    },
+    {
+      "id": "A05.RETIRE",
+      "task": "A05",
+      "title": "Authorized Project route retirement/readback without losing sole route",
+      "effect_class": "PROJECT_REVERSIBLE",
+      "start_dependencies": [
+        "A04.RECONCILE",
+        "A05.RETIRE_PREPARE"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 95,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true
+    },
+    {
+      "id": "D01.DECISION",
+      "task": "D01",
+      "title": "Reuse bounded bakeoff decision; do not claim executable qualification",
+      "effect_class": "LOCAL_SPIKE",
+      "start_dependencies": [
+        "B00.RECOVER"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 20,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true
+    },
+    {
+      "id": "F01.PREFLIGHT",
+      "task": "F01",
+      "title": "Actual CLI/channel/entitlement/isolation metadata and exact blocker",
+      "effect_class": "READ_ONLY",
+      "start_dependencies": [
+        "B00.RECOVER"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 4,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true
+    },
+    {
+      "id": "F01.ADAPTER_SOURCE",
+      "task": "F01",
+      "title": "Thin task/cancel/receipt and sandbox proof source adapter",
+      "effect_class": "CANDIDATE_SOURCE",
+      "start_dependencies": [
+        "F01.PREFLIGHT"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 18,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true
+    },
+    {
+      "id": "F01.CELL_PREPARE",
+      "task": "F01",
+      "title": "Controlled canary cell/route preparation via existing trusted route; containment proof",
+      "effect_class": "HOST_REVERSIBLE",
+      "start_dependencies": [
+        "F01.PREFLIGHT",
+        "F01.ADAPTER_SOURCE",
+        "P52.NATIVE_ROUTE_DISCOVERY"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 60,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true
+    },
+    {
+      "id": "F01.ISOLATED_EXECUTION",
+      "task": "F01",
+      "title": "One real controlled isolated agent task/cancel/reviewer/receipt qualification",
+      "effect_class": "ISOLATED_AGENT",
+      "start_dependencies": [
+        "F01.PREFLIGHT",
+        "F01.ADAPTER_SOURCE",
+        "F01.CELL_PREPARE",
+        "P52.NATIVE_ROUTE_DISCOVERY"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 65,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true
+    },
+    {
+      "id": "D02.SOURCE",
+      "task": "D02",
+      "title": "Repair hardcoded queue/entrypoint/catalog/readiness ports",
+      "effect_class": "CANDIDATE_SOURCE",
+      "start_dependencies": [
+        "D01.DECISION",
+        "B01.OPERATIONS"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 3,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true
+    },
+    {
+      "id": "D02.PLAN_SHADOW",
+      "task": "D02",
+      "title": "Dynamic planned READY with all dispatch effects disabled",
+      "effect_class": "READ_ONLY",
+      "start_dependencies": [
+        "D02.SOURCE"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 7,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true
+    },
+    {
+      "id": "D02.LOCAL_RESTORE",
+      "task": "D02",
+      "title": "Local journal/restore/data-integrity proof scoped reuse",
+      "effect_class": "LOCAL_SPIKE",
+      "start_dependencies": [
+        "D02.SOURCE"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 14,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true
+    },
+    {
+      "id": "D02.EXECUTOR_INTEGRATION",
+      "task": "D02",
+      "title": "Qualified route→task/cancel/receipt/readback integration",
+      "effect_class": "ISOLATED_AGENT",
+      "start_dependencies": [
+        "D02.SOURCE",
+        "F01.ISOLATED_EXECUTION"
+      ],
+      "completion_dependencies": [
+        "D02.PLAN_SHADOW",
+        "D02.LOCAL_RESTORE"
+      ],
+      "priority_hint": 68,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true
+    },
+    {
+      "id": "D03.BUNDLE_PREPARE",
+      "task": "D03",
+      "title": "Single-runtime wake/service/bundle/rollback source qualification",
+      "effect_class": "CANDIDATE_SOURCE",
+      "start_dependencies": [
+        "D02.SOURCE"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 48,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true
+    },
+    {
+      "id": "D03.ACTIVE_CUTOVER",
+      "task": "D03",
+      "title": "Unique dispatch-role CAS and active actual task flow",
+      "effect_class": "HOST_REVERSIBLE",
+      "start_dependencies": [
+        "D02.EXECUTOR_INTEGRATION",
+        "D03.BUNDLE_PREPARE",
+        "C1.SELECT",
+        "C2.QUARANTINE",
+        "T01.BASELINE"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 82,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true
+    },
+    {
+      "id": "D04.SURVIVAL",
+      "task": "D04",
+      "title": "Original actual reboot/crash/UI-gone/restore/soak profiles",
+      "effect_class": "LIVE_SURVIVAL",
+      "start_dependencies": [
+        "D03.ACTIVE_CUTOVER"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 92,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true
+    },
+    {
+      "id": "F02.FLEET_SOURCE",
+      "task": "F02",
+      "title": "N2 bounded slice/integration source and quota/cancel slot release",
+      "effect_class": "CANDIDATE_SOURCE",
+      "start_dependencies": [
+        "F01.ADAPTER_SOURCE",
+        "D02.SOURCE"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 55,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true
+    },
+    {
+      "id": "F02.N2_ACCEPTANCE",
+      "task": "F02",
+      "title": "Actual qualified N2 isolation/integration/fairness readback",
+      "effect_class": "ISOLATED_AGENT",
+      "start_dependencies": [
+        "D03.ACTIVE_CUTOVER",
+        "F01.ISOLATED_EXECUTION",
+        "F02.FLEET_SOURCE"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 93,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true
+    },
+    {
+      "id": "T01.BASELINE",
+      "task": "T01",
+      "title": "Existing source/trust/check coverage and eligibility matrix",
+      "effect_class": "READ_ONLY",
+      "start_dependencies": [
+        "B00.RECOVER"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 16,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true
+    },
+    {
+      "id": "T02.OPTIONAL_UPGRADE",
+      "task": "T02",
+      "title": "Optional provenance/telemetry upgrade via authorized route",
+      "effect_class": "TRUST_CONFIGURATION",
+      "start_dependencies": [
+        "T01.BASELINE"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 100,
+      "mandatory": false,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true
+    },
+    {
+      "id": "X01.ACCEPT",
+      "task": "X01",
+      "title": "Canonical applicable acceptance closure and readback",
+      "effect_class": "CONTROL_CAS",
+      "start_dependencies": [],
+      "completion_dependencies": [
+        "C1.SELECT",
+        "C2.QUARANTINE",
+        "M05.LIVE_HEALTH",
+        "A05.RETIRE",
+        "D04.SURVIVAL",
+        "F02.N2_ACCEPTANCE",
+        "T01.BASELINE",
+        "P52.FINAL_PRODUCT_ACCEPTANCE"
+      ],
+      "priority_hint": 99,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true
+    },
+    {
+      "id": "P52.NATIVE_ROUTE_DISCOVERY",
+      "task": "P52",
+      "title": "Discover native CLI, target privilege, auth scope and isolation separately",
+      "effect_class": "READ_ONLY_DIAGNOSTIC",
+      "start_dependencies": [
+        "B00.RECOVER"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 10,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true,
+      "target_cell_admission_required": false,
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "P52.INTAKE_SOURCE",
+      "task": "P52",
+      "title": "Natural-language request schema and native/UI intake",
+      "effect_class": "CANDIDATE_SOURCE",
+      "start_dependencies": [
+        "B00.RECOVER"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 31,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true,
+      "target_cell_admission_required": false,
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "P52.RESEARCH_OPTIONS_SOURCE",
+      "task": "P52",
+      "title": "Research sources, alternatives and recommendation source",
+      "effect_class": "CANDIDATE_SOURCE",
+      "start_dependencies": [
+        "P52.INTAKE_SOURCE"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 32,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true,
+      "target_cell_admission_required": false,
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "P52.FRONTDOOR_ACCEPTANCE",
+      "task": "P52",
+      "title": "Read-only research/options and input contract qualification",
+      "effect_class": "READ_ONLY_DIAGNOSTIC",
+      "start_dependencies": [
+        "P52.RESEARCH_OPTIONS_SOURCE"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 33,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true,
+      "target_cell_admission_required": false,
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "P52.SELECTION_CONTRACT",
+      "task": "P52",
+      "title": "Exact solution approval, scope and stale approval rejection source/tests",
+      "effect_class": "CANDIDATE_SOURCE",
+      "start_dependencies": [
+        "P52.RESEARCH_OPTIONS_SOURCE"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 34,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true,
+      "target_cell_admission_required": false,
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "P52.OPENCODE_SOURCE",
+      "task": "P52",
+      "title": "OpenCode native CLI or negotiated ACP thin adapter source",
+      "effect_class": "CANDIDATE_SOURCE",
+      "start_dependencies": [
+        "F01.ADAPTER_SOURCE"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 35,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true,
+      "target_cell_admission_required": false,
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "P52.ANTIGRAVITY_SOURCE",
+      "task": "P52",
+      "title": "Antigravity actual channel/version thin adapter source",
+      "effect_class": "CANDIDATE_SOURCE",
+      "start_dependencies": [
+        "F01.ADAPTER_SOURCE"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 36,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true,
+      "target_cell_admission_required": false,
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "P52.CODEX_ACCEPTANCE",
+      "task": "P52",
+      "title": "Actual Codex isolated task/cancel/receipt/reviewer qualification",
+      "effect_class": "ISOLATED_AGENT",
+      "start_dependencies": [
+        "P52.NATIVE_ROUTE_DISCOVERY",
+        "F01.ADAPTER_SOURCE",
+        "F01.CELL_PREPARE"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 37,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true,
+      "target_cell_admission_required": true,
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "P52.OPENCODE_ACCEPTANCE",
+      "task": "P52",
+      "title": "Actual OpenCode isolated task/cancel/receipt/reviewer qualification",
+      "effect_class": "ISOLATED_AGENT",
+      "start_dependencies": [
+        "P52.OPENCODE_SOURCE",
+        "F01.CELL_PREPARE"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 38,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true,
+      "target_cell_admission_required": true,
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "P52.ANTIGRAVITY_ACCEPTANCE",
+      "task": "P52",
+      "title": "Actual Antigravity isolated task/cancel/receipt/reviewer qualification",
+      "effect_class": "ISOLATED_AGENT",
+      "start_dependencies": [
+        "P52.ANTIGRAVITY_SOURCE",
+        "F01.CELL_PREPARE"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 39,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true,
+      "target_cell_admission_required": true,
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "P52.SHARD_REVIEW_INTEGRATION_SOURCE",
+      "task": "P52",
+      "title": "Slice DAG, write-set arbitration, review, integration and bounded repair source",
+      "effect_class": "CANDIDATE_SOURCE",
+      "start_dependencies": [
+        "P52.SELECTION_CONTRACT",
+        "D02.SOURCE"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 40,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true,
+      "target_cell_admission_required": false,
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "P52.VERTICAL_E2E",
+      "task": "P52",
+      "title": "One qualified route builds a real bounded sample end to end",
+      "effect_class": "ISOLATED_AGENT",
+      "start_dependencies": [
+        "P52.FRONTDOOR_ACCEPTANCE",
+        "P52.SELECTION_CONTRACT",
+        "P52.SHARD_REVIEW_INTEGRATION_SOURCE",
+        "F01.ISOLATED_EXECUTION",
+        "D02.EXECUTOR_INTEGRATION"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 41,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true,
+      "target_cell_admission_required": true,
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "P52.THREE_VENDOR_E2E",
+      "task": "P52",
+      "title": "All three brands build distinct slices with bounded async integration",
+      "effect_class": "ISOLATED_AGENT",
+      "start_dependencies": [
+        "P52.VERTICAL_E2E",
+        "P52.CODEX_ACCEPTANCE",
+        "P52.OPENCODE_ACCEPTANCE",
+        "P52.ANTIGRAVITY_ACCEPTANCE",
+        "F02.N2_ACCEPTANCE"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 42,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true,
+      "target_cell_admission_required": true,
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "P52.BENCHMARK_REGRESSION",
+      "task": "P52",
+      "title": "Security, performance and held-out repair/efficiency evaluation",
+      "effect_class": "ISOLATED_AGENT",
+      "start_dependencies": [
+        "P52.VERTICAL_E2E"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 43,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true,
+      "target_cell_admission_required": true,
+      "actual_evidence_refs": []
+    },
+    {
+      "id": "P52.FINAL_PRODUCT_ACCEPTANCE",
+      "task": "P52",
+      "title": "Complete product evidence packet; never select canonical by itself",
+      "effect_class": "READ_ONLY_DIAGNOSTIC",
+      "start_dependencies": [
+        "P52.THREE_VENDOR_E2E",
+        "P52.BENCHMARK_REGRESSION",
+        "D04.SURVIVAL",
+        "M05.LIVE_HEALTH",
+        "T01.BASELINE"
+      ],
+      "completion_dependencies": [],
+      "priority_hint": 44,
+      "mandatory": true,
+      "gate_scope": "EXACT_OPERATION_AND_RESOURCE",
+      "facts_source": "FRESH_PROVIDER_AND_ACCEPTED_EXACT_RECEIPTS",
+      "state": "RESOLVE_AT_EXECUTION_NOT_A_STATUS_CLAIM",
+      "authority": "RESOLVE_PER_OPERATION",
+      "not_a_new_human_gate": true,
+      "target_cell_admission_required": false,
+      "actual_evidence_refs": []
+    }
+  ],
+  "bootstrap_qualification_rule": "REQUIRED_START_SAFETY_PROOF_IS_NOT_FINAL_ACCEPTANCE_OF_THE_SAME_OPERATION",
+  "complete_task_status": "AGGREGATE_REQUIRED_APPLICABLE_UNITS_WITH_ACCEPTANCE_RECEIPTS",
+  "conditional_scope": "HANYAO live read requires its own admission; not auto-authorized by Factory spec",
+  "global_stop": {
+    "requires_full_catalog": true,
+    "requires_fresh_facts": true,
+    "subset_no_ready_is_global": false,
+    "unknown_input_result": "READINESS_INCOMPLETE",
+    "legal_ready_count_required": 0,
+    "goal_blocked_requires_actual_tool_threshold": true
+  },
+  "future_live_not_globally_forbidden": true,
+  "historical_no_dispatch_scope": "UNQUALIFIED_OPERATION_AND_D02_SHADOW_ONLY",
+  "protected_invariant_enforcement": "NOT_IMPLEMENTED_BY_THIS_PACKAGE",
+  "execution_owner": {
+    "owner": null,
+    "owner_generation": null,
+    "lease_until": null,
+    "execution_owner_allocated": false,
+    "proposed_owner_generation_policy": "NEXT_AVAILABLE_AT_PROMOTION",
+    "candidate_instance_id": "V52-OPTIMIZED-HANDOFF-20261002",
+    "lease_duration_seconds": "CONFIGURE_BOUNDED_TTL_AT_EXECUTION_CLAIM",
+    "allocation_transaction": "FRESH_CANONICAL_PRESTATE_AND_CONSUMED_IDENTITIES_CAS_AT_ACTUAL_SELECTION"
+  },
+  "union_revision": "UNION59-20261003",
+  "parent_operation_plan_sha256": "d0f82978679ba8abb720499eeec65ef981f94619b7849e26c7a1c8ac0cab33b5",
+  "parent_unit_count": 44,
+  "added_unit_count": 15,
+  "expected_union_count": 59,
+  "union_canonical_digest": "sha256:54f2528cf0efdcf457bc83773ba518fa881e93e558b13a3191ba42942f399280"
+}

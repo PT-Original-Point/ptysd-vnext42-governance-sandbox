@@ -1,0 +1,37 @@
+{
+  "schema": "VNEXT5_1_R2_SUPERVISOR_TASK_PROFILE_V1",
+  "task_name": "VNEXT5.1-R2-Supervisor",
+  "task_path": "\\",
+  "principal": {
+    "user_id": "NT AUTHORITY\\LOCAL SERVICE",
+    "logon_type": "ServiceAccount",
+    "run_level": "Limited"
+  },
+  "trigger": {
+    "kind": "AtStartup",
+    "random_delay_seconds": 30
+  },
+  "action": {
+    "node_executable_relative_path": "runtime/node.exe",
+    "entrypoint_relative_path": "bin/host-supervisor.mjs",
+    "arguments": [
+      "--project-id",
+      "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+      "--locator",
+      "refs/heads/governance/project-directory"
+    ],
+    "working_directory": "."
+  },
+  "settings": {
+    "start_when_available": true,
+    "allow_start_if_on_batteries": true,
+    "stop_if_going_on_batteries": false,
+    "multiple_instances": "IgnoreNew",
+    "execution_time_limit_seconds": 0,
+    "restart_on_failure_count": 255,
+    "restart_interval_seconds": 60
+  },
+  "host_effect": "REGISTER_ONE_DEDICATED_SCHEDULED_TASK",
+  "install_acceptance": "C7_HOST_ACCEPTANCE_ONLY",
+  "candidate_only": true
+}
