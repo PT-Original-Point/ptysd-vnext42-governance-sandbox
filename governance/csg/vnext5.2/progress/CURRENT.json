@@ -3,13 +3,13 @@
   "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
   "noncanonical": true,
   "writer": "ROOT_SINGLE_INTEGRATOR",
-  "sequence": 17,
-  "previous_locator_head": "61cf3800980779d412aa2919f0993cdaa3ce0df4",
+  "sequence": 18,
+  "previous_locator_head": "8d1ace80992a3c204a9613cde516007acc7037fa",
   "progress": {
     "repository": "PT-Original-Point/ptysd-vnext42-governance-sandbox",
-    "exact_head": "00c697b7c9dff974a9c4db231370c84fd49e5bf9",
+    "exact_head": "e01cdf25eba7ce952cd42b6528c68bb72aab979f",
     "current_path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/CURRENT.json",
-    "current_sha256": "sha256:3fd3697862d2ddeb972ab9a6d92b03ab6c2988f08064cb3e2c396da466c9a311",
+    "current_sha256": "sha256:2a9bccc16a0a215713fa9c0e47b1c19e3df0eac558564e218989983945b395bf",
     "manifest_path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/manifest.json"
   },
   "dispatch_authority": false,
@@ -33,13 +33,19 @@
     "heartbeat_hours": 4,
     "quota_policy": "EXTERNAL_LOCKED_AG_AND_MUSE_FIRST_LUNA_ROUTINE_DISPATCH_ZERO",
     "opencode_route": "DESKTOP_SERVICE_ACTUAL_MUSE_XHIGH_SOURCE_WORK_SUCCEEDED_HISTORICAL_FLEDGE429_NOT_PORTABLE",
-    "running_ids": [
-      "P52.OPENCODE_BOUNDARY_REPAIR"
-    ],
+    "running_ids": [],
     "queue_decision": "WORK_IN_PROGRESS",
     "global_exhausted": false,
-    "mission_complete": false
+    "mission_complete": false,
+    "quota_last_actual": {
+      "five_hour_used_percent": 61,
+      "weekly_used_percent": 41,
+      "scope": "SHARED_ACCOUNT_NOT_PER_SESSION"
+    },
+    "mcp_new_diff": "EXACT6_SOURCE_REVIEW_PLUS27_FIXTURES_PASS_FULL_LEGACY_AND_LIVE_NOT_ACCEPTED",
+    "next_actions": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/resume-batch-20261004/NEXT-ACTIONS.md",
+    "recoverable_review_work": true
   },
-  "active_manifest_policy": "CURRENT_PROJECTIONS_32_FILES_MAX40",
-  "historical_progress_head": "f734f851987f53d3cc2351141c6f418b947414a3"
+  "active_manifest_policy": "CURRENT_PROJECTIONS_39_FILES_MAX40",
+  "historical_progress_head": "00c697b7c9dff974a9c4db231370c84fd49e5bf9"
 }
