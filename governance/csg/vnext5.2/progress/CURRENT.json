@@ -3,13 +3,13 @@
   "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
   "noncanonical": true,
   "writer": "ROOT_SINGLE_INTEGRATOR",
-  "sequence": 19,
-  "previous_locator_head": "639da7e12d3e35fbe3026a5d0f52155ef6b3294b",
+  "sequence": 20,
+  "previous_locator_head": "71a2c70ab9b586bb371cd2e2da2fd2b4f0cac48d",
   "progress": {
     "repository": "PT-Original-Point/ptysd-vnext42-governance-sandbox",
-    "exact_head": "2bc4280cda5a18ab3342aae89c8743aaee2ac8ac",
+    "exact_head": "1cf3e48297a76fb7af92a6caedd2fb64ad95aad8",
     "current_path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/CURRENT.json",
-    "current_sha256": "sha256:76da6b338500dd7d71032660edc90a3ab4ef7c28840b7cd039c345cc8b3b9ecf",
+    "current_sha256": "sha256:5d4ba1824f6345d40281e66f2f1b8c9ff4f3476054b3a2c73ff2115bf0962c97",
     "manifest_path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/manifest.json"
   },
   "dispatch_authority": false,
@@ -30,13 +30,10 @@
     "human_resume": true,
     "actual_goal": "paused",
     "goal_resume_api": "UNSUPPORTED_NO_FAKE_ACTIVE",
-    "heartbeat_hours": 4,
     "quota_policy": "EXTERNAL_LOCKED_AG_AND_MUSE_FIRST_LUNA_ROUTINE_DISPATCH_ZERO",
     "opencode_route": "DESKTOP_SERVICE_ACTUAL_MUSE_XHIGH_SOURCE_WORK_SUCCEEDED_HISTORICAL_FLEDGE429_NOT_PORTABLE",
-    "running_ids": [
-      "P52.INTAKE_REVIEWED_REPAIR"
-    ],
-    "queue_decision": "WORK_IN_PROGRESS",
+    "running_ids": [],
+    "queue_decision": "WAITING_EXTERNAL_PER_LANE",
     "global_exhausted": false,
     "mission_complete": false,
     "quota_last_actual": {
@@ -49,8 +46,12 @@
     "mcp_new_diff": "EXACT6_SOURCE_REVIEW_PLUS27_FIXTURES_PASS_FULL_LEGACY_AND_LIVE_NOT_ACCEPTED",
     "next_actions": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/resume-batch-20261004/NEXT-ACTIONS.md",
     "recoverable_review_work": true,
-    "intake_repair": "ALL8_FINDINGS_NATIVE_MUSE_IN_FLIGHT",
-    "next_intent": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/resume-batch-20261004/intake-reviewed-repair/oc.intent.json"
+    "intake_repair": "BYTES_EXPORT_COLLECTED_23PASS1SKIP_DISTINCT_REVIEW_NATIVE_READ_DENIED",
+    "next_intent": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/resume-batch-20261004/intake-repaired-review/ag.intent.json",
+    "active_collection_minutes": 5,
+    "full_audit_hours": 4,
+    "progress_projection": "governance/csg/vnext5.2/progress/20261003-auto-continuation/PROGRESS.json",
+    "monitoring": "LOCAL_METADATA_OBSERVER_NO_MODEL_EXTERNAL_CLI_TRIGGER_NOT_SUPPORTED"
   },
   "active_manifest_policy": "CURRENT_PROJECTIONS_39_FILES_MAX40",
   "historical_progress_head": "00c697b7c9dff974a9c4db231370c84fd49e5bf9"
