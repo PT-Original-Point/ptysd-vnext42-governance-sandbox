@@ -1,0 +1,23 @@
+{
+  "recorded_at": "2026-10-04T14:27:42.706Z",
+  "scope": "SOURCE_ONLY_EXACT_PROVIDER_HEAD_PARENT_TREE_READBACK",
+  "pr": 386,
+  "head": "0c8a5bd23d5591571998c18ab49eb1eec0ba7968",
+  "tree": "ef2d8b94e92546917579fe1d211312a1ec4d8820",
+  "parent": "06da5fa224b65b9346e8b250dcea686d0ed458ee",
+  "producer_pr": 385,
+  "producer_head": "f45ef980a0194c54db6f2e3d5585577154ac5754",
+  "commits": 1,
+  "draft": true,
+  "structural": {
+    "status": "PASS",
+    "run": 37208465422,
+    "job": 111454545906
+  },
+  "independent_semantic": "EXACT_TWO_CHANGED_TEST_FILES_STATIC_PASS",
+  "bounded_driver": "SKIPPED_NOT_PASS",
+  "live_acceptance": "NOT_ACCEPTED",
+  "canonical": "CP200",
+  "canonical_write": false,
+  "mission_complete": false
+}

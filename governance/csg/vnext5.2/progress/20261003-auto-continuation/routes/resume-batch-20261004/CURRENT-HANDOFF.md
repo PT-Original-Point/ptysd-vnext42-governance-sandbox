@@ -1,11 +1,11 @@
 # 本輪接續施工
 
-更新 2026-10-04T13:26:04.708Z。
+更新 2026-10-04T14:30:56.249Z。
 
-- RUNTIME.SOURCE_PAIR_REBIND：NATIVE_RUNNING_SOURCE_REBIND；讀 routes/resume-batch-20261004/runtime-sourcepair-luna-rebind/luna.intent.json
-- HUMAN.DASHBOARD_FINAL7_SOURCE_REWORK：SUBMITTED_OUTCOME_PENDING；讀 routes/resume-batch-20261004/human-dashboard-final7-rework/ag.intent.json
+- HUMAN.DASHBOARD_FIXTURE_ONLY_DISTINCT_REVIEW：NATIVE_RUNNING_INDEPENDENT_REVIEW；讀 routes/resume-batch-20261004/human-dashboard-fixture-only-distinct-review/luna.intent.json
+- C1.FINAL_SOURCE_PAIR_NONSELECTING_PACKET：NATIVE_RUNNING_SOURCE；讀 routes/resume-batch-20261004/c1-final-sourcepair-luna/luna.intent.json
 
-- 穩定來源資格：{"research":"PR388_EXACT_HEAD_STRUCTURAL_PASS_LOCAL103_DISTINCT17_SEMANTIC_PASS_PREPARATORY_ONLY","mcp":"PR385_EXACT_HEAD_STRUCTURAL_PASS_LOCAL7_DISTINCT_FINAL_TEST_PASS_OTHER6_REVIEW_INHERITED_NO_FULL_LEGACY_LIVE","runtime":"PR386_SOURCE_PAIR_REBIND_LUNA_RUNNING","dashboard":"AG_SOURCE_REWORK7_RUNNING_NOT_QUALIFIED","producer_head":"f45ef980a0194c54db6f2e3d5585577154ac5754","research_head":"f4c754ed1e2f256b24c432511c01ae52592dd15f","readback":"routes/resume-batch-20261004/final-source-provider-readback.json"}
+- 穩定來源資格：{"research":"PR388_EXACT_HEAD_STRUCTURAL_PASS_LOCAL103_DISTINCT17_SEMANTIC_PASS_PREPARATORY_ONLY","mcp":"PR385_EXACT_HEAD_STRUCTURAL_PASS_LOCAL7_DISTINCT_FINAL_TEST_PASS_OTHER6_REVIEW_INHERITED_NO_FULL_LEGACY_LIVE","runtime":"PR386_SOURCE_PAIR_REBIND_LUNA_RUNNING","dashboard":{"source_static":"PASS_WITH_OBSERVER_LIFECYCLE_LIMIT","fixture":"REWORK_REQUIRED_FIXTURE_ONLY","review":"routes/resume-batch-20261004/human-dashboard-final2-distinct-review/result.json","next":"AG_FIXTURE_ONLY_REPAIR_THEN_DISTINCT_LUNA"},"producer_head":"f45ef980a0194c54db6f2e3d5585577154ac5754","research_head":"f4c754ed1e2f256b24c432511c01ae52592dd15f","readback":"routes/resume-batch-20261004/final-source-provider-readback.json","runtime_final":{"recorded_at":"2026-10-04T14:27:42.706Z","scope":"SOURCE_ONLY_EXACT_PROVIDER_HEAD_PARENT_TREE_READBACK","pr":386,"head":"0c8a5bd23d5591571998c18ab49eb1eec0ba7968","tree":"ef2d8b94e92546917579fe1d211312a1ec4d8820","parent":"06da5fa224b65b9346e8b250dcea686d0ed458ee","producer_pr":385,"producer_head":"f45ef980a0194c54db6f2e3d5585577154ac5754","commits":1,"draft":true,"structural":{"status":"PASS","run":37208465422,"job":111454545906},"independent_semantic":"EXACT_TWO_CHANGED_TEST_FILES_STATIC_PASS","bounded_driver":"SKIPPED_NOT_PASS","live_acceptance":"NOT_ACCEPTED","canonical":"CP200","canonical_write":false,"mission_complete":false}}
 - 先回收最新exact結果；全部精確finding一次交原作者返工；沒finding才freeze。一個作者一個result路徑，不重派在途工作。
 - 封存包的repositoryTree/moduleTree/pathset要實際核對；舊CP200樹冒充新來源的封存包已拒絕，保留原報告。
 - 稽核附件不是來源施工必要條件。被拒附件與inspect命令／代理不重讀，原已授權source仍可續做。

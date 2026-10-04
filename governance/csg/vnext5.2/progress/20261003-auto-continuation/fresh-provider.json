@@ -1,12 +1,12 @@
 {
   "schema": "vnext5.2.resume-fresh-authority.v1",
-  "observed_at": "2026-10-04T13:26:03.863Z",
+  "observed_at": "2026-10-04T14:29:31.551Z",
   "provider_refs": {
-    "refs/heads/codex/vnext5.2-construction-latest": "bcc1b530b875ac9556744a2643d642128d279c00",
+    "refs/heads/codex/vnext5.2-construction-latest": "96f98e5b913a0fb53962afc9bb95c0e89acba42d",
     "refs/heads/governance/project-directory": "38f4fc7cb2841e2318a97ff7a53e41b2ec07aef1",
     "refs/heads/v45/factory-control": "d39486601d851e31256852a24e9c1393b9046fe5",
     "refs/pull/385/head": "f45ef980a0194c54db6f2e3d5585577154ac5754",
-    "refs/pull/386/head": "c2bfa038121782a3ae903591981a0b05f52a7b38"
+    "refs/pull/386/head": "0c8a5bd23d5591571998c18ab49eb1eec0ba7968"
   },
   "directory": {
     "revision": "38f4fc7cb2841e2318a97ff7a53e41b2ec07aef1",

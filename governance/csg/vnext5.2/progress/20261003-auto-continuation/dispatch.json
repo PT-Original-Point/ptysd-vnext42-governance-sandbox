@@ -1,6 +1,6 @@
 {
   "schema": "vnext5.2.coordinator-dispatch.v1",
-  "observed_at": "2026-10-04T13:26:04.708Z",
+  "observed_at": "2026-10-04T14:30:56.249Z",
   "single_integrator": "root",
   "tasks": [
     {
@@ -1718,7 +1718,7 @@
       "task": "HUMAN.DASHBOARD_FINAL7_SOURCE_REWORK",
       "model": "gemini-3.8-flash-high",
       "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-AUTO-CONTINUATION-20261003",
-      "status": "SUBMITTED_OUTCOME_PENDING",
+      "status": "CLOSED_REVIEW_REQUIRED",
       "created_at": "2026-10-04T13:22:55.300Z",
       "write_set": [
         "routes/progress-observer.mjs",
@@ -1731,6 +1731,11 @@
       "pid": 24572,
       "conversation_id": "f132ddea-7e07-490f-9f27-f37ddcae1213",
       "actual_model": "gemini-3.8-flash-high",
+      "result_status": "SUCCESS",
+      "denied_action_count": 0,
+      "exit_code": 0,
+      "closed_at": "2026-10-04T13:35:58.525Z",
+      "result_response": "### Changed Paths\n- [`routes/progress-observer.mjs`](file:///C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-AUTO-CONTINUATION-20261003/routes/progress-observer.mjs)\n- [`routes/progress-human-view.mjs`](file:///C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-AUTO-CONTINUATION-20261003/routes/progress-human-view.mjs)\n- [`outputs/HUMAN-DASHBOARD-FINAL7-REWORK/dashboard-regression.fixture.mjs`](file:///C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-AUTO-CONTINUATION-20261003/outputs/HUMAN-DASHBOARD-FINAL7-REWORK/dashboard-regression.fixture.mjs)\n- [`outputs/HUMAN-DASHBOARD-FINAL7-REWORK/source-report.md`](file:///C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-AUTO-CONTINUATION-20261003/outputs/HUMAN-DASHBOARD-FINAL7-REWORK/source-report.md)\n\n---\n\n### Finding-by-Finding Disposition\n\n1. **`OBSERVER_LOCK_RECLAIM_TOCTOU` (P1)**:\n   - Atomic lock metadata publication via temporary file hard-link (`fs.linkSync`) with unique instance `token`.\n   - Contention fails closed on empty/malformed locks (`WRITER_LOCK_CONTENTION_UNKNOWN`) and dead PIDs (`STALE_LOCK_ROOT_RECOVERY_REQUIRED`); auto-stealing and file unlinking eliminated so Root recovery owns cleanup.\n   - `release()` validates stored owner `token` and `pid` before unlinking, preventing foreign replacement deletion.\n2. **`NATIVE_FRESHNESS_USES_INTENT_CREATED_AT` (P2)**:\n   - Removed `created_at` fallback; only dedicated native observation timestamps (`native_observed_at` ?? `observed_at`) provide freshness evidence.\n   - Added `isValidStrictUtcIso` validating 4-digit UTC ISO calendar round-trip (rejects Feb 30, Apr 31, and offsets). Recent `created_at` without native observation fails closed to `UNKNOWN_READBACK_REQUIRED`.\n3. **`PURE_FIXTURE_READS_REAL_FILESYSTEM_METADATA` (P2)**:\n   - Injected `statEvent` callback into `capture(options)`, removing direct `fs.statSync(file(eventsPath))` calls. Synthetic tests pass `statEvent: () => null` for 100% pure zero-I/O boundary.\n4. **`READ_RAW_BOUND_SIZE_RACE` (P2)**:\n   - Refactored `readRawBounded` to bind to an open file descriptor (`fs.openSync` + `fs.fstatSync`), read with `maxBytes + 1` limit, and verify buffer length. Over-bound snapshots reject with `EMFILESIZE`. Deterministic growth test added.\n5. **`REWORK_CARD_IGNORES_OLDER_PENDING_REWORK` (P2)**:\n   - Worker cards prioritize pending rework (`pendingRework = list.find(t => isReworkStatus(t.status))`) before falling back to latest/standby. Newer completed task + older returned rework renders `待返工修正` and assigns author.\n6. **`MISSION_COMPLETE_FIXTURE_ASSERTION_INCOMPLETE` (P2)**:\n   - Created `assertNoAffirmativeMissionComplete` stripping honest explanatory negations before asserting against affirmative claims. Added synthetic title/body failure cases and negation pass case.\n7. **`SCHEDULE_RENDERER_UPPER_BOUND_MISSING` (P3)**:\n   - Enforced 1440-minute upper bound in `renderHumanProgress`. Inputs > 1440 safely fall back to 30.\n\n---\n\n### Remaining Limits & Verification Status\n- **Execution Mode**: Zero commands executed (`run_command` forbidden; deniedinspect parked; production/runtime files untouched).\n- **Test Status**: **UNTESTED in this iteration**; ready for independent reviewer single-run qualification using the new pure fixture covering all 20 requirements.\n",
       "dispatch_source": "routes/resume-batch-20261004/human-dashboard-final7-rework/ag.intent.json"
     },
     {
@@ -1738,10 +1743,10 @@
       "task": "RUNTIME.SOURCE_PAIR_REBIND",
       "model": "gpt-6-luna",
       "reasoning_effort": "max",
-      "status": "NATIVE_RUNNING_SOURCE_REBIND",
+      "status": "CLOSED_SOURCE_REVIEW_REQUIRED",
       "agent_name": "/root/v52_research_repair6_luna_review",
-      "native_agent_status": "running",
-      "native_observed_at": "2026-10-04T13:23:05.7057234Z",
+      "native_agent_status": "completed",
+      "native_observed_at": "2026-10-04T13:54:00.9Z",
       "created_at": "2026-10-04T13:23:05.7083731Z",
       "worktree": "C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-RUNTIME-SOURCEPAIR-LUNA-WORK-20261004",
       "source_edit": true,
@@ -1755,7 +1760,228 @@
       "runtime_parent": "06da5fa224b65b9346e8b250dcea686d0ed458ee",
       "canonical_write": false,
       "production": false,
+      "native_status_evidence": "FRESH_COLLABORATION_LIST_AGENTS_EXACT_CANONICAL_AGENT_RUNNING_ONLY_NOT_EXECUTION_EFFECT_OR_MODEL_PROOF",
+      "readback_status": "NATIVE_AGENT_RUNNING_EFFECT_PROGRESS_REQUESTED_NO_REDISPATCH",
+      "effect_readback": {
+        "observed_at": "2026-10-04T13:54:00.9Z",
+        "source": "EXACT_NATIVE_AGENT_MESSAGE",
+        "actual_effects": [
+          "TWO_RUNTIME_TEST_FILES_EDITED_IN_ISOLATED_WORKTREE"
+        ],
+        "required10": "ORIGINAL10_REQUIRED_PATHS_PRESERVED_EXACT_FROZEN_TREE_OIDS",
+        "raw7": "MATCHED_REVIEW_BINDINGS",
+        "tests": "LOCAL_CORE26_PASS_V45_3_PASS_SOURCE_AUTHORITY_PASS_FINAL_DIFF_OUTPUT_PENDING",
+        "prohibited_matrix": "PARKED_PUBLISHER_BODY_READ_OR_EXECUTION",
+        "main_fresh": "06da5fa224b65b9346e8b250dcea686d0ed458ee",
+        "provider_write": false,
+        "canonical_write": false,
+        "host_dispatch": false
+      },
+      "closed_at": "2026-10-04T14:09:12.489Z",
+      "result_sha256": "ab38045251ec0ea5b19b78982cc7308bb5e89627150c559f3762b9f1b2d9a1bf",
       "dispatch_source": "routes/resume-batch-20261004/runtime-sourcepair-luna-rebind/luna.intent.json"
+    },
+    {
+      "id": "HUMAN.DASHBOARD_FINAL7_DISTINCT_LUNA_REVIEW",
+      "task": "HUMAN.DASHBOARD_FINAL7_DISTINCT_LUNA_REVIEW",
+      "model": "gpt-6-luna",
+      "reasoning_effort": "max",
+      "actual_model": "UNVERIFIED_NATIVE_SUBAGENT_CONTEXT_NOT_EXPOSED",
+      "status": "CLOSED_REVIEW_REQUIRED",
+      "agent_name": "/root/v52_dashboard_final7_luna_review",
+      "native_agent_status": "completed",
+      "native_observed_at": "2026-10-04T13:38:07.8438628Z",
+      "native_status_evidence": "COLLABORATION_SPAWN_EXPLICIT_LOCKED_MODEL_REQUEST",
+      "created_at": "2026-10-04T13:38:07.8467989Z",
+      "result_path": "routes/resume-batch-20261004/human-dashboard-final7-distinct-review/result.json",
+      "write_set": [
+        "routes/resume-batch-20261004/human-dashboard-final7-distinct-review/result.json"
+      ],
+      "source_write": false,
+      "canonical_write": false,
+      "production": false,
+      "closed_at": "2026-10-04T13:53:02.1614981Z",
+      "dispatch_source": "routes/resume-batch-20261004/human-dashboard-final7-distinct-review/luna.intent.json"
+    },
+    {
+      "id": "HUMAN.DASHBOARD_FINAL2_SOURCE_REWORK",
+      "task": "HUMAN.DASHBOARD_FINAL2_SOURCE_REWORK",
+      "model": "gemini-3.8-flash-high",
+      "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-AUTO-CONTINUATION-20261003",
+      "status": "CLOSED_REVIEW_REQUIRED",
+      "created_at": "2026-10-04T13:52:51.722Z",
+      "write_set": [
+        "routes/progress-observer.mjs",
+        "routes/progress-human-view.mjs",
+        "outputs/HUMAN-DASHBOARD-FINAL2-REWORK/**"
+      ],
+      "source_edit": true,
+      "canonical_write": false,
+      "production": false,
+      "pid": 31480,
+      "conversation_id": "5ba08a12-ea60-43f7-8c49-6b3224e4ee5b",
+      "actual_model": "gemini-3.8-flash-high",
+      "result_status": "SUCCESS",
+      "denied_action_count": 0,
+      "exit_code": 0,
+      "closed_at": "2026-10-04T13:56:15.677Z",
+      "result_response": "### 變更檔案清單 (Changed Paths)\n\n* [`routes/progress-observer.mjs`](file:///C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-AUTO-CONTINUATION-20261003/routes/progress-observer.mjs)\n* [`outputs/HUMAN-DASHBOARD-FINAL2-REWORK/dashboard-regression.fixture.mjs`](file:///C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-AUTO-CONTINUATION-20261003/outputs/HUMAN-DASHBOARD-FINAL2-REWORK/dashboard-regression.fixture.mjs)\n* [`outputs/HUMAN-DASHBOARD-FINAL2-REWORK/source-report.json`](file:///C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-AUTO-CONTINUATION-20261003/outputs/HUMAN-DASHBOARD-FINAL2-REWORK/source-report.json)\n\n---\n\n### 審查問題修復處置 (Finding-by-Finding Disposition)\n\n1. **[`OBSERVER_LOCK_RELEASE_OWNERSHIP_RACE`](file:///C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-AUTO-CONTINUATION-20261003/routes/progress-observer.mjs#L346-L365) (P1)**:\n   * **根本處置**：依 Root 裁決「DO NOT auto-unlink shared lock in release after a token check」，消除 userland 先讀後刪的 TOCTOU 競爭窗口。鎖釋放函式改採 fail-closed 安全協議：若無原子解除原語則不在退場時自動 unlink 共享鎖，保留由 Root 在舊進程確認終止後統一清理；若提供 `atomicRelinquish` 則原子核驗後安全解除。\n   * **測試回歸**：新增交錯競爭測試（Deterministic Interleaving Fixture），模擬讀取擁有者 token 後、刪除前由第三方置換為 `token-B`，驗證 release 絕不誤刪外部鎖。\n\n2. **[`FIXTURE_REAL_PROCESS_PROBE`](file:///C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-AUTO-CONTINUATION-20261003/outputs/HUMAN-DASHBOARD-FINAL2-REWORK/dashboard-regression.fixture.mjs#L427-L440) (P1)**:\n   * **根本處置**：於 [`checkProcessStatus`](file:///C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-AUTO-CONTINUATION-20261003/routes/progress-observer.mjs#L137-L171)、[`isProcessAlive`](file:///C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-AUTO-CONTINUATION-20261003/routes/progress-observer.mjs#L173-L175) 及 [`acquireWriterLock`](file:///C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-AUTO-CONTINUATION-20261003/routes/progress-observer.mjs#L183-L195) 注入進程狀態供應依賴（`checkProcessStatus` / `processStatusProvider`）。\n   * **測試回歸**：全面替換回歸測試中之真實 PID 與 `process.kill` 探測，全數改用純合成 PID 與 mock status provider，達到 100% 零真實系統進程探測與零真實磁碟 I/O。\n\n3. **全部 13 項既有需求與 7 項前期審查要點**：\n   * 完整納入 [`dashboard-regression.fixture.mjs`](file:///C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-AUTO-CONTINUATION-20261003/outputs/HUMAN-DASHBOARD-FINAL2-REWORK/dashboard-regression.fixture.mjs)，包含卡片返工優先顯示、動態 HTML 逃逸、否定式 Mission complete 允許合理解釋等。\n\n---\n\n### 限制與治理邊界 (Remaining Limits)\n\n* **作者不執行終端指令**：本輪嚴格遵守指令禁止約束，無任何 run_command、測試跑動或目錄雜湊產生；[`source-report.json`](file:///C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-AUTO-CONTINUATION-20261003/outputs/HUMAN-DASHBOARD-FINAL2-REWORK/source-report.json) 標記為 `UNTESTED_COMMANDS_FORBIDDEN`，留待審查員在靜態安全審查後執行單次合成驗證。\n* **觀察者鎖屬性**：未知或殘留鎖僅作為局部觀察者診斷，不阻塞建構或 MCP 傳輸主線。\n",
+      "dispatch_source": "routes/resume-batch-20261004/human-dashboard-final2-rework/ag.intent.json"
+    },
+    {
+      "id": "RUNTIME.SOURCE_PAIR_DISTINCT_AG_REVIEW",
+      "task": "RUNTIME.SOURCE_PAIR_DISTINCT_AG_REVIEW",
+      "model": "gemini-3.8-flash-high",
+      "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-RUNTIME-SOURCEPAIR-LUNA-WORK-20261004",
+      "status": "CLOSED_REVIEW_REQUIRED",
+      "created_at": "2026-10-04T14:08:04.224Z",
+      "write_set": [],
+      "source_write": false,
+      "source_bindings": [
+        {
+          "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-RUNTIME-SOURCEPAIR-LUNA-WORK-20261004\\tests\\cross-candidate-integration.mjs",
+          "sha256": "d47004305a5fa9acc125ad6ebe59609e6820887769401406cf5a51f8b43e1de3",
+          "blob": "7c0e19004f81fcd307050e0767e3c4b8ff7756a4"
+        },
+        {
+          "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-RUNTIME-SOURCEPAIR-LUNA-WORK-20261004\\tests\\cross-candidate-positive-integration.mjs",
+          "sha256": "eccf569ed51aeb4575db72f20f44d37220d9e791bf8cd31afd29d5abf04b536c",
+          "blob": "4fb00cd5e9e7349308cbf95ca27eab05355e4a1d"
+        }
+      ],
+      "result_path": "routes/resume-batch-20261004/runtime-sourcepair-ag-review/result.json",
+      "canonical_write": false,
+      "production": false,
+      "pid": 36444,
+      "conversation_id": "042ffc75-5d64-412f-8ffa-bebad5355fa2",
+      "actual_model": "gemini-3.8-flash-high",
+      "result_status": "SUCCESS",
+      "denied_action_count": 0,
+      "exit_code": 0,
+      "closed_at": "2026-10-04T14:09:21.478Z",
+      "result_response": "```json\n{\n  \"verdict\": \"PASS\",\n  \"actual_model\": \"Gemini 3.8 Flash (High)\",\n  \"review_scope\": \"EXACT_TWO_CHANGED_TEST_FILES_STATIC_NOT_WHOLE_RUNTIME_OR_EXECUTED_E2E\",\n  \"candidate_tree\": \"ef2d8b94e92546917579fe1d211312a1ec4d8820\",\n  \"producer_exact_head\": \"f45ef980a0194c54db6f2e3d5585577154ac5754\",\n  \"findings\": [],\n  \"files_actually_read\": [\n    \"C:\\\\Users\\\\x\\\\Documents\\\\ChatGPT\\\\治理控制-自動軟體工廠\\\\VNEXT5.2-RUNTIME-SOURCEPAIR-LUNA-WORK-20261004\\\\tests\\\\cross-candidate-integration.mjs\",\n    \"C:\\\\Users\\\\x\\\\Documents\\\\ChatGPT\\\\治理控制-自動軟體工廠\\\\VNEXT5.2-RUNTIME-SOURCEPAIR-LUNA-WORK-20261004\\\\tests\\\\cross-candidate-positive-integration.mjs\"\n  ],\n  \"tests_executed\": false,\n  \"live_acceptance\": \"NOT_ACCEPTED\"\n}\n```\n",
+      "dispatch_source": "routes/resume-batch-20261004/runtime-sourcepair-ag-review/ag.intent.json"
+    },
+    {
+      "id": "HUMAN.DASHBOARD_FINAL2_DISTINCT_LUNA_REVIEW",
+      "task": "HUMAN.DASHBOARD_FINAL2_DISTINCT_LUNA_REVIEW",
+      "model": "gpt-6-luna",
+      "reasoning_effort": "max",
+      "actual_model": "UNVERIFIED_NATIVE_SUBAGENT_CONTEXT_NOT_EXPOSED",
+      "status": "CLOSED_REVIEW_REQUIRED",
+      "agent_name": "/root/v52_dashboard_final7_luna_review",
+      "native_agent_status": "completed",
+      "native_observed_at": "2026-10-04T14:27:42.706Z",
+      "created_at": "2026-10-04T14:09:12.510Z",
+      "result_path": "routes/resume-batch-20261004/human-dashboard-final2-distinct-review/result.json",
+      "source_write": false,
+      "write_set": [
+        "routes/resume-batch-20261004/human-dashboard-final2-distinct-review/result.json"
+      ],
+      "canonical_write": false,
+      "production": false,
+      "closed_at": "2026-10-04T14:27:42.706Z",
+      "native_status_evidence": "EXACT_AGENT_FINAL_MESSAGE_AND_RESULT",
+      "verdict": "REWORK_REQUIRED_FIXTURE_ONLY",
+      "dispatch_source": "routes/resume-batch-20261004/human-dashboard-final2-distinct-review/luna.intent.json"
+    },
+    {
+      "id": "RUNTIME.FINAL_HEAD_SCOPED_AG_REVIEW",
+      "task": "RUNTIME.FINAL_HEAD_SCOPED_AG_REVIEW",
+      "model": "gemini-3.8-flash-high",
+      "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-RUNTIME-SOURCEPAIR-LUNA-WORK-20261004",
+      "status": "CLOSED_REVIEW_REQUIRED",
+      "created_at": "2026-10-04T14:14:17.108Z",
+      "write_set": [],
+      "source_write": false,
+      "source_bindings": [
+        {
+          "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-RUNTIME-SOURCEPAIR-LUNA-WORK-20261004\\tests\\cross-candidate-integration.mjs",
+          "sha256": "d47004305a5fa9acc125ad6ebe59609e6820887769401406cf5a51f8b43e1de3",
+          "blob": "7c0e19004f81fcd307050e0767e3c4b8ff7756a4"
+        },
+        {
+          "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-RUNTIME-SOURCEPAIR-LUNA-WORK-20261004\\tests\\cross-candidate-positive-integration.mjs",
+          "sha256": "eccf569ed51aeb4575db72f20f44d37220d9e791bf8cd31afd29d5abf04b536c",
+          "blob": "4fb00cd5e9e7349308cbf95ca27eab05355e4a1d"
+        }
+      ],
+      "result_path": "routes/resume-batch-20261004/runtime-final-head-ag-review/result.json",
+      "canonical_write": false,
+      "production": false,
+      "pid": 34420,
+      "conversation_id": "ce6ff93d-60af-4371-add9-0a5b0792758f",
+      "actual_model": "gemini-3.8-flash-high",
+      "result_status": "SUCCESS",
+      "denied_action_count": 0,
+      "exit_code": 0,
+      "closed_at": "2026-10-04T14:15:00.763Z",
+      "result_response": "```json\n{\n  \"verdict\": \"PASS\",\n  \"actual_model\": \"Gemini 3.8 Flash (High)\",\n  \"review_scope\": \"EXACT_TWO_CHANGED_TEST_FILES_STATIC_NOT_WHOLE_RUNTIME_OR_EXECUTED_E2E\",\n  \"runtime_exact_head\": \"0c8a5bd23d5591571998c18ab49eb1eec0ba7968\",\n  \"candidate_tree\": \"ef2d8b94e92546917579fe1d211312a1ec4d8820\",\n  \"producer_exact_head\": \"f45ef980a0194c54db6f2e3d5585577154ac5754\",\n  \"findings\": [],\n  \"files_actually_read\": [\n    \"C:\\\\Users\\\\x\\\\Documents\\\\ChatGPT\\\\治理控制-自動軟體工廠\\\\VNEXT5.2-RUNTIME-SOURCEPAIR-LUNA-WORK-20261004\\\\tests\\\\cross-candidate-integration.mjs\",\n    \"C:\\\\Users\\\\x\\\\Documents\\\\ChatGPT\\\\治理控制-自動軟體工廠\\\\VNEXT5.2-RUNTIME-SOURCEPAIR-LUNA-WORK-20261004\\\\tests\\\\cross-candidate-positive-integration.mjs\"\n  ],\n  \"tests_executed\": false,\n  \"live_acceptance\": \"NOT_ACCEPTED\"\n}\n```\n",
+      "dispatch_source": "routes/resume-batch-20261004/runtime-final-head-ag-review/ag.intent.json"
+    },
+    {
+      "id": "HUMAN.DASHBOARD_FIXTURE_ONLY_REWORK",
+      "task": "HUMAN.DASHBOARD_FIXTURE_ONLY_REWORK",
+      "model": "gemini-3.8-flash-high",
+      "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-AUTO-CONTINUATION-20261003",
+      "status": "CLOSED_REVIEW_REQUIRED",
+      "created_at": "2026-10-04T14:26:20.612Z",
+      "write_set": [
+        "outputs/HUMAN-DASHBOARD-FIXTURE-ONLY-REWORK/dashboard-regression.fixture.mjs",
+        "outputs/HUMAN-DASHBOARD-FIXTURE-ONLY-REWORK/source-report.json"
+      ],
+      "source_edit": true,
+      "canonical_write": false,
+      "production": false,
+      "pid": 24680,
+      "conversation_id": "1ccb792b-4e0f-405a-a43c-4f08c4bd725c",
+      "actual_model": "gemini-3.8-flash-high",
+      "result_status": "SUCCESS",
+      "denied_action_count": 0,
+      "exit_code": 0,
+      "closed_at": "2026-10-04T14:29:40.101Z",
+      "result_response": "### Fixture-Only Rework Summary\n\n**Authorization & Provenance:**\n- **Author Model**: Gemini 3.8 Flash (High)\n- **Source Root**: `C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-AUTO-CONTINUATION-20261003`\n- **Execution Mode**: Pure static qualification / native editor tools only (`UNTESTED_COMMANDS_FORBIDDEN`). No `run_command`, terminal, test runner, native inventory, or real host process/filesystem I/O was invoked.\n- **Source Module Freeze**: Both `routes/progress-observer.mjs` and `routes/progress-human-view.mjs` are **frozen** (0 modifications). Historical artifacts in `outputs/HUMAN-DASHBOARD-FINAL2-REWORK/` and elsewhere remain preserved.\n\n---\n\n### Batch Fix Enumeration\n\nBoth findings from reviewer evaluation `routes/resume-batch-20261004/human-dashboard-final2-distinct-review/result.json` have been resolved in a single batch in the new fixture directory `outputs/HUMAN-DASHBOARD-FIXTURE-ONLY-REWORK/`:\n\n1. **`FIXTURE_COPY_FALLBACK_COMMENT_FALSE_POSITIVE`** (P2)\n   - **File**: [`dashboard-regression.fixture.mjs`](file:///C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-AUTO-CONTINUATION-20261003/outputs/HUMAN-DASHBOARD-FIXTURE-ONLY-REWORK/dashboard-regression.fixture.mjs#L215-L230)\n   - **Root Cause**: The fixture previously ran `/copyFileSync/.test(write.toString())`, which matched the explanatory fail-closed comment at `routes/progress-observer.mjs:96` (`// Fail closed: preserve target untouched, never copyFileSync over target`), triggering a false-positive assertion failure despite the safe implementation.\n   - **Fix**: Strips single-line (`//...`) and multi-line (`/*...*/`) comments prior to evaluating `write` executable call syntax with `\\bcopyFileSync\\b`. The strict safety assertion prohibiting executable copy fallback is preserved without comment false positives.\n\n2. **`FIXTURE_LOCK_MOCK_COUNTS_TEMP_CLEANUP_AS_SHARED_LOCK_DELETION`** (P2)\n   - **File**: [`dashboard-regression.fixture.mjs`](file:///C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-AUTO-CONTINUATION-20261003/outputs/HUMAN-DASHBOARD-FIXTURE-ONLY-REWORK/dashboard-regression.fixture.mjs#L34-L125)\n   - **Related Source**: `routes/progress-observer.mjs:270`\n   - **Root Cause**: The lock mocks previously reported `existsSync() === true` unconditionally and their `unlinkSync` spies ignored the target path. Because `acquireWriterLock` cleans up its own contender-owned temporary lock (`lockFilePath + '.tmp-' + token`) in `finally`, the spy recorded a deletion during initial setup even when the shared lock was preserved, which would cause subsequent shared-lock preservation assertions to fail.\n   - **Fix**: Implemented a reusable, path-aware mock filesystem [`createPathAwareLockFs`](file:///C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-AUTO-CONTINUATION-20261003/outputs/HUMAN-DASHBOARD-FIXTURE-ONLY-REWORK/dashboard-regression.fixture.mjs#L34-L125) backed by an in-memory `Map` keyed by exact path. The mock distinguishes contender-owned temporary cleanup from the shared lock path, tracking unlinked paths accurately.\n   - **Comprehensive Case Coverage**: Applied across all lock test cases:\n     - *Partial lock contention*: asserts `partialLockPath` remains on disk and was never unlinked while contender temporary cleanup succeeded.\n     - *Stale lock contention*: asserts two competing dead-PID reclaimers both fail closed without unlinking the shared `staleLockPath`.\n     - *Standard release*: verifies default release leaves the shared lock on disk without auto-unlinking (Root-owned recovery).\n     - *Interleaving simulation*: verifies that contender replacement of lock with `token-B` during release execution is detected by atomic ownership checks and foreign replacement lock is **not** deleted.\n\n---\n\n### Output Artifacts Created\n\n1. [`outputs/HUMAN-DASHBOARD-FIXTURE-ONLY-REWORK/dashboard-regression.fixture.mjs`](file:///C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-AUTO-CONTINUATION-20261003/outputs/HUMAN-DASHBOARD-FIXTURE-ONLY-REWORK/dashboard-regression.fixture.mjs)\n   - All 22 test cases preserved and verified for interface, return shape, and mock isolation.\n   - Wholly pure synthetic test suite: zero real `process.kill`, zero real host fs I/O, zero network/model calls, zero side effects on import.\n2. [`outputs/HUMAN-DASHBOARD-FIXTURE-ONLY-REWORK/source-report.json`](file:///C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-AUTO-CONTINUATION-20261003/outputs/HUMAN-DASHBOARD-FIXTURE-ONLY-REWORK/source-report.json)\n   - Full structured report recording `UNTESTED_COMMANDS_FORBIDDEN`, complete finding dispositions, frozen source declarations, and purity isolation guarantees.\n",
+      "dispatch_source": "routes/resume-batch-20261004/human-dashboard-fixture-only-rework/ag.intent.json"
+    },
+    {
+      "id": "C1.FINAL_SOURCE_PAIR_NONSELECTING_PACKET",
+      "task": "C1.FINAL_SOURCE_PAIR_NONSELECTING_PACKET",
+      "status": "NATIVE_RUNNING_SOURCE",
+      "model": "gpt-6-luna",
+      "reasoning_effort": "max",
+      "actual_model": "UNVERIFIED_CONTEXT_METADATA_UNEXPOSED",
+      "agent_name": "/root/v52_research_repair6_luna_review",
+      "created_at": "2026-10-04T14:27:42.706Z",
+      "native_observed_at": "2026-10-04T14:27:42.706Z",
+      "native_agent_status": "running",
+      "write_set": [
+        "outputs/C1-FINAL-SOURCEPAIR-LUNA/**"
+      ],
+      "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-AUTO-CONTINUATION-20261003",
+      "source_edit": true,
+      "canonical_write": false,
+      "production": false,
+      "dispatch_source": "routes/resume-batch-20261004/c1-final-sourcepair-luna/luna.intent.json"
+    },
+    {
+      "id": "HUMAN.DASHBOARD_FIXTURE_ONLY_DISTINCT_REVIEW",
+      "task": "HUMAN.DASHBOARD_FIXTURE_ONLY_DISTINCT_REVIEW",
+      "model": "gpt-6-luna",
+      "reasoning_effort": "max",
+      "actual_model": "UNVERIFIED_CONTEXT_METADATA_UNEXPOSED",
+      "agent_name": "/root/v52_dashboard_final7_luna_review",
+      "status": "NATIVE_RUNNING_INDEPENDENT_REVIEW",
+      "native_agent_status": "running",
+      "native_observed_at": "2026-10-04T14:30:56.182Z",
+      "native_status_evidence": "EXACT_FOLLOWUP_DISPATCH",
+      "created_at": "2026-10-04T14:30:56.182Z",
+      "source_edit": false,
+      "write_set": [
+        "routes/resume-batch-20261004/human-dashboard-fixture-only-distinct-review/result.json"
+      ],
+      "canonical_write": false,
+      "production": false,
+      "dispatch_source": "routes/resume-batch-20261004/human-dashboard-fixture-only-distinct-review/luna.intent.json"
     }
   ],
   "collection": "root reads native thread/subagent updates then exact result paths; Human copying unnecessary",

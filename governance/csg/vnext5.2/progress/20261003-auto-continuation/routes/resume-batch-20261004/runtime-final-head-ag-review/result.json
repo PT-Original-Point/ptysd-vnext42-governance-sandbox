@@ -1,0 +1,33 @@
+{
+  "verdict": "PASS",
+  "actual_model": "Gemini 3.8 Flash (High)",
+  "review_scope": "EXACT_TWO_CHANGED_TEST_FILES_STATIC_NOT_WHOLE_RUNTIME_OR_EXECUTED_E2E",
+  "runtime_exact_head": "0c8a5bd23d5591571998c18ab49eb1eec0ba7968",
+  "candidate_tree": "ef2d8b94e92546917579fe1d211312a1ec4d8820",
+  "producer_exact_head": "f45ef980a0194c54db6f2e3d5585577154ac5754",
+  "findings": [],
+  "files_actually_read": [
+    "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-RUNTIME-SOURCEPAIR-LUNA-WORK-20261004\\tests\\cross-candidate-integration.mjs",
+    "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-RUNTIME-SOURCEPAIR-LUNA-WORK-20261004\\tests\\cross-candidate-positive-integration.mjs"
+  ],
+  "tests_executed": false,
+  "live_acceptance": "NOT_ACCEPTED",
+  "collected_at": "2026-10-04T14:27:42.706Z",
+  "native_model": "gemini-3.8-flash-high",
+  "denied_action_count": 0,
+  "source_local_tests": {
+    "core": "26/26",
+    "v45": "3/3",
+    "source_authority": "PASS",
+    "cross_candidate_matrix": "PARKED_NOT_RUN"
+  },
+  "structural": {
+    "status": "PASS",
+    "run": 37208465422,
+    "job": 111454545906
+  },
+  "bounded_driver": "SKIPPED_NOT_PASS",
+  "whole_runtime_semantic": "NOT_PROVEN",
+  "canonical_write": false,
+  "mission_complete": false
+}

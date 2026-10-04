@@ -1,0 +1,257 @@
+{
+  "schema": "VNEXT5.2.HUMAN_DASHBOARD_FINAL2_DISTINCT_REVIEW.v1",
+  "task": "HUMAN.DASHBOARD_FINAL2_SOURCE_QUALIFICATION",
+  "overall_verdict": "REWORK_REQUIRED_FIXTURE_ONLY",
+  "source_static_verdict": "PASS_STATIC_WITH_OBSERVER_LIFECYCLE_LIMIT",
+  "fixture_verdict": "REWORK_REQUIRED",
+  "review_type": "independent static qualification plus one authorized pure synthetic fixture invocation",
+  "reviewer_model_provenance": {
+    "requested": "gpt-6-luna/max",
+    "actual": "unverified; this turn does not expose actual model metadata"
+  },
+  "author_receipt": {
+    "intent_path": "routes/resume-batch-20261004/human-dashboard-final2-rework/ag.intent.json",
+    "requested_author_model": "gemini-3.8-flash-high",
+    "actual_author_model": "gemini-3.8-flash-high",
+    "status": "CLOSED_REVIEW_REQUIRED",
+    "result_status": "SUCCESS",
+    "denied_action_count": 0,
+    "author_tests": "UNTESTED_COMMANDS_FORBIDDEN per source-report.json; author SUCCESS is not independent qualification"
+  },
+  "source_bindings": [
+    {
+      "path": "routes/progress-observer.mjs",
+      "bytes": 28658,
+      "lines": 785,
+      "sha256": "327cf7dc74f3d7c9f800382ba2963b00314e60130561b9fae542c2881b3fb4a5"
+    },
+    {
+      "path": "routes/progress-human-view.mjs",
+      "bytes": 19117,
+      "lines": 230,
+      "sha256": "746a1d11b6126b27ed3b6deb39729e046ea751f8fa79362030639890e21552cd"
+    },
+    {
+      "path": "outputs/HUMAN-DASHBOARD-FINAL2-REWORK/dashboard-regression.fixture.mjs",
+      "bytes": 35702,
+      "lines": 863,
+      "sha256": "8184765dc7f514c45e82d9b7e90b155a789cc4e1871d19c0a4d989a9f8198c9a"
+    },
+    {
+      "path": "outputs/HUMAN-DASHBOARD-FINAL2-REWORK/source-report.json",
+      "bytes": 7617,
+      "lines": 159,
+      "sha256": "a562bc392b998e3e173aafb5ce35cc379c6cc5c40971495ef957c228003833af"
+    }
+  ],
+  "purity_precondition": {
+    "static_transitive_review": "PASS",
+    "evidence": [
+      "progress-observer.mjs imports built-ins and progress-human-view.mjs; top-level definitions are inert. Its main guard is false when imported by the fixture and does not enter observer runtime.",
+      "All seven fixture capture() calls inject read, readRaw, write, statEvent, and now; capture therefore does not call default fs readers/writer/statEvent.",
+      "All seven fixture acquireWriterLock() calls inject synthetic process-status callbacks. The direct checkProcessStatus(-999) case returns before any kill operation, and process-status unit cases supply mock function/object providers.",
+      "readRawBounded() is called with mockGrowthFs. Lock tests supply mock fs objects. The atomicRelinquish test adapter is an in-memory interleaving model only.",
+      "No fixture top-level code invokes runPureDashboardFixture(); imports and helper definitions were statically reviewed before the single invocation."
+    ],
+    "limits": [
+      "capture() copies process.pid and process.argv into projection metadata; these are read-only metadata reads, not process-table probes or process I/O.",
+      "The production default fs object has no atomicRelinquish member. Normal release therefore returns false and leaves the shared lock for Root cleanup after exact old-owner stop confirmation. The fixture callback is not evidence of a native atomic filesystem primitive."
+    ]
+  },
+  "test_execution": {
+    "fixture_path": "outputs/HUMAN-DASHBOARD-FINAL2-REWORK/dashboard-regression.fixture.mjs",
+    "invocation_count": 1,
+    "expected_result_entries": 22,
+    "completed_case_blocks": 2,
+    "failed_case_blocks": 1,
+    "not_reached_case_blocks": 19,
+    "execution_result": "FAILED",
+    "failure": {
+      "id": "COPY_FALLBACK_NOT_ATOMIC",
+      "file": "outputs/HUMAN-DASHBOARD-FINAL2-REWORK/dashboard-regression.fixture.mjs",
+      "line": 139,
+      "evidence": "The assertion searches write.toString() for /copyFileSync/. The source's fail-closed comment at routes/progress-observer.mjs:96 contains the term 'copyFileSync', so the assertion fails although write has no executable copyFileSync call.",
+      "actual_error": "AssertionError: No unsafe copyFileSync fallback in write implementation"
+    },
+    "retry_or_edit_after_failure": false,
+    "actual_host_fs_process_or_native_io_in_executed_fixture_prefix": false,
+    "provider_host_process_restart_or_kill": false
+  },
+  "requirement_dispositions": [
+    {
+      "id": "OBSERVER_SINGLE_WRITER_NOT_ENFORCED",
+      "source_disposition": "PASS_STATIC_SOURCE",
+      "fixture_disposition": "CASE_PASSED",
+      "evidence": "Hard-link publication and exclusive-create fallback gate lock ownership; active WATCH refuses ONE_SHOT. Fixture block at lines 53-94 completed."
+    },
+    {
+      "id": "WATCH_VERSION_HANDOFF_MISSING",
+      "source_disposition": "PASS_STATIC_ROOT_OWNED_HANDOFF",
+      "fixture_disposition": "CASE_PASSED",
+      "evidence": "Active version mismatch returns UPGRADE_REQUIRED_ACTIVE_WATCHER_OLD_VERSION without killing or taking over the old watcher; main locks before capture."
+    },
+    {
+      "id": "COPY_FALLBACK_NOT_ATOMIC",
+      "source_disposition": "PASS_STATIC_SOURCE",
+      "fixture_disposition": "FAILED_FIXTURE_ASSERTION_FALSE_POSITIVE",
+      "evidence": "write publishes through rename and fails closed; the test at fixture:139 matches the negating source comment at observer:96."
+    },
+    {
+      "id": "DENIAL_STATUS_OVERWRITTEN_BY_RESULT_READ",
+      "source_disposition": "PASS_STATIC_SOURCE",
+      "fixture_disposition": "NOT_REACHED",
+      "evidence": "isDenied is computed from the original PERMISSION_PARKED state, denial count, and result denial; the phase branch selects PERMISSION_PARKED before completed status."
+    },
+    {
+      "id": "UNREADABLE_RESULT_CAN_REACH_COMPLETED_OR_ACK",
+      "source_disposition": "PASS_STATIC_SOURCE",
+      "fixture_disposition": "NOT_REACHED",
+      "evidence": "Read/parse/schema errors prevent ACK matching and route to UNKNOWN_READBACK_REQUIRED or READBACK_UNAVAILABLE; no declared digest is trusted."
+    },
+    {
+      "id": "RESULT_FIELDS_AND_DIGEST_HAVE_READ_RACE",
+      "source_disposition": "PASS_STATIC_SOURCE",
+      "fixture_disposition": "NOT_REACHED",
+      "evidence": "One bounded raw buffer is hashed and the same buffer is parsed; no stringify fallback."
+    },
+    {
+      "id": "MTIME_STILL_AFFECTS_LEGACY_ACK_AND_AGE",
+      "source_disposition": "PASS_STATIC_SOURCE",
+      "fixture_disposition": "NOT_REACHED",
+      "evidence": "Closed timestamps and ACK signatures use explicit intent/result data; statEvent mtime is used only for native activity display/alerts."
+    },
+    {
+      "id": "INVALID_NATIVE_AGENT_OBSERVATION_TIME_READBACK_REQUIRED",
+      "source_disposition": "PASS_STATIC_SOURCE",
+      "fixture_disposition": "NOT_REACHED",
+      "evidence": "Strict UTC ISO/calendar round-trip, future tolerance, and 10-minute age bounds gate RUNNING_OUTCOME_PENDING."
+    },
+    {
+      "id": "INVALID_DASHBOARD_OBSERVATION_MARKED_FRESH",
+      "source_disposition": "PASS_CAPTURE_PATH_WITH_LIMITATION",
+      "fixture_disposition": "NOT_REACHED",
+      "evidence": "Missing/unparseable/stale/far-future observations render stale/unknown; capture emits ISO UTC. Direct renderer calls still accept parseable noncanonical strings because they use Date.parse."
+    },
+    {
+      "id": "ACK_DISPOSITION_UNVALIDATED",
+      "source_disposition": "PASS_STATIC_SOURCE",
+      "fixture_disposition": "NOT_REACHED",
+      "evidence": "ACK disposition must be an explicit allowlisted string and signatures must match the content-derived semantic or legacy signature."
+    },
+    {
+      "id": "RETURNED_REWORK_MISREPORTED_AS_IDLE",
+      "source_disposition": "PASS_STATIC_SOURCE",
+      "fixture_disposition": "NOT_REACHED",
+      "evidence": "The renderer selects pending rework from the full brand list before latest-task standby."
+    },
+    {
+      "id": "UNESCAPED_SCHEDULE_INTERVAL_IN_HTML",
+      "source_disposition": "PASS_STATIC_SOURCE",
+      "fixture_disposition": "NOT_REACHED",
+      "evidence": "Dynamic HTML is escaped; schedule input is numeric, bounded, and falls back to 30 for invalid input."
+    },
+    {
+      "id": "PURE_FIXTURE_FALSE_POSITIVE",
+      "source_disposition": "PASS_STATIC_FIXTURE_DESIGN",
+      "fixture_disposition": "NOT_REACHED",
+      "evidence": "Whole-output assertion removes the stated explanatory negations and otherwise rejects any remaining Mission complete phrase."
+    },
+    {
+      "id": "OBSERVER_LOCK_RECLAIM_TOCTOU",
+      "source_disposition": "PASS_STATIC_SOURCE",
+      "fixture_disposition": "NOT_REACHED",
+      "evidence": "Malformed, unreadable, and stale lock contention fail closed without stealing or unlinking the shared lock."
+    },
+    {
+      "id": "NATIVE_FRESHNESS_USES_INTENT_CREATED_AT",
+      "source_disposition": "PASS_STATIC_SOURCE",
+      "fixture_disposition": "NOT_REACHED",
+      "evidence": "Freshness uses native_observed_at ?? observed_at; created_at is used only as submitted_at display data."
+    },
+    {
+      "id": "PURE_FIXTURE_READS_REAL_FILESYSTEM_METADATA",
+      "source_disposition": "PASS_STATIC_CAPTURE_INJECTION",
+      "fixture_disposition": "STATIC_GATE_PASSED_CASE_NOT_REACHED",
+      "evidence": "All seven capture calls inject statEvent and all read/readRaw/write callbacks, preventing default filesystem access."
+    },
+    {
+      "id": "READ_RAW_BOUND_SIZE_RACE",
+      "source_disposition": "PASS_STATIC_SOURCE",
+      "fixture_disposition": "NOT_REACHED",
+      "evidence": "readRawBounded opens one descriptor, caps the read at maxBytes+1, and rejects any returned byte count over the limit."
+    },
+    {
+      "id": "REWORK_CARD_IGNORES_OLDER_PENDING_REWORK",
+      "source_disposition": "PASS_STATIC_SOURCE",
+      "fixture_disposition": "NOT_REACHED",
+      "evidence": "Pending rework is selected from the brand's sorted full list before standby based on latest."
+    },
+    {
+      "id": "MISSION_COMPLETE_FIXTURE_ASSERTION_INCOMPLETE",
+      "source_disposition": "PASS_STATIC_FIXTURE_DESIGN",
+      "fixture_disposition": "NOT_REACHED",
+      "evidence": "Fixture includes affirmative title/body cases and an explanatory-negation case; the helper rejects any remaining affirmative phrase."
+    },
+    {
+      "id": "SCHEDULE_RENDERER_UPPER_BOUND_MISSING",
+      "source_disposition": "PASS_STATIC_SOURCE",
+      "fixture_disposition": "NOT_REACHED",
+      "evidence": "Renderer enforces 0 < minutes <= 1440; fixture includes maximum and over-bound cases."
+    }
+  ],
+  "additional_p1_dispositions": [
+    {
+      "id": "OBSERVER_LOCK_RELEASE_OWNERSHIP_RACE",
+      "source_disposition": "CLOSED_BY_FAIL_CLOSED_NO_AUTO_UNLINK",
+      "fixture_disposition": "NOT_REACHED",
+      "evidence": "release() returns false without unlink when standard Node fs is used. Root must confirm the exact old owner has stopped before local lock cleanup; this limitation affects observer restart only."
+    },
+    {
+      "id": "FIXTURE_REAL_PROCESS_PROBE",
+      "source_disposition": "CLOSED_BY_INJECTED_STATUS_PROVIDER",
+      "fixture_disposition": "STATIC_GATE_PASSED_CASE_NOT_REACHED",
+      "evidence": "All positive-PID checks from fixture use injected callbacks/providers; the invalid negative PID case returns before process.kill. No real process-table probe is reachable in the fixture's executed test path."
+    }
+  ],
+  "findings": [
+    {
+      "id": "FIXTURE_COPY_FALLBACK_COMMENT_FALSE_POSITIVE",
+      "priority": "P2",
+      "file": "outputs/HUMAN-DASHBOARD-FINAL2-REWORK/dashboard-regression.fixture.mjs",
+      "line": 139,
+      "reason": "The fixture's source-string regex finds 'copyFileSync' in an explanatory fail-closed comment, so it rejects the safe production implementation. This was the observed failure on the single run.",
+      "required_fix": "Change the call-shape assertion so it ignores comments or inspects executable AST/call syntax; alternatively exercise the fail-closed rename behavior with injected dependencies. Keep the safety assertion."
+    },
+    {
+      "id": "FIXTURE_LOCK_MOCK_COUNTS_TEMP_CLEANUP_AS_SHARED_LOCK_DELETION",
+      "priority": "P2",
+      "file": "outputs/HUMAN-DASHBOARD-FINAL2-REWORK/dashboard-regression.fixture.mjs",
+      "line": 440,
+      "related_source_file": "routes/progress-observer.mjs",
+      "related_source_line": 270,
+      "reason": "The lock mocks report existsSync() === true for every path and their unlinkSync spy ignores its path. acquireWriterLock always attempts to unlink its own tempLockPath in finally, so these spies become true during setup even though the shared lock was preserved; later assertions at fixture lines 457, 513, 542, and 599 would fail.",
+      "required_fix": "Use path-aware mock state (for example a Map keyed by exact path). Make existsSync/unlinkSync distinguish the contender-owned tempLockPath from the shared lock path, and assert that only shared-lock deletion is prohibited. Preserve partial-lock, stale-lock, and foreign-replacement assertions."
+    }
+  ],
+  "lifecycle_and_acceptance_limits": [
+    "Normal observer release intentionally leaves the shared lock. Root exact-owner cleanup is required after the prior observer has been confirmed stopped; this is limited to restarting the local observer and does not gate construction or MCP.",
+    "The optional fsImpl.atomicRelinquish seam is trusted external behavior. The production main path uses standard Node fs, which has no such method and therefore takes the safe no-unlink path. The synthetic callback is only a test model, not a verified native atomic filesystem primitive.",
+    "Static/source PASS is not a live observer, installed dashboard, provider/MCP/SYSTEM, no-token, reboot, or Mission acceptance. No such state was queried or established."
+  ],
+  "scope_limits": {
+    "exact_inputs_read": [
+      "routes/progress-observer.mjs",
+      "routes/progress-human-view.mjs",
+      "outputs/HUMAN-DASHBOARD-FINAL2-REWORK/dashboard-regression.fixture.mjs",
+      "outputs/HUMAN-DASHBOARD-FINAL2-REWORK/source-report.json",
+      "routes/resume-batch-20261004/human-dashboard-final2-rework/ag.intent.json",
+      "routes/resume-batch-20261004/human-dashboard-final7-distinct-review/result.json"
+    ],
+    "prohibited_inspect_helper_or_alternate_command_read_or_run": false,
+    "real_registry_current_ack_progress_host_provider_or_history_read": false,
+    "product_source_modified": false,
+    "only_new_review_result_written": true,
+    "observer_restarted_or_killed": false,
+    "all_other_runtime_or_live_acceptance": "NOT_ACCEPTED"
+  }
+}

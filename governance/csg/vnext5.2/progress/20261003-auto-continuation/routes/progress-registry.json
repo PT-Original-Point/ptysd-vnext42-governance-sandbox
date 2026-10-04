@@ -52,8 +52,56 @@
     {
       "brand": "Codex Luna",
       "label": "RUNTIME.SOURCE_PAIR_REBIND",
-      "label_zh": "RUNTIME.SOURCE_PAIR_REBIND",
-      "intent": "routes/resume-batch-20261004/runtime-sourcepair-luna-rebind/luna.intent.json"
+      "intent": "routes/resume-batch-20261004/runtime-sourcepair-luna-rebind/luna.intent.json",
+      "label_zh": "更新執行引擎與MCP的版本綁定"
+    },
+    {
+      "brand": "Codex Luna",
+      "label": "HUMAN.DASHBOARD_FINAL7_DISTINCT_LUNA_REVIEW",
+      "label_zh": "HUMAN.DASHBOARD_FINAL7_DISTINCT_LUNA_REVIEW",
+      "intent": "routes/resume-batch-20261004/human-dashboard-final7-distinct-review/luna.intent.json"
+    },
+    {
+      "brand": "Antigravity",
+      "label": "HUMAN.DASHBOARD_FINAL2_SOURCE_REWORK",
+      "intent": "routes/resume-batch-20261004/human-dashboard-final2-rework/ag.intent.json",
+      "label_zh": "修看板搶寫競態與測試誤探測"
+    },
+    {
+      "brand": "Antigravity",
+      "label": "RUNTIME.SOURCE_PAIR_DISTINCT_AG_REVIEW",
+      "intent": "routes/resume-batch-20261004/runtime-sourcepair-ag-review/ag.intent.json",
+      "label_zh": "確認執行引擎使用最新MCP版本"
+    },
+    {
+      "brand": "Codex Luna",
+      "label": "HUMAN.DASHBOARD_FINAL2_DISTINCT_LUNA_REVIEW",
+      "intent": "routes/resume-batch-20261004/human-dashboard-final2-distinct-review/luna.intent.json",
+      "label_zh": "檢查看板最後兩項修正"
+    },
+    {
+      "brand": "Antigravity",
+      "label": "RUNTIME.FINAL_HEAD_SCOPED_AG_REVIEW",
+      "intent": "routes/resume-batch-20261004/runtime-final-head-ag-review/ag.intent.json",
+      "label_zh": "Antigravity已完成恢復程式新版審查"
+    },
+    {
+      "brand": "Antigravity",
+      "label": "HUMAN.DASHBOARD_FIXTURE_ONLY_REWORK",
+      "intent": "routes/resume-batch-20261004/human-dashboard-fixture-only-rework/ag.intent.json",
+      "label_zh": "Antigravity修看板測試腳本（已交獨立檢查）"
+    },
+    {
+      "brand": "Codex Luna",
+      "label": "C1.FINAL_SOURCE_PAIR_NONSELECTING_PACKET",
+      "label_zh": "Luna整理MCP和恢復程式的下一階段施工文件",
+      "intent": "routes/resume-batch-20261004/c1-final-sourcepair-luna/luna.intent.json"
+    },
+    {
+      "brand": "Codex Luna",
+      "label": "HUMAN.DASHBOARD_FIXTURE_ONLY_DISTINCT_REVIEW",
+      "label_zh": "Luna檢查看板測試，確認能否換上新版",
+      "intent": "routes/resume-batch-20261004/human-dashboard-fixture-only-distinct-review/luna.intent.json"
     }
   ],
   "luna": "GPT6_LUNA_MAX_ONLY_SOURCE_AND_REVIEW_AUTHORIZED_NATIVE_REVIEW_SCOPE_READBACK_PENDING",

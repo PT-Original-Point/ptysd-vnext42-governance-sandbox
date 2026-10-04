@@ -1,16 +1,10 @@
 {
-  "observed_at": "2026-10-04T02:59:17.790Z",
-  "readback": {
-    "goal": {
-      "threadId": "01a0ed35-6063-7912-9872-7d4122a3b125",
-      "objective": "依 Human 已授權的 VNEXT5.2 完整施工契約持續建設全自動軟體工廠：優先恢复 MCP 與廣告唯讀工作、最新施工狀態跨 Session 對齊，實作自動分派／回收／READY 重算與中斷恢復。局部 source／test／PR milestone 不完成整體 Goal；保留 Production、身份／OAuth／MFA、成本、重大不可逆 trust 與未知效果保護；逐項以對應 source、semantic、live、system evidence 驗收原 59 operations／64 acceptance／PF30／PRG28，直到整體接受或 Human 明確終止。",
-      "status": "paused",
-      "tokensUsed": 503699,
-      "timeUsedSeconds": 935,
-      "createdAt": 1791024379,
-      "updatedAt": 1791082197
-    },
-    "remainingTokens": null,
-    "completionBudgetReport": null
-  }
+  "observed_at": "2026-10-04T14:31:36.267Z",
+  "actual_status": "paused",
+  "goal_exists": true,
+  "resume_api": "UNSUPPORTED",
+  "human_resumed_construction": true,
+  "no_duplicate_goal": true,
+  "no_fake_active": true,
+  "mission_complete": false
 }

@@ -1,6 +1,6 @@
 {
   "schema": "vnext5.2.compact-reentry.v1",
-  "observed_at": "2026-10-04T13:26:04.708Z",
+  "observed_at": "2026-10-04T14:30:56.249Z",
   "goal_actual": "paused",
   "mission": "ACTIVE_NOT_COMPLETE",
   "quota_last_actual": {
@@ -160,30 +160,58 @@
   "latest_delta": {
     "workers": [
       {
-        "task": "RUNTIME.SOURCE_PAIR_REBIND",
-        "intent": "routes/resume-batch-20261004/runtime-sourcepair-luna-rebind/luna.intent.json",
-        "status": "NATIVE_RUNNING_SOURCE_REBIND",
+        "task": "HUMAN.DASHBOARD_FIXTURE_ONLY_DISTINCT_REVIEW",
+        "intent": "routes/resume-batch-20261004/human-dashboard-fixture-only-distinct-review/luna.intent.json",
+        "status": "NATIVE_RUNNING_INDEPENDENT_REVIEW",
         "model": "gpt-6-luna",
-        "actual_model": "NATIVE_SUBAGENT_REQUESTED_MODEL_ACTUAL_CONTEXT_UNEXPOSED",
+        "actual_model": "UNVERIFIED_CONTEXT_METADATA_UNEXPOSED",
         "pid": null
       },
       {
-        "task": "HUMAN.DASHBOARD_FINAL7_SOURCE_REWORK",
-        "intent": "routes/resume-batch-20261004/human-dashboard-final7-rework/ag.intent.json",
-        "status": "SUBMITTED_OUTCOME_PENDING",
-        "model": "gemini-3.8-flash-high",
-        "actual_model": "gemini-3.8-flash-high",
-        "pid": 24572
+        "task": "C1.FINAL_SOURCE_PAIR_NONSELECTING_PACKET",
+        "intent": "routes/resume-batch-20261004/c1-final-sourcepair-luna/luna.intent.json",
+        "status": "NATIVE_RUNNING_SOURCE",
+        "model": "gpt-6-luna",
+        "actual_model": "UNVERIFIED_CONTEXT_METADATA_UNEXPOSED",
+        "pid": null
       }
     ],
     "source_qualification": {
       "research": "PR388_EXACT_HEAD_STRUCTURAL_PASS_LOCAL103_DISTINCT17_SEMANTIC_PASS_PREPARATORY_ONLY",
       "mcp": "PR385_EXACT_HEAD_STRUCTURAL_PASS_LOCAL7_DISTINCT_FINAL_TEST_PASS_OTHER6_REVIEW_INHERITED_NO_FULL_LEGACY_LIVE",
       "runtime": "PR386_SOURCE_PAIR_REBIND_LUNA_RUNNING",
-      "dashboard": "AG_SOURCE_REWORK7_RUNNING_NOT_QUALIFIED",
+      "dashboard": {
+        "source_static": "PASS_WITH_OBSERVER_LIFECYCLE_LIMIT",
+        "fixture": "REWORK_REQUIRED_FIXTURE_ONLY",
+        "review": "routes/resume-batch-20261004/human-dashboard-final2-distinct-review/result.json",
+        "next": "AG_FIXTURE_ONLY_REPAIR_THEN_DISTINCT_LUNA"
+      },
       "producer_head": "f45ef980a0194c54db6f2e3d5585577154ac5754",
       "research_head": "f4c754ed1e2f256b24c432511c01ae52592dd15f",
-      "readback": "routes/resume-batch-20261004/final-source-provider-readback.json"
+      "readback": "routes/resume-batch-20261004/final-source-provider-readback.json",
+      "runtime_final": {
+        "recorded_at": "2026-10-04T14:27:42.706Z",
+        "scope": "SOURCE_ONLY_EXACT_PROVIDER_HEAD_PARENT_TREE_READBACK",
+        "pr": 386,
+        "head": "0c8a5bd23d5591571998c18ab49eb1eec0ba7968",
+        "tree": "ef2d8b94e92546917579fe1d211312a1ec4d8820",
+        "parent": "06da5fa224b65b9346e8b250dcea686d0ed458ee",
+        "producer_pr": 385,
+        "producer_head": "f45ef980a0194c54db6f2e3d5585577154ac5754",
+        "commits": 1,
+        "draft": true,
+        "structural": {
+          "status": "PASS",
+          "run": 37208465422,
+          "job": 111454545906
+        },
+        "independent_semantic": "EXACT_TWO_CHANGED_TEST_FILES_STATIC_PASS",
+        "bounded_driver": "SKIPPED_NOT_PASS",
+        "live_acceptance": "NOT_ACCEPTED",
+        "canonical": "CP200",
+        "canonical_write": false,
+        "mission_complete": false
+      }
     },
     "mcp_author_tests": "7/7 including2 actual local stdio",
     "live": "NOT_ACCEPTED",
