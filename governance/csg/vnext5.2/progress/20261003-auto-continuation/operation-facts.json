@@ -1,15 +1,15 @@
 {
   "schema": "vnext5.2.operation-facts.v1",
   "catalog_sha256": "sha256:ee769422b5d587e771d09c4e95af1af9a3a7cf0a7c0e493d86071e2df57304de",
-  "captured_at_utc": "2026-10-04T08:11:29.769Z",
+  "captured_at_utc": "2026-10-04T08:30:47.510Z",
   "freshness": {
     "max_age_seconds": 900,
     "max_future_skew_seconds": 60
   },
   "source_inventory": {
     "ref": "auto-continuation:dispatch.json",
-    "sha256": "sha256:3267ea8d31bcc146d645636acee02e795ecca08d6f5ce0b89c130c56ff1265ac",
-    "observed_at_utc": "2026-10-04T08:11:29.769Z"
+    "sha256": "sha256:b7225063bfc72a99e5df29609d1dcee0d396431e3c9e18e89b5c1ab0ae634c9a",
+    "observed_at_utc": "2026-10-04T08:30:47.510Z"
   },
   "canonical_binding": {
     "control_ref": "refs/heads/v45/factory-control",
@@ -26,8 +26,8 @@
       "evidence": [
         {
           "ref": "auto-continuation:fresh-provider.json",
-          "sha256": "sha256:319e962a9f1d65220e0935b2600a4574506f63eae3b670f98508a0bdefcfc652",
-          "observed_at_utc": "2026-10-04T08:09:17.202Z"
+          "sha256": "sha256:96ee5ee41db4a158d10cf339486af9dffd2ce99c3f70411551ccf78942c026ca",
+          "observed_at_utc": "2026-10-04T08:30:47.442Z"
         }
       ],
       "evidence_class": "FRESH_CANONICAL_SAME_REF_IMMUTABLE_READBACK"
@@ -479,17 +479,17 @@
     },
     {
       "id": "P52.INTAKE_SOURCE",
-      "state": "RUNNING",
+      "state": "WAITING_EXTERNAL",
       "authorization_state": "AUTHORIZED",
       "evidence": [
         {
-          "ref": "routes/resume-batch-20261004/intake-reviewed-repair/oc.intent.json",
-          "sha256": "sha256:fb2e3b20b0309f4f35c50da51e0d201f44ff13098c01a67151f2b033fd9f1edb",
-          "observed_at_utc": "2026-10-04T08:11:29.769Z"
+          "ref": "routes/resume-batch-20261004/intake-repaired-review/ag.intent.json",
+          "sha256": "sha256:58c7020ea14b7a4da5054abe2ffe52a3c94b41ade587802af7f8f0669428309d",
+          "observed_at_utc": "2026-10-04T08:30:47.510Z"
         }
       ],
-      "reason": "EIGHT_REVIEW_FINDINGS_NATIVE_REPAIR_IN_FLIGHT",
-      "evidence_class": "ACTUAL_NATIVE_SUBMISSION_NOT_SOURCE_ACCEPTANCE",
+      "reason": "AUTHOR_BYTES_COLLECTED_INDEPENDENT_NATIVE_READ_DENIED_NOT_SEMANTIC_PASS",
+      "evidence_class": "LOCAL_TEST_CLAIM_PLUS_BYTES_VERIFIED_REVIEW_PARKED",
       "owner_authority": "UNKNOWN"
     },
     {
@@ -589,5 +589,5 @@
       "evidence": []
     }
   ],
-  "facts_sha256": "sha256:b37deda724e3db2d9cd71adc745e07896eb7d805fe8e00a6bdd70e1069c722ae"
+  "facts_sha256": "sha256:97fc2423bc558cafc5e05800f74e9357e2a5b47b770d1b14b24cc6b739cd501c"
 }

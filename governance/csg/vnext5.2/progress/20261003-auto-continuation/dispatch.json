@@ -1,6 +1,6 @@
 {
   "schema": "vnext5.2.coordinator-dispatch.v1",
-  "observed_at": "2026-10-04T08:11:29.769Z",
+  "observed_at": "2026-10-04T08:30:47.510Z",
   "single_integrator": "root",
   "tasks": [
     {
@@ -625,7 +625,7 @@
     },
     {
       "id": "P52.INTAKE_REVIEWED_REPAIR",
-      "status": "SUBMITTED_OUTCOME_PENDING",
+      "status": "COLLECTED_BYTES_EXPORT_NEEDS_DISTINCT_REVIEW",
       "route": "OPENCODE_NATIVE",
       "session_id": "ses_efa0a9169ffe4TPNklVK8k8Nlh",
       "pid": 59084,
@@ -641,6 +641,15 @@
       "closed_at": null,
       "native_outcome": null,
       "cost": null
+    },
+    {
+      "id": "P52.INTAKE_REPAIRED_INDEPENDENT_REVIEW",
+      "status": "PARKED_NATIVE_READ_PERMISSION_DENIED",
+      "route": "ANTIGRAVITY_NATIVE_CLI",
+      "actual_model": "gemini-3.8-flash-high",
+      "denied_actions": 1,
+      "closed_at": "2026-10-04T08:26:46.957Z",
+      "dispatch_source": "routes/resume-batch-20261004/intake-repaired-review/ag.intent.json"
     }
   ],
   "collection": "root reads native thread/subagent updates then exact result paths; Human copying unnecessary",

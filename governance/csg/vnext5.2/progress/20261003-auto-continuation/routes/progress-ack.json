@@ -1,0 +1,35 @@
+{
+  "schema": "vnext5.2.progress-ack.v1",
+  "tasks": {
+    "routes/resume-batch-20261004/intake-reviewed-repair/oc.intent.json": {
+      "signature": "659f8444e9040abf69eedbb5ada073b99d14710508ab4b717cedcd11ed97e088",
+      "recorded_at": "2026-10-04T08:27:26.539Z",
+      "disposition": "BYTES_EXPORT_COLLECTED_DISTINCT_REVIEW_RUNNING"
+    },
+    "routes/resume-batch-20261004/mcp-final-package-review/ag.intent.json": {
+      "signature": "ed6461346b400f09e0e9b85337d8e26b5309b8ba9414e9ffe437688b107b597f",
+      "recorded_at": "2026-10-04T08:27:26.539Z",
+      "disposition": "NEW6_REVIEW_ACCEPTED_FULL_LEGACY_LIVE_PARKED"
+    },
+    "routes/resume-batch-20261004/queue-closure-review-corrected/oc.intent.json": {
+      "signature": "ddc8084340d3b2942fbe836bc08d0d7acd5f4ab5958d6a8591367351da9fcd31",
+      "recorded_at": "2026-10-04T08:27:26.539Z",
+      "disposition": "ACCEPT_SHADOW_SOURCE_ONLY_NOT_SYSTEM"
+    },
+    "routes/resume-batch-20261004/adapter-closure-review/ag.intent.json": {
+      "signature": "e945212b9338f3c287323b6fd24cfb90ba1585d69b25fbfa6234578830e08fb5",
+      "recorded_at": "2026-10-04T08:27:26.539Z",
+      "disposition": "EXACT_PERMISSION_LANE_PARKED_COLLECTED"
+    },
+    "routes/resume-batch-20261004/c1-control-packet/ag.intent.json": {
+      "signature": "e532335fa179916def9c02b42cfd828eb10b25852c674f09819c2cc09561d496",
+      "recorded_at": "2026-10-04T08:27:26.539Z",
+      "disposition": "EXACT_PERMISSION_LANE_PARKED_COLLECTED"
+    },
+    "routes/resume-batch-20261004/intake-repaired-review/ag.intent.json": {
+      "signature": "dc31105fd1e044e65cb1de29b126f45d289da03357f448c6bedb23cddc5a3d48",
+      "recorded_at": "2026-10-04T08:29:59.578Z",
+      "disposition": "EXACT_NATIVE_READ_DENIED_PARKED_NOT_SEMANTIC_PASS"
+    }
+  }
+}

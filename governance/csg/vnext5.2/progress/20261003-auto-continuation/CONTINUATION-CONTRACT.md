@@ -96,3 +96,7 @@ Antigravity may continue C1.PREPARE after its artifact is stable: only read prot
 
 The latest locator is a noncanonical construction index. It must distinguish construction VNEXT5.2, canonical CP200 VNEXT5.1-R2 and installed UNKNOWN. No App heartbeat or CLI source task proves reboot/UI-closed Supervisor survival.
 
+
+
+## 20261004 Human修正：消除4小時回收真空
+採用 VNEXT5.2-施工可見性與即時回收修正契約-20261004.md。第一入口 PROGRESS.json／PROGRESS.html；native start自動登記metadata，完成需exact signature ACK。active回收5分鐘、全面稽核4小時，無變化有界結束本次巡檢且不結束Mission。不得宣稱desktop CLI事件已直接wakeSOL，這項尚無native能力。

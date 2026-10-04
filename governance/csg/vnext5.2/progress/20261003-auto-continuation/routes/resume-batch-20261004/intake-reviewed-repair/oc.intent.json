@@ -1,6 +1,6 @@
 {
   "task": "P52.INTAKE_REVIEWED_REPAIR",
-  "status": "SUBMITTED_OUTCOME_PENDING",
+  "status": "CLOSED_REVIEW_REQUIRED",
   "model": "opencode/muse-spark-1.3-contributor-free",
   "variant": "xhigh",
   "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-INTAKE-OPENCODE-WORK-20261003",
@@ -14,5 +14,14 @@
   "paid_fallback": false,
   "review_binding": "../intake-next-review/ag.intent.json",
   "session_id": "ses_efa0a9169ffe4TPNklVK8k8Nlh",
-  "pid": 59084
+  "pid": 59084,
+  "exit_code": 0,
+  "closed_at": "2026-10-04T08:14:07.576Z",
+  "actual_model": {
+    "id": "muse-spark-1.3-contributor-free",
+    "providerID": "opencode",
+    "variant": "xhigh"
+  },
+  "native_outcome": "succeeded",
+  "cost": 0
 }

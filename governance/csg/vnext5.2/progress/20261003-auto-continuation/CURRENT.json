@@ -1,7 +1,7 @@
 {
   "schema": "vnext5.2.construction-progress.v2",
   "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
-  "observed_at": "2026-10-04T08:11:29.769Z",
+  "observed_at": "2026-10-04T08:30:47.510Z",
   "model_lock": {
     "codex": {
       "display": "GPT-6 Luna Max",
@@ -61,7 +61,7 @@
     "root": "paused",
     "worker_luna": "LAST_ACTUAL_WORKER_GOAL_PAUSED_THREAD_ACTIVITY_SEPARATE_NO_FAKE_ACTIVE",
     "automation_id": "vnext5-2",
-    "heartbeat": "ACTIVE_ACTUAL_TOOL_READBACK_4_HOURLY",
+    "heartbeat": "ACTIVE_TOOL_UPDATE_5_MINUTE_BOUNDED_RECOVERY",
     "app_running_required": true,
     "root_resume_api": "NOT_SUPPORTED_NO_FAKE_ACTIVE_HUMAN_MISSION_COORDINATION_RESUMED"
   },
@@ -114,12 +114,10 @@
   "dispatch_path": "dispatch.json",
   "facts_path": "operation-facts.json",
   "queue_path": "ready-queue.json",
-  "queue_decision": "WORK_IN_PROGRESS",
+  "queue_decision": "WAITING_EXTERNAL_PER_LANE",
   "ready_ids": [],
-  "running_ids": [
-    "P52.INTAKE_REVIEWED_REPAIR"
-  ],
-  "valid_until": "2026-10-04T08:26:29.797Z",
+  "running_ids": [],
+  "valid_until": "2026-10-04T08:45:47.529Z",
   "all_legal_ready_lanes_exhausted": false,
   "canonical_write": false,
   "host_install": false,
@@ -143,12 +141,22 @@
     "contract": "routes/opencode-desktop-route-20261004.json"
   },
   "construction_plan": "VNEXT5.2-限額控制與優先復工施工契約-20261004.md",
-  "active_source_repairs": [
-    "P52.INTAKE_REVIEWED_REPAIR"
+  "active_source_repairs": [],
+  "pending_independent_reviews": [
+    "P52.INTAKE_SOURCE"
   ],
-  "pending_independent_reviews": [],
   "compact_reentry": "routes/resume-batch-20261004/NEXT-ACTIONS.md",
   "compact_summary": "routes/resume-batch-20261004/COMPACT-SUMMARY.json",
-  "source_gate_status": "TARGET_SCOPED_PERMISSION_AND_REVIEW_GAPS_NO_GLOBAL_MISSION_STOP",
-  "latest_native_intent": "routes/resume-batch-20261004/intake-reviewed-repair/oc.intent.json"
+  "source_gate_status": "INTAKE_EXACT_NATIVE_REVIEW_READ_DENIED_NO_BYPASS_NOT_SEMANTIC_PASS",
+  "latest_native_intent": "routes/resume-batch-20261004/intake-repaired-review/ag.intent.json",
+  "monitoring": {
+    "observer": "routes/progress-observer.mjs",
+    "dashboard": "PROGRESS.html",
+    "projection": "PROGRESS.json",
+    "active_collection_minutes": 5,
+    "full_audit_hours": 4,
+    "event_trigger": "NO_NATIVE_DESKTOP_EXTERNAL_CLI_TRIGGER",
+    "silent_no_delta": true,
+    "contract": "VNEXT5.2-施工可見性與即時回收修正契約-20261004.md"
+  }
 }

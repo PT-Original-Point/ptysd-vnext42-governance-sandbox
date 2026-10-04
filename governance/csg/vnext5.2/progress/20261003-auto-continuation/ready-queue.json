@@ -3,7 +3,7 @@
   "mode": "SHADOW_PLAN_ONLY",
   "facts_schema": "vnext5.2.operation-facts.v1",
   "catalog_sha256": "sha256:ee769422b5d587e771d09c4e95af1af9a3a7cf0a7c0e493d86071e2df57304de",
-  "facts_sha256": "sha256:b37deda724e3db2d9cd71adc745e07896eb7d805fe8e00a6bdd70e1069c722ae",
+  "facts_sha256": "sha256:97fc2423bc558cafc5e05800f74e9357e2a5b47b770d1b14b24cc6b739cd501c",
   "facts_fresh": true,
   "input_completeness": "COMPLETE",
   "input_reasons": [],
@@ -135,8 +135,8 @@
   "queue_scope": "FULL_CATALOG",
   "queue_unit_count": 59,
   "full_union_count": 59,
-  "global_exhaustion": "NOT_EXHAUSTED",
-  "global_decision": "WORK_IN_PROGRESS",
+  "global_exhaustion": "NOT_PROVEN_TERMINAL",
+  "global_decision": "WAITING_EXTERNAL_PER_LANE",
   "units": [
     {
       "id": "B00.RECOVER",
@@ -1002,7 +1002,7 @@
     },
     {
       "id": "P52.INTAKE_SOURCE",
-      "state": "RUNNING",
+      "state": "WAITING_EXTERNAL",
       "priority": 31,
       "mandatory": true,
       "effect_class": "CANDIDATE_SOURCE",
@@ -1013,7 +1013,7 @@
       "start_blockers": [],
       "completion_blockers": [],
       "owner_authority": "UNKNOWN",
-      "reason": "EIGHT_REVIEW_FINDINGS_NATIVE_REPAIR_IN_FLIGHT",
+      "reason": "AUTHOR_BYTES_COLLECTED_INDEPENDENT_NATIVE_READ_DENIED_NOT_SEMANTIC_PASS",
       "execution_scope": "SHADOW_PLAN_ONLY",
       "effects": [],
       "plan_only": true
@@ -1298,5 +1298,7 @@
     "host_mutation": false,
     "canonical_write": false,
     "local_work_dispatch": false
-  }
+  },
+  "qualified_planner_observed_global_decision": "GLOBAL_EXHAUSTED",
+  "root_arbitration": "PARKED_EXACT_REVIEW_HAS_REENTRY_MISSION_NOT_TERMINAL"
 }

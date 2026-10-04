@@ -42,3 +42,7 @@ Native Muse session ses_efa0a9169ffe4TPNklVK8k8Nlh owns Intake all8 review findi
 ## 2026-10-04T08:11:29.769Z bounded Intake rework
 
 Native Muse session ses_efa0a9169ffe4TPNklVK8k8Nlh owns Intake all8 review findings; intent routes/resume-batch-20261004/intake-reviewed-repair/oc.intent.json. Read that single intent/export/result once after closure, not oldhistory. Unknown/in-flight => no duplicate. Stable repair => distinct AG review exact changed bytes, then research-options prerequisite. MCP new6 review/27fixtures accepted only scoped; legacy baseline/live install parked. D02 new2 review ACCEPT_SHADOW_ONLY: four named invariants verified, P2 suggestions do not expire immutable source PASS or terminate Mission when parked/recoverable work exists. Goal actual paused; canonical CP200; installed UNKNOWN. No source PR push/verifier this round.
+
+
+## 2026-10-04T08:29:59.454Z visibility correction supersedes4h-only collection
+First read PROGRESS.json, exact uncollected/alerts. Intake author bytes/export collected23pass1skip; fresh distinct AG review native read_file/ViewFile denied emptySUCCESS => park exactreview, no proxy/retry/semanticPASS. Observer41936 read-only metadata; active automation5min; fullaudit4h. No currentrunningworker assumed. Contract VNEXT5.2-施工可見性與即時回收修正契約-20261004.md.

@@ -1,0 +1,37 @@
+{
+  "schema": "vnext5.2.progress-registry.v1",
+  "tasks": [
+    {
+      "brand": "OpenCode",
+      "label": "Intake repair",
+      "intent": "routes/resume-batch-20261004/intake-reviewed-repair/oc.intent.json"
+    },
+    {
+      "brand": "Antigravity",
+      "label": "MCP independent review",
+      "intent": "routes/resume-batch-20261004/mcp-final-package-review/ag.intent.json"
+    },
+    {
+      "brand": "OpenCode",
+      "label": "D02 independent review",
+      "intent": "routes/resume-batch-20261004/queue-closure-review-corrected/oc.intent.json"
+    },
+    {
+      "brand": "Antigravity",
+      "label": "Adapter review parked",
+      "intent": "routes/resume-batch-20261004/adapter-closure-review/ag.intent.json"
+    },
+    {
+      "brand": "Antigravity",
+      "label": "C1 parked",
+      "intent": "routes/resume-batch-20261004/c1-control-packet/ag.intent.json"
+    },
+    {
+      "brand": "Antigravity",
+      "label": "P52.INTAKE_REPAIRED_INDEPENDENT_REVIEW",
+      "intent": "routes/resume-batch-20261004/intake-repaired-review/ag.intent.json"
+    }
+  ],
+  "luna": "ROUTINE_DISPATCH_ZERO_NO_NEW_SOURCE_TASK",
+  "scope": "CURRENT_LATEST5_TASKS_NOT_ALL_HISTORICAL_SESSIONS"
+}
