@@ -3,68 +3,43 @@
   "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
   "noncanonical": true,
   "writer": "ROOT_SINGLE_INTEGRATOR",
-  "sequence": 16,
-  "previous_locator_head": "122ed33e5031a1342469d3358e41d4beb639b262",
+  "sequence": 17,
+  "previous_locator_head": "61cf3800980779d412aa2919f0993cdaa3ce0df4",
   "progress": {
     "repository": "PT-Original-Point/ptysd-vnext42-governance-sandbox",
-    "exact_head": "f734f851987f53d3cc2351141c6f418b947414a3",
+    "exact_head": "00c697b7c9dff974a9c4db231370c84fd49e5bf9",
     "current_path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/CURRENT.json",
-    "current_sha256": "sha256:fa9b6de8b1a174db6ab5a9ff1972f0a77c5d55d147f61ddebe5d25d20e6af71b",
+    "current_sha256": "sha256:3fd3697862d2ddeb972ab9a6d92b03ab6c2988f08064cb3e2c396da466c9a311",
     "manifest_path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/manifest.json"
   },
   "dispatch_authority": false,
   "canonical_selection": false,
   "execution_owner_allocated": false,
-  "consumer_rule": "Verify exact bytes and manifest. Refresh expired facts; construction/canonical/installed are separate. An active worker chat does not prove execution of a source task or acceptance.",
+  "root_role": "INDEPENDENT_AUDIT_PLAN_DISPATCH_COLLECTION_ARBITRATION_NO_PRODUCT_CODE",
+  "model_lock_path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/MODEL-LOCK-20261004.json",
+  "consumer_rule": "Verify exact manifest bytes. Refresh expired queue facts; do not replay completed work. Construction V5.2, canonical CP200/V5.1-R2 and installed UNKNOWN are separate.",
   "source_baseline": {
     "mcp_pr": 385,
     "mcp_head": "e1c99a7cf3201ac5c1eddad71f3d6ea1ea7a955e",
-    "mcp_tree": "0b418ec8a631ce9e681d25b87f70408df4231305",
-    "mcp_semantic": "INDEPENDENT_SOURCE_TREE_PASS_ROOT_EXACT_FINAL_HEAD_BINDING",
-    "mcp_structural": "PASS",
     "runtime_pr": 386,
     "runtime_head": "c2bfa038121782a3ae903591981a0b05f52a7b38",
-    "runtime_semantic": "KNOWN_FINDINGS07_08_CLOSED_SOURCE_BINDING_ONLY_PASS_CROSS_MATRIX_PERMISSION_PARKED",
-    "ads_pr": 89,
-    "ads_head": "2c1021758d8b5ecbc3a126ad4a54b16cda1eac0b",
-    "ads_repaired_local_tree": "48b63a49656be8fd45cc05d8e6c02a026f3d775c",
-    "ads_local": "TYPECHECK_AND_48_PASS_PUBLICATION_CAS_ROUTE_PARKED",
-    "live": "NOT_ACCEPTED",
-    "runtime_local_tree": "18bef45e79a61f83a0cf4758d9f2f246c1524e01",
-    "runtime_regression": "26_CORE_AND140_SUPERVISOR_LOCAL_PASS",
-    "ads_provider_source_object": "ab136aacd4cae67ffc3784f08da3d4a791238080",
-    "ads_publication": "SAME_PR_BRANCH_CAS_ROUTE_PARKED",
-    "readonly_shadow": "FULL59_FRESH_COMPLETE_JOURNAL_AND_SEPARATE_PROCESS_RESTORE_LOCAL_PASS",
-    "f01_source": "INDEPENDENT_EXACT_TWO_FILE_OVERLAY_SOURCE_PASS_ROOT124_PASS_NOT_LIVE",
-    "t01": "EXACT_NATIVE_PERMISSION_DENIAL_PARKED_NO_GLOBAL_STOP",
-    "f01_source_tree": "b6dd213fdf25451043c25a93b7a7b84394f74d72",
-    "f01_actual_model": "gpt-6-luna/max_NATIVE_TURN_CONTEXT",
-    "d03": "OLD20_PAYLOAD_STAGE_HISTORICAL_NEW_F01_TRANSITIVE_CLOSURE_REQUALIFICATION_REQUIRED",
-    "d03_manifest_sha256": "sha256:ed4da79ba807d79e17b73ff751a4543dc04c195947322701213432c9a648e704",
-    "native_discovery": "DONE_DIAGNOSTIC_ONLY_UNKNOWN_ISOLATION_REPORTED",
-    "next_source": [],
-    "p52_antigravity": {
-      "source_tree": "dadf1dad2408f4105a0c45502eabc3fb49d49fb0",
-      "semantic": "INDEPENDENT_EXACT_TWO_FILE_SOURCE_SCOPE_PASS",
-      "root_tests": 175,
-      "findings_closed": 7,
-      "live": "NOT_ACCEPTED"
-    },
-    "running_source": [
-      "P52.OPENCODE_SOURCE"
-    ],
-    "f02": {
-      "source_tree": "443278f6fe6ec65ed75dc99ddeb3b7e0cebaf76c",
-      "semantic": "INDEPENDENT_EXACT_TWO_FILE_SOURCE_SCOPE_PASS",
-      "root_tests": 198,
-      "findings_closed": 5,
-      "live": "NOT_ACCEPTED"
-    },
-    "opencode_source_builder": "ANTIGRAVITY_LOCKED_NATIVE_AFTER_CLOSED_LUNA_SCOPE_DECLINE",
-    "opencode_live_quota": "PARKED_NO_RETRY"
+    "new_candidates": "EXACT_SOURCE_REPAIR_AND_REVIEW_IN_PROGRESS",
+    "live": "NOT_ACCEPTED"
   },
-  "root_role": "INDEPENDENT_AUDIT_PLAN_DISPATCH_COLLECTION_ARBITRATION_NO_PRODUCT_CODE",
-  "model_lock_path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/MODEL-LOCK-20261004.json",
-  "historical_progress_head": "5f0afa8db7b981234370024359c6061c202d4f72",
-  "active_manifest_policy": "CURRENT_DECISION_PROJECTIONS_ONLY_40_FILES_MAX40_NO_HISTORY_REEXECUTION"
+  "coordination": {
+    "human_resume": true,
+    "actual_goal": "paused",
+    "goal_resume_api": "UNSUPPORTED_NO_FAKE_ACTIVE",
+    "heartbeat_hours": 4,
+    "quota_policy": "EXTERNAL_LOCKED_AG_AND_MUSE_FIRST_LUNA_ROUTINE_DISPATCH_ZERO",
+    "opencode_route": "DESKTOP_SERVICE_ACTUAL_MUSE_XHIGH_SOURCE_WORK_SUCCEEDED_HISTORICAL_FLEDGE429_NOT_PORTABLE",
+    "running_ids": [
+      "P52.OPENCODE_BOUNDARY_REPAIR"
+    ],
+    "queue_decision": "WORK_IN_PROGRESS",
+    "global_exhausted": false,
+    "mission_complete": false
+  },
+  "active_manifest_policy": "CURRENT_PROJECTIONS_32_FILES_MAX40",
+  "historical_progress_head": "f734f851987f53d3cc2351141c6f418b947414a3"
 }
