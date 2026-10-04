@@ -1,6 +1,6 @@
 {
   "schema": "vnext5.2.coordinator-dispatch.v1",
-  "observed_at": "2026-10-04T11:09:04.890Z",
+  "observed_at": "2026-10-04T12:51:15.991Z",
   "single_integrator": "root",
   "tasks": [
     {
@@ -559,99 +559,888 @@
     },
     {
       "id": "MCP.FINAL_PACKAGE_EXACT_SOURCE_REVIEW",
+      "task": "MCP.FINAL_PACKAGE_EXACT_SOURCE_REVIEW",
       "status": "CLOSED_REVIEW_REQUIRED",
-      "closed_at": "2026-10-04T05:12:02.701Z",
-      "actual_model": "gemini-3.8-flash-high",
-      "requested_model": "gemini-3.8-flash-high",
-      "session_id": null,
-      "conversation_id": "b73c7b8b-cd87-490d-992e-5ae9318cd443",
+      "model": "gemini-3.8-flash-high",
       "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-MCP-READSYNC-AG-WORK-20261004",
       "write_set": [],
-      "denied_actions": 0,
-      "native_outcome": null,
-      "cost": null,
-      "result_source": "routes/resume-batch-20261004/mcp-final-package-review/ag.intent.json"
+      "source_bindings": [
+        {
+          "path": "tools/csg/factory-mcp/src/shared-context.mjs",
+          "sha256": "4209c2743f4fa85f5d9ac195a1f756ce45ea6e59cb8f3032f7950d9555860f37"
+        },
+        {
+          "path": "tools/csg/factory-mcp/src/shared-context-transport.mjs",
+          "sha256": "d8b1381785f636605ca8459f18f93ad24bf86dfb97d5b521cd6e329bd34c1ea7"
+        },
+        {
+          "path": "tools/csg/factory-mcp/tests/shared-context-transport.test.mjs",
+          "sha256": "172385e76f7df8d466be22559115b98b5f22c32311bcff99f094424c07f7c821"
+        },
+        {
+          "path": "tools/csg/factory-mcp/windows/install-broker.ps1",
+          "sha256": "16817392772a87bf26f581af80b731730fdce9395a67b62b9eca64b0bbfb8eb0"
+        },
+        {
+          "path": "tools/csg/factory-mcp/windows/repair-manifest.json",
+          "sha256": "7c661f97592f37b46e3df4d316830c9ff094b9fe987ab579b8dc37d63850f701"
+        },
+        {
+          "path": "tools/csg/factory-mcp/tests/shared-context-packaging.test.mjs",
+          "sha256": "e9f594c2c70a2eb0b9cece2ce91a2f544d2036a797e0233f0051c21a1e7accac"
+        }
+      ],
+      "created_at": "2026-10-04T05:10:21.444Z",
+      "builder_session": "ses_efac095ecffeJxEksi3h3Tx1Sr",
+      "canonical_write": false,
+      "production": false,
+      "paid_fallback": false,
+      "pid": 53880,
+      "conversation_id": "b73c7b8b-cd87-490d-992e-5ae9318cd443",
+      "actual_model": "gemini-3.8-flash-high",
+      "result_status": "SUCCESS",
+      "denied_action_count": 0,
+      "exit_code": 0,
+      "closed_at": "2026-10-04T05:12:02.701Z",
+      "result_response": "```json\n{\n  \"verdict\": \"ACCEPTED\",\n  \"scope\": \"FINAL6_MCP_CANDIDATE_READONLY_REVIEW\",\n  \"author\": \"Muse/xhigh ses_efac095ecffeJxEksi3h3Tx1Sr\",\n  \"actual_reviewer_model\": \"Gemini 3.8 Flash (High)\",\n  \"legacy_regression\": \"PARKED_PERMISSION_DENIED\",\n  \"live_acceptance\": \"NOT_ACCEPTED\",\n  \"audit_checks\": {\n    \"routes_and_bounds\": \"PASS: parseApprovedRoute strictly bounds routes (<=2048 chars), branches (<=256 chars, no traversal), paths (no leading slash, backslashes, or dot segments), and OIDs (lowercase 40hex). Reads bounded to 1MB; diagnostics bounded to 4KB streaming without retaining full error body.\",\n    \"raw_buffer_preservation\": \"PASS: nativeGitGet specifies encoding: null, preserving raw Buffer bytes, exact binary payload, and trailing newlines from cat-file before gitBlobOid calculation and base64 serialization.\",\n    \"deadline_and_abort\": \"PASS: MAX_READ_MS (20s) and DEFAULT_TIMEOUT_MS (8s) enforced across httpGet and nativeGitGet via AbortController, cleanly throwing SHARED_READ_DEADLINE_EXCEEDED on timeout or outer signal abort.\",\n    \"temp_sibling_containment\": \"PASS: validateGitCacheDir enforces strict lexical containment within tmpdir using boundary path separators and Windows case normalization (normCmp !== baseCmp && !normCmp.startsWith(prefix)), rejecting sibling directory escape attempts.\",\n    \"mirror_and_reparse_config\": \"PASS: resolveRepoMirror validates containment; nativeGitGet fails closed with GIT_TRANSPORT_UNAVAILABLE when mirrorDir is unconfigured in live execution. Reparse points rejected across install and repair staging.\",\n    \"public_get_delegation\": \"PASS: publicGet strictly performs parseApprovedRoute validation and directly delegates execution to httpGet without duplicate logic.\",\n    \"rate_limit_classification\": \"PASS: Status 429 mapped to GITHUB_READ_429 (isReal429 = true); status 403 with x-ratelimit-remaining: 0 or diagnostic rate limit tokens mapped to GITHUB_READ_429_BODY (isBody429 = true). Both park HTTP transport and fall back to nativeGitGet.\",\n    \"repo_and_host_bounding\": \"PASS: Restricted to exactly 2 approved repositories (PT-Original-Point/ptysd-vnext42-governance-sandbox, t14210184/hanyao). API route target hardcoded to https://api.github.com/repos/. install-broker.ps1 enforces HostId -cne env:COMPUTERNAME rejection.\",\n    \"transitive_module_closure_and_manifest\": \"PASS: install-broker.ps1 required array includes both src\\\\shared-context.mjs and src\\\\shared-context-transport.mjs. repair-manifest.json accurately reflects updated SHA256 hashes for both modules while preserving untouched digests.\"\n  },\n  \"findings\": [],\n  \"tests_observed\": {\n    \"command\": \"node --test tools/csg/factory-mcp/tests/shared-context-transport.test.mjs tools/csg/factory-mcp/tests/shared-context-packaging.test.mjs\",\n    \"pure_fixtures\": true,\n    \"suites\": 0,\n    \"pass\": 27,\n    \"fail\": 0,\n    \"cancelled\": 0,\n    \"skipped\": 0,\n    \"duration_ms\": 152.77\n  },\n  \"exact_source_binding\": [\n    {\n      \"path\": \"tools/csg/factory-mcp/src/shared-context.mjs\",\n      \"sha256\": \"4209c2743f4fa85f5d9ac195a1f756ce45ea6e59cb8f3032f7950d9555860f37\"\n    },\n    {\n      \"path\": \"tools/csg/factory-mcp/src/shared-context-transport.mjs\",\n      \"sha256\": \"d8b1381785f636605ca8459f18f93ad24bf86dfb97d5b521cd6e329bd34c1ea7\"\n    },\n    {\n      \"path\": \"tools/csg/factory-mcp/tests/shared-context-transport.test.mjs\",\n      \"sha256\": \"172385e76f7df8d466be22559115b98b5f22c32311bcff99f094424c07f7c821\"\n    },\n    {\n      \"path\": \"tools/csg/factory-mcp/windows/install-broker.ps1\",\n      \"sha256\": \"16817392772a87bf26f581af80b731730fdce9395a67b62b9eca64b0bbfb8eb0\"\n    },\n    {\n      \"path\": \"tools/csg/factory-mcp/windows/repair-manifest.json\",\n      \"sha256\": \"7c661f97592f37b46e3df4d316830c9ff094b9fe987ab579b8dc37d63850f701\"\n    },\n    {\n      \"path\": \"tools/csg/factory-mcp/tests/shared-context-packaging.test.mjs\",\n      \"sha256\": \"e9f594c2c70a2eb0b9cece2ce91a2f544d2036a797e0233f0051c21a1e7accac\"\n    }\n  ]\n}\n```\n",
+      "dispatch_source": "routes/resume-batch-20261004/mcp-final-package-review/ag.intent.json"
     },
     {
       "id": "D02.EXACT_REVIEW_ABSOLUTE_BINDING_CORRECTION",
+      "task": "D02.EXACT_REVIEW_ABSOLUTE_BINDING_CORRECTION",
       "status": "CLOSED_REVIEW_REQUIRED",
+      "model": "opencode/muse-spark-1.3-contributor-free",
+      "variant": "xhigh",
+      "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-QUEUE-CLOSURE-AG-WORK-20261004",
+      "write_set": [],
+      "source_bindings": [
+        {
+          "path": "tools/csg/v51-supervisor/lib/operation-planner.mjs",
+          "sha256": "a88cf32c3c1eb95f607b90ec2687c93dd67a9421321da76ec496970ae73eb6e5"
+        },
+        {
+          "path": "tools/csg/v51-supervisor/tests/queue-closure-regression.test.mjs",
+          "sha256": "4d8921656a127d5c2f8c31beefa965be24b62d6575a65eb220da90345d9c6163"
+        }
+      ],
+      "absolute_source_paths": [
+        "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-QUEUE-CLOSURE-AG-WORK-20261004\\tools\\csg\\v51-supervisor\\lib\\operation-planner.mjs",
+        "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-QUEUE-CLOSURE-AG-WORK-20261004\\tools\\csg\\v51-supervisor\\tests\\queue-closure-regression.test.mjs"
+      ],
+      "session_id": "ses_efaafa100ffesOyWLSk94Y91ys",
+      "created_at": "2026-10-04T05:19:15.018Z",
+      "canonical_write": false,
+      "production": false,
+      "paid_fallback": false,
+      "pid": 55180,
+      "exit_code": 0,
       "closed_at": "2026-10-04T05:20:12.545Z",
       "actual_model": {
         "id": "muse-spark-1.3-contributor-free",
         "providerID": "opencode",
         "variant": "xhigh"
       },
-      "requested_model": "opencode/muse-spark-1.3-contributor-free",
-      "session_id": "ses_efaafa100ffesOyWLSk94Y91ys",
-      "conversation_id": null,
-      "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-QUEUE-CLOSURE-AG-WORK-20261004",
-      "write_set": [],
-      "denied_actions": null,
       "native_outcome": "succeeded",
       "cost": 0,
-      "result_source": "routes/resume-batch-20261004/queue-closure-review-corrected/oc.intent.json"
+      "dispatch_source": "routes/resume-batch-20261004/queue-closure-review-corrected/oc.intent.json"
     },
     {
-      "id": "P52.OPENCODE_ALL_FIELDS_CLOSURE_REVIEW",
-      "status": "PARKED_NATIVE_PERMISSION_DENIED",
-      "closed_at": "2026-10-04T04:43:14.48Z",
-      "actual_model": "gemini-3.8-flash-high",
-      "requested_model": "gemini-3.8-flash-high",
-      "session_id": null,
-      "conversation_id": "ba9e6289-a37e-4660-91dd-290fc1635395",
-      "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-OPENCODE-SOURCE-WORK-20261004",
-      "write_set": [],
-      "denied_actions": 1,
-      "native_outcome": null,
-      "cost": null,
-      "result_source": "routes/resume-batch-20261004/adapter-closure-review/ag.intent.json"
-    },
-    {
-      "id": "C1.PREPARE_NONSELECTING_PACKET",
-      "status": "PARKED_NATIVE_PERMISSION_DENIED",
-      "closed_at": "2026-10-04T04:41:31.337Z",
-      "actual_model": "gemini-3.8-flash-high",
-      "requested_model": "gemini-3.8-flash-high",
-      "session_id": null,
-      "conversation_id": "f0dcb678-aec3-4675-b30e-dcc5449c592e",
-      "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-C1-PREPARE-AG-WORK-20261004",
+      "id": "P52.RESEARCH_OPTIONS_SIX_FINDING_REWORK",
+      "task": "P52.RESEARCH_OPTIONS_SIX_FINDING_REWORK",
+      "parent_unit": "P52.RESEARCH_OPTIONS_SOURCE",
+      "status": "CLOSED_REVIEW_REQUIRED",
+      "model": "opencode/muse-spark-1.3-contributor-free",
+      "variant": "xhigh",
+      "session_id": "ses_ef97d8d5effeGhcmCsX0CrfYuR",
+      "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004",
       "write_set": [
-        "outputs/C1-PREPARE/attempt2/**"
+        "tools/csg/v52-research/**",
+        "outputs/P52-RESEARCH/repair6/**"
       ],
-      "denied_actions": 1,
-      "native_outcome": null,
-      "cost": null,
-      "result_source": "routes/resume-batch-20261004/c1-control-packet/ag.intent.json"
+      "created_at": "2026-10-04T10:56:36.467Z",
+      "preparatory_only": true,
+      "canonical_write": false,
+      "production": false,
+      "pid": 28016,
+      "exit_code": 0,
+      "closed_at": "2026-10-04T11:01:35.494Z",
+      "actual_model": {
+        "id": "muse-spark-1.3-contributor-free",
+        "providerID": "opencode",
+        "variant": "xhigh"
+      },
+      "native_outcome": "succeeded",
+      "cost": 0,
+      "dispatch_source": "routes/resume-batch-20261004/research-reviewed-repair/oc.intent.json"
     },
     {
       "id": "P52.INTAKE_REVIEWED_REPAIR",
-      "status": "COLLECTED_BYTES_EXPORT_NEEDS_DISTINCT_REVIEW",
-      "route": "OPENCODE_NATIVE",
-      "session_id": "ses_efa0a9169ffe4TPNklVK8k8Nlh",
-      "pid": 59084,
-      "actual_model": null,
-      "requested_model": "opencode/muse-spark-1.3-contributor-free",
+      "task": "P52.INTAKE_REVIEWED_REPAIR",
+      "status": "CLOSED_REVIEW_REQUIRED",
+      "model": "opencode/muse-spark-1.3-contributor-free",
       "variant": "xhigh",
+      "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-INTAKE-OPENCODE-WORK-20261003",
       "write_set": [
         "tools/csg/v52-intake/**",
         "outputs/P52-INTAKE/reviewed-repair-20261004/**"
       ],
-      "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-INTAKE-OPENCODE-WORK-20261003",
-      "dispatch_source": "routes/resume-batch-20261004/intake-reviewed-repair/oc.intent.json",
-      "closed_at": null,
-      "native_outcome": null,
-      "cost": null
+      "created_at": "2026-10-04T08:08:53.041Z",
+      "canonical_write": false,
+      "production": false,
+      "paid_fallback": false,
+      "review_binding": "../intake-next-review/ag.intent.json",
+      "session_id": "ses_efa0a9169ffe4TPNklVK8k8Nlh",
+      "pid": 59084,
+      "exit_code": 0,
+      "closed_at": "2026-10-04T08:14:07.576Z",
+      "actual_model": {
+        "id": "muse-spark-1.3-contributor-free",
+        "providerID": "opencode",
+        "variant": "xhigh"
+      },
+      "native_outcome": "succeeded",
+      "cost": 0,
+      "dispatch_source": "routes/resume-batch-20261004/intake-reviewed-repair/oc.intent.json"
+    },
+    {
+      "id": "P52.OPENCODE_ALL_FIELDS_CLOSURE_REVIEW",
+      "task": "P52.OPENCODE_ALL_FIELDS_CLOSURE_REVIEW",
+      "status": "CLOSED_REVIEW_REQUIRED",
+      "model": "gemini-3.8-flash-high",
+      "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-OPENCODE-SOURCE-WORK-20261004",
+      "write_set": [],
+      "source_bindings": [
+        {
+          "path": "tools/csg/v51-supervisor/lib/f01-opencode-native.mjs",
+          "sha256": "5df62ed9e85a6963eb4f53a2a9eb1fe2139ae0d80d872c68f35c41e44fc7cfad"
+        },
+        {
+          "path": "tools/csg/v51-supervisor/tests/f01-opencode-native.test.mjs",
+          "sha256": "6366a1fc6937a8e1c10a7cc55be8fbf957655eafe9cae085bfe4778065ea0fe3"
+        }
+      ],
+      "created_at": "2026-10-04T04:43:05.858Z",
+      "prior_builder_session": "ses_efae81e72ffeSLYMHr2VbjYzq1",
+      "prior_builder_model": {
+        "id": "muse-spark-1.3-contributor-free",
+        "providerID": "opencode",
+        "variant": "xhigh"
+      },
+      "inherited_42_exact_hashes": "MATCHED",
+      "canonical_write": false,
+      "paid_fallback": false,
+      "pid": 38228,
+      "conversation_id": "ba9e6289-a37e-4660-91dd-290fc1635395",
+      "actual_model": "gemini-3.8-flash-high",
+      "result_status": "SUCCESS",
+      "denied_action_count": 1,
+      "exit_code": 0,
+      "closed_at": "2026-10-04T04:43:14.480Z",
+      "result_response": "",
+      "dispatch_source": "routes/resume-batch-20261004/adapter-closure-review/ag.intent.json"
+    },
+    {
+      "id": "C1.PREPARE_NONSELECTING_PACKET",
+      "task": "C1.PREPARE_NONSELECTING_PACKET",
+      "status": "CLOSED_REVIEW_REQUIRED",
+      "model": "gemini-3.8-flash-high",
+      "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-C1-PREPARE-AG-WORK-20261004",
+      "write_set": [
+        "outputs/C1-PREPARE/attempt2/**"
+      ],
+      "created_at": "2026-10-04T04:41:23.140Z",
+      "final_source_binding": "PENDING_FROZEN_NEW_SOURCE_PAIR",
+      "canonical_write": false,
+      "production": false,
+      "paid_fallback": false,
+      "pid": 6240,
+      "conversation_id": "f0dcb678-aec3-4675-b30e-dcc5449c592e",
+      "actual_model": "gemini-3.8-flash-high",
+      "result_status": "SUCCESS",
+      "denied_action_count": 1,
+      "exit_code": 0,
+      "closed_at": "2026-10-04T04:41:31.337Z",
+      "result_response": "",
+      "dispatch_source": "routes/resume-batch-20261004/c1-control-packet/ag.intent.json"
     },
     {
       "id": "P52.INTAKE_REPAIRED_INDEPENDENT_REVIEW",
-      "status": "PARKED_NATIVE_READ_PERMISSION_DENIED",
-      "route": "ANTIGRAVITY_NATIVE_CLI",
+      "task": "P52.INTAKE_REPAIRED_INDEPENDENT_REVIEW",
+      "status": "CLOSED_REVIEW_REQUIRED",
+      "model": "gemini-3.8-flash-high",
+      "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-INTAKE-OPENCODE-WORK-20261003",
+      "write_set": [],
+      "source_bindings": [
+        {
+          "path": "tools/csg/v52-intake/README.md",
+          "sha256": "e1836c04d4f99a3a6e092fe1d07c60fe496d0e57f14a86f02cb6a4e730320049"
+        },
+        {
+          "path": "tools/csg/v52-intake/cli.mjs",
+          "sha256": "6a0d8eeb093e0cf540042e9de15efde6543030d2b8ad24b4ec4ff43d2c39475c"
+        },
+        {
+          "path": "tools/csg/v52-intake/intake-request.schema.json",
+          "sha256": "66f334578e7fe7820a4b6565e6a943411f865eebeb3a005d48ba923bbc1b5005"
+        },
+        {
+          "path": "tools/csg/v52-intake/intake.mjs",
+          "sha256": "7125201047e066d2dd2c80a1e8a502478ca6c571deea9e33b8ba62191ab7a829"
+        },
+        {
+          "path": "tools/csg/v52-intake/scripts/make-result.mjs",
+          "sha256": "2a5c41adff1619b137889bde5d1363057ec45aeaa05dec328c4a68c01dcd6249"
+        },
+        {
+          "path": "tools/csg/v52-intake/scripts/make-sample.mjs",
+          "sha256": "fd72c5f41df66fd3e33c586a12634546dd99034c37b633dbc6c327601f0723e8"
+        },
+        {
+          "path": "tools/csg/v52-intake/test/intake.test.mjs",
+          "sha256": "a98c10ad65527732e0ba575e66e00a135744e0b77c6f8a2e3bcfd815c2ddf0b2"
+        }
+      ],
+      "created_at": "2026-10-04T08:26:34.104Z",
+      "canonical_write": false,
+      "production": false,
+      "pid": 50780,
+      "conversation_id": "5a74940f-9a6a-4971-8df5-502ac2e32278",
       "actual_model": "gemini-3.8-flash-high",
-      "denied_actions": 1,
+      "result_status": "SUCCESS",
+      "denied_action_count": 1,
+      "exit_code": 0,
       "closed_at": "2026-10-04T08:26:46.957Z",
+      "result_response": "",
       "dispatch_source": "routes/resume-batch-20261004/intake-repaired-review/ag.intent.json"
     },
     {
+      "id": "P52.RESEARCH_OPTIONS_SOURCE_PREPARATION",
+      "task": "P52.RESEARCH_OPTIONS_SOURCE_PREPARATION",
+      "parent_unit": "P52.RESEARCH_OPTIONS_SOURCE",
+      "status": "CLOSED_REVIEW_REQUIRED",
+      "model": "opencode/muse-spark-1.3-contributor-free",
+      "variant": "xhigh",
+      "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004",
+      "base": "d39486601d851e31256852a24e9c1393b9046fe5",
+      "write_set": [
+        "tools/csg/v52-research/**",
+        "outputs/P52-RESEARCH/**"
+      ],
+      "created_at": "2026-10-04T10:42:54.648Z",
+      "authorization": "HUMAN_CONTINUOUS_NONCONFLICTING_SOURCE_PREPARATION",
+      "preparatory_only": true,
+      "dependency_acceptance": "P52.INTAKE_SOURCE_REVIEW_STILL_PARKED_NOT_DONE",
+      "canonical_write": false,
+      "host_dispatch": false,
+      "production": false,
+      "session_id": "ses_ef97d8d5effeGhcmCsX0CrfYuR",
+      "pid": 20252,
+      "exit_code": 0,
+      "closed_at": "2026-10-04T10:46:07.258Z",
+      "actual_model": {
+        "id": "muse-spark-1.3-contributor-free",
+        "providerID": "opencode",
+        "variant": "xhigh"
+      },
+      "native_outcome": "succeeded",
+      "cost": 0,
+      "dispatch_source": "routes/resume-batch-20261004/research-preparatory-source/oc.intent.json"
+    },
+    {
+      "id": "P52.RESEARCH_OPTIONS_PREPARATORY_INDEPENDENT_REVIEW",
+      "task": "P52.RESEARCH_OPTIONS_PREPARATORY_INDEPENDENT_REVIEW",
+      "parent_unit": "P52.RESEARCH_OPTIONS_SOURCE",
+      "status": "CLOSED_REVIEW_REQUIRED",
+      "model": "gemini-3.8-flash-high",
+      "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004",
+      "write_set": [],
+      "source_bindings": [
+        {
+          "path": "tools/csg/v52-research/README.md",
+          "sha256": "7dc8ea7ae72d2b4a5a1459543a6e73e4eba1710f83678697567c675db67835c3",
+          "bytes": 1497
+        },
+        {
+          "path": "tools/csg/v52-research/cli.mjs",
+          "sha256": "9267d1a12c3192970fdf46416f9e14fa4111930448b07481adb3e5601494d91f",
+          "bytes": 6359
+        },
+        {
+          "path": "tools/csg/v52-research/src/alternatives.mjs",
+          "sha256": "dd518068d00800a8f2707c28f0633c5850c934eaf7cd36b2626315560700e5c3",
+          "bytes": 3642
+        },
+        {
+          "path": "tools/csg/v52-research/src/evidence.mjs",
+          "sha256": "7c0d0aacab4212a7c91caadae875d39d713e928e106d14ca36359d5baf9fd944",
+          "bytes": 4559
+        },
+        {
+          "path": "tools/csg/v52-research/src/provenance.mjs",
+          "sha256": "5920a804df7dbe565c08814a01326a5e3c0ce72245c469f27654988b601a6a21",
+          "bytes": 1145
+        },
+        {
+          "path": "tools/csg/v52-research/src/recommendation.mjs",
+          "sha256": "ed75795eb6dda0845659d8d635e72811a468c323a27082b7d6ee5ea72a8ad223",
+          "bytes": 6775
+        },
+        {
+          "path": "tools/csg/v52-research/src/report.mjs",
+          "sha256": "506e2fc88d4e1952ea79d6659ac299dbba4a77c5c651394e26d28ddfbceea46b",
+          "bytes": 2606
+        },
+        {
+          "path": "tools/csg/v52-research/src/schemas.mjs",
+          "sha256": "ea2def89b2de1b1e9e3b8c1062cc5ba8099f78622ec421ca2a6a494a89f57693",
+          "bytes": 2538
+        },
+        {
+          "path": "tools/csg/v52-research/tests/alternatives.test.mjs",
+          "sha256": "11f899f578e5c81fdd7181b6ad261eceb53af26e76baa1fa8fb13b8e774b632b",
+          "bytes": 2601
+        },
+        {
+          "path": "tools/csg/v52-research/tests/cli.test.mjs",
+          "sha256": "c33f68452f5dab5d6b4f32f7572be444151a8e33e62ff8e62bc0cb79cf44e4b6",
+          "bytes": 7365
+        },
+        {
+          "path": "tools/csg/v52-research/tests/evidence.test.mjs",
+          "sha256": "e2faac0c9d0b8add957a23382ef4a6a459a4387f989bb7cd306c7358cc9f6ac0",
+          "bytes": 3139
+        },
+        {
+          "path": "tools/csg/v52-research/tests/provenance.test.mjs",
+          "sha256": "25476cd641b15d51d926ab05f067cec3775a90577ea0f54cdfe90b762e4f4564",
+          "bytes": 1043
+        },
+        {
+          "path": "tools/csg/v52-research/tests/recommendation.test.mjs",
+          "sha256": "3cbeefba02ee8e66c0761d7cf09a7f876735e136448ac7ebf63e493134e491f1",
+          "bytes": 5290
+        }
+      ],
+      "created_at": "2026-10-04T10:52:22.453Z",
+      "canonical_write": false,
+      "production": false,
+      "pid": 55624,
+      "conversation_id": "6df58dfc-b766-4146-88d7-3ef0ce1a4962",
+      "actual_model": "gemini-3.8-flash-high",
+      "result_status": "SUCCESS",
+      "denied_action_count": 0,
+      "exit_code": 0,
+      "closed_at": "2026-10-04T10:53:32.589Z",
+      "result_response": "```json\n{\n  \"verdict\": \"FAIL_CLOSED_REWORK_REQUIRED\",\n  \"actualreviewermodel\": \"Gemini 3.8 Flash (High)\",\n  \"liveNOT_ACCEPTED\": true,\n  \"status\": \"LOCAL_FIXTURE_ONLY_PREPARATORY\",\n  \"intakeReview\": \"PARKED\",\n  \"fullAcceptance\": false,\n  \"authorClaimsAudit\": {\n    \"author37Tests\": \"CLASSIFIED_LOCAL_FIXTURE_ONLY\",\n    \"testsRerun\": false,\n    \"writesetVerified\": 13,\n    \"semanticLiveAccepted\": false\n  },\n  \"sourcebindings\": [\n    \"tools/csg/v52-research/README.md\",\n    \"tools/csg/v52-research/cli.mjs\",\n    \"tools/csg/v52-research/src/alternatives.mjs\",\n    \"tools/csg/v52-research/src/evidence.mjs\",\n    \"tools/csg/v52-research/src/provenance.mjs\",\n    \"tools/csg/v52-research/src/recommendation.mjs\",\n    \"tools/csg/v52-research/src/report.mjs\",\n    \"tools/csg/v52-research/src/schemas.mjs\",\n    \"tools/csg/v52-research/tests/alternatives.test.mjs\",\n    \"tools/csg/v52-research/tests/cli.test.mjs\",\n    \"tools/csg/v52-research/tests/evidence.test.mjs\",\n    \"tools/csg/v52-research/tests/provenance.test.mjs\",\n    \"tools/csg/v52-research/tests/recommendation.test.mjs\"\n  ],\n  \"findings\": [\n    {\n      \"id\": \"F-01\",\n      \"severity\": \"HIGH\",\n      \"fileline\": \"tools/csg/v52-research/src/recommendation.mjs:98,121-131\",\n      \"defect\": \"verifyApproval 未強制要求 requestDigest 與 optionDigests 繫結，且 buildRecommendation 生成之 approval 未內嵌摘要；若 approval 缺漏 digest，條件分支直接略過檢查，使選項/請求位元組變更無法強制使 approval 失效。\",\n      \"minimalfix\": \"在 buildRecommendation 將 requestDigest 與 optionDigests 寫入 approval 物件；在 verifyApproval 強制校驗兩者存在且嚴格相符，缺漏即拒絕。\"\n    },\n    {\n      \"id\": \"F-02\",\n      \"severity\": \"HIGH\",\n      \"fileline\": \"tools/csg/v52-research/src/evidence.mjs:21-34; alternatives.mjs:7-10; recommendation.mjs:10-12,28-36\",\n      \"defect\": \"未落實 closedkeys（封閉鍵）防護。驗證函式僅檢查必填鍵，未拒絕額外注入鍵（additionalProperties 允許洩漏）；schemas.mjs 亦未定義 additionalProperties: false 且未接入運行期校驗。\",\n      \"minimalfix\": \"於各驗證函式增加封閉鍵白名單檢查：Object.keys(obj).every(k => ALLOWED_KEYS.has(k))，遇未宣告鍵一律返回 E_SHAPE。\"\n    },\n    {\n      \"id\": \"F-03\",\n      \"severity\": \"MEDIUM\",\n      \"fileline\": \"tools/csg/v52-research/src/evidence.mjs:9-16,59-62\",\n      \"defect\": \"isLiveProvider 使用正則 /live|actual.../i 模糊比對，屬任意秘密詞閘門，會誤傷包含 live 字根之字串，且未涵蓋之即時爬蟲會錯誤漂移為 E_PROVIDER_UNAPPROVED，診斷不穩定。\",\n      \"minimalfix\": \"移除 LIVE_HINT 模糊正則，改以嚴格 ALLOWED_PROVIDERS 白名單為核心，非白名單一律拒絕；針對 live/actual 宣告明確報出 E_LIVE_NOT_ACCEPTED。\"\n    },\n    {\n      \"id\": \"F-04\",\n      \"severity\": \"MEDIUM\",\n      \"fileline\": \"tools/csg/v52-research/cli.mjs:88-90,137-142\",\n      \"defect\": \"CLI 未比對 outPath !== reportPath。若二者相同，初期檔案皆不存在可通過 ensureNoOverwrite，但後續 writeFileSync(reportPath) 會無警示覆寫 outPath，違反 nooverwrite 保證。\",\n      \"minimalfix\": \"補齊互斥檢查：if (reportPath && outPath === reportPath) fail('E_PATH', '--out and --report must be distinct');。\"\n    },\n    {\n      \"id\": \"F-05\",\n      \"severity\": \"LOW\",\n      \"fileline\": \"tools/csg/v52-research/src/provenance.mjs:27-31\",\n      \"defect\": \"isIsoDate 僅倚賴 Date.parse，在 V8 引擎會放行寬鬆年份或非 ISO 8601 格式字串（如 '2026' 或非標準日期）。\",\n      \"minimalfix\": \"加入 ISO 8601 嚴格正則校驗：/^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]{3})?Z$/。\"\n    },\n    {\n      \"id\": \"F-06\",\n      \"severity\": \"LOW\",\n      \"fileline\": \"tools/csg/v52-research/src/evidence.mjs:82; recommendation.mjs:80\",\n      \"defect\": \"殘留無作用的壓抑語法 void normKey 與 void optById；schemas.mjs 與實際驗證邏輯脫節。\",\n      \"minimalfix\": \"清除無用 import 與變數宣告，或使 schemas.mjs 成為單一真理源與校驗連結。\"\n    }\n  ],\n  \"governanceZh\": \"本審查判定：模組僅為製備階段之隔離切片（LOCAL_FIXTURE_ONLY_PREPARATORY），嚴格執行無外部指令/無修改/無聯網審查；作者宣稱之 37 項測試全屬本機靜態夾具，非語意/live 驗收。Intake 正式審查持續暫停（PARKED），獨立 UI/切片不構成全面驗收（NOT_FULL_ACCEPTANCE）。發現 6 項具體缺陷（含審批摘要未強制綁定穿透、開放鍵未防護、CLI 覆寫衝突等），已實施 Fail-Closed 閉環拒絕，交由 Root 仲裁並進行精確返工。\"\n}\n```\n",
+      "dispatch_source": "routes/resume-batch-20261004/research-preparatory-review/ag.intent.json"
+    },
+    {
+      "id": "P52.RESEARCH_OPTIONS_NINE_FINDING_REWORK",
+      "task": "P52.RESEARCH_OPTIONS_NINE_FINDING_REWORK",
+      "parent_unit": "P52.RESEARCH_OPTIONS_SOURCE",
+      "status": "CLOSED_REVIEW_REQUIRED",
+      "model": "opencode/muse-spark-1.3-contributor-free",
+      "variant": "xhigh",
+      "session_id": "ses_ef97d8d5effeGhcmCsX0CrfYuR",
+      "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004",
+      "write_set": [
+        "tools/csg/v52-research/**",
+        "outputs/P52-RESEARCH/rework9/**"
+      ],
+      "created_at": "2026-10-04T11:36:12.913Z",
+      "review_sha256": "eec03200e0c3cbfb8079ae7baab9e47f88c0c3b3674bda577c67c8cd8f1cebc4",
+      "preparatory_only": true,
+      "deadline_seconds": 900,
+      "paid_fallback": false,
+      "canonical_write": false,
+      "production": false,
+      "pid": 33192,
+      "exit_code": 0,
+      "closed_at": "2026-10-04T11:41:56.760Z",
+      "actual_model": {
+        "id": "muse-spark-1.3-contributor-free",
+        "providerID": "opencode",
+        "variant": "xhigh"
+      },
+      "native_outcome": "succeeded",
+      "cost": 0,
+      "dispatch_source": "routes/resume-batch-20261004/research-nine-finding-rework/oc.intent.json"
+    },
+    {
+      "id": "HUMAN.DASHBOARD_AND_RECEIPT_HANDOFF_REPAIR",
+      "task": "HUMAN.DASHBOARD_AND_RECEIPT_HANDOFF_REPAIR",
+      "model": "gemini-3.8-flash-high",
+      "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-AUTO-CONTINUATION-20261003",
+      "write_set": [
+        "routes/progress-observer.mjs",
+        "routes/progress-human-view.mjs",
+        "outputs/HUMAN-DASHBOARD-REPAIR/**"
+      ],
+      "created_at": "2026-10-04T11:47:09.097Z",
+      "status": "CLOSED_REVIEW_REQUIRED",
+      "source_only": true,
+      "canonical_write": false,
+      "production": false,
+      "source_before": [
+        {
+          "path": "routes/progress-observer.mjs",
+          "sha256": "dc8449e035a8ce834f641a5c1c69272f4b31e4c2ab55e21fbea99274cea3538b"
+        },
+        {
+          "path": "routes/progress-human-view.mjs",
+          "sha256": "def306105e14884239dfc3a4d511da5f0092efcec67a01021273c70c8e2ea330"
+        }
+      ],
+      "pid": 52812,
+      "conversation_id": "d7345e3e-7e6e-452a-a591-6cc16c59726b",
+      "actual_model": "gemini-3.8-flash-high",
+      "result_status": "SUCCESS",
+      "denied_action_count": 1,
+      "exit_code": 0,
+      "closed_at": "2026-10-04T11:48:14.346Z",
+      "result_response": "",
+      "dispatch_source": "routes/resume-batch-20261004/human-dashboard-repair/ag.intent.json"
+    },
+    {
+      "id": "MCP.COLD_SESSION_LOCAL_CONSUMER_E2E",
+      "task": "MCP.COLD_SESSION_LOCAL_CONSUMER_E2E",
+      "model": "opencode/muse-spark-1.3-contributor-free",
+      "variant": "xhigh",
+      "session_id": "ses_ef942bc5bffeL4ijxWJaAtzKoO",
+      "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-MCP-READSYNC-AG-WORK-20261004",
+      "status": "CLOSED_REVIEW_REQUIRED",
+      "created_at": "2026-10-04T11:47:09.576Z",
+      "write_set": [
+        "tools/csg/factory-mcp/tests/cold-session-consumer.test.mjs",
+        "outputs/MCP-COLD-SESSION-E2E/**"
+      ],
+      "source_only": true,
+      "deadline_seconds": 900,
+      "paid_fallback": false,
+      "canonical_write": false,
+      "production": false,
+      "pid": 26144,
+      "exit_code": 0,
+      "closed_at": "2026-10-04T11:49:54.478Z",
+      "actual_model": {
+        "id": "muse-spark-1.3-contributor-free",
+        "providerID": "opencode",
+        "variant": "xhigh"
+      },
+      "native_outcome": "succeeded",
+      "cost": 0,
+      "dispatch_source": "routes/resume-batch-20261004/mcp-cold-session-consumer/oc.intent.json"
+    },
+    {
+      "id": "P52.RESEARCH_NINE_FINAL_REVIEW",
+      "task": "P52.RESEARCH_NINE_FINAL_REVIEW",
+      "model": "gpt-6-luna",
+      "reasoning_effort": "max",
+      "status": "CLOSED_REVIEW_REQUIRED",
+      "agent_name": "/root/v52_research_repair6_luna_review",
+      "native_agent_status": "completed",
+      "native_observed_at": "2026-10-04T11:50:09.797Z",
+      "native_status_evidence": "EXACT_DISTINCT_REVIEW_RESULT_EXISTS_F02_REQUIRED_SUBSEQUENT_AUTHOR_FIX_COLLECTED",
+      "created_at": "2026-10-04T11:50:09.797Z",
+      "result_path": "routes/resume-batch-20261004/research-nine-final-luna-review/result.json",
+      "source_write": false,
+      "write_set": [
+        "routes/resume-batch-20261004/research-nine-final-luna-review/result.json"
+      ],
+      "canonical_write": false,
+      "production": false,
+      "closed_at": "2026-10-04T12:20:34.485Z",
+      "dispatch_source": "routes/resume-batch-20261004/research-nine-final-luna-review/luna.intent.json"
+    },
+    {
+      "id": "MCP.COLD_READER_FIXTURE_DISTINCT_STATIC_REVIEW",
+      "task": "MCP.COLD_READER_FIXTURE_DISTINCT_STATIC_REVIEW",
+      "model": "gemini-3.8-flash-high",
+      "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-MCP-READSYNC-AG-WORK-20261004",
+      "created_at": "2026-10-04T11:59:32.148Z",
+      "status": "CLOSED_REVIEW_REQUIRED",
+      "write_set": [],
+      "source_bindings": [
+        {
+          "path": "tools/csg/factory-mcp/tests/cold-session-consumer.test.mjs",
+          "sha256": "bc8752c8b4a6722a0968cca75f8d7b9c22510a54dc0ca506cfdf09659437bdf0"
+        }
+      ],
+      "canonical_write": false,
+      "production": false,
+      "pid": 59416,
+      "conversation_id": "3dbb24e0-c0b0-44c6-af06-c9229bdd1ca9",
+      "actual_model": "gemini-3.8-flash-high",
+      "result_status": "SUCCESS",
+      "denied_action_count": 0,
+      "exit_code": 0,
+      "closed_at": "2026-10-04T12:00:02.824Z",
+      "result_response": "```json\n{\n  \"verdict\": \"PASS\",\n  \"findings\": [],\n  \"source_binding\": {\n    \"path\": \"tools/csg/factory-mcp/tests/cold-session-consumer.test.mjs\",\n    \"sha256\": \"bc8752c8b4a6722a0968cca75f8d7b9c22510a54dc0ca506cfdf09659437bdf0\"\n  },\n  \"evidence_scope\": \"source_and_reader_fixture_only_no_live_stdio\",\n  \"actual_reviewer_model\": \"Gemini 3.8 Flash (High)\",\n  \"live_acceptance\": \"NOT_ACCEPTED\",\n  \"review_summary\": {\n    \"source_surface_qualification\": \"Test 1 verifies static tool definitions on src/index.mjs via regex without making false live MCP runtime claims, logging SCOPED_BLOCKER when @modelcontextprotocol/server is not installed.\",\n    \"reader_fixture_honesty\": \"Tests 2-5 test readSharedContext and projection via synthetic in-memory fixtures; verify fail-closed behavior on corrupt digest, invalid manifest paths, and head mismatches; enforce separation of mutable progress TTL from immutable canonical specifications; confirm authority=READ_ONLY_NO_AUTHORITY and zero side effects (dispatch/mutation=false).\",\n    \"isolation_boundary\": \"Accurately scoped as a synthetic cold-session reader test, not full live stdio consumer acceptance or root regression.\"\n  }\n}\n```\n",
+      "dispatch_source": "routes/resume-batch-20261004/mcp-cold-consumer-static-review/ag.intent.json"
+    },
+    {
+      "id": "MCP.LOCKED_DEPS_AND_LOCAL_STDIO_RECOVERY",
+      "task": "MCP.LOCKED_DEPS_AND_LOCAL_STDIO_RECOVERY",
+      "model": "opencode/muse-spark-1.3-contributor-free",
+      "variant": "xhigh",
+      "session_id": "ses_ef942bc5bffeL4ijxWJaAtzKoO",
+      "created_at": "2026-10-04T11:59:32.319Z",
+      "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-MCP-READSYNC-AG-WORK-20261004",
+      "status": "CLOSED_REVIEW_REQUIRED",
+      "write_set": [
+        "tools/csg/factory-mcp/tests/cold-session-consumer.test.mjs",
+        "tools/csg/factory-mcp/node_modules/**",
+        "outputs/MCP-SDK-LOCKED-RECOVERY/**"
+      ],
+      "package_lock_sha256": "6ff3dcf04a4a1275f2a83deba0dab83869867b4eb31ff2f1cb85be411babebd7",
+      "deadline_seconds": 900,
+      "paid_fallback": false,
+      "canonical_write": false,
+      "production": false,
+      "pid": 34192,
+      "exit_code": 0,
+      "closed_at": "2026-10-04T12:01:17.475Z",
+      "actual_model": {
+        "id": "muse-spark-1.3-contributor-free",
+        "providerID": "opencode",
+        "variant": "xhigh"
+      },
+      "native_outcome": "succeeded",
+      "cost": 0,
+      "dispatch_source": "routes/resume-batch-20261004/mcp-sdk-locked-dependency-recovery/oc.intent.json"
+    },
+    {
+      "id": "P52.RESEARCH_FINAL16_DISTINCT_REVIEW",
+      "task": "P52.RESEARCH_FINAL16_DISTINCT_REVIEW",
+      "model": "gemini-3.8-flash-high",
+      "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004",
+      "created_at": "2026-10-04T12:15:05.109Z",
+      "status": "CLOSED_REVIEW_REQUIRED",
+      "write_set": [],
+      "source_bindings": [
+        {
+          "path": "tools/csg/v52-research/README.md",
+          "sha256": "a1719872ecfd0ac3f36fd1fd96d2cadd25bc923dfee6bd1801d8e79cc588875e",
+          "bytes": 2173
+        },
+        {
+          "path": "tools/csg/v52-research/cli.mjs",
+          "sha256": "39b0e65455644273af161d4f1913e07438bf1562a629f736ae119ed50fe31b16",
+          "bytes": 9126
+        },
+        {
+          "path": "tools/csg/v52-research/src/alternatives.mjs",
+          "sha256": "00ca654320649d1715ef778b5ea8e7e4d6d1beaf7425e695d193bd632f863d03",
+          "bytes": 2260
+        },
+        {
+          "path": "tools/csg/v52-research/src/evidence.mjs",
+          "sha256": "823556eafe31dc38d1cb79dc2fc35581224f39e66faba1c777a9880e612d754c",
+          "bytes": 2551
+        },
+        {
+          "path": "tools/csg/v52-research/src/provenance.mjs",
+          "sha256": "26d21c5ab50a264a88fe27e71975421c87b60f48d7f12ea10e88265919d1ed28",
+          "bytes": 2704
+        },
+        {
+          "path": "tools/csg/v52-research/src/recommendation.mjs",
+          "sha256": "866a0944f818995209357c4ff02e8812fe2c064b5c4513538896433355d0de25",
+          "bytes": 8420
+        },
+        {
+          "path": "tools/csg/v52-research/src/report.mjs",
+          "sha256": "e95403fe334a36212e2f35550601e7b258e639afbb4bf434949ce7bed938db7d",
+          "bytes": 2868
+        },
+        {
+          "path": "tools/csg/v52-research/src/schemas.mjs",
+          "bytes": 11850,
+          "sha256": "504191e4053cc8e0b102814f7ea792c1063f2349e05ac06b2070bab90b6de1d1"
+        },
+        {
+          "path": "tools/csg/v52-research/tests/alternatives.test.mjs",
+          "sha256": "3fa4339709fc2522598457ef60d88d9bd86a42db16f7edfbb74f8c5bfc5308ce",
+          "bytes": 3969
+        },
+        {
+          "path": "tools/csg/v52-research/tests/cli.test.mjs",
+          "sha256": "5dd1dd9e007c5c790d463530343fc44067000c4dc8900a7dae5045a862504ff6",
+          "bytes": 10347
+        },
+        {
+          "path": "tools/csg/v52-research/tests/evidence.test.mjs",
+          "sha256": "81e40d772e2483c0de53b90067051edf9bd89bc6c0a7e57b9ab9aadb160d7fee",
+          "bytes": 5421
+        },
+        {
+          "path": "tools/csg/v52-research/tests/provenance.test.mjs",
+          "sha256": "fdf11d6d4af2526b87398058932c56957c06f0b23399655ee0af010c820429c8",
+          "bytes": 2611
+        },
+        {
+          "path": "tools/csg/v52-research/tests/recommendation.test.mjs",
+          "sha256": "ea64aee88622c82af27142984dd44b9cec18ed34651ea1210fc5c8298f5045b8",
+          "bytes": 7415
+        },
+        {
+          "path": "tools/csg/v52-research/tests/repair6.test.mjs",
+          "sha256": "a4fa370ae3b426d29f57c5387ffe100e3249bcec6c601379d59e0ad2ce220fc2",
+          "bytes": 9007
+        },
+        {
+          "path": "tools/csg/v52-research/tests/rework9.test.mjs",
+          "sha256": "9bfc6907932cfb5ab225cdd2a95674871c9b9f15af1c7b95bdd7af4cebd3741b",
+          "bytes": 11684
+        },
+        {
+          "path": "tools/csg/v52-research/tests/inherited-fields.test.mjs",
+          "bytes": 4403,
+          "sha256": "df9ca66c8dc171b54bda32d398d53875b6b0189c26b048d812ec7ad580f8af66"
+        }
+      ],
+      "canonical_write": false,
+      "production": false,
+      "pid": 30828,
+      "conversation_id": "860638e9-96e4-4fe7-af40-045b33e7c588",
+      "actual_model": "gemini-3.8-flash-high",
+      "result_status": "SUCCESS",
+      "denied_action_count": 1,
+      "exit_code": 0,
+      "closed_at": "2026-10-04T12:15:15.827Z",
+      "result_response": "",
+      "dispatch_source": "routes/resume-batch-20261004/research-final16-ag-review/ag.intent.json"
+    },
+    {
+      "id": "P52.RESEARCH_FINAL16_NATIVE_SOURCE_REVIEW",
+      "task": "P52.RESEARCH_FINAL16_NATIVE_SOURCE_REVIEW",
+      "model": "gemini-3.8-flash-high",
+      "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004",
+      "created_at": "2026-10-04T12:18:46.008Z",
+      "status": "CLOSED_REVIEW_REQUIRED",
+      "write_set": [],
+      "optional_audit_attachment": "PARKED_READ_DENIED_NOT_REQUIRED_FOR_SOURCE_REVIEW",
+      "canonical_write": false,
+      "production": false,
+      "pid": 57380,
+      "conversation_id": "fc2806e2-ef89-4d5f-8680-dfe847866b1b",
+      "actual_model": "gemini-3.8-flash-high",
+      "result_status": "SUCCESS",
+      "denied_action_count": 0,
+      "exit_code": 0,
+      "closed_at": "2026-10-04T12:20:43.016Z",
+      "result_response": "```json\n{\n  \"verdict\": \"CONCERNS\",\n  \"findings\": [\n    {\n      \"id\": \"CLI-ERRCODE-CONFLATION\",\n      \"priority\": \"P2\",\n      \"file\": \"tools/csg/v52-research/cli.mjs\",\n      \"line\": 154,\n      \"reason\": \"Missing any required flag (--request, --evidence, --options, --scores, --out) triggers fail('E_CLOCK') instead of an input/flag validation code like E_FLAG or E_LACK.\",\n      \"required_fix\": \"Separate --now clock check from required input/output file flags so missing flags report E_FLAG or E_LACK.\"\n    },\n    {\n      \"id\": \"SCORES-ROOT-PROTOTYPE-BYPASS\",\n      \"priority\": \"P2\",\n      \"file\": \"tools/csg/v52-research/src/recommendation.mjs\",\n      \"line\": 65,\n      \"reason\": \"buildRecommendation validates scores root container with typeof and Object.keys without invoking checkClosed(scores, optionIds, 'scores'), allowing non-plain prototype chains or symbol keys to bypass closed-field checking at root.\",\n      \"required_fix\": \"Invoke checkClosed(scores, optionIds, 'scores') to guarantee plain-data prototype closure.\"\n    },\n    {\n      \"id\": \"STANDALONE-BUILDER-DISTINCTNESS-OMISSION\",\n      \"priority\": \"P2\",\n      \"file\": \"tools/csg/v52-research/src/recommendation.mjs\",\n      \"line\": 48,\n      \"reason\": \"Exported buildRecommendation validates option shapes and unique optionIds but does not check intra-option distinctness (title, approach, description, distinction.dimension), which is only enforced in cli.mjs via validateAlternatives.\",\n      \"required_fix\": \"Incorporate intra-option distinctness validation directly inside buildRecommendation.\"\n    },\n    {\n      \"id\": \"CLI-TAUTOLOGY-ANCESTOR-CHECK\",\n      \"priority\": \"P3\",\n      \"file\": \"tools/csg/v52-research/cli.mjs\",\n      \"line\": 123,\n      \"reason\": \"checkAncestors(parent === near ? near : near, workspace) redundantly evaluates to near in both ternary branches.\",\n      \"required_fix\": \"Remove redundant call or correct path expression.\"\n    },\n    {\n      \"id\": \"APPROVAL-OPTION-DIGESTS-PROTOTYPE-CLOSURE\",\n      \"priority\": \"P3\",\n      \"file\": \"tools/csg/v52-research/src/schemas.mjs\",\n      \"line\": 237,\n      \"reason\": \"validateApprovalClosed validates approval shape but does not verify Object.getPrototypeOf(a.optionDigests) or own-key closure for nested optionDigests map.\",\n      \"required_fix\": \"Enforce prototype null/Object.prototype and own-key checks on a.optionDigests.\"\n    }\n  ],\n  \"files_actually_read\": [\n    \"C:\\\\Users\\\\x\\\\Documents\\\\ChatGPT\\\\治理控制-自動軟體工廠\\\\VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004\\\\tools\\\\csg\\\\v52-research\\\\README.md\",\n    \"C:\\\\Users\\\\x\\\\Documents\\\\ChatGPT\\\\治理控制-自動軟體工廠\\\\VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004\\\\tools\\\\csg\\\\v52-research\\\\cli.mjs\",\n    \"C:\\\\Users\\\\x\\\\Documents\\\\ChatGPT\\\\治理控制-自動軟體工廠\\\\VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004\\\\tools\\\\csg\\\\v52-research\\\\src\\\\alternatives.mjs\",\n    \"C:\\\\Users\\\\x\\\\Documents\\\\ChatGPT\\\\治理控制-自動軟體工廠\\\\VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004\\\\tools\\\\csg\\\\v52-research\\\\src\\\\evidence.mjs\",\n    \"C:\\\\Users\\\\x\\\\Documents\\\\ChatGPT\\\\治理控制-自動軟體工廠\\\\VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004\\\\tools\\\\csg\\\\v52-research\\\\src\\\\provenance.mjs\",\n    \"C:\\\\Users\\\\x\\\\Documents\\\\ChatGPT\\\\治理控制-自動軟體工廠\\\\VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004\\\\tools\\\\csg\\\\v52-research\\\\src\\\\recommendation.mjs\",\n    \"C:\\\\Users\\\\x\\\\Documents\\\\ChatGPT\\\\治理控制-自動軟體工廠\\\\VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004\\\\tools\\\\csg\\\\v52-research\\\\src\\\\report.mjs\",\n    \"C:\\\\Users\\\\x\\\\Documents\\\\ChatGPT\\\\治理控制-自動軟體工廠\\\\VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004\\\\tools\\\\csg\\\\v52-research\\\\src\\\\schemas.mjs\",\n    \"C:\\\\Users\\\\x\\\\Documents\\\\ChatGPT\\\\治理控制-自動軟體工廠\\\\VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004\\\\tools\\\\csg\\\\v52-research\\\\tests\\\\alternatives.test.mjs\",\n    \"C:\\\\Users\\\\x\\\\Documents\\\\ChatGPT\\\\治理控制-自動軟體工廠\\\\VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004\\\\tools\\\\csg\\\\v52-research\\\\tests\\\\cli.test.mjs\",\n    \"C:\\\\Users\\\\x\\\\Documents\\\\ChatGPT\\\\治理控制-自動軟體工廠\\\\VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004\\\\tools\\\\csg\\\\v52-research\\\\tests\\\\evidence.test.mjs\",\n    \"C:\\\\Users\\\\x\\\\Documents\\\\ChatGPT\\\\治理控制-自動軟體工廠\\\\VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004\\\\tools\\\\csg\\\\v52-research\\\\tests\\\\provenance.test.mjs\",\n    \"C:\\\\Users\\\\x\\\\Documents\\\\ChatGPT\\\\治理控制-自動軟體工廠\\\\VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004\\\\tools\\\\csg\\\\v52-research\\\\tests\\\\recommendation.test.mjs\",\n    \"C:\\\\Users\\\\x\\\\Documents\\\\ChatGPT\\\\治理控制-自動軟體工廠\\\\VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004\\\\tools\\\\csg\\\\v52-research\\\\tests\\\\repair6.test.mjs\",\n    \"C:\\\\Users\\\\x\\\\Documents\\\\ChatGPT\\\\治理控制-自動軟體工廠\\\\VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004\\\\tools\\\\csg\\\\v52-research\\\\tests\\\\rework9.test.mjs\",\n    \"C:\\\\Users\\\\x\\\\Documents\\\\ChatGPT\\\\治理控制-自動軟體工廠\\\\VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004\\\\tools\\\\csg\\\\v52-research\\\\tests\\\\inherited-fields.test.mjs\"\n  ],\n  \"review_scope\": \"tools/csg/v52-research isolated slice (schemas, evidence, alternatives, recommendation, provenance, report, cli, and test suites): closed-field validation, own-required-fields, prototype inheritance guards, digest bindings, 3-options distinctness, scoring provenance, deterministic fixture clock, and safe CLI output invariants.\",\n  \"actual_reviewer_model\": \"Gemini 3.8 Flash (High)\",\n  \"live_acceptance\": \"NOT_ACCEPTED\"\n}\n```\n",
+      "dispatch_source": "routes/resume-batch-20261004/research-final16-ag-source-review/ag.intent.json"
+    },
+    {
+      "id": "MCP.SDK_FINAL_DISTINCT_LUNA_REVIEW",
+      "task": "MCP.SDK_FINAL_DISTINCT_LUNA_REVIEW",
+      "model": "gpt-6-luna",
+      "reasoning_effort": "max",
+      "status": "CLOSED_REVIEW_REQUIRED",
+      "agent_name": "/root/v52_research_repair6_luna_review",
+      "native_agent_status": "completed",
+      "native_observed_at": "2026-10-04T12:32:07.682Z",
+      "native_status_evidence": "COLLABORATION_LIST_AGENTS_RUNNING_AFTER_FOLLOWUP",
+      "created_at": "2026-10-04T12:20:34.485Z",
+      "result_path": "routes/resume-batch-20261004/mcp-sdk-final-luna-review/result.json",
+      "write_set": [
+        "routes/resume-batch-20261004/mcp-sdk-final-luna-review/result.json"
+      ],
+      "source_write": false,
+      "canonical_write": false,
+      "production": false,
+      "closed_at": "2026-10-04T12:32:07.682Z",
+      "dispatch_source": "routes/resume-batch-20261004/mcp-sdk-final-luna-review/luna.intent.json"
+    },
+    {
+      "id": "P52.RESEARCH_FINAL_AG_FINDINGS_REWORK",
+      "task": "P52.RESEARCH_FINAL_AG_FINDINGS_REWORK",
+      "model": "opencode/muse-spark-1.3-contributor-free",
+      "variant": "xhigh",
+      "session_id": "ses_ef97d8d5effeGhcmCsX0CrfYuR",
+      "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004",
+      "status": "CLOSED_REVIEW_REQUIRED",
+      "created_at": "2026-10-04T12:22:58.940Z",
+      "write_set": [
+        "tools/csg/v52-research/**",
+        "outputs/P52-RESEARCH/rework-final-ag/**"
+      ],
+      "canonical_write": false,
+      "production": false,
+      "paid_fallback": false,
+      "pid": 55016,
+      "exit_code": 0,
+      "closed_at": "2026-10-04T12:25:49.176Z",
+      "actual_model": {
+        "id": "muse-spark-1.3-contributor-free",
+        "providerID": "opencode",
+        "variant": "xhigh"
+      },
+      "native_outcome": "succeeded",
+      "cost": 0,
+      "dispatch_source": "routes/resume-batch-20261004/research-final-ag-rework/oc.intent.json"
+    },
+    {
+      "id": "HUMAN.DASHBOARD_SOURCE_HANDOFF_REPAIR",
+      "task": "HUMAN.DASHBOARD_SOURCE_HANDOFF_REPAIR",
+      "model": "gemini-3.8-flash-high",
+      "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-AUTO-CONTINUATION-20261003",
+      "status": "CLOSED_REVIEW_REQUIRED",
+      "created_at": "2026-10-04T12:22:58.966Z",
+      "write_set": [
+        "routes/progress-observer.mjs",
+        "routes/progress-human-view.mjs",
+        "outputs/HUMAN-DASHBOARD-SOURCE-REPAIR/**"
+      ],
+      "canonical_write": false,
+      "production": false,
+      "denied_inspection_command": "PARKED_NOT_RETRIED",
+      "pid": 24028,
+      "conversation_id": "cfd53ae2-fd0c-40ad-8846-5ccf4d1c2cd8",
+      "actual_model": "gemini-3.8-flash-high",
+      "result_status": "SUCCESS",
+      "denied_action_count": 0,
+      "exit_code": 0,
+      "closed_at": "2026-10-04T12:25:29.760Z",
+      "result_response": "### 1. Changed Paths\n- [`routes/progress-observer.mjs`](file:///C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-AUTO-CONTINUATION-20261003/routes/progress-observer.mjs)\n- [`routes/progress-human-view.mjs`](file:///C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-AUTO-CONTINUATION-20261003/routes/progress-human-view.mjs)\n- [`outputs/HUMAN-DASHBOARD-SOURCE-REPAIR/dashboard-regression.fixture.mjs`](file:///C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-AUTO-CONTINUATION-20261003/outputs/HUMAN-DASHBOARD-SOURCE-REPAIR/dashboard-regression.fixture.mjs)\n- [`outputs/HUMAN-DASHBOARD-SOURCE-REPAIR/SOURCE-REPAIR-REPORT.md`](file:///C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-AUTO-CONTINUATION-20261003/outputs/HUMAN-DASHBOARD-SOURCE-REPAIR/SOURCE-REPAIR-REPORT.md)\n\n---\n\n### 2. Fix Summary\n1. **Stable Content-Hash Identity**:\n   - `computeResultSha256`: Computes raw bytes SHA-256 directly, ensuring identical bytes generate identical hashes across mtime/timestamp shifts.\n2. **Semantic Non-FSM-Time-Sensitive ACK Signature**:\n   - `computeSemanticSignature`: Keys off `{task, outcome, denied, result_sha256, session}` without volatile `closed_at` or clock values. Dual-matches legacy signatures for backward compatibility.\n3. **Honest Actor States & Denial Retention**:\n   - Strictly marks tasks `RUNNING_OUTCOME_PENDING` only when fresh (<10m observation, <20m activity, 0 denials).\n   - Retains native outcome/denials: any denial count > 0 or permission error transitions to `PERMISSION_PARKED`. No fake working, no auto-accept.\n4. **Chinese Labels & Worker Deck**:\n   - Worker cards and tasks ordered chronological newest-first with Asia/Taipei local time, last observation timestamp, and stale badge (>90s).\n   - Explicit `當前工作` (current task), `為何等待` (why waiting), and `下一負責者` (next owner).\n5. **Truly Idle Explains Next Queue & Terminal Verdict**:\n   - Idle actors explain pending queue / uncollected reviews.\n   - Terminal verdicts strictly forbid \"Mission complete\" (全工廠任務完成).\n6. **Preserved Zero-Model Projection & Single-Writer Safety**:\n   - Zero model/provider calls, standard `node:fs`/`node:path`/`node:crypto` only.\n   - Atomic rename with Windows `EPERM`/`EBUSY` copy fallback. Versioned (`vnext5.2.readonly-progress.v2`); watch mode checks active PID without killing processes.\n7. **Import-Safe Guard & Pure Regression Fixture**:\n   - `isMainModule()` guard prevents side effects on import.\n   - Exported pure helpers (`computeResultSha256`, `computeSemanticSignature`, `renderHumanProgress`, `status`, `explainNextQueue`). Added regression fixture to outputs.\n\n---\n\n### 3. Remaining Constraints\n- **Test Status**: `UNTESTED` (command execution was explicitly forbidden; PASS was not fabricated).\n- **Parked Action**: `node outputs/HUMAN-DASHBOARD-REPAIR/inspect.mjs` remains parked; remaining authorized maintenance completed natively.\n- **Next Step**: Independent verification to be conducted by Luna runner without invoking the parked inspect proxy. No processes or registries were modified merely to green up.\n",
+      "dispatch_source": "routes/resume-batch-20261004/human-dashboard-source-repair/ag.intent.json"
+    },
+    {
+      "id": "MCP.SDK_PREREQUISITE_CLARITY_SOURCE_REPAIR",
+      "task": "MCP.SDK_PREREQUISITE_CLARITY_SOURCE_REPAIR",
+      "model": "gpt-6-luna",
+      "reasoning_effort": "max",
+      "agent_name": "/root/v52_research_repair6_luna_review",
+      "native_agent_status": "completed",
+      "native_observed_at": "2026-10-04T12:32:07.682Z",
+      "native_status_evidence": "FOLLOWUP_SOURCE_TASK_ACCEPTED_AFTER_REVIEW_COMPLETION",
+      "status": "CLOSED_REVIEW_REQUIRED",
+      "created_at": "2026-10-04T12:25:14.563Z",
+      "result_path": "routes/resume-batch-20261004/mcp-sdk-prerequisite-luna-repair/result.json",
+      "write_set": [
+        "tools/csg/factory-mcp/tests/cold-session-consumer.test.mjs",
+        "outputs/MCP-SDK-PREREQUISITE-CLARITY/**"
+      ],
+      "canonical_write": false,
+      "production": false,
+      "closed_at": "2026-10-04T12:32:07.682Z",
+      "dispatch_source": "routes/resume-batch-20261004/mcp-sdk-prerequisite-luna-repair/luna.intent.json"
+    },
+    {
+      "id": "SOURCE.FINAL_RESEARCH_AND_MCP_DISTINCT_REVIEW",
+      "task": "SOURCE.FINAL_RESEARCH_AND_MCP_DISTINCT_REVIEW",
+      "model": "gemini-3.8-flash-high",
+      "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠",
+      "status": "CLOSED_REVIEW_REQUIRED",
+      "created_at": "2026-10-04T12:30:38.169Z",
+      "write_set": [],
+      "source_bindings": [
+        {
+          "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004\\tools\\csg\\v52-research\\README.md",
+          "sha256": "a1719872ecfd0ac3f36fd1fd96d2cadd25bc923dfee6bd1801d8e79cc588875e",
+          "bytes": 2173
+        },
+        {
+          "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004\\tools\\csg\\v52-research\\cli.mjs",
+          "sha256": "696f03df3e8d638a152130b91d0ff8ca145492aaf08a408d538fa3adea9503f9",
+          "bytes": 9117
+        },
+        {
+          "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004\\tools\\csg\\v52-research\\src\\alternatives.mjs",
+          "sha256": "2ed0e0bdbfd401a3399bfb7181f4582affe8a5de1e8c9666d72023b2abae26c7",
+          "bytes": 2414
+        },
+        {
+          "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004\\tools\\csg\\v52-research\\src\\evidence.mjs",
+          "sha256": "823556eafe31dc38d1cb79dc2fc35581224f39e66faba1c777a9880e612d754c",
+          "bytes": 2551
+        },
+        {
+          "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004\\tools\\csg\\v52-research\\src\\provenance.mjs",
+          "sha256": "26d21c5ab50a264a88fe27e71975421c87b60f48d7f12ea10e88265919d1ed28",
+          "bytes": 2704
+        },
+        {
+          "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004\\tools\\csg\\v52-research\\src\\recommendation.mjs",
+          "sha256": "a8eea1f20e15f6eecd841d8a2ffee5d66c29b559fd702ce1c22a46496c32d0be",
+          "bytes": 8716
+        },
+        {
+          "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004\\tools\\csg\\v52-research\\src\\report.mjs",
+          "sha256": "e95403fe334a36212e2f35550601e7b258e639afbb4bf434949ce7bed938db7d",
+          "bytes": 2868
+        },
+        {
+          "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004\\tools\\csg\\v52-research\\src\\schemas.mjs",
+          "sha256": "300bdd869ffc2abf32ffbf6509b04285dfbea91fc26cb9f0c437d80c122fd52a",
+          "bytes": 12430
+        },
+        {
+          "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004\\tools\\csg\\v52-research\\tests\\alternatives.test.mjs",
+          "sha256": "3fa4339709fc2522598457ef60d88d9bd86a42db16f7edfbb74f8c5bfc5308ce",
+          "bytes": 3969
+        },
+        {
+          "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004\\tools\\csg\\v52-research\\tests\\cli.test.mjs",
+          "sha256": "5dd1dd9e007c5c790d463530343fc44067000c4dc8900a7dae5045a862504ff6",
+          "bytes": 10347
+        },
+        {
+          "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004\\tools\\csg\\v52-research\\tests\\evidence.test.mjs",
+          "sha256": "81e40d772e2483c0de53b90067051edf9bd89bc6c0a7e57b9ab9aadb160d7fee",
+          "bytes": 5421
+        },
+        {
+          "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004\\tools\\csg\\v52-research\\tests\\provenance.test.mjs",
+          "sha256": "fdf11d6d4af2526b87398058932c56957c06f0b23399655ee0af010c820429c8",
+          "bytes": 2611
+        },
+        {
+          "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004\\tools\\csg\\v52-research\\tests\\recommendation.test.mjs",
+          "sha256": "ea64aee88622c82af27142984dd44b9cec18ed34651ea1210fc5c8298f5045b8",
+          "bytes": 7415
+        },
+        {
+          "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004\\tools\\csg\\v52-research\\tests\\repair6.test.mjs",
+          "sha256": "a4fa370ae3b426d29f57c5387ffe100e3249bcec6c601379d59e0ad2ce220fc2",
+          "bytes": 9007
+        },
+        {
+          "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004\\tools\\csg\\v52-research\\tests\\rework9.test.mjs",
+          "sha256": "9bfc6907932cfb5ab225cdd2a95674871c9b9f15af1c7b95bdd7af4cebd3741b",
+          "bytes": 11684
+        },
+        {
+          "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004\\tools\\csg\\v52-research\\tests\\inherited-fields.test.mjs",
+          "sha256": "df9ca66c8dc171b54bda32d398d53875b6b0189c26b048d812ec7ad580f8af66",
+          "bytes": 4403
+        },
+        {
+          "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004\\tools\\csg\\v52-research\\tests\\rework-final-ag.test.mjs",
+          "sha256": "3569ae884bde152136cfe73de1c322842974aef39cd98bc44e2b555a73edfaf5",
+          "bytes": 7401
+        },
+        {
+          "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-MCP-READSYNC-AG-WORK-20261004\\tools\\csg\\factory-mcp\\tests\\cold-session-consumer.test.mjs",
+          "sha256": "8d7521b7a4d0198a8216a38ea296fb4e0f29f0e8f62685dbc4b7e893baf3592e",
+          "bytes": 24927
+        }
+      ],
+      "canonical_write": false,
+      "production": false,
+      "pid": 46344,
+      "conversation_id": "6e31c349-f3eb-4a4e-b1fa-d4c9c11fa680",
+      "actual_model": "gemini-3.8-flash-high",
+      "result_status": "SUCCESS",
+      "denied_action_count": 0,
+      "exit_code": 0,
+      "closed_at": "2026-10-04T12:32:43.563Z",
+      "result_response": "```json\n{\n  \"verdict\": \"PASS\",\n  \"research\": {\n    \"verdict\": \"PASS\",\n    \"findings\": [],\n    \"files_actually_read\": [\n      \"C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004/tools/csg/v52-research/README.md\",\n      \"C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004/tools/csg/v52-research/cli.mjs\",\n      \"C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004/tools/csg/v52-research/src/alternatives.mjs\",\n      \"C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004/tools/csg/v52-research/src/evidence.mjs\",\n      \"C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004/tools/csg/v52-research/src/provenance.mjs\",\n      \"C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004/tools/csg/v52-research/src/recommendation.mjs\",\n      \"C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004/tools/csg/v52-research/src/report.mjs\",\n      \"C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004/tools/csg/v52-research/src/schemas.mjs\",\n      \"C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004/tools/csg/v52-research/tests/alternatives.test.mjs\",\n      \"C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004/tools/csg/v52-research/tests/cli.test.mjs\",\n      \"C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004/tools/csg/v52-research/tests/evidence.test.mjs\",\n      \"C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004/tools/csg/v52-research/tests/provenance.test.mjs\",\n      \"C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004/tools/csg/v52-research/tests/recommendation.test.mjs\",\n      \"C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004/tools/csg/v52-research/tests/repair6.test.mjs\",\n      \"C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004/tools/csg/v52-research/tests/rework9.test.mjs\",\n      \"C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004/tools/csg/v52-research/tests/inherited-fields.test.mjs\",\n      \"C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004/tools/csg/v52-research/tests/rework-final-ag.test.mjs\"\n    ]\n  },\n  \"mcp\": {\n    \"verdict\": \"PASS\",\n    \"findings\": [],\n    \"file_actually_read\": \"C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-MCP-READSYNC-AG-WORK-20261004/tools/csg/factory-mcp/tests/cold-session-consumer.test.mjs\"\n  },\n  \"actual_model\": \"Gemini 3.8 Flash (High)\",\n  \"review_scope\": \"Scope A (17 v52-research files): Verified repairs across all 5 AG findings (CLI missing flag vs E_CLOCK distinction; scores root plain object, own-keys and symbol/hidden key rejection; buildRecommendation direct invocation of structural distinctness; removal of ancestor check ternary tautology; approval optionDigests prototype, symbol and non-enumerable key closure; full non-regression of prior Luna inherited-fields closure; local deterministic fixture clock and non-live invariants). Scope B (1 factory-mcp consumer test file): Verified Luna minimal clarity repair ensuring missing SDK locked dependency throws explicit LOCAL_TEST_PREREQUISITE_MISSING with no silent skip or false-blocked PASS, while strictly preserving JSON-RPC stdio protocol test cases (2 child stdio instances, initialize, tools/list, fixed-purpose factory_status) across all 7 test cases under TEST_MODE with zero live acceptance.\",\n  \"live_acceptance\": \"NOT_ACCEPTED\"\n}\n```\n",
+      "dispatch_source": "routes/resume-batch-20261004/final-source-pair-ag-review/ag.intent.json"
+    },
+    {
+      "id": "P52.RESEARCH_OPTIONS_REPAIR6_EXACT_REVIEW",
       "task": "P52.RESEARCH_OPTIONS_REPAIR6_EXACT_REVIEW",
       "model": "gpt-6-luna",
       "reasoning_effort": "max",
@@ -669,9 +1458,122 @@
       "source_write": false,
       "canonical_write": false,
       "production": false,
-      "id": "P52.RESEARCH_OPTIONS_REPAIR6_EXACT_REVIEW",
-      "route": "CODEX_NATIVE_SUBAGENT",
       "dispatch_source": "routes/resume-batch-20261004/research-repair6-luna-review/luna.intent.json"
+    },
+    {
+      "id": "HUMAN.DASHBOARD_DISTINCT_LUNA_REVIEW",
+      "task": "HUMAN.DASHBOARD_DISTINCT_LUNA_REVIEW",
+      "model": "gpt-6-luna",
+      "reasoning_effort": "max",
+      "agent_name": "/root/v52_research_repair6_luna_review",
+      "native_agent_status": "completed",
+      "native_observed_at": "2026-10-04T12:32:07.682Z",
+      "status": "CLOSED_REVIEW_REQUIRED",
+      "created_at": "2026-10-04T12:32:07.682Z",
+      "result_path": "routes/resume-batch-20261004/human-dashboard-final-luna-review/result.json",
+      "write_set": [
+        "routes/resume-batch-20261004/human-dashboard-final-luna-review/result.json"
+      ],
+      "canonical_write": false,
+      "production": false,
+      "closed_at": "2026-10-04T12:51:15.330Z",
+      "dispatch_source": "routes/resume-batch-20261004/human-dashboard-final-luna-review/luna.intent.json"
+    },
+    {
+      "id": "SOURCE.FROZEN_RESEARCH_MCP_TREE_QUALIFICATION",
+      "task": "SOURCE.FROZEN_RESEARCH_MCP_TREE_QUALIFICATION",
+      "model": "opencode/muse-spark-1.3-contributor-free",
+      "variant": "xhigh",
+      "session_id": "ses_ef97d8d5effeGhcmCsX0CrfYuR",
+      "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004",
+      "created_at": "2026-10-04T12:36:41.568Z",
+      "status": "CLOSED_REVIEW_REQUIRED",
+      "write_set": [
+        "outputs/FINAL-SOURCE-QUALIFICATION/**",
+        "OWN_TEMP_GIT_INDEX_AND_OBJECTS"
+      ],
+      "source_edit": false,
+      "canonical_write": false,
+      "production": false,
+      "pid": 63464,
+      "exit_code": 0,
+      "closed_at": "2026-10-04T12:40:24.821Z",
+      "actual_model": {
+        "id": "muse-spark-1.3-contributor-free",
+        "providerID": "opencode",
+        "variant": "xhigh"
+      },
+      "native_outcome": "succeeded",
+      "cost": 0,
+      "dispatch_source": "routes/resume-batch-20261004/final-source-qualification/oc.intent.json"
+    },
+    {
+      "id": "SOURCE.REPOSITORY_TREE_BINDING_REWORK",
+      "task": "SOURCE.REPOSITORY_TREE_BINDING_REWORK",
+      "model": "opencode/muse-spark-1.3-contributor-free",
+      "variant": "xhigh",
+      "session_id": "ses_ef97d8d5effeGhcmCsX0CrfYuR",
+      "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004",
+      "status": "CLOSED_REVIEW_REQUIRED",
+      "created_at": "2026-10-04T12:43:30.367Z",
+      "write_set": [
+        "outputs/FINAL-SOURCE-QUALIFICATION/attempt2/**",
+        "OWN_TEMP_GIT_INDEX_AND_OBJECTS"
+      ],
+      "source_edit": false,
+      "canonical_write": false,
+      "production": false,
+      "pid": 32380,
+      "exit_code": 0,
+      "closed_at": "2026-10-04T12:46:33.086Z",
+      "actual_model": {
+        "id": "muse-spark-1.3-contributor-free",
+        "providerID": "opencode",
+        "variant": "xhigh"
+      },
+      "native_outcome": "succeeded",
+      "cost": 0,
+      "dispatch_source": "routes/resume-batch-20261004/source-tree-binding-rework/oc.intent.json"
+    },
+    {
+      "id": "HUMAN.DASHBOARD_SOURCE_FINDINGS_REWORK",
+      "task": "HUMAN.DASHBOARD_SOURCE_FINDINGS_REWORK",
+      "model": "gemini-3.8-flash-high",
+      "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-AUTO-CONTINUATION-20261003",
+      "status": "SUBMITTED_OUTCOME_PENDING",
+      "created_at": "2026-10-04T12:48:25.185Z",
+      "write_set": [
+        "routes/progress-observer.mjs",
+        "routes/progress-human-view.mjs",
+        "outputs/HUMAN-DASHBOARD-FINDINGS-REWORK/**"
+      ],
+      "source_edit": true,
+      "canonical_write": false,
+      "production": false,
+      "pid": 56224,
+      "conversation_id": "857c2450-2f96-40c0-a46a-c1431509001b",
+      "actual_model": "gemini-3.8-flash-high",
+      "dispatch_source": "routes/resume-batch-20261004/human-dashboard-findings-rework/ag.intent.json"
+    },
+    {
+      "id": "SOURCE.TREE_PACKET_DISTINCT_LUNA_REVIEW",
+      "task": "SOURCE.TREE_PACKET_DISTINCT_LUNA_REVIEW",
+      "model": "gpt-6-luna",
+      "reasoning_effort": "max",
+      "agent_name": "/root/v52_research_repair6_luna_review",
+      "status": "NATIVE_RUNNING_INDEPENDENT_REVIEW",
+      "native_agent_status": "running",
+      "native_observed_at": "2026-10-04T12:51:15.330Z",
+      "native_status_evidence": "COLLABORATION_FOLLOWUP_AFTER_COMPLETED_PRIOR_REVIEW",
+      "created_at": "2026-10-04T12:51:15.330Z",
+      "result_path": "routes/resume-batch-20261004/source-tree-final-luna-review/result.json",
+      "write_set": [
+        "routes/resume-batch-20261004/source-tree-final-luna-review/result.json"
+      ],
+      "source_write": false,
+      "canonical_write": false,
+      "production": false,
+      "dispatch_source": "routes/resume-batch-20261004/source-tree-final-luna-review/luna.intent.json"
     }
   ],
   "collection": "root reads native thread/subagent updates then exact result paths; Human copying unnecessary",

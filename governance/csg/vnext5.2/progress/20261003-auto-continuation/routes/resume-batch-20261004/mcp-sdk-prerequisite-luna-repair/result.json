@@ -1,0 +1,74 @@
+{
+  "work_item": "MCP-SDK-PREREQUISITE-CLARITY",
+  "implementation_status": "SOURCE_REPAIR_COMPLETE",
+  "semantic_verdict": "NOT_SELF_AWARDED; INDEPENDENT_REVIEW_REQUIRED",
+  "model_provenance": {
+    "requested_locked_model": "gpt-6-luna/max",
+    "actual_turn_context": "unverified; model metadata was not locally exposed"
+  },
+  "change_scope": {
+    "only_source_file_written": "tools/csg/factory-mcp/tests/cold-session-consumer.test.mjs",
+    "output_file_written": "outputs/MCP-SDK-PREREQUISITE-CLARITY/result.json",
+    "dependencies_or_lockfiles_changed": false,
+    "product_runtime_source_changed": false,
+    "new_test_cases_added": false
+  },
+  "source_binding": {
+    "path": "tools/csg/factory-mcp/tests/cold-session-consumer.test.mjs",
+    "before": {
+      "bytes": 24903,
+      "sha256": "defe043f19473cc506a0dba60e22cd1a3caccb8f82148cfc249d3fc24f48ec6f"
+    },
+    "after": {
+      "bytes": 24927,
+      "sha256": "8d7521b7a4d0198a8216a38ea296fb4e0f29f0e8f62685dbc4b7e893baf3592e"
+    }
+  },
+  "changed_lines": [
+    {
+      "line": "16-17",
+      "change": "Replaced optional/skipped claim with explicit statement that the actual SDK stdio lane requires the existing locked local dependency; missing dependency is a precise local prerequisite error, never an install or fabricated fixture."
+    },
+    {
+      "line": "150 (prior line)",
+      "change": "Removed misleading SCOPED_BLOCKER log that implied the actual stdio cases were skipped."
+    },
+    {
+      "line": "281-283",
+      "change": "Added a package-local SDK presence check in actualStdioFactoryStatus that throws LOCAL_TEST_PREREQUISITE_MISSING:@modelcontextprotocol/server when absent; no test.skip path added."
+    }
+  ],
+  "verification": {
+    "command": "node --test tools/csg/factory-mcp/tests/cold-session-consumer.test.mjs",
+    "runs": 1,
+    "exit_code": 0,
+    "tests": 7,
+    "passed": 7,
+    "failed": 0,
+    "skipped": 0,
+    "duration_ms": 871.8966,
+    "actual_stdio_cases_executed": 2,
+    "test_case_names": [
+      "source-qualified surface: exactly 4 tools, fixed-purpose factory_status",
+      "cold consumer sessions obtain exact latest locator/content/manifest; V5.2/CP200-V5.1R2/UNKNOWN separate; sideeffects false",
+      "expired mutable progress reread-required; immutable source qualification not TTL",
+      "corrupt digest/path/head fail closed (progress unavailable, no authority, no side effects)",
+      "session/attempt/generation rollover never becomes read-only transport denial",
+      "consumer process: actual stdio initialize + tools/list exact4 + fixed-purpose factory_status",
+      "consumer process: factory_status latest 3 columns/digest/fresh-vs-immutable/session-metadata nonregression/no effects"
+    ],
+    "missing_sdk_branch_exercised": false,
+    "missing_sdk_branch_note": "The existing locked SDK dependency was present; missing-dependency behavior is explicit in source but was not simulated."
+  },
+  "effect_scope": {
+    "test_fixture_mode": "Local child MCP process with NODE_ENV=test and TEST_MODE; shared context supplied through bounded temporary fixture file.",
+    "host_access": false,
+    "network_or_provider_access": false,
+    "canonical_write": false,
+    "production_acceptance": "NOT_ACCEPTED",
+    "live_mcp_acceptance": "NOT_ACCEPTED"
+  },
+  "independent_review": "PENDING",
+  "verdict": "AUTHOR_SOURCE_COMPLETE_NOT_INDEPENDENT_ACCEPTANCE",
+  "mirror_origin": "outputs/MCP-SDK-PREREQUISITE-CLARITY/result.json"
+}

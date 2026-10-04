@@ -3,7 +3,7 @@
   "mode": "SHADOW_PLAN_ONLY",
   "facts_schema": "vnext5.2.operation-facts.v1",
   "catalog_sha256": "sha256:ee769422b5d587e771d09c4e95af1af9a3a7cf0a7c0e493d86071e2df57304de",
-  "facts_sha256": "sha256:97fc2423bc558cafc5e05800f74e9357e2a5b47b770d1b14b24cc6b739cd501c",
+  "facts_sha256": "sha256:9a01d7bea65608f155a04caee9a33f04296e438c188de49e6039b6c8f1296dbb",
   "facts_fresh": true,
   "input_completeness": "COMPLETE",
   "input_reasons": [],
@@ -135,8 +135,8 @@
   "queue_scope": "FULL_CATALOG",
   "queue_unit_count": 59,
   "full_union_count": 59,
-  "global_exhaustion": "NOT_PROVEN_TERMINAL",
-  "global_decision": "WAITING_EXTERNAL_PER_LANE",
+  "global_exhaustion": "NOT_EXHAUSTED",
+  "global_decision": "WORK_IN_PROGRESS",
   "units": [
     {
       "id": "B00.RECOVER",
@@ -1299,6 +1299,22 @@
     "canonical_write": false,
     "local_work_dispatch": false
   },
-  "qualified_planner_observed_global_decision": "GLOBAL_EXHAUSTED",
-  "root_arbitration": "PARKED_EXACT_REVIEW_HAS_REENTRY_MISSION_NOT_TERMINAL"
+  "root_continuation_overlay": {
+    "scope": "EXACT_SOURCE_REVIEW_AND_RECOVERY_NOT_PARENT_ACCEPTANCE",
+    "tasks": [
+      {
+        "id": "SOURCE.TREE_PACKET_DISTINCT_LUNA_REVIEW",
+        "status": "NATIVE_RUNNING_INDEPENDENT_REVIEW",
+        "intent": "routes/resume-batch-20261004/source-tree-final-luna-review/luna.intent.json"
+      },
+      {
+        "id": "HUMAN.DASHBOARD_SOURCE_FINDINGS_REWORK",
+        "status": "SUBMITTED_OUTCOME_PENDING",
+        "intent": "routes/resume-batch-20261004/human-dashboard-findings-rework/ag.intent.json"
+      }
+    ],
+    "dispatch_on_source_pass": "DISTINCT_REVIEW_THEN_EXACT_REWORK_OR_FREEZE",
+    "no_human_prompt_required": true
+  },
+  "qualified_planner_observed_global_decision": "GLOBAL_EXHAUSTED"
 }

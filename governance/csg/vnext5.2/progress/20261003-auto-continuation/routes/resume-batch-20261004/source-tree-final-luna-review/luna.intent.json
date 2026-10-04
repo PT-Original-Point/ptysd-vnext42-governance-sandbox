@@ -1,0 +1,18 @@
+{
+  "task": "SOURCE.TREE_PACKET_DISTINCT_LUNA_REVIEW",
+  "model": "gpt-6-luna",
+  "reasoning_effort": "max",
+  "agent_name": "/root/v52_research_repair6_luna_review",
+  "status": "NATIVE_RUNNING_INDEPENDENT_REVIEW",
+  "native_agent_status": "running",
+  "native_observed_at": "2026-10-04T12:51:15.330Z",
+  "native_status_evidence": "COLLABORATION_FOLLOWUP_AFTER_COMPLETED_PRIOR_REVIEW",
+  "created_at": "2026-10-04T12:51:15.330Z",
+  "result_path": "routes/resume-batch-20261004/source-tree-final-luna-review/result.json",
+  "write_set": [
+    "routes/resume-batch-20261004/source-tree-final-luna-review/result.json"
+  ],
+  "source_write": false,
+  "canonical_write": false,
+  "production": false
+}

@@ -52,6 +52,104 @@
       "disposition": "REPAIR6_BYTES_COLLECTED_REVIEW_PENDING",
       "evidence": "routes/resume-batch-20261004/research-reviewed-repair/collection.json",
       "acceptance": "NOT_ACCEPTED"
+    },
+    "routes/resume-batch-20261004/research-repair6-luna-review/luna.intent.json": {
+      "signature": "b954672baa9db12982b2adfce4b1fe8e5bfe748379bd94274cce1ba39ab89510",
+      "recorded_at": "2026-10-04T12:38:17.884Z",
+      "disposition": "REVIEW9_HISTORICAL_SNAPSHOT_REWORK_COMPLETED_NEW_FINAL_VERDICT",
+      "collection": "routes/resume-batch-20261004/research-nine-finding-rework/review-snapshot.json",
+      "acceptance": "SCOPED_SOURCE_OR_REWORK_ONLY_NOT_LIVE_NOT_MISSION_COMPLETE"
+    },
+    "routes/resume-batch-20261004/research-nine-finding-rework/oc.intent.json": {
+      "signature": "0b2523192badd9a37047e2ff88538bf29368c622a5cd74d8c756d7b2bba65cc3",
+      "recorded_at": "2026-10-04T11:50:09.797Z",
+      "disposition": "REPAIR9_AUTHOR_COLLECTED_NEW_DISTINCT_REVIEW_RUNNING",
+      "collection": "routes/resume-batch-20261004/research-nine-finding-rework/collection.json",
+      "acceptance": "NOT_ACCEPTED"
+    },
+    "routes/resume-batch-20261004/final-source-pair-ag-review/ag.intent.json": {
+      "signature": "192a5af0e155fe8b683eaf6e102da5e58ac8755221875be0a7f7680418774d22",
+      "recorded_at": "2026-10-04T12:38:17.884Z",
+      "disposition": "SOURCE_PASS_EXACT17_RESEARCH_AND_MCP_TEST_NO_LIVE",
+      "collection": "routes/resume-batch-20261004/final-source-pair-ag-review/result.json",
+      "acceptance": "SCOPED_SOURCE_OR_REWORK_ONLY_NOT_LIVE_NOT_MISSION_COMPLETE"
+    },
+    "routes/resume-batch-20261004/mcp-sdk-prerequisite-luna-repair/luna.intent.json": {
+      "signature": "d8bc11fdfd6540959c637a071b05d6bb23d05072fd1263d900860c27d705900f",
+      "recorded_at": "2026-10-04T12:38:17.884Z",
+      "disposition": "AUTHOR_FIX_COLLECTED_DISTINCT_AG_REVIEW_PASS_NO_LIVE",
+      "collection": "routes/resume-batch-20261004/mcp-sdk-prerequisite-luna-repair/result.json",
+      "acceptance": "SCOPED_SOURCE_OR_REWORK_ONLY_NOT_LIVE_NOT_MISSION_COMPLETE"
+    },
+    "routes/resume-batch-20261004/research-final-ag-rework/oc.intent.json": {
+      "signature": "92f04796c645202485d852edb3c210c1c281c829d68d24e6210a4f8241e6b362",
+      "recorded_at": "2026-10-04T12:38:17.884Z",
+      "disposition": "AUTHOR103_FIXTURES_COLLECTED_DISTINCT_AG_REVIEW_PASS",
+      "collection": "routes/resume-batch-20261004/final-source-pair-ag-review/result.json",
+      "acceptance": "SCOPED_SOURCE_OR_REWORK_ONLY_NOT_LIVE_NOT_MISSION_COMPLETE"
+    },
+    "routes/resume-batch-20261004/human-dashboard-source-repair/ag.intent.json": {
+      "signature": "285b693836346b540313e568999416c938890c02fdff93dcede785914541d69f",
+      "recorded_at": "2026-10-04T12:38:17.884Z",
+      "disposition": "AUTHOR_UNTESTED_SOURCE_COLLECTED_DISTINCT_LUNA_REVIEW_IN_FLIGHT",
+      "collection": "routes/resume-batch-20261004/human-dashboard-final-luna-review/luna.intent.json",
+      "acceptance": "SCOPED_SOURCE_OR_REWORK_ONLY_NOT_LIVE_NOT_MISSION_COMPLETE"
+    },
+    "routes/resume-batch-20261004/mcp-sdk-final-luna-review/luna.intent.json": {
+      "signature": "f9ad5bf587eec523b5818704e1cbccdeffa16f6838776858bfcb7a1e3c535a0b",
+      "recorded_at": "2026-10-04T12:38:17.884Z",
+      "disposition": "SOURCE7_PROTOCOL_CASES_DISTINCT_REVIEW_PASS_P3_RETURNED_TO_AUTHOR",
+      "collection": "routes/resume-batch-20261004/mcp-sdk-final-luna-review/result.json",
+      "acceptance": "SCOPED_SOURCE_OR_REWORK_ONLY_NOT_LIVE_NOT_MISSION_COMPLETE"
+    },
+    "routes/resume-batch-20261004/research-final16-ag-source-review/ag.intent.json": {
+      "signature": "d199307bcb164e529fd0dbfdaee047710a4bd1229219bc768e8e718b2b089b80",
+      "recorded_at": "2026-10-04T12:38:17.884Z",
+      "disposition": "FIVE_FINDINGS_COLLECTED_AUTHOR_REPAIRED_FINAL_REVIEW_PASS",
+      "collection": "routes/resume-batch-20261004/research-final16-ag-source-review/result.json",
+      "acceptance": "SCOPED_SOURCE_OR_REWORK_ONLY_NOT_LIVE_NOT_MISSION_COMPLETE"
+    },
+    "routes/resume-batch-20261004/research-final16-ag-review/ag.intent.json": {
+      "signature": "dd8b93ed9a9bed09a79ea98947c8e5357ff352ac35a007c6a046a9efbeceaf03",
+      "recorded_at": "2026-10-04T12:38:17.884Z",
+      "disposition": "OPTIONAL_AUDIT_ATTACHMENT_DENIAL_PARKED_NOT_SOURCE_PREREQUISITE",
+      "collection": "routes/resume-batch-20261004/research-final16-ag-review/ag.intent.json",
+      "acceptance": "SCOPED_SOURCE_OR_REWORK_ONLY_NOT_LIVE_NOT_MISSION_COMPLETE"
+    },
+    "routes/resume-batch-20261004/mcp-sdk-locked-dependency-recovery/oc.intent.json": {
+      "signature": "8682c27cc148dcdda3ae3f07d1bbbeaaad068605c796b735ccd26890c19a1aa5",
+      "recorded_at": "2026-10-04T12:38:17.884Z",
+      "disposition": "EXACT_BYTES_COLLECTED_REAL_LOCAL_STDIO7_NO_WEB_LIVE",
+      "collection": "routes/resume-batch-20261004/mcp-sdk-locked-dependency-recovery/collection.json",
+      "acceptance": "SCOPED_SOURCE_OR_REWORK_ONLY_NOT_LIVE_NOT_MISSION_COMPLETE"
+    },
+    "routes/resume-batch-20261004/mcp-cold-consumer-static-review/ag.intent.json": {
+      "signature": "50bbf629e56378be71675e70b6a6bf67dcd04018c848f174d2f2a45fad5a8270",
+      "recorded_at": "2026-10-04T12:38:17.884Z",
+      "disposition": "HISTORICAL_OLD_TEST_READER_FIXTURE_REVIEW_NOT_PORTABLE_TO_CHANGED_TEST",
+      "collection": "routes/resume-batch-20261004/mcp-cold-consumer-static-review/ag.intent.json",
+      "acceptance": "SCOPED_SOURCE_OR_REWORK_ONLY_NOT_LIVE_NOT_MISSION_COMPLETE"
+    },
+    "routes/resume-batch-20261004/research-nine-final-luna-review/luna.intent.json": {
+      "signature": "3c318f8d41b34f1e29bfdc487300933e12ee68d4bf7edf0e8e8e6520813d52ea",
+      "recorded_at": "2026-10-04T12:38:17.884Z",
+      "disposition": "F02_FINDING_COLLECTED_AUTHOR_FIXED_FINAL_AG_REVIEW_PASS",
+      "collection": "routes/resume-batch-20261004/research-nine-final-luna-review/result.json",
+      "acceptance": "SCOPED_SOURCE_OR_REWORK_ONLY_NOT_LIVE_NOT_MISSION_COMPLETE"
+    },
+    "routes/resume-batch-20261004/mcp-cold-session-consumer/oc.intent.json": {
+      "signature": "586782a2598fa4bf863960e435028e0a92f54df0bc4a85660e5817d6e8706dce",
+      "recorded_at": "2026-10-04T12:38:17.884Z",
+      "disposition": "HISTORICAL_READER5_SDK_MISSING_RESOLVED_NEW_EXACT_TASK",
+      "collection": "routes/resume-batch-20261004/mcp-cold-session-consumer/oc.intent.json",
+      "acceptance": "SCOPED_SOURCE_OR_REWORK_ONLY_NOT_LIVE_NOT_MISSION_COMPLETE"
+    },
+    "routes/resume-batch-20261004/human-dashboard-repair/ag.intent.json": {
+      "signature": "3303c3d164e348bddeea512a48bc938e831691e1226ce0eab41ec3dcda3d0bc3",
+      "recorded_at": "2026-10-04T12:38:17.884Z",
+      "disposition": "INSPECT_COMMAND_DENIAL_PARKED_SOURCE_EDIT_CONTINUES_WITHOUT_DENIED_ACTION",
+      "collection": "routes/resume-batch-20261004/human-dashboard-repair/ag.intent.json",
+      "acceptance": "SCOPED_SOURCE_OR_REWORK_ONLY_NOT_LIVE_NOT_MISSION_COMPLETE"
     }
   }
 }

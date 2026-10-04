@@ -1,7 +1,7 @@
 {
   "schema": "vnext5.2.construction-progress.v2",
   "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
-  "observed_at": "2026-10-04T11:09:04.890Z",
+  "observed_at": "2026-10-04T12:51:15.991Z",
   "model_lock": {
     "codex": {
       "display": "GPT-6 Luna Max",
@@ -10,7 +10,7 @@
       "thread_id": "01a0fd19-df99-7013-8a8b-eb952c647e3d",
       "native_setting_request": "SENT_EXPLICIT_MODEL_AND_THINKING_PARAMETERS",
       "runtime_settings_readback": "REQUIRED_PER_NEW_TURN_NOT_INFERRED_FROM_REQUEST",
-      "latest_task": "P52.RESEARCH_OPTIONS_REPAIR6_EXACT_REVIEW",
+      "latest_task": "P52.RESEARCH_NINE_FINAL_REVIEW",
       "route": "NATIVE_COLLABORATION_SUBAGENT",
       "old_monitor_thread": "MONITOR_SCOPE_RESTRICTED_NOT_ASSUMED_SOURCE_WORKER"
     },
@@ -118,12 +118,13 @@
   "dispatch_path": "dispatch.json",
   "facts_path": "operation-facts.json",
   "queue_path": "ready-queue.json",
-  "queue_decision": "WAITING_EXTERNAL_PER_LANE",
+  "queue_decision": "WORK_IN_PROGRESS",
   "ready_ids": [],
   "running_ids": [
-    "P52.RESEARCH_OPTIONS_REPAIR6_EXACT_REVIEW"
+    "SOURCE.TREE_PACKET_DISTINCT_LUNA_REVIEW",
+    "HUMAN.DASHBOARD_SOURCE_FINDINGS_REWORK"
   ],
-  "valid_until": "2026-10-04T11:24:04.898Z",
+  "valid_until": "2026-10-04T13:06:16.026Z",
   "all_legal_ready_lanes_exhausted": false,
   "canonical_write": false,
   "host_install": false,
@@ -147,15 +148,16 @@
     "contract": "routes/opencode-desktop-route-20261004.json"
   },
   "construction_plan": "VNEXT5.2-限額控制與優先復工施工契約-20261004.md",
-  "active_source_repairs": [],
+  "active_source_repairs": [
+    "HUMAN.DASHBOARD_SOURCE_FINDINGS_REWORK"
+  ],
   "pending_independent_reviews": [
-    "P52.INTAKE_SOURCE",
-    "P52.RESEARCH_OPTIONS_REPAIR6"
+    "SOURCE.TREE_PACKET_DISTINCT_LUNA_REVIEW"
   ],
   "compact_reentry": "routes/resume-batch-20261004/NEXT-ACTIONS.md",
   "compact_summary": "routes/resume-batch-20261004/COMPACT-SUMMARY.json",
   "source_gate_status": "INTAKE_EXACT_NATIVE_REVIEW_READ_DENIED_NO_BYPASS_NOT_SEMANTIC_PASS",
-  "latest_native_intent": "routes/resume-batch-20261004/research-repair6-luna-review/luna.intent.json",
+  "latest_native_intent": "routes/resume-batch-20261004/research-nine-finding-rework/oc.intent.json",
   "monitoring": {
     "observer": "routes/progress-observer.mjs",
     "dashboard": "PROGRESS.html",
@@ -170,6 +172,18 @@
     "cadence_updated_at": "2026-10-04T11:06:45.658Z",
     "model_free_observer": true,
     "local_checks_do_not_wake_models": true,
-    "luna_role": "LOCKED_GPT6_LUNA_MAX_SOURCE_AND_BOUNDED_REVIEW_ALLOWED"
+    "luna_role": "LOCKED_GPT6_LUNA_MAX_SOURCE_AND_BOUNDED_REVIEW_ALLOWED",
+    "native_luna_callback": "ACTUAL_REVIEW_NOTIFICATION_RECEIVED_NOT_EVERY_BRAND_OR_OS_SURVIVAL_PROOF",
+    "worker_collection_rule": "TERMINAL_RESULT_READ_ONCE_EXACT_BYTES_DISTINCT_REVIEW_FINDINGS_TO_AUTHOR_REWORK_NO_HUMAN_CARRYING",
+    "root_required_only_for": "NEW_FINDINGS_AUTHORITY_CONFLICT_FINAL_ACCEPTANCE_TRUE_GATE",
+    "optional_audit_attachment": "NOT_REQUIRED_DENIED_ATTACHMENT_PARKS_ONLY_ATTACHMENT"
+  },
+  "latest_native_intents": [
+    "routes/resume-batch-20261004/source-tree-final-luna-review/luna.intent.json",
+    "routes/resume-batch-20261004/human-dashboard-findings-rework/ag.intent.json"
+  ],
+  "source_qualification": {
+    "research": "EXACT17_SOURCE_LOCAL103_DISTINCT_AG_PASS_NOT_PARENT_OR_LIVE",
+    "mcp": "EXACT_FINAL_TEST_LOCAL7_DISTINCT_AG_PASS_NOT_WEB_OR_INSTALL"
   }
 }

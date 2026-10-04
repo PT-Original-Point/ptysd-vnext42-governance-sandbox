@@ -1,0 +1,61 @@
+{
+  "verdict": "PASS",
+  "source_root": "C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-MCP-READSYNC-AG-WORK-20261004",
+  "review_scope": "Read-only independent review limited to the six exact source/evidence bindings below.",
+  "reviewer_model_provenance": {
+    "requested": "gpt-6-luna/max",
+    "actual": "unverified; current turn_context model metadata was not locally exposed"
+  },
+  "author_native_provenance": {
+    "recorded_model": "muse-spark-1.3-contributor-free",
+    "provider": "opencode",
+    "variant": "xhigh",
+    "outcome": "succeeded",
+    "cost": 0,
+    "source": "bound collection.json and author result.json; this is recorded provenance, not independent provider readback"
+  },
+  "source_bindings": [
+    {"path":"tools/csg/factory-mcp/tests/cold-session-consumer.test.mjs","bytes":24903,"sha256":"defe043f19473cc506a0dba60e22cd1a3caccb8f82148cfc249d3fc24f48ec6f"},
+    {"path":"tools/csg/factory-mcp/src/index.mjs","bytes":14784,"sha256":"b7afed93b81f0bc4561b45a88e233fcdcc265ea28c81da5997019e9f9f9d5df3"},
+    {"path":"tools/csg/factory-mcp/src/shared-context.mjs","bytes":32476,"sha256":"4209c2743f4fa85f5d9ac195a1f756ce45ea6e59cb8f3032f7950d9555860f37"},
+    {"path":"tools/csg/factory-mcp/src/shared-context-transport.mjs","bytes":13274,"sha256":"d8b1381785f636605ca8459f18f93ad24bf86dfb97d5b521cd6e329bd34c1ea7"},
+    {"path":"outputs/MCP-SDK-LOCKED-RECOVERY/result.json","bytes":2702,"sha256":"6a714414c1e030e632ed2045c6be8ad4f8bbc91591ee9072f91f0464be0ac411"},
+    {"path":"C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-AUTO-CONTINUATION-20261003/routes/resume-batch-20261004/mcp-sdk-locked-dependency-recovery/collection.json","bytes":948,"sha256":"4c7c6d41c6bf973c28cb84c9ca54a28166719334dd2638f0dd3bc4fc59cb41b3"}
+  ],
+  "findings": [
+    {
+      "id": "TEST_OPTIONAL_SDK_SKIP_MISMATCH",
+      "priority": "P3",
+      "file": "tools/csg/factory-mcp/tests/cold-session-consumer.test.mjs",
+      "line": 17,
+      "reason": "The header promises the actual SDK stdio lane is skipped when @modelcontextprotocol/server is absent, but the !sdkAvailable branch at line 150 only logs; both stdio tests at lines 330 and 344 still spawn src/index.mjs. The current environment had the SDK, and the observed 7/7 run is valid; an uninstalled environment would fail rather than skip.",
+      "required_fix": "Either mark both stdio tests skipped when sdkAvailable is false, with an explicit no-install reason, or change the header to say the SDK is a required prerequisite. Do not install or fabricate the dependency in the test."
+    }
+  ],
+  "test_execution": {
+    "command": "node --test tools/csg/factory-mcp/tests/cold-session-consumer.test.mjs",
+    "runs": 1,
+    "exit_code": 0,
+    "passed": 7,
+    "failed": 0,
+    "skipped": 0,
+    "breakdown": {"existing_fixture_cases":"5/5","fresh_child_stdio_cases":"2/2"},
+    "evidence": "A single bounded run; not repeated."
+  },
+  "review_findings": {
+    "stdio_protocol": "Fresh Node child process uses newline JSON-RPC over real piped stdio; initialize protocol 2025-11-25, initialized notification, tools/list, factory_status {}, and fixed-purpose probe rejection were asserted.",
+    "tool_surface": "Exact four tools are listed. factory_status has strict empty input; no mutating tool was called.",
+    "test_mode": "The source requires PTYSD_FACTORY_MCP_TEST_MODE=1 and NODE_ENV=test; TEST_MODE mocks host guard/diagnostics and reads a bounded temporary fixture file. With NODE_ENV=production, the test-mode assertion fails closed. This child fixture is intentional; deployment environment was not inspected.",
+    "projection": "Assertions cover current digest/head and manifest, separate construction/canonical/installed columns, expired mutable current queue_fresh=false while canonical V5.1-R2 CP200 remains, run identity, and false effects/authority.",
+    "session_scope": "Separate child processes and injected run/session metadata are exercised. This proves local fixture projection across fresh consumer processes, not a real cross-user-session shared-provider read.",
+    "transport_scope": "The normal shared-context transport source was reviewed, but its network/Git paths are bypassed by TEST_MODE in this subprocess test."
+  },
+  "acceptance_boundaries": {
+    "actual_local_mcp_stdio": "PASS",
+    "web_or_remote_live": "NOT_ACCEPTED",
+    "provider_live": "NOT_ACCEPTED",
+    "production": "NOT_ACCEPTED",
+    "canonical_write": false,
+    "host_or_network_access": "not performed"
+  }
+}

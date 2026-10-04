@@ -2,54 +2,36 @@
   "schema": "vnext5.2.progress-registry.v1",
   "tasks": [
     {
-      "brand": "OpenCode",
-      "label": "Intake repair",
-      "intent": "routes/resume-batch-20261004/intake-reviewed-repair/oc.intent.json"
-    },
-    {
-      "brand": "Antigravity",
-      "label": "MCP independent review",
-      "intent": "routes/resume-batch-20261004/mcp-final-package-review/ag.intent.json"
-    },
-    {
-      "brand": "OpenCode",
-      "label": "D02 independent review",
-      "intent": "routes/resume-batch-20261004/queue-closure-review-corrected/oc.intent.json"
-    },
-    {
-      "brand": "Antigravity",
-      "label": "Adapter review parked",
-      "intent": "routes/resume-batch-20261004/adapter-closure-review/ag.intent.json"
-    },
-    {
-      "brand": "Antigravity",
-      "label": "C1 parked",
-      "intent": "routes/resume-batch-20261004/c1-control-packet/ag.intent.json"
-    },
-    {
-      "brand": "Antigravity",
-      "label": "P52.INTAKE_REPAIRED_INDEPENDENT_REVIEW",
-      "intent": "routes/resume-batch-20261004/intake-repaired-review/ag.intent.json"
-    },
-    {
-      "brand": "OpenCode",
-      "label": "P52.RESEARCH_OPTIONS_SOURCE_PREPARATION",
-      "intent": "routes/resume-batch-20261004/research-preparatory-source/oc.intent.json"
-    },
-    {
-      "brand": "Antigravity",
-      "label": "P52.RESEARCH_OPTIONS_PREPARATORY_INDEPENDENT_REVIEW",
-      "intent": "routes/resume-batch-20261004/research-preparatory-review/ag.intent.json"
-    },
-    {
-      "brand": "OpenCode",
-      "label": "P52.RESEARCH_OPTIONS_SIX_FINDING_REWORK",
-      "intent": "routes/resume-batch-20261004/research-reviewed-repair/oc.intent.json"
-    },
-    {
       "brand": "Codex Luna",
       "label": "P52.RESEARCH_OPTIONS_REPAIR6_EXACT_REVIEW",
       "intent": "routes/resume-batch-20261004/research-repair6-luna-review/luna.intent.json"
+    },
+    {
+      "brand": "Codex Luna",
+      "label": "HUMAN.DASHBOARD_DISTINCT_LUNA_REVIEW",
+      "label_zh": "檢查看板狀態與回收提醒是否正確",
+      "intent": "routes/resume-batch-20261004/human-dashboard-final-luna-review/luna.intent.json"
+    },
+    {
+      "brand": "OpenCode",
+      "label": "SOURCE.FROZEN_RESEARCH_MCP_TREE_QUALIFICATION",
+      "intent": "routes/resume-batch-20261004/final-source-qualification/oc.intent.json"
+    },
+    {
+      "brand": "OpenCode",
+      "label": "SOURCE.REPOSITORY_TREE_BINDING_REWORK",
+      "intent": "routes/resume-batch-20261004/source-tree-binding-rework/oc.intent.json"
+    },
+    {
+      "brand": "Antigravity",
+      "label": "HUMAN.DASHBOARD_SOURCE_FINDINGS_REWORK",
+      "intent": "routes/resume-batch-20261004/human-dashboard-findings-rework/ag.intent.json"
+    },
+    {
+      "brand": "Codex Luna",
+      "label": "SOURCE.TREE_PACKET_DISTINCT_LUNA_REVIEW",
+      "label_zh": "SOURCE.TREE_PACKET_DISTINCT_LUNA_REVIEW",
+      "intent": "routes/resume-batch-20261004/source-tree-final-luna-review/luna.intent.json"
     }
   ],
   "luna": "GPT6_LUNA_MAX_ONLY_SOURCE_AND_REVIEW_AUTHORIZED_NATIVE_REVIEW_SCOPE_READBACK_PENDING",

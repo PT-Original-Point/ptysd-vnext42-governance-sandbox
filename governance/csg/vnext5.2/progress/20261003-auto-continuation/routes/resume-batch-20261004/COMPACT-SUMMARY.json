@@ -1,14 +1,14 @@
 {
   "schema": "vnext5.2.compact-reentry.v1",
-  "observed_at": "2026-10-04T11:06:45.658Z",
+  "observed_at": "2026-10-04T12:51:15.991Z",
   "goal_actual": "paused",
   "mission": "ACTIVE_NOT_COMPLETE",
   "quota_last_actual": {
-    "five_hour_used_percent": 0,
-    "weekly_used_percent": 42,
+    "five_hour_used_percent": 66,
+    "weekly_used_percent": 52,
     "scope": "SHARED_ACCOUNT_NOT_PER_SESSION",
-    "persisted_at": "2026-10-04T08:11:29.769Z",
-    "measurement": "ACTUAL_NATIVE_USAGE_TOOL_THIS_HEARTBEAT_NO_RESET_USED"
+    "persisted_at": "2026-10-04T12:26:54.053Z",
+    "measurement": "GET_USAGE_LIMITS_NATIVE_REAL_READ_THIS_TURN_NO_RESET"
   },
   "worker_roles": "ROOT_AUDIT_ONLY_CODEX_GPT6_LUNA_MAX_AG_GEMINI38_FLASH_HIGH_OC_MUSE_FREE_BOUNDED_REAUTHORIZED",
   "tasks": [
@@ -92,7 +92,7 @@
   "review_recovery_ids": [
     "P52.INTAKE_SOURCE"
   ],
-  "next_actions": "routes/resume-batch-20261004/NEXT-ACTIONS.md",
+  "next_actions": "Newest CURRENT.latest_native_intents only; read exact terminal receipts then distinct review/rework. Do not reopen old denied attachment or re-read whole history.",
   "counts": {
     "operations": 59,
     "acceptance": 64,
@@ -155,17 +155,36 @@
   "monitoring": {
     "free_local_seconds": 30,
     "model_collection_minutes": 15,
-    "callback": "NOT_YET_PROVEN"
+    "callback": "NATIVE_LUNA_CALLBACK_PROVEN_ONE_CASE_EXTERNAL_CLI_TRIGGER_NOT_AVAILABLE"
   },
   "latest_delta": {
-    "task": "RESEARCH_REPAIR6",
-    "author": "OpenCode Muse/xhigh",
-    "native": "SUCCEEDED_COST0",
-    "files": 14,
-    "hashes": "MATCH",
-    "author_local_tests": 67,
-    "semantic": "PENDING",
-    "luna_exact_review": "ACTUAL_FRESH_NATIVE_SUBAGENT_RUNNING",
-    "luna_intent": "routes/resume-batch-20261004/research-repair6-luna-review/luna.intent.json"
-  }
+    "workers": [
+      {
+        "task": "SOURCE.TREE_PACKET_DISTINCT_LUNA_REVIEW",
+        "intent": "routes/resume-batch-20261004/source-tree-final-luna-review/luna.intent.json",
+        "status": "NATIVE_RUNNING_INDEPENDENT_REVIEW",
+        "model": "gpt-6-luna",
+        "actual_model": "NATIVE_SUBAGENT_REQUESTED_MODEL_ACTUAL_CONTEXT_UNEXPOSED",
+        "pid": null
+      },
+      {
+        "task": "HUMAN.DASHBOARD_SOURCE_FINDINGS_REWORK",
+        "intent": "routes/resume-batch-20261004/human-dashboard-findings-rework/ag.intent.json",
+        "status": "SUBMITTED_OUTCOME_PENDING",
+        "model": "gemini-3.8-flash-high",
+        "actual_model": "gemini-3.8-flash-high",
+        "pid": 56224
+      }
+    ],
+    "source_qualification": {
+      "research": "EXACT17_SOURCE_LOCAL103_DISTINCT_AG_PASS_NOT_PARENT_OR_LIVE",
+      "mcp": "EXACT_FINAL_TEST_LOCAL7_DISTINCT_AG_PASS_NOT_WEB_OR_INSTALL"
+    },
+    "mcp_author_tests": "7/7 including2 actual local stdio",
+    "live": "NOT_ACCEPTED",
+    "root_product_edits": 0,
+    "full_catalog": 59,
+    "manual_human_prompt_required": false
+  },
+  "review_receipt_collision": "ROOT_SHARED_RESULT_PATH_DEFECT_SNAPSHOT_FROZEN_NEW_WRITERS_NEED_DISTINCT_PATHS"
 }
