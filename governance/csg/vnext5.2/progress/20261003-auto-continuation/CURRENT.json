@@ -1,7 +1,7 @@
 {
   "schema": "vnext5.2.construction-progress.v2",
   "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
-  "observed_at": "2026-10-03T23:52:14.476Z",
+  "observed_at": "2026-10-04T00:17:33.367Z",
   "model_lock": {
     "codex": {
       "display": "GPT-6 Luna Max",
@@ -16,8 +16,8 @@
       "model": "gemini-3.8-flash-high",
       "conversation_id": "c9c18097-ff7b-49d4-812b-38879d53465a",
       "historical_conversation_id": "87630a5f-9aae-4f2e-af9a-6a0718b52ee8",
-      "latest_source_task": "F02.FLEET_SOURCE",
-      "latest_native_attempt": 2,
+      "latest_source_task": "P52.OPENCODE_SOURCE",
+      "latest_native_attempt": 1,
       "explicit_cli_flag": "--model gemini-3.8-flash-high",
       "actual_native_init": "CONFIRMED_NEW_NATIVE_SOURCE_CONVERSATION_SAME_EXISTING_ACCOUNT_AND_LOCKED_MODEL"
     },
@@ -112,14 +112,12 @@
   "dispatch_path": "dispatch.json",
   "facts_path": "operation-facts.json",
   "queue_path": "ready-queue.json",
-  "queue_decision": "READY_AVAILABLE",
-  "ready_ids": [
+  "queue_decision": "WORK_IN_PROGRESS",
+  "ready_ids": [],
+  "running_ids": [
     "P52.OPENCODE_SOURCE"
   ],
-  "running_ids": [
-    "F02.FLEET_SOURCE"
-  ],
-  "valid_until": "2026-10-04T00:07:14.476Z",
+  "valid_until": "2026-10-04T00:32:33.367Z",
   "all_legal_ready_lanes_exhausted": false,
   "canonical_write": false,
   "host_install": false,

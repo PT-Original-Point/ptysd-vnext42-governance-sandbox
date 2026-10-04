@@ -17,8 +17,8 @@
       "model": "gemini-3.8-flash-high",
       "conversation_id": "c9c18097-ff7b-49d4-812b-38879d53465a",
       "historical_conversation_id": "87630a5f-9aae-4f2e-af9a-6a0718b52ee8",
-      "latest_source_task": "F02.FLEET_SOURCE",
-      "latest_native_attempt": 2,
+      "latest_source_task": "P52.OPENCODE_SOURCE",
+      "latest_native_attempt": 1,
       "explicit_cli_flag": "--model gemini-3.8-flash-high",
       "actual_native_init": "CONFIRMED_NEW_NATIVE_SOURCE_CONVERSATION_SAME_EXISTING_ACCOUNT_AND_LOCKED_MODEL"
     },
@@ -26,7 +26,12 @@
       "display": "Muse Spark 1.3 Free",
       "provider_model_id": "opencode/muse-spark-1.3-contributor-free",
       "provider_model_id_status": "EXACT_NATIVE_MODEL_LIST_READBACK_NAME_MUSE_SPARK_1.3_FREE_ACTIVE_ENABLED",
-      "native_catalog_cost": {"input": 0, "output": 0, "cache_read": 0, "cache_write": 0},
+      "native_catalog_cost": {
+        "input": 0,
+        "output": 0,
+        "cache_read": 0,
+        "cache_write": 0
+      },
       "runtime_quota": "NOT_PROVEN_BY_MODEL_CATALOG",
       "previous_fledge_alpha_free": "HISTORICAL_ONLY_FORBIDDEN_FOR_NEW_DISPATCH",
       "prior_provider_quota": "PARKED_NO_BLIND_RETRY"

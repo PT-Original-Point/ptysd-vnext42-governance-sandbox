@@ -1,9 +1,9 @@
 {
   "schema": "vnext5.2.native-task-attempt.v1",
   "task_id": "F02.FLEET_SOURCE",
-  "attempt": 3,
-  "status": "SUBMITTED_OUTCOME_PENDING",
-  "created_at": "2026-10-03T23:51:12.836Z",
+  "attempt": 5,
+  "status": "RESPONSE_RECEIVED_REVIEW_REQUIRED",
+  "created_at": "2026-10-04T00:00:12.522Z",
   "conversation_id": "c9c18097-ff7b-49d4-812b-38879d53465a",
   "model": "gemini-3.8-flash-high",
   "actual_model": "gemini-3.8-flash-high",
@@ -15,7 +15,7 @@
     "tools/csg/v51-supervisor/lib/fleet.mjs",
     "tools/csg/v51-supervisor/tests/fleet.test.mjs"
   ],
-  "prompt_sha256": "32bdcef544a5ea351a358bfd52cabaaf587d0ed8e1c7d5689af8c0acef93e609",
+  "prompt_sha256": "c5579bacc403dcdc07349559a4c40975c16cf49c165e40c5befa65f7aa3fbbf3",
   "denied_action": {
     "command": "Get-ChildItem -Path outputs\\F02-FLEET -Recurse",
     "status": "PRESERVED_NO_RETRY_OR_PROXY",
@@ -28,13 +28,16 @@
   "review_ref": "reviews/runtime/f02-source-review.json",
   "findings": [
     "F02-REVIEW-01",
-    "F02-REVIEW-02",
-    "F02-REVIEW-03",
-    "F02-REVIEW-04",
     "F02-REVIEW-05"
   ],
-  "submitted_at": "2026-10-03T23:51:13.492Z",
-  "pid": 57448,
+  "submitted_at": "2026-10-04T00:00:13.229Z",
+  "pid": 30800,
   "observed_conversation_id": "c9c18097-ff7b-49d4-812b-38879d53465a",
-  "init_observed_at": "2026-10-03T23:51:15.985Z"
+  "init_observed_at": "2026-10-04T00:00:16.489Z",
+  "result_status": "SUCCESS",
+  "response_length": 3949,
+  "denied_action_count": 0,
+  "exit_code": 0,
+  "signal": null,
+  "closed_at": "2026-10-04T00:03:02.414Z"
 }

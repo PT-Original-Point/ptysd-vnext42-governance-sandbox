@@ -1,0 +1,48 @@
+{
+  "schema": "vnext5.2.root-f02-source-collection.v1",
+  "observed_at": "2026-10-04T00:08:13.272Z",
+  "operation_id": "F02.FLEET_SOURCE",
+  "base": "06da5fa224b65b9346e8b250dcea686d0ed458ee",
+  "reviewed_parent_tree": "dadf1dad2408f4105a0c45502eabc3fb49d49fb0",
+  "source_tree": "443278f6fe6ec65ed75dc99ddeb3b7e0cebaf76c",
+  "qualified_write_set": [
+    "tools/csg/v51-supervisor/lib/fleet.mjs",
+    "tools/csg/v51-supervisor/tests/fleet.test.mjs"
+  ],
+  "raw_file_digests": [
+    {
+      "path": "tools/csg/v51-supervisor/lib/fleet.mjs",
+      "sha256": "sha256:0ca365c4846d7801b80701b5c0c01e5d7c1e3bf6419c1ee7bbc903b0351fef12"
+    },
+    {
+      "path": "tools/csg/v51-supervisor/tests/fleet.test.mjs",
+      "sha256": "sha256:da67d44656ee261231fda65f9f2d08c04b88f80855f383c43fbb82439debb37e"
+    }
+  ],
+  "inherited_files_verified": 40,
+  "semantic": "INDEPENDENT_EXACT_TWO_FILE_SOURCE_SCOPE_PASS",
+  "closed_findings": [
+    "F02-REVIEW-01",
+    "F02-REVIEW-02",
+    "F02-REVIEW-03",
+    "F02-REVIEW-04",
+    "F02-REVIEW-05"
+  ],
+  "root_local_tests": {
+    "command": "node --test tools/csg/v51-supervisor/tests/*.test.mjs",
+    "pass": 198,
+    "fail": 0,
+    "exit_code": 0
+  },
+  "capacity_authority": "EXISTING_F01_STRUCTURE_VALID_ELIGIBILITY_ONLY_NATIVE_CONTROLLER_READBACK_STILL_REQUIRED",
+  "actual_model": "gemini-3.8-flash-high",
+  "actual_conversation": "c9c18097-ff7b-49d4-812b-38879d53465a",
+  "n2_live_acceptance": "NOT_ACCEPTED",
+  "live_acceptance": "NOT_ACCEPTED",
+  "runtime_install_package_for_new_f01_imports": "REQUALIFICATION_REQUIRED_NOT_PORTABLE_FROM_OLD20_PAYLOAD_STAGE",
+  "root_product_source_edits": 0,
+  "host_dispatch": false,
+  "canonical_write": false,
+  "production": false,
+  "execution_owner_allocated": false
+}

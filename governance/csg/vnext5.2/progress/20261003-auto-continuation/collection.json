@@ -1,6 +1,6 @@
 {
   "schema": "vnext5.2.automatic-collection.v3",
-  "observed_at": "2026-10-03T23:52:14.476Z",
+  "observed_at": "2026-10-04T00:17:33.367Z",
   "reviewer": "root",
   "role": "AUDIT_PLAN_DISPATCH_COLLECTION_REWORK_ARBITRATION_ONLY",
   "historical_collection": "Previous immutable progress snapshots including seq10 retained",
@@ -47,7 +47,7 @@
     },
     {
       "task": "F01",
-      "native_thread_status": "active",
+      "native_thread_status": "idle",
       "source_execution": "NOT_INFERRED_FROM_ACTIVE_THREAD"
     },
     {
@@ -80,9 +80,17 @@
     },
     {
       "task": "F02_SOURCE",
-      "native_status": "SUBMITTED_OUTCOME_PENDING",
+      "tree": "443278f6fe6ec65ed75dc99ddeb3b7e0cebaf76c",
+      "semantic": "INDEPENDENT_EXACT_TWO_FILE_SOURCE_SCOPE_PASS",
+      "local_tests": 198,
+      "closed_findings": [
+        "F02-REVIEW-01",
+        "F02-REVIEW-02",
+        "F02-REVIEW-03",
+        "F02-REVIEW-04",
+        "F02-REVIEW-05"
+      ],
       "actual_model": "gemini-3.8-flash-high",
-      "review": "PENDING",
       "live": "NOT_ACCEPTED"
     }
   ],

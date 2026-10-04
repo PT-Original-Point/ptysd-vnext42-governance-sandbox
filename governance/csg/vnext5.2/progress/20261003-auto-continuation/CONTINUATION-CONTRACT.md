@@ -55,6 +55,23 @@ local/structural PASS不等semantic/live/system/Ads/Production PASS。不可承�
 使用成熟native CLI/SDK及原有journal/ledger，不自行複製成熟調度器。任何新adapter限工具差異、身份/receipt正規化與write-set校驗；先量測再替換。Restate/DBOS仍依原bounded spike契約選型；不能為追求架構名稱重做已可用source。剩餘工程以業務可讀時間、false-block、重複派工、返工、netcustomLOC、恢復成功率衡量。
 
 官方App排程運行條件：https://learn.chatgpt.com/docs/automations?surface=app
+## 2026-10-04 00:17Z material delta / native continuation
+
+F02 exact two-file source overlay `443278f6fe6ec65ed75dc99ddeb3b7e0cebaf76c` independently accepted with 198 local tests and findings01-05 closed; live N2/cell/controller capacity acceptance remains NOT_ACCEPTED. Read `reviews/runtime/f02-source-collection.json`. Old20-payload D03 stage verdict is historical and not portable to this new dependency closure; new F01 modules must be packaged and independently qualified before installation.
+
+Luna turn `01a1043a-f591-7d00-805b-6c791c94848f` completed without P52 changes because it interprets its original S-MCP Human write-set as not expandable through cross-thread delegation. Actual model/effort read back gpt-6-luna/max. Do not keep resending the same declined task or claim it started. Root reassigned P52.OPENCODE_SOURCE to the existing locked Antigravity native conversation c9c18097-ff7b-49d4-812b-38879d53465a, with a dedicated exact42-inherited-file worktree. Read `routes/p52-opencode-source-attempt1/attempt1.intent.json` before re-entry; native init confirms gemini-3.8-flash-high. This builder assignment does not invoke OpenCode live provider, which remains quota-parked; no account/model/cost fallback.
+
+Root continues exact source collection -> independent review/rework -> dependency packaging -> full59 recomputation. All native read denials listed in preceding recovery remain unperformed; no proxy/rephrase. No Goal or Mission completion, CP200 unchanged, installed UNKNOWN, no dispatch/install/Production.
+
+## 2026-10-04 00:00Z re-entry / source freeze
+
+Latest provider locator sequence15 is `122ed33e5031a1342469d3358e41d4beb639b262`, immutable content `6f40a83f9732c1af7aa8b58ece03aa833565f026`, cold manifest40/40PASS. Fresh facts require renewal; unchanged exact source verdicts do not. Do not re-export/re-review frozen PR385 solely because progress locator changes. Source identity, coordination snapshot identity and live acceptance remain separate.
+
+P52 Antigravity source exact two-file overlay tree `dadf1dad2408f4105a0c45502eabc3fb49d49fb0` is independently qualified: root175PASS, findings01-07 closed. F02 source is NOT accepted: review01 and05 residual capacity/dedup defects were delegated to same locked native conversation. Read `routes/f02-source-attempt5/attempt5.intent.json` and own native stream before any retry; do not redispatch a running/unknown attempt. Denied `Get-ChildItem -Path outputs\\F02-FLEET -Recurse` remains unperformed and must never be proxied/rephrased. Different authorized two-file source action proceeds without that diagnostic. Root only reads the allowed source files and its own native receipt stream.
+
+Luna remains existing thread `01a0fd19-df99-7013-8a8b-eb952c647e3d`; queued root scope correction instructs it to preserve superseded PR381 drafts and proceed with P52.OPENCODE_SOURCE. Native thread activity alone is not proof this source task started. Root must consume its bounded receipt, check queued-message/current-turn state, and continue the assigned source work without Human copying. No duplicate task or model fallback. OpenCode live Muse quota remains parked independently of OpenCode adapter source.
+
+Continue root fresh capture -> exact worker readback -> independent source review/rework -> full59 readiness -> next disjoint native dispatch. A heartbeat coordination return is not Goal/Mission completion; do not call update_goal complete or invent ACTIVE from usageLimited/paused. Installed/live/survival acceptance remains NOT_ACCEPTED and CP200 stays canonical.
 # 13:18Z material re-entry update
 
 Root role remains audit/plan/dispatch/collect/arbitrate only. Product source construction belongs to native workers. Source review is bound to raw bytes and actual Git tree separately; a claimed tree that cannot be resolved is unverified, never semantic PASS.

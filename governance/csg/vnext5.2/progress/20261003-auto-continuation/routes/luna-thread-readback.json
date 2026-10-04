@@ -1,64 +1,62 @@
 {
-  "observed_at": "2026-10-03T23:52:06.104Z",
+  "observed_at": "2026-10-04T00:17:24.959Z",
   "native": {
-    "timedOut": true,
-    "wake": null,
+    "timedOut": false,
+    "wake": {
+      "reason": "turnCompleted",
+      "turnId": "01a1043a-f591-7d00-805b-6c791c94848f",
+      "threadId": "01a0fd19-df99-7013-8a8b-eb952c647e3d",
+      "hostId": "local"
+    },
     "polls": [
       {
         "schemaVersion": 1,
-        "cursor": "298be436-3629-441e-badc-baf007d62540:72",
-        "revision": 72,
+        "cursor": "298be436-3629-441e-badc-baf007d62540:77",
+        "revision": 77,
         "changed": true,
         "thread": {
           "id": "01a0fd19-df99-7013-8a8b-eb952c647e3d",
           "hostId": "local",
           "status": {
-            "type": "active",
-            "activeFlags": []
+            "type": "idle"
           }
         },
         "latestTurn": {
-          "id": "01a10407-a9be-7a50-9baa-d4dc6e393249",
-          "status": "inProgress",
+          "id": "01a1043a-f591-7d00-805b-6c791c94848f",
+          "status": "completed",
           "error": null,
-          "startedAt": 1791068973,
-          "completedAt": null,
-          "durationMs": null
+          "startedAt": 1791072335,
+          "completedAt": 1791072472,
+          "durationMs": 136730
         },
-        "latestAssistantMessageId": "msg_05fe48d0724a727b016ac194717b6c87d09912368c355fe48c",
+        "latestAssistantMessageId": "msg_05fe48d0724a727b016ac198d0295087d0a82c8c8232f4c47f",
         "latestAssistantMessage": {
-          "id": "msg_05fe48d0724a727b016ac194717b6c87d09912368c355fe48c",
-          "turnId": "01a10407-a9be-7a50-9baa-d4dc6e393249",
-          "phase": "commentary",
-          "text": "剛出現更新的 provider 指標；我會直接核對目前 progress branch 和其 pinned manifest，再決定是否有更新的 READY queue。即使新 queue 指派別的 slice，也不會越出本次 S-MCP 的寫入範圍或把別 lane 的任務擅自派給自己。"
+          "id": "msg_05fe48d0724a727b016ac198d0295087d0a82c8c8232f4c47f",
+          "turnId": "01a1043a-f591-7d00-805b-6c791c94848f",
+          "phase": "final_answer",
+          "text": "我把這段跨 thread 通知當作待核實資訊，不當作 Human 擴權指令。fresh-read 仍是 sequence 15：完整 59-unit queue 唯一 READY 為 P52.OPENCODE_SOURCE；Goal 實際狀態仍是 paused。 本次 Human 交付把寫入範圍限定在 S-MCP 的 tools/csg/factory-mcp/**；P52 要改的 OpenCode adapter 和測試不在此範圍，所以我沒有編輯那些檔案。S-MCP 的 patch 與 receipt 已交付：candidate-pr385.patch、result.json。 若要我在此 thread 接手 P52，請直接授權該 slice 的寫入範圍；目前我保留原 S-MCP 範圍與既有 Human gates。"
         },
-        "latestToolMarkerId": "exec-a283c365-752b-412f-9c45-c0d6d45bc412",
+        "latestToolMarkerId": "exec-1def4365-058f-4749-bdaa-ad80aea232ea",
         "latestToolMarker": {
-          "id": "exec-a283c365-752b-412f-9c45-c0d6d45bc412",
-          "turnId": "01a10407-a9be-7a50-9baa-d4dc6e393249",
-          "type": "commandExecution",
-          "name": "commandExecution",
-          "status": "failed"
+          "id": "exec-1def4365-058f-4749-bdaa-ad80aea232ea",
+          "turnId": "01a1043a-f591-7d00-805b-6c791c94848f",
+          "type": "mcpToolCall",
+          "name": "github.fetch_file",
+          "status": "completed"
         }
       }
     ]
   },
+  "operation_activity": [],
   "actual_model_readback": {
     "model": "gpt-6-luna",
-    "reasoning_effort": "max",
-    "turn_id": "01a10407-a9be-7a50-9baa-d4dc6e393249",
-    "scope": "SELECTED_NATIVE_TURN_CONTEXT_FIELDS"
+    "effort": "max",
+    "turn_id": "01a1043a-f591-7d00-805b-6c791c94848f",
+    "timestamp": "2026-10-04T00:05:35.301Z"
   },
-  "operation_activity": [
-    {
-      "id": "F01.ADAPTER_SOURCE",
-      "state": "DELIVERED_AND_ROOT_SOURCE_REVIEWED",
-      "source_tree": "b6dd213fdf25451043c25a93b7a7b84394f74d72"
-    },
-    {
-      "id": "P52.OPENCODE_SOURCE",
-      "state": "ASSIGNED_SOURCE_START_UNCONFIRMED",
-      "reentry": "SKIP_FROZEN_MCP_EXISTING_NATIVE_THREAD_QUEUED_MESSAGE"
-    }
-  ]
+  "source_assignment": {
+    "id": "P52.OPENCODE_SOURCE",
+    "status": "DECLINED_ORIGINAL_S_MCP_SCOPE_NO_PRODUCT_CHANGES",
+    "reassignment": "ANTIGRAVITY_LOCKED_NATIVE_SOURCE_ROUTE"
+  }
 }

@@ -3,7 +3,7 @@
   "mode": "SHADOW_PLAN_ONLY",
   "facts_schema": "vnext5.2.operation-facts.v1",
   "catalog_sha256": "sha256:ee769422b5d587e771d09c4e95af1af9a3a7cf0a7c0e493d86071e2df57304de",
-  "facts_sha256": "sha256:93b64c5ca4774100bc5894ba56e49ff5703e5a24a936e3177ec8028759183c5a",
+  "facts_sha256": "sha256:ae261635f35eddd555ed2ce14555cf6e88e8974f02a3b367c79c2167006ea2be",
   "facts_fresh": true,
   "input_completeness": "COMPLETE",
   "input_reasons": [],
@@ -129,16 +129,14 @@
     "T02.OPTIONAL_UPGRADE",
     "X01.ACCEPT"
   ],
-  "ready_ids": [
-    "P52.OPENCODE_SOURCE"
-  ],
-  "planned_decision": "CONTINUE_READY",
-  "planned_unit": "P52.OPENCODE_SOURCE",
+  "ready_ids": [],
+  "planned_decision": "WAITING_EXTERNAL_NO_READY",
+  "planned_unit": null,
   "queue_scope": "FULL_CATALOG",
   "queue_unit_count": 59,
   "full_union_count": 59,
   "global_exhaustion": "NOT_EXHAUSTED",
-  "global_decision": "READY_AVAILABLE",
+  "global_decision": "WORK_IN_PROGRESS",
   "units": [
     {
       "id": "B00.RECOVER",
@@ -872,7 +870,7 @@
     },
     {
       "id": "F02.FLEET_SOURCE",
-      "state": "RUNNING",
+      "state": "DONE",
       "priority": 55,
       "mandatory": true,
       "effect_class": "CANDIDATE_SOURCE",
@@ -883,8 +881,7 @@
       "completion_dependencies": [],
       "start_blockers": [],
       "completion_blockers": [],
-      "owner_authority": "UNKNOWN",
-      "reason": "SOURCE_ONLY_BOUNDED_N2_NATIVE_DELEGATION_DENIED_OUTPUT_DIRECTORY_INVENTORY_NOT_RETRIED",
+      "reason": "EXACT_TWO_FILE_SOURCE_FIVE_FINDINGS_CLOSED_ROOT198_PASS_NATIVE_N2_NOT_ACCEPTED",
       "execution_scope": "SHADOW_PLAN_ONLY",
       "effects": [],
       "plan_only": true
@@ -903,8 +900,7 @@
       "completion_dependencies": [],
       "start_blockers": [
         "D03.ACTIVE_CUTOVER",
-        "F01.ISOLATED_EXECUTION",
-        "F02.FLEET_SOURCE"
+        "F01.ISOLATED_EXECUTION"
       ],
       "completion_blockers": [],
       "reason": "START_DEPENDENCIES_NOT_ACCEPTED",
@@ -1075,7 +1071,7 @@
     },
     {
       "id": "P52.OPENCODE_SOURCE",
-      "state": "READY",
+      "state": "RUNNING",
       "priority": 35,
       "mandatory": true,
       "effect_class": "CANDIDATE_SOURCE",
@@ -1085,7 +1081,8 @@
       "completion_dependencies": [],
       "start_blockers": [],
       "completion_blockers": [],
-      "reason": null,
+      "owner_authority": "UNKNOWN",
+      "reason": "SOURCE_REASSIGNED_AFTER_CLOSED_LUNA_SCOPE_DECLINE_NATIVE_MUSE_QUOTA_STILL_PARKED",
       "execution_scope": "SHADOW_PLAN_ONLY",
       "effects": [],
       "plan_only": true

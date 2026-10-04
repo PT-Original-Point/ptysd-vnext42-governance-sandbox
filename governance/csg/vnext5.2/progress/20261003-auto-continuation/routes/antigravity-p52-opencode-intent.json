@@ -1,0 +1,33 @@
+{
+  "schema": "vnext5.2.native-task-attempt.v1",
+  "task_id": "P52.OPENCODE_SOURCE",
+  "attempt": 1,
+  "status": "SUBMITTED_OUTCOME_PENDING",
+  "created_at": "2026-10-04T00:15:34.004Z",
+  "conversation_id": "c9c18097-ff7b-49d4-812b-38879d53465a",
+  "model": "gemini-3.8-flash-high",
+  "actual_model": "gemini-3.8-flash-high",
+  "target_executor_model": "opencode/muse-spark-1.3-contributor-free",
+  "live_executor_quota": "PARKED_NO_RETRY",
+  "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-OPENCODE-SOURCE-WORK-20261004",
+  "worktree_head": "06da5fa224b65b9346e8b250dcea686d0ed458ee",
+  "qualified_parent_tree": "443278f6fe6ec65ed75dc99ddeb3b7e0cebaf76c",
+  "route": "ANTIGRAVITY_NATIVE_CLI",
+  "write_set": [
+    "tools/csg/v51-supervisor/lib/f01-opencode-native.mjs",
+    "tools/csg/v51-supervisor/tests/f01-opencode-native.test.mjs",
+    "outputs/P52-OPENCODE/**"
+  ],
+  "prompt_sha256": "2abf4850ceaae5361ee27f151f2845e47ac3ef442c93d0f9e343e74a7fcfe228",
+  "canonical_write": false,
+  "host_dispatch": false,
+  "production": false,
+  "paid_fallback": false,
+  "root_product_source_edits": 0,
+  "prior_luna_turn": "01a1043a-f591-7d00-805b-6c791c94848f",
+  "prior_luna_status": "COMPLETED_SCOPE_INTERPRETATION_DECLINED_NO_SOURCE_EDITS",
+  "submitted_at": "2026-10-04T00:15:53.063Z",
+  "pid": 44588,
+  "observed_conversation_id": "c9c18097-ff7b-49d4-812b-38879d53465a",
+  "init_observed_at": "2026-10-04T00:15:56.538Z"
+}
