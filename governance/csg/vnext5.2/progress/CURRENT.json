@@ -3,13 +3,13 @@
   "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
   "noncanonical": true,
   "writer": "ROOT_SINGLE_INTEGRATOR",
-  "sequence": 22,
-  "previous_locator_head": "88166f9ff210310d0a2851aedb8fd5ae2676f664",
+  "sequence": 23,
+  "previous_locator_head": "bcc1b530b875ac9556744a2643d642128d279c00",
   "progress": {
     "repository": "PT-Original-Point/ptysd-vnext42-governance-sandbox",
-    "exact_head": "e7a5c88daf32479e55eea4020d93b6c4caba65e3",
+    "exact_head": "2808477f918b4b8ffc28cea779303ea955da7b41",
     "current_path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/CURRENT.json",
-    "current_sha256": "sha256:79d4d22ef7de0eb55d8329d9a18384b577fc44195c146081aa551be97a353451",
+    "current_sha256": "sha256:a86b56d952028ad4f64fe1e425f51bd13ba82082715f7f445a1e179d898f2827",
     "manifest_path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/manifest.json"
   },
   "dispatch_authority": false,
@@ -20,10 +20,12 @@
   "consumer_rule": "Verify exact manifest bytes. Refresh mutable facts after expiry. Never repeat immutable completed source. Construction V5.2, canonical CP200/V5.1-R2, installed UNKNOWN separate.",
   "source_baseline": {
     "mcp_pr": 385,
-    "mcp_head": "e1c99a7cf3201ac5c1eddad71f3d6ea1ea7a955e",
+    "mcp_head": "f45ef980a0194c54db6f2e3d5585577154ac5754",
+    "research_pr": 388,
+    "research_head": "f4c754ed1e2f256b24c432511c01ae52592dd15f",
     "runtime_pr": 386,
     "runtime_head": "c2bfa038121782a3ae903591981a0b05f52a7b38",
-    "new_candidates": "LOCAL_FROZEN_SOURCES_REVIEW_PASS_TREE_BINDING_AND_DASHBOARD_REWORK_IN_PROGRESS",
+    "new_candidates": "SOURCE_PAIR_FROZEN_STRUCTURAL_AND_SCOPED_SEMANTIC_PASS_RUNTIME_REBIND_AND_DASHBOARD7_REWORK_IN_PROGRESS",
     "live": "NOT_ACCEPTED"
   },
   "coordination": {
@@ -31,19 +33,24 @@
     "actual_goal": "paused",
     "goal_resume_api": "UNSUPPORTED_NO_FAKE_ACTIVE",
     "running_ids": [
-      "SOURCE.TREE_PACKET_DISTINCT_LUNA_REVIEW",
-      "HUMAN.DASHBOARD_SOURCE_FINDINGS_REWORK"
+      "RUNTIME.SOURCE_PAIR_REBIND",
+      "HUMAN.DASHBOARD_FINAL7_SOURCE_REWORK"
     ],
     "latest_native_intents": [
-      "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/resume-batch-20261004/source-tree-final-luna-review/luna.intent.json",
-      "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/resume-batch-20261004/human-dashboard-findings-rework/ag.intent.json"
+      "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/resume-batch-20261004/runtime-sourcepair-luna-rebind/luna.intent.json",
+      "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/resume-batch-20261004/human-dashboard-final7-rework/ag.intent.json"
     ],
     "queue_decision": "WORK_IN_PROGRESS",
     "global_exhausted": false,
     "mission_complete": false,
     "source_qualification": {
-      "research": "EXACT17_SOURCE_LOCAL103_DISTINCT_AG_PASS_NOT_PARENT_OR_LIVE",
-      "mcp": "EXACT_FINAL_TEST_LOCAL7_DISTINCT_AG_PASS_NOT_WEB_OR_INSTALL"
+      "research": "PR388_EXACT_HEAD_STRUCTURAL_PASS_LOCAL103_DISTINCT17_SEMANTIC_PASS_PREPARATORY_ONLY",
+      "mcp": "PR385_EXACT_HEAD_STRUCTURAL_PASS_LOCAL7_DISTINCT_FINAL_TEST_PASS_OTHER6_REVIEW_INHERITED_NO_FULL_LEGACY_LIVE",
+      "runtime": "PR386_SOURCE_PAIR_REBIND_LUNA_RUNNING",
+      "dashboard": "AG_SOURCE_REWORK7_RUNNING_NOT_QUALIFIED",
+      "producer_head": "f45ef980a0194c54db6f2e3d5585577154ac5754",
+      "research_head": "f4c754ed1e2f256b24c432511c01ae52592dd15f",
+      "readback": "routes/resume-batch-20261004/final-source-provider-readback.json"
     },
     "next_actions": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/resume-batch-20261004/CURRENT-HANDOFF.md",
     "recoverable_review_work": true,
