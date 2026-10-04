@@ -3,13 +3,13 @@
   "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
   "noncanonical": true,
   "writer": "ROOT_SINGLE_INTEGRATOR",
-  "sequence": 18,
-  "previous_locator_head": "8d1ace80992a3c204a9613cde516007acc7037fa",
+  "sequence": 19,
+  "previous_locator_head": "639da7e12d3e35fbe3026a5d0f52155ef6b3294b",
   "progress": {
     "repository": "PT-Original-Point/ptysd-vnext42-governance-sandbox",
-    "exact_head": "e01cdf25eba7ce952cd42b6528c68bb72aab979f",
+    "exact_head": "2bc4280cda5a18ab3342aae89c8743aaee2ac8ac",
     "current_path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/CURRENT.json",
-    "current_sha256": "sha256:2a9bccc16a0a215713fa9c0e47b1c19e3df0eac558564e218989983945b395bf",
+    "current_sha256": "sha256:76da6b338500dd7d71032660edc90a3ab4ef7c28840b7cd039c345cc8b3b9ecf",
     "manifest_path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/manifest.json"
   },
   "dispatch_authority": false,
@@ -33,18 +33,24 @@
     "heartbeat_hours": 4,
     "quota_policy": "EXTERNAL_LOCKED_AG_AND_MUSE_FIRST_LUNA_ROUTINE_DISPATCH_ZERO",
     "opencode_route": "DESKTOP_SERVICE_ACTUAL_MUSE_XHIGH_SOURCE_WORK_SUCCEEDED_HISTORICAL_FLEDGE429_NOT_PORTABLE",
-    "running_ids": [],
+    "running_ids": [
+      "P52.INTAKE_REVIEWED_REPAIR"
+    ],
     "queue_decision": "WORK_IN_PROGRESS",
     "global_exhausted": false,
     "mission_complete": false,
     "quota_last_actual": {
-      "five_hour_used_percent": 61,
-      "weekly_used_percent": 41,
-      "scope": "SHARED_ACCOUNT_NOT_PER_SESSION"
+      "five_hour_used_percent": 0,
+      "weekly_used_percent": 42,
+      "scope": "SHARED_ACCOUNT_NOT_PER_SESSION",
+      "persisted_at": "2026-10-04T08:11:29.769Z",
+      "measurement": "ACTUAL_NATIVE_USAGE_TOOL_THIS_HEARTBEAT_NO_RESET_USED"
     },
     "mcp_new_diff": "EXACT6_SOURCE_REVIEW_PLUS27_FIXTURES_PASS_FULL_LEGACY_AND_LIVE_NOT_ACCEPTED",
     "next_actions": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/resume-batch-20261004/NEXT-ACTIONS.md",
-    "recoverable_review_work": true
+    "recoverable_review_work": true,
+    "intake_repair": "ALL8_FINDINGS_NATIVE_MUSE_IN_FLIGHT",
+    "next_intent": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/resume-batch-20261004/intake-reviewed-repair/oc.intent.json"
   },
   "active_manifest_policy": "CURRENT_PROJECTIONS_39_FILES_MAX40",
   "historical_progress_head": "00c697b7c9dff974a9c4db231370c84fd49e5bf9"
