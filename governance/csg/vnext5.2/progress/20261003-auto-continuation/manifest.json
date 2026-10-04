@@ -3,7 +3,7 @@
   "files": [
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/CURRENT.json",
-      "sha256": "sha256:11169b91ca063361005102a363ac97f722913b008b2a329c9d464472853bb4f0"
+      "sha256": "sha256:65f9a291b7097629c878860641af7068d26762c2f3fc829ef5867320151bd624"
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/dispatch.json",
@@ -94,12 +94,12 @@
       "sha256": "sha256:2d81f3ee678f1706aa2e250d912cc7fe2ee1c38cede3b688359d3f094e2950a4"
     },
     {
-      "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/resume-batch-20261004/published-source-head-ag-review/result.json",
-      "sha256": "sha256:98a23c711b6391d90f0a6b1130ebaf5fbae3b3b146b77e13e7a210431d9ab8f5"
+      "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/resume-batch-20261004/c1-final-combined-static-review/input-binding.json",
+      "sha256": "sha256:18215687caae88bb22f4db0579b44acecdb012974fb85a784c8dab8d4407354e"
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/resume-batch-20261004/CURRENT-HANDOFF.md",
-      "sha256": "sha256:26c7890c8bb3d693d497f8e950ff1c855acbdc8827e3bb28aec86bdc2be5ac73"
+      "sha256": "sha256:58f205c0b5c637ba016512a484c76416f1133a3772ada5b6e21c6897151f3a8a"
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/resume-batch-20261004/COMPACT-SUMMARY.json",
@@ -114,8 +114,8 @@
       "sha256": "sha256:43d857503ed8cac96ae5634e6d65279f6db42300f518f72c350c3422b61d18a5"
     },
     {
-      "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/resume-batch-20261004/c1-validator-file-source/ag.intent.json",
-      "sha256": "sha256:301e5705bde71d208b8a9a2517e2b1b0e39709e157eabf3a62c8f6822003caa7"
+      "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/resume-batch-20261004/c1-final-combined-static-review/ag.intent.json",
+      "sha256": "sha256:9600cff88e131adbed46f9bca143ba235e9569212ef6be76b5f3cd64af151606"
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/resume-batch-20261004/native-result-reack-collection.json",

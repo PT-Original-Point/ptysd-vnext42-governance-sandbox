@@ -1,7 +1,7 @@
 {
   "schema": "vnext5.2.construction-progress.v2",
   "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
-  "observed_at": "2026-10-04T16:30:34.875Z",
+  "observed_at": "2026-10-04T18:41:35.013Z",
   "model_lock": {
     "codex": {
       "display": "GPT-6 Luna Max",
@@ -121,9 +121,9 @@
   "queue_decision": "WORK_IN_PROGRESS",
   "ready_ids": [],
   "running_ids": [
-    "C1.VALIDATOR_FOUR_FINDINGS_REWORK"
+    "C1.FINAL_COMBINED_DISTINCT_STATIC_REVIEW"
   ],
-  "valid_until": "2026-10-04T16:45:34.919Z",
+  "valid_until": "2026-10-04T18:56:35.058Z",
   "all_legal_ready_lanes_exhausted": false,
   "canonical_write": false,
   "host_install": false,
@@ -147,11 +147,9 @@
     "contract": "routes/opencode-desktop-route-20261004.json"
   },
   "construction_plan": "VNEXT5.2-限額控制與優先復工施工契約-20261004.md",
-  "active_source_repairs": [
-    "C1.VALIDATOR_FOUR_FINDINGS_REWORK"
-  ],
+  "active_source_repairs": [],
   "pending_independent_reviews": [
-    "C1.ACTUAL_PACKET_SCHEMA_MATCH_STATIC_REVIEW"
+    "C1.FINAL_COMBINED_DISTINCT_STATIC_REVIEW"
   ],
   "compact_reentry": "routes/resume-batch-20261004/NEXT-ACTIONS.md",
   "compact_summary": "routes/resume-batch-20261004/COMPACT-SUMMARY.json",
@@ -181,8 +179,7 @@
     "free_local_seconds": 30
   },
   "latest_native_intents": [
-    "routes/resume-batch-20261004/c1-actual-packet-schema-match-review/ag.intent.json",
-    "routes/resume-batch-20261004/c1-validator-four-findings-rework/ag.intent.json"
+    "routes/resume-batch-20261004/c1-final-combined-static-review/ag.intent.json"
   ],
   "source_qualification": {
     "research": "PR388_EXACT_HEAD_STRUCTURAL_PASS_LOCAL103_DISTINCT17_SEMANTIC_PASS_PREPARATORY_ONLY",
@@ -224,17 +221,12 @@
     "dashboard_status": "32_SYNTHETIC_PASS_OWN_NATIVE_METADATA_OBSERVER_HANDOFF_READBACK_PASS_NOT_FACTORY_LIVE",
     "c1": "C1_PACKET_SCOPED_DISTINCT_STATIC_PASS_SCHEMA_AND_PROMOTION_CONTRACT_STILL_PENDING",
     "c1_schema": {
-      "status": "PROPOSED_NOT_ADOPTED",
-      "native_author_model": "opencode/muse-spark-1.3-contributor-free/xhigh",
-      "native_cost": 0,
-      "process_compliance": "REJECTED_DENIAL_BYPASS",
-      "source_review": "SCOPED_DISTINCT_AG_STATIC_PASS_PROPOSED_NOT_ADOPTED",
-      "compilation_and_executed_regressions": "PENDING_MATURE_VALIDATOR_DEPENDENCY_QUALIFICATION",
-      "root_finding": "routes/resume-batch-20261004/c1-schema-distinct-ag-review/root-process-finding.json",
-      "canonical_write": false,
-      "artifact_placement": "WRONG_RELATIVE_OUTPUT_METADATA_LOCATOR_REPAIRED_BYTES_UNCHANGED",
-      "next": "AG_LEGAL_FILE_ONLY_PACKAGE_PREPARATION_RUNNING_EXECUTION_REMAINS_PENDING",
-      "command_lane": "AG_RUNCOMMAND_NATIVE_DENIED_PARKED_NO_RETRY"
+      "status": "REAL_PACKET_AND_HARNESS_AUTHOR_REWORK_COLLECTED_PENDING_COMBINED_DISTINCT_STATIC_REVIEW",
+      "author_tests": "UNTESTED",
+      "review_intent": "routes/resume-batch-20261004/c1-final-combined-static-review/ag.intent.json",
+      "dependency_compilation": "PENDING_EXACT_COMMAND_LANE_PARKED",
+      "native_author_model": "gemini-3.8-flash-high",
+      "canonical_write": false
     }
   },
   "contract_source_map": "CONTRACT-SOURCE-MAP.json",
@@ -245,5 +237,13 @@
     "scope": "SHARED_ACCOUNT_NOT_PER_SESSION_BILL",
     "policy": "ROOT_NECESSARY_PERSISTENCE_GATE_ONLY_EXTERNAL_LEGAL_SOURCE_CONTINUES",
     "paid_fallback": false
+  },
+  "progress_publication": {
+    "sequence": 27,
+    "locator": "66454c59a38a814d8069cbcdc371aa6a631fa85f",
+    "cold_read": "PASS_40_EXACT_BYTES",
+    "mutable_snapshot": "EXPIRED_REFRESH_LOCAL_INTENTS_BEFORE_DISPATCH",
+    "failure26": "PRESERVED_AND_CORRECTED_NOT_REPORTED_PASS",
+    "next_rule": "Every publication rebuilds the complete frozen manifest. Manifest has no self-hash: never compare missing hash to missing hash or reuse it as unchanged. Validate all frozen provider bytes before CAS; cold readback after CAS required."
   }
 }

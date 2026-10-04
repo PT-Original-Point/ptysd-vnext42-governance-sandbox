@@ -1,0 +1,38 @@
+{
+  "recorded_at": "2026-10-04T18:40:35.287Z",
+  "files": [
+    {
+      "path": "schemas/csg/v52/mission-candidate.schema.json",
+      "sha256": "6c2f05235c82a8a3610b9ff613ee74cdc8316a95e7ee7199fa1f42f39dd88f78"
+    },
+    {
+      "path": "schemas/csg/v52/policy-candidate.schema.json",
+      "sha256": "c3480cf386eb2e2bd9c9c8776cff61efbcefd4069df9b0d642cbb532c7787e10"
+    },
+    {
+      "path": "schemas/csg/v52/checkpoint-candidate.schema.json",
+      "sha256": "b031c1a3c3ce4648011d9e07c3af7390a60e7403cc13690792f5584563a2963b"
+    },
+    {
+      "path": "schemas/csg/v52/run-candidate.schema.json",
+      "sha256": "e75e22c6ae336493d50540d914a594f4e61bf4e0f3ba416c8fa38b08b207e620"
+    },
+    {
+      "path": "schemas/csg/v52/evidence-bindings.schema.json",
+      "sha256": "7745dee6d6cbbb8ebaaee2bf77ae60c27792caf7d612ffb02542d998608db846"
+    },
+    {
+      "path": "schemas/csg/v52/package.json",
+      "sha256": "760d29da615353e899831e13adb9b66cf9ab18f182dc1b1a18e0fed40432b244"
+    },
+    {
+      "path": "schemas/csg/v52/validate-fixtures.mjs",
+      "sha256": "bee39c794bbfbda8141db88c344ccba0ee80adb16544609db27ec61bc147f518"
+    },
+    {
+      "path": "tests/csg/v52-control-packet-cases.json",
+      "sha256": "f2941c190cb6e16a4f8d796b6f47df00d37c1936d14f267ce28b921d67786b4d"
+    }
+  ],
+  "scope": "EXACT_WORKER_SOURCE_BYTES_FOR_DISTINCT_STATIC_REVIEW"
+}
