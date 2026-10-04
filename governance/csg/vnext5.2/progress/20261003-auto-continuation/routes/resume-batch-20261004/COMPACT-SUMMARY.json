@@ -1,6 +1,6 @@
 {
   "schema": "vnext5.2.compact-reentry.v1",
-  "observed_at": "2026-10-04T08:29:59.454Z",
+  "observed_at": "2026-10-04T11:06:45.658Z",
   "goal_actual": "paused",
   "mission": "ACTIVE_NOT_COMPLETE",
   "quota_last_actual": {
@@ -10,7 +10,7 @@
     "persisted_at": "2026-10-04T08:11:29.769Z",
     "measurement": "ACTUAL_NATIVE_USAGE_TOOL_THIS_HEARTBEAT_NO_RESET_USED"
   },
-  "worker_roles": "ROOT_AUDIT_ONLY_AG_AND_MUSE_SOURCE_LUNA_ROUTINE_ZERO",
+  "worker_roles": "ROOT_AUDIT_ONLY_CODEX_GPT6_LUNA_MAX_AG_GEMINI38_FLASH_HIGH_OC_MUSE_FREE_BOUNDED_REAUTHORIZED",
   "tasks": [
     {
       "id": "MCP.FINAL_PACKAGE_EXACT_SOURCE_REVIEW",
@@ -153,13 +153,19 @@
     "next": "EXACT_REVIEW_ROUTE_LEGAL_REENTRY_OTHER_READY_LANES_CONTINUE"
   },
   "monitoring": {
-    "observer": "routes/progress-observer.mjs",
-    "dashboard": "PROGRESS.html",
-    "projection": "PROGRESS.json",
-    "active_collection_minutes": 5,
-    "full_audit_hours": 4,
-    "event_trigger": "NO_NATIVE_DESKTOP_EXTERNAL_CLI_TRIGGER",
-    "silent_no_delta": true,
-    "contract": "VNEXT5.2-施工可見性與即時回收修正契約-20261004.md"
+    "free_local_seconds": 30,
+    "model_collection_minutes": 15,
+    "callback": "NOT_YET_PROVEN"
+  },
+  "latest_delta": {
+    "task": "RESEARCH_REPAIR6",
+    "author": "OpenCode Muse/xhigh",
+    "native": "SUCCEEDED_COST0",
+    "files": 14,
+    "hashes": "MATCH",
+    "author_local_tests": 67,
+    "semantic": "PENDING",
+    "luna_exact_review": "ACTUAL_FRESH_NATIVE_SUBAGENT_RUNNING",
+    "luna_intent": "routes/resume-batch-20261004/research-repair6-luna-review/luna.intent.json"
   }
 }

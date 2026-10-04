@@ -1,0 +1,50 @@
+{
+  "observed_at": "2026-10-04T11:06:45.658Z",
+  "source": "EARLIER_THIS_TURN_NATIVE_TOKEN_COUNT_METADATA_CAPTURE_524288_BYTE_TAIL",
+  "entries": [
+    {
+      "timestamp": "2026-10-04T09:05:05.849Z",
+      "input_tokens": 160598,
+      "cached_input_tokens": 158720,
+      "output_tokens": 79
+    },
+    {
+      "timestamp": "2026-10-04T09:05:12.029Z",
+      "input_tokens": 160795,
+      "cached_input_tokens": 160384,
+      "output_tokens": 4
+    },
+    {
+      "timestamp": "2026-10-04T09:35:03.695Z",
+      "input_tokens": 161484,
+      "cached_input_tokens": 160640,
+      "output_tokens": 80
+    },
+    {
+      "timestamp": "2026-10-04T09:35:07.050Z",
+      "input_tokens": 161682,
+      "cached_input_tokens": 161280,
+      "output_tokens": 4
+    },
+    {
+      "timestamp": "2026-10-04T10:05:07.101Z",
+      "input_tokens": 162371,
+      "cached_input_tokens": 161536,
+      "output_tokens": 79
+    },
+    {
+      "timestamp": "2026-10-04T10:05:09.843Z",
+      "input_tokens": 162567,
+      "cached_input_tokens": 162176,
+      "output_tokens": 4
+    }
+  ],
+  "totals": {
+    "input": 969497,
+    "cached_input": 964736,
+    "uncached_input": 4761,
+    "output": 250
+  },
+  "scope": "SIX_METADATA_EVENTS_OF_THREE_QUIET_ROOT_HEARTBEATS_NOT_ACCOUNT_BILL_OR_LIMIT_PERCENT",
+  "warning": "Later smaller tail no longer contained those historical entries; zero matches is not zero consumption."
+}

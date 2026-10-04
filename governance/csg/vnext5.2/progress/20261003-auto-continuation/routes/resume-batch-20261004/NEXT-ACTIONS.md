@@ -46,3 +46,6 @@ Native Muse session ses_efa0a9169ffe4TPNklVK8k8Nlh owns Intake all8 review findi
 
 ## 2026-10-04T08:29:59.454Z visibility correction supersedes4h-only collection
 First read PROGRESS.json, exact uncollected/alerts. Intake author bytes/export collected23pass1skip; fresh distinct AG review native read_file/ViewFile denied emptySUCCESS => park exactreview, no proxy/retry/semanticPASS. Observer41936 read-only metadata; active automation5min; fullaudit4h. No currentrunningworker assumed. Contract VNEXT5.2-施工可見性與即時回收修正契約-20261004.md.
+
+## Latest Human override 2026-10-04T11:06:45.658Z
+Codex施工只gpt-6-luna/max；取消舊Luna source=0。OpenCode重新允許一次一筆小範圍native免費工作，無fallback；遇429停route而非全Mission。研究返工14hash吻合，67作者fixtures PASS；Luna exact review派工但權限原文讀回尚未完成，不能標RUNNING/PASS。先收Luna原生回報；若scope仍park，保留精確原因，其他合法獨立review續做。舊6finding review不portable到新14bytes。看板30秒不用模型；Luna15分鐘保底仍消耗shared額度，回呼未證實。

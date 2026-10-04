@@ -4,7 +4,8 @@
     "routes/resume-batch-20261004/intake-reviewed-repair/oc.intent.json": {
       "signature": "659f8444e9040abf69eedbb5ada073b99d14710508ab4b717cedcd11ed97e088",
       "recorded_at": "2026-10-04T08:27:26.539Z",
-      "disposition": "BYTES_EXPORT_COLLECTED_DISTINCT_REVIEW_RUNNING"
+      "disposition": "AUTHOR_BYTES_COLLECTED_REVIEW_PERMISSION_PARKED",
+      "clarified_at": "2026-10-04T10:45:47.872Z"
     },
     "routes/resume-batch-20261004/mcp-final-package-review/ag.intent.json": {
       "signature": "ed6461346b400f09e0e9b85337d8e26b5309b8ba9414e9ffe437688b107b597f",
@@ -30,6 +31,27 @@
       "signature": "dc31105fd1e044e65cb1de29b126f45d289da03357f448c6bedb23cddc5a3d48",
       "recorded_at": "2026-10-04T08:29:59.578Z",
       "disposition": "EXACT_NATIVE_READ_DENIED_PARKED_NOT_SEMANTIC_PASS"
+    },
+    "routes/resume-batch-20261004/research-preparatory-source/oc.intent.json": {
+      "signature": "9c8e10101bab2354afeb6491f252801870b2dc0c8cb6ae36f4a97485686f75aa",
+      "recorded_at": "2026-10-04T11:06:45.658Z",
+      "disposition": "REPAIR6_BYTES_COLLECTED_REVIEW_PENDING",
+      "evidence": "routes/resume-batch-20261004/research-reviewed-repair/collection.json",
+      "acceptance": "NOT_ACCEPTED"
+    },
+    "routes/resume-batch-20261004/research-preparatory-review/ag.intent.json": {
+      "signature": "9f9fafdffa05a76422409f911d7ce5995dd6d28f4dd8f26eb284b1e6c63bfe5d",
+      "recorded_at": "2026-10-04T11:06:45.658Z",
+      "disposition": "REVIEW_FINDINGS_RETURNED_TO_AUTHOR",
+      "evidence": "routes/resume-batch-20261004/research-reviewed-repair/collection.json",
+      "acceptance": "NOT_ACCEPTED"
+    },
+    "routes/resume-batch-20261004/research-reviewed-repair/oc.intent.json": {
+      "signature": "ba19f77c4ce21be16289e69da1973f73e0fd1db0fdce726db27fcc0d524b8a90",
+      "recorded_at": "2026-10-04T11:06:45.658Z",
+      "disposition": "REPAIR6_BYTES_COLLECTED_REVIEW_PENDING",
+      "evidence": "routes/resume-batch-20261004/research-reviewed-repair/collection.json",
+      "acceptance": "NOT_ACCEPTED"
     }
   }
 }

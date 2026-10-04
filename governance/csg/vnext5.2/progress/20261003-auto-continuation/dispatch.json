@@ -1,6 +1,6 @@
 {
   "schema": "vnext5.2.coordinator-dispatch.v1",
-  "observed_at": "2026-10-04T08:30:47.510Z",
+  "observed_at": "2026-10-04T11:09:04.890Z",
   "single_integrator": "root",
   "tasks": [
     {
@@ -650,6 +650,28 @@
       "denied_actions": 1,
       "closed_at": "2026-10-04T08:26:46.957Z",
       "dispatch_source": "routes/resume-batch-20261004/intake-repaired-review/ag.intent.json"
+    },
+    {
+      "task": "P52.RESEARCH_OPTIONS_REPAIR6_EXACT_REVIEW",
+      "model": "gpt-6-luna",
+      "reasoning_effort": "max",
+      "requested_model_provenance": "EXPLICIT_NATIVE_COLLABORATION_SPAWN_PARAMETERS",
+      "actual_model": null,
+      "agent_name": "/root/v52_research_repair6_luna_review",
+      "native_agent_status": "running",
+      "native_status_evidence": "NATIVE_COLLABORATION_LIST_AGENTS_RUNNING",
+      "created_at": "2026-10-04T11:09:04.890Z",
+      "status": "NATIVE_RUNNING_INDEPENDENT_REVIEW",
+      "result_path": "routes/resume-batch-20261004/research-repair6-luna-review/result.json",
+      "write_set": [
+        "routes/resume-batch-20261004/research-repair6-luna-review/result.json"
+      ],
+      "source_write": false,
+      "canonical_write": false,
+      "production": false,
+      "id": "P52.RESEARCH_OPTIONS_REPAIR6_EXACT_REVIEW",
+      "route": "CODEX_NATIVE_SUBAGENT",
+      "dispatch_source": "routes/resume-batch-20261004/research-repair6-luna-review/luna.intent.json"
     }
   ],
   "collection": "root reads native thread/subagent updates then exact result paths; Human copying unnecessary",

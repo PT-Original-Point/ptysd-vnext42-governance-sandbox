@@ -30,8 +30,28 @@
       "brand": "Antigravity",
       "label": "P52.INTAKE_REPAIRED_INDEPENDENT_REVIEW",
       "intent": "routes/resume-batch-20261004/intake-repaired-review/ag.intent.json"
+    },
+    {
+      "brand": "OpenCode",
+      "label": "P52.RESEARCH_OPTIONS_SOURCE_PREPARATION",
+      "intent": "routes/resume-batch-20261004/research-preparatory-source/oc.intent.json"
+    },
+    {
+      "brand": "Antigravity",
+      "label": "P52.RESEARCH_OPTIONS_PREPARATORY_INDEPENDENT_REVIEW",
+      "intent": "routes/resume-batch-20261004/research-preparatory-review/ag.intent.json"
+    },
+    {
+      "brand": "OpenCode",
+      "label": "P52.RESEARCH_OPTIONS_SIX_FINDING_REWORK",
+      "intent": "routes/resume-batch-20261004/research-reviewed-repair/oc.intent.json"
+    },
+    {
+      "brand": "Codex Luna",
+      "label": "P52.RESEARCH_OPTIONS_REPAIR6_EXACT_REVIEW",
+      "intent": "routes/resume-batch-20261004/research-repair6-luna-review/luna.intent.json"
     }
   ],
-  "luna": "ROUTINE_DISPATCH_ZERO_NO_NEW_SOURCE_TASK",
-  "scope": "CURRENT_LATEST5_TASKS_NOT_ALL_HISTORICAL_SESSIONS"
+  "luna": "GPT6_LUNA_MAX_ONLY_SOURCE_AND_REVIEW_AUTHORIZED_NATIVE_REVIEW_SCOPE_READBACK_PENDING",
+  "scope": "CURRENT_REGISTERED_TASKS_MAX24_NOT_ALL_APP_ACTIVITY"
 }

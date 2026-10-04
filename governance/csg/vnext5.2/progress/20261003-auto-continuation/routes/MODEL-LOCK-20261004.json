@@ -10,7 +10,10 @@
       "reasoning_effort": "max",
       "thread_id": "01a0fd19-df99-7013-8a8b-eb952c647e3d",
       "native_setting_request": "SENT_EXPLICIT_MODEL_AND_THINKING_PARAMETERS",
-      "runtime_settings_readback": "REQUIRED_PER_NEW_TURN_NOT_INFERRED_FROM_REQUEST"
+      "runtime_settings_readback": "REQUIRED_PER_NEW_TURN_NOT_INFERRED_FROM_REQUEST",
+      "latest_task": "P52.RESEARCH_OPTIONS_REPAIR6_EXACT_REVIEW",
+      "route": "NATIVE_COLLABORATION_SUBAGENT",
+      "old_monitor_thread": "MONITOR_SCOPE_RESTRICTED_NOT_ASSUMED_SOURCE_WORKER"
     },
     "antigravity": {
       "display": "Gemini 3.8 Flash High",
@@ -32,9 +35,10 @@
         "cache_read": 0,
         "cache_write": 0
       },
-      "runtime_quota": "NOT_PROVEN_BY_MODEL_CATALOG",
+      "runtime_quota": "LATEST_EXACT_NATIVE_JOB_SUCCEEDED_COST_ZERO_NOT_FUTURE_QUOTA_GUARANTEE",
       "previous_fledge_alpha_free": "HISTORICAL_ONLY_FORBIDDEN_FOR_NEW_DISPATCH",
-      "prior_provider_quota": "PARKED_NO_BLIND_RETRY"
+      "prior_provider_quota": "HISTORICAL_FLEDGE_ONLY_NOT_MUSE_PROOF",
+      "dispatch_policy": "HUMAN_REAUTHORIZED_ONE_BOUNDED_NATIVE_JOB_AT_A_TIME_NO_FALLBACK"
     }
   },
   "automatic_model_substitution": false,
@@ -43,5 +47,7 @@
   "unavailable_policy": "PARK_EXACT_ROUTE_KEEP_OTHER_FIXED_MODEL_READY_LANES_RUNNING",
   "canonical_write": false,
   "host_dispatch": false,
-  "production": false
+  "production": false,
+  "latest_human_policy": "CODEX_ONLY_GPT6_LUNA_MAX_OPENCODE_REAUTHORIZED_BOUNDED_TRIAL",
+  "updated_at": "2026-10-04T11:06:45.658Z"
 }

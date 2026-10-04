@@ -1,0 +1,114 @@
+{
+  "observed_at": "2026-10-04T11:03:01.456Z",
+  "native_session": "ses_ef97d8d5effeGhcmCsX0CrfYuR",
+  "actual_model": {
+    "id": "muse-spark-1.3-contributor-free",
+    "providerID": "opencode",
+    "variant": "xhigh"
+  },
+  "native_outcome": "succeeded",
+  "cost": 0,
+  "source_root": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004",
+  "source_bindings": [
+    {
+      "path": "tools/csg/v52-research/README.md",
+      "sha256": "f9e2a08825c1a2f261df11ff0eafa923997fe4ebfc387e701b40cd5bae3421a4",
+      "bytes": 1629
+    },
+    {
+      "path": "tools/csg/v52-research/cli.mjs",
+      "sha256": "c3f9fd22367c3d518e42666a4ce93be997d4348e8303f49c6d3f956f095cfa54",
+      "bytes": 6561
+    },
+    {
+      "path": "tools/csg/v52-research/src/alternatives.mjs",
+      "sha256": "70c9a0114bc8ba5b0931403243b7be1f0902edeab525e4ca67087b2863f8d0b7",
+      "bytes": 1786
+    },
+    {
+      "path": "tools/csg/v52-research/src/evidence.mjs",
+      "sha256": "35cc653c9826f5b0f53115859017882637adda9bba946ffe5ce57d60ae88c15a",
+      "bytes": 2309
+    },
+    {
+      "path": "tools/csg/v52-research/src/provenance.mjs",
+      "sha256": "56590fa64389794b2ea9e750b9f07161aa09ab6359cc290185758e29a4250167",
+      "bytes": 2487
+    },
+    {
+      "path": "tools/csg/v52-research/src/recommendation.mjs",
+      "sha256": "569e4d6a358b1cabe4a1fafae1eaa54b6608430ba5c8da415a5eb13ad6c6c166",
+      "bytes": 6460
+    },
+    {
+      "path": "tools/csg/v52-research/src/report.mjs",
+      "sha256": "d39b8c9ae29b2dcf7d43954e04aa991e8bcf646f3381ad1cd173d205af6e6cf7",
+      "bytes": 2601
+    },
+    {
+      "path": "tools/csg/v52-research/src/schemas.mjs",
+      "sha256": "13dc863972db625642c2e1cbeccc0c4a9c5304caf2b714209b49b78a537b4f44",
+      "bytes": 9627
+    },
+    {
+      "path": "tools/csg/v52-research/tests/alternatives.test.mjs",
+      "sha256": "e2b9587fdf962a5ee66a2ca93d95fe0fda1cd71d0e7fa59d487fb2bde4862244",
+      "bytes": 3059
+    },
+    {
+      "path": "tools/csg/v52-research/tests/cli.test.mjs",
+      "sha256": "4db416951d8b0fad14738d20438ae522c0b482e12117b6a82c3ee5a8023aaf22",
+      "bytes": 9933
+    },
+    {
+      "path": "tools/csg/v52-research/tests/evidence.test.mjs",
+      "sha256": "c6c3d988b145a8680ebac14fe36ab3fc67e8abaa775bb6aaba8fbb0832caffea",
+      "bytes": 4783
+    },
+    {
+      "path": "tools/csg/v52-research/tests/provenance.test.mjs",
+      "sha256": "983f50a728545137d6ab502bb017df5320994558252bb9808eb1b2a851850c47",
+      "bytes": 2162
+    },
+    {
+      "path": "tools/csg/v52-research/tests/recommendation.test.mjs",
+      "sha256": "f4dfe7a169d7d9986a988fadb3ef1d91b3d18098065a7f79b5238b52873beff4",
+      "bytes": 7112
+    },
+    {
+      "path": "tools/csg/v52-research/tests/repair6.test.mjs",
+      "sha256": "26e19b7c806c5c63f31b37e7f8cd26b0c558196acbb1c8435c4cb38be7ab43de",
+      "bytes": 10230
+    }
+  ],
+  "actual_changed_paths": [
+    "outputs/P52-RESEARCH/repair6/result.json",
+    "outputs/P52-RESEARCH/result.json",
+    "tools/csg/v52-research/README.md",
+    "tools/csg/v52-research/cli.mjs",
+    "tools/csg/v52-research/src/alternatives.mjs",
+    "tools/csg/v52-research/src/evidence.mjs",
+    "tools/csg/v52-research/src/provenance.mjs",
+    "tools/csg/v52-research/src/recommendation.mjs",
+    "tools/csg/v52-research/src/report.mjs",
+    "tools/csg/v52-research/src/schemas.mjs",
+    "tools/csg/v52-research/tests/alternatives.test.mjs",
+    "tools/csg/v52-research/tests/cli.test.mjs",
+    "tools/csg/v52-research/tests/evidence.test.mjs",
+    "tools/csg/v52-research/tests/provenance.test.mjs",
+    "tools/csg/v52-research/tests/recommendation.test.mjs",
+    "tools/csg/v52-research/tests/repair6.test.mjs"
+  ],
+  "author_tests": {
+    "command": "node --test tools/csg/v52-research/tests/*.test.mjs",
+    "pass": 67,
+    "fail": 0,
+    "suites": 15,
+    "fixtureOnly": true,
+    "network": "no-actual-network"
+  },
+  "verdict": "EXACT_BYTES_COLLECTED_INDEPENDENT_REVIEW_PENDING",
+  "live_research": "NOT_ACCEPTED",
+  "parent_acceptance": "NOT_ACCEPTED_PREPARATORY_ONLY_INTAKE_REVIEW_PARKED",
+  "root_product_edits": 0
+}
