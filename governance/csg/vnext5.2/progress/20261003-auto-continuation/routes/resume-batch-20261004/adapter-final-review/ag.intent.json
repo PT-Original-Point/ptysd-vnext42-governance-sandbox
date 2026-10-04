@@ -1,0 +1,35 @@
+{
+  "task": "P52.OPENCODE_SOURCE_EXACT_FINAL_REVIEW",
+  "status": "CLOSED_REVIEW_REQUIRED",
+  "model": "gemini-3.8-flash-high",
+  "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-OPENCODE-SOURCE-WORK-20261004",
+  "write_set": [],
+  "source_bindings": [
+    {
+      "path": "tools/csg/v51-supervisor/lib/f01-opencode-native.mjs",
+      "sha256": "432b31733c9d45fda84081bceb99183c6bad98f1a09a70961c50a0a409f60e64"
+    },
+    {
+      "path": "tools/csg/v51-supervisor/tests/f01-opencode-native.test.mjs",
+      "sha256": "7f33d593010c9999d1bb2ba70e2cd4e484e61aa58e19bddba4c9344020253d30"
+    }
+  ],
+  "created_at": "2026-10-04T04:15:32.534Z",
+  "prior_builder_session": "ses_efae81e72ffeSLYMHr2VbjYzq1",
+  "prior_builder_model": {
+    "id": "muse-spark-1.3-contributor-free",
+    "providerID": "opencode",
+    "variant": "xhigh"
+  },
+  "inherited_42_exact_hashes": "MATCHED",
+  "canonical_write": false,
+  "paid_fallback": false,
+  "pid": 65908,
+  "conversation_id": "28182034-a531-4ed5-8ff1-c3b8271c7f9a",
+  "actual_model": "gemini-3.8-flash-high",
+  "result_status": "SUCCESS",
+  "denied_action_count": 0,
+  "exit_code": 0,
+  "closed_at": "2026-10-04T04:16:57.300Z",
+  "result_response": "```json\n{\n  \"verdict\": \"SOURCE_REPAIR_CONFIRMED\",\n  \"scope\": \"LOCAL_SOURCE_READONLY_SUPERVISOR_F01\",\n  \"findings\": [\n    {\n      \"id\": \"OC-REV-BOUNDARY-01\",\n      \"priority\": \"LOW\",\n      \"file\": \"tools/csg/v51-supervisor/lib/f01-opencode-native.mjs\",\n      \"line\": 443,\n      \"reason\": \"createOpenCodeJsonlCollector options model check uses nullish coalescing (options.expected_model ?? options.model) without strictAliasPair check, allowing conflicting model options to be masked if expected_model is locked while model option is divergent.\",\n      \"required_fix\": \"Apply strictAliasPair(options.expected_model, options.model) or ensure both aliases must strictly equal LOCKED_OPENCODE_MODEL_ID without precedence masking.\"\n    },\n    {\n      \"id\": \"OC-REV-BOUNDARY-02\",\n      \"priority\": \"LOW\",\n      \"file\": \"tools/csg/v51-supervisor/lib/f01-opencode-native.mjs\",\n      \"line\": 754,\n      \"reason\": \"Terminal stream events (turn.completed, result) default rawStatus to 'SUCCESS' when event.status and event.result.status are undefined, and use nullish coalescing between event.status and event.result.status without conflict detection.\",\n      \"required_fix\": \"Fail closed with TERMINAL_STATUS_INVALID if terminal event status is completely absent or if event.status and event.result.status both exist and contradict each other.\"\n    }\n  ],\n  \"closed_findings\": [\n    {\n      \"id\": \"OC-FIX-01\",\n      \"defect\": \"parseExport rejected 'succeeded' while normalize defaulted to SUCCESS\",\n      \"repair\": \"classifyExportOutcome() normalizes 'succeeded', 'success', 'completed', 'done', 'stop' case-insensitively to 'SUCCESS'. Both collector parseSessionExport and normalizeOpenCodeSessionExport use shared classifier with no default SUCCESS fallback.\",\n      \"status\": \"VERIFIED_CLOSED\"\n    },\n    {\n      \"id\": \"OC-FIX-02\",\n      \"defect\": \"Missing or invalid export outcome must remain UNKNOWN\",\n      \"repair\": \"classifyExportOutcome() returns null for missing or unclassified outcomes. Collector sets malformedReason to 'OUTCOME_NOT_OBSERVED' or 'EXPORT_OUTCOME_INVALID' yielding UNKNOWN_INVALID_OR_BOUNDED_STREAM at finish(); normalize throws structured errors.\",\n      \"status\": \"VERIFIED_CLOSED\"\n    },\n    {\n      \"id\": \"OC-FIX-03\",\n      \"defect\": \"model/session/contract aliases precedence masked conflicting values\",\n      \"repair\": \"strictAliasPair() detects dual-present conflicting aliases and returns conflict: true. Applied across validateOpenCodeExecutionContext expected/receipt (contract, session, model) and validateOpenCodeOwnedProcessCancelReceipt session aliases, retaining capacity and returning UNKNOWN_READBACK_REQUIRED without masking.\",\n      \"status\": \"VERIFIED_CLOSED\"\n    },\n    {\n      \"id\": \"OC-FIX-04\",\n      \"defect\": \"Token usage addends individually safe but TOTAL overflow unchecked\",\n      \"repair\": \"Sum totals checked with isNonnegativeSafeInteger() across parseSessionExport (exportTotal), collector first/aggregate usage (firstTotal, newTotal), and normalizer (normalizeTotal). Any sum exceeding MAX_SAFE_INTEGER fails closed as TOKEN_USAGE_INVALID.\",\n      \"status\": \"VERIFIED_CLOSED\"\n    }\n  ],\n  \"tests_observed\": {\n    \"command\": \"node --test tools/csg/v51-supervisor/tests/f01-opencode-native.test.mjs\",\n    \"total\": 23,\n    \"passed\": 23,\n    \"failed\": 0,\n    \"duration_ms\": 81.78,\n    \"exit_code\": 0\n  },\n  \"exact_source_binding\": [\n    {\n      \"path\": \"tools/csg/v51-supervisor/lib/f01-opencode-native.mjs\",\n      \"sha256\": \"432b31733c9d45fda84081bceb99183c6bad98f1a09a70961c50a0a409f60e64\"\n    },\n    {\n      \"path\": \"tools/csg/v51-supervisor/tests/f01-opencode-native.test.mjs\",\n      \"sha256\": \"7f33d593010c9999d1bb2ba70e2cd4e484e61aa58e19bddba4c9344020253d30\"\n    }\n  ],\n  \"actual_reviewer_model\": \"Gemini 3.8 Flash (High)\",\n  \"live_acceptance\": \"NOT_ACCEPTED\"\n}\n```\n"
+}

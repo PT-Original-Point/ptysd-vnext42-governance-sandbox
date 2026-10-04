@@ -1,5 +1,9 @@
 # VNEXT5.2 持續施工修正契約
 
+## 2026-10-04 最新 Human 恢復與限額優先契約
+
+Human已明確要求重分派、接續施工，優先MCP功能、自造阻塞與任意新Session最新對齊。採用 `VNEXT5.2-限額控制與優先復工施工契約-20261004.md`、`WORK-RESUME-20261004.json`、`routes/resume-batch-20261004/*intent.json`。本節覆蓋以下歷史暫停，不改寫原pause receipt。root只稽核/計劃/派工/回收/仲裁，日常source由AG/OC。Goal仍paused且API不能resume，不能偽造ACTIVE或停全部合法施工。四小時有界回收取代30分鐘喚醒；模型鎖定、原Mission acceptance/Human gates保留。在途先讀回，禁止重派。
+
 採用日期：2026-10-03。沿用完整59 operations、64 acceptance、PF30/PRG28與原Human契約；本契約修正協調流程，沒有宣告產品上線。
 
 ## 2026-10-04 Human 模型鎖定（覆蓋舊模型選擇）
@@ -7,6 +11,12 @@
 全部產品施工只能交 Codex GPT-6 Luna / reasoning max（gpt-6-luna）、Antigravity Gemini 3.8 Flash High（gemini-3.8-flash-high）、OpenCode Muse Spark 1.3 Free（native model.list 已實讀 provider/model ID：opencode/muse-spark-1.3-contributor-free，active/enabled，catalog cost=0；這不是 quota恢復證明）。過去 fledge-alpha-free 僅為歷史證據，禁止續派。禁止偷偷替換模型、自動 fallback、改帳號或新付費路線；指定模型不可用只 park 該 route，保留其 source，其他指定模型的合法 lane 續做。每次派工/receipt 必須帶指定模型與實際模型讀回範圍；未能確認的欄位標 UNVERIFIED，不以文字意圖當實際鎖定成功。root/Sol 仍只做稽核、計劃、派工、回收與仲裁。
 
 ## Human最新角色修正（最高優先）
+
+## 2026-10-04 最新 Human 暫停指令（優先於以下續工歷史）
+
+本次 Human 另授權 OpenCode 呼叫診斷：兩次 Muse / xhigh 的官方 Desktop background-service session/fork 已成功，詳見 `VNEXT5.2-OpenCode桌面路線診斷與呼叫修正-20261004.md` 與 `routes/opencode-desktop-route-20261004.json`。舊 fledge session 的真 429 不代表 Muse 不可用。施工保持暫停；Human 恢復後按此精確 route/model/schema 讀回，禁止沿用舊 fledge runner、以正文429分類限流或自行猜測 fork/outcome 欄位。
+
+Human 已要求暫停全部施工及工作排程，進行過去12小時限額稽核與外包重分派設計。root Goal已用真實API切成paused；本機Codex登記的唯一工作heartbeat vnext5-2已用automation_update切成PAUSED並讀回。不得因舊heartbeat文字、READY存在、額度重設或歷史ACTIVE自行恢復。待Human明確恢復。讀WORK-PAUSE-20261004.json；原source、patch、staged index和provider history全部保留，Mission未完成，CP200不變。Antigravity OpenCode adapter返工attempt2已結束但尚待独立回收；暫停期間只做本次Human要求的用量稽核與分工方案，不續派產品施工。
 
 root只負責獨立稽核、制定計劃、分派、回收、要求返工與接受/拒絕仲裁，不直接施工產品原始碼。三個施工代理為Codex Luna Max、Antigravity、OpenCode。施工結果由root自動取得；不要求Human在三者間搬運。root先前對intake的三個檔案變更屬待施工代理接手的候選，不能由root自行宣告獨立驗收PASS。
 施工路線缺失/平台credits錯誤應如實park該route並安排其他可用施工代理；缺席品牌不可冒名宣稱已開工。沒有費用/身份授權不得自行付費或消耗帳號reset。

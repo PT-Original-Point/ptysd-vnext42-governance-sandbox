@@ -1,15 +1,15 @@
 {
   "schema": "vnext5.2.operation-facts.v1",
   "catalog_sha256": "sha256:ee769422b5d587e771d09c4e95af1af9a3a7cf0a7c0e493d86071e2df57304de",
-  "captured_at_utc": "2026-10-04T00:17:33.367Z",
+  "captured_at_utc": "2026-10-04T04:27:49.906Z",
   "freshness": {
     "max_age_seconds": 900,
     "max_future_skew_seconds": 60
   },
   "source_inventory": {
     "ref": "auto-continuation:dispatch.json",
-    "sha256": "sha256:75643bbb286480beddae73a7eaaa044095220daee57d6bc2291c0a425ef7af3d",
-    "observed_at_utc": "2026-10-04T00:17:33.367Z"
+    "sha256": "sha256:a6a53c5a098725947aabf1a56d3b3213a7cb34e7d1f4591f9558701ab25d64e2",
+    "observed_at_utc": "2026-10-04T04:27:49.906Z"
   },
   "canonical_binding": {
     "control_ref": "refs/heads/v45/factory-control",
@@ -26,11 +26,11 @@
       "evidence": [
         {
           "ref": "auto-continuation:fresh-provider.json",
-          "sha256": "sha256:3e2c527e810860c25caad8a7233f293b1af6695c812a7489a3c4e2018eb96973",
-          "observed_at_utc": "2026-10-04T00:17:33.367Z"
+          "sha256": "sha256:72093c320f662d19e818aa67881e26142f4d7e26e4dbb7988182e4b194d070b0",
+          "observed_at_utc": "2026-10-04T04:27:49.906Z"
         }
       ],
-      "evidence_class": "FRESH_CANONICAL_READBACK"
+      "evidence_class": "FRESH_CANONICAL_SAME_REF_IMMUTABLE_READBACK"
     },
     {
       "id": "B01.OPERATIONS",
@@ -59,7 +59,7 @@
         {
           "ref": "auto-continuation:reviews/c1-collection.json",
           "sha256": "sha256:fa19ea9230f710641a992d1959b3e1a0e06aadb014ff0cc5d429b357da4865c5",
-          "observed_at_utc": "2026-10-04T00:17:33.367Z"
+          "observed_at_utc": "2026-10-04T00:23:29.914Z"
         }
       ],
       "execution_owner_allocated": false,
@@ -85,7 +85,7 @@
         {
           "ref": "auto-continuation:reviews/runtime/current-preflight.json",
           "sha256": "sha256:8c88cfce6af8f0822f4ab59f953e6a43b30217b6f11d4b1c75e996f24ba2cddc",
-          "observed_at_utc": "2026-10-04T00:17:33.367Z"
+          "observed_at_utc": "2026-10-04T00:23:29.914Z"
         }
       ],
       "reason": "EXACT_BACKEND_FENCE_OLD_WRITE_REJECTION_AND_TARGET_PRIVILEGED_READ_ROUTE",
@@ -105,18 +105,19 @@
     },
     {
       "id": "M01.SOURCE",
-      "state": "DONE",
+      "state": "WAITING_REVIEW",
       "authorization_state": "AUTHORIZED",
       "evidence": [
         {
-          "ref": "auto-continuation:reviews/mcp/final-head-binding.json",
-          "sha256": "sha256:1c08ca0c7cbfb41764473f9e09099474d55c71ad9924d5db898e617c4d84205b",
-          "observed_at_utc": "2026-10-04T00:17:33.367Z"
+          "ref": "routes/resume-batch-20261004/boundary-rework/ag.intent.json",
+          "sha256": "sha256:7d7c1cfda0959e3b1e3f2e86290f96c60b9c5860b0c6a3e0689bf2b2aaefda3a",
+          "observed_at_utc": "2026-10-04T04:27:49.906Z"
         }
       ],
-      "evidence_class": "LOCAL_SOURCE_QUALIFIED",
+      "evidence_class": "CANDIDATE_REPAIR_NOT_LIVE_ACCEPTANCE",
       "execution_owner_allocated": false,
-      "reason": "EXACT_FROZEN_SOURCE_ONLY_QUALIFICATION_NOT_INSTALLED_CONSUMER_OR_LIVE_ACCEPTANCE"
+      "reason": "NEW_EXACT_SOURCE_REPAIR_AWAITS_DISTINCT_AUTHOR_REVIEW",
+      "owner_authority": "UNKNOWN"
     },
     {
       "id": "M02.LOCAL_CANARY",
@@ -125,8 +126,8 @@
       "evidence": [
         {
           "ref": "auto-continuation:reviews/mcp/final-head-binding.json",
-          "sha256": "sha256:1c08ca0c7cbfb41764473f9e09099474d55c71ad9924d5db898e617c4d84205b",
-          "observed_at_utc": "2026-10-04T00:17:33.367Z"
+          "sha256": "sha256:c619f34baa6056878bd482e9abc621c7340584edab4a629c5e74bb09b44791b6",
+          "observed_at_utc": "2026-10-04T00:23:29.914Z"
         }
       ],
       "evidence_class": "LOCAL_TEST_PASS",
@@ -140,8 +141,8 @@
       "evidence": [
         {
           "ref": "auto-continuation:reviews/mcp/final-head-binding.json",
-          "sha256": "sha256:1c08ca0c7cbfb41764473f9e09099474d55c71ad9924d5db898e617c4d84205b",
-          "observed_at_utc": "2026-10-04T00:17:33.367Z"
+          "sha256": "sha256:c619f34baa6056878bd482e9abc621c7340584edab4a629c5e74bb09b44791b6",
+          "observed_at_utc": "2026-10-04T00:23:29.914Z"
         }
       ],
       "evidence_class": "FROZEN_SOURCE_CANDIDATE",
@@ -155,8 +156,8 @@
       "evidence": [
         {
           "ref": "auto-continuation:reviews/mcp/final-head-binding.json",
-          "sha256": "sha256:1c08ca0c7cbfb41764473f9e09099474d55c71ad9924d5db898e617c4d84205b",
-          "observed_at_utc": "2026-10-04T00:17:33.367Z"
+          "sha256": "sha256:c619f34baa6056878bd482e9abc621c7340584edab4a629c5e74bb09b44791b6",
+          "observed_at_utc": "2026-10-04T00:23:29.914Z"
         }
       ],
       "evidence_class": "STRUCTURAL_VERIFIER_PASS",
@@ -170,8 +171,8 @@
       "evidence": [
         {
           "ref": "auto-continuation:reviews/mcp/final-head-binding.json",
-          "sha256": "sha256:1c08ca0c7cbfb41764473f9e09099474d55c71ad9924d5db898e617c4d84205b",
-          "observed_at_utc": "2026-10-04T00:17:33.367Z"
+          "sha256": "sha256:c619f34baa6056878bd482e9abc621c7340584edab4a629c5e74bb09b44791b6",
+          "observed_at_utc": "2026-10-04T00:23:29.914Z"
         }
       ],
       "reason": "EXACT_FROZEN_SOURCE_ONLY_QUALIFICATION_NOT_INSTALLED_CONSUMER_OR_LIVE_ACCEPTANCE",
@@ -185,7 +186,7 @@
         {
           "ref": "auto-continuation:reviews/runtime/current-preflight.json",
           "sha256": "sha256:8c88cfce6af8f0822f4ab59f953e6a43b30217b6f11d4b1c75e996f24ba2cddc",
-          "observed_at_utc": "2026-10-04T00:17:33.367Z"
+          "observed_at_utc": "2026-10-04T00:23:29.914Z"
         }
       ],
       "reason": "ACTUAL_TARGET_CALLER_HELPER_INSTALLED_HASH_AND_ROLLBACK_PRESTATE_READBACK",
@@ -299,7 +300,7 @@
         {
           "ref": "auto-continuation:reviews/runtime/f01-source-collection.json",
           "sha256": "sha256:b7d10f59b43d01e5147a9dddd618c6ed12e2f7e01d403e95a3bb2d5c2bcf1326",
-          "observed_at_utc": "2026-10-04T00:17:33.367Z"
+          "observed_at_utc": "2026-10-04T00:23:29.914Z"
         }
       ],
       "reason": "EXACT_TWO_FILE_SOURCE_OVERLAY_124_ROOT_PASS_AND_TWO_REVIEW_FINDINGS_CLOSED_NOT_LIVE_ISOLATED_EXECUTION",
@@ -313,7 +314,7 @@
         {
           "ref": "auto-continuation:routes/current-native-preflight.json",
           "sha256": "sha256:6b39d556f1dbf9d8c0d4c2eacaf65c600f5a42bb06130b0edf96665c3b549958",
-          "observed_at_utc": "2026-10-04T00:17:33.367Z"
+          "observed_at_utc": "2026-10-04T00:23:29.914Z"
         }
       ],
       "reason": "EXACT_AUTHORIZED_NATIVE_CELL_ID_ROUTE_ENTITLEMENT_CONTROLLER_BOUNDARY_PROOF_NOT_OBSERVED_SOURCE_LANES_CONTINUE",
@@ -327,7 +328,7 @@
         {
           "ref": "auto-continuation:routes/current-native-preflight.json",
           "sha256": "sha256:6b39d556f1dbf9d8c0d4c2eacaf65c600f5a42bb06130b0edf96665c3b549958",
-          "observed_at_utc": "2026-10-04T00:17:33.367Z"
+          "observed_at_utc": "2026-10-04T00:23:29.914Z"
         }
       ],
       "reason": "EXACT_AUTHORIZED_NATIVE_CELL_ID_ROUTE_ENTITLEMENT_CONTROLLER_BOUNDARY_PROOF_NOT_OBSERVED_SOURCE_LANES_CONTINUE",
@@ -341,7 +342,7 @@
         {
           "ref": "auto-continuation:reviews/runtime/runtime08-collection.json",
           "sha256": "sha256:cf7ab55176ffea6462b8fcb875be56065323b6afb1337c6dd1a71b9abdd7c443",
-          "observed_at_utc": "2026-10-04T00:17:33.367Z"
+          "observed_at_utc": "2026-10-04T00:23:29.914Z"
         }
       ],
       "evidence_class": "LOCAL_SOURCE_QUALIFIED",
@@ -356,7 +357,7 @@
         {
           "ref": "auto-continuation:reviews/runtime/current-shadow-readback.json",
           "sha256": "sha256:baaeb8a1e069ae87841c716cb6b29c38124019992e913831c53fb8ba25667612",
-          "observed_at_utc": "2026-10-04T00:17:33.367Z"
+          "observed_at_utc": "2026-10-04T00:23:29.914Z"
         }
       ],
       "evidence_class": "REAL_PROVIDER_READ_ONLY_SHADOW_NOT_EXECUTOR_ACCEPTANCE",
@@ -371,7 +372,7 @@
         {
           "ref": "auto-continuation:reviews/runtime/current-shadow-readback.json",
           "sha256": "sha256:baaeb8a1e069ae87841c716cb6b29c38124019992e913831c53fb8ba25667612",
-          "observed_at_utc": "2026-10-04T00:17:33.367Z"
+          "observed_at_utc": "2026-10-04T00:23:29.914Z"
         }
       ],
       "evidence_class": "LOCAL_TEST_PASS_NOT_REBOOT_PROOF",
@@ -392,7 +393,7 @@
         {
           "ref": "auto-continuation:reviews/runtime/d03-source-collection.json",
           "sha256": "sha256:96340fafad362d18bf0970ee63b6aca123bbb982bd72b591f1952af77c972e20",
-          "observed_at_utc": "2026-10-04T00:17:33.367Z"
+          "observed_at_utc": "2026-10-04T00:23:29.914Z"
         }
       ],
       "reason": "SOURCE_PACKET_AND20_EXACT_PAYLOAD_LOCAL_STAGE_ONLY_HOST_ACL_INSTALL_CUTOVER_SURVIVAL_NOT_ACCEPTED",
@@ -420,7 +421,7 @@
         {
           "ref": "auto-continuation:reviews/runtime/f02-source-collection.json",
           "sha256": "sha256:78f5bf17803334213abbee8feb693759ff8ee2e42c7b062bfb87989f85231658",
-          "observed_at_utc": "2026-10-04T00:17:33.367Z"
+          "observed_at_utc": "2026-10-04T00:23:29.914Z"
         }
       ],
       "reason": "EXACT_TWO_FILE_SOURCE_FIVE_FINDINGS_CLOSED_ROOT198_PASS_NATIVE_N2_NOT_ACCEPTED",
@@ -440,7 +441,7 @@
         {
           "ref": "auto-continuation:routes/antigravity-t01-baseline-intent.json",
           "sha256": "sha256:887e9455b90fddf18f4726da4b72a389200d9ddfb50c6c23e32c7290088a827e",
-          "observed_at_utc": "2026-10-04T00:17:33.367Z"
+          "observed_at_utc": "2026-10-04T00:23:29.914Z"
         }
       ],
       "reason": "NATIVE_PERMISSION_DENIAL_PRECISE_READ_METADATA_LANE_NO_GLOBAL_STOP",
@@ -467,7 +468,7 @@
         {
           "ref": "auto-continuation:routes/current-native-preflight.json",
           "sha256": "sha256:6b39d556f1dbf9d8c0d4c2eacaf65c600f5a42bb06130b0edf96665c3b549958",
-          "observed_at_utc": "2026-10-04T00:17:33.367Z"
+          "observed_at_utc": "2026-10-04T00:23:29.914Z"
         }
       ],
       "execution_owner_allocated": false,
@@ -504,14 +505,15 @@
       "authorization_state": "AUTHORIZED",
       "evidence": [
         {
-          "ref": "auto-continuation:routes/antigravity-p52-opencode-intent.json",
-          "sha256": "sha256:79bb75c833ce4b73be3444bac4159551330152d2c2d949c813adbb95724517b6",
-          "observed_at_utc": "2026-10-04T00:17:33.367Z"
+          "ref": "routes/resume-batch-20261004/boundary-rework/oc.intent.json",
+          "sha256": "sha256:fe2b552cb158269268c2a19ed3de1e5833aaadfec600865d8647f15ad473af3d",
+          "observed_at_utc": "2026-10-04T04:27:49.906Z"
         }
       ],
-      "reason": "SOURCE_REASSIGNED_AFTER_CLOSED_LUNA_SCOPE_DECLINE_NATIVE_MUSE_QUOTA_STILL_PARKED",
+      "reason": "ACTUAL_NATIVE_SOURCE_REPAIR_IN_FLIGHT_NO_DUPLICATE_DISPATCH",
       "execution_owner_allocated": false,
-      "owner_authority": "UNKNOWN"
+      "owner_authority": "UNKNOWN",
+      "evidence_class": "CANDIDATE_REPAIR_NOT_LIVE_ACCEPTANCE"
     },
     {
       "id": "P52.ANTIGRAVITY_SOURCE",
@@ -521,7 +523,7 @@
         {
           "ref": "auto-continuation:reviews/runtime/p52-antigravity-collection.json",
           "sha256": "sha256:fab06a47bad07f5f003cbb99c4cd1acfec9af9c695b7a5d4010bdcff99ba56ff",
-          "observed_at_utc": "2026-10-04T00:17:33.367Z"
+          "observed_at_utc": "2026-10-04T00:23:29.914Z"
         }
       ],
       "reason": "EXACT_TWO_FILE_SOURCE_SEVEN_FINDINGS_CLOSED_ROOT175_PASS_NATIVE_WIRE_REPLAY_NOT_LIVE_ROUTE",
@@ -576,5 +578,5 @@
       "evidence": []
     }
   ],
-  "facts_sha256": "sha256:ae261635f35eddd555ed2ce14555cf6e88e8974f02a3b367c79c2167006ea2be"
+  "facts_sha256": "sha256:8170a3f59dfceb69849dc163e344ebd65e891558e7ea81910fd9081876b9e307"
 }

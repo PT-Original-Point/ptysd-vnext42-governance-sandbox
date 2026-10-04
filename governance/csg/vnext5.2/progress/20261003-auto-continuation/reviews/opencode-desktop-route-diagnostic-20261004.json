@@ -1,0 +1,100 @@
+{
+  "schema": "vnext5.2.route-diagnostic.v1",
+  "started_at": "2026-10-04T03:40:10.464Z",
+  "diagnostic_only": true,
+  "construction_paused": true,
+  "schedule_paused": true,
+  "route": "OFFICIAL_CLI_EXISTING_DESKTOP_CONNECTED_BACKGROUND_SERVICE",
+  "cli": "C:/Users/x/AppData/Roaming/ai.opencode.desktop/cli/2.0.22/opencode-cli.exe",
+  "server": {
+    "version": "2.0.22",
+    "pid": 12936,
+    "urls": [
+      "http://127.0.0.1:49374"
+    ],
+    "paths": {
+      "tmp": "C:\\Users\\x\\AppData\\Local\\Temp\\opencode"
+    }
+  },
+  "active_before": {
+    "data": {}
+  },
+  "workspace": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠",
+  "requested_model": "opencode/muse-spark-1.3-contributor-free",
+  "requested_variant": "xhigh",
+  "model_cost": [
+    {
+      "input": 0,
+      "output": 0,
+      "cache": {
+        "read": 0,
+        "write": 0
+      }
+    }
+  ],
+  "token": "VNEXT52_MUSE_DESKTOP_ROUTE_OK_0ca41ed6-2a6d-43ee-920a-2e5d8705ee16",
+  "session_id": "ses_efb009437ffe2NlXhwPwaJEJdR",
+  "model_invocations": 1,
+  "status": "SMOKE_PASS_NOT_CONSTRUCTION_ACCEPTANCE",
+  "paid_fallback": false,
+  "canonical_write": false,
+  "production": false,
+  "args": [
+    "run",
+    "--session",
+    "ses_efb009437ffe2NlXhwPwaJEJdR",
+    "--model",
+    "opencode/muse-spark-1.3-contributor-free#xhigh",
+    "--format",
+    "json",
+    "Diagnostic only. Do not read or write files, do not use any tools, do not run commands, do not call MCP, do not browse. Reply with exactly this single line and nothing else: VNEXT52_MUSE_DESKTOP_ROUTE_OK_0ca41ed6-2a6d-43ee-920a-2e5d8705ee16"
+  ],
+  "prompt_sha256": "092b699ab032a7307bb9579d25378796d6419cda57d91dc908aaa9adcaeeeda1",
+  "pid": 61756,
+  "exit_code": 0,
+  "closed_at": "2026-10-04T03:40:14.971Z",
+  "structured_errors": [],
+  "tool_event_count": 0,
+  "exact_response_received": true,
+  "event_types": [
+    "step_start",
+    "text"
+  ],
+  "actual_session": {
+    "id": "ses_efb009437ffe2NlXhwPwaJEJdR",
+    "model": {
+      "id": "muse-spark-1.3-contributor-free",
+      "providerID": "opencode",
+      "variant": "xhigh"
+    },
+    "outcome": "succeeded",
+    "cost": 0,
+    "tokens": {
+      "input": 4944,
+      "output": 46,
+      "reasoning": 154,
+      "cache": {
+        "read": 1521,
+        "write": 0
+      }
+    },
+    "time": {
+      "created": 1791085210713,
+      "updated": 1791085210848,
+      "idle": 1791085214950
+    }
+  },
+  "server_after": {
+    "version": "2.0.22",
+    "pid": 12936,
+    "urls": [
+      "http://127.0.0.1:49374"
+    ],
+    "paths": {
+      "tmp": "C:\\Users\\x\\AppData\\Local\\Temp\\opencode"
+    }
+  },
+  "active_after": {
+    "data": {}
+  }
+}

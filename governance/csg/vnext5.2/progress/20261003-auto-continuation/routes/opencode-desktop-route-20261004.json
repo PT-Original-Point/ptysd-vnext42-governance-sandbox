@@ -1,0 +1,85 @@
+{
+  "schema": "vnext5.2.opencode-desktop-route.v1",
+  "observed_at": "2026-10-04T03:45:35.4612850Z",
+  "status": "DIAGNOSTICALLY_AVAILABLE_CONSTRUCTION_HUMAN_PAUSED",
+  "authority": "HUMAN_OPENCODE_ROUTE_DIAGNOSIS_ONLY",
+  "primary": "OFFICIAL_CLI_DESKTOP_CONNECTED_BACKGROUND_SERVICE",
+  "server": {
+    "version": "2.0.22",
+    "pid": 12936,
+    "urls": [
+      "http://127.0.0.1:49374"
+    ],
+    "paths": {
+      "tmp": "C:\\Users\\x\\AppData\\Local\\Temp\\opencode"
+    }
+  },
+  "cli_observed": "C:/Users/x/AppData/Roaming/ai.opencode.desktop/cli/2.0.22/opencode-cli.exe",
+  "desktop_connection_evidence": {
+    "service_pid": 12936,
+    "desktop_main_pid": 20428,
+    "tcp_peer": "127.0.0.1:14013",
+    "service_listener": "127.0.0.1:49374",
+    "desktop_renderer_pid": 50160
+  },
+  "requested_model": "opencode/muse-spark-1.3-contributor-free",
+  "actual_model": {
+    "id": "muse-spark-1.3-contributor-free",
+    "providerID": "opencode",
+    "variant": "xhigh"
+  },
+  "variant": "xhigh",
+  "cost": 0,
+  "model_calls": 2,
+  "smoke_session": "ses_efb009437ffe2NlXhwPwaJEJdR",
+  "fork_session": "ses_efafef6abffeHHvd7qTqMmoY43",
+  "fork_source": {
+    "sessionID": "ses_efb009437ffe2NlXhwPwaJEJdR",
+    "boundary": {
+      "type": "through",
+      "messageID": "msg_104ff7ce6001ejf2XkAoUAcL0a"
+    }
+  },
+  "route_only": true,
+  "live_factory_acceptance": "NOT_ACCEPTED",
+  "source_adapter_attempt2_review": "PENDING",
+  "construction_dispatch": "HUMAN_PAUSED",
+  "goal": "paused",
+  "heartbeat": "PAUSED",
+  "canonical_write": false,
+  "production": false,
+  "legacy_quota": {
+    "session_id": "ses_efe606f6cffeBxLiIedexWKrH5",
+    "status": "TRUE_HISTORICAL_PROVIDER_429_NOT_MUSE_AVAILABILITY_PROOF",
+    "actual_model": "opencode/fledge-alpha-free"
+  },
+  "required": [
+    "fresh server identity and Desktop connection",
+    "fresh project model catalog and active session readback",
+    "explicit locked Muse model",
+    "read unknown effects before resubmission",
+    "native info.outcome=succeeded",
+    "native info.fork.sessionID",
+    "structured errors only; body text 429 excluded",
+    "exact result bytes and independent acceptance",
+    "explicit Human construction resume"
+  ],
+  "evidence": [
+    {
+      "sha256": "7110603978d1bdf8d5a8b8ad83bb61ea0d9195476a5ca32e4bc1cabc125761a2",
+      "path": "reviews/opencode-desktop-route-diagnostic-20261004.json"
+    },
+    {
+      "sha256": "3334ada8cfd9c1c371c4ca20d4fd134d701b5e866965980369b62a0a78b2eb80",
+      "path": "reviews/opencode-desktop-route-diagnostic-20261004.export.json"
+    },
+    {
+      "sha256": "6b2e391ab6794f28ec2617c2d87d6e1aa93149ae40d6605368780b71bb4430f8",
+      "path": "reviews/opencode-desktop-fork-check-20261004.json"
+    },
+    {
+      "sha256": "3deb54d50c249f61aefb06412cc6cc2fc595e7867552195749a962dc7fe2168c",
+      "path": "reviews/opencode-desktop-fork-check-20261004.export.json"
+    }
+  ]
+}

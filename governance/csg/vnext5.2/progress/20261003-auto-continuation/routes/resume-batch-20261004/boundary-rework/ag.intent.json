@@ -1,0 +1,38 @@
+{
+  "task": "MCP.READSYNC_FIVE_FINDING_REPAIR",
+  "model": "gemini-3.8-flash-high",
+  "status": "CLOSED_REVIEW_REQUIRED",
+  "observed_at": "2026-10-04T03:58:43.597Z",
+  "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-MCP-READSYNC-AG-WORK-20261004",
+  "base": "e1c99a7cf3201ac5c1eddad71f3d6ea1ea7a955e",
+  "write_set": [
+    "tools/csg/factory-mcp/src/shared-context.mjs",
+    "tools/csg/factory-mcp/src/shared-context-transport.mjs",
+    "tools/csg/factory-mcp/tests/shared-context.test.mjs",
+    "tools/csg/factory-mcp/tests/shared-context-transport.test.mjs",
+    "outputs/MCP-READSYNC/**"
+  ],
+  "prompt_sha256": "fd110d387d59bfce0c63f850984435e4f960cdb31b93780abc4b7dfa76955f59",
+  "conversation_id": "f910e244-4b35-4e98-99a7-0272e7f7bff4",
+  "actual_model": "gemini-3.8-flash-high",
+  "paid_fallback": false,
+  "canonical_write": false,
+  "host_dispatch": false,
+  "attempt": 3,
+  "created_at": "2026-10-04T04:21:48.458Z",
+  "denied_resource": "VNEXT5.2-INTEGRATION-EVIDENCE-20261003/fresh-shared-read.mjs",
+  "prior_closed_at": "2026-10-04T03:59:09.143Z",
+  "prior_attempt_status": "CLOSED_REVIEW_REQUIRED",
+  "root_cause": "MODEL_USED_UNAUTHORIZED_OLD_BASELINE_COMMAND_AND_READ_NONEXISTENT_NEW_FILES_BEFORE_CREATING",
+  "denied_actions_preserved": [
+    "read_file(VNEXT5.2-INTEGRATION-EVIDENCE-20261003/fresh-shared-read.mjs)",
+    "command(node --test tools/csg/factory-mcp/tests/shared-context.test.mjs)"
+  ],
+  "review_requires_rework": true,
+  "pid": 60080,
+  "result_status": "SUCCESS",
+  "denied_action_count": 0,
+  "exit_code": 0,
+  "closed_at": "2026-10-04T04:23:55.979Z",
+  "result_response": "### Invariant-Matrix Repair Summary (Findings F1–F5)\n\nAll 5 defects identified during the independent Muse review have been addressed in a single coordinated batch in [`tools/csg/factory-mcp/src/shared-context-transport.mjs`](file:///C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-MCP-READSYNC-AG-WORK-20261004/tools/csg/factory-mcp/src/shared-context-transport.mjs) and verified via [`tools/csg/factory-mcp/tests/shared-context-transport.test.mjs`](file:///C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-MCP-READSYNC-AG-WORK-20261004/tools/csg/factory-mcp/tests/shared-context-transport.test.mjs).\n\n---\n\n#### 1. Defect Fixes\n\n- **F1 (Strict Lower-40hex Validation)**:\n  - In [`parseApprovedRoute`](file:///C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-MCP-READSYNC-AG-WORK-20261004/tools/csg/factory-mcp/src/shared-context-transport.mjs#L68) and [`nativeGitGet`](file:///C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-MCP-READSYNC-AG-WORK-20261004/tools/csg/factory-mcp/src/shared-context-transport.mjs#L236), removed all `.toLowerCase()` and loose trimming on OIDs. Input refs and git response hashes now pass directly to `oid(sha)`, strictly enforcing `/^[0-9a-f]{40}$/` and rejecting uppercase or malformed hex with `MALFORMED_OID`.\n- **F2 (Bounded Diagnostic Error Streaming & Secret Isolation)**:\n  - In [`httpGet`](file:///C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-MCP-READSYNC-AG-WORK-20261004/tools/csg/factory-mcp/src/shared-context-transport.mjs#L143), implemented `extractBoundedDiagnostics` to stream at most 4KB of diagnostics (with a 1MB overall threshold) to classify 403 vs. 429/rate-limit. The error body is discarded immediately; the resulting error object never stores or leaks the error payload or embedded secrets.\n- **F3 (Raw Buffer Fidelity & Strict Delimiter Separation)**:\n  - Configured `execFile` with `encoding: null` so stdout is returned as a native `Buffer`. File contents from `git cat-file -p` are base64-encoded directly from raw bytes, preserving exact multi-byte UTF-8 sequences, trailing newlines, and binary bytes without string-decoding roundtripping.\n  - In `ls-remote` parsing, replaced whitespace splitting with strict tab delimiter parsing (`line.indexOf('\\t')`) to separate the SHA and branch name.\n- **F4 (Cache Directory Containment)**:\n  - Implemented [`validateGitCacheDir`](file:///C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-MCP-READSYNC-AG-WORK-20261004/tools/csg/factory-mcp/src/shared-context-transport.mjs#L27) which verifies that `options.gitCacheDir` is absolute, contains no traversal components (`..`), and is strictly contained within `os.tmpdir()`, preventing arbitrary directory access.\n- **F5 (Injected Executor Coverage for Real `cat-file` Path)**:\n  - Updated tests to execute the actual `cat-file` exec path via `gitExec` rather than bypassing it. Injected executor tests verify constructor options, raw `Buffer` preservation, `maxBuffer` truncation (`READ_BOUND_EXCEEDED`), `ENOENT` handling (`GIT_TRANSPORT_UNAVAILABLE`), deadline abortion (`SHARED_READ_DEADLINE_EXCEEDED`), oversized route rejection (>2048 chars), and uppercase OID rejection without live network or external processes.\n\n---\n\n#### 2. Test Execution & Results\n\nExecuted the permitted test command:\n```powershell\nnode --test tools/csg/factory-mcp/tests/shared-context-transport.test.mjs\n```\n\n**Results:**\n- Tests passed: **17 / 17**\n- Duration: **138.8 ms**\n- Exit code: **0**\n\n```\n✔ F1: parseApprovedRoute strictly rejects uppercase 40hex ref input (1.0083ms)\n✔ F1: nativeGitGet strictly rejects uppercase 40hex in ls-remote output (0.7226ms)\n✔ F2: httpGet streams max 4KB diagnostics for classification without retaining full error body (0.7193ms)\n✔ F3: nativeGitGet preserves exact raw binary bytes and trailing newlines from cat-file (1.1326ms)\n✔ F4: validateGitCacheDir enforces strict containment within tmpdir, rejects traversal and arbitrary paths (0.2967ms)\n✔ Matrix 1 & F5: 403 fallback exercises actual cat-file exec path and parks HTTP (11.0649ms)\n✔ Matrix 2a: real429 parks HTTP and falls back to git cat-file (6.1525ms)\n✔ Matrix 2b: body429 parks HTTP and falls back to git cat-file (6.4759ms)\n✔ Matrix 3: transport unavailable when gitAvailable is false (0.3904ms)\n✔ Matrix 4a & F5: deadline bound triggers SHARED_READ_DEADLINE_EXCEEDED on abort signal (0.2409ms)\n✔ Matrix 4b & F5: cat-file maxBuffer exceeded triggers READ_BOUND_EXCEEDED (0.3497ms)\n✔ Matrix 5 & F5: route length > 2048 and arbitrary inputs are strictly rejected (0.1318ms)\n✔ Matrix 6 & F5: git ENOENT executable error maps to GIT_TRANSPORT_UNAVAILABLE (0.2998ms)\n✔ Matrix 7: three columns projected independently with typed schema invariants (6.2298ms)\n✔ Matrix 8: stale progress facts flag queue_fresh false while preserving historical source qualification (5.9116ms)\n✔ Matrix 9: tamper detection rejects mismatched digest and isolates failure (5.0509ms)\n✔ Matrix 10: cold new consumer initializes cleanly with zero authority (5.9432ms)\n```\n\n*Note on regression scope:* The legacy baseline test (`shared-context.test.mjs`) remains recorded as `PARKED_PERMISSION_DENIED` and was not replayed or retried. This local test PASS is strictly scoped to the transport module and does not count as full legacy or semantic PASS.\n\n---\n\n#### 3. Output Artifacts\n\n- Updated execution log: [`outputs/MCP-READSYNC/test-run.log`](file:///C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-MCP-READSYNC-AG-WORK-20261004/outputs/MCP-READSYNC/test-run.log)\n- Updated result manifest: [`outputs/MCP-READSYNC/result.json`](file:///C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-MCP-READSYNC-AG-WORK-20261004/outputs/MCP-READSYNC/result.json)\n- **Live Acceptance**: `NOT_ACCEPTED`\n- **Readiness**: `READY_FOR_ROOT_REVIEW`\n"
+}

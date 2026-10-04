@@ -3,7 +3,7 @@
   "mode": "SHADOW_PLAN_ONLY",
   "facts_schema": "vnext5.2.operation-facts.v1",
   "catalog_sha256": "sha256:ee769422b5d587e771d09c4e95af1af9a3a7cf0a7c0e493d86071e2df57304de",
-  "facts_sha256": "sha256:ae261635f35eddd555ed2ce14555cf6e88e8974f02a3b367c79c2167006ea2be",
+  "facts_sha256": "sha256:8170a3f59dfceb69849dc163e344ebd65e891558e7ea81910fd9081876b9e307",
   "facts_fresh": true,
   "input_completeness": "COMPLETE",
   "input_reasons": [],
@@ -301,7 +301,7 @@
     },
     {
       "id": "M01.SOURCE",
-      "state": "DONE",
+      "state": "WAITING_REVIEW",
       "priority": 5,
       "mandatory": true,
       "effect_class": "CANDIDATE_SOURCE",
@@ -311,7 +311,8 @@
       "completion_dependencies": [],
       "start_blockers": [],
       "completion_blockers": [],
-      "reason": "EXACT_FROZEN_SOURCE_ONLY_QUALIFICATION_NOT_INSTALLED_CONSUMER_OR_LIVE_ACCEPTANCE",
+      "owner_authority": "UNKNOWN",
+      "reason": "NEW_EXACT_SOURCE_REPAIR_AWAITS_DISTINCT_AUTHOR_REVIEW",
       "execution_scope": "SHADOW_PLAN_ONLY",
       "effects": [],
       "plan_only": true
@@ -326,7 +327,9 @@
         "M01.SOURCE"
       ],
       "completion_dependencies": [],
-      "start_blockers": [],
+      "start_blockers": [
+        "M01.SOURCE"
+      ],
       "completion_blockers": [],
       "reason": "EXACT_FROZEN_SOURCE_ONLY_QUALIFICATION_NOT_INSTALLED_CONSUMER_OR_LIVE_ACCEPTANCE",
       "execution_scope": "SHADOW_PLAN_ONLY",
@@ -1082,7 +1085,7 @@
       "start_blockers": [],
       "completion_blockers": [],
       "owner_authority": "UNKNOWN",
-      "reason": "SOURCE_REASSIGNED_AFTER_CLOSED_LUNA_SCOPE_DECLINE_NATIVE_MUSE_QUOTA_STILL_PARKED",
+      "reason": "ACTUAL_NATIVE_SOURCE_REPAIR_IN_FLIGHT_NO_DUPLICATE_DISPATCH",
       "execution_scope": "SHADOW_PLAN_ONLY",
       "effects": [],
       "plan_only": true

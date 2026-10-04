@@ -1,7 +1,7 @@
 {
   "schema": "vnext5.2.construction-progress.v2",
   "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
-  "observed_at": "2026-10-04T00:17:33.367Z",
+  "observed_at": "2026-10-04T04:27:49.906Z",
   "model_lock": {
     "codex": {
       "display": "GPT-6 Luna Max",
@@ -17,7 +17,7 @@
       "conversation_id": "c9c18097-ff7b-49d4-812b-38879d53465a",
       "historical_conversation_id": "87630a5f-9aae-4f2e-af9a-6a0718b52ee8",
       "latest_source_task": "P52.OPENCODE_SOURCE",
-      "latest_native_attempt": 1,
+      "latest_native_attempt": 2,
       "explicit_cli_flag": "--model gemini-3.8-flash-high",
       "actual_native_init": "CONFIRMED_NEW_NATIVE_SOURCE_CONVERSATION_SAME_EXISTING_ACCOUNT_AND_LOCKED_MODEL"
     },
@@ -31,9 +31,9 @@
         "cache_read": 0,
         "cache_write": 0
       },
-      "runtime_quota": "NOT_PROVEN_BY_MODEL_CATALOG",
+      "runtime_quota": "ACTUAL_MUSE_TWO_DIAGNOSTICS_SUCCEEDED_COST0_CURRENT_BATCH_INFLIGHT",
       "previous_fledge_alpha_free": "HISTORICAL_ONLY_FORBIDDEN_FOR_NEW_DISPATCH",
-      "prior_provider_quota": "PARKED_NO_BLIND_RETRY"
+      "prior_provider_quota": "HISTORICAL_FLEDGE_ONLY_NOT_MUSE_PROOF"
     }
   },
   "columns": {
@@ -53,15 +53,17 @@
       "version": "UNKNOWN",
       "live_mcp": "NOT_ACCEPTED",
       "live_ads": "NOT_ACCEPTED",
-      "survival": "NOT_ACCEPTED"
+      "survival": "NOT_ACCEPTED",
+      "readback": "LOCAL_PROTECTED_PACKAGE_ACCESS_DENIED_NOT_VERSION_EVIDENCE"
     }
   },
   "goal": {
-    "root": "usageLimited",
+    "root": "paused",
     "worker_luna": "LAST_ACTUAL_WORKER_GOAL_PAUSED_THREAD_ACTIVITY_SEPARATE_NO_FAKE_ACTIVE",
     "automation_id": "vnext5-2",
-    "heartbeat": "ACTIVE_REAL_TOOL_READBACK_30_MINUTES",
-    "app_running_required": true
+    "heartbeat": "ACTIVE_ACTUAL_TOOL_READBACK_4_HOURLY",
+    "app_running_required": true,
+    "root_resume_api": "NOT_SUPPORTED_NO_FAKE_ACTIVE_HUMAN_MISSION_COORDINATION_RESUMED"
   },
   "role_contract": "ROOT_AUDIT_PLAN_DISPATCH_COLLECT_ARBITRATE_ONLY_NO_PRODUCT_SOURCE_CODING",
   "worker_set": [
@@ -115,14 +117,34 @@
   "queue_decision": "WORK_IN_PROGRESS",
   "ready_ids": [],
   "running_ids": [
-    "P52.OPENCODE_SOURCE"
+    "P52.OPENCODE_BOUNDARY_REPAIR"
   ],
-  "valid_until": "2026-10-04T00:32:33.367Z",
+  "valid_until": "2026-10-04T04:42:49.906Z",
   "all_legal_ready_lanes_exhausted": false,
   "canonical_write": false,
   "host_install": false,
   "host_dispatch": false,
   "production": false,
   "unknown_external_effects": [],
-  "continuation": "Source milestones are scoped only. Root automatically collects runtime08 and F01; Ads local repair complete, exact CAS publication route parked. No duplicate task or Mission completion."
+  "continuation": "Human resumed; AG/OC source batches; root limited audit/arbitration. Actual Goal paused cannot API-resume; not Mission authority.",
+  "coordination_updated_at": "2026-10-04T04:27:49.906Z",
+  "construction_pause": {
+    "authority": "DIRECT_HUMAN_REQUEST",
+    "status": "SUPERSEDED_BY_EXPLICIT_HUMAN_RESUME_20261004",
+    "receipt": "WORK-PAUSE-20261004.json",
+    "audit": "VNEXT5.2-12小時額度稽核與外包重分派-20261004.md",
+    "resume_receipt": "WORK-RESUME-20261004.json"
+  },
+  "opencode_route_diagnostic": {
+    "observed_at": "2026-10-04T03:45:35.461285Z",
+    "report": "VNEXT5.2-OpenCode桌面路線診斷與呼叫修正-20261004.md",
+    "status": "DIAGNOSTICALLY_AVAILABLE_CONSTRUCTION_HUMAN_PAUSED",
+    "construction_dispatch": "HUMAN_PAUSED",
+    "contract": "routes/opencode-desktop-route-20261004.json"
+  },
+  "construction_plan": "VNEXT5.2-限額控制與優先復工施工契約-20261004.md",
+  "active_source_repairs": [
+    "MCP.READONLY_CONTEXT_RECOVERY"
+  ],
+  "pending_independent_reviews": []
 }

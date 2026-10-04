@@ -1,0 +1,89 @@
+{
+  "schema": "vnext5.2.human-resume.v1",
+  "observed_at": "2026-10-04T04:27:49.906Z",
+  "authority": "DIRECT_HUMAN_RESUME_REDELEGATE_WITH_CODEX_USAGE_CONTROL",
+  "construction": "RESUMED",
+  "root_role": "AUDIT_PLAN_DISPATCH_COLLECT_ARBITRATE_ONLY",
+  "actual_goal": "paused",
+  "goal_resume_api": "UNSUPPORTED_CANNOT_CREATE_DUPLICATE_UNFINISHED_GOAL",
+  "mission_complete": false,
+  "heartbeat": {
+    "id": "vnext5-2",
+    "status": "ACTIVE_TOOL_AND_TOML_READBACK",
+    "interval_hours": 4
+  },
+  "models": {
+    "codex": {
+      "display": "GPT-6 Luna Max",
+      "model": "gpt-6-luna",
+      "reasoning_effort": "max",
+      "thread_id": "01a0fd19-df99-7013-8a8b-eb952c647e3d",
+      "native_setting_request": "SENT_EXPLICIT_MODEL_AND_THINKING_PARAMETERS",
+      "runtime_settings_readback": "REQUIRED_PER_NEW_TURN_NOT_INFERRED_FROM_REQUEST"
+    },
+    "antigravity": {
+      "display": "Gemini 3.8 Flash High",
+      "model": "gemini-3.8-flash-high",
+      "conversation_id": "c9c18097-ff7b-49d4-812b-38879d53465a",
+      "historical_conversation_id": "87630a5f-9aae-4f2e-af9a-6a0718b52ee8",
+      "latest_source_task": "P52.OPENCODE_SOURCE",
+      "latest_native_attempt": 2,
+      "explicit_cli_flag": "--model gemini-3.8-flash-high",
+      "actual_native_init": "CONFIRMED_NEW_NATIVE_SOURCE_CONVERSATION_SAME_EXISTING_ACCOUNT_AND_LOCKED_MODEL"
+    },
+    "opencode": {
+      "display": "Muse Spark 1.3 Free",
+      "provider_model_id": "opencode/muse-spark-1.3-contributor-free",
+      "provider_model_id_status": "EXACT_NATIVE_MODEL_LIST_READBACK_NAME_MUSE_SPARK_1.3_FREE_ACTIVE_ENABLED",
+      "native_catalog_cost": {
+        "input": 0,
+        "output": 0,
+        "cache_read": 0,
+        "cache_write": 0
+      },
+      "runtime_quota": "ACTUAL_MUSE_TWO_DIAGNOSTICS_SUCCEEDED_COST0_CURRENT_BATCH_INFLIGHT",
+      "previous_fledge_alpha_free": "HISTORICAL_ONLY_FORBIDDEN_FOR_NEW_DISPATCH",
+      "prior_provider_quota": "HISTORICAL_FLEDGE_ONLY_NOT_MUSE_PROOF"
+    }
+  },
+  "budget_baseline": {
+    "codex_five_hour_used_percent": 19,
+    "codex_weekly_used_percent": 34,
+    "scope": "SHARED_ACCOUNT_NOT_PER_SESSION_ATTRIBUTION"
+  },
+  "plan": "VNEXT5.2-限額控制與優先復工施工契約-20261004.md",
+  "previous_pause": "WORK-PAUSE-20261004.json",
+  "tasks": [
+    {
+      "id": "MCP.READSYNC_FIVE_FINDING_REPAIR",
+      "route": "ANTIGRAVITY_NATIVE_CLI",
+      "status": "CLOSED_REVIEW_REQUIRED",
+      "result_source": "routes/resume-batch-20261004/boundary-rework/ag.intent.json"
+    },
+    {
+      "id": "P52.OPENCODE_BOUNDARY_REPAIR",
+      "route": "OPENCODE_DESKTOP_BACKGROUND_SERVICE",
+      "status": "SUBMITTED_OUTCOME_PENDING",
+      "result_source": "routes/resume-batch-20261004/boundary-rework/oc.intent.json"
+    },
+    {
+      "id": "P52.OPENCODE_SOURCE_EXACT_FINAL_REVIEW",
+      "route": "ANTIGRAVITY_NATIVE_CLI",
+      "status": "CLOSED_REVIEW_REQUIRED",
+      "result_source": "routes/resume-batch-20261004/adapter-final-review/ag.intent.json"
+    },
+    {
+      "id": "MCP.READSYNC_EXACT_SOURCE_REVIEW",
+      "route": "OPENCODE_DESKTOP_BACKGROUND_SERVICE",
+      "status": "CLOSED_REVIEW_REQUIRED",
+      "result_source": "routes/resume-batch-20261004/mcp-independent-review/oc.intent.json"
+    }
+  ],
+  "full_catalog_count": 59,
+  "queue_scope": "FULL_CATALOG",
+  "ready_ids": [],
+  "canonical_checkpoint": 200,
+  "canonical_write": false,
+  "host_dispatch": false,
+  "production": false
+}

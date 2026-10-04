@@ -1,0 +1,91 @@
+{
+  "schema": "vnext5.2.desktop-fork-diagnostic.v1",
+  "started_at": "2026-10-04T03:41:56.213Z",
+  "diagnostic_only": true,
+  "construction_paused": true,
+  "base_session_id": "ses_efb009437ffe2NlXhwPwaJEJdR",
+  "requested_model": "opencode/muse-spark-1.3-contributor-free#xhigh",
+  "session_id": "ses_efafef6abffeHHvd7qTqMmoY43",
+  "server_before": {
+    "version": "2.0.22",
+    "pid": 12936,
+    "urls": [
+      "http://127.0.0.1:49374"
+    ],
+    "paths": {
+      "tmp": "C:\\Users\\x\\AppData\\Local\\Temp\\opencode"
+    }
+  },
+  "prompt_sha256": "5f0cc09b27241ae7b3a0f4c5acc86d7036f00a29cf8a8f0395395722c0b51494",
+  "model_invocations": 1,
+  "status": "READONLY_FORK_DIAGNOSTIC_PASS",
+  "canonical_write": false,
+  "production": false,
+  "args": [
+    "run",
+    "--session",
+    "ses_efb009437ffe2NlXhwPwaJEJdR",
+    "--fork",
+    "--model",
+    "opencode/muse-spark-1.3-contributor-free#xhigh",
+    "--format",
+    "json",
+    "--title",
+    "VNEXT5.2 readonly route classification fork",
+    "Ignore the earlier one-line echo task. Perform this new bounded diagnostic classification. Do not use tools or read/write files, browse, run commands, modify settings, or resume construction. Return exactly one JSON object with these keys: A, B, C, all_three_cases_are_muse, mission_complete. Case A: exported actual model fledge-alpha-free; CLI exit 1; structured type=error, error.type=provider.quota, error.status=429. Case B: exported actual model muse-spark-1.3-contributor-free; outcome=succeeded; CLI exit 0; no error events; exact response received; cost=0. Case C: hypothetical exit 0, succeeded, no error events, ordinary response says \"fact F429, line 429\". Choose A/B/C from TRUE_PROVIDER_429, SUCCESS_NO_PROVIDER_429, BODY_TEXT_NOT_PROVIDER_429. Set all_three_cases_are_muse=false and mission_complete=false when warranted. Do not claim TTQS or live installation acceptance."
+  ],
+  "pid": 26672,
+  "exit_code": 0,
+  "closed_at": "2026-10-04T03:42:04.144Z",
+  "errors": [],
+  "tool_event_count": 0,
+  "classification": {
+    "A": "TRUE_PROVIDER_429",
+    "B": "SUCCESS_NO_PROVIDER_429",
+    "C": "BODY_TEXT_NOT_PROVIDER_429",
+    "all_three_cases_are_muse": false,
+    "mission_complete": false
+  },
+  "actual_session": {
+    "id": "ses_efafef6abffeHHvd7qTqMmoY43",
+    "model": {
+      "id": "muse-spark-1.3-contributor-free",
+      "providerID": "opencode",
+      "variant": "xhigh"
+    },
+    "outcome": "succeeded",
+    "cost": 0,
+    "tokens": {
+      "input": 493,
+      "output": 69,
+      "reasoning": 555,
+      "cache": {
+        "read": 6385,
+        "write": 0
+      }
+    },
+    "fork": {
+      "sessionID": "ses_efb009437ffe2NlXhwPwaJEJdR",
+      "boundary": {
+        "type": "through",
+        "messageID": "msg_104ff7ce6001ejf2XkAoUAcL0a"
+      }
+    }
+  },
+  "server_after": {
+    "version": "2.0.22",
+    "pid": 12936,
+    "urls": [
+      "http://127.0.0.1:49374"
+    ],
+    "paths": {
+      "tmp": "C:\\Users\\x\\AppData\\Local\\Temp\\opencode"
+    }
+  },
+  "active_after": {
+    "data": {}
+  },
+  "initial_verdict": "NOT_PASS_READBACK_REQUIRED",
+  "readback_correction": "Native v2.0.22 fork lineage is info.fork.sessionID, not parentID. Reclassified existing exact export; zero model resubmissions.",
+  "reclassified_at": "2026-10-04T03:43:39.3800238Z"
+}

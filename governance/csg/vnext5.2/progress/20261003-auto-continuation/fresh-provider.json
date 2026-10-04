@@ -1,17 +1,143 @@
 {
-  "schema": "vnext5.2.shared-context-readback.v1",
-  "observed_at": "2026-10-04T00:17:33.366Z",
-  "shared_head": "fa1d9c00a8bd0586683e840e367b2c67f6016291",
-  "directory_head": "38f4fc7cb2841e2318a97ff7a53e41b2ec07aef1",
-  "human_requested_spec": "VNEXT5.2",
-  "architecture_revision": "V52-INTEGRATED-20261003-R1",
-  "projects": [
-    {
+  "schema": "vnext5.2.resume-fresh-authority.v1",
+  "observed_at": "2026-10-04T04:27:49.906Z",
+  "provider_refs": {
+    "refs/heads/codex/vnext5.2-construction-latest": "61cf3800980779d412aa2919f0993cdaa3ce0df4",
+    "refs/heads/governance/project-directory": "38f4fc7cb2841e2318a97ff7a53e41b2ec07aef1",
+    "refs/heads/v45/factory-control": "d39486601d851e31256852a24e9c1393b9046fe5",
+    "refs/pull/385/head": "e1c99a7cf3201ac5c1eddad71f3d6ea1ea7a955e",
+    "refs/pull/386/head": "c2bfa038121782a3ae903591981a0b05f52a7b38"
+  },
+  "directory": {
+    "revision": "38f4fc7cb2841e2318a97ff7a53e41b2ec07aef1",
+    "path": "directory/projects/CHATGPT_GLOBAL_SKILL_GOVERNANCE.json",
+    "raw_sha256": "sha256:191535151abfa78decf9392b2381ed5296281a14e4e943f78d77e356c4c372d8",
+    "data": {
+      "schema_version": "csg.project.v2",
       "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
-      "status": "READBACK_OK",
-      "control_head": "d39486601d851e31256852a24e9c1393b9046fe5",
-      "checkpoint": 200,
-      "canonical_control_spec": "VNEXT5.1-R2",
+      "canonical_name": "全自動軟體工廠",
+      "aliases": [
+        {
+          "display_name": "全自動軟體工廠",
+          "normalized_name": "全自動軟體工廠"
+        },
+        {
+          "display_name": "治理控制",
+          "normalized_name": "治理控制"
+        },
+        {
+          "display_name": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+          "normalized_name": "chatgpt_global_skill_governance"
+        }
+      ],
+      "normalization_version": "PYTHON_UNICODE_NFKC_CASEFOLD_COLLAPSE_WS_V1",
+      "binding_id": "CSG-GOVERNANCE-BINDING-V2",
+      "registration_state": "BOUND",
+      "directory_revision": 5,
+      "binding_generation": 2,
+      "control_locator": {
+        "provider": "github",
+        "repository_id": 1352411536,
+        "ref": "refs/heads/v45/factory-control",
+        "current_path": "governance/csg/current.json"
+      },
+      "runtime_type": "GITHUB_ACTIONS_BOUNDED",
+      "bootstrap_anchor": {
+        "kind": "EXTERNAL_IMMUTABLE",
+        "provider": "GitHub",
+        "repository_id_or_resource_id": "1352411536",
+        "revision": "2c578eae3c4f95301a906870b92ca62973ab3007",
+        "path": "governance/csg/checkpoints/000010.json",
+        "digest": "sha256:6dc54025826237415efeb3ebdb57a688211176c65fb960b53d9ffd6099203b95"
+      },
+      "authorization_ref": {
+        "kind": "EXTERNAL_IMMUTABLE",
+        "provider": "GitHub",
+        "repository_id_or_resource_id": "1352411536",
+        "revision": "2c578eae3c4f95301a906870b92ca62973ab3007",
+        "path": "governance/csg/migration/csg-09b-human-authorization-v1.json",
+        "digest": "sha256:4eedc729b833df5714751d1334a48629aae5812eecff1d0df570c52d427428d3"
+      },
+      "data_classification": "PUBLIC",
+      "previous_binding_ref": null,
+      "created_at": "2026-09-16T15:35:30Z",
+      "updated_at": "2026-09-16T15:35:30Z",
+      "active_run_ref": {
+        "schema_version": "csg.active-run-ref.v1",
+        "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+        "binding_id": "CSG-GOVERNANCE-BINDING-V2",
+        "binding_generation": 2,
+        "directory_revision": 5,
+        "resolution": "CURRENT_CANONICAL_CONTROL_POINTER_V1",
+        "control_locator": {
+          "provider": "github",
+          "repository_id": 1352411536,
+          "ref": "refs/heads/v45/factory-control",
+          "current_path": "governance/csg/current.json"
+        }
+      }
+    }
+  },
+  "pointer": {
+    "revision": "d39486601d851e31256852a24e9c1393b9046fe5",
+    "path": "governance/csg/current.json",
+    "raw_sha256": "sha256:78fa753287d00f8490ecb7b782fa12ad986841df2f980788dac0e62ce2b58c31",
+    "data": {
+      "schema_version": "csg.pointer.v1",
+      "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+      "binding_id": "CSG-GOVERNANCE-BINDING-V2",
+      "binding_generation": 2,
+      "checkpoint_seq": 200,
+      "checkpoint_path": "governance/csg/checkpoints/000200.json",
+      "checkpoint_digest": "sha256:2cd708bb96179b7ef416ab5a7616f7dff50030567f56d7506a7182f6ceda600d",
+      "previous_control_oid": {
+        "algorithm": "sha1",
+        "hex": "5731acc8b29dad713d99098c0540a1382c9e86d1"
+      },
+      "transition_id": "V51-R2-GOAL-LIFECYCLE-REBASE-200",
+      "reader_compatibility": {
+        "min_schema": "csg.checkpoint.v1",
+        "max_schema": "csg.checkpoint.v1"
+      }
+    }
+  },
+  "checkpoint": {
+    "revision": "d39486601d851e31256852a24e9c1393b9046fe5",
+    "path": "governance/csg/checkpoints/000200.json",
+    "raw_sha256": "sha256:ca46f6433044ad97cec6aad917d80df03344103d23017b794062b5a47c1907b8",
+    "data": {
+      "schema_version": "csg.checkpoint.v1",
+      "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+      "checkpoint_seq": 200,
+      "transition_id": "V51-R2-GOAL-LIFECYCLE-REBASE-200",
+      "previous_checkpoint_ref": {
+        "kind": "EXTERNAL_IMMUTABLE",
+        "provider": "GitHub",
+        "repository_id_or_resource_id": "1352411536",
+        "revision": "5731acc8b29dad713d99098c0540a1382c9e86d1",
+        "path": "governance/csg/checkpoints/000199.json",
+        "digest": "sha256:6194c90782bb72b8ff268de5cddae6b66e05376a3ffbf5f2afaf638d94a2732e"
+      },
+      "migration_anchor": null,
+      "event": {
+        "type": "MISSION_REBASE",
+        "reason_code": "V51_R2_GOAL_LIFECYCLE_CONTINUATION_HOTFIX",
+        "subject_id": "V51_R2_GOAL_LIFECYCLE_CONTINUATION_HOTFIX"
+      },
+      "mission_anchor": {
+        "ref": "github://1352411536/governance/csg/v51/missions/20260930T104733+0800.json@dc3b419d8abf696b04b5bfdbdab7b3c8b70526cb",
+        "revision": "20260930T104733+0800",
+        "declared_hash": "sha256:f235c085f10e54705f7817f0ce6dee1e5b29ef1279306e4b2c280322bfacab29",
+        "canonicalization_version": "HUMAN_TEXT_V1"
+      },
+      "policy_anchor": {
+        "ref": "github://1352411536/governance/csg/v51/policies/20260930T104733+0800-EP80.json@dc3b419d8abf696b04b5bfdbdab7b3c8b70526cb",
+        "revision": "20260930T104733+0800-EP80",
+        "declared_hash": "sha256:8529b4bccc66147465b066bf97d71ce2c6ae6bea11e146ca215976bf3b839c85",
+        "canonicalization_version": "HUMAN_TEXT_V1"
+      },
+      "controller_contract": "V51-R2-EXECUTION-POLICY-EP80",
+      "verifier_digest": "sha256:5c2b87ae1caed15e491d18b7ebd4368ca1950cac25b1e093ed722d72debc8aee",
       "lifecycle": "ACTIVE",
       "owner": {
         "principal_id": "CODEX_THREAD_01a0ed35-6063-7912-9872-7d4122a3b125",
@@ -19,7 +145,48 @@
         "scope": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION",
         "lease_until": "2026-09-29T18:44:11Z"
       },
-      "stop_requested": false,
+      "run_ref": {
+        "kind": "EXTERNAL_IMMUTABLE",
+        "provider": "GitHub",
+        "repository_id_or_resource_id": "1352411536",
+        "revision": "9a7dc324f680c303a83123eb6a7b2cc7b410fda2",
+        "path": "governance/csg/v51/runs/V51-R2-001/run-r2-02.json",
+        "digest": "sha256:9b49ae229793656985d071a823b4c13e5aff75adb6c067d66ae1a7c655a03250"
+      },
+      "task_id": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION",
+      "attempt_id": "V51-R2-02-ATTEMPT-002",
+      "attempt_epoch": 2,
+      "atomic": {
+        "state": "PREPARED_NOT_DISPATCHED",
+        "unit_id": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION",
+        "goal": "Reconcile expired prior ownership and the current expired R2-02 owner generation 5 without UI-only liveness inference; retain STALE_EXECUTION_OWNER_CANDIDATE until exact cross-source observation proves staleness; preserve unknown live-job or effect status; continue nonprivileged source reconciliation without Host dispatch, Host mutation, or effect replay.",
+        "execution_fence": null
+      },
+      "last_accepted": {
+        "unit_id": "V51-R2-01-COLD-START-CANONICAL-CONTINUITY",
+        "result": "PASS_PROVIDER_CONFIRMED",
+        "provider_ref": "refs/heads/v45/factory-control",
+        "provider_commit": "fcdcf8771ce6eaa887bd761a5e9bc42e4a99c596",
+        "readback_path": "governance/csg/v51/readbacks/R2-01-POST-CP197-ATTEMPT-003-SAME-SOURCE-READBACK-20260930.json",
+        "readback_blob_oid": "1ed26dde690e0e222b9c0571d6643fb31de23f12"
+      },
+      "remote_wip": null,
+      "active_job_refs": [],
+      "unresolved_effect_refs": [],
+      "blockers": [
+        "R2_02_AUTHORIZED_LIVE_EXECUTOR_OBSERVATION_REQUIRED_BEFORE_STALE_OWNER_CONFIRMATION_OR_HOST_DISPATCH",
+        "R2_02_GEN5_EXACT_LIVENESS_PROOF_INSUFFICIENT",
+        "R2_02_HYPERV_HOSTGUARD_LOCAL_OS_PRIVILEGE_REQUIRED"
+      ],
+      "last_verified_gate": {
+        "gate_id": "V51-R2-02-SOURCE-CORRECTION-EXACT-HEAD",
+        "verdict": "PASS_EXACT_HEAD_AND_SAME_SOURCE_READBACK",
+        "provider_ref": "refs/heads/v45/factory-control",
+        "provider_commit": "021b360ed43f1adc5163d55433fbed2a08d14edb",
+        "readback_path": "governance/csg/v51/readbacks/R2-02-SOURCE-CORRECTION-QUALIFICATION-READBACK-20260930.json",
+        "readback_blob_oid": "6361d1700bb800ff71c2e6efd855eb8029f7938a",
+        "directory_commit": "38f4fc7cb2841e2318a97ff7a53e41b2ec07aef1"
+      },
       "next_legal_transition": {
         "action": "CONTINUE_R2_02_NONPRIVILEGED_SOURCE_RECONCILIATION_WHILE_LIVE_OBSERVATION_LANE_IS_PARKED",
         "unit_id": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION",
@@ -47,374 +214,809 @@
           "MARK_R2_07_OR_R2_09_PASS_WITHOUT_PROVIDER_EVIDENCE"
         ]
       },
-      "unresolved_effect_refs": [],
-      "mission_revision": "20260930T104733+0800",
-      "policy_revision": "20260930T104733+0800-EP80",
-      "run_identity": {
-        "run_id": "V51-R2-001",
-        "attempt_id": "V51-R2-02-ATTEMPT-002"
-      },
-      "authority": "EXISTING_CANONICAL_READ_ONLY",
-      "digest_profile": "CANONICAL_JSON_WITHOUT_PAYLOAD_DIGEST"
-    },
-    {
-      "project_id": "HANYAO_ADS_LINE_PROD",
-      "status": "READBACK_OK",
-      "control_head": "46f59cdcd918a08fb4a42040b8d4724c15c812e4",
-      "checkpoint": 2,
-      "canonical_control_spec": null,
-      "lifecycle": "ACTIVE",
-      "owner": null,
       "stop_requested": false,
-      "next_legal_transition": {
-        "action": "WAIT_FOR_NEXT_REAL_ADS_ATTRIBUTED_LINE_CONTACT_THEN_DATE_SCOPED_READBACK",
-        "unit_id": "HG10-NATURAL-E2E-MONITORING",
-        "requires": [
-          "REAL_ADS_ATTRIBUTED_LINE_CONTACT",
-          "FRESH_D1_READ_ONLY_READBACK",
-          "FRESH_GOOGLE_ADS_DATE_READBACK"
-        ],
-        "forbidden": [
-          "BLIND_CONVERSION_REINGEST",
-          "D1_MUTATION_FROM_READBACK",
-          "GOOGLE_ADS_GOAL_BID_BUDGET_MUTATION",
-          "RECENT_PROJECT_FALLBACK"
-        ]
-      },
-      "unresolved_effect_refs": [],
-      "mission_revision": "20260919T151100+0800",
-      "policy_revision": "20260919T151100+0800-EP-HG10",
-      "run_identity": {
-        "run_id": "HG10-READBACK-REPAIR-20260919"
-      },
-      "authority": "EXISTING_CANONICAL_READ_ONLY",
-      "digest_profile": "OBSERVED_HANYAO_CP2_EXACT_UTF8_BYTES_NO_TRIMMING"
+      "barrier": "ACTIVE_UNIT",
+      "evidence_refs": [
+        {
+          "kind": "EXTERNAL_IMMUTABLE",
+          "provider": "GitHub",
+          "repository_id_or_resource_id": "1352411536",
+          "revision": "021f1752448ac0d16cb6bdc0d49231976a839cf2",
+          "path": "governance/csg/v51/specs/VNEXT5.1-R2-HUMAN-CURRENT-SPEC-20260929.md",
+          "digest": "sha256:b3b805f4dd5e88a2370c456c7f678c3264ca032090c957d69116512b563b589f"
+        },
+        {
+          "kind": "EXTERNAL_IMMUTABLE",
+          "provider": "GitHub",
+          "repository_id_or_resource_id": "1352411536",
+          "revision": "021f1752448ac0d16cb6bdc0d49231976a839cf2",
+          "path": "governance/csg/v51/missions/20260930T000622+0800.json",
+          "digest": "sha256:fce6d01f7aca5378566254f1f4583d855e496e1ab32fad7fa30b3a8443dafc4e"
+        },
+        {
+          "kind": "EXTERNAL_IMMUTABLE",
+          "provider": "GitHub",
+          "repository_id_or_resource_id": "1352411536",
+          "revision": "021f1752448ac0d16cb6bdc0d49231976a839cf2",
+          "path": "governance/csg/v51/policies/20260930T000622+0800-EP78.json",
+          "digest": "sha256:aac58a6a1cab0e879c729a7abe736735e8b239262b86e2476feb4f834b592b70"
+        },
+        {
+          "kind": "EXTERNAL_IMMUTABLE",
+          "provider": "GitHub",
+          "repository_id_or_resource_id": "1352411536",
+          "revision": "021f1752448ac0d16cb6bdc0d49231976a839cf2",
+          "path": "governance/csg/v51/runs/V51-R2-001/contract-r2-01-attempt-003.json",
+          "digest": "sha256:a9d00188ec2493556dcb9e9515d7af009620f54d87e5370cbd6a9974c791f8b2"
+        },
+        {
+          "kind": "EXTERNAL_IMMUTABLE",
+          "provider": "GitHub",
+          "repository_id_or_resource_id": "1352411536",
+          "revision": "021f1752448ac0d16cb6bdc0d49231976a839cf2",
+          "path": "governance/csg/v51/runs/V51-R2-001/run-r2-01.json",
+          "digest": "sha256:b52aa2021dc6f093a61d5d77f13a4cc424c9ffa9393768a372e1ccbb862f970e"
+        },
+        {
+          "kind": "EXTERNAL_IMMUTABLE",
+          "provider": "GitHub",
+          "repository_id_or_resource_id": "1352411536",
+          "revision": "021f1752448ac0d16cb6bdc0d49231976a839cf2",
+          "path": "governance/csg/v51/readbacks/R2-01-NATIVE-HOST-OBSERVATION-ATTEMPT-003-20260930.json",
+          "digest": "sha256:4edd0088184528b2ee323ce6e4409affefe2aa2e049b8693021cbe9005035cdb"
+        },
+        {
+          "kind": "EXTERNAL_IMMUTABLE",
+          "provider": "GitHub",
+          "repository_id_or_resource_id": "1352411536",
+          "revision": "021f1752448ac0d16cb6bdc0d49231976a839cf2",
+          "path": "governance/csg/v51/readbacks/R2-01-ATTEMPT-003-OWNER-REENTRY-READBACK-20260930.json",
+          "digest": "sha256:ce29d198855835ed31569acac614b24218d23cb0cdf827a59a48bf13ad0369a3"
+        },
+        {
+          "kind": "EXTERNAL_IMMUTABLE",
+          "provider": "GitHub",
+          "repository_id_or_resource_id": "1352411536",
+          "revision": "021f1752448ac0d16cb6bdc0d49231976a839cf2",
+          "path": "governance/csg/v51/readbacks/R2-01-ATTEMPT-003-POST-STAGE-READBACK-20260930.json",
+          "digest": "sha256:d492987fd2c46b82537cdf9a13d3e3bf7c646b835fc36868a3b0131769fc5758"
+        },
+        {
+          "kind": "EXTERNAL_IMMUTABLE",
+          "provider": "GitHub",
+          "repository_id_or_resource_id": "1352411536",
+          "revision": "021f1752448ac0d16cb6bdc0d49231976a839cf2",
+          "path": "governance/csg/v51/readbacks/R2-01-PRE-CP197-ATTEMPT-003-SAME-SOURCE-READBACK-20260930.json",
+          "digest": "sha256:b62a0c376b592e002d701119a2ab662449517511ba44feed0c468b6a688ca4f8"
+        },
+        {
+          "kind": "EXTERNAL_IMMUTABLE",
+          "provider": "GitHub",
+          "repository_id_or_resource_id": "1352411536",
+          "revision": "021f1752448ac0d16cb6bdc0d49231976a839cf2",
+          "path": "governance/csg/v51/readbacks/R2-CARRY-FORWARD-CAPABILITY-GAPS-20260929.json",
+          "digest": "sha256:02c059430505e6566cde542fcd37c449ae0e0fb9b6de53a983a13115cc6ff8ca"
+        },
+        {
+          "kind": "EXTERNAL_IMMUTABLE",
+          "provider": "GitHub",
+          "repository_id_or_resource_id": "1352411536",
+          "revision": "021f1752448ac0d16cb6bdc0d49231976a839cf2",
+          "path": "governance/csg/v51/readbacks/R2-00-SAME-SOURCE-READBACK-20260929.json",
+          "digest": "sha256:50ab0c82d09c0e3981515c2bad76f6e76fa60c5ff165fc126c3f8cdd98d19a76"
+        },
+        {
+          "kind": "EXTERNAL_IMMUTABLE",
+          "provider": "GitHub",
+          "repository_id_or_resource_id": "1352411536",
+          "revision": "a2eb05b1dec3b6d0829c79cf118b4ec200b70fce",
+          "path": "governance/csg/v51/missions/20260930T004411+0800.json",
+          "digest": "sha256:3289621043ac0446df121bcfe19bed27eb0dc563c791a52d07904e991a606ff0"
+        },
+        {
+          "kind": "EXTERNAL_IMMUTABLE",
+          "provider": "GitHub",
+          "repository_id_or_resource_id": "1352411536",
+          "revision": "a2eb05b1dec3b6d0829c79cf118b4ec200b70fce",
+          "path": "governance/csg/v51/policies/20260930T004411+0800-EP79.json",
+          "digest": "sha256:3617a1d9a85802b544cc26247e5b8b1311efc0ce132e067387ea539780200a93"
+        },
+        {
+          "kind": "EXTERNAL_IMMUTABLE",
+          "provider": "GitHub",
+          "repository_id_or_resource_id": "1352411536",
+          "revision": "a2eb05b1dec3b6d0829c79cf118b4ec200b70fce",
+          "path": "governance/csg/v51/runs/V51-R2-001/contract-r2-02-attempt-002.json",
+          "digest": "sha256:cfa2e2d9ae2782a33a611a2ef54429bfe7839a1eb19d1cabdedcc241fb6ed9f6"
+        },
+        {
+          "kind": "EXTERNAL_IMMUTABLE",
+          "provider": "GitHub",
+          "repository_id_or_resource_id": "1352411536",
+          "revision": "a2eb05b1dec3b6d0829c79cf118b4ec200b70fce",
+          "path": "governance/csg/v51/runs/V51-R2-001/run-r2-02.json",
+          "digest": "sha256:8d4bdf7aae9c5e462026a3a3d80e5ff515d5a41222d7c08d823ebd1414624ce7"
+        },
+        {
+          "kind": "EXTERNAL_IMMUTABLE",
+          "provider": "GitHub",
+          "repository_id_or_resource_id": "1352411536",
+          "revision": "fcdcf8771ce6eaa887bd761a5e9bc42e4a99c596",
+          "path": "governance/csg/v51/readbacks/R2-01-POST-CP197-ATTEMPT-003-SAME-SOURCE-READBACK-20260930.json",
+          "digest": "sha256:579d20b772717ecab055a4f2b40b6200fe2e23e648a90a54c7e1a293e06d1e30"
+        },
+        {
+          "kind": "EXTERNAL_IMMUTABLE",
+          "provider": "GitHub",
+          "repository_id_or_resource_id": "1352411536",
+          "revision": "86e7e7310deed9dd54c0d75c897f8af8716bd4f8",
+          "path": "governance/csg/v51/readbacks/R2-02-ATTEMPT-002-PRE-CP198-STAGE-READBACK-20260930.json",
+          "digest": "sha256:087a1f216b9a97a3e7827a8ec17ff1b48d496b3840cb0d9ff139d9ebdf1d234a"
+        },
+        {
+          "kind": "EXTERNAL_IMMUTABLE",
+          "provider": "GitHub",
+          "repository_id_or_resource_id": "1352411536",
+          "revision": "cf497a67774be1985b846e6eb7607fe406a3ec8f",
+          "path": "governance/csg/v51/readbacks/R2-02-ATTEMPT-002-POST-CP198-SAME-SOURCE-READBACK-20260930.json",
+          "digest": "sha256:49684a6727bc6f25b9f25b6ea9fd684ad6d6378f607c9a66a96fc24cc778763c"
+        },
+        {
+          "kind": "EXTERNAL_IMMUTABLE",
+          "provider": "GitHub",
+          "repository_id_or_resource_id": "1352411536",
+          "revision": "cf497a67774be1985b846e6eb7607fe406a3ec8f",
+          "path": "governance/csg/v51/readbacks/R2-02-SOURCE-CORRECTION-QUALIFICATION-READBACK-20260930.json",
+          "digest": "sha256:a9e16c64306904f6a4b6e3ffcdced1c44812379b8c90863bf708e3375b1af2d8"
+        },
+        {
+          "kind": "EXTERNAL_IMMUTABLE",
+          "provider": "GitHub",
+          "repository_id_or_resource_id": "1352411536",
+          "revision": "dc3b419d8abf696b04b5bfdbdab7b3c8b70526cb",
+          "path": "governance/csg/v51/missions/20260930T104733+0800.json",
+          "digest": "sha256:299be4909cc9354d60e97dbddcc093e8b8ade199ede139da77175412bd7aeab7"
+        },
+        {
+          "kind": "EXTERNAL_IMMUTABLE",
+          "provider": "GitHub",
+          "repository_id_or_resource_id": "1352411536",
+          "revision": "dc3b419d8abf696b04b5bfdbdab7b3c8b70526cb",
+          "path": "governance/csg/v51/policies/20260930T104733+0800-EP80.json",
+          "digest": "sha256:89e7f085d055fde542ed65b54d17822b8acd9715274621c960a92f2ae196ab30"
+        },
+        {
+          "kind": "EXTERNAL_IMMUTABLE",
+          "provider": "GitHub",
+          "repository_id_or_resource_id": "1352411536",
+          "revision": "dc3b419d8abf696b04b5bfdbdab7b3c8b70526cb",
+          "path": "governance/csg/v51/runs/V51-R2-001/contract-r2-02-attempt-002-goal-lifecycle.json",
+          "digest": "sha256:d9115e6b52b638e515d7b79c0e18be947f155b8bcc72e9d46edbdd457d1da35d"
+        },
+        {
+          "kind": "EXTERNAL_IMMUTABLE",
+          "provider": "GitHub",
+          "repository_id_or_resource_id": "1352411536",
+          "revision": "4de9b8ba3cdee2b9e211b82bfdac92cd061f2ace",
+          "path": "governance/csg/v51/readbacks/R2-02-GOAL-LIFECYCLE-NATIVE-RECONCILIATION-20260930.json",
+          "digest": "sha256:cdf4d7e0453504e41d91446e5aa901cc36e1dd8e620ffbc9e90060100fd678ba"
+        }
+      ],
+      "recorded_at": "2026-09-30T02:52:35Z",
+      "payload_digest": "sha256:2cd708bb96179b7ef416ab5a7616f7dff50030567f56d7506a7182f6ceda600d"
     }
-  ],
-  "observations": [
-    {
-      "repo": "PT-Original-Point/ptysd-vnext42-governance-sandbox",
-      "path": "governance/csg/vnext5.2/construction/CURRENT.json",
-      "revision": "fa1d9c00a8bd0586683e840e367b2c67f6016291",
-      "blob_oid": "ed7142ccf5d068c701598cfe38ff874364b4081e"
-    },
-    {
-      "repo": "PT-Original-Point/ptysd-vnext42-governance-sandbox",
-      "path": "governance/csg/vnext5.2/construction/01-integrated-spec.md",
-      "revision": "fa1d9c00a8bd0586683e840e367b2c67f6016291",
-      "blob_oid": "029a608d8d3ce5af9d83decb8dcc2b177bdf2342"
-    },
-    {
-      "repo": "PT-Original-Point/ptysd-vnext42-governance-sandbox",
-      "path": "governance/csg/vnext5.2/construction/evidence/local-work-index.json",
-      "revision": "fa1d9c00a8bd0586683e840e367b2c67f6016291",
-      "blob_oid": "eb2f04937c81f9a59180154c7e8aaa4403465b5a"
-    },
-    {
-      "repo": "PT-Original-Point/ptysd-vnext42-governance-sandbox",
-      "path": "directory/descriptor.json",
-      "revision": "38f4fc7cb2841e2318a97ff7a53e41b2ec07aef1",
-      "blob_oid": "468232e79905774296db9136a592858a06347bbc"
-    },
-    {
-      "repo": "PT-Original-Point/ptysd-vnext42-governance-sandbox",
-      "path": "directory/projects/CHATGPT_GLOBAL_SKILL_GOVERNANCE.json",
-      "revision": "38f4fc7cb2841e2318a97ff7a53e41b2ec07aef1",
-      "blob_oid": "377dcf88279d3ba433d099a7cc9f78af8c86b8ae"
-    },
-    {
-      "repo": "PT-Original-Point/ptysd-vnext42-governance-sandbox",
-      "path": "directory/projects/HANYAO_ADS_LINE_PROD.json",
-      "revision": "38f4fc7cb2841e2318a97ff7a53e41b2ec07aef1",
-      "blob_oid": "c03e514cf178a6883828df4ddfc93c5aaa9d8880"
-    },
-    {
-      "repo": "PT-Original-Point/ptysd-vnext42-governance-sandbox",
-      "path": "governance/csg/current.json",
-      "revision": "d39486601d851e31256852a24e9c1393b9046fe5",
-      "blob_oid": "2481db71189e0f4cef024873b07c3d26e605cc9f"
-    },
-    {
-      "repo": "t14210184/hanyao",
-      "path": "governance/hanyao/current.json",
-      "revision": "46f59cdcd918a08fb4a42040b8d4724c15c812e4",
-      "blob_oid": "88e3344b95b6f8c0638f033763b526fc752c56c8"
-    },
-    {
-      "repo": "PT-Original-Point/ptysd-vnext42-governance-sandbox",
-      "path": "governance/csg/checkpoints/000200.json",
-      "revision": "d39486601d851e31256852a24e9c1393b9046fe5",
-      "blob_oid": "88524eee6c06f1fcf4b07053d5baca3324b06299"
-    },
-    {
-      "repo": "t14210184/hanyao",
-      "path": "governance/hanyao/checkpoints/000002.json",
-      "revision": "46f59cdcd918a08fb4a42040b8d4724c15c812e4",
-      "blob_oid": "7978d1756e79616f1c21694503dde22f2a338a0e"
-    },
-    {
-      "repo": "PT-Original-Point/ptysd-vnext42-governance-sandbox",
-      "path": "governance/csg/v51/missions/20260930T104733+0800.json",
-      "revision": "dc3b419d8abf696b04b5bfdbdab7b3c8b70526cb",
-      "blob_oid": "2a913c7c5585bedda72d54df626cd38ae52bdade"
-    },
-    {
-      "repo": "t14210184/hanyao",
-      "path": "governance/hanyao/mission/20260919T151100+0800.json",
-      "revision": "4c8f7fca94d0de9f7b2077b9488f17c282607d72",
-      "blob_oid": "af3de5e5f9c7c2cb636c59f443170ba093cab3e3"
-    },
-    {
-      "repo": "PT-Original-Point/ptysd-vnext42-governance-sandbox",
-      "path": "governance/csg/v51/policies/20260930T104733+0800-EP80.json",
-      "revision": "dc3b419d8abf696b04b5bfdbdab7b3c8b70526cb",
-      "blob_oid": "a31f86215c8d0fcc2cee0183f75d18158bb3d9fb"
-    },
-    {
-      "repo": "t14210184/hanyao",
-      "path": "governance/hanyao/policy/20260919T151100+0800-EP-HG10.json",
-      "revision": "fac58786d5a78973518aa214feb79ce0fd570d78",
-      "blob_oid": "1b2e29449abf50f3aed7f0afc17ce4ac2a94c3ab"
-    },
-    {
-      "repo": "PT-Original-Point/ptysd-vnext42-governance-sandbox",
-      "path": "governance/csg/v51/runs/V51-R2-001/run-r2-02.json",
-      "revision": "9a7dc324f680c303a83123eb6a7b2cc7b410fda2",
-      "blob_oid": "09245a8ec5c320bafa287b6bafc9475b52d21d75"
-    },
-    {
-      "repo": "t14210184/hanyao",
-      "path": "runs/HG10-READBACK-REPAIR-20260919/run.json",
-      "revision": "f69468817c666c1f1ff5ebbf6d818657038d8dbc",
-      "blob_oid": "993070b4ef1c0246c87bb5bfb17854798c6e33f5"
-    }
-  ],
-  "construction_work": {
-    "status": "READBACK_OK",
-    "snapshot_observed_at": "2026-10-03T07:39:52.415Z",
-    "entries": [
-      {
-        "slice_id": "S-MCP",
-        "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
-        "source_head": "257318f78271b4a737785d756732915e5a835fe4",
-        "staged_tree": "a55bd093db10fbfa697a78d3d400e702cf4b9474",
-        "state": "SOURCE_PROVIDER_CANDIDATE",
-        "live": "NOT_ACCEPTED_BY_THIS_CAPTURE",
-        "inputs": []
-      },
-      {
-        "slice_id": "S-RECOVERY",
-        "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
-        "source_head": "6f73909c268ca26502848a2304b4ad6228d2fb22",
-        "staged_tree": "2a6531a908f6e366fa10c9e4d0d311c3f429d574",
-        "state": "LOCAL_SOURCE_CANDIDATE_NOT_INSTALLED",
-        "live": "NOT_ACCEPTED_BY_THIS_CAPTURE",
-        "inputs": [
-          {
-            "source_path": "tools/csg/v51-supervisor/README.md",
-            "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/README.md",
-            "sha256": "6bf3ff9eea8fd367652d3d892d7ceb51b9aa818b95d135085d164d3ebb697f02"
-          },
-          {
-            "source_path": "tools/csg/v51-supervisor/bin/host-supervisor.mjs",
-            "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/bin/host-supervisor.mjs",
-            "sha256": "50df8b24908e3ae916e08494e5c78b38fe047f3af92119e54daf8c2bf045c9eb"
-          },
-          {
-            "source_path": "tools/csg/v51-supervisor/lib/evidence-contract.mjs",
-            "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/lib/evidence-contract.mjs",
-            "sha256": "8b2244f2e2dde071ba448599ec8917dc30ecd53c02492944a6b8254f8ff6bd82"
-          },
-          {
-            "source_path": "tools/csg/v51-supervisor/lib/evidence-ledger.mjs",
-            "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/lib/evidence-ledger.mjs",
-            "sha256": "f96ec3200f6ad9cc318f807b4659577f02ee8349a2013895978e4954020722bf"
-          },
-          {
-            "source_path": "tools/csg/v51-supervisor/lib/f01-executor-adapter.mjs",
-            "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/lib/f01-executor-adapter.mjs",
-            "sha256": "2b7b573884d10c033613916d0a154e81eebf047215451f30390ed7f00b74298b"
-          },
-          {
-            "source_path": "tools/csg/v51-supervisor/lib/fingerprint.mjs",
-            "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/lib/fingerprint.mjs",
-            "sha256": "a095eaa6dc0a019aad8d005226b554ed8c85ac968ae66f9d6ddaee7155ae74aa"
-          },
-          {
-            "source_path": "tools/csg/v51-supervisor/lib/fleet.mjs",
-            "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/lib/fleet.mjs",
-            "sha256": "4b37c7bbbc4d0eb1da3d917b62bfabcbfbc032c033e627a818ed5a71ed7aec75"
-          },
-          {
-            "source_path": "tools/csg/v51-supervisor/lib/github-readonly.mjs",
-            "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/lib/github-readonly.mjs",
-            "sha256": "4389473cfbd3dbfa5373eb6229df251aad0324c43bb8db384b4abc3b15709ec7"
-          },
-          {
-            "source_path": "tools/csg/v51-supervisor/lib/operation-planner.mjs",
-            "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/lib/operation-planner.mjs",
-            "sha256": "4c715f3047bc8ee9087bacf675d94748f492b90d9bc40cd3b3862dd4b94db775"
-          },
-          {
-            "source_path": "tools/csg/v51-supervisor/lib/reconcile.mjs",
-            "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/lib/reconcile.mjs",
-            "sha256": "327c19460199a0abc5b7d4a3ed2918c058e1f93bec5521e821f3410f1fef8485"
-          },
-          {
-            "source_path": "tools/csg/v51-supervisor/lib/scheduler.mjs",
-            "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/lib/scheduler.mjs",
-            "sha256": "a869c8531369d2e9a2e268b82326a8d0890ee84f0efbdfbd384963f604ce5375"
-          },
-          {
-            "source_path": "tools/csg/v51-supervisor/lib/shadow-journal.mjs",
-            "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/lib/shadow-journal.mjs",
-            "sha256": "adea8275bf0e694504b83769fbdabfb0a9684b272ffa96ef5e4cc0f12f222590"
-          },
-          {
-            "source_path": "tools/csg/v51-supervisor/lib/shadow-runtime.mjs",
-            "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/lib/shadow-runtime.mjs",
-            "sha256": "d09eed6ceaf80586d39e81c7b615b039f9b8be675af80d26e0361563d81b6a50"
-          },
-          {
-            "source_path": "tools/csg/v51-supervisor/lib/supervisor.mjs",
-            "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/lib/supervisor.mjs",
-            "sha256": "97acc156d277f117c6cd7a784136793196bf5f6ceae1b922dbc473837aa74ff9"
-          },
-          {
-            "source_path": "tools/csg/v51-supervisor/lib/windows-task-profile.mjs",
-            "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/lib/windows-task-profile.mjs",
-            "sha256": "58f06574f7742bee81f570dccf3899a25b13d4340e943ebf70a2b7359b5c0558"
-          },
-          {
-            "source_path": "tools/csg/v51-supervisor/operation-plan.vnext5.2.json",
-            "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/operation-plan.vnext5.2.json",
-            "sha256": "d0f82978679ba8abb720499eeec65ef981f94619b7849e26c7a1c8ac0cab33b5"
-          },
-          {
-            "source_path": "tools/csg/v51-supervisor/package.json",
-            "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/package.json",
-            "sha256": "3ce390cf76667745a6971cbf99a7ba8a83983776a540d10d7a980a01b7f24586"
-          },
-          {
-            "source_path": "tools/csg/v51-supervisor/tests/any-state-regression.test.mjs",
-            "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/tests/any-state-regression.test.mjs",
-            "sha256": "b36dab324b339093f083f77a097ced099681078ef3e67a2ab5dd27bb711a3956"
-          },
-          {
-            "source_path": "tools/csg/v51-supervisor/tests/evidence-contract.test.mjs",
-            "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/tests/evidence-contract.test.mjs",
-            "sha256": "a380dd1ae2120292c94f4e5065e568bbe8deb72572773f00f759063af2667f32"
-          },
-          {
-            "source_path": "tools/csg/v51-supervisor/tests/evidence-ledger.test.mjs",
-            "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/tests/evidence-ledger.test.mjs",
-            "sha256": "e3eb867ed99a285eaff54f900e8a57254c0ac74504f5b54af307d61fee546441"
-          },
-          {
-            "source_path": "tools/csg/v51-supervisor/tests/f01-executor-adapter.test.mjs",
-            "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/tests/f01-executor-adapter.test.mjs",
-            "sha256": "43b5483ae608d48e2cf767f0c683bf1c99f1418e60ba68a8cdb0aeb9af58d114"
-          },
-          {
-            "source_path": "tools/csg/v51-supervisor/tests/fleet.test.mjs",
-            "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/tests/fleet.test.mjs",
-            "sha256": "63ec38ac17d7dd85171467e0ad9d7436af8e07b0a9a45dd85b92fe81950ce64e"
-          },
-          {
-            "source_path": "tools/csg/v51-supervisor/tests/github-readonly.test.mjs",
-            "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/tests/github-readonly.test.mjs",
-            "sha256": "fd3780a04518f36bb9a04a3c0d2e86198f1dffb86a203a83ede3ed8a00695aad"
-          },
-          {
-            "source_path": "tools/csg/v51-supervisor/tests/operation-planner.test.mjs",
-            "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/tests/operation-planner.test.mjs",
-            "sha256": "03ab66fe45c4ffffaaf02b1185768b2a2157bfa35756a7ee3cbdf9e4ba95f63a"
-          },
-          {
-            "source_path": "tools/csg/v51-supervisor/tests/reconcile-scheduler.test.mjs",
-            "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/tests/reconcile-scheduler.test.mjs",
-            "sha256": "430314d1a3bfcb6ba1ef70cc56b0c9807302298c2dd5745f9486457b228de8d2"
-          },
-          {
-            "source_path": "tools/csg/v51-supervisor/tests/runtime-shadow.test.mjs",
-            "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/tests/runtime-shadow.test.mjs",
-            "sha256": "dab92aa4fe0c126731fd0c0830d56f114ecc8c23b31a44c6630d599fc03ca42a"
-          },
-          {
-            "source_path": "tools/csg/v51-supervisor/tests/supervisor.test.mjs",
-            "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/tests/supervisor.test.mjs",
-            "sha256": "c4f6d48aee24a59014fc6ce000436fe25f1edc9ef3f751af21b396594e0a10cb"
-          },
-          {
-            "source_path": "tools/csg/v51-supervisor/tests/windows-task-profile.test.mjs",
-            "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/tests/windows-task-profile.test.mjs",
-            "sha256": "d025a88b13467fbc33def67af12e69bd84d466d9281ac3188d8fdd022cc5fafc"
-          },
-          {
-            "source_path": "tools/csg/v51-supervisor/windows/register-supervisor-task.ps1",
-            "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/windows/register-supervisor-task.ps1",
-            "sha256": "96087c60ff55fa66a7e36b0be1c4751603feb8376ad05b1da1dedccadd2697fb"
-          },
-          {
-            "source_path": "tools/csg/v51-supervisor/windows/remove-supervisor-task.ps1",
-            "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/windows/remove-supervisor-task.ps1",
-            "sha256": "4bc1cabe5c4d5c4f8d91783ee270e52d8ace86848d55e47201879376480f2974"
-          },
-          {
-            "source_path": "tools/csg/v51-supervisor/windows/supervisor-task-profile.json",
-            "artifact_path": "inputs/S-RECOVERY/tools/csg/v51-supervisor/windows/supervisor-task-profile.json",
-            "sha256": "cbbbe10e4cdf76c66b41c0b36f9139222de317604969834f68af46eefe0ce02c"
-          }
-        ]
-      },
-      {
-        "slice_id": "S-ADS",
-        "project_id": "HANYAO_ADS_LINE_PROD",
-        "source_head": "3890e1d317c796f48e03af97051f02d3ef241d33",
-        "staged_tree": "b8f430f0adeef495c7d1c3fb18cef2051ac138e6",
-        "state": "LOCAL_SOURCE_CANDIDATE_NOT_INSTALLED",
-        "live": "NOT_ACCEPTED_BY_THIS_CAPTURE",
-        "inputs": [
-          {
-            "source_path": "scripts/ads-line-production-reconciliation.mjs",
-            "artifact_path": "inputs/S-ADS/scripts/ads-line-production-reconciliation.mjs",
-            "sha256": "8e6104391f90cda5c1dcb9c27ba61549a3807a357165cc1edc9f0b2f51553bb4"
-          },
-          {
-            "source_path": "scripts/ads-line-production-reconciliation.test.mjs",
-            "artifact_path": "inputs/S-ADS/scripts/ads-line-production-reconciliation.test.mjs",
-            "sha256": "b4251d2ddecb936dcd6fe3e87cf36818435dd93267a9a28e508aaf7977064ec0"
-          },
-          {
-            "source_path": "scripts/google-ads-provider-auth.ts",
-            "artifact_path": "inputs/S-ADS/scripts/google-ads-provider-auth.ts",
-            "sha256": "c46c407b00c992392a8585d27ecc7884e506fba1886be7fd148528516fb41a8c"
-          },
-          {
-            "source_path": "scripts/google-ads-provider-auth.test.ts",
-            "artifact_path": "inputs/S-ADS/scripts/google-ads-provider-auth.test.ts",
-            "sha256": "0a3571a2cbb006fc0a573660d3d426bf497abdbed04d851ba123504c3548d383"
-          },
-          {
-            "source_path": "scripts/google-ads-read-scope.ts",
-            "artifact_path": "inputs/S-ADS/scripts/google-ads-read-scope.ts",
-            "sha256": "18e23076dc91c6057fe2641ee65cae9ce23c0076c64c9aa13cdaddaf639af60d"
-          },
-          {
-            "source_path": "scripts/google-ads-read-scope.test.ts",
-            "artifact_path": "inputs/S-ADS/scripts/google-ads-read-scope.test.ts",
-            "sha256": "3b82d0d2fe6b84349856912fe101fce26c1ecbc4b324a04accec76ee9afa520e"
-          }
-        ]
-      }
-    ],
-    "role": "SOURCE_SNAPSHOT_NOT_EXECUTION_AUTHORITY"
   },
-  "installed_runtime": "NOT_OBSERVED",
-  "live_mcp": "NOT_OBSERVED",
-  "ready_queue": "REQUIRES_CURRENT_COMPLETE_FACTS",
-  "dispatch": false,
-  "host_mutation": false,
+  "mission": {
+    "revision": "dc3b419d8abf696b04b5bfdbdab7b3c8b70526cb",
+    "path": "governance/csg/v51/missions/20260930T104733+0800.json",
+    "raw_sha256": "sha256:299be4909cc9354d60e97dbddcc093e8b8ade199ede139da77175412bd7aeab7",
+    "data": {
+      "record_type": "MISSION_REVISION",
+      "schema": "MISSION_CONTRACT_V2_RECOVERY_PUBLICATION",
+      "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+      "mission_revision_id": "20260930T104733+0800",
+      "effective_at": "2026-09-30T02:47:33Z",
+      "status": "FINALIZED",
+      "authorized_by": "HUMAN",
+      "authorization_gate": "VNEXT5.1-R2 GOAL-LIFECYCLE / CONTINUATION HOTFIX",
+      "supersedes": "20260930T004411+0800",
+      "change_reason": "Human-directed permanent GoalLifecycle and continuation hotfix. The canonical Mission remains ACTIVE until provider-confirmed acceptance or an explicitly authorized terminal condition; bounded batches, PR merges, test/verifier PASS, same-source readback, and checkpoint publication are evidence deltas only. Codex local Goal/session/thread state is not Project authority. After each material delta re-read exact canonical state and fresh provider/local observations, recompute READY lanes, park only unavailable lanes, and continue the highest-priority READY work. Preserve R2-02 generation 5 as STALE_EXECUTION_OWNER_CANDIDATE until exact liveness evidence is sufficient. Add explicit R2-07 and R2-09 continuity acceptance without claiming those units pass.",
+      "canonicalization_version": "HUMAN_TEXT_V1",
+      "payload": {
+        "final_strategic_goal": "Restore the existing V4.2-to-V4.9 multi-agent software factory under a single canonical V5.1-R2 control plane with any-state cross-session recovery, a 24/7 Host-owned Supervisor, and bounded pre-Production execution.",
+        "success_criteria": "R2_00_AUTHORITY_REBASE_AND_SAME_SOURCE_READBACK=PASS; R2_01_ANY_STATE_COLD_START=PASS; R2_02_STALE_OWNER_LIVENESS_RECONCILIATION=PASS; R2_03_FIXED_READONLY_FACTORY_OBSERVATION=PASS; R2_04_UNIQUE_TRUSTED_CALLER=PASS; R2_05_NONCIRCULAR_HOST_REPAIR=PASS; R2_06_LIVE_FACTORY_MCP_ACCEPTANCE=PASS; R2_07_HOST_SUPERVISOR_24X7=PASS; R2_08_ANTI_LOOP_AND_STALE_AUTOMATION=PASS; R2_09_ANY_STATE_CROSS_SESSION_REGRESSION=PASS; R2_10_MULTI_AGENT_FLEET=PASS; R2_11_TASK_GRAPH_AIMD_QUOTA=PASS; R2_12_FRESH_REVIEW_REPAIR=PASS; R2_13_SINGLE_INTEGRATION_PRODUCT_VERIFIER=PASS; R2_14_PROVIDERGUARD_PUBLICATION_NOTIFICATION=PASS; R2_15_HANYAO_READONLY_RECOVERY=PASS; R2_16_REAL_N1=PASS; R2_17_N2=PASS; R2_18_MEASURED_N4_N8=PASS; R2_19_MULTI_PROJECT_SHADOW=PASS; R2_20_DR_UNKNOWN_EFFECT_CAMPAIGN=PASS; R2_21_BOUNDED_RSI=PASS; CURRENT_SPEC=VNEXT5.1-R2; GPT_WEB_NOT_LIVENESS_CRITICAL=PASS; HOST_SUPERVISOR_24X7=PASS; OPENCODE_MUSE_PREFERRED_WHEN_HEALTHY=PASS; ANTIGRAVITY_CODEX_SECONDARY=PASS; HYPERV_NORMAL_CODING_BOUNDARY=PASS; CANONICAL_SINGLE_AUTHORITY=PASS; WORKER_PROVIDER_WRITE_CREDENTIALS=0; PAID_FALLBACK=false; PRODUCTION=false; FACTORY_MCP_PUBLIC_TOOLS=4.",
+        "current_construction_spec": {
+          "id": "VNEXT5.1-R2",
+          "source_class": "EXACT_HUMAN_PROVIDED_CONSTRUCTION_SPEC_ATTACHMENT",
+          "source_commit": null,
+          "source_path": "VNEXT5.1-R2-FULL-CONSTRUCTION-SPEC-20260929.md",
+          "canonical_path": "governance/csg/v51/specs/VNEXT5.1-R2-HUMAN-CURRENT-SPEC-20260929.md",
+          "blob_oid": "1dcd2d46a35bb3a580210ab4f0d29131587cc448",
+          "sha256": "sha256:b3b805f4dd5e88a2370c456c7f678c3264ca032090c957d69116512b563b589f",
+          "byte_length": 25222
+        },
+        "current_phase": "VNEXT5_1_R2_CONTROL_PLANE_RECOVERY",
+        "phase_acceptance": "R2_00_AUTHORITY_REBASE_REQUIRES_SPEC_MISSION_POLICY_RUN_TASK_ATTEMPT_COHERENCE_AND_SAME_SOURCE_READBACK; R2_01_THROUGH_R2_09_PASS_BEFORE_ORDINARY_PRODUCT_WORK; PRODUCTION=false; PAID_FALLBACK=false; WORKER_PROVIDER_WRITE_CREDENTIALS=0.",
+        "active_unit": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION",
+        "active_run_id": "V51-R2-001",
+        "active_task_id": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION",
+        "active_attempt_id": "V51-R2-02-ATTEMPT-002",
+        "next_phase": "VNEXT5_1_R2_P0_AND_MULTI_AGENT_FACTORY_CLOSURE",
+        "next_business_event": "V51-R2-03-FIXED-READONLY-FACTORY-OBSERVATION",
+        "executor_routing": {
+          "factory_execution_model": "MULTI_AGENT_FLEET",
+          "durable_orchestrator": "HOST_OWNED_24X7_SUPERVISOR_RECONCILER",
+          "gpt_web_role": "EPHEMERAL_AUDITOR_CONTROL_HUMAN_INTERFACE",
+          "preferred_builder": "OPENCODE_MUSE_SPARK_1_3",
+          "secondary_qualified_lanes": [
+            "ANTIGRAVITY",
+            "CODEX"
+          ],
+          "normal_product_coding": "HYPERV_UBUNTU_VM_ISOLATED_WORKTREE_OR_CONTAINER",
+          "codex_role": "CONTROL_PLANE_RECOVERY_HOST_MAINTENANCE_AND_QUALIFIED_SECONDARY_AGENT",
+          "one_execution_owner_per_mutable_atomic_scope": true,
+          "one_integration_lane_per_project": true,
+          "codex_mission_sovereignty": false
+        },
+        "authorization": {
+          "reversible_preproduction_persistent": true,
+          "production_allowed": false,
+          "production_final_authorization": "HUMAN_RESERVED",
+          "business_project_auto_admission": false,
+          "paid_fallback_allowed": false,
+          "worker_provider_write_credentials_allowed": false,
+          "new_paid_cost_allowed": false
+        },
+        "human_reserved_gates": [
+          "PRODUCTION_FINAL_AUTHORIZATION",
+          "NEW_PAID_COST_OR_SERVICE",
+          "LEGAL_CONTRACT_SIGNATURE_OR_IDENTITY",
+          "OAUTH_OR_MFA",
+          "MAJOR_IRREVERSIBLE_AUTHORITY_EXPANSION",
+          "UNRECONCILABLE_AMBIGUOUS_EXTERNAL_EFFECT"
+        ],
+        "factory_mcp": {
+          "public_tool_count": 4,
+          "bounded_read_only_diagnostics_required": true,
+          "read_only_diagnostics_require_host_mutation_fence": false,
+          "arbitrary_host_powershell_before_unique_trusted_caller": false,
+          "host_powershell_run_as_required": "NT AUTHORITY\\SYSTEM",
+          "trusted_caller": {
+            "unique_os_enforced_boundary_required": true,
+            "shared_network_service_sid_alone_sufficient": false
+          }
+        },
+        "cross_session_acceptance": [
+          "FRESH_SESSION_LOOKUP_EXACT_PROJECT_DIRECTORY_CONTROL_POINTER_SPEC_MISSION_POLICY_RUN_TASK_ATTEMPT_OWNER_EFFECTS",
+          "FRESH_LOCAL_HOST_OBSERVATION_AND_PROVIDER_READBACK_BEFORE_RECONCILIATION",
+          "NO_MEMORY_RECENT_CHAT_RECENT_HANDOFF_LATEST_LOCAL_FILE_SCHEDULED_WAKE_OLD_GOAL_OR_PRIOR_SUMMARY_AS_CURRENT_AUTHORITY",
+          "CANONICAL_UNREADABLE_RETURNS_CONTROL_STATE_UNAVAILABLE_AND_FAILS_CLOSED_WITHOUT_GUESSING",
+          "RUN_EVIDENCE_REFERENCES_CARRY_FORWARD_CAPABILITY_GAPS_UNTIL_PROVIDER_CONFIRMED_PASS",
+          "STALE_R1_OR_V50_CONTINUATION_CANNOT_RESURRECT",
+          "PRODUCTION_REMAINS_HUMAN_RESERVED",
+          "CODEX_LOCAL_GOAL_SESSION_THREAD_EXISTENCE_OR_DISAPPEARANCE_IS_NOT_PROJECT_AUTHORITY",
+          "BOUNDED_BATCH_PR_MERGE_TEST_VERIFIER_READBACK_OR_CHECKPOINT_DOES_NOT_TERMINATE_MISSION",
+          "AFTER_EACH_MATERIAL_DELTA_FRESH_READ_DIRECTORY_POINTER_SPEC_MISSION_POLICY_CHECKPOINT_RUN_TASK_ATTEMPT_OWNER_EFFECTS_AND_PROVIDER_LOCAL_OBSERVATIONS_THEN_RECOMPUTE_READY",
+          "WAITING_EXTERNAL_ACCESS_DENIED_MISSING_PRIVILEGED_ROUTE_OR_PENDING_REVIEW_PARKS_ONLY_THE_EXACT_LANE_AND_DOES_NOT_STOP_OTHER_READY_WORK",
+          "OWNER_GENERATION_5_LEASE_EXPIRY_OR_WEB_FACTORY_ZERO_AGGREGATE_COUNTS_ALONE_DO_NOT_CONFIRM_STALE_OWNER",
+          "LOCAL_CODEX_GOAL_DISAPPEARS_WHILE_MISSION_ACTIVE_RECOVER_CANONICAL_UNIT_SKIP_COMPLETED_WORK_AND_CONTINUE_WITHOUT_HUMAN_REINJECTION"
+        ],
+        "forbidden_until_r2_complete": [
+          "PRODUCTION",
+          "PAID_FALLBACK",
+          "NEW_PAID_SERVICE",
+          "BUSINESS_PROJECT_AUTO_ADMISSION",
+          "WORKER_PROVIDER_WRITE_CREDENTIALS",
+          "FIFTH_FACTORY_MCP_PUBLIC_TOOL",
+          "ARBITRARY_SYSTEM_POWERSHELL",
+          "BARE_HOST_NORMAL_PRODUCT_CODING",
+          "FORCE_UPDATE_CANONICAL_HISTORY",
+          "BLIND_RETRY_OR_REDISPATCH_UNKNOWN_EFFECT",
+          "STALE_SCHEDULED_CONTINUATION_RESURRECTION",
+          "SECOND_CANONICAL_STORE",
+          "DUPLICATE_CONTROL_PLANE"
+        ],
+        "non_goals": "No Production authorization; no paid fallback or new paid service; no worker provider-write credentials; no business-project auto admission; no fifth public Factory MCP tool; no second canonical store or duplicate control plane; no bare-host normal product coding; no force update; no blind unknown-effect replay. Preserve the Human-reserved gates.",
+        "mission_hash_profile": "RFC8785_CANONICAL_JSON_PAYLOAD_SHA256_V1",
+        "active_attempt_epoch": 2,
+        "supersedes_unselected_stage": {
+          "mission_revision_id": "20260929T223724+0800",
+          "policy_revision_id": "20260929T223724+0800-EP76",
+          "active_unit": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION",
+          "active_attempt_id": "V51-R2-02-ATTEMPT-001",
+          "attempt_epoch": 1,
+          "owner_generation": 3,
+          "disposition": "SUPERSEDED_UNSELECTED_STAGE",
+          "selected_by_checkpoint": false,
+          "superseded_by_attempt_id": "V51-R2-02-ATTEMPT-002"
+        },
+        "goal_lifecycle": {
+          "canonical_mission_status": "ACTIVE",
+          "canonical_project_control_plane_is_authority": true,
+          "local_codex_goal_session_or_thread_is_authority": false,
+          "bounded_batch_completion_terminates_mission": false,
+          "nonterminal_evidence_deltas": [
+            "PR_MERGE",
+            "TEST_PASS",
+            "VERIFIER_PASS",
+            "SAME_SOURCE_READBACK",
+            "CHECKPOINT_PUBLICATION",
+            "SOURCE_CORRECTION_BATCH"
+          ],
+          "after_every_material_evidence_delta": [
+            "FRESH_PROJECT_DIRECTORY",
+            "CURRENT_CONTROL_POINTER",
+            "CURRENT_SPEC",
+            "MISSION",
+            "POLICY",
+            "CHECKPOINT",
+            "RUN_TASK_ATTEMPT_OWNER",
+            "UNRESOLVED_EFFECTS",
+            "FRESH_PROVIDER_AND_LOCAL_LIVE_OBSERVATION",
+            "RECOMPUTE_READY_LANES",
+            "CONTINUE_HIGHEST_PRIORITY_READY_UNIT"
+          ],
+          "lane_parking": [
+            "WAITING_EXTERNAL",
+            "ACCESS_DENIED",
+            "MISSING_PRIVILEGED_ROUTE",
+            "PENDING_REVIEW"
+          ],
+          "lane_parking_scope": "EXACT_LANE_ONLY",
+          "continue_other_ready_lanes": true,
+          "completed_work_repeated": false,
+          "recovery_without_human_reinjection": true,
+          "goal_termination_conditions": [
+            "ALL_MISSION_ACCEPTANCE_CRITERIA_PROVIDER_CONFIRMED_PASS",
+            "HUMAN_EXPLICITLY_CANCELS_OR_SUPERSEDES_MISSION",
+            "GENUINE_TERMINAL_HUMAN_RESERVED_GATE_OR_UNRECOVERABLE_TERMINAL_FAILURE_DURABLY_PERSISTED"
+          ],
+          "ui_or_executor_recovery": "FRESH_CANONICAL_READ_AND_READY_RECOMPUTATION"
+        },
+        "r2_07_acceptance": {
+          "status": "REQUIRED_NOT_YET_ACCEPTED",
+          "acceptance": [
+            "WINDOWS_REBOOT_SUPERVISOR_RESUMES",
+            "SUPERVISOR_CRASH_AUTOMATIC_RESTART",
+            "CODEX_UI_CLOSED_CONSTRUCTION_CONTINUES",
+            "GPT_WEB_GONE_CONSTRUCTION_CONTINUES",
+            "FRESH_CANONICAL_READ_RECOMPUTES_READY",
+            "EVIDENCE_AND_CHECKPOINT_PERSISTENCE_CONTINUES"
+          ]
+        },
+        "r2_09_acceptance": {
+          "status": "REQUIRED_NOT_YET_ACCEPTED",
+          "regression_id": "LOCAL_CODEX_GOAL_DISAPPEARS_WHILE_MISSION_ACTIVE",
+          "expected": [
+            "CANONICAL_MISSION_REMAINS_ACTIVE",
+            "NEW_EXECUTOR_SESSION_RECOVERS_CURRENT_CANONICAL_UNIT",
+            "COMPLETED_WORK_IS_NOT_REPEATED",
+            "NEXT_HIGHEST_PRIORITY_READY_WORK_CONTINUES_WITHOUT_HUMAN_REINJECTION"
+          ]
+        }
+      },
+      "routing_authority": "VNEXT5.1-R2_HUMAN_CURRENT_SPEC_AND_USER_DIRECTIVE",
+      "mission_hash": "sha256:f235c085f10e54705f7817f0ce6dee1e5b29ef1279306e4b2c280322bfacab29"
+    }
+  },
+  "policy": {
+    "revision": "dc3b419d8abf696b04b5bfdbdab7b3c8b70526cb",
+    "path": "governance/csg/v51/policies/20260930T104733+0800-EP80.json",
+    "raw_sha256": "sha256:89e7f085d055fde542ed65b54d17822b8acd9715274621c960a92f2ae196ab30",
+    "data": {
+      "schema": "CHATGPT_EXECUTION_POLICY_V5_1_R2",
+      "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+      "status": "FINALIZED",
+      "authorized_by": "HUMAN",
+      "authorization_gate": "VNEXT5.1-R2 GOAL-LIFECYCLE / CONTINUATION HOTFIX",
+      "mission_revision_id": "20260930T104733+0800",
+      "mission_hash": "sha256:f235c085f10e54705f7817f0ce6dee1e5b29ef1279306e4b2c280322bfacab29",
+      "policy_revision_id": "20260930T104733+0800-EP80",
+      "canonicalization_version": "HUMAN_TEXT_V1",
+      "policy_hash_profile": "RFC8785_CANONICAL_JSON_PAYLOAD_SHA256_V1",
+      "payload": {
+        "active_module": "vnext5_1_r2_control_plane_recovery",
+        "active_unit": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION",
+        "module_acceptance": "R2_00_AUTHORITY_REBASE_AND_SAME_SOURCE_READBACK_THROUGH_R2_09_ANY_STATE_CROSS_SESSION_REGRESSION_PASS_BEFORE_ORDINARY_PRODUCT_WORK",
+        "current_construction_spec": {
+          "id": "VNEXT5.1-R2",
+          "source_class": "EXACT_HUMAN_PROVIDED_CONSTRUCTION_SPEC_ATTACHMENT",
+          "source_commit": null,
+          "source_path": "VNEXT5.1-R2-FULL-CONSTRUCTION-SPEC-20260929.md",
+          "canonical_path": "governance/csg/v51/specs/VNEXT5.1-R2-HUMAN-CURRENT-SPEC-20260929.md",
+          "blob_oid": "1dcd2d46a35bb3a580210ab4f0d29131587cc448",
+          "sha256": "sha256:b3b805f4dd5e88a2370c456c7f678c3264ca032090c957d69116512b563b589f",
+          "byte_length": 25222
+        },
+        "routing": {
+          "policy": "HOST_OWNED_SUPERVISOR_MULTI_AGENT_FLEET",
+          "superseded": [
+            "CODEX_PRIMARY_FOR_SUBSTANTIAL_OR_LONG_RUNNING_WORK_AS_FACTORY_WIDE_BUILDER_AUTHORITY"
+          ],
+          "durable_orchestrator": "HOST_OWNED_24X7_SUPERVISOR_RECONCILER",
+          "factory_execution_model": "MULTI_AGENT_FLEET",
+          "gpt_web_role": "EPHEMERAL_AUDITOR_CONTROL_SHORT_READBACK_HUMAN_INTERFACE",
+          "preferred_builder_route": "OPENCODE_MUSE_SPARK_1_3_WHEN_HEALTHY_ELIGIBLE_AND_QUOTA_ALLOWED",
+          "secondary_qualified_lanes": [
+            "ANTIGRAVITY",
+            "CODEX"
+          ],
+          "normal_product_coding_boundary": "HYPERV_UBUNTU_WORKER_VM_WITH_ISOLATED_WORKTREE_CONTAINER_OR_CELL",
+          "routing_inputs": [
+            "task_class",
+            "capability",
+            "provider_health",
+            "quota",
+            "measured_success_rate",
+            "sandbox_eligibility",
+            "review_backlog",
+            "integration_backlog"
+          ],
+          "codex_role": "RECOVERY_EXECUTOR_HOST_MAINTENANCE_AND_QUALIFIED_SECONDARY",
+          "gpt_web_availability_required_for_liveness": false,
+          "connector_exhaustion_required_before_codex": false,
+          "codex_mission_sovereignty": false
+        },
+        "coordination": {
+          "one_active_atomic_unit": true,
+          "one_execution_owner_per_atomic_scope": true,
+          "active_execution_owner": "CODEX_THREAD_01a0ed35-6063-7912-9872-7d4122a3b125",
+          "no_concurrent_chat_codex_mutation_same_scope": true,
+          "codex_progress_must_be_provider_or_artifact_addressable": true,
+          "chat_claim_verification_required_for_promotion": true,
+          "cross_session_resume_uses_canonical_backend_not_chat_memory": true,
+          "active_owner_generation": 5,
+          "active_unit": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION",
+          "asynchronous_independent_slices": true,
+          "one_integration_lane_per_project": true,
+          "host_supervisor_owns_liveness": true,
+          "work_conserving_scheduler": true,
+          "cold_start_authority_sequence": [
+            "EXACT_PROJECT_LOOKUP",
+            "PROJECT_DIRECTORY",
+            "CANONICAL_CONTROL_POINTER",
+            "CURRENT_SPEC",
+            "MISSION",
+            "EXECUTION_POLICY",
+            "RUN_CHECKPOINT_TASK_ATTEMPT",
+            "EXECUTION_OWNER",
+            "UNRESOLVED_EFFECTS",
+            "FRESH_HOST_OBSERVATION_AND_PROVIDER_READBACK",
+            "RECONCILE",
+            "SAFE_NEXT_ACTION"
+          ],
+          "forbidden_current_authority_sources": [
+            "MEMORY",
+            "RECENT_CHAT",
+            "RECENT_HANDOFF",
+            "LATEST_LOCAL_FILE",
+            "SCHEDULED_WAKE_PAYLOAD",
+            "OLD_GOAL",
+            "PREVIOUS_AI_SUMMARY"
+          ],
+          "canonical_unreadable_result": "CONTROL_STATE_UNAVAILABLE_FAIL_CLOSED_NO_GUESSING",
+          "carry_forward_capability_gaps_path": "governance/csg/v51/readbacks/R2-CARRY-FORWARD-CAPABILITY-GAPS-20260929.json",
+          "carry_forward_gaps_must_remain_until_provider_confirmed_pass": true,
+          "active_attempt_id": "V51-R2-02-ATTEMPT-002",
+          "active_attempt_epoch": 2,
+          "owner_reentry": {
+            "prior_attempt_id": "V51-R2-02-ATTEMPT-001",
+            "prior_attempt_epoch": 1,
+            "prior_owner_generation": 3,
+            "prior_owner_lease_until": null,
+            "disposition": "SUPERSEDED_UNSELECTED_STAGE_NO_CANONICAL_OWNER_AUTHORITY",
+            "new_attempt_id": "V51-R2-02-ATTEMPT-002",
+            "new_attempt_epoch": 2,
+            "new_owner_generation": 5,
+            "new_owner_lease_until": "2026-09-29T18:44:11Z",
+            "selected_only_after_canonical_checkpoint": true
+          },
+          "prior_unit_owner_reentry": {
+            "prior_attempt_id": "V51-R2-01-ATTEMPT-001",
+            "prior_attempt_epoch": 1,
+            "prior_owner_generation": 1,
+            "prior_lease_until": "2026-09-29T14:54:00.000Z",
+            "disposition": "EXPIRED_OWNER_AUTHORITY_NO_JOB_NO_EFFECT",
+            "new_attempt_id": "V51-R2-01-ATTEMPT-003",
+            "new_attempt_epoch": 3,
+            "new_owner_generation": 4,
+            "new_owner_lease_until": "2026-09-29T18:06:22Z",
+            "selected_only_after_canonical_checkpoint": true,
+            "superseded_unselected_attempt": {
+              "attempt_id": "V51-R2-01-ATTEMPT-002",
+              "attempt_epoch": 2,
+              "owner_generation": 3,
+              "owner_lease_until": "2026-09-29T15:53:01Z",
+              "selected_by_checkpoint": false,
+              "disposition": "EXPIRED_BEFORE_SELECTION_NO_JOB_NO_EFFECT",
+              "run_revision": 6,
+              "unresolved_operation_ids": []
+            }
+          },
+          "r2_01_completion_evidence": {
+            "readback_path": "governance/csg/v51/readbacks/R2-01-POST-CP197-ATTEMPT-003-SAME-SOURCE-READBACK-20260930.json",
+            "readback_blob": "1ed26dde690e0e222b9c0571d6643fb31de23f12",
+            "source_commit": "e0e2e7551919fa23c3ca914915234eb6a80417a9",
+            "provider_confirmation_commit": "fcdcf8771ce6eaa887bd761a5e9bc42e4a99c596",
+            "provider_confirmation_pr": 359,
+            "canonical_completion_checkpoint": "PENDING_CP198"
+          },
+          "goal_lifecycle": {
+            "canonical_mission_status": "ACTIVE",
+            "project_directory_and_canonical_checkpoint_are_authority": true,
+            "local_codex_goal_session_thread_or_ui_state_authoritative": false,
+            "batch_completion_or_pr_test_verifier_readback_checkpoint_terminates_mission": false,
+            "fresh_read_after_each_material_evidence_delta": [
+              "PROJECT_DIRECTORY",
+              "CURRENT_POINTER",
+              "CURRENT_SPEC",
+              "MISSION",
+              "POLICY",
+              "CHECKPOINT",
+              "RUN_TASK_ATTEMPT_OWNER",
+              "UNRESOLVED_EFFECTS",
+              "FRESH_PROVIDER_AND_LOCAL_LIVE_OBSERVATION",
+              "RECOMPUTE_READY_LANES"
+            ],
+            "lane_parking_is_exact_lane_only": true,
+            "parked_lane_reasons": [
+              "WAITING_EXTERNAL",
+              "ACCESS_DENIED",
+              "MISSING_PRIVILEGED_ROUTE",
+              "PENDING_REVIEW"
+            ],
+            "continue_highest_priority_ready_lane": true,
+            "do_not_repeat_provider_confirmed_completed_work": true,
+            "recover_without_human_reinjection": true,
+            "termination_conditions": [
+              "ALL_MISSION_ACCEPTANCE_CRITERIA_PROVIDER_CONFIRMED_PASS",
+              "HUMAN_EXPLICIT_CANCEL_OR_SUPERSEDE",
+              "DURABLY_PERSISTED_TERMINAL_HUMAN_RESERVED_GATE_OR_UNRECOVERABLE_TERMINAL_FAILURE"
+            ]
+          },
+          "owner_liveness_reconciliation": {
+            "active_unit": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION",
+            "owner_generation": 5,
+            "lease_expiry_alone_confirms_stale": false,
+            "aggregate_zero_job_counts_alone_confirm_stale": false,
+            "exact_cross_source_liveness_observation_required": true,
+            "unresolved_or_unknown_effects_require_readback_first": true,
+            "status_until_sufficient_evidence": "STALE_EXECUTION_OWNER_CANDIDATE",
+            "do_not_revoke_or_dispatch_until_confirmed": true
+          },
+          "r2_07_acceptance": {
+            "status": "REQUIRED_NOT_YET_ACCEPTED",
+            "acceptance": [
+              "WINDOWS_REBOOT_SUPERVISOR_RESUMES",
+              "SUPERVISOR_CRASH_AUTOMATIC_RESTART",
+              "CODEX_UI_CLOSED_CONSTRUCTION_CONTINUES",
+              "GPT_WEB_GONE_CONSTRUCTION_CONTINUES",
+              "FRESH_CANONICAL_READ_RECOMPUTES_READY",
+              "EVIDENCE_AND_CHECKPOINT_PERSISTENCE_CONTINUES"
+            ]
+          },
+          "r2_09_acceptance": {
+            "status": "REQUIRED_NOT_YET_ACCEPTED",
+            "regression_id": "LOCAL_CODEX_GOAL_DISAPPEARS_WHILE_MISSION_ACTIVE",
+            "expected": [
+              "CANONICAL_MISSION_REMAINS_ACTIVE",
+              "NEW_EXECUTOR_SESSION_RECOVERS_CURRENT_CANONICAL_UNIT",
+              "COMPLETED_WORK_IS_NOT_REPEATED",
+              "NEXT_HIGHEST_PRIORITY_READY_WORK_CONTINUES_WITHOUT_HUMAN_REINJECTION"
+            ]
+          }
+        },
+        "authorization": {
+          "reversible_preproduction_persistent": true,
+          "routine_per_session_reauthorization": false,
+          "production_final_human_required": true,
+          "new_cost_human_required": true,
+          "legal_contract_signature_identity_human_required": true,
+          "oauth_mfa_human_required": true,
+          "major_irreversible_authority_expansion_human_required": true,
+          "unreconcilable_ambiguous_external_effect_human_required": true,
+          "normal_product_coding_boundary": "HYPERV_UBUNTU_WORKER_VM",
+          "host_supervisor_preproduction_execution_authorized": true
+        },
+        "mutation_safety": {
+          "fresh_prestate": true,
+          "provider_or_backend_cas_at_dispatch": true,
+          "same_source_readback": true,
+          "unknown_effect_readback_first": true,
+          "no_blind_replay": true,
+          "operation_owned_rollback": true,
+          "canonical_control_updates_must_be_fast_forward_only": true,
+          "exact_host_project_binding_required": true,
+          "stop_gate_retained": true,
+          "bounded_timeout_output_and_concurrency": true,
+          "durable_receipt_required": true
+        },
+        "project_controls": {
+          "mission_revision_rollover_is_not_transport_denial": true,
+          "checkpoint_rollover_is_not_transport_denial": true,
+          "run_id_pattern_rollover_is_not_transport_denial": true,
+          "task_id_pattern_rollover_is_not_transport_denial": true,
+          "attempt_or_generation_metadata_is_not_transport_denial": true,
+          "stale_historical_wake_payload_is_not_authority": true,
+          "production_allowed": false,
+          "business_project_auto_admission": false,
+          "paid_fallback_allowed": false,
+          "worker_provider_write_credentials_allowed": false,
+          "zero_incremental_paid_cost_required": true,
+          "session_rollover_is_not_transport_denial": true,
+          "authorization_envelope_generation_churn_alone_is_not_transport_denial": true
+        },
+        "factory_mcp": {
+          "public_tool_count": 4,
+          "read_only_diagnostics": {
+            "preferred_tool": "factory_status",
+            "bounded_fixed_purpose_only": true,
+            "arbitrary_powershell": false,
+            "host_mutation": false,
+            "host_mutation_fence_required": false
+          },
+          "trusted_caller": {
+            "unique_os_enforced_boundary_required": true,
+            "shared_network_service_sid_alone_sufficient": false,
+            "negative_injection_test_required": true
+          },
+          "host_powershell": {
+            "public_tool_retained": true,
+            "run_as_required": "NT AUTHORITY\\SYSTEM",
+            "authorized_scope_requires": [
+              "R2_04_UNIQUE_TRUSTED_CALLER_PASS",
+              "R2_05_NONCIRCULAR_HOST_REPAIR_LANE_PASS",
+              "R2_06_LIVE_INSTALL_ACCEPTANCE_PASS"
+            ],
+            "production_allowed": false
+          }
+        },
+        "human_reserved_gates": [
+          "PRODUCTION_FINAL_AUTHORIZATION",
+          "NEW_PAID_COST_OR_SERVICE",
+          "LEGAL_CONTRACT_SIGNATURE_OR_IDENTITY",
+          "OAUTH_OR_MFA",
+          "MAJOR_IRREVERSIBLE_AUTHORITY_EXPANSION",
+          "UNRECONCILABLE_AMBIGUOUS_EXTERNAL_EFFECT"
+        ],
+        "factory_mcp_public_tool_count": 4,
+        "host_vm_execution_default_authorized": true,
+        "host_powershell_normal_route": "CONDITIONED_ON_R2_04_UNIQUE_TRUSTED_CALLER_R2_05_NONCIRCULAR_REPAIR_AND_R2_06_LIVE_ACCEPTANCE",
+        "provider_write_credentials_on_worker_allowed": false,
+        "paid_fallback_allowed": false,
+        "business_project_access_allowed": false,
+        "production_allowed": false,
+        "supersedes_unselected_stage": {
+          "mission_revision_id": "20260929T223724+0800",
+          "policy_revision_id": "20260929T223724+0800-EP76",
+          "active_unit": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION",
+          "active_attempt_id": "V51-R2-02-ATTEMPT-001",
+          "attempt_epoch": 1,
+          "owner_generation": 3,
+          "selected_by_checkpoint": false,
+          "disposition": "SUPERSEDED_UNSELECTED_STAGE",
+          "superseded_by_attempt_id": "V51-R2-02-ATTEMPT-002"
+        }
+      },
+      "policy_hash": "sha256:8529b4bccc66147465b066bf97d71ce2c6ae6bea11e146ca215976bf3b839c85",
+      "effective_at": "2026-09-30T02:47:33Z",
+      "supersedes": "20260930T004411+0800-EP79",
+      "change_reason": "Human-directed permanent GoalLifecycle continuation rule and R2-07/R2-09 regression acceptance; preserves current R2-02 unit and owner pending exact liveness reconciliation."
+    }
+  },
+  "run": {
+    "revision": "9a7dc324f680c303a83123eb6a7b2cc7b410fda2",
+    "path": "governance/csg/v51/runs/V51-R2-001/run-r2-02.json",
+    "raw_sha256": "sha256:9b49ae229793656985d071a823b4c13e5aff75adb6c067d66ae1a7c655a03250",
+    "data": {
+      "schema_version": "factory.run.v1",
+      "run_id": "V51-R2-001",
+      "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
+      "revision": 7,
+      "command_id": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION",
+      "contract_ref": "governance/csg/v51/runs/V51-R2-001/contract-r2-02-attempt-002.json",
+      "state": "RUNNING",
+      "wait_reason": "R2_02_AUTHORIZED_LIVE_EXECUTOR_OBSERVATION_REQUIRED_BEFORE_STALE_OWNER_CONFIRMATION_OR_HOST_DISPATCH",
+      "active_task_id": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION",
+      "attempt_id": "V51-R2-02-ATTEMPT-002",
+      "attempt_epoch": 2,
+      "latest_checkpoint_ref": "governance/csg/checkpoints/000198.json",
+      "unresolved_operation_ids": [],
+      "stop_requested": false,
+      "completed_stage_receipts": [
+        "R2_00_SAME_SOURCE_READBACK_PASS",
+        "R2_01_POST_CP197_READBACK_PROVIDER_CONFIRMED_PR359",
+        "R2_02_CP198_POST_SELECTION_READBACK_PASS",
+        "R2_02_SOURCE_CORRECTION_EXACT_HEAD_PASS"
+      ],
+      "evidence_refs": [
+        "governance/csg/v51/specs/VNEXT5.1-R2-HUMAN-CURRENT-SPEC-20260929.md",
+        "governance/csg/v51/missions/20260930T004411+0800.json",
+        "governance/csg/v51/policies/20260930T004411+0800-EP79.json",
+        "governance/csg/v51/runs/V51-R2-001/contract-r2-02-attempt-002.json",
+        "governance/csg/v51/readbacks/R2-01-POST-CP197-ATTEMPT-003-SAME-SOURCE-READBACK-20260930.json",
+        "governance/csg/v51/readbacks/R2-01-NATIVE-HOST-OBSERVATION-ATTEMPT-003-20260930.json",
+        "governance/csg/v51/readbacks/R2-CARRY-FORWARD-CAPABILITY-GAPS-20260929.json",
+        "governance/csg/v51/readbacks/R2-02-ATTEMPT-002-POST-CP198-SAME-SOURCE-READBACK-20260930.json",
+        "governance/csg/v51/readbacks/R2-02-SOURCE-CORRECTION-QUALIFICATION-READBACK-20260930.json",
+        "governance/csg/v51/missions/20260930T104733+0800.json",
+        "governance/csg/v51/policies/20260930T104733+0800-EP80.json",
+        "governance/csg/v51/runs/V51-R2-001/contract-r2-02-attempt-002-goal-lifecycle.json",
+        "governance/csg/v51/readbacks/R2-02-GOAL-LIFECYCLE-NATIVE-RECONCILIATION-20260930.json"
+      ],
+      "remaining_attempts": 1,
+      "execution_owner": {
+        "principal_id": "CODEX_THREAD_01a0ed35-6063-7912-9872-7d4122a3b125",
+        "owner_generation": 5,
+        "scope": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION",
+        "lease_until": "2026-09-29T18:44:11Z"
+      },
+      "canonical_selection_status": "SELECTED_BY_CP198",
+      "goal_lifecycle_recovery": {
+        "mission_status": "ACTIVE",
+        "active_unit": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION",
+        "run_state": "RUNNING",
+        "local_codex_goal_state_authoritative": false,
+        "bounded_batch_completion_terminates_mission": false,
+        "after_material_delta": "FRESH_CANONICAL_AND_LIVE_READ_RECOMPUTE_READY_CONTINUE_HIGHEST_PRIORITY",
+        "exact_lane_parking_only": true,
+        "continue_other_ready_work": true,
+        "r2_07_acceptance_status": "REQUIRED_NOT_YET_ACCEPTED",
+        "r2_09_regression_id": "LOCAL_CODEX_GOAL_DISAPPEARS_WHILE_MISSION_ACTIVE",
+        "r2_09_acceptance_status": "REQUIRED_NOT_YET_ACCEPTED"
+      },
+      "liveness_reconciliation": {
+        "observed_at_utc": "2026-09-30T02:50:03.8216370Z",
+        "owner_generation": 5,
+        "status": "STALE_EXECUTION_OWNER_CANDIDATE",
+        "lease_expired": true,
+        "stale_owner_confirmed": false,
+        "revocation": false,
+        "host_dispatch": false,
+        "host_mutation": false,
+        "canonical_active_job_refs": [],
+        "canonical_unresolved_effect_refs": [],
+        "user_reported_web_factory_counts": {
+          "active_count": 0,
+          "effective_active_count": 0,
+          "live_job_count": 0,
+          "pending_receipt_count": 0,
+          "orphan_count": 5,
+          "control_plane_status": "ok",
+          "independent_provider_read": false
+        },
+        "native_observation": {
+          "runner_service_state": "Running",
+          "runner_worker_processes": [],
+          "supervisor_candidate_task_state": 1,
+          "local_candidate_db_read_only_state": "IDLE",
+          "local_candidate_db_generation": "2",
+          "hyperv_read": "LOCAL_OS_PRIVILEGE_REQUIRED",
+          "hostguard_read": "LOCAL_OS_PRIVILEGE_REQUIRED"
+        },
+        "reasons": [
+          "Generation 5 lease expiry alone and user-reported aggregate Web Factory zero counts are insufficient.",
+          "Idle GitHub runner process tree has no Runner.Worker and is not linked to generation 5.",
+          "Disabled local Supervisor Candidate1 and its generation-2 IDLE database are not exact generation-5 proof.",
+          "Hyper-V and HostGuard reads returned LOCAL_OS_PRIVILEGE_REQUIRED."
+        ],
+        "parked_lanes": [
+          "R2-02_EXACT_GENERATION_5_LIVENESS_PROOF",
+          "R2-02_HYPERV_AND_HOSTGUARD_READ"
+        ],
+        "ready_lane": "R2-02_NONPRIVILEGED_SOURCE_RECONCILIATION"
+      }
+    }
+  },
+  "unresolved_effect_refs": [],
+  "owner": {
+    "principal_id": "CODEX_THREAD_01a0ed35-6063-7912-9872-7d4122a3b125",
+    "owner_generation": 5,
+    "scope": "V51-R2-02-STALE-OWNER-LIVENESS-RECONCILIATION",
+    "lease_until": "2026-09-29T18:44:11Z"
+  },
+  "authority_scope": "CANONICAL_READ_ONLY_HUMAN_V52_SOURCE_AUTHORIZATION_SEPARATE",
   "canonical_write": false,
-  "provider_write": false
+  "host_dispatch": false,
+  "production": false
 }
