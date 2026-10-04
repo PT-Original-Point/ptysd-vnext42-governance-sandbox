@@ -1,0 +1,20 @@
+{
+  "task": "P52.SELECTION_CONTRACT_ELEVEN_DISTINCT_STATIC_REVIEW",
+  "model": "gemini-3.8-flash-high",
+  "created_at": "2026-10-04T19:34:03.695Z",
+  "status": "SUBMITTED_OUTCOME_PENDING",
+  "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-SELECTION-CONTRACT-AG-WORK-20261005",
+  "source_edit": false,
+  "result_path": "routes/resume-batch-20261004/selection-contract-eleven-distinct-review/ag.result.json",
+  "actual_output_path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-SELECTION-CONTRACT-AG-WORK-20261005\\outputs\\P52-SELECTION-CONTRACT-ELEVEN-DISTINCT-REVIEW\\result.json",
+  "write_set": [
+    "outputs/P52-SELECTION-CONTRACT-ELEVEN-DISTINCT-REVIEW/result.json"
+  ],
+  "input_binding": "routes/resume-batch-20261004/selection-contract-eleven-distinct-review/input-binding.json",
+  "canonical_write": false,
+  "host_dispatch": false,
+  "production": false,
+  "pid": 14144,
+  "conversation_id": "98a41086-4783-4caf-8c41-fe5dc68e549e",
+  "actual_model": "gemini-3.8-flash-high"
+}

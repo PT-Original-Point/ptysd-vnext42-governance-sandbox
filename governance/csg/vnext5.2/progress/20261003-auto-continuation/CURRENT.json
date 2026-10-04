@@ -1,7 +1,7 @@
 {
   "schema": "vnext5.2.construction-progress.v2",
   "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
-  "observed_at": "2026-10-04T18:50:44.610Z",
+  "observed_at": "2026-10-04T19:35:15.847Z",
   "model_lock": {
     "codex": {
       "display": "GPT-6 Luna Max",
@@ -121,9 +121,9 @@
   "queue_decision": "WORK_IN_PROGRESS",
   "ready_ids": [],
   "running_ids": [
-    "P52.SELECTION_CONTRACT_SOURCE_PREPARATION"
+    "P52.SELECTION_CONTRACT_ELEVEN_DISTINCT_STATIC_REVIEW"
   ],
-  "valid_until": "2026-10-04T19:05:44.655Z",
+  "valid_until": "2026-10-04T19:50:15.893Z",
   "all_legal_ready_lanes_exhausted": false,
   "canonical_write": false,
   "host_install": false,
@@ -147,10 +147,10 @@
     "contract": "routes/opencode-desktop-route-20261004.json"
   },
   "construction_plan": "VNEXT5.2-限額控制與優先復工施工契約-20261004.md",
-  "active_source_repairs": [
-    "P52.SELECTION_CONTRACT_SOURCE_PREPARATION"
+  "active_source_repairs": [],
+  "pending_independent_reviews": [
+    "P52.SELECTION_CONTRACT_ELEVEN_DISTINCT_STATIC_REVIEW"
   ],
-  "pending_independent_reviews": [],
   "compact_reentry": "routes/resume-batch-20261004/NEXT-ACTIONS.md",
   "compact_summary": "routes/resume-batch-20261004/COMPACT-SUMMARY.json",
   "source_gate_status": "INTAKE_EXACT_NATIVE_REVIEW_READ_DENIED_NO_BYPASS_NOT_SEMANTIC_PASS",
@@ -178,10 +178,11 @@
     "model_collection_minutes": 30,
     "free_local_seconds": 30,
     "shared_last_observed_used_percent": 88,
-    "native_next": "routes/resume-batch-20261004/selection-contract-ag-source/ag.intent.json"
+    "native_next": "routes/resume-batch-20261004/selection-contract-ag-source/ag.intent.json",
+    "latest_source_readback": "Source author completed; next distinct review actually launched. No completion of Mission."
   },
   "latest_native_intents": [
-    "routes/resume-batch-20261004/selection-contract-ag-source/ag.intent.json"
+    "routes/resume-batch-20261004/selection-contract-eleven-distinct-review/ag.intent.json"
   ],
   "source_qualification": {
     "research": "PR388_EXACT_HEAD_STRUCTURAL_PASS_LOCAL103_DISTINCT17_SEMANTIC_PASS_PREPARATORY_ONLY",
@@ -230,6 +231,17 @@
       "native_author_model": "gemini-3.8-flash-high",
       "canonical_write": false,
       "static_review": "routes/resume-batch-20261004/c1-final-combined-static-review/ag.result.json"
+    },
+    "selection_contract": {
+      "status": "ALL11_AUTHOR_REWORK_COLLECTED_NEW_EXACT_HASH_DISTINCT_REVIEW_RUNNING",
+      "author_result_sha256": "f1cf86e006278cf6affb2df9c87e278b69618293d7407ee669f0a9d5fbf73bac",
+      "source_sha256": "3c856b08fc3adb4f3f32e9759bf77ec56840acfaa6427d5aeee794b8b77d621d",
+      "test_sha256": "db8ac968418a19c42c7eea3768f9e413b672454348a8fb562111f4921a8bf3fb",
+      "author_tests": "41_CLAIMED_DESIGNED_9_POSITIVE_32_NEGATIVE_ALL_UNTESTED",
+      "cost": "UNKNOWN_NO_ZERO_COST_INFERENCE",
+      "new_review": "routes/resume-batch-20261004/selection-contract-eleven-distinct-review/ag.intent.json",
+      "live_acceptance": "NOT_ACCEPTED",
+      "canonical_write": false
     }
   },
   "contract_source_map": "CONTRACT-SOURCE-MAP.json",
@@ -256,5 +268,11 @@
       "parent_phase_acceptance": "NOT_ACCEPTED",
       "reason": "Source preparation authorized; original59 live/parent acceptance unchanged; do not park whole source work for prior intake review"
     }
-  ]
+  ],
+  "quota_last_actual": {
+    "five_hour_used_percent": 88,
+    "weekly_used_percent": 70,
+    "scope": "SHARED_ACCOUNT_NOT_PER_SESSION",
+    "measurement": "LAST_NATIVE_READ_THIS_CONSTRUCTION_RUN_NOT_REFRESHED_DURING_CALLBACK"
+  }
 }

@@ -3,7 +3,7 @@
   "files": [
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/CURRENT.json",
-      "sha256": "sha256:4b3d388dbd5bf00b83723a1b950ee081ec595004899987760c56bfc28dd03d1e"
+      "sha256": "sha256:13872da4af1935f09f111e7d5a58ff83c41a423de75f20efaf1ece45145649cc"
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/dispatch.json",
@@ -94,16 +94,16 @@
       "sha256": "sha256:2d81f3ee678f1706aa2e250d912cc7fe2ee1c38cede3b688359d3f094e2950a4"
     },
     {
-      "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/resume-batch-20261004/c1-final-combined-static-review/input-binding.json",
-      "sha256": "sha256:18215687caae88bb22f4db0579b44acecdb012974fb85a784c8dab8d4407354e"
+      "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/resume-batch-20261004/selection-contract-eleven-distinct-review/input-binding.json",
+      "sha256": "sha256:5fa302f501229dd49a62e557ecfdbd92a68c4669b74e78d1d651aa0f975526ac"
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/resume-batch-20261004/CURRENT-HANDOFF.md",
-      "sha256": "sha256:508439abd74505dcf9e2bc29ae2456c1568085ffca39dfbae1c223676158e149"
+      "sha256": "sha256:20477626bee669c4a396ada880af728a130b137a18f606e5e4740f0bc74a17a7"
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/resume-batch-20261004/COMPACT-SUMMARY.json",
-      "sha256": "sha256:dd17c11ee391d84988cfe0bd35b1bdc84907543a17700cfb21c5e474c39f3406"
+      "sha256": "sha256:5582af4c51831229538bbf0fd40540186726a783d23dd98627334d22fc4a098d"
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/resume-batch-20261004/runtime-final-head-ag-review/result.json",
@@ -114,8 +114,8 @@
       "sha256": "sha256:43d857503ed8cac96ae5634e6d65279f6db42300f518f72c350c3422b61d18a5"
     },
     {
-      "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/resume-batch-20261004/selection-contract-ag-source/ag.intent.json",
-      "sha256": "sha256:8e6c9de7ac45e0793373928710c9370d1e4d08dcb65b8ea9868a5a695e8b4201"
+      "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/resume-batch-20261004/selection-contract-eleven-distinct-review/ag.intent.json",
+      "sha256": "sha256:c58734c46e5ca67d0378767e0f793317f13b69bc118e35e391ae14805fbb66fb"
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/resume-batch-20261004/native-result-reack-collection.json",

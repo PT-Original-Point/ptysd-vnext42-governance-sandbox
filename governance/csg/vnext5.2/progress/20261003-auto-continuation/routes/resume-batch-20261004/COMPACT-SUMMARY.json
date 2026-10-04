@@ -1,14 +1,13 @@
 {
   "schema": "vnext5.2.compact-reentry.v1",
-  "observed_at": "2026-10-04T16:30:34.875Z",
+  "observed_at": "2026-10-04T19:35:15.847Z",
   "goal_actual": "paused",
   "mission": "ACTIVE_NOT_COMPLETE",
   "quota_last_actual": {
-    "five_hour_used_percent": 66,
-    "weekly_used_percent": 52,
+    "five_hour_used_percent": 88,
+    "weekly_used_percent": 70,
     "scope": "SHARED_ACCOUNT_NOT_PER_SESSION",
-    "persisted_at": "2026-10-04T12:26:54.053Z",
-    "measurement": "GET_USAGE_LIMITS_NATIVE_REAL_READ_THIS_TURN_NO_RESET"
+    "source": "Previous actual native get_usage_limits read this turn; not refreshed here"
   },
   "worker_roles": "ROOT_AUDIT_ONLY_CODEX_GPT6_LUNA_MAX_AG_GEMINI38_FLASH_HIGH_OC_MUSE_FREE_BOUNDED_REAUTHORIZED",
   "tasks": [
@@ -154,26 +153,17 @@
   },
   "monitoring": {
     "free_local_seconds": 30,
-    "model_collection_minutes": 15,
+    "model_collection_minutes": 30,
     "callback": "NATIVE_LUNA_CALLBACK_PROVEN_ONE_CASE_EXTERNAL_CLI_TRIGGER_NOT_AVAILABLE"
   },
   "latest_delta": {
     "workers": [
       {
-        "task": "C1.ACTUAL_PACKET_SCHEMA_MATCH_STATIC_REVIEW",
-        "intent": "routes/resume-batch-20261004/c1-actual-packet-schema-match-review/ag.intent.json",
-        "status": "CLOSED_REVIEW_REQUIRED",
-        "model": "gemini-3.8-flash-high",
-        "actual_model": "gemini-3.8-flash-high",
-        "pid": 52288
-      },
-      {
-        "task": "C1.VALIDATOR_FOUR_FINDINGS_REWORK",
-        "intent": "routes/resume-batch-20261004/c1-validator-four-findings-rework/ag.intent.json",
+        "task": "P52.SELECTION_CONTRACT_ELEVEN_DISTINCT_STATIC_REVIEW",
+        "intent": "routes/resume-batch-20261004/selection-contract-eleven-distinct-review/ag.intent.json",
         "status": "SUBMITTED_OUTCOME_PENDING",
-        "model": "gemini-3.8-flash-high",
         "actual_model": "gemini-3.8-flash-high",
-        "pid": 36340
+        "conversation": "98a41086-4783-4caf-8c41-fe5dc68e549e"
       }
     ],
     "source_qualification": {
@@ -216,17 +206,24 @@
       "dashboard_status": "32_SYNTHETIC_PASS_OWN_NATIVE_METADATA_OBSERVER_HANDOFF_READBACK_PASS_NOT_FACTORY_LIVE",
       "c1": "C1_PACKET_SCOPED_DISTINCT_STATIC_PASS_SCHEMA_AND_PROMOTION_CONTRACT_STILL_PENDING",
       "c1_schema": {
-        "status": "PROPOSED_NOT_ADOPTED",
-        "native_author_model": "opencode/muse-spark-1.3-contributor-free/xhigh",
-        "native_cost": 0,
-        "process_compliance": "REJECTED_DENIAL_BYPASS",
-        "source_review": "SCOPED_DISTINCT_AG_STATIC_PASS_PROPOSED_NOT_ADOPTED",
-        "compilation_and_executed_regressions": "PENDING_MATURE_VALIDATOR_DEPENDENCY_QUALIFICATION",
-        "root_finding": "routes/resume-batch-20261004/c1-schema-distinct-ag-review/root-process-finding.json",
+        "status": "EXACT_EIGHT_SOURCE_FILES_DISTINCT_STATIC_PASS_DEPENDENCY_AND_EXECUTION_PENDING",
+        "author_tests": "UNTESTED",
+        "review_intent": "routes/resume-batch-20261004/c1-final-combined-static-review/ag.intent.json",
+        "dependency_compilation": "PENDING_EXACT_COMMAND_LANE_PARKED",
+        "native_author_model": "gemini-3.8-flash-high",
         "canonical_write": false,
-        "artifact_placement": "WRONG_RELATIVE_OUTPUT_METADATA_LOCATOR_REPAIRED_BYTES_UNCHANGED",
-        "next": "AG_LEGAL_FILE_ONLY_PACKAGE_PREPARATION_RUNNING_EXECUTION_REMAINS_PENDING",
-        "command_lane": "AG_RUNCOMMAND_NATIVE_DENIED_PARKED_NO_RETRY"
+        "static_review": "routes/resume-batch-20261004/c1-final-combined-static-review/ag.result.json"
+      },
+      "selection_contract": {
+        "status": "ALL11_AUTHOR_REWORK_COLLECTED_NEW_EXACT_HASH_DISTINCT_REVIEW_RUNNING",
+        "author_result_sha256": "f1cf86e006278cf6affb2df9c87e278b69618293d7407ee669f0a9d5fbf73bac",
+        "source_sha256": "3c856b08fc3adb4f3f32e9759bf77ec56840acfaa6427d5aeee794b8b77d621d",
+        "test_sha256": "db8ac968418a19c42c7eea3768f9e413b672454348a8fb562111f4921a8bf3fb",
+        "author_tests": "41_CLAIMED_DESIGNED_9_POSITIVE_32_NEGATIVE_ALL_UNTESTED",
+        "cost": "UNKNOWN_NO_ZERO_COST_INFERENCE",
+        "new_review": "routes/resume-batch-20261004/selection-contract-eleven-distinct-review/ag.intent.json",
+        "live_acceptance": "NOT_ACCEPTED",
+        "canonical_write": false
       }
     },
     "mcp_author_tests": "7/7 including2 actual local stdio",

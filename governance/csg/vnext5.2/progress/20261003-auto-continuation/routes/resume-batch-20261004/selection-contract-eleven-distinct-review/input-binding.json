@@ -1,0 +1,14 @@
+{
+  "recorded_at": "2026-10-04T19:34:03.694Z",
+  "files": [
+    {
+      "path": "tools/csg/v52-research/src/selection-contract.mjs",
+      "sha256": "3c856b08fc3adb4f3f32e9759bf77ec56840acfaa6427d5aeee794b8b77d621d"
+    },
+    {
+      "path": "tools/csg/v52-research/tests/selection-contract.test.mjs",
+      "sha256": "db8ac968418a19c42c7eea3768f9e413b672454348a8fb562111f4921a8bf3fb"
+    }
+  ],
+  "scope": "EXACT_WORKER_SOURCE_BYTES_FOR_DISTINCT_STATIC_REVIEW"
+}
