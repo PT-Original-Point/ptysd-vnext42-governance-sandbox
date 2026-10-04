@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "test": "node --test tests/b0.test.ts",
+    "test:cross-candidate": "node tests/cross-candidate-integration.mjs && node tests/cross-candidate-positive-integration.mjs",
     "test:v45": "node --test tests/v45-bounded.test.mjs",
     "verify": "node scripts/verify.mjs",
     "verify:v45-bounded": "node scripts/verify-v45-bounded.mjs",
