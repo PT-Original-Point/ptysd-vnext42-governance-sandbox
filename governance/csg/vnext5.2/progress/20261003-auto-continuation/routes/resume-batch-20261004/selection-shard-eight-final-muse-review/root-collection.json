@@ -1,0 +1,130 @@
+{
+  "recorded_at": "2026-10-04T21:34:13.704Z",
+  "task": "P52.SELECTION_SHARD_EIGHT_FINDING_DISTINCT_STATIC_CLOSURE",
+  "actual_model": {
+    "id": "muse-spark-1.3-contributor-free",
+    "providerID": "opencode",
+    "variant": "xhigh"
+  },
+  "session_id": "ses_ef7407546ffeGKUKC0q3LLCuqK",
+  "native_outcome": "succeeded",
+  "cost": 0,
+  "source_bindings": [
+    {
+      "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-SELECTION-CONTRACT-AG-WORK-20261005\\tools\\csg\\v52-research\\src\\selection-contract.mjs",
+      "sha256": "434738cea47176f6553f6096498a25d772f1f1cd4f2edad09df4d742b02e02a6"
+    },
+    {
+      "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-SELECTION-CONTRACT-AG-WORK-20261005\\tools\\csg\\v52-research\\tests\\selection-contract.test.mjs",
+      "sha256": "b0484439d92ab2ebd7b5a294abc54b1a19c63d03ff655fe4f81ca2d74f97b94d"
+    },
+    {
+      "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-SELECTION-CONTRACT-AG-WORK-20261005\\tools\\csg\\v52-research\\src\\shard-integration-contract.mjs",
+      "sha256": "1d27553e3255ba5d1e603b63deb14a532c96c9b66721b28d8863904a0266ba99"
+    },
+    {
+      "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-SELECTION-CONTRACT-AG-WORK-20261005\\tools\\csg\\v52-research\\tests\\shard-integration-contract.test.mjs",
+      "sha256": "9fc974f559149b37b4aeac18105397cc87f339c5ee4d7fb5f3ee360716cc4f2d"
+    },
+    {
+      "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-SELECTION-CONTRACT-AG-WORK-20261005\\tools\\csg\\v52-research\\src\\schemas.mjs",
+      "sha256": "501af066c6158a96d81f9bfa64f3a0435c55e198207967029edffe413d900c28",
+      "git_blob_oid": "45cdbc9f07b5eedbefb6a033df4e6314e3c13817",
+      "binding_scope": "RAW_WORKTREE_SHA256_AND_GIT_FILTERED_BASE_BLOB_SEPARATE"
+    },
+    {
+      "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-SELECTION-CONTRACT-AG-WORK-20261005\\tools\\csg\\v52-research\\src\\provenance.mjs",
+      "sha256": "4a6719a8e6e06f404f113f46f78cbce5d294633687a10f6146030678f21dcc3c",
+      "git_blob_oid": "6e7c752abe702684c272bfc3c730718550742fe2",
+      "binding_scope": "RAW_WORKTREE_SHA256_AND_GIT_FILTERED_BASE_BLOB_SEPARATE"
+    },
+    {
+      "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-SELECTION-CONTRACT-AG-WORK-20261005\\tools\\csg\\v52-research\\src\\recommendation.mjs",
+      "sha256": "2aa7b08859210513bc2e83130f1576be6cceb148dd16a7ff071941a59e853f89",
+      "git_blob_oid": "a17745c2808d943f4fe6d7d0bba8bdccc84d23d5",
+      "binding_scope": "RAW_WORKTREE_SHA256_AND_GIT_FILTERED_BASE_BLOB_SEPARATE"
+    },
+    {
+      "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-SELECTION-CONTRACT-AG-WORK-20261005\\tools\\csg\\v52-research\\src\\alternatives.mjs",
+      "sha256": "f4491da35bfa6547fd5f15702b348c891aa5a3860b9e051569dc165bc8c2add8",
+      "git_blob_oid": "cae37ab625d38cd5c359329aad27543969f78e93",
+      "binding_scope": "RAW_WORKTREE_SHA256_AND_GIT_FILTERED_BASE_BLOB_SEPARATE"
+    }
+  ],
+  "read_tools": [
+    {
+      "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-SELECTION-CONTRACT-AG-WORK-20261005\\tools\\csg\\v52-research\\src\\selection-contract.mjs",
+      "status": "completed",
+      "message_id": "msg_108d2f54f001PZBL4QNev3UsHh"
+    },
+    {
+      "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-SELECTION-CONTRACT-AG-WORK-20261005\\tools\\csg\\v52-research\\tests\\selection-contract.test.mjs",
+      "status": "completed",
+      "message_id": "msg_108d2f54f001PZBL4QNev3UsHh"
+    },
+    {
+      "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-SELECTION-CONTRACT-AG-WORK-20261005\\tools\\csg\\v52-research\\src\\schemas.mjs",
+      "status": "completed",
+      "message_id": "msg_108d2f54f001PZBL4QNev3UsHh"
+    },
+    {
+      "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-SELECTION-CONTRACT-AG-WORK-20261005\\tools\\csg\\v52-research\\tests\\shard-integration-contract.test.mjs",
+      "status": "completed",
+      "message_id": "msg_108d2f54f001PZBL4QNev3UsHh"
+    },
+    {
+      "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-SELECTION-CONTRACT-AG-WORK-20261005\\tools\\csg\\v52-research\\src\\shard-integration-contract.mjs",
+      "status": "completed",
+      "message_id": "msg_108d2f54f001PZBL4QNev3UsHh"
+    },
+    {
+      "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-SELECTION-CONTRACT-AG-WORK-20261005\\tools\\csg\\v52-research\\src\\provenance.mjs",
+      "status": "completed",
+      "message_id": "msg_108d2f54f001PZBL4QNev3UsHh"
+    },
+    {
+      "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-SELECTION-CONTRACT-AG-WORK-20261005\\tools\\csg\\v52-research\\src\\alternatives.mjs",
+      "status": "completed",
+      "message_id": "msg_108d2f54f001PZBL4QNev3UsHh"
+    },
+    {
+      "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-SELECTION-CONTRACT-AG-WORK-20261005\\tools\\csg\\v52-research\\src\\recommendation.mjs",
+      "status": "completed",
+      "message_id": "msg_108d2f54f001PZBL4QNev3UsHh"
+    }
+  ],
+  "review": {
+    "verdict": "STATIC_PASS_CLOSE_NO_REMAINING_FAIL_OPEN",
+    "findings": [],
+    "closed_finding_ids": [
+      "AC1",
+      "AC2",
+      "AC3",
+      "AC4",
+      "D1",
+      "P1",
+      "P2",
+      "FZ1"
+    ],
+    "files_actually_read": [
+      "tools/csg/v52-research/src/selection-contract.mjs",
+      "tools/csg/v52-research/tests/selection-contract.test.mjs",
+      "tools/csg/v52-research/src/shard-integration-contract.mjs",
+      "tools/csg/v52-research/tests/shard-integration-contract.test.mjs",
+      "tools/csg/v52-research/src/schemas.mjs",
+      "tools/csg/v52-research/src/provenance.mjs",
+      "tools/csg/v52-research/src/recommendation.mjs",
+      "tools/csg/v52-research/src/alternatives.mjs"
+    ],
+    "execution": "PARKED_NOT_PASS",
+    "scope": "STATIC_SOURCE_ONLY"
+  },
+  "acceptance_scope": "EXACT_SOURCE_STATIC_ONLY",
+  "regression_design": 126,
+  "actual_current_execution": "PARKED_NOT_PASS",
+  "historical_execution": "111_47PASS64FAIL_BEFORE_SOURCE_REPAIR_NOT_PORTABLE",
+  "source_candidate_accepted": false,
+  "live_acceptance": "NOT_ACCEPTED",
+  "canonical_write": false,
+  "mission_complete": false
+}

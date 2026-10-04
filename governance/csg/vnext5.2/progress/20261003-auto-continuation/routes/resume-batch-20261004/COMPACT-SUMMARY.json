@@ -1,6 +1,6 @@
 {
   "schema": "vnext5.2.compact-reentry.v1",
-  "observed_at": "2026-10-04T21:23:28.144Z",
+  "observed_at": "2026-10-04T21:45:23.847Z",
   "goal_actual": "paused",
   "mission": "ACTIVE_NOT_COMPLETE",
   "quota_last_actual": {
@@ -50,7 +50,7 @@
     {
       "id": "P52.OPENCODE_ALL_FIELDS_CLOSURE_REVIEW",
       "status": "PARKED_NATIVE_PERMISSION_DENIED",
-      "closed_at": "2026-10-04T04:43:14.480Z",
+      "closed_at": "2026-10-04T04:43:14.48Z",
       "actual_model": "gemini-3.8-flash-high",
       "requested_model": "gemini-3.8-flash-high",
       "session_id": null,
@@ -176,31 +176,23 @@
     "model_collection_minutes": 30,
     "free_local_seconds": 30,
     "shared_last_observed_used_percent": 81,
-    "native_next": "routes/resume-batch-20261004/selection-shard-eight-source-rework/ag.intent.json",
-    "latest_source_readback": "AG_EXACT_EIGHT_SOURCE_REWORK_NATIVE_PID23960_LUNA_REPAIRED_FIXTURE_EXECUTION",
+    "native_next": "routes/resume-batch-20261004/native-test-authorization-route-discovery/ag.intent.json",
+    "latest_source_readback": "SOURCE_EIGHT_STATIC_CLOSED_OBSERVER_PARTIAL_COLLECTED_DISTINCT_STATIC_NO_NEW_FINDING_COMMAND_DENIAL_ROUTE_DOC_RESEARCH_RUNNING",
     "false_unknown_correction": "Fresh native same-conversation activity confirms running; no duplicate review",
     "weekly_used_percent": 84,
     "quota_readback": "routes/resume-batch-20261004/quota-native-readback-20261005.json",
     "root_goal_actual": "paused",
-    "source_luna_daily": "ZERO_EXCEPT_CURRENT_BOUNDED_INDEPENDENT_LOCAL_QUALIFICATION"
+    "source_luna_daily": "BOUNDED_LOCAL_QUALIFICATION_COMPLETE_NO_MORE_LUNA_SOURCE_DISPATCH"
   },
   "latest_delta": {
     "workers": [
       {
-        "task": "P52.SELECTION_SHARD_EIGHT_FINDING_SOURCE_REWORK",
-        "intent": "routes/resume-batch-20261004/selection-shard-eight-source-rework/ag.intent.json",
+        "task": "P52.NATIVE_TEST_AUTHORIZATION_ROUTE_DOCUMENTATION_DISCOVERY",
+        "intent": "routes/resume-batch-20261004/native-test-authorization-route-discovery/ag.intent.json",
         "status": "SUBMITTED_OUTCOME_PENDING",
         "model": "gemini-3.8-flash-high",
         "actual_model": "gemini-3.8-flash-high",
-        "pid": 23960
-      },
-      {
-        "task": "HUMAN.DASHBOARD_REPAIRED_ENTRY_INDEPENDENT_LOCAL_EXECUTION",
-        "intent": "routes/resume-batch-20261004/observer-entry-independent-luna/luna.intent.json",
-        "status": "NATIVE_RUNNING_INDEPENDENT_REVIEW",
-        "model": "gpt-6-luna",
-        "actual_model": "UNVERIFIED_NATIVE_CONTEXT_UNEXPOSED",
-        "pid": null
+        "pid": 33832
       }
     ],
     "source_qualification": {
@@ -240,7 +232,7 @@
         "mission_complete": false
       },
       "runtime_head": "0c8a5bd23d5591571998c18ab49eb1eec0ba7968",
-      "dashboard_status": "32_SYNTHETIC_PASS_OWN_NATIVE_METADATA_OBSERVER_HANDOFF_READBACK_PASS_NOT_FACTORY_LIVE",
+      "dashboard_status": "CURRENT_SOURCE_DISTINCT_STATIC_INSPECTION_NO_NEW_FINDINGS_REVIEWER_NO_PASS_COMMAND_DENIED_NOT_EXECUTED",
       "c1": "C1_PACKET_SCOPED_DISTINCT_STATIC_PASS_SCHEMA_AND_PROMOTION_CONTRACT_STILL_PENDING",
       "c1_schema": {
         "status": "EXACT_EIGHT_SOURCE_FILES_DISTINCT_STATIC_PASS_DEPENDENCY_AND_EXECUTION_PENDING",
@@ -252,20 +244,26 @@
         "static_review": "routes/resume-batch-20261004/c1-final-combined-static-review/ag.result.json"
       },
       "selection_contract": {
-        "status": "CURRENT_DISTINCT_MUSE_STATIC_FAIL_EIGHT_FINDINGS_NATIVE_AG_SOURCE_REWORK",
-        "tests": "HISTORICAL111_47PASS64FAIL_CURRENT_EXACT_COMMAND_NATIVE_DENIED_NOT_RETRIED",
-        "review": "routes/resume-batch-20261004/selection-shard-muse-project-only-review/root-collection.json",
+        "status": "CURRENT_EXACT_EIGHT_FILES_DISTINCT_MUSE_STATIC_PASS_ALL8_FINDINGS_CLOSED",
+        "review": "routes/resume-batch-20261004/selection-shard-eight-final-muse-review/root-collection.json",
+        "regression_design": 126,
+        "actual_execution": "PARKED_NATIVE_EXACT_COMMAND_DENIAL_NOT_PASS",
+        "historical_local": "111/47PASS/64FAIL_NOT_PORTABLE",
         "source_accepted": false,
+        "parent_operation_complete": false,
         "live_acceptance": "NOT_ACCEPTED",
-        "parent_operation_complete": false
+        "next": "NO_COSMETIC_SOURCE_CHURN_LEGAL_EXECUTION_REENTRY_ONLY"
       },
       "shard_contract": {
-        "status": "CURRENT_DISTINCT_MUSE_STATIC_FAIL_EIGHT_FINDINGS_NATIVE_AG_SOURCE_REWORK",
-        "tests": "HISTORICAL111_47PASS64FAIL_CURRENT_EXACT_COMMAND_NATIVE_DENIED_NOT_RETRIED",
-        "review": "routes/resume-batch-20261004/selection-shard-muse-project-only-review/root-collection.json",
+        "status": "CURRENT_EXACT_EIGHT_FILES_DISTINCT_MUSE_STATIC_PASS_ALL8_FINDINGS_CLOSED",
+        "review": "routes/resume-batch-20261004/selection-shard-eight-final-muse-review/root-collection.json",
+        "regression_design": 126,
+        "actual_execution": "PARKED_NATIVE_EXACT_COMMAND_DENIAL_NOT_PASS",
+        "historical_local": "111/47PASS/64FAIL_NOT_PORTABLE",
         "source_accepted": false,
+        "parent_operation_complete": false,
         "live_acceptance": "NOT_ACCEPTED",
-        "parent_operation_complete": false
+        "next": "NO_COSMETIC_SOURCE_CHURN_LEGAL_EXECUTION_REENTRY_ONLY"
       }
     },
     "mcp_author_tests": "7/7 including2 actual local stdio",
@@ -276,9 +274,11 @@
   },
   "review_receipt_collision": "ROOT_SHARED_RESULT_PATH_DEFECT_SNAPSHOT_FROZEN_NEW_WRITERS_NEED_DISTINCT_PATHS",
   "latest_failure": {
-    "task": "HUMAN.DASHBOARD_FIXTURE_ZERO_ASSERTION_ENTRY",
-    "status": "SOURCE_REPAIRED_INDEPENDENT_LOCAL_EXECUTION_IN_PROGRESS",
-    "root_cause": "ROOT_INVOKED_EXPORTED_ONLY_FIXTURE_AS_CLI_AND_EXIT0_RAN_ZERO_ASSERTIONS",
-    "previous_exit0_acceptance": false
+    "task": "HUMAN.DASHBOARD_FIXTURE15_LEGACY_ACK_AND_LOCAL_REGRESSION_REWORK",
+    "native_denied_command": "node outputs/HUMAN-DASHBOARD-FINAL7-REWORK/dashboard-regression.fixture.mjs",
+    "native_denial_reason": "NOT_RETURNED_BY_NATIVE_PROVIDER",
+    "source_delta": "observer94be15…",
+    "current_test_acceptance": "PARKED_NOT_PASS",
+    "readback": "routes/resume-batch-20261004/observer-fixture15-legacy-ack-rework/native-command-denial-readback.json"
   }
 }

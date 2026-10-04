@@ -128,14 +128,9 @@
     },
     {
       "brand": "Antigravity",
-      "label": "P52.SELECTION_SHARD_EIGHT_FINDING_SOURCE_REWORK",
-      "intent": "routes/resume-batch-20261004/selection-shard-eight-source-rework/ag.intent.json"
-    },
-    {
-      "brand": "Codex Luna",
-      "label": "HUMAN.DASHBOARD_REPAIRED_ENTRY_INDEPENDENT_LOCAL_EXECUTION",
-      "label_zh": "HUMAN.DASHBOARD_REPAIRED_ENTRY_INDEPENDENT_LOCAL_EXECUTION",
-      "intent": "routes/resume-batch-20261004/observer-entry-independent-luna/luna.intent.json"
+      "label": "P52.NATIVE_TEST_AUTHORIZATION_ROUTE_DOCUMENTATION_DISCOVERY",
+      "intent": "routes/resume-batch-20261004/native-test-authorization-route-discovery/ag.intent.json",
+      "label_zh": "查清工具為何拒絕測試，找官方允許的授權方法（不重跑被拒命令）"
     }
   ],
   "luna": "GPT6_LUNA_MAX_ONLY_SOURCE_AND_REVIEW_AUTHORIZED_NATIVE_REVIEW_SCOPE_READBACK_PENDING",
@@ -165,12 +160,12 @@
       "label": "HUMAN.DASHBOARD_TERMINAL_ACK_REWORK",
       "intent": "routes/resume-batch-20261004/dashboard-terminal-ack-rework/ag.intent.json",
       "label_zh": "Antigravity修正已結束工作被誤判仍在施工、成果重複回收",
-      "archived_at": "2026-10-04T15:53:47.200Z",
+      "archived_at": "2026-10-04T15:53:47.2Z",
       "intent_sha256": "551878b2fc2491a7887945b2dae1a527d2097fe3d7fbe004a638793db7c55ead",
       "ack": {
         "signature": "d0b9c87117be181754ea9a6e73442d63baef639abe3d56fff02dda4b59794970",
         "semantic_signature": "d0b9c87117be181754ea9a6e73442d63baef639abe3d56fff02dda4b59794970",
-        "recorded_at": "2026-10-04T15:45:15.720Z",
+        "recorded_at": "2026-10-04T15:45:15.72Z",
         "disposition": "RESEARCH_BYTES_COLLECTED_DISTINCT_REVIEW_IN_PROGRESS",
         "review": "outputs/HUMAN-DASHBOARD-TERMINAL-ACK-REWORK/source-report.json",
         "review_sha256": "70d72a7ca837fe75d344deff7b8d261f53639cd1b94cf9b6429773a6583cfce6",
@@ -381,7 +376,7 @@
       "ack": {
         "signature": "5890bd3d631ad65bf2adca5ae23ced9314a9de9cee1ff7cb5f5a90e84b434349",
         "semantic_signature": "5890bd3d631ad65bf2adca5ae23ced9314a9de9cee1ff7cb5f5a90e84b434349",
-        "recorded_at": "2026-10-04T19:46:45.860Z",
+        "recorded_at": "2026-10-04T19:46:45.86Z",
         "disposition": "AUTHOR_BYTES_COLLECTED_REVIEW_PERMISSION_PARKED",
         "review": "routes/resume-batch-20261004/shard-contract-source/native-denial-readback.json",
         "review_sha256": "eb0aeb55296b880d9f8a26474c9ababa10de8b0a929cbaa7c6ac24d563560107",
@@ -435,7 +430,7 @@
       "ack": {
         "signature": "fd89f12532575fefd9b1f2443092a66388e9816c28e0d1d7d8be95fe3bd39669",
         "semantic_signature": "fd89f12532575fefd9b1f2443092a66388e9816c28e0d1d7d8be95fe3bd39669",
-        "recorded_at": "2026-10-04T20:12:52.250Z",
+        "recorded_at": "2026-10-04T20:12:52.25Z",
         "disposition": "RESEARCH_BYTES_COLLECTED_DISTINCT_REVIEW_IN_PROGRESS",
         "review": "routes/resume-batch-20261004/shard-contract-twelve-rework/ag.result.json",
         "review_sha256": "d94dce454a6b293fc535e3f4125f54242a64fac6b5ca49cc43c0348e33b35d35",
@@ -506,7 +501,7 @@
       "ack": {
         "signature": "b170255378ec3099d3de528f7e359102551a7da51a14a957b4bd9106af2631c7",
         "semantic_signature": "b170255378ec3099d3de528f7e359102551a7da51a14a957b4bd9106af2631c7",
-        "recorded_at": "2026-10-04T20:46:44.310Z",
+        "recorded_at": "2026-10-04T20:46:44.31Z",
         "disposition": "REVIEW_FINDINGS_RETURNED_TO_AUTHOR",
         "review": "routes/resume-batch-20261004/observer-native-liveness-review/ag.result.json",
         "review_sha256": "17d0a76b4073adf723ce2989da51750fa3fdc6d01cbc04aea57eb5e273e7330b",
@@ -531,7 +526,7 @@
         "acceptance_scope": "LOCAL111_47PASS64FAIL_FULLLOG_BOUND_ALL_FINDINGS_REWORK_NO_LIVE_ACCEPTANCE",
         "mission_complete": false
       },
-      "archived_at": "2026-10-04T20:51:15.290Z",
+      "archived_at": "2026-10-04T20:51:15.29Z",
       "reason": "LOCAL_TEST_FAILURES_COMPLETE_AUTHOR_REWORK_NEXT"
     },
     {
@@ -548,7 +543,7 @@
         "acceptance_scope": "AUTHOR_ONLY_52_DESIGNED_UNTESTED_NO_ACTIVE_OBSERVER_MUTATION",
         "mission_complete": false
       },
-      "archived_at": "2026-10-04T20:55:30.660Z",
+      "archived_at": "2026-10-04T20:55:30.66Z",
       "reason": "AUTHOR_COLLECTED_INDEPENDENT_LOCAL_QUALIFICATION_NEXT"
     },
     {
@@ -593,14 +588,14 @@
       "ack": {
         "signature": "961f6d3ba014c0c994b1ec67ef1d7ff18883bcc4b4adb82e8117d1d51ebaa52a",
         "semantic_signature": "961f6d3ba014c0c994b1ec67ef1d7ff18883bcc4b4adb82e8117d1d51ebaa52a",
-        "recorded_at": "2026-10-04T21:08:52.950Z",
+        "recorded_at": "2026-10-04T21:08:52.95Z",
         "disposition": "REVIEW_FINDINGS_RETURNED_TO_AUTHOR",
         "review": "routes/resume-batch-20261004/observer52-luna-local-audit/result.json",
         "review_sha256": "5872c4bbaea6e92c95c6c358b0a0b43e69f268589610d85b269336b19093475c",
         "acceptance_scope": "EXECUTED_ASSERTIONS0_NO_PASS_FIX_ENTRY_AND_PURE_INJECTION",
         "mission_complete": false
       },
-      "archived_at": "2026-10-04T21:08:52.950Z",
+      "archived_at": "2026-10-04T21:08:52.95Z",
       "reason": "EXACT_RESULT_COLLECTED_NEXT_DISTINCT_SOURCE_OR_REVIEW_JOB"
     },
     {
@@ -651,6 +646,105 @@
         "mission_complete": false
       },
       "archived_at": "2026-10-04T21:23:28.078Z"
+    },
+    {
+      "brand": "Antigravity",
+      "label": "P52.SELECTION_SHARD_EIGHT_FINDING_SOURCE_REWORK",
+      "intent": "routes/resume-batch-20261004/selection-shard-eight-source-rework/ag.intent.json",
+      "label_zh": "正在修正方案選擇與工作分片的8項問題",
+      "ack": {
+        "signature": "52b18801f9f94407ea5d89a3f2aa170307a68f7ed5687c869355a46a00afb03d",
+        "semantic_signature": "52b18801f9f94407ea5d89a3f2aa170307a68f7ed5687c869355a46a00afb03d",
+        "recorded_at": "2026-10-04T21:30:05.362Z",
+        "disposition": "RESEARCH_BYTES_COLLECTED_DISTINCT_REVIEW_IN_PROGRESS",
+        "review": "routes/resume-batch-20261004/selection-shard-eight-source-rework/ag.result.json",
+        "review_sha256": "e1b16bf43bee8c548bc6f5f3547775cbacbfa678b4f9f608b241ac0677eac430",
+        "acceptance_scope": "FOUR_SOURCE_TEST_BYTES_ONLY_ALL8_AUTHOR_REWORK_CLAIMS_NOT_EXECUTED",
+        "mission_complete": false
+      },
+      "archived_at": "2026-10-04T21:30:05.363Z"
+    },
+    {
+      "brand": "Codex Luna",
+      "label": "HUMAN.DASHBOARD_REPAIRED_ENTRY_INDEPENDENT_LOCAL_EXECUTION",
+      "intent": "routes/resume-batch-20261004/observer-entry-independent-luna/luna.intent.json",
+      "label_zh": "正在檢查看板測試是否真的有執行、能否準確報進度",
+      "ack": {
+        "signature": "fc7fb3b146123fc01eab1494750c90afa3a94f6440b5f4cb490f2351de9f92af",
+        "semantic_signature": "fc7fb3b146123fc01eab1494750c90afa3a94f6440b5f4cb490f2351de9f92af",
+        "recorded_at": "2026-10-04T21:31:42.981Z",
+        "disposition": "REVIEW_FINDINGS_RETURNED_TO_AUTHOR",
+        "review": "routes/resume-batch-20261004/observer-entry-independent-luna/result.json",
+        "review_sha256": "8454043fbf7c9ca52f9495e45558f387afb5bdbe9531eb702375165bdf65a271",
+        "acceptance_scope": "SAFE_SYNTHETIC_ACTUAL15_ASSERTIONS_EXIT1_NOT_PASS",
+        "mission_complete": false
+      },
+      "archived_at": "2026-10-04T21:31:42.983Z"
+    },
+    {
+      "brand": "OpenCode",
+      "label": "P52.SELECTION_SHARD_EIGHT_FINDING_DISTINCT_STATIC_CLOSURE",
+      "intent": "routes/resume-batch-20261004/selection-shard-eight-final-muse-review/oc.intent.json",
+      "ack": {
+        "signature": "5d0d2b4dbab07fe2ad9ba439d52d880a13b1f600e0f298ae44ad05cf377ab1ff",
+        "semantic_signature": "5d0d2b4dbab07fe2ad9ba439d52d880a13b1f600e0f298ae44ad05cf377ab1ff",
+        "recorded_at": "2026-10-04T21:34:13.704Z",
+        "disposition": "ACCEPTED_CLOSED",
+        "review": "routes/resume-batch-20261004/selection-shard-eight-final-muse-review/root-collection.json",
+        "review_sha256": "5cfaa67fb62eedbb74bdc7ab9cbcd012b638c02de5ececdb124d1f03ad655fac",
+        "acceptance_scope": "EXACT_SOURCE_STATIC_ONLY_NO_RUNTIME_LIVE_PARENT_ACCEPTANCE",
+        "mission_complete": false
+      },
+      "archived_at": "2026-10-04T21:34:13.704Z"
+    },
+    {
+      "brand": "Antigravity",
+      "label": "HUMAN.DASHBOARD_FIXTURE15_LEGACY_ACK_AND_LOCAL_REGRESSION_REWORK",
+      "intent": "routes/resume-batch-20261004/observer-fixture15-legacy-ack-rework/ag.intent.json",
+      "label_zh": "正在修正看板把舊回收紀錄認錯的問題，接著測試",
+      "ack": {
+        "signature": "50d193fa5735f2b88592a1d4277e88e5e0af1b2edd5322508b8b83ecc459856c",
+        "semantic_signature": "50d193fa5735f2b88592a1d4277e88e5e0af1b2edd5322508b8b83ecc459856c",
+        "recorded_at": "2026-10-04T21:37:29.006Z",
+        "disposition": "AUTHOR_BYTES_COLLECTED_REVIEW_PERMISSION_PARKED",
+        "review": "routes/resume-batch-20261004/observer-fixture15-legacy-ack-rework/native-command-denial-readback.json",
+        "review_sha256": "78bd31501d3be1994a551fdfb030a645abcf95cc655c54f4d0ad7b0bb37dccdf",
+        "acceptance_scope": "EXACT_COMMAND_DENIAL_PARTIAL_SOURCE_READBACK_NOT_ACCEPTED",
+        "mission_complete": false
+      },
+      "archived_at": "2026-10-04T21:37:29.006Z"
+    },
+    {
+      "brand": "Antigravity",
+      "label": "HUMAN.DASHBOARD_LEGACY_ACK_PARTIAL_SOURCE_RECEIPT_RECOVERY",
+      "intent": "routes/resume-batch-20261004/observer-legacy-ack-partial-receipt/ag.intent.json",
+      "ack": {
+        "signature": "1d6d257296e3fecc93b71cc181974d3f75c842f6179318fab827f6c41a6a2914",
+        "semantic_signature": "1d6d257296e3fecc93b71cc181974d3f75c842f6179318fab827f6c41a6a2914",
+        "recorded_at": "2026-10-04T21:39:47.629Z",
+        "disposition": "RESEARCH_BYTES_COLLECTED_DISTINCT_REVIEW_IN_PROGRESS",
+        "review": "routes/resume-batch-20261004/observer-legacy-ack-partial-receipt/ag.result.json",
+        "review_sha256": "1d1c3d6f28cb3221155f2255af5cceea9a33f3751f64af56c399fe961c74f9dd",
+        "acceptance_scope": "SOURCE_PARTIAL_RECEIPT_ONLY_EXACT_NATIVE_COMMAND_DENIED_NO_TEST_PASS",
+        "mission_complete": false
+      },
+      "archived_at": "2026-10-04T21:39:47.631Z"
+    },
+    {
+      "brand": "OpenCode",
+      "label": "HUMAN.DASHBOARD_CURRENT_LEGACY_ACK_DISTINCT_MUSE_STATIC_REVIEW",
+      "intent": "routes/resume-batch-20261004/observer-legacy-ack-muse-static-review/oc.intent.json",
+      "ack": {
+        "signature": "64196420b369e1adb9bcfa0628a23d7742c74c33db43237f60ba55a7ae6a4241",
+        "semantic_signature": "64196420b369e1adb9bcfa0628a23d7742c74c33db43237f60ba55a7ae6a4241",
+        "recorded_at": "2026-10-04T21:45:13.389Z",
+        "disposition": "AUTHOR_BYTES_COLLECTED_REVIEW_PERMISSION_PARKED",
+        "review": "routes/resume-batch-20261004/observer-legacy-ack-muse-static-review/root-collection.json",
+        "review_sha256": "d69c2c60797d187a5f8957b41f03f81731aa16d2093aaecfa94f9773784abf8e",
+        "acceptance_scope": "STATIC_REVIEW_READ_COMPLETE_NO_NEW_FINDINGS_NOT_PASS_EXECUTION_PERMISSION_PARKED",
+        "mission_complete": false
+      },
+      "archived_at": "2026-10-04T21:45:13.389Z"
     }
   ]
 }

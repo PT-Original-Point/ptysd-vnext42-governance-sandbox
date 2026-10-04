@@ -1,18 +1,18 @@
 {
   "schema": "vnext5.2.progress-manifest.v1",
-  "recorded_at": "2026-10-04T21:24:59.799Z",
-  "sequence": 31,
+  "recorded_at": "2026-10-04T21:46:43.366Z",
+  "sequence": 32,
   "canonical_write": false,
   "execution_owner_allocated": false,
   "scope": "NONCANONICAL_PROGRESS_ONLY",
   "files": [
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/CURRENT.json",
-      "sha256": "sha256:c75673b9381710dd5692923ccb345147e8ee4e67e9a41880dd31fc8735c20f22"
+      "sha256": "sha256:9fc5678ad21f6c21ccb09bdf8a6278fdaa901e25b1bd926eaf289cb406ce5a0b"
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/dispatch.json",
-      "sha256": "sha256:b5b3035aff14a35f5d32369687d6b6b1345633bf939af68387b24633b3a73f5f"
+      "sha256": "sha256:4a3d6bfe3f172cb9113b8794ff3497b09ec4dbb03c07fb4e95c19b0f1b02292a"
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/CONTINUATION-CONTRACT.md",
@@ -36,11 +36,11 @@
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/operation-facts.json",
-      "sha256": "sha256:f1fd9cb684d19ecad036bb84ba203aedfc50400f5d775c11fb42962e68ec55bc"
+      "sha256": "sha256:929ef3d99661dfe450b39dc0435c0e0a2bbe5fd0e45961553d2f77e5a1fe5979"
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/ready-queue.json",
-      "sha256": "sha256:a05ce23caff875228f9f0151f0f8c6eb65fa715e453147eb17e7517874369efd"
+      "sha256": "sha256:c791b4c8b9b86894d1a73d717f88b43235e6736470db45fc4c6a16a329097679"
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/WORK-RESUME-20261004.json",
@@ -52,7 +52,7 @@
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/WORKLOG-20261004.jsonl",
-      "sha256": "sha256:208f84a511bb7c400bc212b5515e1cb1ca6b4a1e7ae8ae4a7d0f1565662b7b11"
+      "sha256": "sha256:1d768ed7faa1ed0b11bbfb2dbe1249f7762ceb00e8e3733713b46baf444e935c"
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/MODEL-LOCK-20261004.json",
@@ -99,16 +99,16 @@
       "sha256": "sha256:2d81f3ee678f1706aa2e250d912cc7fe2ee1c38cede3b688359d3f094e2950a4"
     },
     {
-      "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/resume-batch-20261004/selection-shard-muse-project-only-review/root-collection.json",
-      "sha256": "sha256:3e8ee24ef54f61a38da35ee3e2897f1f0a9e5e08658512f9eb355df0d0b8102e"
+      "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/resume-batch-20261004/selection-shard-eight-final-muse-review/root-collection.json",
+      "sha256": "sha256:5cfaa67fb62eedbb74bdc7ab9cbcd012b638c02de5ececdb124d1f03ad655fac"
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/resume-batch-20261004/CURRENT-HANDOFF.md",
-      "sha256": "sha256:e49980b83d32b298dd2455df7cf0d7311670c5bd9230bceef9b9d51201992ef3"
+      "sha256": "sha256:b86a440bb8fe9c63c86c9a66dc7aca2675657342636451121839c446e07ac6e9"
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/resume-batch-20261004/COMPACT-SUMMARY.json",
-      "sha256": "sha256:2f7d593e25688c7361cdfbaac8f4931649868ac4fbdef2678b8d05606825058a"
+      "sha256": "sha256:f9ef1d872ebeb1d802c7316502abb59056172fe9c4c2fd9b69da2c1be0e726ba"
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/resume-batch-20261004/runtime-final-head-ag-review/result.json",
@@ -119,16 +119,16 @@
       "sha256": "sha256:43d857503ed8cac96ae5634e6d65279f6db42300f518f72c350c3422b61d18a5"
     },
     {
-      "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/resume-batch-20261004/selection-shard-eight-source-rework/ag.intent.json",
-      "sha256": "sha256:0d3483ed5c83eb1fce91b5d710e371f3f8623ea2d7140a1ccbcb27748198eb81"
+      "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/resume-batch-20261004/native-test-authorization-route-discovery/ag.intent.json",
+      "sha256": "sha256:1e1c35e2ecbfd6fda8c8d295761adce675c43ea279d058f60a57c7491d3150e7"
     },
     {
-      "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/resume-batch-20261004/observer-entry-independent-luna/luna.intent.json",
-      "sha256": "sha256:ff922717b5f9243b9fc5c234da0ff6040056bec7bff4188c50675bad0f125830"
+      "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/resume-batch-20261004/observer-fixture15-legacy-ack-rework/native-command-denial-readback.json",
+      "sha256": "sha256:78bd31501d3be1994a551fdfb030a645abcf95cc655c54f4d0ad7b0bb37dccdf"
     },
     {
-      "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/resume-batch-20261004/observer52-luna-local-audit/result.json",
-      "sha256": "sha256:5872c4bbaea6e92c95c6c358b0a0b43e69f268589610d85b269336b19093475c"
+      "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/resume-batch-20261004/observer-entry-independent-luna/result.json",
+      "sha256": "sha256:8454043fbf7c9ca52f9495e45558f387afb5bdbe9531eb702375165bdf65a271"
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/resume-batch-20261004/selection-shard-luna-local-qualification/result-complete.json",
@@ -144,15 +144,15 @@
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/PROGRESS.json",
-      "sha256": "sha256:bebc7ccafbc6735c562d22ba75407b2d252cff3dcf52d42aa3c700661f7dd389"
+      "sha256": "sha256:0c4c49b3cdabb8434f8712a3d84a837c135268dcedfe7ed7951523d0f04cfba4"
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/progress-registry.json",
-      "sha256": "sha256:aeffbfdb775edeced7bc219f3beb12665e536dbad033e3a0011a51b1587649ba"
+      "sha256": "sha256:bb6f21d8a5e0be68f1e4a63b1ec34611fef960a8ada00c8189779989546cae66"
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/progress-ack.json",
-      "sha256": "sha256:a615a154da56308c85c321dc7a901401e50252f74b09dbd331a7a51b203295dc"
+      "sha256": "sha256:fbcb3522c4b297cbf012e51cef6cd7e6c21f0628d4372c4ea4ab2088c8f53a10"
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/VNEXT5.2-施工可見性與即時回收修正契約-20261004.md",
@@ -164,7 +164,7 @@
     },
     {
       "path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/PROGRESS.html",
-      "sha256": "sha256:fcbad5a1aeab08f8ac9325d23d7317258712a25ed91390f699a34ac74da363f0"
+      "sha256": "sha256:3a9b66a307a819ed0434cb1d443d4d7cb07cb3544b83740afa37dec65882e031"
     }
   ]
 }

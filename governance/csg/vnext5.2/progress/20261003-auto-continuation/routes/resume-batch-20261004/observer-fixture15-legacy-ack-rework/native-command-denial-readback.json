@@ -1,0 +1,36 @@
+{
+  "recorded_at": "2026-10-04T21:37:29.006Z",
+  "task": "HUMAN.DASHBOARD_FIXTURE15_LEGACY_ACK_AND_LOCAL_REGRESSION_REWORK",
+  "native_conversation": "4222464d-9ad9-4814-b4b8-75ef33725c14",
+  "actual_model": "gemini-3.8-flash-high",
+  "native_result": "SUCCESS",
+  "denied_actions": 1,
+  "command": "node outputs/HUMAN-DASHBOARD-FINAL7-REWORK/dashboard-regression.fixture.mjs",
+  "step_index": 46,
+  "reason": "NOT_RETURNED_BY_NATIVE_PROVIDER",
+  "source_bindings": [
+    {
+      "path": "routes/progress-observer.mjs",
+      "before_sha256": "44bc205b897616e5d0b2273cbd926ad1396a7f51ef15085eec75eeec6abade4c",
+      "current_sha256": "94be15c855e77376c7d09a4e65b6c76fa951873b529992ca698771003c8d46de"
+    },
+    {
+      "path": "routes/progress-human-view.mjs",
+      "before_sha256": "746a1d11b6126b27ed3b6deb39729e046ea751f8fa79362030639890e21552cd",
+      "current_sha256": "746a1d11b6126b27ed3b6deb39729e046ea751f8fa79362030639890e21552cd"
+    },
+    {
+      "path": "outputs/HUMAN-DASHBOARD-FINAL7-REWORK/dashboard-regression.fixture.mjs",
+      "before_sha256": "b1c7a088680170cfd6cd483a888afdd7b7b707fa6b99489c4c1a9bdf2153fd3f",
+      "current_sha256": "b1c7a088680170cfd6cd483a888afdd7b7b707fa6b99489c4c1a9bdf2153fd3f"
+    }
+  ],
+  "source_changes": [
+    "routes/progress-observer.mjs"
+  ],
+  "own_source_receipt": "ABSENT",
+  "test_acceptance": "PARKED_NOT_PASS",
+  "earlier_actual_execution": "15ASSERTIONS_EXIT1_BEFORE_CURRENT_SOURCE_REPAIR_NOT_PORTABLE",
+  "canonical_write": false,
+  "mission_complete": false
+}

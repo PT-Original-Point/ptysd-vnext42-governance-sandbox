@@ -1,7 +1,7 @@
 {
   "schema": "vnext5.2.readonly-progress.v2",
-  "observed_at": "2026-10-04T21:24:32.736Z",
-  "revision": "ee8956fd29c8aecc870322e76255af2b461805fe003501dd2b284c1a0437bf1b",
+  "observed_at": "2026-10-04T21:46:33.136Z",
+  "revision": "530c96d9f85ddf0197c27f4f6db36cb11e3436791eb28182cb915a5e74fe4456",
   "delta": false,
   "observer_pid": 35652,
   "observer_mode": "WATCH",
@@ -30,48 +30,26 @@
   "root_goal": "paused",
   "tasks": [
     {
-      "id": "HUMAN.DASHBOARD_REPAIRED_ENTRY_INDEPENDENT_LOCAL_EXECUTION",
-      "brand": "Codex Luna",
-      "requested_model": "gpt-6-luna",
-      "actual_model": "UNVERIFIED_NATIVE_CONTEXT_UNEXPOSED",
-      "native_outcome": null,
-      "denied_action_count": 0,
-      "session": null,
-      "status": "RUNNING_OUTCOME_PENDING",
-      "native_status": "NATIVE_RUNNING_INDEPENDENT_REVIEW",
-      "submitted_at": "2026-10-04T21:23:28.078Z",
-      "last_native_activity": null,
-      "closed_at": null,
-      "collected": false,
-      "disposition": null,
-      "cost": null,
-      "intent": "routes/resume-batch-20261004/observer-entry-independent-luna/luna.intent.json",
-      "result_path": "routes/resume-batch-20261004/observer-entry-independent-luna/result.json",
-      "result_sha256": null,
-      "signature": "532899a73d6a2cf1bc1bea1f47865902b4078bccb6d8592479577e0a2c6a6993",
-      "legacy_signature": "147ad52bbb23f242cfd58a0eb02332879c7937a984f99963c2780a808578a342"
-    },
-    {
-      "id": "P52.SELECTION_SHARD_EIGHT_FINDING_SOURCE_REWORK",
+      "id": "P52.NATIVE_TEST_AUTHORIZATION_ROUTE_DOCUMENTATION_DISCOVERY",
       "brand": "Antigravity",
       "requested_model": "gemini-3.8-flash-high",
       "actual_model": "gemini-3.8-flash-high",
       "native_outcome": null,
-      "denied_action_count": 0,
-      "session": "74484e91-1a2f-4770-928e-7269680283b3",
-      "status": "UNKNOWN_READBACK_REQUIRED",
-      "native_status": "SUBMITTED_OUTCOME_PENDING",
-      "submitted_at": "2026-10-04T21:22:08.242Z",
-      "last_native_activity": "2026-10-04T21:22:36.634Z",
-      "closed_at": null,
+      "denied_action_count": 1,
+      "session": "d4f08883-f67e-4c08-a467-97129f97aeb0",
+      "status": "PERMISSION_PARKED",
+      "native_status": "CLOSED_REVIEW_REQUIRED",
+      "submitted_at": "2026-10-04T21:45:13.394Z",
+      "last_native_activity": "2026-10-04T21:45:45.646Z",
+      "closed_at": "2026-10-04T21:45:46.507Z",
       "collected": false,
       "disposition": null,
       "cost": null,
-      "intent": "routes/resume-batch-20261004/selection-shard-eight-source-rework/ag.intent.json",
-      "result_path": "routes/resume-batch-20261004/selection-shard-eight-source-rework/ag.result.json",
+      "intent": "routes/resume-batch-20261004/native-test-authorization-route-discovery/ag.intent.json",
+      "result_path": "routes/resume-batch-20261004/native-test-authorization-route-discovery/ag.result.json",
       "result_sha256": null,
-      "signature": "5305b7866bd9662c97cfdfa0a7abafd8b8812f0a93e2ff488898db5417728e4a",
-      "legacy_signature": "7352d5436bc61a4d1c5fccc21629ac15601585ae64a651dda41d62484d2053db"
+      "signature": "0988a6b883faa795848f06624e30025149a8c5da9e719e584e3deec88e2728c4",
+      "legacy_signature": "3ea668dea981e6b72dcc5f8eb85a504bd2ff2a7d46c00d71c7ac129faa6d0aa6"
     },
     {
       "id": "P52.SELECTION_CONTRACT_ELEVEN_FINDINGS_REWORK",
@@ -569,17 +547,11 @@
       "legacy_signature": "00650b24174f7157f242c6d1a2b6a5a66c432b440e435190bc3e1dc793954bd2"
     }
   ],
-  "alerts": [
-    {
-      "id": "P52.SELECTION_SHARD_EIGHT_FINDING_SOURCE_REWORK",
-      "reason": "UNKNOWN_READBACK_REQUIRED",
-      "intent": "routes/resume-batch-20261004/selection-shard-eight-source-rework/ag.intent.json"
-    }
+  "alerts": [],
+  "uncollected": [
+    "routes/resume-batch-20261004/native-test-authorization-route-discovery/ag.intent.json"
   ],
-  "uncollected": [],
-  "running": [
-    "routes/resume-batch-20261004/observer-entry-independent-luna/luna.intent.json"
-  ],
+  "running": [],
   "automatic_root_event_trigger": "UNAVAILABLE_DESKTOP_NATIVE_TRIGGER_NOT_CLAIMED",
   "scheduled_recovery_minutes": 30,
   "acceptance": "DISPLAY_ONLY_NOT_TASK_ACCEPTANCE",

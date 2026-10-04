@@ -653,6 +653,66 @@
       "review_sha256": "7df769396cee09d11ef8a8a9af73ffe2ebd41d69ff0a64d71142c6e2252163c6",
       "acceptance_scope": "FIXTURE_ENTRY_SOURCE_UNTESTED_NEW_DISTINCT_LUNA_SAFETY_AND_EXECUTION_RUNNING",
       "mission_complete": false
+    },
+    "routes/resume-batch-20261004/selection-shard-eight-source-rework/ag.intent.json": {
+      "signature": "52b18801f9f94407ea5d89a3f2aa170307a68f7ed5687c869355a46a00afb03d",
+      "semantic_signature": "52b18801f9f94407ea5d89a3f2aa170307a68f7ed5687c869355a46a00afb03d",
+      "recorded_at": "2026-10-04T21:30:05.362Z",
+      "disposition": "RESEARCH_BYTES_COLLECTED_DISTINCT_REVIEW_IN_PROGRESS",
+      "review": "routes/resume-batch-20261004/selection-shard-eight-source-rework/ag.result.json",
+      "review_sha256": "e1b16bf43bee8c548bc6f5f3547775cbacbfa678b4f9f608b241ac0677eac430",
+      "acceptance_scope": "FOUR_SOURCE_TEST_BYTES_ONLY_ALL8_AUTHOR_REWORK_CLAIMS_NOT_EXECUTED",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/observer-entry-independent-luna/luna.intent.json": {
+      "signature": "fc7fb3b146123fc01eab1494750c90afa3a94f6440b5f4cb490f2351de9f92af",
+      "semantic_signature": "fc7fb3b146123fc01eab1494750c90afa3a94f6440b5f4cb490f2351de9f92af",
+      "recorded_at": "2026-10-04T21:31:42.981Z",
+      "disposition": "REVIEW_FINDINGS_RETURNED_TO_AUTHOR",
+      "review": "routes/resume-batch-20261004/observer-entry-independent-luna/result.json",
+      "review_sha256": "8454043fbf7c9ca52f9495e45558f387afb5bdbe9531eb702375165bdf65a271",
+      "acceptance_scope": "SAFE_SYNTHETIC_ACTUAL15_ASSERTIONS_EXIT1_NOT_PASS",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/selection-shard-eight-final-muse-review/oc.intent.json": {
+      "signature": "5d0d2b4dbab07fe2ad9ba439d52d880a13b1f600e0f298ae44ad05cf377ab1ff",
+      "semantic_signature": "5d0d2b4dbab07fe2ad9ba439d52d880a13b1f600e0f298ae44ad05cf377ab1ff",
+      "recorded_at": "2026-10-04T21:34:13.704Z",
+      "disposition": "ACCEPTED_CLOSED",
+      "review": "routes/resume-batch-20261004/selection-shard-eight-final-muse-review/root-collection.json",
+      "review_sha256": "5cfaa67fb62eedbb74bdc7ab9cbcd012b638c02de5ececdb124d1f03ad655fac",
+      "acceptance_scope": "EXACT_SOURCE_STATIC_ONLY_NO_RUNTIME_LIVE_PARENT_ACCEPTANCE",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/observer-fixture15-legacy-ack-rework/ag.intent.json": {
+      "signature": "50d193fa5735f2b88592a1d4277e88e5e0af1b2edd5322508b8b83ecc459856c",
+      "semantic_signature": "50d193fa5735f2b88592a1d4277e88e5e0af1b2edd5322508b8b83ecc459856c",
+      "recorded_at": "2026-10-04T21:37:29.006Z",
+      "disposition": "AUTHOR_BYTES_COLLECTED_REVIEW_PERMISSION_PARKED",
+      "review": "routes/resume-batch-20261004/observer-fixture15-legacy-ack-rework/native-command-denial-readback.json",
+      "review_sha256": "78bd31501d3be1994a551fdfb030a645abcf95cc655c54f4d0ad7b0bb37dccdf",
+      "acceptance_scope": "EXACT_COMMAND_DENIAL_PARTIAL_SOURCE_READBACK_NOT_ACCEPTED",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/observer-legacy-ack-partial-receipt/ag.intent.json": {
+      "signature": "1d6d257296e3fecc93b71cc181974d3f75c842f6179318fab827f6c41a6a2914",
+      "semantic_signature": "1d6d257296e3fecc93b71cc181974d3f75c842f6179318fab827f6c41a6a2914",
+      "recorded_at": "2026-10-04T21:39:47.629Z",
+      "disposition": "RESEARCH_BYTES_COLLECTED_DISTINCT_REVIEW_IN_PROGRESS",
+      "review": "routes/resume-batch-20261004/observer-legacy-ack-partial-receipt/ag.result.json",
+      "review_sha256": "1d1c3d6f28cb3221155f2255af5cceea9a33f3751f64af56c399fe961c74f9dd",
+      "acceptance_scope": "SOURCE_PARTIAL_RECEIPT_ONLY_EXACT_NATIVE_COMMAND_DENIED_NO_TEST_PASS",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/observer-legacy-ack-muse-static-review/oc.intent.json": {
+      "signature": "64196420b369e1adb9bcfa0628a23d7742c74c33db43237f60ba55a7ae6a4241",
+      "semantic_signature": "64196420b369e1adb9bcfa0628a23d7742c74c33db43237f60ba55a7ae6a4241",
+      "recorded_at": "2026-10-04T21:45:13.389Z",
+      "disposition": "AUTHOR_BYTES_COLLECTED_REVIEW_PERMISSION_PARKED",
+      "review": "routes/resume-batch-20261004/observer-legacy-ack-muse-static-review/root-collection.json",
+      "review_sha256": "d69c2c60797d187a5f8957b41f03f81731aa16d2093aaecfa94f9773784abf8e",
+      "acceptance_scope": "STATIC_REVIEW_READ_COMPLETE_NO_NEW_FINDINGS_NOT_PASS_EXECUTION_PERMISSION_PARKED",
+      "mission_complete": false
     }
   }
 }
