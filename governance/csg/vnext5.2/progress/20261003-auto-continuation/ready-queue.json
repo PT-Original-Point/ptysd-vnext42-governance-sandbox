@@ -3,7 +3,7 @@
   "mode": "SHADOW_PLAN_ONLY",
   "facts_schema": "vnext5.2.operation-facts.v1",
   "catalog_sha256": "sha256:ee769422b5d587e771d09c4e95af1af9a3a7cf0a7c0e493d86071e2df57304de",
-  "facts_sha256": "sha256:8170a3f59dfceb69849dc163e344ebd65e891558e7ea81910fd9081876b9e307",
+  "facts_sha256": "sha256:e873102584fb7cebd16d944f84208ffe6c7cd86752f47bd2a2411f02e050e7d0",
   "facts_fresh": true,
   "input_completeness": "COMPLETE",
   "input_reasons": [],
@@ -189,7 +189,7 @@
     },
     {
       "id": "C1.PREPARE",
-      "state": "WAITING_REVIEW",
+      "state": "WAITING_EXTERNAL",
       "priority": 10,
       "mandatory": true,
       "effect_class": "CANDIDATE_SOURCE",
@@ -199,7 +199,8 @@
       "completion_dependencies": [],
       "start_blockers": [],
       "completion_blockers": [],
-      "reason": "PROPOSAL_CONCEPTS_REVIEWED_ACTUAL_CONTROL_PACKET_REMAINS_READY_CONSTRUCTION_WORK",
+      "owner_authority": "UNKNOWN",
+      "reason": "EXACT_NATIVE_ACTION_DENIED_NO_ALTERNATIVE_ACCESS",
       "execution_scope": "SHADOW_PLAN_ONLY",
       "effects": [],
       "plan_only": true
@@ -312,7 +313,7 @@
       "start_blockers": [],
       "completion_blockers": [],
       "owner_authority": "UNKNOWN",
-      "reason": "NEW_EXACT_SOURCE_REPAIR_AWAITS_DISTINCT_AUTHOR_REVIEW",
+      "reason": "NEW_SOURCE_CLAIM_NEEDS_INDEPENDENT_EXACT_REVIEW",
       "execution_scope": "SHADOW_PLAN_ONLY",
       "effects": [],
       "plan_only": true
@@ -736,7 +737,7 @@
     },
     {
       "id": "D02.SOURCE",
-      "state": "DONE",
+      "state": "WAITING_REVIEW",
       "priority": 3,
       "mandatory": true,
       "effect_class": "CANDIDATE_SOURCE",
@@ -747,7 +748,8 @@
       "completion_dependencies": [],
       "start_blockers": [],
       "completion_blockers": [],
-      "reason": "SOURCE_ONLY_ALL_KNOWN_SUPERVISOR_FINDINGS_CLOSED_140_LOCAL_PASS_D02_EXECUTOR_AND_LIVE_PHASES_UNACCEPTED",
+      "owner_authority": "UNKNOWN",
+      "reason": "NEW_SOURCE_CLAIM_NEEDS_INDEPENDENT_EXACT_REVIEW",
       "execution_scope": "SHADOW_PLAN_ONLY",
       "effects": [],
       "plan_only": true
@@ -762,7 +764,9 @@
         "D02.SOURCE"
       ],
       "completion_dependencies": [],
-      "start_blockers": [],
+      "start_blockers": [
+        "D02.SOURCE"
+      ],
       "completion_blockers": [],
       "reason": "ACTUAL_READONLY_FRESH_CANONICAL_FULL59_PLANNED_READY_JOURNAL_READBACK_NO_DISPATCH_NOT_LIVE_INSTALL",
       "execution_scope": "SHADOW_PLAN_ONLY",
@@ -779,7 +783,9 @@
         "D02.SOURCE"
       ],
       "completion_dependencies": [],
-      "start_blockers": [],
+      "start_blockers": [
+        "D02.SOURCE"
+      ],
       "completion_blockers": [],
       "reason": "ACTUAL_SEPARATE_PROCESS_EXACT_JOURNAL_SEQUENCE_DIGEST_RESTORE_PLUS_PRIOR140_INTEGRITY_REGRESSION_ONLY_NOT_OS_REBOOT",
       "execution_scope": "SHADOW_PLAN_ONLY",
@@ -801,6 +807,7 @@
         "D02.LOCAL_RESTORE"
       ],
       "start_blockers": [
+        "D02.SOURCE",
         "F01.ISOLATED_EXECUTION"
       ],
       "completion_blockers": [],
@@ -819,7 +826,9 @@
         "D02.SOURCE"
       ],
       "completion_dependencies": [],
-      "start_blockers": [],
+      "start_blockers": [
+        "D02.SOURCE"
+      ],
       "completion_blockers": [],
       "reason": "SOURCE_PACKET_AND20_EXACT_PAYLOAD_LOCAL_STAGE_ONLY_HOST_ACL_INSTALL_CUTOVER_SURVIVAL_NOT_ACCEPTED",
       "execution_scope": "SHADOW_PLAN_ONLY",
@@ -882,7 +891,9 @@
         "D02.SOURCE"
       ],
       "completion_dependencies": [],
-      "start_blockers": [],
+      "start_blockers": [
+        "D02.SOURCE"
+      ],
       "completion_blockers": [],
       "reason": "EXACT_TWO_FILE_SOURCE_FIVE_FINDINGS_CLOSED_ROOT198_PASS_NATIVE_N2_NOT_ACCEPTED",
       "execution_scope": "SHADOW_PLAN_ONLY",
@@ -1074,7 +1085,7 @@
     },
     {
       "id": "P52.OPENCODE_SOURCE",
-      "state": "RUNNING",
+      "state": "WAITING_EXTERNAL",
       "priority": 35,
       "mandatory": true,
       "effect_class": "CANDIDATE_SOURCE",
@@ -1085,7 +1096,7 @@
       "start_blockers": [],
       "completion_blockers": [],
       "owner_authority": "UNKNOWN",
-      "reason": "ACTUAL_NATIVE_SOURCE_REPAIR_IN_FLIGHT_NO_DUPLICATE_DISPATCH",
+      "reason": "EXACT_NATIVE_ACTION_DENIED_NO_ALTERNATIVE_ACCESS",
       "execution_scope": "SHADOW_PLAN_ONLY",
       "effects": [],
       "plan_only": true
@@ -1181,7 +1192,8 @@
       ],
       "completion_dependencies": [],
       "start_blockers": [
-        "P52.SELECTION_CONTRACT"
+        "P52.SELECTION_CONTRACT",
+        "D02.SOURCE"
       ],
       "completion_blockers": [],
       "reason": "START_DEPENDENCIES_NOT_ACCEPTED",
@@ -1295,5 +1307,7 @@
     "host_mutation": false,
     "canonical_write": false,
     "local_work_dispatch": false
-  }
+  },
+  "qualified_planner_observed_global_decision": "GLOBAL_EXHAUSTED",
+  "root_arbitration": "RECOVERABLE_EXACT_REVIEW_WORK_EXISTS_PENDING_PLANNER_SOURCE_FIX_QUALIFICATION"
 }

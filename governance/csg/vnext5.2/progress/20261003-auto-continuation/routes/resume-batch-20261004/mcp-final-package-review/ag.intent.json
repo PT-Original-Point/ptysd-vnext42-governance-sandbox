@@ -1,0 +1,46 @@
+{
+  "task": "MCP.FINAL_PACKAGE_EXACT_SOURCE_REVIEW",
+  "status": "CLOSED_REVIEW_REQUIRED",
+  "model": "gemini-3.8-flash-high",
+  "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-MCP-READSYNC-AG-WORK-20261004",
+  "write_set": [],
+  "source_bindings": [
+    {
+      "path": "tools/csg/factory-mcp/src/shared-context.mjs",
+      "sha256": "4209c2743f4fa85f5d9ac195a1f756ce45ea6e59cb8f3032f7950d9555860f37"
+    },
+    {
+      "path": "tools/csg/factory-mcp/src/shared-context-transport.mjs",
+      "sha256": "d8b1381785f636605ca8459f18f93ad24bf86dfb97d5b521cd6e329bd34c1ea7"
+    },
+    {
+      "path": "tools/csg/factory-mcp/tests/shared-context-transport.test.mjs",
+      "sha256": "172385e76f7df8d466be22559115b98b5f22c32311bcff99f094424c07f7c821"
+    },
+    {
+      "path": "tools/csg/factory-mcp/windows/install-broker.ps1",
+      "sha256": "16817392772a87bf26f581af80b731730fdce9395a67b62b9eca64b0bbfb8eb0"
+    },
+    {
+      "path": "tools/csg/factory-mcp/windows/repair-manifest.json",
+      "sha256": "7c661f97592f37b46e3df4d316830c9ff094b9fe987ab579b8dc37d63850f701"
+    },
+    {
+      "path": "tools/csg/factory-mcp/tests/shared-context-packaging.test.mjs",
+      "sha256": "e9f594c2c70a2eb0b9cece2ce91a2f544d2036a797e0233f0051c21a1e7accac"
+    }
+  ],
+  "created_at": "2026-10-04T05:10:21.444Z",
+  "builder_session": "ses_efac095ecffeJxEksi3h3Tx1Sr",
+  "canonical_write": false,
+  "production": false,
+  "paid_fallback": false,
+  "pid": 53880,
+  "conversation_id": "b73c7b8b-cd87-490d-992e-5ae9318cd443",
+  "actual_model": "gemini-3.8-flash-high",
+  "result_status": "SUCCESS",
+  "denied_action_count": 0,
+  "exit_code": 0,
+  "closed_at": "2026-10-04T05:12:02.701Z",
+  "result_response": "```json\n{\n  \"verdict\": \"ACCEPTED\",\n  \"scope\": \"FINAL6_MCP_CANDIDATE_READONLY_REVIEW\",\n  \"author\": \"Muse/xhigh ses_efac095ecffeJxEksi3h3Tx1Sr\",\n  \"actual_reviewer_model\": \"Gemini 3.8 Flash (High)\",\n  \"legacy_regression\": \"PARKED_PERMISSION_DENIED\",\n  \"live_acceptance\": \"NOT_ACCEPTED\",\n  \"audit_checks\": {\n    \"routes_and_bounds\": \"PASS: parseApprovedRoute strictly bounds routes (<=2048 chars), branches (<=256 chars, no traversal), paths (no leading slash, backslashes, or dot segments), and OIDs (lowercase 40hex). Reads bounded to 1MB; diagnostics bounded to 4KB streaming without retaining full error body.\",\n    \"raw_buffer_preservation\": \"PASS: nativeGitGet specifies encoding: null, preserving raw Buffer bytes, exact binary payload, and trailing newlines from cat-file before gitBlobOid calculation and base64 serialization.\",\n    \"deadline_and_abort\": \"PASS: MAX_READ_MS (20s) and DEFAULT_TIMEOUT_MS (8s) enforced across httpGet and nativeGitGet via AbortController, cleanly throwing SHARED_READ_DEADLINE_EXCEEDED on timeout or outer signal abort.\",\n    \"temp_sibling_containment\": \"PASS: validateGitCacheDir enforces strict lexical containment within tmpdir using boundary path separators and Windows case normalization (normCmp !== baseCmp && !normCmp.startsWith(prefix)), rejecting sibling directory escape attempts.\",\n    \"mirror_and_reparse_config\": \"PASS: resolveRepoMirror validates containment; nativeGitGet fails closed with GIT_TRANSPORT_UNAVAILABLE when mirrorDir is unconfigured in live execution. Reparse points rejected across install and repair staging.\",\n    \"public_get_delegation\": \"PASS: publicGet strictly performs parseApprovedRoute validation and directly delegates execution to httpGet without duplicate logic.\",\n    \"rate_limit_classification\": \"PASS: Status 429 mapped to GITHUB_READ_429 (isReal429 = true); status 403 with x-ratelimit-remaining: 0 or diagnostic rate limit tokens mapped to GITHUB_READ_429_BODY (isBody429 = true). Both park HTTP transport and fall back to nativeGitGet.\",\n    \"repo_and_host_bounding\": \"PASS: Restricted to exactly 2 approved repositories (PT-Original-Point/ptysd-vnext42-governance-sandbox, t14210184/hanyao). API route target hardcoded to https://api.github.com/repos/. install-broker.ps1 enforces HostId -cne env:COMPUTERNAME rejection.\",\n    \"transitive_module_closure_and_manifest\": \"PASS: install-broker.ps1 required array includes both src\\\\shared-context.mjs and src\\\\shared-context-transport.mjs. repair-manifest.json accurately reflects updated SHA256 hashes for both modules while preserving untouched digests.\"\n  },\n  \"findings\": [],\n  \"tests_observed\": {\n    \"command\": \"node --test tools/csg/factory-mcp/tests/shared-context-transport.test.mjs tools/csg/factory-mcp/tests/shared-context-packaging.test.mjs\",\n    \"pure_fixtures\": true,\n    \"suites\": 0,\n    \"pass\": 27,\n    \"fail\": 0,\n    \"cancelled\": 0,\n    \"skipped\": 0,\n    \"duration_ms\": 152.77\n  },\n  \"exact_source_binding\": [\n    {\n      \"path\": \"tools/csg/factory-mcp/src/shared-context.mjs\",\n      \"sha256\": \"4209c2743f4fa85f5d9ac195a1f756ce45ea6e59cb8f3032f7950d9555860f37\"\n    },\n    {\n      \"path\": \"tools/csg/factory-mcp/src/shared-context-transport.mjs\",\n      \"sha256\": \"d8b1381785f636605ca8459f18f93ad24bf86dfb97d5b521cd6e329bd34c1ea7\"\n    },\n    {\n      \"path\": \"tools/csg/factory-mcp/tests/shared-context-transport.test.mjs\",\n      \"sha256\": \"172385e76f7df8d466be22559115b98b5f22c32311bcff99f094424c07f7c821\"\n    },\n    {\n      \"path\": \"tools/csg/factory-mcp/windows/install-broker.ps1\",\n      \"sha256\": \"16817392772a87bf26f581af80b731730fdce9395a67b62b9eca64b0bbfb8eb0\"\n    },\n    {\n      \"path\": \"tools/csg/factory-mcp/windows/repair-manifest.json\",\n      \"sha256\": \"7c661f97592f37b46e3df4d316830c9ff094b9fe987ab579b8dc37d63850f701\"\n    },\n    {\n      \"path\": \"tools/csg/factory-mcp/tests/shared-context-packaging.test.mjs\",\n      \"sha256\": \"e9f594c2c70a2eb0b9cece2ce91a2f544d2036a797e0233f0051c21a1e7accac\"\n    }\n  ]\n}\n```\n"
+}

@@ -1,0 +1,135 @@
+{
+  "schema": "vnext5.2.compact-reentry.v1",
+  "observed_at": "2026-10-04T05:36:05.113Z",
+  "goal_actual": "paused",
+  "mission": "ACTIVE_NOT_COMPLETE",
+  "quota_last_actual": {
+    "five_hour_used_percent": 61,
+    "weekly_used_percent": 41,
+    "scope": "SHARED_ACCOUNT_NOT_PER_SESSION"
+  },
+  "worker_roles": "ROOT_AUDIT_ONLY_AG_AND_MUSE_SOURCE_LUNA_ROUTINE_ZERO",
+  "tasks": [
+    {
+      "id": "MCP.FINAL_PACKAGE_EXACT_SOURCE_REVIEW",
+      "status": "CLOSED_REVIEW_REQUIRED",
+      "closed_at": "2026-10-04T05:12:02.701Z",
+      "actual_model": "gemini-3.8-flash-high",
+      "requested_model": "gemini-3.8-flash-high",
+      "session_id": null,
+      "conversation_id": "b73c7b8b-cd87-490d-992e-5ae9318cd443",
+      "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-MCP-READSYNC-AG-WORK-20261004",
+      "write_set": [],
+      "denied_actions": 0,
+      "native_outcome": null,
+      "cost": null,
+      "result_source": "routes/resume-batch-20261004/mcp-final-package-review/ag.intent.json"
+    },
+    {
+      "id": "D02.EXACT_REVIEW_ABSOLUTE_BINDING_CORRECTION",
+      "status": "CLOSED_REVIEW_REQUIRED",
+      "closed_at": "2026-10-04T05:20:12.545Z",
+      "actual_model": {
+        "id": "muse-spark-1.3-contributor-free",
+        "providerID": "opencode",
+        "variant": "xhigh"
+      },
+      "requested_model": "opencode/muse-spark-1.3-contributor-free",
+      "session_id": "ses_efaafa100ffesOyWLSk94Y91ys",
+      "conversation_id": null,
+      "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-QUEUE-CLOSURE-AG-WORK-20261004",
+      "write_set": [],
+      "denied_actions": null,
+      "native_outcome": "succeeded",
+      "cost": 0,
+      "result_source": "routes/resume-batch-20261004/queue-closure-review-corrected/oc.intent.json"
+    },
+    {
+      "id": "P52.OPENCODE_ALL_FIELDS_CLOSURE_REVIEW",
+      "status": "PARKED_NATIVE_PERMISSION_DENIED",
+      "closed_at": "2026-10-04T04:43:14.480Z",
+      "actual_model": "gemini-3.8-flash-high",
+      "requested_model": "gemini-3.8-flash-high",
+      "session_id": null,
+      "conversation_id": "ba9e6289-a37e-4660-91dd-290fc1635395",
+      "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-OPENCODE-SOURCE-WORK-20261004",
+      "write_set": [],
+      "denied_actions": 1,
+      "native_outcome": null,
+      "cost": null,
+      "result_source": "routes/resume-batch-20261004/adapter-closure-review/ag.intent.json"
+    },
+    {
+      "id": "C1.PREPARE_NONSELECTING_PACKET",
+      "status": "PARKED_NATIVE_PERMISSION_DENIED",
+      "closed_at": "2026-10-04T04:41:31.337Z",
+      "actual_model": "gemini-3.8-flash-high",
+      "requested_model": "gemini-3.8-flash-high",
+      "session_id": null,
+      "conversation_id": "f0dcb678-aec3-4675-b30e-dcc5449c592e",
+      "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-C1-PREPARE-AG-WORK-20261004",
+      "write_set": [
+        "outputs/C1-PREPARE/attempt2/**"
+      ],
+      "denied_actions": 1,
+      "native_outcome": null,
+      "cost": null,
+      "result_source": "routes/resume-batch-20261004/c1-control-packet/ag.intent.json"
+    }
+  ],
+  "review_recovery_ids": [
+    "M01.SOURCE",
+    "D02.SOURCE",
+    "P52.INTAKE_SOURCE"
+  ],
+  "next_actions": "routes/resume-batch-20261004/NEXT-ACTIONS.md",
+  "counts": {
+    "operations": 59,
+    "acceptance": 64,
+    "PF": 30,
+    "PRG": 28
+  },
+  "columns": {
+    "construction": {
+      "spec": "VNEXT5.2",
+      "contract": "V52-UNION59-20261003",
+      "operations": 59,
+      "mission_complete": false
+    },
+    "canonical": {
+      "spec": "VNEXT5.1-R2",
+      "head": "d39486601d851e31256852a24e9c1393b9046fe5",
+      "checkpoint": 200,
+      "lifecycle": "ACTIVE"
+    },
+    "installed": {
+      "version": "UNKNOWN",
+      "live_mcp": "NOT_ACCEPTED",
+      "live_ads": "NOT_ACCEPTED",
+      "survival": "NOT_ACCEPTED",
+      "readback": "LOCAL_PROTECTED_PACKAGE_ACCESS_DENIED_NOT_VERSION_EVIDENCE"
+    }
+  },
+  "source_tests": {
+    "opencode": {
+      "target": 30,
+      "full": 228,
+      "class": "AUTHOR_LOCAL_CLAIM_FINAL_REVIEW_PERMISSION_PARKED"
+    },
+    "queue": {
+      "target": 9,
+      "full": 207,
+      "class": "AUTHOR_LOCAL_CLAIM_REVIEW_PENDING"
+    },
+    "mcp": {
+      "target": 27,
+      "class": "EXACT6_DIFF_BYTES_MATCH_DISTINCT_AUTHOR_SOURCE_REVIEW_PASS",
+      "legacy": "PARKED_PERMISSION_DENIED",
+      "full_candidate": "NOT_ACCEPTED",
+      "live": "NOT_ACCEPTED"
+    }
+  },
+  "canonical_write": false,
+  "host_dispatch": false,
+  "production": false
+}

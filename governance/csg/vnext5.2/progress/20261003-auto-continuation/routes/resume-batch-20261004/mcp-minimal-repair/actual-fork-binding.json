@@ -1,0 +1,11 @@
+{
+  "schema": "vnext5.2.actual-native-fork-binding.v1",
+  "observed_at": "2026-10-04T04:51:32.9042657Z",
+  "actual_session_id": "ses_efac095ecffeJxEksi3h3Tx1Sr",
+  "parent_session_id": "ses_efac720d5ffeZm6dmasfWZW2Uf",
+  "source": "ACTUAL_NATIVE_JSONL_SESSIONID",
+  "completion": "NOT_EVALUATED_UNTIL_ACTUAL_FORK_EXPORT",
+  "parent_export_verdict": "HISTORICAL_REVIEW_NOT_CURRENT_SOURCE_TURN",
+  "readback_required": true,
+  "duplicate_dispatch": false
+}

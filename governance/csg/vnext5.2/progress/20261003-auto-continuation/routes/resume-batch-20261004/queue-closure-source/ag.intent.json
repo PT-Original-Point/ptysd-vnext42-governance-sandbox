@@ -1,0 +1,24 @@
+{
+  "task": "D02.RECOVERABLE_REVIEW_STOP_RULE_REPAIR",
+  "status": "CLOSED_REVIEW_REQUIRED",
+  "model": "gemini-3.8-flash-high",
+  "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-QUEUE-CLOSURE-AG-WORK-20261004",
+  "write_set": [
+    "tools/csg/v51-supervisor/lib/operation-planner.mjs",
+    "tools/csg/v51-supervisor/tests/queue-closure-regression.test.mjs",
+    "outputs/QUEUE-CLOSURE/**"
+  ],
+  "created_at": "2026-10-04T04:47:04.984Z",
+  "inherited_verified_count": 42,
+  "canonical_write": false,
+  "production": false,
+  "paid_fallback": false,
+  "pid": 66192,
+  "conversation_id": "45ac5630-c062-4328-a825-70218e9e2c5d",
+  "actual_model": "gemini-3.8-flash-high",
+  "result_status": "SUCCESS",
+  "denied_action_count": 0,
+  "exit_code": 0,
+  "closed_at": "2026-10-04T04:50:52.145Z",
+  "result_response": "### Queue Closure Defect Repair & Regression Verification\n\nRepaired minimal existing planner in [`evaluateOperationReadiness`](file:///C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-QUEUE-CLOSURE-AG-WORK-20261004/tools/csg/v51-supervisor/lib/operation-planner.mjs#L200-L401) ([`lib/operation-planner.mjs`](file:///C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-QUEUE-CLOSURE-AG-WORK-20261004/tools/csg/v51-supervisor/lib/operation-planner.mjs)).\n\n#### 1. Defect Fix Summary (L276..287)\n- **Distinguish No-Ready vs Exhaustion**: `WAITING_REVIEW`, paused milestones/Goal, and recoverable units (retry budget remaining with unconfirmed effect, or durable recovery evidence) no longer falsely trigger `GLOBAL_EXHAUSTED`.\n- **Readback First**: Retry with unconfirmed effect (`UNKNOWN`) fails closed against dispatch-readiness (not in `ready_ids`), but remains tracked in `recoverable_ids` with `global_decision = 'WORK_IN_PROGRESS'`.\n- **Durable Recovery vs Unbounded Wait**: [`hasDurableEvidence`](file:///C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-QUEUE-CLOSURE-AG-WORK-20261004/tools/csg/v51-supervisor/lib/operation-planner.mjs#L50-L56) verifies explicit receipts; genuinely unavailable routes without recovery evidence remain parked.\n- **Added Output Fields**: Returns `review_ids`, `review_reasons`, `recoverable_ids`, `recoverable_reasons`, and per-unit flags `review_pending` / `recoverable` without mutating the 59-catalog.\n\n#### 2. Source Paths & Artifacts\n- Source: [`tools/csg/v51-supervisor/lib/operation-planner.mjs`](file:///C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-QUEUE-CLOSURE-AG-WORK-20261004/tools/csg/v51-supervisor/lib/operation-planner.mjs)\n- Regression Test: [`tools/csg/v51-supervisor/tests/queue-closure-regression.test.mjs`](file:///C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-QUEUE-CLOSURE-AG-WORK-20261004/tools/csg/v51-supervisor/tests/queue-closure-regression.test.mjs)\n- Plan: [`tools/csg/v51-supervisor/operation-plan.union-59.json`](file:///C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-QUEUE-CLOSURE-AG-WORK-20261004/tools/csg/v51-supervisor/operation-plan.union-59.json)\n- Prior Tests: [`tools/csg/v51-supervisor/tests/operation-planner.test.mjs`](file:///C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-QUEUE-CLOSURE-AG-WORK-20261004/tools/csg/v51-supervisor/tests/operation-planner.test.mjs)\n- Summary JSON: [`outputs/QUEUE-CLOSURE/queue-closure-summary.json`](file:///C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-QUEUE-CLOSURE-AG-WORK-20261004/outputs/QUEUE-CLOSURE/queue-closure-summary.json)\n- Summary Report: [`outputs/QUEUE-CLOSURE/REPORT.md`](file:///C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-QUEUE-CLOSURE-AG-WORK-20261004/outputs/QUEUE-CLOSURE/REPORT.md)\n\n#### 3. Test Verification\n1. `node --test tools/csg/v51-supervisor/tests/queue-closure-regression.test.mjs`:\n   - **9 / 9 passed** (0 failed) covering all 6 positive/negative fixtures.\n2. `node --test tools/csg/v51-supervisor/tests/*.test.mjs`:\n   - **207 / 207 passed** (0 failed) across full supervisor suite.\n\n#### 4. Invariants Enforced\n- **Full 59 Mandatory**: Subsets evaluate to `NOT_EVALUATED`, never `GLOBAL_EXHAUSTED`.\n- **Review Pending != Mission Done**: Review work keeps queue in `WORK_IN_PROGRESS`.\n- **Failclosed Readiness**: Missing/unknown evidence never fakes `READY` or `RUNNING`.\n- **Preserved Lanes**: Parked lanes never mask independent legal `READY` work.\n- **Not Live**: `mode: 'SHADOW_PLAN_ONLY'`, all side effects strictly `false`.\n"
+}

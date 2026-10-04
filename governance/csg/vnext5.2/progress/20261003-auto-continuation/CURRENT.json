@@ -1,7 +1,7 @@
 {
   "schema": "vnext5.2.construction-progress.v2",
   "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
-  "observed_at": "2026-10-04T04:27:49.906Z",
+  "observed_at": "2026-10-04T05:36:05.113Z",
   "model_lock": {
     "codex": {
       "display": "GPT-6 Luna Max",
@@ -116,10 +116,8 @@
   "queue_path": "ready-queue.json",
   "queue_decision": "WORK_IN_PROGRESS",
   "ready_ids": [],
-  "running_ids": [
-    "P52.OPENCODE_BOUNDARY_REPAIR"
-  ],
-  "valid_until": "2026-10-04T04:42:49.906Z",
+  "running_ids": [],
+  "valid_until": "2026-10-04T05:51:05.145Z",
   "all_legal_ready_lanes_exhausted": false,
   "canonical_write": false,
   "host_install": false,
@@ -127,7 +125,7 @@
   "production": false,
   "unknown_external_effects": [],
   "continuation": "Human resumed; AG/OC source batches; root limited audit/arbitration. Actual Goal paused cannot API-resume; not Mission authority.",
-  "coordination_updated_at": "2026-10-04T04:27:49.906Z",
+  "coordination_updated_at": "2026-10-04T04:37:53.969Z",
   "construction_pause": {
     "authority": "DIRECT_HUMAN_REQUEST",
     "status": "SUPERSEDED_BY_EXPLICIT_HUMAN_RESUME_20261004",
@@ -146,5 +144,12 @@
   "active_source_repairs": [
     "MCP.READONLY_CONTEXT_RECOVERY"
   ],
-  "pending_independent_reviews": []
+  "pending_independent_reviews": [
+    "M01.SOURCE",
+    "D02.SOURCE",
+    "P52.INTAKE_SOURCE"
+  ],
+  "compact_reentry": "routes/resume-batch-20261004/NEXT-ACTIONS.md",
+  "compact_summary": "routes/resume-batch-20261004/COMPACT-SUMMARY.json",
+  "source_gate_status": "TARGET_SCOPED_PERMISSION_AND_REVIEW_GAPS_NO_GLOBAL_MISSION_STOP"
 }

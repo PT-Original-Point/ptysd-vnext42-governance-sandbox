@@ -1,6 +1,6 @@
 {
   "schema": "vnext5.2.human-resume.v1",
-  "observed_at": "2026-10-04T04:27:49.906Z",
+  "observed_at": "2026-10-04T04:37:53.969Z",
   "authority": "DIRECT_HUMAN_RESUME_REDELEGATE_WITH_CODEX_USAGE_CONTROL",
   "construction": "RESUMED",
   "root_role": "AUDIT_PLAN_DISPATCH_COLLECT_ARBITRATE_ONLY",
@@ -55,33 +55,35 @@
   "previous_pause": "WORK-PAUSE-20261004.json",
   "tasks": [
     {
-      "id": "MCP.READSYNC_FIVE_FINDING_REPAIR",
+      "id": "MCP.ALL_PUBLIC_READ_ENTRIES_REPAIR",
       "route": "ANTIGRAVITY_NATIVE_CLI",
       "status": "CLOSED_REVIEW_REQUIRED",
-      "result_source": "routes/resume-batch-20261004/boundary-rework/ag.intent.json"
+      "result_source": "routes/resume-batch-20261004/route-final-rework/ag.intent.json"
     },
     {
-      "id": "P52.OPENCODE_BOUNDARY_REPAIR",
+      "id": "P52.OPENCODE_ALL_FIELD_BOUNDARIES_REPAIR",
       "route": "OPENCODE_DESKTOP_BACKGROUND_SERVICE",
       "status": "SUBMITTED_OUTCOME_PENDING",
-      "result_source": "routes/resume-batch-20261004/boundary-rework/oc.intent.json"
+      "result_source": "routes/resume-batch-20261004/route-final-rework/oc.intent.json"
     },
     {
-      "id": "P52.OPENCODE_SOURCE_EXACT_FINAL_REVIEW",
+      "id": "P52.OPENCODE_SOURCE_BOUNDARY_FINAL_REVIEW",
       "route": "ANTIGRAVITY_NATIVE_CLI",
       "status": "CLOSED_REVIEW_REQUIRED",
-      "result_source": "routes/resume-batch-20261004/adapter-final-review/ag.intent.json"
+      "result_source": "routes/resume-batch-20261004/adapter-boundary-final-review/ag.intent.json"
     },
     {
-      "id": "MCP.READSYNC_EXACT_SOURCE_REVIEW",
+      "id": "MCP.READSYNC_BOUNDARY_FINAL_REVIEW",
       "route": "OPENCODE_DESKTOP_BACKGROUND_SERVICE",
       "status": "CLOSED_REVIEW_REQUIRED",
-      "result_source": "routes/resume-batch-20261004/mcp-independent-review/oc.intent.json"
+      "result_source": "routes/resume-batch-20261004/mcp-boundary-final-review/oc.intent.json"
     }
   ],
   "full_catalog_count": 59,
   "queue_scope": "FULL_CATALOG",
-  "ready_ids": [],
+  "ready_ids": [
+    "C1.PREPARE"
+  ],
   "canonical_checkpoint": 200,
   "canonical_write": false,
   "host_dispatch": false,

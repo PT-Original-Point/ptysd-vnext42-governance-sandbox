@@ -50,3 +50,8 @@ Desktop正連線的既有官方服務；fresh server.info／Project catalog／ac
 routes/resume-batch-20261004/oc.intent.json：Muse獨立回收AG OpenCode adapter，source只讀。ag.intent.json：AG新worktree修MCP shared-context transport及coldreader測試。write-set不衝突，原staged保留；派送不是完成，native實際模型與結果待回收。
 
 官方參考：[pricing](https://learn.chatgpt.com/docs/pricing)、[scheduled tasks](https://learn.chatgpt.com/docs/automations?surface=app)。App排程不證明Supervisor關App/重開機存活。
+
+
+## 實測後追加約束
+
+最小接續入口為 routes/resume-batch-20261004/NEXT-ACTIONS.md 與 COMPACT-SUMMARY.json。SOL 每次最多2個紧凑回收/派工包，不循環讀history/source、不輪詢等worker；共享API19%→45%不是per-session帳單。native fork必須實際sessionID+export+fork.sessionID，parent舊verdict不可攜帶；SUCCESS/exit0+denials/空result不算完成。worker省略目錄/Git/hash shell前置，原生拒絕精確停放且不代理重讀。MCP新增依賴必須同步installer payload/repair manifest與測試；不讀被拒絕publisher。live mirrors/Host/caller/Web保持owning phase，不能反拉成只讀source循环gate，也不能稱mock已恢復live。ROOT不寫產品source，仍以指定AG/Muse施工，Luna日常0；原完整59/64/PF30/PRG28與Human gates保留。

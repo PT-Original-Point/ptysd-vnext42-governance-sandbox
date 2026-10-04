@@ -1,0 +1,40 @@
+{
+  "schema": "vnext5.2.exact-source-collection.v1",
+  "observed_at": "2026-10-04T05:26:34.5816933Z",
+  "verdict": "NEW6_FILE_DIFF_SOURCE_REVIEW_AND27_FIXTURE_PASS",
+  "source_worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-MCP-READSYNC-AG-WORK-20261004",
+  "source_bindings": [
+    {
+      "path": "tools/csg/factory-mcp/src/shared-context.mjs",
+      "sha256": "4209c2743f4fa85f5d9ac195a1f756ce45ea6e59cb8f3032f7950d9555860f37"
+    },
+    {
+      "path": "tools/csg/factory-mcp/src/shared-context-transport.mjs",
+      "sha256": "d8b1381785f636605ca8459f18f93ad24bf86dfb97d5b521cd6e329bd34c1ea7"
+    },
+    {
+      "path": "tools/csg/factory-mcp/tests/shared-context-transport.test.mjs",
+      "sha256": "172385e76f7df8d466be22559115b98b5f22c32311bcff99f094424c07f7c821"
+    },
+    {
+      "path": "tools/csg/factory-mcp/windows/install-broker.ps1",
+      "sha256": "16817392772a87bf26f581af80b731730fdce9395a67b62b9eca64b0bbfb8eb0"
+    },
+    {
+      "path": "tools/csg/factory-mcp/windows/repair-manifest.json",
+      "sha256": "7c661f97592f37b46e3df4d316830c9ff094b9fe987ab579b8dc37d63850f701"
+    },
+    {
+      "path": "tools/csg/factory-mcp/tests/shared-context-packaging.test.mjs",
+      "sha256": "e9f594c2c70a2eb0b9cece2ce91a2f544d2036a797e0233f0051c21a1e7accac"
+    }
+  ],
+  "review_model": "gemini-3.8-flash-high",
+  "review_conversation": "b73c7b8b-cd87-490d-992e-5ae9318cd443",
+  "review_receipt": "VNEXT5.2-AUTO-CONTINUATION-20261003/routes/resume-batch-20261004/mcp-final-package-review/ag.intent.json",
+  "legacy_regression": "PARKED_PERMISSION_DENIED",
+  "full_candidate_acceptance": "NOT_ACCEPTED",
+  "live_acceptance": "NOT_ACCEPTED",
+  "canonical_write": false,
+  "production": false
+}

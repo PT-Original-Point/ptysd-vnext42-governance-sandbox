@@ -1,0 +1,35 @@
+{
+  "task": "P52.OPENCODE_ALL_FIELDS_CLOSURE_REVIEW",
+  "status": "CLOSED_REVIEW_REQUIRED",
+  "model": "gemini-3.8-flash-high",
+  "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-OPENCODE-SOURCE-WORK-20261004",
+  "write_set": [],
+  "source_bindings": [
+    {
+      "path": "tools/csg/v51-supervisor/lib/f01-opencode-native.mjs",
+      "sha256": "5df62ed9e85a6963eb4f53a2a9eb1fe2139ae0d80d872c68f35c41e44fc7cfad"
+    },
+    {
+      "path": "tools/csg/v51-supervisor/tests/f01-opencode-native.test.mjs",
+      "sha256": "6366a1fc6937a8e1c10a7cc55be8fbf957655eafe9cae085bfe4778065ea0fe3"
+    }
+  ],
+  "created_at": "2026-10-04T04:43:05.858Z",
+  "prior_builder_session": "ses_efae81e72ffeSLYMHr2VbjYzq1",
+  "prior_builder_model": {
+    "id": "muse-spark-1.3-contributor-free",
+    "providerID": "opencode",
+    "variant": "xhigh"
+  },
+  "inherited_42_exact_hashes": "MATCHED",
+  "canonical_write": false,
+  "paid_fallback": false,
+  "pid": 38228,
+  "conversation_id": "ba9e6289-a37e-4660-91dd-290fc1635395",
+  "actual_model": "gemini-3.8-flash-high",
+  "result_status": "SUCCESS",
+  "denied_action_count": 1,
+  "exit_code": 0,
+  "closed_at": "2026-10-04T04:43:14.480Z",
+  "result_response": ""
+}

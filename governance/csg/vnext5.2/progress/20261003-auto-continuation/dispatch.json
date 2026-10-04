@@ -1,6 +1,6 @@
 {
   "schema": "vnext5.2.coordinator-dispatch.v1",
-  "observed_at": "2026-10-04T04:27:49.906Z",
+  "observed_at": "2026-10-04T05:36:05.113Z",
   "single_integrator": "root",
   "tasks": [
     {
@@ -417,6 +417,211 @@
       "result_source": "routes/resume-batch-20261004/mcp-independent-review/oc.intent.json",
       "closed_at": "2026-10-04T04:18:39.886Z",
       "pid": 35208
+    },
+    {
+      "id": "MCP.ALL_PUBLIC_READ_ENTRIES_REPAIR",
+      "route": "ANTIGRAVITY_NATIVE_CLI",
+      "model": "gemini-3.8-flash-high",
+      "actual_model": "gemini-3.8-flash-high",
+      "status": "CLOSED_REVIEW_REQUIRED",
+      "session_id": null,
+      "conversation_id": "f910e244-4b35-4e98-99a7-0272e7f7bff4",
+      "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-MCP-READSYNC-AG-WORK-20261004",
+      "write_set": [
+        "tools/csg/factory-mcp/src/shared-context.mjs",
+        "tools/csg/factory-mcp/src/shared-context-transport.mjs",
+        "tools/csg/factory-mcp/tests/shared-context.test.mjs",
+        "tools/csg/factory-mcp/tests/shared-context-transport.test.mjs",
+        "outputs/MCP-READSYNC/**"
+      ],
+      "source_bindings": null,
+      "result_source": "routes/resume-batch-20261004/route-final-rework/ag.intent.json",
+      "closed_at": "2026-10-04T04:37:28.351Z",
+      "pid": 43224
+    },
+    {
+      "id": "P52.OPENCODE_ALL_FIELD_BOUNDARIES_REPAIR",
+      "route": "OPENCODE_DESKTOP_BACKGROUND_SERVICE",
+      "model": "opencode/muse-spark-1.3-contributor-free",
+      "actual_model": null,
+      "status": "SUBMITTED_OUTCOME_PENDING",
+      "session_id": "ses_efae81e72ffeSLYMHr2VbjYzq1",
+      "conversation_id": null,
+      "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-OPENCODE-SOURCE-WORK-20261004",
+      "write_set": [
+        "tools/csg/v51-supervisor/lib/f01-opencode-native.mjs",
+        "tools/csg/v51-supervisor/tests/f01-opencode-native.test.mjs",
+        "outputs/P52-OPENCODE/attempt3/**"
+      ],
+      "source_bindings": null,
+      "result_source": "routes/resume-batch-20261004/route-final-rework/oc.intent.json",
+      "closed_at": null,
+      "pid": 63528
+    },
+    {
+      "id": "P52.OPENCODE_SOURCE_BOUNDARY_FINAL_REVIEW",
+      "route": "ANTIGRAVITY_NATIVE_CLI",
+      "model": "gemini-3.8-flash-high",
+      "actual_model": "gemini-3.8-flash-high",
+      "status": "CLOSED_REVIEW_REQUIRED",
+      "session_id": null,
+      "conversation_id": "8f6c6906-998f-4a4f-9b1e-bfcf411b5c2f",
+      "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-OPENCODE-SOURCE-WORK-20261004",
+      "write_set": [],
+      "source_bindings": [
+        {
+          "path": "tools/csg/v51-supervisor/lib/f01-opencode-native.mjs",
+          "sha256": "c23c3c0d9673c53bb347e4e055174e01c2c825cc76d233e2709a7b943ddbbfe9"
+        },
+        {
+          "path": "tools/csg/v51-supervisor/tests/f01-opencode-native.test.mjs",
+          "sha256": "862747ab2c235a13874e18ddc99afe18bb5aa38306d4488f479a0b2e1bb6d84d"
+        }
+      ],
+      "result_source": "routes/resume-batch-20261004/adapter-boundary-final-review/ag.intent.json",
+      "closed_at": "2026-10-04T04:33:01.680Z",
+      "pid": 47604
+    },
+    {
+      "id": "MCP.READSYNC_BOUNDARY_FINAL_REVIEW",
+      "route": "OPENCODE_DESKTOP_BACKGROUND_SERVICE",
+      "model": "opencode/muse-spark-1.3-contributor-free",
+      "actual_model": {
+        "id": "muse-spark-1.3-contributor-free",
+        "providerID": "opencode",
+        "variant": "xhigh"
+      },
+      "status": "CLOSED_REVIEW_REQUIRED",
+      "session_id": "ses_efad26f9effe0WW7Qq5NFGO9yI",
+      "conversation_id": null,
+      "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-MCP-READSYNC-AG-WORK-20261004",
+      "write_set": [],
+      "source_bindings": [
+        {
+          "path": "tools/csg/factory-mcp/src/shared-context.mjs",
+          "sha256": "b1e06f1d77861366f4ac1f5e9cba11d51df9a75da0dcbda081b939059327b33f"
+        },
+        {
+          "path": "tools/csg/factory-mcp/src/shared-context-transport.mjs",
+          "sha256": "073037b91d60d35d52e44247ce68ee62897a232a38677e22cde05e19719c5918"
+        },
+        {
+          "path": "tools/csg/factory-mcp/tests/shared-context-transport.test.mjs",
+          "sha256": "9a49c24ca5386594bca325381049b26d10f843ea714d41db72c2437d2addf305"
+        }
+      ],
+      "result_source": "routes/resume-batch-20261004/mcp-boundary-final-review/oc.intent.json",
+      "closed_at": "2026-10-04T04:31:46.839Z",
+      "pid": 54716
+    },
+    {
+      "id": "MCP.INSTALL_PAYLOAD_DEPENDENCY_CLOSURE",
+      "status": "CLOSED_REVIEW_REQUIRED",
+      "closed_at": "2026-10-04T04:58:09.227Z",
+      "actual_model": {
+        "id": "muse-spark-1.3-contributor-free",
+        "providerID": "opencode",
+        "variant": "xhigh"
+      },
+      "requested_model": "opencode/muse-spark-1.3-contributor-free",
+      "session_id": "ses_efac095ecffeJxEksi3h3Tx1Sr",
+      "conversation_id": null,
+      "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-MCP-READSYNC-AG-WORK-20261004",
+      "write_set": [
+        "tools/csg/factory-mcp/windows/install-broker.ps1",
+        "tools/csg/factory-mcp/windows/repair-manifest.json",
+        "tools/csg/factory-mcp/tests/shared-context-packaging.test.mjs",
+        "outputs/MCP-READSYNC/packaging/**"
+      ],
+      "denied_actions": null,
+      "native_outcome": "succeeded",
+      "cost": 0,
+      "result_source": "routes/resume-batch-20261004/mcp-packaging-source/oc.intent.json"
+    },
+    {
+      "id": "D02.RECOVERABLE_REVIEW_STOP_RULE_REPAIR",
+      "status": "CLOSED_REVIEW_REQUIRED",
+      "closed_at": "2026-10-04T04:50:52.145Z",
+      "actual_model": "gemini-3.8-flash-high",
+      "requested_model": "gemini-3.8-flash-high",
+      "session_id": null,
+      "conversation_id": "45ac5630-c062-4328-a825-70218e9e2c5d",
+      "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-QUEUE-CLOSURE-AG-WORK-20261004",
+      "write_set": [
+        "tools/csg/v51-supervisor/lib/operation-planner.mjs",
+        "tools/csg/v51-supervisor/tests/queue-closure-regression.test.mjs",
+        "outputs/QUEUE-CLOSURE/**"
+      ],
+      "denied_actions": 0,
+      "native_outcome": null,
+      "cost": null,
+      "result_source": "routes/resume-batch-20261004/queue-closure-source/ag.intent.json"
+    },
+    {
+      "id": "MCP.FINAL_PACKAGE_EXACT_SOURCE_REVIEW",
+      "status": "CLOSED_REVIEW_REQUIRED",
+      "closed_at": "2026-10-04T05:12:02.701Z",
+      "actual_model": "gemini-3.8-flash-high",
+      "requested_model": "gemini-3.8-flash-high",
+      "session_id": null,
+      "conversation_id": "b73c7b8b-cd87-490d-992e-5ae9318cd443",
+      "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-MCP-READSYNC-AG-WORK-20261004",
+      "write_set": [],
+      "denied_actions": 0,
+      "native_outcome": null,
+      "cost": null,
+      "result_source": "routes/resume-batch-20261004/mcp-final-package-review/ag.intent.json"
+    },
+    {
+      "id": "D02.EXACT_REVIEW_ABSOLUTE_BINDING_CORRECTION",
+      "status": "CLOSED_REVIEW_REQUIRED",
+      "closed_at": "2026-10-04T05:20:12.545Z",
+      "actual_model": {
+        "id": "muse-spark-1.3-contributor-free",
+        "providerID": "opencode",
+        "variant": "xhigh"
+      },
+      "requested_model": "opencode/muse-spark-1.3-contributor-free",
+      "session_id": "ses_efaafa100ffesOyWLSk94Y91ys",
+      "conversation_id": null,
+      "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-QUEUE-CLOSURE-AG-WORK-20261004",
+      "write_set": [],
+      "denied_actions": null,
+      "native_outcome": "succeeded",
+      "cost": 0,
+      "result_source": "routes/resume-batch-20261004/queue-closure-review-corrected/oc.intent.json"
+    },
+    {
+      "id": "P52.OPENCODE_ALL_FIELDS_CLOSURE_REVIEW",
+      "status": "PARKED_NATIVE_PERMISSION_DENIED",
+      "closed_at": "2026-10-04T04:43:14.480Z",
+      "actual_model": "gemini-3.8-flash-high",
+      "requested_model": "gemini-3.8-flash-high",
+      "session_id": null,
+      "conversation_id": "ba9e6289-a37e-4660-91dd-290fc1635395",
+      "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-OPENCODE-SOURCE-WORK-20261004",
+      "write_set": [],
+      "denied_actions": 1,
+      "native_outcome": null,
+      "cost": null,
+      "result_source": "routes/resume-batch-20261004/adapter-closure-review/ag.intent.json"
+    },
+    {
+      "id": "C1.PREPARE_NONSELECTING_PACKET",
+      "status": "PARKED_NATIVE_PERMISSION_DENIED",
+      "closed_at": "2026-10-04T04:41:31.337Z",
+      "actual_model": "gemini-3.8-flash-high",
+      "requested_model": "gemini-3.8-flash-high",
+      "session_id": null,
+      "conversation_id": "f0dcb678-aec3-4675-b30e-dcc5449c592e",
+      "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-C1-PREPARE-AG-WORK-20261004",
+      "write_set": [
+        "outputs/C1-PREPARE/attempt2/**"
+      ],
+      "denied_actions": 1,
+      "native_outcome": null,
+      "cost": null,
+      "result_source": "routes/resume-batch-20261004/c1-control-packet/ag.intent.json"
     }
   ],
   "collection": "root reads native thread/subagent updates then exact result paths; Human copying unnecessary",
