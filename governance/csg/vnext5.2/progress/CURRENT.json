@@ -3,13 +3,13 @@
   "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
   "noncanonical": true,
   "writer": "ROOT_SINGLE_INTEGRATOR",
-  "sequence": 27,
-  "previous_locator_head": "f244b4c949af7a10b53b2b79a9805cf3af43eb0f",
+  "sequence": 28,
+  "previous_locator_head": "66454c59a38a814d8069cbcdc371aa6a631fa85f",
   "progress": {
     "repository": "PT-Original-Point/ptysd-vnext42-governance-sandbox",
-    "exact_head": "b824421df2abcb1ea866b4c4d4d94d0ef6d66fe1",
+    "exact_head": "3ff0419896549b744b7bc876d1cc72227c048993",
     "current_path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/CURRENT.json",
-    "current_sha256": "sha256:11169b91ca063361005102a363ac97f722913b008b2a329c9d464472853bb4f0",
+    "current_sha256": "sha256:65f9a291b7097629c878860641af7068d26762c2f3fc829ef5867320151bd624",
     "manifest_path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/manifest.json"
   },
   "dispatch_authority": false,
@@ -33,11 +33,10 @@
     "actual_goal": "paused",
     "goal_resume_api": "UNSUPPORTED_NO_FAKE_ACTIVE",
     "running_ids": [
-      "C1.VALIDATOR_FOUR_FINDINGS_REWORK"
+      "C1.FINAL_COMBINED_DISTINCT_STATIC_REVIEW"
     ],
     "latest_native_intents": [
-      "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/resume-batch-20261004/c1-actual-packet-schema-match-review/ag.intent.json",
-      "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/resume-batch-20261004/c1-validator-four-findings-rework/ag.intent.json"
+      "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/resume-batch-20261004/c1-final-combined-static-review/ag.intent.json"
     ],
     "queue_decision": "WORK_IN_PROGRESS",
     "global_exhausted": false,
@@ -82,17 +81,10 @@
       "dashboard_status": "32_SYNTHETIC_PASS_OWN_NATIVE_METADATA_OBSERVER_HANDOFF_READBACK_PASS_NOT_FACTORY_LIVE",
       "c1": "C1_PACKET_SCOPED_DISTINCT_STATIC_PASS_SCHEMA_AND_PROMOTION_CONTRACT_STILL_PENDING",
       "c1_schema": {
-        "status": "PROPOSED_NOT_ADOPTED",
-        "native_author_model": "opencode/muse-spark-1.3-contributor-free/xhigh",
-        "native_cost": 0,
-        "process_compliance": "REJECTED_DENIAL_BYPASS",
-        "source_review": "SCOPED_DISTINCT_AG_STATIC_PASS_PROPOSED_NOT_ADOPTED",
-        "compilation_and_executed_regressions": "PENDING_MATURE_VALIDATOR_DEPENDENCY_QUALIFICATION",
-        "root_finding": "routes/resume-batch-20261004/c1-schema-distinct-ag-review/root-process-finding.json",
-        "canonical_write": false,
-        "artifact_placement": "WRONG_RELATIVE_OUTPUT_METADATA_LOCATOR_REPAIRED_BYTES_UNCHANGED",
-        "next": "AG_LEGAL_FILE_ONLY_PACKAGE_PREPARATION_RUNNING_EXECUTION_REMAINS_PENDING",
-        "command_lane": "AG_RUNCOMMAND_NATIVE_DENIED_PARKED_NO_RETRY"
+        "status": "TWO_AUTHOR_REWORKS_COLLECTED_DISTINCT_COMBINED_STATIC_REVIEW_PENDING",
+        "runtime_execution": "UNTESTED",
+        "command_lane": "AG_RUNCOMMAND_DENIED_PARKED_NO_RETRY",
+        "review_input_binding": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/resume-batch-20261004/c1-final-combined-static-review/input-binding.json"
       }
     },
     "next_actions": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/resume-batch-20261004/CURRENT-HANDOFF.md",
@@ -112,5 +104,6 @@
     "failure": "CURRENT_DIGEST",
     "historical_snapshot": true,
     "reentry": "Fresh mutable task intents and READY facts before dispatch; immutable source results do not expire"
-  }
+  },
+  "snapshot_rule": "Immutable exact source receipts retained; refresh expired mutable facts. Native review status at snapshot is not completion."
 }
