@@ -3,13 +3,13 @@
   "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
   "noncanonical": true,
   "writer": "ROOT_SINGLE_INTEGRATOR",
-  "sequence": 26,
-  "previous_locator_head": "19ebf513eaa772ccd1f49659601ef279804a8a98",
+  "sequence": 24,
+  "previous_locator_head": "96f98e5b913a0fb53962afc9bb95c0e89acba42d",
   "progress": {
     "repository": "PT-Original-Point/ptysd-vnext42-governance-sandbox",
-    "exact_head": "56574a75a9b3bcbd5dc78af98c4294905d7182d6",
+    "exact_head": "9b6ed835461ff298b970439f74e3dcf1ca860a37",
     "current_path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/CURRENT.json",
-    "current_sha256": "sha256:fef7a232f5623859adfc5d93daef50ff6732b4ac4cd5f40d41cb13d1431701a7",
+    "current_sha256": "sha256:0daa327e97e495c07c15c5df4b675b8426ac0a8981683b56e3a9e7a8303f94c7",
     "manifest_path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/manifest.json"
   },
   "dispatch_authority": false,
@@ -25,7 +25,7 @@
     "research_head": "f4c754ed1e2f256b24c432511c01ae52592dd15f",
     "runtime_pr": 386,
     "runtime_head": "0c8a5bd23d5591571998c18ab49eb1eec0ba7968",
-    "new_candidates": "ACTUAL_PACKET_SCHEMA_COVERAGE_AND_VALIDATOR_REWORK_CONTINUE_NO_CANONICAL_SELECTION",
+    "new_candidates": "SOURCE_PAIR_FROZEN_SCOPED_SEMANTIC_STRUCTURAL_PASS_C1_SOURCE_PACKET_AND_DASHBOARD_FIXTURE_REVIEW_RUNNING",
     "live": "NOT_ACCEPTED"
   },
   "coordination": {
@@ -33,11 +33,12 @@
     "actual_goal": "paused",
     "goal_resume_api": "UNSUPPORTED_NO_FAKE_ACTIVE",
     "running_ids": [
-      "C1.VALIDATOR_FOUR_FINDINGS_REWORK"
+      "HUMAN.DASHBOARD_FIXTURE_ONLY_DISTINCT_REVIEW",
+      "C1.FINAL_SOURCE_PAIR_NONSELECTING_PACKET"
     ],
     "latest_native_intents": [
-      "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/resume-batch-20261004/c1-actual-packet-schema-match-review/ag.intent.json",
-      "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/resume-batch-20261004/c1-validator-four-findings-rework/ag.intent.json"
+      "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/resume-batch-20261004/human-dashboard-fixture-only-distinct-review/luna.intent.json",
+      "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/resume-batch-20261004/c1-final-sourcepair-luna/luna.intent.json"
     ],
     "queue_decision": "WORK_IN_PROGRESS",
     "global_exhausted": false,
@@ -47,10 +48,10 @@
       "mcp": "PR385_EXACT_HEAD_STRUCTURAL_PASS_LOCAL7_DISTINCT_FINAL_TEST_PASS_OTHER6_REVIEW_INHERITED_NO_FULL_LEGACY_LIVE",
       "runtime": "PR386_FROZEN_EXACT_HEAD_STRUCTURAL_PASS_SCOPED_TWO_TESTS_STATIC_PASS_CROSS_E2E_PARKED",
       "dashboard": {
-        "prior_pure_fixture": "32/32_PASS",
-        "source_sha256": "62e7f882fd958fe5f02591cc9880d42a4045a6b6572d77be7329ffacb8c1dce9",
-        "native_handoff": "OWN_PID35652_LOCK_AND_CAPTURE_READBACK_PASS",
-        "factory_live": "NOT_ACCEPTED"
+        "source_static": "PASS_WITH_OBSERVER_LIFECYCLE_LIMIT",
+        "fixture": "REWORK_REQUIRED_FIXTURE_ONLY",
+        "review": "routes/resume-batch-20261004/human-dashboard-final2-distinct-review/result.json",
+        "next": "AG_FIXTURE_ONLY_REPAIR_THEN_DISTINCT_LUNA"
       },
       "producer_head": "f45ef980a0194c54db6f2e3d5585577154ac5754",
       "research_head": "f4c754ed1e2f256b24c432511c01ae52592dd15f",
@@ -79,30 +80,14 @@
         "mission_complete": false
       },
       "runtime_head": "0c8a5bd23d5591571998c18ab49eb1eec0ba7968",
-      "dashboard_status": "32_SYNTHETIC_PASS_OWN_NATIVE_METADATA_OBSERVER_HANDOFF_READBACK_PASS_NOT_FACTORY_LIVE",
-      "c1": "C1_PACKET_SCOPED_DISTINCT_STATIC_PASS_SCHEMA_AND_PROMOTION_CONTRACT_STILL_PENDING",
-      "c1_schema": {
-        "status": "PROPOSED_NOT_ADOPTED",
-        "native_author_model": "opencode/muse-spark-1.3-contributor-free/xhigh",
-        "native_cost": 0,
-        "process_compliance": "REJECTED_DENIAL_BYPASS",
-        "source_review": "SCOPED_DISTINCT_AG_STATIC_PASS_PROPOSED_NOT_ADOPTED",
-        "compilation_and_executed_regressions": "PENDING_MATURE_VALIDATOR_DEPENDENCY_QUALIFICATION",
-        "root_finding": "routes/resume-batch-20261004/c1-schema-distinct-ag-review/root-process-finding.json",
-        "canonical_write": false,
-        "artifact_placement": "WRONG_RELATIVE_OUTPUT_METADATA_LOCATOR_REPAIRED_BYTES_UNCHANGED",
-        "next": "AG_LEGAL_FILE_ONLY_PACKAGE_PREPARATION_RUNNING_EXECUTION_REMAINS_PENDING",
-        "command_lane": "AG_RUNCOMMAND_NATIVE_DENIED_PARKED_NO_RETRY"
-      }
+      "dashboard_status": "FROZEN_SOURCE_STATIC_PASS_NEW_FIXTURE_DISTINCT_REVIEW_RUNNING"
     },
     "next_actions": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/resume-batch-20261004/CURRENT-HANDOFF.md",
     "recoverable_review_work": true,
-    "active_collection_minutes": 30,
+    "active_collection_minutes": 15,
     "monitoring": "LOCAL_METADATA_OBSERVER_NO_MODEL_EXTERNAL_CLI_IMMEDIATE_TRIGGER_NOT_PROVEN",
     "quota_scope": "SHARED_ACCOUNT_NOT_PER_SESSION",
-    "bad_packet": "REJECTED_REPO_TREE_WAS_CP200_SOURCE_TESTS_PRESERVED",
-    "original_contract_source_map": "governance/csg/vnext5.2/progress/20261003-auto-continuation/CONTRACT-SOURCE-MAP.json",
-    "observer_qualification": "32_PURE_FIXTURES_PASS_OWN_OBSERVER_NATIVE_LOCK_READBACK_PASS_NOT_FACTORY_LIVE"
+    "bad_packet": "REJECTED_REPO_TREE_WAS_CP200_SOURCE_TESTS_PRESERVED"
   },
   "active_manifest_policy": "CURRENT_PROJECTIONS_40_FILES_MAX40",
   "historical_progress_head": "0efff52aa791a3d48f818c535cecc6944f6ae05c"
