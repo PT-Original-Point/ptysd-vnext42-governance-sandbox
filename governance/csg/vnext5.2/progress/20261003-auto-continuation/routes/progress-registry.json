@@ -107,8 +107,147 @@
       "brand": "Antigravity",
       "label": "HUMAN.DASHBOARD_NATIVE_RESULT_SHAPE_REWORK",
       "intent": "routes/resume-batch-20261004/dashboard-native-result-shape-rework/ag.intent.json"
+    },
+    {
+      "brand": "Codex Luna",
+      "label": "HUMAN.DASHBOARD_NATIVE_SHAPE_DISTINCT_LUNA_REVIEW",
+      "label_zh": "Luna已查出看板兩個漏判，交回Antigravity修正",
+      "intent": "routes/resume-batch-20261004/dashboard-native-shape-luna-review/luna.intent.json"
+    },
+    {
+      "brand": "OpenCode",
+      "label": "C1.PROPOSED_SCHEMA_SOURCE",
+      "intent": "routes/resume-batch-20261004/c1-schema-muse-source/oc.intent.json",
+      "label_zh": "OpenCode已交成果，但違反讀取限制，尚未接受"
+    },
+    {
+      "brand": "Antigravity",
+      "label": "C1.VALIDATOR_FILE_DISTINCT_AG_REVIEW",
+      "intent": "routes/resume-batch-20261004/c1-validator-file-distinct-review/ag.intent.json"
+    },
+    {
+      "brand": "Antigravity",
+      "label": "C1.ACTUAL_PACKET_SCHEMA_MATCH_STATIC_REVIEW",
+      "intent": "routes/resume-batch-20261004/c1-actual-packet-schema-match-review/ag.intent.json"
+    },
+    {
+      "brand": "Antigravity",
+      "label": "C1.VALIDATOR_FOUR_FINDINGS_REWORK",
+      "intent": "routes/resume-batch-20261004/c1-validator-four-findings-rework/ag.intent.json"
     }
   ],
   "luna": "GPT6_LUNA_MAX_ONLY_SOURCE_AND_REVIEW_AUTHORIZED_NATIVE_REVIEW_SCOPE_READBACK_PENDING",
-  "scope": "CURRENT_REGISTERED_TASKS_MAX24_NOT_ALL_APP_ACTIVITY"
+  "scope": "CURRENT_REGISTERED_TASKS_MAX24_NOT_ALL_APP_ACTIVITY",
+  "closed_history": [
+    {
+      "brand": "Antigravity",
+      "label": "C1.FINAL_SOURCE_PAIR_DISTINCT_AG_REVIEW",
+      "intent": "routes/resume-batch-20261004/c1-final-sourcepair-ag-review/ag.intent.json",
+      "label_zh": "Antigravity已檢查下一階段施工文件",
+      "archived_at": "2026-10-04T15:42:44.556Z",
+      "reason": "ACTIVE_TABLE_CAPACITY_PRESERVE_IMMUTABLE_RECEIPTS",
+      "intent_sha256": "5d35cc70b0c848028ca07a1f7d6a5c775ce4459b693a88a3a75762d7c608d7a4",
+      "ack": {
+        "signature": "430f8337dfec07f40652993d9fbea911c12217bcb950d17c93fa75546a633954",
+        "semantic_signature": "430f8337dfec07f40652993d9fbea911c12217bcb950d17c93fa75546a633954",
+        "recorded_at": "2026-10-04T15:34:43.508Z",
+        "disposition": "ACCEPTED_CLOSED",
+        "review": "outputs/C1-FINAL-SOURCEPAIR-AG-REVIEW/result.json",
+        "review_sha256": "62c562b5455053f3a43e1c81d9f8d959ada66e2f837c70134335d80982ce1139",
+        "acceptance_scope": "STATIC_NONSELECTING_PACKET_ONLY_NOT_CANONICAL_OR_LIVE",
+        "mission_complete": false
+      }
+    },
+    {
+      "brand": "Antigravity",
+      "label": "HUMAN.DASHBOARD_TERMINAL_ACK_REWORK",
+      "intent": "routes/resume-batch-20261004/dashboard-terminal-ack-rework/ag.intent.json",
+      "label_zh": "Antigravity修正已結束工作被誤判仍在施工、成果重複回收",
+      "archived_at": "2026-10-04T15:53:47.200Z",
+      "intent_sha256": "551878b2fc2491a7887945b2dae1a527d2097fe3d7fbe004a638793db7c55ead",
+      "ack": {
+        "signature": "d0b9c87117be181754ea9a6e73442d63baef639abe3d56fff02dda4b59794970",
+        "semantic_signature": "d0b9c87117be181754ea9a6e73442d63baef639abe3d56fff02dda4b59794970",
+        "recorded_at": "2026-10-04T15:45:15.720Z",
+        "disposition": "RESEARCH_BYTES_COLLECTED_DISTINCT_REVIEW_IN_PROGRESS",
+        "review": "outputs/HUMAN-DASHBOARD-TERMINAL-ACK-REWORK/source-report.json",
+        "review_sha256": "70d72a7ca837fe75d344deff7b8d261f53639cd1b94cf9b6429773a6583cfce6",
+        "acceptance_scope": "AUTHOR_SOURCE_UNTESTED_NEW32_PURE_FIXTURE_PENDING_DISTINCT_LUNA_REVIEW",
+        "mission_complete": false
+      },
+      "reason": "COMPLETED_AUTHOR_HAS_DISTINCT32_FIXTURE_REVIEW_RETAIN_IMMUTABLE_HISTORY"
+    },
+    {
+      "brand": "Antigravity",
+      "label": "C1.PROPOSED_SCHEMA_DISTINCT_AG_REVIEW",
+      "intent": "routes/resume-batch-20261004/c1-schema-distinct-ag-review/ag.intent.json",
+      "label_zh": "Antigravity檢查施工文件格式來源，另列违规問題",
+      "ack": {
+        "signature": "70759ed3bde9ffc34697522e9a9d0fdb1db6e17408f949ecf912d4d55efd4e83",
+        "semantic_signature": "70759ed3bde9ffc34697522e9a9d0fdb1db6e17408f949ecf912d4d55efd4e83",
+        "recorded_at": "2026-10-04T15:49:36.645Z",
+        "disposition": "ACCEPTED_CLOSED",
+        "review": "routes/resume-batch-20261004/c1-schema-distinct-ag-review/outputs/C1-SCHEMA-AG-REVIEW/result.json",
+        "review_sha256": "a4e1288414adef3437ec4eb3f4f9210d6b378e663412d5580484eb8f8e6fbe63",
+        "acceptance_scope": "PROPOSED_JSON_SCHEMA_STATIC_ONLY_PROCESS_REJECTION_AND_COMPILATION_PENDING_PRESERVED",
+        "mission_complete": false
+      },
+      "archived_at": "2026-10-04T16:03:44.939Z",
+      "reason": "STATIC_REVIEW_COMPLETED_PROPOSED_ONLY_BYTES_PRESERVED"
+    },
+    {
+      "brand": "Antigravity",
+      "label": "C1.MATURE_AJV_SCHEMA_QUALIFICATION_SOURCE",
+      "intent": "routes/resume-batch-20261004/c1-ajv-qualification-source/ag.intent.json",
+      "label_zh": "Antigravity命令執行被原生權限拒絕；該路線暫停",
+      "ack": {
+        "signature": "a584a61cac3838f2a89c2fe5dbe4b4c507825f41fc4a2a91f2d2f13066f0f8a1",
+        "semantic_signature": "a584a61cac3838f2a89c2fe5dbe4b4c507825f41fc4a2a91f2d2f13066f0f8a1",
+        "recorded_at": "2026-10-04T16:09:15.518Z",
+        "disposition": "AUTHOR_BYTES_COLLECTED_REVIEW_PERMISSION_PARKED",
+        "review": "routes/resume-batch-20261004/c1-ajv-qualification-source/ag.native-result.json",
+        "review_sha256": "cf3da587a0ca2d3e7b5d712fba3946a41a34ee2ef3b8f493d026fadf4ef18b93",
+        "acceptance_scope": "ACTUAL_NATIVE_DENIAL_EVENT_ONLY_NOT_SOURCE_BODY_OR_EXECUTED_REGRESSION",
+        "mission_complete": false
+      },
+      "archived_at": "2026-10-04T16:13:38.304Z",
+      "reason": "STATIC_REVIEW_COMPLETED_PROPOSED_ONLY_BYTES_PRESERVED"
+    },
+    {
+      "brand": "Codex Luna",
+      "label": "HUMAN.DASHBOARD_TERMINAL_ACK_DISTINCT_REVIEW",
+      "label_zh": "Luna驗收看板返工，檢查32項模擬情況",
+      "intent": "routes/resume-batch-20261004/dashboard-terminal-luna-review/luna.intent.json",
+      "ack": {
+        "signature": "9bc6bb227f1c160d8bde0816bb010df950e902b5bcebdaa4d5418d148f28315f",
+        "semantic_signature": "9bc6bb227f1c160d8bde0816bb010df950e902b5bcebdaa4d5418d148f28315f",
+        "recorded_at": "2026-10-04T15:49:36.645Z",
+        "disposition": "ACCEPTED_CLOSED",
+        "review": "routes/resume-batch-20261004/dashboard-terminal-luna-review/result.json",
+        "review_sha256": "5d72a5e01296a499bdb32cd78833b90873b0c38a0fdba0b3abec9fb63b31563b",
+        "acceptance_scope": "SOURCE_STATIC_AND32_PURE_FIXTURES_PASS_NOT_NATIVE_RUNTIME_LIVE_SYSTEM",
+        "mission_complete": false
+      },
+      "archived_at": "2026-10-04T16:21:11.652Z",
+      "reason": "STATIC_REVIEW_COMPLETED_PROPOSED_ONLY_BYTES_PRESERVED"
+    },
+    {
+      "brand": "Antigravity",
+      "label": "C1.VALIDATOR_PACKAGE_FILE_SOURCE",
+      "intent": "routes/resume-batch-20261004/c1-validator-file-source/ag.intent.json",
+      "label_zh": "Antigravity正準備標準驗證器檔案（不重試被拒命令）",
+      "ack": {
+        "signature": "97cd0d81078bba5493fd53e89f8fa326adfcffc2619784ba58dfb0b040d4641c",
+        "semantic_signature": "97cd0d81078bba5493fd53e89f8fa326adfcffc2619784ba58dfb0b040d4641c",
+        "recorded_at": "2026-10-04T16:28:48.2748679Z",
+        "disposition": "REVIEW_FINDINGS_RETURNED_TO_AUTHOR",
+        "review": "routes/resume-batch-20261004/c1-validator-file-source/ag.result.json",
+        "review_sha256": "e0e31ebf44031809e312aa28e5e7d00fe4313a48c09f824fa8d4cbba5575a46a",
+        "acceptance_scope": "AUTHOR_UNTESTED_SOURCE_AND_DISTINCT_FOUR_FINDINGS_RETURNED; NO_EXECUTED_PASS",
+        "mission_complete": false
+      },
+      "archived_at": "2026-10-04T16:28:48.349Z",
+      "reason": "STATIC_REVIEW_COMPLETED_PROPOSED_ONLY_BYTES_PRESERVED"
+    }
+  ]
 }

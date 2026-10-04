@@ -3,7 +3,7 @@
   "mode": "SHADOW_PLAN_ONLY",
   "facts_schema": "vnext5.2.operation-facts.v1",
   "catalog_sha256": "sha256:ee769422b5d587e771d09c4e95af1af9a3a7cf0a7c0e493d86071e2df57304de",
-  "facts_sha256": "sha256:6c6460fbcd4a76ac69bf5dab09d7d41b7592f8b64eb6af5e7b7afc5f254438d7",
+  "facts_sha256": "sha256:763f2147e83979c1088e71ce8289aa94ff60a1c0bd225bd6d76d91f7edc930fb",
   "facts_fresh": true,
   "input_completeness": "COMPLETE",
   "input_reasons": [],
@@ -1303,14 +1303,14 @@
     "scope": "EXACT_SOURCE_REVIEW_AND_RECOVERY_NOT_PARENT_ACCEPTANCE",
     "tasks": [
       {
-        "id": "HUMAN.DASHBOARD_NATIVE_RESULT_SHAPE_REWORK",
-        "status": "SUBMITTED_OUTCOME_PENDING",
-        "intent": "routes/resume-batch-20261004/dashboard-native-result-shape-rework/ag.intent.json"
+        "id": "C1.ACTUAL_PACKET_SCHEMA_MATCH_STATIC_REVIEW",
+        "status": "CLOSED_REVIEW_REQUIRED",
+        "intent": "routes/resume-batch-20261004/c1-actual-packet-schema-match-review/ag.intent.json"
       },
       {
-        "id": "C1.FINAL_SOURCE_PAIR_NONSELECTING_PACKET",
-        "status": "NATIVE_RUNNING_SOURCE",
-        "intent": "routes/resume-batch-20261004/c1-final-sourcepair-luna/luna.intent.json"
+        "id": "C1.VALIDATOR_FOUR_FINDINGS_REWORK",
+        "status": "SUBMITTED_OUTCOME_PENDING",
+        "intent": "routes/resume-batch-20261004/c1-validator-four-findings-rework/ag.intent.json"
       }
     ],
     "dispatch_on_source_pass": "DISTINCT_REVIEW_THEN_EXACT_REWORK_OR_FREEZE",

@@ -1,0 +1,127 @@
+{
+  "schema": "VNEXT5.2.DASHBOARD_TERMINAL_ACK_LUNA_REVIEW.v1",
+  "task": "HUMAN.DASHBOARD_TERMINAL_ACK_DISTINCT_QUALIFICATION",
+  "generated_at_utc": "2026-10-04T15:43:49Z",
+  "source_root": "C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-AUTO-CONTINUATION-20261003",
+  "overall_verdict": "PASS_SOURCE_STATIC_AND_PURE_FIXTURE_ONLY",
+  "source_static_verdict": "PASS_TERMINAL_AND_PRIOR_CRITERIA",
+  "fixture_verdict": "PASS_32_OF_32",
+  "reviewer_model_provenance": {
+    "requested": "gpt-6-luna/max",
+    "actual": "UNVERIFIED; actual runtime model metadata was not exposed"
+  },
+  "author_receipt": {
+    "intent_path": "routes/resume-batch-20261004/dashboard-terminal-ack-rework/ag.intent.json",
+    "conversation_id": "baf1d694-99c9-4b04-ac1e-04c063d093a3",
+    "declared_requested_model": "gemini-3.8-flash-high",
+    "declared_actual_model": "gemini-3.8-flash-high",
+    "status": "CLOSED_REVIEW_REQUIRED",
+    "result_status": "SUCCESS",
+    "denied_action_count": 0,
+    "author_tests": "UNTESTED_COMMANDS_FORBIDDEN; author claims were not treated as executed verification"
+  },
+  "input_bindings": [
+    {"path":"routes/progress-observer.mjs","bytes":31879,"sha256":"62e7f882fd958fe5f02591cc9880d42a4045a6b6572d77be7329ffacb8c1dce9"},
+    {"path":"routes/progress-human-view.mjs","bytes":19117,"sha256":"746a1d11b6126b27ed3b6deb39729e046ea751f8fa79362030639890e21552cd","matches_expected_frozen_sha":true},
+    {"path":"outputs/HUMAN-DASHBOARD-TERMINAL-ACK-REWORK/dashboard-regression.fixture.mjs","bytes":74983,"sha256":"8e8319ad99af6090ec97bf343c482b4f7544b0ec3c2f08e283f72cc11a0a8209"},
+    {"path":"outputs/HUMAN-DASHBOARD-TERMINAL-ACK-REWORK/source-report.json","bytes":6525,"sha256":"70d72a7ca837fe75d344deff7b8d261f53639cd1b94cf9b6429773a6583cfce6"},
+    {"path":"routes/resume-batch-20261004/dashboard-terminal-ack-rework/ag.intent.json","bytes":9769,"sha256":"551878b2fc2491a7887945b2dae1a527d2097fe3d7fbe004a638793db7c55ead"},
+    {"path":"routes/resume-batch-20261004/dashboard-native-shape-luna-review/result.json","bytes":20943,"sha256":"0fa02e779992955d94003c4df6b55807f748bae655213cae1f6f20504cc6489e"}
+  ],
+  "source_dispositions": [
+    {"id":"SINGLE_WRITER_LOCK_AND_CONTENTION","disposition":"PASS_STATIC; lock publication uses hardlink; malformed/unknown/stale contention fails closed without stealing or deleting the shared lock"},
+    {"id":"LOCK_RELEASE_OWNERSHIP","disposition":"PASS_STATIC_LIFECYCLE_LIMIT; default release does not unlink shared lock; the injected atomicRelinquish interleaving is a synthetic model only; Root retains exact stopped-owner cleanup"},
+    {"id":"ONCE_WATCH_VERSION_HANDOFF","disposition":"PASS_STATIC; lock acquisition precedes capture writes; incompatible active watcher requires qualified handoff"},
+    {"id":"ATOMIC_OUTPUT_PUBLICATION","disposition":"PASS_STATIC; temp write plus rename; publication failure fails closed without copy-over"},
+    {"id":"BOUNDED_GENERIC_RESULT_PATH","disposition":"PASS_STATIC; coordinate-root boundary and bounded raw read; generic result_path works without agent_name"},
+    {"id":"RAW_HASH_AND_PARSE_IDENTITY","disposition":"PASS_STATIC; hash and JSON parse consume the same bounded Buffer"},
+    {"id":"ACK_CONTENT_IDENTITY_AND_DISPOSITION","disposition":"PASS_STATIC; content signatures and disposition allowlist; a declared result_path without raw bytes cannot be collected even with matching semantic ACK"},
+    {"id":"DENIAL_DOMINANCE","disposition":"PASS_STATIC; EACCES/EPERM and denial metadata park before running/completion"},
+    {"id":"TERMINAL_SIGNAL_WITHOUT_CLOSED_AT","disposition":"PASS_STATIC; explicit terminal status/outcome blocks expected ENOENT and dominates leftover PID or fresh running markers; absent bytes remain UNKNOWN_READBACK_REQUIRED"},
+    {"id":"NONTERMINAL_RUNNING_ENOENT","disposition":"PASS_STATIC; only explicit nonterminal running plus valid fresh native observation can display RUNNING_OUTCOME_PENDING; result hash remains null and ACK is blocked"},
+    {"id":"PID_ONLY_AND_FRESHNESS","disposition":"PASS_STATIC; PID alone is not running; strict UTC calendar validation rejects invalid/future timestamps and stale observations; created_at is not native running evidence"},
+    {"id":"REWORK_CARD_SELECTION","disposition":"PASS_STATIC; pending rework is selected before standby"},
+    {"id":"HTML_ESCAPING_AND_INTERVAL_BOUND","disposition":"PASS_STATIC; rendered dynamic values are escaped and interval is bounded to at most 1440 minutes"},
+    {"id":"MISSION_LANGUAGE","disposition":"PASS_STATIC_AND_FIXTURE; explanatory negative is allowed while affirmative Mission-complete claims are rejected"},
+    {"id":"SYNTHETIC_FIXTURE_PURITY","disposition":"PASS_STATIC; imports are Node assert/path/url and the two authorized modules; all 23 capture calls inject read/readRaw/write/statEvent/now; lock operations use in-memory path-aware FS; process status is injected or the invalid-PID short circuit"}
+  ],
+  "fixture_execution": {
+    "purity_precondition": "PASS_STATIC_TRANSITIVE_REVIEW",
+    "actual_argv": [
+      "node",
+      "--input-type=module",
+      "-e",
+      "import('./outputs/HUMAN-DASHBOARD-TERMINAL-ACK-REWORK/dashboard-regression.fixture.mjs').then(m => { const result = m.runPureDashboardFixture(); console.log(JSON.stringify({count: result.length, results: result})); })"
+    ],
+    "working_directory": "source_root",
+    "invocations": 1,
+    "expected": 32,
+    "completed": 32,
+    "passed": 32,
+    "failed": 0,
+    "not_reached": 0,
+    "exit_code": 0,
+    "errors": [],
+    "other_tests_or_entrypoints": 0,
+    "case_groups": [
+      {
+        "group": "prior_22",
+        "disposition": "ALL_EXECUTED_PASS",
+        "ids": [
+          "OBSERVER_SINGLE_WRITER_NOT_ENFORCED",
+          "WATCH_VERSION_HANDOFF_MISSING",
+          "COPY_FALLBACK_NOT_ATOMIC",
+          "DENIAL_STATUS_OVERWRITTEN_BY_RESULT_READ",
+          "UNREADABLE_RESULT_CAN_REACH_COMPLETED_OR_ACK",
+          "RESULT_FIELDS_AND_DIGEST_HAVE_READ_RACE",
+          "MTIME_STILL_AFFECTS_LEGACY_ACK_AND_AGE",
+          "INVALID_NATIVE_TIMESTAMP_CAN_REMAIN_RUNNING",
+          "INVALID_DASHBOARD_OBSERVATION_MARKED_FRESH",
+          "ACK_DISPOSITION_UNVALIDATED",
+          "RETURNED_REWORK_MISREPORTED_AS_IDLE",
+          "UNESCAPED_SCHEDULE_INTERVAL_IN_HTML",
+          "PURE_FIXTURE_FALSE_POSITIVE",
+          "OBSERVER_LOCK_RECLAIM_TOCTOU",
+          "OBSERVER_LOCK_RELEASE_OWNERSHIP_RACE",
+          "NATIVE_FRESHNESS_USES_INTENT_CREATED_AT",
+          "PURE_FIXTURE_READS_REAL_FILESYSTEM_METADATA",
+          "READ_RAW_BOUND_SIZE_RACE",
+          "REWORK_CARD_IGNORES_OLDER_PENDING_REWORK",
+          "MISSION_COMPLETE_FIXTURE_ASSERTION_INCOMPLETE",
+          "SCHEDULE_RENDERER_UPPER_BOUND_MISSING",
+          "FIXTURE_REAL_PROCESS_PROBE"
+        ]
+      },
+      {
+        "group": "prior_native_result_6",
+        "disposition": "ALL_EXECUTED_PASS",
+        "ids": [
+          "NATIVE_AG_SHAPE_RESULT_ACQUISITION_AND_ACK",
+          "OPENCODE_SHAPE_RESULT_ACQUISITION_AND_ACK",
+          "NATIVE_LUNA_FRESH_RUNNING_FUTURE_RESULT_ENOENT",
+          "CLOSED_INTENT_ENOENT_UNKNOWN_NOT_COLLECTED",
+          "PERMISSION_DENIED_BEFORE_AND_AFTER_TERMINAL",
+          "INVALID_OR_FUTURE_TIMESTAMP_UNKNOWN_READBACK"
+        ]
+      },
+      {
+        "group": "new_terminal_ack_4",
+        "disposition": "ALL_EXECUTED_PASS",
+        "ids": [
+          "TERMINAL_CLOSED_WITHOUT_CLOSED_AT_LEFTOVER_PID_MATCHING_ACK_ENOENT",
+          "TERMINAL_SUCCESS_WITHOUT_CLOSED_AT_LEFTOVER_PID_MATCHING_ACK_ENOENT",
+          "TERMINAL_FAILED_AND_CANCELLED_SIGNALS_DOMINATE_LEFTOVER_PID",
+          "NO_PID_ONLY_INFERRED_RUNNING"
+        ]
+      }
+    ],
+    "assertion_audit_limit": "All 28 previously named cases remain in the current fixture and their current assertions executed successfully. Exact text comparison against the older fixture source was not performed because that source was outside the authorized read set."
+  },
+  "findings": [],
+  "lifecycle_and_acceptance_limits": [
+    "No actual filesystem/process/network/model/native/registry/ACK/PROGRESS I/O was performed by the synthetic invocation; imports did not start the observer.",
+    "No inspect/helper, provider, Host, or live observer probe was read or run. The observer was not restarted, killed, or reloaded.",
+    "This is source/static plus synthetic-fixture qualification only. It does not establish installed dashboard behavior, live/no-token behavior, reboot recovery, or Mission acceptance.",
+    "Evidence supports Root-controlled candidate observer handoff after Root performs its own owner/lock readback and any exact cleanup; this reviewer performed no handoff."
+  ]
+}

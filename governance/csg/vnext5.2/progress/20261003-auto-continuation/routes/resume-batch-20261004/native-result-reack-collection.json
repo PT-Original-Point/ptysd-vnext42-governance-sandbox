@@ -1,0 +1,38 @@
+{
+  "recorded_at": "2026-10-04T16:09:15.518Z",
+  "historical_collections": [
+    {
+      "intent": "routes/resume-batch-20261004/published-source-head-ag-review/ag.intent.json",
+      "actual_result_sha256": "98a23c711b6391d90f0a6b1130ebaf5fbae3b3b146b77e13e7a210431d9ab8f5",
+      "review": "routes/resume-batch-20261004/published-source-head-ag-review/result.json",
+      "scope": "HISTORICAL_WORKFLOW_ONLY"
+    },
+    {
+      "intent": "routes/resume-batch-20261004/runtime-sourcepair-ag-review/ag.intent.json",
+      "actual_result_sha256": "7776efd99ae673e5a61b5fe1810055f1f1b482b767c024c5e8084b3fd00d3741",
+      "review": "routes/resume-batch-20261004/runtime-final-head-ag-review/result.json",
+      "scope": "HISTORICAL_WORKFLOW_ONLY"
+    },
+    {
+      "intent": "routes/resume-batch-20261004/runtime-final-head-ag-review/ag.intent.json",
+      "actual_result_sha256": "f0820c9ca62acdd284b6e8e8c0433d2991b71acc4d3a024e478508cc880bcb38",
+      "review": "routes/resume-batch-20261004/runtime-final-head-ag-review/result.json",
+      "scope": "HISTORICAL_WORKFLOW_ONLY"
+    },
+    {
+      "intent": "routes/resume-batch-20261004/c1-final-sourcepair-luna/luna.intent.json",
+      "actual_result_sha256": "addda942ff493fed656fbf4a6a94f49c3b65d9fe7686ab96bd6c576ff5f7e14d",
+      "review": "outputs/C1-FINAL-SOURCEPAIR-AG-REVIEW/result.json",
+      "scope": "HISTORICAL_WORKFLOW_ONLY"
+    },
+    {
+      "intent": "routes/resume-batch-20261004/dashboard-native-result-shape-rework/ag.intent.json",
+      "actual_result_sha256": "ea375a5b5bb494724538edad58a17af9f6a5d724a99f7ab20989e353dbf89893",
+      "review": "routes/resume-batch-20261004/dashboard-terminal-luna-review/result.json",
+      "scope": "HISTORICAL_WORKFLOW_ONLY"
+    }
+  ],
+  "new_command_denial": "routes/resume-batch-20261004/c1-ajv-qualification-source/ag.intent.json",
+  "root_product_edits": 0,
+  "mission_complete": false
+}

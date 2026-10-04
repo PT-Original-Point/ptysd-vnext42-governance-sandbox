@@ -3,13 +3,13 @@
   "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
   "noncanonical": true,
   "writer": "ROOT_SINGLE_INTEGRATOR",
-  "sequence": 25,
-  "previous_locator_head": "fca8e113f78268055013676d770f658d9115fff7",
+  "sequence": 24,
+  "previous_locator_head": "96f98e5b913a0fb53962afc9bb95c0e89acba42d",
   "progress": {
     "repository": "PT-Original-Point/ptysd-vnext42-governance-sandbox",
-    "exact_head": "62c4f08fe6ee2a95d65a5ad06cf07a8adfe0a6e6",
+    "exact_head": "9b6ed835461ff298b970439f74e3dcf1ca860a37",
     "current_path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/CURRENT.json",
-    "current_sha256": "sha256:fef7a232f5623859adfc5d93daef50ff6732b4ac4cd5f40d41cb13d1431701a7",
+    "current_sha256": "sha256:0daa327e97e495c07c15c5df4b675b8426ac0a8981683b56e3a9e7a8303f94c7",
     "manifest_path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/manifest.json"
   },
   "dispatch_authority": false,
@@ -25,7 +25,7 @@
     "research_head": "f4c754ed1e2f256b24c432511c01ae52592dd15f",
     "runtime_pr": 386,
     "runtime_head": "0c8a5bd23d5591571998c18ab49eb1eec0ba7968",
-    "new_candidates": "SOURCE_PAIR_FROZEN_CONTROL_PACKET_AND_NATIVE_OBSERVER_INTERFACE_REPAIR_IN_PROGRESS",
+    "new_candidates": "SOURCE_PAIR_FROZEN_SCOPED_SEMANTIC_STRUCTURAL_PASS_C1_SOURCE_PACKET_AND_DASHBOARD_FIXTURE_REVIEW_RUNNING",
     "live": "NOT_ACCEPTED"
   },
   "coordination": {
@@ -33,11 +33,11 @@
     "actual_goal": "paused",
     "goal_resume_api": "UNSUPPORTED_NO_FAKE_ACTIVE",
     "running_ids": [
-      "HUMAN.DASHBOARD_NATIVE_RESULT_SHAPE_REWORK",
+      "HUMAN.DASHBOARD_FIXTURE_ONLY_DISTINCT_REVIEW",
       "C1.FINAL_SOURCE_PAIR_NONSELECTING_PACKET"
     ],
     "latest_native_intents": [
-      "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/resume-batch-20261004/dashboard-native-result-shape-rework/ag.intent.json",
+      "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/resume-batch-20261004/human-dashboard-fixture-only-distinct-review/luna.intent.json",
       "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/resume-batch-20261004/c1-final-sourcepair-luna/luna.intent.json"
     ],
     "queue_decision": "WORK_IN_PROGRESS",
@@ -48,12 +48,10 @@
       "mcp": "PR385_EXACT_HEAD_STRUCTURAL_PASS_LOCAL7_DISTINCT_FINAL_TEST_PASS_OTHER6_REVIEW_INHERITED_NO_FULL_LEGACY_LIVE",
       "runtime": "PR386_FROZEN_EXACT_HEAD_STRUCTURAL_PASS_SCOPED_TWO_TESTS_STATIC_PASS_CROSS_E2E_PARKED",
       "dashboard": {
-        "prior_pure_fixture": "22/22_PASS",
-        "live_local_observer": "NATIVE_INTERFACE_DEFECTS_FOUND_NOT_QUALIFIED",
-        "known_false_uncollected": 3,
-        "next": "AG_NATIVE_RESULT_SHAPE_SOURCE_FIX_THEN_LUNA_DISTINCT_REVIEW",
-        "root_findings": "routes/resume-batch-20261004/observer-native-interface-root-findings.json",
-        "factory_live": "NOT_ACCEPTED"
+        "source_static": "PASS_WITH_OBSERVER_LIFECYCLE_LIMIT",
+        "fixture": "REWORK_REQUIRED_FIXTURE_ONLY",
+        "review": "routes/resume-batch-20261004/human-dashboard-final2-distinct-review/result.json",
+        "next": "AG_FIXTURE_ONLY_REPAIR_THEN_DISTINCT_LUNA"
       },
       "producer_head": "f45ef980a0194c54db6f2e3d5585577154ac5754",
       "research_head": "f4c754ed1e2f256b24c432511c01ae52592dd15f",
@@ -89,9 +87,7 @@
     "active_collection_minutes": 15,
     "monitoring": "LOCAL_METADATA_OBSERVER_NO_MODEL_EXTERNAL_CLI_IMMEDIATE_TRIGGER_NOT_PROVEN",
     "quota_scope": "SHARED_ACCOUNT_NOT_PER_SESSION",
-    "bad_packet": "REJECTED_REPO_TREE_WAS_CP200_SOURCE_TESTS_PRESERVED",
-    "original_contract_source_map": "governance/csg/vnext5.2/progress/20261003-auto-continuation/CONTRACT-SOURCE-MAP.json",
-    "observer_qualification": "PRIOR_PURE22_PASS_NATIVE_RESULT_SHAPE_DEFECTS_REWORK_IN_PROGRESS"
+    "bad_packet": "REJECTED_REPO_TREE_WAS_CP200_SOURCE_TESTS_PRESERVED"
   },
   "active_manifest_policy": "CURRENT_PROJECTIONS_40_FILES_MAX40",
   "historical_progress_head": "0efff52aa791a3d48f818c535cecc6944f6ae05c"

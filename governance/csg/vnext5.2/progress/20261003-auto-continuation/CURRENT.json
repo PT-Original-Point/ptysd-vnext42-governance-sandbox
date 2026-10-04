@@ -1,7 +1,7 @@
 {
   "schema": "vnext5.2.construction-progress.v2",
   "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
-  "observed_at": "2026-10-04T14:56:54.980Z",
+  "observed_at": "2026-10-04T16:30:34.875Z",
   "model_lock": {
     "codex": {
       "display": "GPT-6 Luna Max",
@@ -121,10 +121,9 @@
   "queue_decision": "WORK_IN_PROGRESS",
   "ready_ids": [],
   "running_ids": [
-    "HUMAN.DASHBOARD_NATIVE_RESULT_SHAPE_REWORK",
-    "C1.FINAL_SOURCE_PAIR_NONSELECTING_PACKET"
+    "C1.VALIDATOR_FOUR_FINDINGS_REWORK"
   ],
-  "valid_until": "2026-10-04T15:11:55.017Z",
+  "valid_until": "2026-10-04T16:45:34.919Z",
   "all_legal_ready_lanes_exhausted": false,
   "canonical_write": false,
   "host_install": false,
@@ -149,10 +148,11 @@
   },
   "construction_plan": "VNEXT5.2-限額控制與優先復工施工契約-20261004.md",
   "active_source_repairs": [
-    "HUMAN.DASHBOARD_NATIVE_RESULT_SHAPE_REWORK",
-    "C1.FINAL_SOURCE_PAIR_NONSELECTING_PACKET"
+    "C1.VALIDATOR_FOUR_FINDINGS_REWORK"
   ],
-  "pending_independent_reviews": [],
+  "pending_independent_reviews": [
+    "C1.ACTUAL_PACKET_SCHEMA_MATCH_STATIC_REVIEW"
+  ],
   "compact_reentry": "routes/resume-batch-20261004/NEXT-ACTIONS.md",
   "compact_summary": "routes/resume-batch-20261004/COMPACT-SUMMARY.json",
   "source_gate_status": "INTAKE_EXACT_NATIVE_REVIEW_READ_DENIED_NO_BYPASS_NOT_SEMANTIC_PASS",
@@ -175,22 +175,23 @@
     "native_luna_callback": "ACTUAL_REVIEW_NOTIFICATION_RECEIVED_NOT_EVERY_BRAND_OR_OS_SURVIVAL_PROOF",
     "worker_collection_rule": "TERMINAL_RESULT_READ_ONCE_EXACT_BYTES_DISTINCT_REVIEW_FINDINGS_TO_AUTHOR_REWORK_NO_HUMAN_CARRYING",
     "root_required_only_for": "NEW_FINDINGS_AUTHORITY_CONFLICT_FINAL_ACCEPTANCE_TRUE_GATE",
-    "optional_audit_attachment": "NOT_REQUIRED_DENIED_ATTACHMENT_PARKS_ONLY_ATTACHMENT"
+    "optional_audit_attachment": "NOT_REQUIRED_DENIED_ATTACHMENT_PARKS_ONLY_ATTACHMENT",
+    "known_old_observer_false_alerts": "Five actual already-collected terminal receipts re-ACKed with new raw-byte signatures; old source verdicts not promoted",
+    "model_collection_minutes": 30,
+    "free_local_seconds": 30
   },
   "latest_native_intents": [
-    "routes/resume-batch-20261004/dashboard-native-result-shape-rework/ag.intent.json",
-    "routes/resume-batch-20261004/c1-final-sourcepair-luna/luna.intent.json"
+    "routes/resume-batch-20261004/c1-actual-packet-schema-match-review/ag.intent.json",
+    "routes/resume-batch-20261004/c1-validator-four-findings-rework/ag.intent.json"
   ],
   "source_qualification": {
     "research": "PR388_EXACT_HEAD_STRUCTURAL_PASS_LOCAL103_DISTINCT17_SEMANTIC_PASS_PREPARATORY_ONLY",
     "mcp": "PR385_EXACT_HEAD_STRUCTURAL_PASS_LOCAL7_DISTINCT_FINAL_TEST_PASS_OTHER6_REVIEW_INHERITED_NO_FULL_LEGACY_LIVE",
     "runtime": "PR386_FROZEN_EXACT_HEAD_STRUCTURAL_PASS_SCOPED_TWO_TESTS_STATIC_PASS_CROSS_E2E_PARKED",
     "dashboard": {
-      "prior_pure_fixture": "22/22_PASS",
-      "live_local_observer": "NATIVE_INTERFACE_DEFECTS_FOUND_NOT_QUALIFIED",
-      "known_false_uncollected": 3,
-      "next": "AG_NATIVE_RESULT_SHAPE_SOURCE_FIX_THEN_LUNA_DISTINCT_REVIEW",
-      "root_findings": "routes/resume-batch-20261004/observer-native-interface-root-findings.json",
+      "prior_pure_fixture": "32/32_PASS",
+      "source_sha256": "62e7f882fd958fe5f02591cc9880d42a4045a6b6572d77be7329ffacb8c1dce9",
+      "native_handoff": "OWN_PID35652_LOCK_AND_CAPTURE_READBACK_PASS",
       "factory_live": "NOT_ACCEPTED"
     },
     "producer_head": "f45ef980a0194c54db6f2e3d5585577154ac5754",
@@ -220,7 +221,29 @@
       "mission_complete": false
     },
     "runtime_head": "0c8a5bd23d5591571998c18ab49eb1eec0ba7968",
-    "dashboard_status": "FROZEN_SOURCE_STATIC_PASS_NEW_FIXTURE_DISTINCT_REVIEW_RUNNING"
+    "dashboard_status": "32_SYNTHETIC_PASS_OWN_NATIVE_METADATA_OBSERVER_HANDOFF_READBACK_PASS_NOT_FACTORY_LIVE",
+    "c1": "C1_PACKET_SCOPED_DISTINCT_STATIC_PASS_SCHEMA_AND_PROMOTION_CONTRACT_STILL_PENDING",
+    "c1_schema": {
+      "status": "PROPOSED_NOT_ADOPTED",
+      "native_author_model": "opencode/muse-spark-1.3-contributor-free/xhigh",
+      "native_cost": 0,
+      "process_compliance": "REJECTED_DENIAL_BYPASS",
+      "source_review": "SCOPED_DISTINCT_AG_STATIC_PASS_PROPOSED_NOT_ADOPTED",
+      "compilation_and_executed_regressions": "PENDING_MATURE_VALIDATOR_DEPENDENCY_QUALIFICATION",
+      "root_finding": "routes/resume-batch-20261004/c1-schema-distinct-ag-review/root-process-finding.json",
+      "canonical_write": false,
+      "artifact_placement": "WRONG_RELATIVE_OUTPUT_METADATA_LOCATOR_REPAIRED_BYTES_UNCHANGED",
+      "next": "AG_LEGAL_FILE_ONLY_PACKAGE_PREPARATION_RUNNING_EXECUTION_REMAINS_PENDING",
+      "command_lane": "AG_RUNCOMMAND_NATIVE_DENIED_PARKED_NO_RETRY"
+    }
   },
-  "contract_source_map": "CONTRACT-SOURCE-MAP.json"
+  "contract_source_map": "CONTRACT-SOURCE-MAP.json",
+  "quota_actual": {
+    "observed_at": "2026-10-04T16:09:15.518Z",
+    "five_hour_used_percent": 88,
+    "weekly_used_percent": 70,
+    "scope": "SHARED_ACCOUNT_NOT_PER_SESSION_BILL",
+    "policy": "ROOT_NECESSARY_PERSISTENCE_GATE_ONLY_EXTERNAL_LEGAL_SOURCE_CONTINUES",
+    "paid_fallback": false
+  }
 }

@@ -1,0 +1,19 @@
+{
+  "recorded_at": "2026-10-04T15:50:57.0560428Z",
+  "scope": "OWN_COORDINATION_OBSERVER_ONLY_NOT_HOST_SUPERVISOR",
+  "old_pid": 26596,
+  "old_command_line_verified": true,
+  "old_lock_token": "lock-26596-1791125219420-htcosf4s",
+  "old_stopped": true,
+  "new_pid": 35652,
+  "source_sha256": "62e7f882fd958fe5f02591cc9880d42a4045a6b6572d77be7329ffacb8c1dce9",
+  "review_sha256": "5d72a5e01296a499bdb32cd78833b90873b0c38a0fdba0b3abec9fb63b31563b",
+  "synthetic_cases": 32,
+  "native_readback": "NEW_EXACT_LOCK_AND_METADATA_CAPTURE_READBACK_PASS",
+  "canonical_write": false,
+  "host_dispatch": false,
+  "factory_live": "NOT_ACCEPTED",
+  "mission_complete": false,
+  "metadata_observed_at": "2026-10-04T16:08:57.792Z",
+  "known_false_alerts_reacknowledged": 5
+}
