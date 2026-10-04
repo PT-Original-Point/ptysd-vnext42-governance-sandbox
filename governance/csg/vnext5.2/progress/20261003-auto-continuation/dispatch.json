@@ -1,6 +1,6 @@
 {
   "schema": "vnext5.2.coordinator-dispatch.v1",
-  "observed_at": "2026-10-04T05:36:05.113Z",
+  "observed_at": "2026-10-04T08:11:29.769Z",
   "single_integrator": "root",
   "tasks": [
     {
@@ -383,7 +383,7 @@
         }
       ],
       "result_source": "routes/resume-batch-20261004/adapter-final-review/ag.intent.json",
-      "closed_at": "2026-10-04T04:16:57.300Z",
+      "closed_at": "2026-10-04T04:16:57.3Z",
       "pid": 65908
     },
     {
@@ -479,7 +479,7 @@
         }
       ],
       "result_source": "routes/resume-batch-20261004/adapter-boundary-final-review/ag.intent.json",
-      "closed_at": "2026-10-04T04:33:01.680Z",
+      "closed_at": "2026-10-04T04:33:01.68Z",
       "pid": 47604
     },
     {
@@ -594,7 +594,7 @@
     {
       "id": "P52.OPENCODE_ALL_FIELDS_CLOSURE_REVIEW",
       "status": "PARKED_NATIVE_PERMISSION_DENIED",
-      "closed_at": "2026-10-04T04:43:14.480Z",
+      "closed_at": "2026-10-04T04:43:14.48Z",
       "actual_model": "gemini-3.8-flash-high",
       "requested_model": "gemini-3.8-flash-high",
       "session_id": null,
@@ -622,6 +622,25 @@
       "native_outcome": null,
       "cost": null,
       "result_source": "routes/resume-batch-20261004/c1-control-packet/ag.intent.json"
+    },
+    {
+      "id": "P52.INTAKE_REVIEWED_REPAIR",
+      "status": "SUBMITTED_OUTCOME_PENDING",
+      "route": "OPENCODE_NATIVE",
+      "session_id": "ses_efa0a9169ffe4TPNklVK8k8Nlh",
+      "pid": 59084,
+      "actual_model": null,
+      "requested_model": "opencode/muse-spark-1.3-contributor-free",
+      "variant": "xhigh",
+      "write_set": [
+        "tools/csg/v52-intake/**",
+        "outputs/P52-INTAKE/reviewed-repair-20261004/**"
+      ],
+      "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-INTAKE-OPENCODE-WORK-20261003",
+      "dispatch_source": "routes/resume-batch-20261004/intake-reviewed-repair/oc.intent.json",
+      "closed_at": null,
+      "native_outcome": null,
+      "cost": null
     }
   ],
   "collection": "root reads native thread/subagent updates then exact result paths; Human copying unnecessary",

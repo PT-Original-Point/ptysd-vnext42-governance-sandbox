@@ -1,7 +1,7 @@
 {
   "schema": "vnext5.2.construction-progress.v2",
   "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
-  "observed_at": "2026-10-04T05:36:05.113Z",
+  "observed_at": "2026-10-04T08:11:29.769Z",
   "model_lock": {
     "codex": {
       "display": "GPT-6 Luna Max",
@@ -31,7 +31,7 @@
         "cache_read": 0,
         "cache_write": 0
       },
-      "runtime_quota": "ACTUAL_MUSE_TWO_DIAGNOSTICS_SUCCEEDED_COST0_CURRENT_BATCH_INFLIGHT",
+      "runtime_quota": "ACTUAL_SUBMITTED_CURRENT_OUTCOME_PENDING_NO_CATALOG_QUOTA_INFERENCE",
       "previous_fledge_alpha_free": "HISTORICAL_ONLY_FORBIDDEN_FOR_NEW_DISPATCH",
       "prior_provider_quota": "HISTORICAL_FLEDGE_ONLY_NOT_MUSE_PROOF"
     }
@@ -116,8 +116,10 @@
   "queue_path": "ready-queue.json",
   "queue_decision": "WORK_IN_PROGRESS",
   "ready_ids": [],
-  "running_ids": [],
-  "valid_until": "2026-10-04T05:51:05.145Z",
+  "running_ids": [
+    "P52.INTAKE_REVIEWED_REPAIR"
+  ],
+  "valid_until": "2026-10-04T08:26:29.797Z",
   "all_legal_ready_lanes_exhausted": false,
   "canonical_write": false,
   "host_install": false,
@@ -136,20 +138,17 @@
   "opencode_route_diagnostic": {
     "observed_at": "2026-10-04T03:45:35.461285Z",
     "report": "VNEXT5.2-OpenCode桌面路線診斷與呼叫修正-20261004.md",
-    "status": "DIAGNOSTICALLY_AVAILABLE_CONSTRUCTION_HUMAN_PAUSED",
-    "construction_dispatch": "HUMAN_PAUSED",
+    "status": "ACTUAL_NATIVE_SOURCE_SUBMITTED_READBACK_PENDING",
+    "construction_dispatch": "HUMAN_RESUMED_NATIVE_SOURCE_ROUTE",
     "contract": "routes/opencode-desktop-route-20261004.json"
   },
   "construction_plan": "VNEXT5.2-限額控制與優先復工施工契約-20261004.md",
   "active_source_repairs": [
-    "MCP.READONLY_CONTEXT_RECOVERY"
+    "P52.INTAKE_REVIEWED_REPAIR"
   ],
-  "pending_independent_reviews": [
-    "M01.SOURCE",
-    "D02.SOURCE",
-    "P52.INTAKE_SOURCE"
-  ],
+  "pending_independent_reviews": [],
   "compact_reentry": "routes/resume-batch-20261004/NEXT-ACTIONS.md",
   "compact_summary": "routes/resume-batch-20261004/COMPACT-SUMMARY.json",
-  "source_gate_status": "TARGET_SCOPED_PERMISSION_AND_REVIEW_GAPS_NO_GLOBAL_MISSION_STOP"
+  "source_gate_status": "TARGET_SCOPED_PERMISSION_AND_REVIEW_GAPS_NO_GLOBAL_MISSION_STOP",
+  "latest_native_intent": "routes/resume-batch-20261004/intake-reviewed-repair/oc.intent.json"
 }

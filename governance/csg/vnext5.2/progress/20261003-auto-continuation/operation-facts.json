@@ -1,15 +1,15 @@
 {
   "schema": "vnext5.2.operation-facts.v1",
   "catalog_sha256": "sha256:ee769422b5d587e771d09c4e95af1af9a3a7cf0a7c0e493d86071e2df57304de",
-  "captured_at_utc": "2026-10-04T05:36:05.113Z",
+  "captured_at_utc": "2026-10-04T08:11:29.769Z",
   "freshness": {
     "max_age_seconds": 900,
     "max_future_skew_seconds": 60
   },
   "source_inventory": {
     "ref": "auto-continuation:dispatch.json",
-    "sha256": "sha256:1b7773ff160d4a38bc7e7e8378d44d9a59de90c45aff3efb17973e2c11da0e3c",
-    "observed_at_utc": "2026-10-04T05:36:05.113Z"
+    "sha256": "sha256:3267ea8d31bcc146d645636acee02e795ecca08d6f5ce0b89c130c56ff1265ac",
+    "observed_at_utc": "2026-10-04T08:11:29.769Z"
   },
   "canonical_binding": {
     "control_ref": "refs/heads/v45/factory-control",
@@ -26,8 +26,8 @@
       "evidence": [
         {
           "ref": "auto-continuation:fresh-provider.json",
-          "sha256": "sha256:fdf397db9a17759b643076d99e6c6a8941975655f2926adeb5d13fe331b81fdf",
-          "observed_at_utc": "2026-10-04T05:15:28.305Z"
+          "sha256": "sha256:319e962a9f1d65220e0935b2600a4574506f63eae3b670f98508a0bdefcfc652",
+          "observed_at_utc": "2026-10-04T08:09:17.202Z"
         }
       ],
       "evidence_class": "FRESH_CANONICAL_SAME_REF_IMMUTABLE_READBACK"
@@ -107,18 +107,18 @@
     },
     {
       "id": "M01.SOURCE",
-      "state": "WAITING_REVIEW",
+      "state": "WAITING_EXTERNAL",
       "authorization_state": "AUTHORIZED",
       "evidence": [
         {
-          "ref": "routes/resume-batch-20261004/mcp-final-package-review/ag.intent.json",
-          "sha256": "sha256:2bd2cc0d080e91619b007dcc5d3a4ed64c514b873b1474565362d65c5ed3fc7a",
-          "observed_at_utc": "2026-10-04T05:36:05.113Z"
+          "ref": "reviews/mcp/readonly-transport-collection-20261004.json",
+          "sha256": "sha256:d77ba360d988731e763315195c4a28e89202ecdfde7704ecd78a07a37431d78a",
+          "observed_at_utc": "2026-10-04T08:11:29.769Z"
         }
       ],
-      "evidence_class": "SOURCE_CANDIDATE_NOT_LIVE_ACCEPTANCE",
+      "evidence_class": "SCOPED_SOURCE_REVIEW_PASS_FULL_CANDIDATE_NOT_ACCEPTED",
       "execution_owner_allocated": false,
-      "reason": "NEW_SOURCE_CLAIM_NEEDS_INDEPENDENT_EXACT_REVIEW",
+      "reason": "NEW6_DIFF_REVIEW_AND27_PASS_FULL_LEGACY_BASELINE_PERMISSION_PARKED",
       "owner_authority": "UNKNOWN"
     },
     {
@@ -338,18 +338,18 @@
     },
     {
       "id": "D02.SOURCE",
-      "state": "WAITING_REVIEW",
+      "state": "DONE",
       "authorization_state": "AUTHORIZED",
       "evidence": [
         {
           "ref": "routes/resume-batch-20261004/queue-closure-review-corrected/oc.intent.json",
           "sha256": "sha256:aefc5c0cf8c8f735bd32ad27bd35600df4d8a0f47275235c73e23a254f791044",
-          "observed_at_utc": "2026-10-04T05:36:05.113Z"
+          "observed_at_utc": "2026-10-04T08:11:29.769Z"
         }
       ],
-      "evidence_class": "SOURCE_CANDIDATE_NOT_LIVE_ACCEPTANCE",
+      "evidence_class": "SOURCE_SCOPE_REVIEW_PASS",
       "execution_owner_allocated": false,
-      "reason": "NEW_SOURCE_CLAIM_NEEDS_INDEPENDENT_EXACT_REVIEW",
+      "reason": "NEW_TWO_FILE_INDEPENDENT_REVIEW_ACCEPT_SHADOW_ONLY_NOT_LIVE_SYSTEM",
       "owner_authority": "UNKNOWN"
     },
     {
@@ -479,10 +479,18 @@
     },
     {
       "id": "P52.INTAKE_SOURCE",
-      "state": "WAITING_REVIEW",
+      "state": "RUNNING",
       "authorization_state": "AUTHORIZED",
-      "evidence": [],
-      "reason": "COLLECTED_SOURCE_AND_ROOT_EDITS_REQUIRE_WORKER_HANDOFF_AND_FINAL_INDEPENDENT_REVIEW"
+      "evidence": [
+        {
+          "ref": "routes/resume-batch-20261004/intake-reviewed-repair/oc.intent.json",
+          "sha256": "sha256:fb2e3b20b0309f4f35c50da51e0d201f44ff13098c01a67151f2b033fd9f1edb",
+          "observed_at_utc": "2026-10-04T08:11:29.769Z"
+        }
+      ],
+      "reason": "EIGHT_REVIEW_FINDINGS_NATIVE_REPAIR_IN_FLIGHT",
+      "evidence_class": "ACTUAL_NATIVE_SUBMISSION_NOT_SOURCE_ACCEPTANCE",
+      "owner_authority": "UNKNOWN"
     },
     {
       "id": "P52.RESEARCH_OPTIONS_SOURCE",
@@ -581,5 +589,5 @@
       "evidence": []
     }
   ],
-  "facts_sha256": "sha256:e873102584fb7cebd16d944f84208ffe6c7cd86752f47bd2a2411f02e050e7d0"
+  "facts_sha256": "sha256:b37deda724e3db2d9cd71adc745e07896eb7d805fe8e00a6bdd70e1069c722ae"
 }

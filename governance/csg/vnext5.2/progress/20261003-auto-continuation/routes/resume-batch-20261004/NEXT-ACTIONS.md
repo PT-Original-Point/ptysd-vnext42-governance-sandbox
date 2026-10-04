@@ -30,3 +30,15 @@ MCP fork真身 ses_efac095ecffeJxEksi3h3Tx1Sr，parent ses_efac720d5ffeZm6dmasfW
 
 ## 最新回收 2026-10-04T05:36:05.0532552Z
 MCP最終6檔different-author source review無finding，27 fixtures PASS且root6hash全match；legacy/full/live仍未接受。D02 corrected absolute-root review ACCEPT_SHADOW_ONLY；其泛化DONE receipt freshness建議不允許套在歷史immutable source PASS，否則會重做完成項；parked-no-ready不等於Mission完成。最新共享限額61%/週41%，不是per-session歸因。補記root own source-CWD/card/JS quoting缺陷與避免同樣無效重派；raw failed review保留歷史。新review source必須ABSOLUTE_FILE_PATH + distinct Desktop PROJECT_ROOT與SOURCE_ROOT。
+
+NEXT CURRENT: intake-next-review/ag.intent.json 已委派真正AG，read-only、absolute source roots、不碰任何denied資源；先回收此任務，不重派。MCP六檔27fixture scoped PASS已接收，legacy/live持續停放。D02 review ACCEPT_SHADOW_ONLY兩項建议由root按receipt evidence class仲裁，禁止对immutable source成果設300秒過期重做；global exhaustion不能當Mission completion。
+
+
+## 2026-10-04T08:10:43.571Z bounded Intake rework
+
+Native Muse session ses_efa0a9169ffe4TPNklVK8k8Nlh owns Intake all8 review findings; intent routes/resume-batch-20261004/intake-reviewed-repair/oc.intent.json. Read that single intent/export/result once after closure, not oldhistory. Unknown/in-flight => no duplicate. Stable repair => distinct AG review exact changed bytes, then research-options prerequisite. MCP new6 review/27fixtures accepted only scoped; legacy baseline/live install parked. D02 new2 review ACCEPT_SHADOW_ONLY: four named invariants verified, P2 suggestions do not expire immutable source PASS or terminate Mission when parked/recoverable work exists. Goal actual paused; canonical CP200; installed UNKNOWN. No source PR push/verifier this round.
+
+
+## 2026-10-04T08:11:29.769Z bounded Intake rework
+
+Native Muse session ses_efa0a9169ffe4TPNklVK8k8Nlh owns Intake all8 review findings; intent routes/resume-batch-20261004/intake-reviewed-repair/oc.intent.json. Read that single intent/export/result once after closure, not oldhistory. Unknown/in-flight => no duplicate. Stable repair => distinct AG review exact changed bytes, then research-options prerequisite. MCP new6 review/27fixtures accepted only scoped; legacy baseline/live install parked. D02 new2 review ACCEPT_SHADOW_ONLY: four named invariants verified, P2 suggestions do not expire immutable source PASS or terminate Mission when parked/recoverable work exists. Goal actual paused; canonical CP200; installed UNKNOWN. No source PR push/verifier this round.

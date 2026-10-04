@@ -1,0 +1,143 @@
+{
+  "observed_at": "2026-10-04T08:08:53.038Z",
+  "review": {
+    "verdict": "NOT_ACCEPTED_INDEPENDENT_REVIEW_FAILED",
+    "live_acceptance": "NOT_ACCEPTED",
+    "model": "Gemini 3.8 Flash (High)",
+    "scope": "tools/csg/v52-intake (pure intake slice only)",
+    "three_columns": {
+      "constructionV52": "isolated",
+      "canonicalCP200": "separated",
+      "installedUNKNOWN": "untrusted"
+    },
+    "tests": {
+      "command": "node --test tools/csg/v52-intake/test/intake.test.mjs",
+      "status": "PASS",
+      "passed": 14,
+      "total": 14,
+      "historical_guarantee": false,
+      "note": "14/14 pure fixture tests pass; test count mismatches README/make-result (12)"
+    },
+    "sourcebindings": {
+      "tools/csg/v52-intake/intake.mjs": "b6d8cab58ac6aee51ba6f471bf5804d61dc3e34ce733302102bfcf527e19f90b",
+      "tools/csg/v52-intake/cli.mjs": "7fd86f047ab907a0a20602a7f981a1dbe76187ee01457f64533f52ba610f91ef",
+      "tools/csg/v52-intake/intake-request.schema.json": "77bc62f617a313d75a75904a86e4da794cce35d180c226092362dbc39ec73c82",
+      "tools/csg/v52-intake/README.md": "8f0c4bf21d70915fd5a25d89cb215603d4c98e9bb9a4bdb577a01e7732a8b903",
+      "tools/csg/v52-intake/scripts/make-sample.mjs": "fd72c5f41df66fd3e33c586a12634546dd99034c37b633dbc6c327601f0723e8",
+      "tools/csg/v52-intake/scripts/make-result.mjs": "e1f7e7bfbb2faf7d3a182b135be7e513bae49e2f40079592c5a73d7362ece774",
+      "tools/csg/v52-intake/test/intake.test.mjs": "0315db08c49f3a800e7fa04f36f99e6fed718b0aebca04d091cf4db4752e907d"
+    },
+    "findings": [
+      {
+        "id": "INTAKE-SEC-01",
+        "priority": "HIGH",
+        "file": "tools/csg/v52-intake/cli.mjs",
+        "line": 36,
+        "issue": "outDir argument accepted directly without resolving against workspace root; permits path traversal write outside workspace",
+        "fix": "Resolve path against workspace root and verify target path starts with resolved workspace root before mkdir/write"
+      },
+      {
+        "id": "INTAKE-SEC-02",
+        "priority": "HIGH",
+        "file": "tools/csg/v52-intake/cli.mjs",
+        "line": 9,
+        "issue": "fs.statSync in readBounded follows symlinks, enabling symlink arbitrary read and target overwrite escapes",
+        "fix": "Use fs.lstatSync to reject symbolic links via !stat.isSymbolicLink() on both input read and receipt write"
+      },
+      {
+        "id": "INTAKE-SCHEMA-03",
+        "priority": "HIGH",
+        "file": "tools/csg/v52-intake/intake.mjs",
+        "line": 112,
+        "issue": "validateIntakeRequest does not enforce schema additionalProperties:false or required project_target property",
+        "fix": "Strictly validate all object keys against schema allowed property set and enforce schema-required field presence"
+      },
+      {
+        "id": "INTAKE-BOUND-04",
+        "priority": "MEDIUM",
+        "file": "tools/csg/v52-intake/cli.mjs",
+        "line": 9,
+        "issue": "CLI 128 KiB limit diverges from intake.mjs MAX_INPUT_BYTES 64 KiB",
+        "fix": "Import MAX_INPUT_BYTES from intake.mjs and enforce uniform 64 KiB upper bound in cli.mjs readBounded"
+      },
+      {
+        "id": "INTAKE-CANON-05",
+        "priority": "MEDIUM",
+        "file": "tools/csg/v52-intake/intake.mjs",
+        "line": 24,
+        "issue": "sortValue lacks Unicode NFC normalization, causing different UTF-8 representations of identical text to yield divergent SHA-256 digests",
+        "fix": "Apply String.prototype.normalize('NFC') to string values before hashing"
+      },
+      {
+        "id": "INTAKE-CLI-06",
+        "priority": "MEDIUM",
+        "file": "tools/csg/v52-intake/cli.mjs",
+        "line": 24,
+        "issue": "No argument arity or flag validation; unknown flags treated as input file paths; digest subcommand bypasses validation",
+        "fix": "Implement strict positional arity check, reject unknown flags, and call validateIntakeRequest inside digest subcommand"
+      },
+      {
+        "id": "INTAKE-SECRET-07",
+        "priority": "MEDIUM",
+        "file": "tools/csg/v52-intake/intake.mjs",
+        "line": 124,
+        "issue": "Credentials/tokens in original_text or unknown_fields persist unredacted into receipt files",
+        "fix": "Add secret pattern detection and reject or redact potential auth tokens from durable intake receipts"
+      },
+      {
+        "id": "INTAKE-DOC-08",
+        "priority": "LOW",
+        "file": "tools/csg/v52-intake/README.md",
+        "line": 17,
+        "issue": "README and make-result.mjs state 12 tests passing, but intake.test.mjs contains 14 tests",
+        "fix": "Update test count to 14 across README.md and scripts/make-result.mjs"
+      }
+    ],
+    "governance": {
+      "slice": "INTAKE_SOURCE_ONLY",
+      "automatic_dispatch": false,
+      "research_options": "NOT_STARTED",
+      "human_selection": "PENDING_P52_SELECTION_CONTRACT",
+      "whole_mission_complete": false
+    }
+  },
+  "source_bindings": [
+    {
+      "path": "tools/csg/v52-intake/intake.mjs",
+      "sha256": "b6d8cab58ac6aee51ba6f471bf5804d61dc3e34ce733302102bfcf527e19f90b"
+    },
+    {
+      "path": "tools/csg/v52-intake/cli.mjs",
+      "sha256": "7fd86f047ab907a0a20602a7f981a1dbe76187ee01457f64533f52ba610f91ef"
+    },
+    {
+      "path": "tools/csg/v52-intake/intake-request.schema.json",
+      "sha256": "77bc62f617a313d75a75904a86e4da794cce35d180c226092362dbc39ec73c82"
+    },
+    {
+      "path": "tools/csg/v52-intake/README.md",
+      "sha256": "8f0c4bf21d70915fd5a25d89cb215603d4c98e9bb9a4bdb577a01e7732a8b903"
+    },
+    {
+      "path": "tools/csg/v52-intake/scripts/make-sample.mjs",
+      "sha256": "fd72c5f41df66fd3e33c586a12634546dd99034c37b633dbc6c327601f0723e8"
+    },
+    {
+      "path": "tools/csg/v52-intake/scripts/make-result.mjs",
+      "sha256": "e1f7e7bfbb2faf7d3a182b135be7e513bae49e2f40079592c5a73d7362ece774"
+    },
+    {
+      "path": "tools/csg/v52-intake/test/intake.test.mjs",
+      "sha256": "0315db08c49f3a800e7fa04f36f99e6fed718b0aebca04d091cf4db4752e907d"
+    }
+  ],
+  "disposition": "REWORK_SOURCE_ONLY_ALL8_CONCRETE_FINDINGS",
+  "constraints": [
+    "Path containment uses relative/equality, never naive startsWith; symlink/junction and no overwrite.",
+    "Unicode canonicalization must preserve original raw input digest/provenance; no historical receipt rewrites or blanket Unicode rejection.",
+    "Explicit secret fields and bounded credential signatures must not become arbitrary token-word rejection; test normal advertising inputs.",
+    "Historical immutable source PASS never expires solely because a liveness freshness window elapsed."
+  ],
+  "canonical_write": false,
+  "live_acceptance": "NOT_ACCEPTED"
+}
