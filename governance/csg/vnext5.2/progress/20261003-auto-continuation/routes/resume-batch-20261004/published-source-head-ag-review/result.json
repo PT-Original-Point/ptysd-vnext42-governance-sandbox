@@ -1,0 +1,44 @@
+{
+  "verdict": "PASS",
+  "actual_model": "Gemini 3.8 Flash (High)",
+  "targets": [
+    {
+      "pr": "PR388",
+      "exact_head": "f4c754ed1e2f256b24c432511c01ae52592dd15f",
+      "tree": "ba06d0d021cda7662a80b77e559506d2e3fd6e98",
+      "review_scope": "Scope A (17 v52-research files): Verified repairs across all earlier closed findings (CLI missing required flag vs E_CLOCK distinction; scores root plain object, own-keys and symbol/hidden key rejection; buildRecommendation direct invocation of structural distinctness; removal of ancestor check ternary tautology; approval optionDigests prototype, symbol and non-enumerable key closure; full non-regression of prior inherited-fields closure; local deterministic fixture clock and non-live invariants; no fifth tool/generation).",
+      "findings": [],
+      "files_actually_read": [
+        "C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004/tools/csg/v52-research/README.md",
+        "C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004/tools/csg/v52-research/cli.mjs",
+        "C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004/tools/csg/v52-research/src/alternatives.mjs",
+        "C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004/tools/csg/v52-research/src/evidence.mjs",
+        "C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004/tools/csg/v52-research/src/provenance.mjs",
+        "C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004/tools/csg/v52-research/src/recommendation.mjs",
+        "C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004/tools/csg/v52-research/src/report.mjs",
+        "C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004/tools/csg/v52-research/src/schemas.mjs",
+        "C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004/tools/csg/v52-research/tests/alternatives.test.mjs",
+        "C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004/tools/csg/v52-research/tests/cli.test.mjs",
+        "C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004/tools/csg/v52-research/tests/evidence.test.mjs",
+        "C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004/tools/csg/v52-research/tests/inherited-fields.test.mjs",
+        "C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004/tools/csg/v52-research/tests/provenance.test.mjs",
+        "C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004/tools/csg/v52-research/tests/recommendation.test.mjs",
+        "C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004/tools/csg/v52-research/tests/repair6.test.mjs",
+        "C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004/tools/csg/v52-research/tests/rework-final-ag.test.mjs",
+        "C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004/tools/csg/v52-research/tests/rework9.test.mjs"
+      ]
+    },
+    {
+      "pr": "PR385",
+      "exact_head": "f45ef980a0194c54db6f2e3d5585577154ac5754",
+      "tree": "99da8c94276db2f1cbb1b7adf593e74caa82621a",
+      "review_scope": "Scope B (1 factory-mcp consumer test file): Verified minimal clarity repair ensuring missing SDK locked dependency throws explicit LOCAL_TEST_PREREQUISITE_MISSING with no silent skip or false-blocked PASS, while strictly preserving JSON-RPC stdio protocol test cases (2 child stdio instances, initialize, tools/list exact 4 tools, fixed-purpose factory_status rejecting probe injection) across all 7 test cases under TEST_MODE with zero live acceptance. Other runtime/legacy paths excluded from review.",
+      "findings": [],
+      "files_actually_read": [
+        "C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-MCP-READSYNC-AG-WORK-20261004/tools/csg/factory-mcp/tests/cold-session-consumer.test.mjs"
+      ]
+    }
+  ],
+  "tests_executed": false,
+  "live_acceptance": "NOT_ACCEPTED"
+}

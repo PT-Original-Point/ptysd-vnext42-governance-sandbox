@@ -1,0 +1,22 @@
+{
+  "task": "RUNTIME.SOURCE_PAIR_REBIND",
+  "model": "gpt-6-luna",
+  "reasoning_effort": "max",
+  "status": "NATIVE_RUNNING_SOURCE_REBIND",
+  "agent_name": "/root/v52_research_repair6_luna_review",
+  "native_agent_status": "running",
+  "native_observed_at": "2026-10-04T13:23:05.7057234Z",
+  "created_at": "2026-10-04T13:23:05.7083731Z",
+  "worktree": "C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-RUNTIME-SOURCEPAIR-LUNA-WORK-20261004",
+  "source_edit": true,
+  "write_set": [
+    "tests/cross-candidate-integration.mjs",
+    "tests/cross-candidate-positive-integration.mjs",
+    "outputs/RUNTIME-SOURCEPAIR-REBIND/**"
+  ],
+  "result_path": "../VNEXT5.2-RUNTIME-SOURCEPAIR-LUNA-WORK-20261004/outputs/RUNTIME-SOURCEPAIR-REBIND/result.json",
+  "producer_exact_head": "f45ef980a0194c54db6f2e3d5585577154ac5754",
+  "runtime_parent": "06da5fa224b65b9346e8b250dcea686d0ed458ee",
+  "canonical_write": false,
+  "production": false
+}

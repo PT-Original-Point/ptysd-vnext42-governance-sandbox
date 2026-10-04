@@ -1,0 +1,81 @@
+{
+  "observed_at": "2026-10-04T13:19:52.012Z",
+  "status": "CAS_SOURCE_REFS_SAME_SOURCE_READBACK_PASS",
+  "canonical": "d39486601d851e31256852a24e9c1393b9046fe5",
+  "parent_count": 1,
+  "research_pr": 388,
+  "mcp_pr": 385,
+  "source_identity": {
+    "recorded_at": "2026-10-04T13:15:48.458Z",
+    "status": "PREPARED_NOT_PUSHED",
+    "scope": "SOURCE_ONLY_NONCANONICAL_DRAFT",
+    "canonical_expected": "d39486601d851e31256852a24e9c1393b9046fe5",
+    "mcp": {
+      "branch": "codex/vnext5.2-mcp-recovery-integrated-20261003",
+      "expected_head": "e1c99a7cf3201ac5c1eddad71f3d6ea1ea7a955e",
+      "head": "f45ef980a0194c54db6f2e3d5585577154ac5754",
+      "tree": "99da8c94276db2f1cbb1b7adf593e74caa82621a",
+      "review": "source-tree-final-luna-review/result.json",
+      "prior_semantic": "final-source-pair-ag-review/result.json",
+      "final_exact_head_semantic": "PENDING_REBIND",
+      "local_scope": "7/7 actual local mock stdio, 27 transport/packaging fixtures; protected legacy source lane parked, no claim of whole-package new-head PASS"
+    },
+    "research": {
+      "branch": "codex/vnext5.2-research-qualified-20261004",
+      "expected_head": null,
+      "head": "f4c754ed1e2f256b24c432511c01ae52592dd15f",
+      "tree": "ba06d0d021cda7662a80b77e559506d2e3fd6e98",
+      "local_tests": "103/103",
+      "semantic": "EXACT17_BYTES_DISTINCT_AG_PASS_FINAL_HEAD_REBIND_PENDING"
+    },
+    "structural": "NOT_RUN_ON_NEW_HEAD",
+    "installed": "UNKNOWN",
+    "live_acceptance": "NOT_ACCEPTED",
+    "canonical_write": false,
+    "production": false,
+    "owner_allocation": false
+  },
+  "checks": {
+    "mcp": [
+      {
+        "name": "bounded-driver-acceptance",
+        "head": "f45ef980a0194c54db6f2e3d5585577154ac5754",
+        "status": "completed",
+        "conclusion": "skipped",
+        "id": 111444301735,
+        "url": "https://github.com/PT-Original-Point/ptysd-vnext42-governance-sandbox/actions/runs/37205021480/job/111444301735"
+      },
+      {
+        "name": "csg-trusted-verifier",
+        "head": "f45ef980a0194c54db6f2e3d5585577154ac5754",
+        "status": "completed",
+        "conclusion": "success",
+        "id": 111444300960,
+        "url": "https://github.com/PT-Original-Point/ptysd-vnext42-governance-sandbox/actions/runs/37205021480/job/111444300960"
+      }
+    ],
+    "research": [
+      {
+        "name": "bounded-driver-acceptance",
+        "head": "f4c754ed1e2f256b24c432511c01ae52592dd15f",
+        "status": "completed",
+        "conclusion": "skipped",
+        "id": 111444355215,
+        "url": "https://github.com/PT-Original-Point/ptysd-vnext42-governance-sandbox/actions/runs/37205039952/job/111444355215"
+      },
+      {
+        "name": "csg-trusted-verifier",
+        "head": "f4c754ed1e2f256b24c432511c01ae52592dd15f",
+        "status": "completed",
+        "conclusion": "success",
+        "id": 111444354777,
+        "url": "https://github.com/PT-Original-Point/ptysd-vnext42-governance-sandbox/actions/runs/37205039952/job/111444354777"
+      }
+    ]
+  },
+  "semantics": "PUBLISHED_EXACT_HEAD_REVIEW_IN_FLIGHT",
+  "bounded": "SKIPPED_NOT_PASS",
+  "installed": "UNKNOWN",
+  "live_acceptance": "NOT_ACCEPTED",
+  "canonical_write": false
+}

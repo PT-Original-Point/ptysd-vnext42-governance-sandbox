@@ -1,0 +1,185 @@
+{
+  "verdict": "REWORK_REQUIRED",
+  "task": "HUMAN.DASHBOARD_SOURCE_FINDINGS_REWORK",
+  "review_type": "bounded independent static source and synthetic-fixture review",
+  "source_state": {
+    "intent_path": "routes/resume-batch-20261004/human-dashboard-findings-rework/ag.intent.json",
+    "intent_sha256": "9e303904bd3fc381c803b82aa16917637aec6d8335f6ffdaf6b0e681056e6443",
+    "status": "CLOSED_REVIEW_REQUIRED",
+    "result_status": "SUCCESS",
+    "denied_action_count": 0,
+    "closed_at": "2026-10-04T12:53:27.051Z"
+  },
+  "reviewer_model_provenance": {
+    "requested": "gpt-6-luna/max",
+    "actual": "unverified; current turn_context model metadata was not locally exposed"
+  },
+  "source_bindings": [
+    {
+      "path": "routes/progress-observer.mjs",
+      "bytes": 24035,
+      "lines": 654,
+      "sha256": "a712240433f1197837d1f4d3d5579d009af56212701c0bd2a9cbe24993f3ba59"
+    },
+    {
+      "path": "routes/progress-human-view.mjs",
+      "bytes": 18937,
+      "lines": 228,
+      "sha256": "b9e0f2d8c90d710d920e1cc478358b7b2ceecf5be789a49b0b48b27e26b9e287"
+    },
+    {
+      "path": "outputs/HUMAN-DASHBOARD-FINDINGS-REWORK/dashboard-regression.fixture.mjs",
+      "bytes": 15884,
+      "lines": 372,
+      "sha256": "35756cd4c79d3b034dbe9a1ea7e9e54b60a9c506c13ee50b3171626f36741359"
+    },
+    {
+      "path": "outputs/HUMAN-DASHBOARD-FINDINGS-REWORK/source-report.md",
+      "bytes": 5493,
+      "lines": 34,
+      "sha256": "0a6e9fa86de4e73b3536ca616631e20f1c367e0e72ec16c59b2cd8b815305d34"
+    }
+  ],
+  "test_scope": {
+    "static_review": true,
+    "fixture_execution": "NOT_RUN",
+    "reason": "Static inspection found that fixture calls capture(), which unconditionally invokes real fs.statSync(file(eventsPath)) at progress-observer.mjs:399-403. This violates the authorized precondition that the fixture use only synthetic data without real filesystem metadata access. The fixture also calls acquireWriterLock() on paths backed by real fs APIs if it reaches lock creation. No fixture, rejected inspect/helper, runtime observation, or substitute inspection was executed.",
+    "module_import": "Top-level imports and isMainModule guard are import-safe; the fixture function itself is not zero-I/O.",
+    "tests_or_commands_executed": false,
+    "provider_host_process_restart_or_kill": false
+  },
+  "finding_dispositions": [
+    {
+      "id": "OBSERVER_SINGLE_WRITER_NOT_ENFORCED",
+      "disposition": "REWORK_REQUIRED",
+      "evidence": "Exclusive wx creation and pre-capture placement are present, but malformed/partial EEXIST content enters the branch that unlinks and recreates the lock; stale-holder deletion also has a check/unlink race. release() unlinks by path without verifying ownership."
+    },
+    {
+      "id": "WATCH_VERSION_HANDOFF_MISSING",
+      "disposition": "MITIGATED_WITH_ROOT_RESTART_LIMIT",
+      "evidence": "New contenders fail closed on an active mismatched version and do not kill/take over it. An already-loaded old watcher cannot be upgraded by this process and requires the stated Root-owned restart."
+    },
+    {
+      "id": "COPY_FALLBACK_NOT_ATOMIC",
+      "disposition": "SOURCE_FIXED",
+      "evidence": "write() stages to a temp file, retries transient rename errors, and fails closed without copyFileSync when rename does not complete."
+    },
+    {
+      "id": "DENIAL_STATUS_OVERWRITTEN_BY_RESULT_READ",
+      "disposition": "SOURCE_FIXED",
+      "evidence": "Original status is preserved and PERMISSION_PARKED/denied_count dominate the result-derived phase."
+    },
+    {
+      "id": "UNREADABLE_RESULT_CAN_REACH_COMPLETED_OR_ACK",
+      "disposition": "SOURCE_FIXED_FOR_READ_AND_PARSE_FAILURES",
+      "evidence": "A result_path read/parse error blocks ACK matching and routes to UNKNOWN_READBACK_REQUIRED or READBACK_UNAVAILABLE; no unverified declared digest is used."
+    },
+    {
+      "id": "RESULT_FIELDS_AND_DIGEST_HAVE_READ_RACE",
+      "disposition": "PARTIAL",
+      "evidence": "The same buffer is hashed and parsed, but readRawBounded checks stat size before readFileSync and does not bound the returned buffer if the file grows between those operations."
+    },
+    {
+      "id": "MTIME_STILL_AFFECTS_LEGACY_ACK_AND_AGE",
+      "disposition": "SOURCE_FIXED_FOR_CLOSED_AT_FALLBACK",
+      "evidence": "closed_at no longer falls back to stat mtime; mismatched legacy ACKs produce a re-ACK alert. Event-file mtime remains used only as activity/display freshness."
+    },
+    {
+      "id": "INVALID_NATIVE_TIMESTAMP_CAN_REMAIN_RUNNING",
+      "disposition": "REWORK_REQUIRED",
+      "evidence": "obsTime falls back to intent.created_at. A recent submission timestamp can therefore qualify as fresh activity and make a task with no native observation RUNNING_OUTCOME_PENDING. Date.parse also does not enforce UTC ISO/calendar round-trip."
+    },
+    {
+      "id": "INVALID_DASHBOARD_OBSERVATION_MARKED_FRESH",
+      "disposition": "SOURCE_FIXED_FOR_MISSING_INVALID_PARSE_AND_FAR_FUTURE",
+      "evidence": "The render path checks parseability and age bounds before showing 即時更新. Date.parse remains permissive for local/noncanonical timestamps; ordinary capture emits ISO UTC."
+    },
+    {
+      "id": "ACK_DISPOSITION_UNVALIDATED",
+      "disposition": "SOURCE_FIXED",
+      "evidence": "ACK disposition must be a string in the allowlist before it is collected or assigned as status; invalid entries alert and remain uncollected."
+    },
+    {
+      "id": "RETURNED_REWORK_MISREPORTED_AS_IDLE",
+      "disposition": "PARTIAL",
+      "evidence": "Rework status is recognized, but each worker card tests only latest for rework. An older pending rework can be hidden by a newer task and the card can display standby."
+    },
+    {
+      "id": "UNESCAPED_SCHEDULE_INTERVAL_IN_HTML",
+      "disposition": "PARTIAL",
+      "evidence": "Injection strings fall back to 30 and current capture bounds values to 1440; the exported renderer itself accepts arbitrarily large positive finite numbers without that upper bound."
+    },
+    {
+      "id": "PURE_FIXTURE_FALSE_POSITIVE",
+      "disposition": "PARTIAL",
+      "evidence": "The explanatory negation is now accepted, but the affirmative-claim regex misses an unbolded standalone Mission complete heading/body phrase; the fixture was not run because it reaches real fs.statSync."
+    }
+  ],
+  "findings": [
+    {
+      "id": "OBSERVER_LOCK_RECLAIM_TOCTOU",
+      "priority": "P1",
+      "file": "routes/progress-observer.mjs",
+      "line": 254,
+      "reason": "When EEXIST contains unreadable or partial lock content, holder is null and code unlinks the lock path then opens it with wx. A contender can read the brief empty-file interval after another process creates the lock but before it writes the payload, delete the active lock, and also acquire. The stale-PID path at 240-246 has a check/unlink race, and release at 291-294 does not verify the token/PID/version currently at the path. Two observers can then write PROGRESS concurrently.",
+      "required_fix": "Treat malformed or unreadable lock content as contention/unknown and fail closed. Use a lock protocol whose ownership metadata is published atomically; reclaim stale locks only with an atomic compare/rename protocol that cannot unlink a replacement, and release only if the stored owner token still matches. Add synthetic race fixtures for partial creation, two stale reclaimers, and foreign-lock replacement."
+    },
+    {
+      "id": "NATIVE_FRESHNESS_USES_INTENT_CREATED_AT",
+      "priority": "P2",
+      "file": "routes/progress-observer.mjs",
+      "line": 460,
+      "reason": "obsTime = native_observed_at ?? observed_at ?? created_at lets a recent intent submission time substitute for a native observation. For up to ten minutes after submission, a claimed-running actor with no live observation can be shown RUNNING_OUTCOME_PENDING as if it were freshly observed.",
+      "required_fix": "Only accept a dedicated native observation timestamp as freshness evidence; do not fall back to created_at. Validate the timestamp as strict UTC ISO with valid calendar round-trip, then apply the bounded age window. Add a case with recent created_at and no native observation that must return UNKNOWN_READBACK_REQUIRED."
+    },
+    {
+      "id": "PURE_FIXTURE_READS_REAL_FILESYSTEM_METADATA",
+      "priority": "P2",
+      "file": "routes/progress-observer.mjs",
+      "line": 402,
+      "reason": "The new fixture calls capture() multiple times, and capture() bypasses its injected read/write callbacks for fs.statSync(file(eventsPath)). It therefore probes actual filesystem metadata despite source-report.md and fixture comments claiming zero real I/O. The required static no-I/O precondition is not met, so the fixture was not run.",
+      "required_fix": "Inject an event-stat callback into capture and supply a synthetic callback in the fixture, or refactor the pure logic so it consumes only synthetic event timestamps. Keep real path/metadata access outside this fixture and re-prove the no-I/O boundary before an authorized run."
+    },
+    {
+      "id": "READ_RAW_BOUND_SIZE_RACE",
+      "priority": "P2",
+      "file": "routes/progress-observer.mjs",
+      "line": 44,
+      "reason": "readRawBounded checks stat.size and then separately calls readFileSync. A concurrent growth/replacement after stat can return a buffer larger than maxBytes; the function then returns it without checking b.length, so the claimed payload bound is not enforced.",
+      "required_fix": "Read from a stable open file descriptor with a maxBytes+1 limit or verify the returned buffer length before returning it, and reject over-bound snapshots. Add a deterministic test for growth between stat and read."
+    },
+    {
+      "id": "REWORK_CARD_IGNORES_OLDER_PENDING_REWORK",
+      "priority": "P2",
+      "file": "routes/progress-human-view.mjs",
+      "line": 127,
+      "reason": "The worker card enters its rework branch only when latest is a rework item. If another task is newer, the card can show idle/standby even though the same worker has an older pending author rework; the fixture covers only a single rework task.",
+      "required_fix": "Select a pending rework item from the brand's full task list before rendering standby based on latest, with an explicit ordering rule. Add a fixture containing a newer non-rework task and an older returned-rework task."
+    },
+    {
+      "id": "MISSION_COMPLETE_FIXTURE_ASSERTION_INCOMPLETE",
+      "priority": "P2",
+      "file": "outputs/HUMAN-DASHBOARD-FINDINGS-REWORK/dashboard-regression.fixture.mjs",
+      "line": 363,
+      "reason": "The affirmative-claim regex requires a 工廠/整體/任務 prefix and the second regex only checks strong elements. A direct unbolded heading or body sentence containing Mission complete can pass while the explanatory negation at line 367 still satisfies the positive assertion.",
+      "required_fix": "Test the whole rendered output for an affirmative completion claim while explicitly allowing only the known negated explanatory text; add synthetic affirmative title/body cases and an explanatory-negation case."
+    },
+    {
+      "id": "SCHEDULE_RENDERER_UPPER_BOUND_MISSING",
+      "priority": "P3",
+      "file": "routes/progress-human-view.mjs",
+      "line": 223,
+      "reason": "The production capture path limits current_collection_minutes to 1440, but the exported renderHumanProgress accepts any finite positive number and only floors it. Its behavior does not match the source report's claim that the renderer itself enforces a bound.",
+      "required_fix": "Apply the same 1440 maximum in renderHumanProgress and test both the maximum and an over-bound input, or narrow the source-report claim to the actual capture-path guarantee."
+    }
+  ],
+  "scope_limits": {
+    "only_exact_intent_and_four_named_review_files_read": true,
+    "denied_inspect_helper_or_alternate_inspection_read_or_run": false,
+    "product_source_modified": false,
+    "canonical_registry_ack_progress_modified": false,
+    "fixture_run": false,
+    "live_web_or_provider_acceptance": "NOT_ACCEPTED",
+    "parent_or_mission_acceptance": "NOT_ACCEPTED"
+  }
+}

@@ -32,6 +32,28 @@
       "label": "SOURCE.TREE_PACKET_DISTINCT_LUNA_REVIEW",
       "label_zh": "SOURCE.TREE_PACKET_DISTINCT_LUNA_REVIEW",
       "intent": "routes/resume-batch-20261004/source-tree-final-luna-review/luna.intent.json"
+    },
+    {
+      "brand": "Antigravity",
+      "label": "SOURCE.PUBLISHED_EXACT_HEAD_SEMANTIC_REVIEW",
+      "intent": "routes/resume-batch-20261004/published-source-head-ag-review/ag.intent.json"
+    },
+    {
+      "brand": "Codex Luna",
+      "label": "HUMAN.DASHBOARD_FINAL_REWORK_DISTINCT_LUNA_REVIEW",
+      "label_zh": "HUMAN.DASHBOARD_FINAL_REWORK_DISTINCT_LUNA_REVIEW",
+      "intent": "routes/resume-batch-20261004/human-dashboard-rework-final-luna-review/luna.intent.json"
+    },
+    {
+      "brand": "Antigravity",
+      "label": "HUMAN.DASHBOARD_FINAL7_SOURCE_REWORK",
+      "intent": "routes/resume-batch-20261004/human-dashboard-final7-rework/ag.intent.json"
+    },
+    {
+      "brand": "Codex Luna",
+      "label": "RUNTIME.SOURCE_PAIR_REBIND",
+      "label_zh": "RUNTIME.SOURCE_PAIR_REBIND",
+      "intent": "routes/resume-batch-20261004/runtime-sourcepair-luna-rebind/luna.intent.json"
     }
   ],
   "luna": "GPT6_LUNA_MAX_ONLY_SOURCE_AND_REVIEW_AUTHORIZED_NATIVE_REVIEW_SCOPE_READBACK_PENDING",

@@ -1,6 +1,6 @@
 {
   "schema": "vnext5.2.coordinator-dispatch.v1",
-  "observed_at": "2026-10-04T12:51:15.991Z",
+  "observed_at": "2026-10-04T13:26:04.708Z",
   "single_integrator": "root",
   "tasks": [
     {
@@ -1540,7 +1540,7 @@
       "task": "HUMAN.DASHBOARD_SOURCE_FINDINGS_REWORK",
       "model": "gemini-3.8-flash-high",
       "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-AUTO-CONTINUATION-20261003",
-      "status": "SUBMITTED_OUTCOME_PENDING",
+      "status": "CLOSED_REVIEW_REQUIRED",
       "created_at": "2026-10-04T12:48:25.185Z",
       "write_set": [
         "routes/progress-observer.mjs",
@@ -1553,6 +1553,11 @@
       "pid": 56224,
       "conversation_id": "857c2450-2f96-40c0-a46a-c1431509001b",
       "actual_model": "gemini-3.8-flash-high",
+      "result_status": "SUCCESS",
+      "denied_action_count": 0,
+      "exit_code": 0,
+      "closed_at": "2026-10-04T12:53:27.051Z",
+      "result_response": "### Changed Paths\n- [`routes/progress-observer.mjs`](file:///C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-AUTO-CONTINUATION-20261003/routes/progress-observer.mjs)\n- [`routes/progress-human-view.mjs`](file:///C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-AUTO-CONTINUATION-20261003/routes/progress-human-view.mjs)\n- [`outputs/HUMAN-DASHBOARD-FINDINGS-REWORK/dashboard-regression.fixture.mjs`](file:///C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-AUTO-CONTINUATION-20261003/outputs/HUMAN-DASHBOARD-FINDINGS-REWORK/dashboard-regression.fixture.mjs)\n- [`outputs/HUMAN-DASHBOARD-FINDINGS-REWORK/source-report.md`](file:///C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-AUTO-CONTINUATION-20261003/outputs/HUMAN-DASHBOARD-FINDINGS-REWORK/source-report.md)\n\n---\n\n### Finding-by-Finding Disposition\n\n1. **`OBSERVER_SINGLE_WRITER_NOT_ENFORCED` (P1)**: Implemented atomic `acquireWriterLock` (`wx` flag) invoked before `capture()` in `--watch` and `--once`. Refuses `--once` when watch writer is active (`WATCH_OBSERVER_ACTIVE_ONCE_REFUSED`). In `checkProcessStatus`, distinguished `ESRCH` (absence) from `EPERM` (alive) and unknown errors (fail-closed, never kills).\n2. **`WATCH_VERSION_HANDOFF_MISSING` (P2)**: Bound lease to `OBSERVER_VERSION`. Live old-version watchers trigger fail-closed `UPGRADE_REQUIRED_ACTIVE_WATCHER_OLD_VERSION` without taking over or killing the old process; root owns restart.\n3. **`COPY_FALLBACK_NOT_ATOMIC` (P2)**: Removed `copyFileSync` fallback in `write()`. Bounded spin backoff for Windows transient locks; on failure, published target remains intact and error `ATOMIC_PUBLISH_FAILED` is thrown.\n4. **`DENIAL_STATUS_OVERWRITTEN_BY_RESULT_READ` (P1)**: Captured original intent status before reading results. Removed mutation overwriting `PERMISSION_PARKED`. Denial dominates readable result files.\n5. **`UNREADABLE_RESULT_CAN_REACH_COMPLETED_OR_ACK` (P1)**: Result read/parse/schema errors set `resultReadError`, forcing `UNKNOWN_READBACK_REQUIRED`/`READBACK_UNAVAILABLE` and preventing auto-ACK from unverified digests.\n6. **`RESULT_FIELDS_AND_DIGEST_HAVE_READ_RACE` (P2)**: Single bounded buffer snapshot read once via `readRawBounded`; both SHA-256 and JSON parsing use the same buffer. Removed `JSON.stringify` digest fallback.\n7. **`MTIME_STILL_AFFECTS_LEGACY_ACK_AND_AGE` (P2)**: Removed `mtimeMs` derivation for `closedAt`. Only explicit native timestamps are accepted. Mismatched legacy ACKs emit `STALE_LEGACY_ACK_ROOT_REACK_REQUIRED` alert.\n8. **`INVALID_NATIVE_TIMESTAMP_CAN_REMAIN_RUNNING` (P1)**: Live running state strictly requires valid bounded UTC observation timestamp with nonnegative age (`<=10m`). Missing/invalid/future timestamps route to `UNKNOWN_READBACK_REQUIRED`.\n9. **`INVALID_DASHBOARD_OBSERVATION_MARKED_FRESH` (P2)**: Validated `observed_at` freshness window (nonnegative, `<=90s`). Missing/invalid/future dates render `狀態待查（時鐘異常）`/`看板逾時`, never `即時更新`. Client script validates `Number.isFinite(last)` and drift.\n10. **`ACK_DISPOSITION_UNVALIDATED` (P2)**: Validated dispositions against whitelist `PERMITTED_ACK_DISPOSITIONS`. Invalid strings/objects fail closed to `UNKNOWN_READBACK_REQUIRED`.\n11. **`RETURNED_REWORK_MISREPORTED_AS_IDLE` (P2)**: Added `isReworkStatus()`; explicitly mapped `REVIEW_FINDINGS_RETURNED_TO_AUTHOR` to author rework in `explainNextQueue` and worker cards (`待返工修正`, next owner: Author).\n12. **`UNESCAPED_SCHEDULE_INTERVAL_IN_HTML` (P2)**: Validated `scheduled_recovery_minutes` to bounded finite positive integer and escaped it in HTML interpolation.\n13. **`PURE_FIXTURE_FALSE_POSITIVE` (P2)**: Fixed regression assertion to reject affirmative whole-factory completion verdicts while permitting explanatory negation (`絕非整體 Mission complete`).\n\n---\n\n### Status & Remaining Limits\n- **Status**: **UNTESTED in this iteration** (zero commands/shell executed per rule).\n- **Remaining Limits**: Independent reviewer must run `runPureDashboardFixture()` from `outputs/HUMAN-DASHBOARD-FINDINGS-REWORK/dashboard-regression.fixture.mjs` once under static safety check. No changes made to `CURRENT/**`, `registry/**`, `ACK/**`, `PROGRESS.*`, or running processes.\n",
       "dispatch_source": "routes/resume-batch-20261004/human-dashboard-findings-rework/ag.intent.json"
     },
     {
@@ -1561,11 +1566,11 @@
       "model": "gpt-6-luna",
       "reasoning_effort": "max",
       "agent_name": "/root/v52_research_repair6_luna_review",
-      "status": "NATIVE_RUNNING_INDEPENDENT_REVIEW",
-      "native_agent_status": "running",
-      "native_observed_at": "2026-10-04T12:51:15.330Z",
+      "status": "CLOSED_REVIEW_PASS",
+      "native_agent_status": "completed",
+      "native_observed_at": "2026-10-04T12:51:15.33Z",
       "native_status_evidence": "COLLABORATION_FOLLOWUP_AFTER_COMPLETED_PRIOR_REVIEW",
-      "created_at": "2026-10-04T12:51:15.330Z",
+      "created_at": "2026-10-04T12:51:15.33Z",
       "result_path": "routes/resume-batch-20261004/source-tree-final-luna-review/result.json",
       "write_set": [
         "routes/resume-batch-20261004/source-tree-final-luna-review/result.json"
@@ -1573,7 +1578,184 @@
       "source_write": false,
       "canonical_write": false,
       "production": false,
+      "closed_at": "2026-10-04T13:19:52.6499861Z",
       "dispatch_source": "routes/resume-batch-20261004/source-tree-final-luna-review/luna.intent.json"
+    },
+    {
+      "id": "SOURCE.PUBLISHED_EXACT_HEAD_SEMANTIC_REVIEW",
+      "task": "SOURCE.PUBLISHED_EXACT_HEAD_SEMANTIC_REVIEW",
+      "model": "gemini-3.8-flash-high",
+      "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠",
+      "status": "CLOSED_REVIEW_REQUIRED",
+      "created_at": "2026-10-04T13:18:12.636Z",
+      "write_set": [],
+      "source_write": false,
+      "source_bindings": [
+        {
+          "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004\\tools\\csg\\v52-research\\README.md",
+          "sha256": "a1719872ecfd0ac3f36fd1fd96d2cadd25bc923dfee6bd1801d8e79cc588875e",
+          "blob": "b6e49abc3adbd8a613d2e70edb83ba2db36cf28f"
+        },
+        {
+          "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004\\tools\\csg\\v52-research\\cli.mjs",
+          "sha256": "696f03df3e8d638a152130b91d0ff8ca145492aaf08a408d538fa3adea9503f9",
+          "blob": "fd89c57a2cd534ac9fffb4bd39373ec118171700"
+        },
+        {
+          "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004\\tools\\csg\\v52-research\\src\\alternatives.mjs",
+          "sha256": "2ed0e0bdbfd401a3399bfb7181f4582affe8a5de1e8c9666d72023b2abae26c7",
+          "blob": "cae37ab625d38cd5c359329aad27543969f78e93"
+        },
+        {
+          "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004\\tools\\csg\\v52-research\\src\\evidence.mjs",
+          "sha256": "823556eafe31dc38d1cb79dc2fc35581224f39e66faba1c777a9880e612d754c",
+          "blob": "42fe5daa5915a77d8443f4cb446ccf957111fa45"
+        },
+        {
+          "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004\\tools\\csg\\v52-research\\src\\provenance.mjs",
+          "sha256": "26d21c5ab50a264a88fe27e71975421c87b60f48d7f12ea10e88265919d1ed28",
+          "blob": "6e7c752abe702684c272bfc3c730718550742fe2"
+        },
+        {
+          "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004\\tools\\csg\\v52-research\\src\\recommendation.mjs",
+          "sha256": "a8eea1f20e15f6eecd841d8a2ffee5d66c29b559fd702ce1c22a46496c32d0be",
+          "blob": "a17745c2808d943f4fe6d7d0bba8bdccc84d23d5"
+        },
+        {
+          "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004\\tools\\csg\\v52-research\\src\\report.mjs",
+          "sha256": "e95403fe334a36212e2f35550601e7b258e639afbb4bf434949ce7bed938db7d",
+          "blob": "2b3ed045307c801198ec4ac88b5789a9e57b1f3f"
+        },
+        {
+          "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004\\tools\\csg\\v52-research\\src\\schemas.mjs",
+          "sha256": "300bdd869ffc2abf32ffbf6509b04285dfbea91fc26cb9f0c437d80c122fd52a",
+          "blob": "45cdbc9f07b5eedbefb6a033df4e6314e3c13817"
+        },
+        {
+          "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004\\tools\\csg\\v52-research\\tests\\alternatives.test.mjs",
+          "sha256": "3fa4339709fc2522598457ef60d88d9bd86a42db16f7edfbb74f8c5bfc5308ce",
+          "blob": "37a06bc77f2441fbcf314432b5e0b42b40ab09b4"
+        },
+        {
+          "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004\\tools\\csg\\v52-research\\tests\\cli.test.mjs",
+          "sha256": "5dd1dd9e007c5c790d463530343fc44067000c4dc8900a7dae5045a862504ff6",
+          "blob": "40cca9001735ca709292546acd9060ba7cfd8824"
+        },
+        {
+          "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004\\tools\\csg\\v52-research\\tests\\evidence.test.mjs",
+          "sha256": "81e40d772e2483c0de53b90067051edf9bd89bc6c0a7e57b9ab9aadb160d7fee",
+          "blob": "380cb782b8e1ff76f4c6f70addeab2893bec8598"
+        },
+        {
+          "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004\\tools\\csg\\v52-research\\tests\\inherited-fields.test.mjs",
+          "sha256": "df9ca66c8dc171b54bda32d398d53875b6b0189c26b048d812ec7ad580f8af66",
+          "blob": "6d55b08fd71495c8deead293705f5030fbd35c39"
+        },
+        {
+          "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004\\tools\\csg\\v52-research\\tests\\provenance.test.mjs",
+          "sha256": "fdf11d6d4af2526b87398058932c56957c06f0b23399655ee0af010c820429c8",
+          "blob": "9721c76469ebf4dcc855c25c87657733f0b80ea7"
+        },
+        {
+          "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004\\tools\\csg\\v52-research\\tests\\recommendation.test.mjs",
+          "sha256": "ea64aee88622c82af27142984dd44b9cec18ed34651ea1210fc5c8298f5045b8",
+          "blob": "f8c1094e26d9683cc28c37f22502cb3b6e9386a7"
+        },
+        {
+          "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004\\tools\\csg\\v52-research\\tests\\repair6.test.mjs",
+          "sha256": "a4fa370ae3b426d29f57c5387ffe100e3249bcec6c601379d59e0ad2ce220fc2",
+          "blob": "7a20cdb844b944d8a96faa8865b2c8ce75922b59"
+        },
+        {
+          "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004\\tools\\csg\\v52-research\\tests\\rework-final-ag.test.mjs",
+          "sha256": "3569ae884bde152136cfe73de1c322842974aef39cd98bc44e2b555a73edfaf5",
+          "blob": "54355ba39ba5b4a6884d1ad61647b731035bcffd"
+        },
+        {
+          "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004\\tools\\csg\\v52-research\\tests\\rework9.test.mjs",
+          "sha256": "9bfc6907932cfb5ab225cdd2a95674871c9b9f15af1c7b95bdd7af4cebd3741b",
+          "blob": "dffb8404ea3c9936cf253156cbe392eb5b56af83"
+        },
+        {
+          "path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-MCP-READSYNC-AG-WORK-20261004\\tools\\csg\\factory-mcp\\tests\\cold-session-consumer.test.mjs",
+          "sha256": "8d7521b7a4d0198a8216a38ea296fb4e0f29f0e8f62685dbc4b7e893baf3592e",
+          "blob": "1b498f28385e9c28ddb4485e58249c30aec44b4c"
+        }
+      ],
+      "result_path": "routes/resume-batch-20261004/published-source-head-ag-review/result.json",
+      "canonical_write": false,
+      "production": false,
+      "pid": 54036,
+      "conversation_id": "d7c48de5-464a-41ef-9fa3-defb37bf80ae",
+      "actual_model": "gemini-3.8-flash-high",
+      "result_status": "SUCCESS",
+      "denied_action_count": 0,
+      "exit_code": 0,
+      "closed_at": "2026-10-04T13:19:51.342Z",
+      "result_response": "```json\n{\n  \"verdict\": \"PASS\",\n  \"actual_model\": \"Gemini 3.8 Flash (High)\",\n  \"targets\": [\n    {\n      \"pr\": \"PR388\",\n      \"exact_head\": \"f4c754ed1e2f256b24c432511c01ae52592dd15f\",\n      \"tree\": \"ba06d0d021cda7662a80b77e559506d2e3fd6e98\",\n      \"review_scope\": \"Scope A (17 v52-research files): Verified repairs across all earlier closed findings (CLI missing required flag vs E_CLOCK distinction; scores root plain object, own-keys and symbol/hidden key rejection; buildRecommendation direct invocation of structural distinctness; removal of ancestor check ternary tautology; approval optionDigests prototype, symbol and non-enumerable key closure; full non-regression of prior inherited-fields closure; local deterministic fixture clock and non-live invariants; no fifth tool/generation).\",\n      \"findings\": [],\n      \"files_actually_read\": [\n        \"C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004/tools/csg/v52-research/README.md\",\n        \"C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004/tools/csg/v52-research/cli.mjs\",\n        \"C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004/tools/csg/v52-research/src/alternatives.mjs\",\n        \"C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004/tools/csg/v52-research/src/evidence.mjs\",\n        \"C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004/tools/csg/v52-research/src/provenance.mjs\",\n        \"C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004/tools/csg/v52-research/src/recommendation.mjs\",\n        \"C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004/tools/csg/v52-research/src/report.mjs\",\n        \"C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004/tools/csg/v52-research/src/schemas.mjs\",\n        \"C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004/tools/csg/v52-research/tests/alternatives.test.mjs\",\n        \"C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004/tools/csg/v52-research/tests/cli.test.mjs\",\n        \"C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004/tools/csg/v52-research/tests/evidence.test.mjs\",\n        \"C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004/tools/csg/v52-research/tests/inherited-fields.test.mjs\",\n        \"C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004/tools/csg/v52-research/tests/provenance.test.mjs\",\n        \"C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004/tools/csg/v52-research/tests/recommendation.test.mjs\",\n        \"C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004/tools/csg/v52-research/tests/repair6.test.mjs\",\n        \"C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004/tools/csg/v52-research/tests/rework-final-ag.test.mjs\",\n        \"C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-P52-RESEARCH-OPENCODE-WORK-20261004/tools/csg/v52-research/tests/rework9.test.mjs\"\n      ]\n    },\n    {\n      \"pr\": \"PR385\",\n      \"exact_head\": \"f45ef980a0194c54db6f2e3d5585577154ac5754\",\n      \"tree\": \"99da8c94276db2f1cbb1b7adf593e74caa82621a\",\n      \"review_scope\": \"Scope B (1 factory-mcp consumer test file): Verified minimal clarity repair ensuring missing SDK locked dependency throws explicit LOCAL_TEST_PREREQUISITE_MISSING with no silent skip or false-blocked PASS, while strictly preserving JSON-RPC stdio protocol test cases (2 child stdio instances, initialize, tools/list exact 4 tools, fixed-purpose factory_status rejecting probe injection) across all 7 test cases under TEST_MODE with zero live acceptance. Other runtime/legacy paths excluded from review.\",\n      \"findings\": [],\n      \"files_actually_read\": [\n        \"C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-MCP-READSYNC-AG-WORK-20261004/tools/csg/factory-mcp/tests/cold-session-consumer.test.mjs\"\n      ]\n    }\n  ],\n  \"tests_executed\": false,\n  \"live_acceptance\": \"NOT_ACCEPTED\"\n}\n```\n",
+      "dispatch_source": "routes/resume-batch-20261004/published-source-head-ag-review/ag.intent.json"
+    },
+    {
+      "id": "HUMAN.DASHBOARD_FINAL_REWORK_DISTINCT_LUNA_REVIEW",
+      "task": "HUMAN.DASHBOARD_FINAL_REWORK_DISTINCT_LUNA_REVIEW",
+      "model": "gpt-6-luna",
+      "reasoning_effort": "max",
+      "actual_model": "UNVERIFIED_NATIVE_SUBAGENT_CONTEXT_NOT_EXPOSED",
+      "status": "CLOSED_REVIEW_REQUIRED",
+      "agent_name": "/root/v52_research_repair6_luna_review",
+      "native_agent_status": "completed",
+      "native_observed_at": "2026-10-04T13:19:52.6670364Z",
+      "created_at": "2026-10-04T13:19:52.6670592Z",
+      "result_path": "routes/resume-batch-20261004/human-dashboard-rework-final-luna-review/result.json",
+      "source_write": false,
+      "canonical_write": false,
+      "production": false,
+      "closed_at": "2026-10-04T13:21:01.3365308Z",
+      "dispatch_source": "routes/resume-batch-20261004/human-dashboard-rework-final-luna-review/luna.intent.json"
+    },
+    {
+      "id": "HUMAN.DASHBOARD_FINAL7_SOURCE_REWORK",
+      "task": "HUMAN.DASHBOARD_FINAL7_SOURCE_REWORK",
+      "model": "gemini-3.8-flash-high",
+      "worktree": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-AUTO-CONTINUATION-20261003",
+      "status": "SUBMITTED_OUTCOME_PENDING",
+      "created_at": "2026-10-04T13:22:55.300Z",
+      "write_set": [
+        "routes/progress-observer.mjs",
+        "routes/progress-human-view.mjs",
+        "outputs/HUMAN-DASHBOARD-FINAL7-REWORK/**"
+      ],
+      "source_edit": true,
+      "canonical_write": false,
+      "production": false,
+      "pid": 24572,
+      "conversation_id": "f132ddea-7e07-490f-9f27-f37ddcae1213",
+      "actual_model": "gemini-3.8-flash-high",
+      "dispatch_source": "routes/resume-batch-20261004/human-dashboard-final7-rework/ag.intent.json"
+    },
+    {
+      "id": "RUNTIME.SOURCE_PAIR_REBIND",
+      "task": "RUNTIME.SOURCE_PAIR_REBIND",
+      "model": "gpt-6-luna",
+      "reasoning_effort": "max",
+      "status": "NATIVE_RUNNING_SOURCE_REBIND",
+      "agent_name": "/root/v52_research_repair6_luna_review",
+      "native_agent_status": "running",
+      "native_observed_at": "2026-10-04T13:23:05.7057234Z",
+      "created_at": "2026-10-04T13:23:05.7083731Z",
+      "worktree": "C:/Users/x/Documents/ChatGPT/治理控制-自動軟體工廠/VNEXT5.2-RUNTIME-SOURCEPAIR-LUNA-WORK-20261004",
+      "source_edit": true,
+      "write_set": [
+        "tests/cross-candidate-integration.mjs",
+        "tests/cross-candidate-positive-integration.mjs",
+        "outputs/RUNTIME-SOURCEPAIR-REBIND/**"
+      ],
+      "result_path": "../VNEXT5.2-RUNTIME-SOURCEPAIR-LUNA-WORK-20261004/outputs/RUNTIME-SOURCEPAIR-REBIND/result.json",
+      "producer_exact_head": "f45ef980a0194c54db6f2e3d5585577154ac5754",
+      "runtime_parent": "06da5fa224b65b9346e8b250dcea686d0ed458ee",
+      "canonical_write": false,
+      "production": false,
+      "dispatch_source": "routes/resume-batch-20261004/runtime-sourcepair-luna-rebind/luna.intent.json"
     }
   ],
   "collection": "root reads native thread/subagent updates then exact result paths; Human copying unnecessary",

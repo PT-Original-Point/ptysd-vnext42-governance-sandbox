@@ -1,11 +1,11 @@
 # 本輪接續施工
 
-更新 2026-10-04T12:51:15.991Z。
+更新 2026-10-04T13:26:04.708Z。
 
-- SOURCE.TREE_PACKET_DISTINCT_LUNA_REVIEW：NATIVE_RUNNING_INDEPENDENT_REVIEW；讀 routes/resume-batch-20261004/source-tree-final-luna-review/luna.intent.json
-- HUMAN.DASHBOARD_SOURCE_FINDINGS_REWORK：SUBMITTED_OUTCOME_PENDING；讀 routes/resume-batch-20261004/human-dashboard-findings-rework/ag.intent.json
+- RUNTIME.SOURCE_PAIR_REBIND：NATIVE_RUNNING_SOURCE_REBIND；讀 routes/resume-batch-20261004/runtime-sourcepair-luna-rebind/luna.intent.json
+- HUMAN.DASHBOARD_FINAL7_SOURCE_REWORK：SUBMITTED_OUTCOME_PENDING；讀 routes/resume-batch-20261004/human-dashboard-final7-rework/ag.intent.json
 
-- 穩定來源資格：{"research":"EXACT17_SOURCE_LOCAL103_DISTINCT_AG_PASS_NOT_PARENT_OR_LIVE","mcp":"EXACT_FINAL_TEST_LOCAL7_DISTINCT_AG_PASS_NOT_WEB_OR_INSTALL"}
+- 穩定來源資格：{"research":"PR388_EXACT_HEAD_STRUCTURAL_PASS_LOCAL103_DISTINCT17_SEMANTIC_PASS_PREPARATORY_ONLY","mcp":"PR385_EXACT_HEAD_STRUCTURAL_PASS_LOCAL7_DISTINCT_FINAL_TEST_PASS_OTHER6_REVIEW_INHERITED_NO_FULL_LEGACY_LIVE","runtime":"PR386_SOURCE_PAIR_REBIND_LUNA_RUNNING","dashboard":"AG_SOURCE_REWORK7_RUNNING_NOT_QUALIFIED","producer_head":"f45ef980a0194c54db6f2e3d5585577154ac5754","research_head":"f4c754ed1e2f256b24c432511c01ae52592dd15f","readback":"routes/resume-batch-20261004/final-source-provider-readback.json"}
 - 先回收最新exact結果；全部精確finding一次交原作者返工；沒finding才freeze。一個作者一個result路徑，不重派在途工作。
 - 封存包的repositoryTree/moduleTree/pathset要實際核對；舊CP200樹冒充新來源的封存包已拒絕，保留原報告。
 - 稽核附件不是來源施工必要條件。被拒附件與inspect命令／代理不重讀，原已授權source仍可續做。

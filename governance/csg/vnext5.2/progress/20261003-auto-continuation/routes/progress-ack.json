@@ -150,6 +150,69 @@
       "disposition": "INSPECT_COMMAND_DENIAL_PARKED_SOURCE_EDIT_CONTINUES_WITHOUT_DENIED_ACTION",
       "collection": "routes/resume-batch-20261004/human-dashboard-repair/ag.intent.json",
       "acceptance": "SCOPED_SOURCE_OR_REWORK_ONLY_NOT_LIVE_NOT_MISSION_COMPLETE"
+    },
+    "routes/resume-batch-20261004/published-source-head-ag-review/ag.intent.json": {
+      "signature": "f8c6bcc40da6a2de14735512af839b5b78c0c58730cdacd04e0676a814d70e6b",
+      "recorded_at": "2026-10-04T13:24:47.374Z",
+      "disposition": "ACCEPTED_CLOSED",
+      "review": "routes/resume-batch-20261004/published-source-head-ag-review/result.json",
+      "review_sha256": "98a23c711b6391d90f0a6b1130ebaf5fbae3b3b146b77e13e7a210431d9ab8f5",
+      "acceptance_scope": "EXACT17_RESEARCH_AND_ONE_MCP_TEST_SEMANTIC_ONLY_NOT_WHOLE_PACKAGE_OR_LIVE",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/human-dashboard-rework-final-luna-review/luna.intent.json": {
+      "signature": "a930bccc4e670765d2a1c58acc3192ccc90e646e0c4192d67fe038cdb7188199",
+      "recorded_at": "2026-10-04T13:24:47.374Z",
+      "disposition": "REVIEW_FINDINGS_RETURNED_TO_AUTHOR",
+      "review": "routes/resume-batch-20261004/human-dashboard-rework-final-luna-review/result.json",
+      "review_sha256": "73eaab94f984452380d6301fe1a7349f440cc9b18e276e2f38517b62b4ee7478",
+      "acceptance_scope": "REWORK7_REQUIRED_DISPATCHED_TO_AG_NOT_PASS",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/source-tree-final-luna-review/luna.intent.json": {
+      "signature": "80a84a906d91bc450d35a0aa95eaf5b3f54e4d16b14589ba0eb4702c1751aac4",
+      "recorded_at": "2026-10-04T13:24:47.374Z",
+      "disposition": "ACCEPTED_CLOSED",
+      "review": "routes/resume-batch-20261004/source-tree-final-luna-review/result.json",
+      "review_sha256": "578fe90abecb9b0e585ae31976e3883ac412d33f386be9d3030d49ea0d42b923",
+      "acceptance_scope": "EXACT24_SOURCE_METADATA_BYTE_BINDING_ONLY",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/human-dashboard-findings-rework/ag.intent.json": {
+      "signature": "a889001017a11b4d4c8f6f7196c64c6fb2678705f14930ada51b6d548ec14a91",
+      "recorded_at": "2026-10-04T13:24:47.374Z",
+      "disposition": "REVIEW_FINDINGS_RETURNED_TO_AUTHOR",
+      "review": "routes/resume-batch-20261004/human-dashboard-rework-final-luna-review/result.json",
+      "review_sha256": "73eaab94f984452380d6301fe1a7349f440cc9b18e276e2f38517b62b4ee7478",
+      "acceptance_scope": "AUTHOR_SOURCE_COLLECTED_REMAINING7_REWORK",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/source-tree-binding-rework/oc.intent.json": {
+      "signature": "04c92e40467eb44565f02d895e2a1c65fb8476bf0c9144fa7dabf3539060b807",
+      "recorded_at": "2026-10-04T13:24:47.374Z",
+      "disposition": "ACCEPTED_CLOSED",
+      "review": "routes/resume-batch-20261004/source-tree-final-luna-review/result.json",
+      "review_sha256": "578fe90abecb9b0e585ae31976e3883ac412d33f386be9d3030d49ea0d42b923",
+      "acceptance_scope": "PACKET_REPAIR_DISTINCT_PASS_NOT_LIVE",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/human-dashboard-final-luna-review/luna.intent.json": {
+      "signature": "45bb26db3d7322dbf1f57f2ec86122e499c161ccddd940bbb1ec91d6fca2ac91",
+      "recorded_at": "2026-10-04T13:24:47.374Z",
+      "disposition": "REVIEW_FINDINGS_RETURNED_TO_AUTHOR",
+      "review": "routes/resume-batch-20261004/human-dashboard-final-luna-review/result.json",
+      "review_sha256": "d403cf77dfe2d62753fec98a37f51a50bfad8139ea97af4a9a04db75d4ad0062",
+      "acceptance_scope": "REVIEW13_REWORK_DISPATCHED_HISTORICAL",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/final-source-qualification/oc.intent.json": {
+      "signature": "92df93a05fc38c79a42a6f9b2e18fc1ba80e1de387b9e2114a7ed90aa8f13458",
+      "recorded_at": "2026-10-04T13:24:47.374Z",
+      "disposition": "REJECTED_REWORK_REQUIRED",
+      "review": "routes/resume-batch-20261004/source-tree-binding-rework/root-finding.json",
+      "review_sha256": "88da8434a9ea0b4fe944be4a4c10a374f6dc78de9cee455fb166ad18ecca6a5b",
+      "acceptance_scope": "WRONG_CP200_TREE_PACKET_REJECTED_REPAIRED_SEPARATELY",
+      "mission_complete": false
     }
   }
 }
