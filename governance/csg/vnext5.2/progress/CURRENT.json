@@ -3,13 +3,13 @@
   "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
   "noncanonical": true,
   "writer": "ROOT_SINGLE_INTEGRATOR",
-  "sequence": 28,
-  "previous_locator_head": "66454c59a38a814d8069cbcdc371aa6a631fa85f",
+  "sequence": 29,
+  "previous_locator_head": "54bf4a718453706067481d6fc1d19373a38bf21a",
   "progress": {
     "repository": "PT-Original-Point/ptysd-vnext42-governance-sandbox",
-    "exact_head": "3ff0419896549b744b7bc876d1cc72227c048993",
+    "exact_head": "db4d9e87cdef44cd3797b1a6ebb1ea55348293f6",
     "current_path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/CURRENT.json",
-    "current_sha256": "sha256:65f9a291b7097629c878860641af7068d26762c2f3fc829ef5867320151bd624",
+    "current_sha256": "sha256:4b3d388dbd5bf00b83723a1b950ee081ec595004899987760c56bfc28dd03d1e",
     "manifest_path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/manifest.json"
   },
   "dispatch_authority": false,
@@ -33,10 +33,10 @@
     "actual_goal": "paused",
     "goal_resume_api": "UNSUPPORTED_NO_FAKE_ACTIVE",
     "running_ids": [
-      "C1.FINAL_COMBINED_DISTINCT_STATIC_REVIEW"
+      "P52.SELECTION_CONTRACT_SOURCE_PREPARATION"
     ],
     "latest_native_intents": [
-      "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/resume-batch-20261004/c1-final-combined-static-review/ag.intent.json"
+      "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/resume-batch-20261004/selection-contract-ag-source/ag.intent.json"
     ],
     "queue_decision": "WORK_IN_PROGRESS",
     "global_exhausted": false,
@@ -81,7 +81,7 @@
       "dashboard_status": "32_SYNTHETIC_PASS_OWN_NATIVE_METADATA_OBSERVER_HANDOFF_READBACK_PASS_NOT_FACTORY_LIVE",
       "c1": "C1_PACKET_SCOPED_DISTINCT_STATIC_PASS_SCHEMA_AND_PROMOTION_CONTRACT_STILL_PENDING",
       "c1_schema": {
-        "status": "TWO_AUTHOR_REWORKS_COLLECTED_DISTINCT_COMBINED_STATIC_REVIEW_PENDING",
+        "status": "8_OF_8_SOURCE_BYTES_DISTINCT_STATIC_PASS_RUNTIME_UNTESTED_DEPENDENCY_PENDING",
         "runtime_execution": "UNTESTED",
         "command_lane": "AG_RUNCOMMAND_DENIED_PARKED_NO_RETRY",
         "review_input_binding": "governance/csg/vnext5.2/progress/20261003-auto-continuation/routes/resume-batch-20261004/c1-final-combined-static-review/input-binding.json"
@@ -94,7 +94,8 @@
     "quota_scope": "SHARED_ACCOUNT_NOT_PER_SESSION",
     "bad_packet": "REJECTED_REPO_TREE_WAS_CP200_SOURCE_TESTS_PRESERVED",
     "original_contract_source_map": "governance/csg/vnext5.2/progress/20261003-auto-continuation/CONTRACT-SOURCE-MAP.json",
-    "observer_qualification": "32_PURE_FIXTURES_PASS_OWN_OBSERVER_NATIVE_LOCK_READBACK_PASS_NOT_FACTORY_LIVE"
+    "observer_qualification": "32_PURE_FIXTURES_PASS_OWN_OBSERVER_NATIVE_LOCK_READBACK_PASS_NOT_FACTORY_LIVE",
+    "preparatory_source_basis": "FROZEN_PR388_SOURCE_QUALIFIED_NOT_PARENT_LIVE_ACCEPTANCE"
   },
   "active_manifest_policy": "CURRENT_PROJECTIONS_40_FILES_MAX40",
   "historical_progress_head": "0efff52aa791a3d48f818c535cecc6944f6ae05c",
