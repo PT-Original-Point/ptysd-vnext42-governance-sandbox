@@ -1,5 +1,5 @@
 [CmdletBinding()]
-param([string]$Root='C:\ProgramData\PTYSD\MCP')
+param([string]$Root='C:\ProgramData\PTYSD\MCP',[string]$TaskSid)
 Set-StrictMode -Version Latest
 $ErrorActionPreference='Stop'
 $runtimeExe=Join-Path $Root 'tunnel\v0.0.14\tunnel-client.exe'
@@ -20,14 +20,28 @@ if(-not [IO.Path]::GetFullPath($profileKey).Equals([IO.Path]::GetFullPath($key),
 if(-not [regex]::IsMatch($raw,'(?m)^\s*listen_addr:\s*127\.0\.0\.1:0\s*$')){throw 'HEALTH_LISTENER_NOT_LOOPBACK_EPHEMERAL'}
 if(-not (Test-Path -LiteralPath $key)){throw 'CONTROL_PLANE_KEY_MISSING'}
 if((Get-Item -LiteralPath $key).Length -lt 16){throw 'CONTROL_PLANE_KEY_TOO_SHORT'}
-$allowed=@('S-1-5-18','S-1-5-20','S-1-5-32-544'); $networkRead=$false
-foreach($rule in (Get-Acl -LiteralPath $key).Access){
-  if($rule.AccessControlType -ne 'Allow'){continue}
-  $sid=$rule.IdentityReference.Translate([Security.Principal.SecurityIdentifier]).Value
-  if($sid -notin $allowed){throw ('CONTROL_PLANE_KEY_ACL_TOO_BROAD:'+ $sid)}
-  if($sid -eq 'S-1-5-20' -and (($rule.FileSystemRights -band [Security.AccessControl.FileSystemRights]::ReadData) -ne 0)){$networkRead=$true}
+$defaultRoot=[IO.Path]::GetFullPath('C:\ProgramData\PTYSD\MCP')
+if([IO.Path]::GetFullPath($Root).Equals($defaultRoot,[StringComparison]::OrdinalIgnoreCase)){
+  $trustedCallerHelper=Join-Path $Root 'FactoryMCP\broker\trusted-caller-boundary.ps1'
+  if(-not (Test-Path -LiteralPath $trustedCallerHelper)){throw 'TRUSTED_CALLER_HELPER_MISSING'}
+  . $trustedCallerHelper
+  $resolvedTaskSid=Get-FactoryScheduledTaskSid -TaskName 'PTYSD-FactoryMCP-Tunnel-V47'
+  if($TaskSid -and $TaskSid -cne $resolvedTaskSid){throw 'TRUSTED_TASK_SID_MISMATCH'}
+  $TaskSid=$resolvedTaskSid
 }
-if(-not $networkRead){throw 'CONTROL_PLANE_KEY_NETWORK_SERVICE_READ_MISSING'}
+if($TaskSid -notmatch '^S-1-5-87(?:-\d+)+$'){throw 'TRUSTED_TASK_SID_REQUIRED'}
+$allowed=@('S-1-5-18','S-1-5-32-544',$TaskSid)
+foreach($path in @($key,$profile)){
+  $acl=Get-Acl -LiteralPath $path -ErrorAction Stop
+  $taskRead=$false
+  foreach($rule in $acl.Access){
+    if($rule.AccessControlType -ne [Security.AccessControl.AccessControlType]::Allow){throw 'TUNNEL_FILE_ACL_DENY_RULE_UNEXPECTED'}
+    $sid=$rule.IdentityReference.Translate([Security.Principal.SecurityIdentifier]).Value
+    if($sid -notin $allowed){throw ('TUNNEL_FILE_ACL_TOO_BROAD:'+ $sid)}
+    if($sid -ceq $TaskSid -and (($rule.FileSystemRights -band [Security.AccessControl.FileSystemRights]::ReadData) -ne 0)){$taskRead=$true}
+  }
+  if(-not $taskRead){throw 'TUNNEL_FILE_TASK_READ_MISSING'}
+}
 if(-not (Test-Path -LiteralPath $runtimeExe)){throw 'TUNNEL_RUNTIME_CLIENT_MISSING'}
 if(-not (Test-Path -LiteralPath $doctorExe)){throw 'TUNNEL_DOCTOR_CLIENT_MISSING'}
 $runtimeSha=(Get-FileHash -LiteralPath $runtimeExe -Algorithm SHA256).Hash.ToLowerInvariant()
@@ -36,4 +50,4 @@ if($runtimeSha -ne $expectedRuntimeSha){throw 'TUNNEL_RUNTIME_CLIENT_SHA256_MISM
 if($doctorSha -ne $expectedDoctorSha){throw 'TUNNEL_DOCTOR_CLIENT_SHA256_MISMATCH'}
 & $doctorExe doctor --profile-file $profile --explain *> $null
 if($LASTEXITCODE -ne 0){throw 'TUNNEL_DOCTOR_FAILED'}
-[ordered]@{result='PASS';tunnel_id=$idMatches[0].Groups[1].Value;health='LOOPBACK_EPHEMERAL';runtime_exe_sha256=$runtimeSha;doctor_exe_sha256=$doctorSha;key_present=$true;doctor='PASS'} | ConvertTo-Json -Compress
+[ordered]@{result='PASS';tunnel_id=$idMatches[0].Groups[1].Value;health='LOOPBACK_EPHEMERAL';runtime_exe_sha256=$runtimeSha;doctor_exe_sha256=$doctorSha;key_present=$true;trusted_caller_task_sid=$TaskSid;doctor='PASS'} | ConvertTo-Json -Compress

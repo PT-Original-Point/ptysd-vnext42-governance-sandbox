@@ -1,0 +1,58 @@
+{
+  "schema": "v51.factory-mcp.candidate-capability-matrix.v1",
+  "evidence_class": "LOCAL_SOURCE_DERIVED_CANDIDATE_EXPECTATION",
+  "candidate_package_version": "0.2.4",
+  "sdk_dependency": {
+    "package": "@modelcontextprotocol/server",
+    "version": "2.2.0",
+    "integrity": "sha512-qFnltjus6Gk8Lx6J1w2RXmr3YPN22MNT6qD6zjAkaiWIlFIFxWClz0rXHNuJF/KSUyn5YGhkSvXkWDbQHVLFEQ=="
+  },
+  "negotiated_wire_protocol_version": "2026-07-28",
+  "public_tool_count": 4,
+  "public_tools": [
+    "factory_status",
+    "worker_prepare",
+    "worker_start",
+    "host_powershell"
+  ],
+  "expected_capabilities": {
+    "factory_status": {
+      "mode": "FIXED_PURPOSE_READ_ONLY",
+      "caller_arguments": "NONE",
+      "owner_liveness_verdict": "NOT_PERFORMED"
+    },
+    "worker_prepare": {
+      "mode": "BOUNDED_GOVERNED_HOSTGUARD_OPERATION",
+      "identity_fields": ["runId", "taskId", "attemptId", "attemptEpoch"]
+    },
+    "worker_start": {
+      "mode": "BOUNDED_GOVERNED_HOSTGUARD_OPERATION",
+      "identity_fields": ["runId", "taskId", "attemptId", "attemptEpoch"]
+    },
+    "host_powershell": {
+      "mode": "SCRIPT_CAPABLE_SYSTEM_BROKER_ROUTE",
+      "input_fields": [
+        "runId",
+        "taskId",
+        "attemptId",
+        "attemptEpoch",
+        "script",
+        "timeoutSeconds"
+      ],
+      "run_as": "NT AUTHORITY\\SYSTEM",
+      "script_max_characters": 8192,
+      "timeout_seconds_minimum": 1,
+      "timeout_seconds_maximum": 300,
+      "bounded_stdout_stderr": true,
+      "truncation_metadata": true,
+      "script_and_output_sha256": true,
+      "durable_execution_receipt": true,
+      "helper_source_path": "broker/host-powershell-exec.ps1",
+      "helper_deterministically_installed": true
+    }
+  },
+  "production_allowed": false,
+  "worker_provider_write_credentials": 0,
+  "live_acceptance": "NOT_ACCEPTED",
+  "exact_head_protected_verification": "PENDING"
+}
