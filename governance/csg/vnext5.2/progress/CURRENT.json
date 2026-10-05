@@ -3,13 +3,13 @@
   "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
   "noncanonical": true,
   "writer": "ROOT_SINGLE_INTEGRATOR",
-  "sequence": 34,
+  "sequence": 35,
   "previous_locator_head": "c8b2751705b43dc5100eef53c5dd62c96b1334a9",
   "progress": {
     "repository": "PT-Original-Point/ptysd-vnext42-governance-sandbox",
-    "exact_head": "a06df6914d6da5d353ff940eec42563f108465fc",
+    "exact_head": "7b6fa6027776dc252f679540eb4c314620b826b8",
     "current_path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/CURRENT.json",
-    "current_sha256": "sha256:0de53cb9205922a3ad9525ac2eb7262b0b5af17cd5da8d153bc73d749d937687",
+    "current_sha256": "sha256:3498bd1e0a7b58dfa6dae55887db3aa3acdb8699668fea248cbf3ea22900d0d2",
     "manifest_path": "governance/csg/vnext5.2/progress/20261003-auto-continuation/manifest.json"
   },
   "dispatch_authority": false,
@@ -117,5 +117,5 @@
     "reentry": "Fresh mutable task intents and READY facts before dispatch; immutable source results do not expire"
   },
   "snapshot_rule": "Immutable exact source receipts retained; refresh expired mutable facts. Native review status at snapshot is not completion.",
-  "recorded_at": "2026-10-05T02:24:31.296Z"
+  "recorded_at": "2026-10-05T03:38:13.481Z"
 }
