@@ -1,0 +1,115 @@
+{
+  "recorded_at": "2026-10-05T01:33:51.244Z",
+  "collections": [
+    {
+      "task": "P52.SELECTION_SHARD_AUTHORIZED_EXACT_NATIVE_LOCAL_QUALIFICATION",
+      "closed_at": "2026-10-05T01:23:50.327Z",
+      "actual_model": "gemini-3.8-flash-high",
+      "native_session": "74484e91-1a2f-4770-928e-7269680283b3",
+      "receipt_sha256": "c57fe84f0b89f30abc533a178366f650ad0c950d992c45b0ed8b6f35027c4815",
+      "native_outcome": "SUCCESS",
+      "source_status": "QUALIFICATION_FAILED",
+      "tests": {
+        "actual_count": null,
+        "passed": null,
+        "failed": 7,
+        "skipped": 0,
+        "assertions": null,
+        "sections": 2,
+        "full_log_complete": false
+      },
+      "findings": [
+        {
+          "id": "FZ1",
+          "message": "Expected 'E_SHAPE' but received 'E_EXTRA_PROP'",
+          "test": "selection-contract.test.mjs:1189:12 (rejects symbol payload BEFORE freeze and never cures immutability on unknown-symbol data)"
+        },
+        {
+          "id": "DAG_CYCLE_DIRECT_2_NODE",
+          "message": "Expected 'E_DAG_CYCLE' but received 'E_CYCLIC_OBJECT'",
+          "test": "shard-integration-contract.test.mjs:381:12 (rejects DAG with direct 2-node cycle)"
+        },
+        {
+          "id": "DAG_CYCLE_3_NODE",
+          "message": "Expected 'E_DAG_CYCLE' but received 'E_CYCLIC_OBJECT'",
+          "test": "shard-integration-contract.test.mjs:391:12 (rejects DAG with 3-node cycle)"
+        },
+        {
+          "id": "DAG_DUP_SHARD_ID",
+          "message": "Expected 'E_DUP_SHARD_ID' but received 'E_CYCLIC_OBJECT'",
+          "test": "shard-integration-contract.test.mjs:413:12 (rejects duplicate shard ID in DAG)"
+        },
+        {
+          "id": "P2",
+          "message": "Expected 'E_PATH_TRIMMED' but received 'E_PATH_INVALID_CHAR' for path with leading tab/space",
+          "test": "shard-integration-contract.test.mjs:1085:12 (rejects path with leading whitespace as E_PATH_TRIMMED while preserving E_PATH_TRAILING_DOT_OR_SPACE for trailing-dot/space)"
+        },
+        {
+          "id": "AC2",
+          "message": "TypeError: shard.dependsOn is not iterable at validateShardClosed when SubArray passed",
+          "test": "shard-integration-contract.test.mjs:1113:22 (rejects shard with custom prototype or subclass Array in dependsOn or writeSet)"
+        },
+        {
+          "id": "AC3",
+          "message": "Expected 'E_SHAPE' but received 'E_EXTRA_PROP' when getter descriptor present",
+          "test": "shard-integration-contract.test.mjs:1138:12 (rejects shard with getter descriptor without invoking getter and without effects)"
+        }
+      ],
+      "next": "routes/resume-batch-20261004/selection-native-seven-real-failures-rework/ag.intent.json",
+      "mission_complete": false
+    },
+    {
+      "task": "HUMAN.OBSERVER_AUTHORIZED_EXACT_NATIVE_FIXTURE_QUALIFICATION",
+      "closed_at": "2026-10-05T01:25:15.659Z",
+      "actual_model": "gemini-3.8-flash-high",
+      "native_session": "4222464d-9ad9-4814-b4b8-75ef33725c14",
+      "receipt_sha256": "178e144a6643b7070b78219ec331107736e00ddc1317b3716cf29e6793e9b8f3",
+      "native_outcome": "SUCCESS",
+      "source_status": "FAIL",
+      "tests": {
+        "actual_count": 0,
+        "passed": 0,
+        "failed": 1,
+        "skipped": 0,
+        "assertions": 39,
+        "sections": 0,
+        "full_log_complete": true
+      },
+      "findings": [
+        {
+          "id": "OBSERVER_LOCK_RECLAIM_TOCTOU",
+          "message": "Must NOT delete/unlink partial lock file during contention (true !== false)",
+          "test": "outputs/HUMAN-DASHBOARD-FINAL7-REWORK/dashboard-regression.fixture.mjs:527:12"
+        }
+      ],
+      "next": "routes/resume-batch-20261004/observer-native-lock-real-failure-rework/oc.intent.json",
+      "mission_complete": false
+    },
+    {
+      "task": "WORKFLOW.PREFLIGHT_CALLER_F01_EXACT_SOURCE_REPAIR",
+      "closed_at": "2026-10-05T01:23:55.870Z",
+      "actual_model": {
+        "id": "muse-spark-1.3-contributor-free",
+        "providerID": "opencode",
+        "variant": "xhigh"
+      },
+      "native_session": "ses_ef657645cffeBazCO70YNDgq9c",
+      "receipt_sha256": "c8570d66dfa01724e83f6de6e2a1f996481defbde5e00d0140a13849d41be5e9",
+      "native_outcome": "succeeded",
+      "source_status": "COMPLETED_STATIC_REPAIR_NO_DISPATCH",
+      "tests": {
+        "executed": false,
+        "cases_run": 0,
+        "scope": "STATIC_ONLY_SOURCE_READ_NO_IMPORT_NO_RUN"
+      },
+      "findings": [],
+      "next": "routes/resume-batch-20261004/native-preflight-luna-final-review/result.json",
+      "mission_complete": false
+    }
+  ],
+  "root_product_edits": 0,
+  "canonical_write": false,
+  "host_dispatch": false,
+  "live_acceptance": "NOT_ACCEPTED",
+  "mission_complete": false
+}

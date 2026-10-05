@@ -1,0 +1,30 @@
+{
+  "verdict": "FINDING_OPEN",
+  "source_sha256": "48f470d9d289c7346041043bc01feb68d1212c977ec9aa132e8875776fc98b8b",
+  "finding": {
+    "id": "OBSERVER_RELEASE_READ_UNLINK_TOCTOU",
+    "priority": "P1",
+    "file": "routes/progress-observer.mjs",
+    "line_start": 408,
+    "line_end": 425,
+    "reason": "The standard-fs release reads/parses the lock, verifies token+pid, then unlinks the path. That is not an atomic ownership check: a foreign replacement after readback and before unlink is deleted. The implementation itself labels this best-effort; the exact-ownership invariant is therefore not preserved.",
+    "deterministic_injected_fs_trace": [
+      "Initialize files[lockPath] with token A and pid A; hold A release handle.",
+      "readFileSync(lockPath) snapshots and returns token-A bytes, but before returning replaces files[lockPath] with token B/pid B.",
+      "release parses the returned A bytes and passes the token/pid check.",
+      "unlinkSync(lockPath) deletes the current path entry, token B; release returns true."
+    ],
+    "fixture_gap": "dashboard-regression.fixture.mjs:2056-2061 installs token B before calling release, so readback observes B and safely returns false. It does not replace the file between readFileSync and unlinkSync. The same-token and repeat-acquire cases are also sequential.",
+    "root_recovery": "Inspected stale-lock handling returns STALE_LOCK_ROOT_RECOVERY_REQUIRED; automatic Root cleanup and serialization with release are comments, not an enforced or independently proven mechanism in the reviewed source/fixture.",
+    "required_fix": "Do not use pathname read-then-unlink as exact release. Use a genuinely atomic ownership-aware relinquish primitive, or keep shared-lock cleanup in serialized Root recovery after the old owner is stopped. Add the injected interleaving above and assert token B remains untouched."
+  },
+  "adjacent_review": "Temp cleanup is bounded to the tracked own temp path on success/contention/error; liveness now gates RUNNING on confirmed PID status and has unknown-probe cases. No execution or import performed.",
+  "receipt_review": "Muse and AG receipts report local synthetic PASS (40 sections, 164 assertions); their foreign-replacement test does not cover the interleaving above. Live acceptance remains NOT_ACCEPTED.",
+  "scope": "READONLY_STATIC_CHANGED_REGIONS_ONLY; inspected exact Source hash, release/temp/liveness regions, corresponding fixture cases, and the named Muse/AG receipts. No tests, imports, watch, once, live calls, active observer access, or Source edits.",
+  "configured_model": "gpt-6-luna",
+  "configured_effort": "max",
+  "actual_model": "UNVERIFIED_IF_RUNTIME_METADATA_UNEXPOSED",
+  "source_edit": false,
+  "live_acceptance": "NOT_ACCEPTED",
+  "mission_complete": false
+}

@@ -1,0 +1,56 @@
+{
+  "recorded_at": "2026-10-05T02:20:39.272Z",
+  "reviewed": [
+    {
+      "intent": "routes/resume-batch-20261004/selection-fixture-setup-muse-repair/oc.intent.json",
+      "result_sha256": "438c7b9b3187f56a0c272e0b798178b267df4c94023c363e8c9cf38cd840db77"
+    },
+    {
+      "intent": "routes/resume-batch-20261004/observer-race-cached-source-reentry/ag.intent.json",
+      "result_sha256": "270fd024958705e14915504531a6a4809dcd84cb3fddb5c3beb4321042967cf9"
+    },
+    {
+      "intent": "routes/resume-batch-20261004/research126-final-independent-luna-review/luna.intent.json",
+      "result_sha256": "cf6a1767f034d3edb6581646c26641a89e3c94880774a48e50605e368a8e38e6"
+    }
+  ],
+  "research": {
+    "test_log": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-SELECTION-CONTRACT-AG-WORK-20261005\\outputs\\SELECTION-FIXTURE-SETUP-CORRECTION\\test-log.txt",
+    "test_log_sha256": "27a861786ec01d83dff68881a305941c108c9b22583c60f04e78af692cc77098",
+    "test_total": 126,
+    "passed": 126,
+    "source_bindings_verified": 8,
+    "review_findings": [
+      {
+        "line": 713,
+        "required_fix": "Reject getter/setter descriptors during closed-shape inspection before validators read fields, and preflight request data before any field validation. Add an allowed-field getter regression through bindHumanSelection and buildRecommendation that asserts the getter remains uncalled.",
+        "file": "tools/csg/v52-research/src/selection-contract.mjs",
+        "priority": "P1",
+        "reason": "bindHumanSelection calls validateRequestClosed(request) before checkAcyclicAndSafe(request). The schema validator reads allowed request fields directly without rejecting accessor descriptors, so an allowed-field getter can execute before the later safety scan rejects the request. buildRecommendation also calls validateRequestClosed without a safety preflight.",
+        "id": "GOT-01"
+      },
+      {
+        "line": 158,
+        "required_fix": "Validate the complete graph before the first Object.freeze (or use a two-phase validate-then-freeze traversal). Add a nested invalid-descendant case asserting the parent and descendants remain unfrozen after rejection.",
+        "file": "tools/csg/v52-research/src/selection-contract.mjs",
+        "priority": "P2",
+        "reason": "The exported deepFreeze freezes the current object before recursively validating descendant descriptors at lines 160-164. A valid parent with a descendant accessor/symbol can therefore throw after the parent has already become frozen, leaving caller data partially mutated.",
+        "id": "FZ-02"
+      }
+    ],
+    "hash_drift": false,
+    "hash_alert_reason": "REVIEWER_63_CHARACTER_RECEIPT_TYPO_CORRECTED_NOT_SOURCE_CHANGE"
+  },
+  "observer": {
+    "test_assertions": 170,
+    "verdict": "ROOT_REJECTS_RACE_CLOSED_CLAIM",
+    "findings": [
+      "SECOND_READ_STILL_HAS_READ_UNLINK_WINDOW",
+      "HELPER_CLOSE_BEFORE_DELETE_SAME_RACE",
+      "HELPER_NOT_INTEGRATED_EXPECTED_HASH_OPTIONAL"
+    ]
+  },
+  "root_product_source_edits": 0,
+  "live_acceptance": "NOT_ACCEPTED",
+  "mission_complete": false
+}

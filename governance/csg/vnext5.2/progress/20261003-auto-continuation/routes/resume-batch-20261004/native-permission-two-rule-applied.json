@@ -1,0 +1,24 @@
+{
+  "recorded_at": "2026-10-05T01:17:52.221Z",
+  "status": "EXACT_TWO_NATIVE_RULES_APPLIED_SAME_SOURCE_READBACK_PASS",
+  "human_authorization": "修正所有問題優化工作流，讓全部WORKER恢復工作",
+  "authorization_context": "Reply follows the concrete reviewed two-rule native re-entry proposal; no authority expansion beyond that scope",
+  "settings_path": "C:/Users/x/.gemini/antigravity-cli/settings.json",
+  "before_sha256": "b484be5894dede197add4fe808cf7d5069695b25b2c6b87d73039aae7ac7d398",
+  "after_sha256": "c48998850ad604e79ec2718c39bd78f08dbb941ccda9e6f6af0ea4acb0e11d41",
+  "existing_rules_preserved": 15,
+  "added_rules": [
+    "command(node --test tools/csg/v52-research/tests/selection-contract.test.mjs tools/csg/v52-research/tests/shard-integration-contract.test.mjs)",
+    "command(node outputs/HUMAN-DASHBOARD-FINAL7-REWORK/dashboard-regression.fixture.mjs)"
+  ],
+  "allow_count": 17,
+  "other_settings_changed": false,
+  "backup_scope": "LOCAL_PRIVATE_NEVER_PROVIDER_PUBLISHED",
+  "native_cwd_enforcement": "UNPROVEN_CALLER_EXACT_CWD_REQUIRED",
+  "skip_permissions": false,
+  "wildcard_added": false,
+  "host_dispatch": false,
+  "production": false,
+  "canonical_write": false,
+  "mission_complete": false
+}

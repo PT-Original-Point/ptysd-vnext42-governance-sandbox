@@ -1,0 +1,86 @@
+{
+  "verdict": "STATIC_FAIL_OPEN_FOUND",
+  "scope": "EXACT_EIGHT_FILE_STATIC_REVIEW",
+  "findings": [
+    {
+      "line": 713,
+      "required_fix": "Reject getter/setter descriptors during closed-shape inspection before validators read fields, and preflight request data before any field validation. Add an allowed-field getter regression through bindHumanSelection and buildRecommendation that asserts the getter remains uncalled.",
+      "file": "tools/csg/v52-research/src/selection-contract.mjs",
+      "priority": "P1",
+      "reason": "bindHumanSelection calls validateRequestClosed(request) before checkAcyclicAndSafe(request). The schema validator reads allowed request fields directly without rejecting accessor descriptors, so an allowed-field getter can execute before the later safety scan rejects the request. buildRecommendation also calls validateRequestClosed without a safety preflight.",
+      "id": "GOT-01"
+    },
+    {
+      "line": 158,
+      "required_fix": "Validate the complete graph before the first Object.freeze (or use a two-phase validate-then-freeze traversal). Add a nested invalid-descendant case asserting the parent and descendants remain unfrozen after rejection.",
+      "file": "tools/csg/v52-research/src/selection-contract.mjs",
+      "priority": "P2",
+      "reason": "The exported deepFreeze freezes the current object before recursively validating descendant descriptors at lines 160-164. A valid parent with a descendant accessor/symbol can therefore throw after the parent has already become frozen, leaving caller data partially mutated.",
+      "id": "FZ-02"
+    }
+  ],
+  "source_bindings": [
+    {
+      "path": "tools/csg/v52-research/src/selection-contract.mjs",
+      "sha256": "f1e2285cd0a118352a767690d6b3b0c24e1837acfbd2d2f470133428163d7430",
+      "source_before_sha256": "f1e2285cd0a118352a767690d6b3b0c24e1837acfbd2d2f470133428163d7430"
+    },
+    {
+      "path": "tools/csg/v52-research/src/shard-integration-contract.mjs",
+      "sha256": "aafa991eaf2c14861a83b9ed8fdd8bf643f25fcc0cafc1142f3e9f59d5bd658a",
+      "source_before_sha256": "2160207c758845a45a7ac2537b0a55617770567ba1f246aded470d1cc457f011"
+    },
+    {
+      "path": "tools/csg/v52-research/src/schemas.mjs",
+      "sha256": "501af066c6158a96d81f9bfa64f3a0435c55e198207967029edffe413d900c28",
+      "source_before_sha256": "501af066c6158a96d81f9bfa64f3a0435c55e198207967029edffe413d900c28"
+    },
+    {
+      "path": "tools/csg/v52-research/src/recommendation.mjs",
+      "sha256": "2aa7b08859210513bc2e83130f1576be6cceb148dd16a7ff071941a59e853f89",
+      "source_before_sha256": "2aa7b08859210513bc2e83130f1576be6cceb148dd16a7ff071941a59e853f89"
+    },
+    {
+      "path": "tools/csg/v52-research/src/provenance.mjs",
+      "sha256": "4a6719a8e6e06f404f113f46f78cbce5d294633687a10f6146030678f21dcc3c",
+      "source_before_sha256": "4a6719a8e6e06f404f113f46f78cbce5d294633687a10f6146030678f21dcc3c"
+    },
+    {
+      "path": "tools/csg/v52-research/src/alternatives.mjs",
+      "sha256": "f4491da35bfa6547fd5f15702b348c891aa5a3860b9e051569dc165bc8c2add8",
+      "source_before_sha256": "f4491da35bfa6547fd5f15702b348c891aa5a3860b9e051569dc165bc8c2add8"
+    },
+    {
+      "path": "tools/csg/v52-research/tests/selection-contract.test.mjs",
+      "sha256": "075270286b49ccf180bd945ab8c51b6b7c1d4b08da79f2a4b0bb0d626ec69a69",
+      "source_before_sha256": "b0484439d92ab2ebd7b5a294abc54b1a19c63d03ff655fe4f81ca2d74f97b94d"
+    },
+    {
+      "path": "tools/csg/v52-research/tests/shard-integration-contract.test.mjs",
+      "sha256": "9fc974f559149b37b4aeac18105397cc87f339c5ee4d7fb5f3ee360716cc4f2d",
+      "source_before_sha256": "9fc974f559149b37b4aeac18105397cc87f339c5ee4d7fb5f3ee360716cc4f2d"
+    }
+  ],
+  "tests_observed": {
+    "pass": 126,
+    "recorded_actual_model": "opencode/muse-spark-1.3-contributor-free#xhigh",
+    "changed_paths": [
+      "tools/csg/v52-research/tests/selection-contract.test.mjs"
+    ],
+    "record_path": "VNEXT5.2-AUTO-CONTINUATION-20261003/routes/resume-batch-20261004/selection-fixture-setup-muse-repair/oc.result.json",
+    "exit_code": 0,
+    "scope": "local-synthetic",
+    "candidate_test_log_present": false,
+    "total": 126,
+    "execution": "recorded_only_not_repeated",
+    "candidate_test_log_path": "VNEXT5.2-SELECTION-CONTRACT-AG-WORK-20261005/tools/csg/v52-research/outputs/SELECTION-FIXTURE-SETUP-CORRECTION/test-log.txt",
+    "fail": 0
+  },
+  "configured_model": "gpt-6-luna",
+  "configured_effort": "max",
+  "actual_model": "UNVERIFIED_IF_UNEXPOSED",
+  "source_edit": false,
+  "canonical_write": false,
+  "live_acceptance": "NOT_ACCEPTED",
+  "mission_complete": false
+}

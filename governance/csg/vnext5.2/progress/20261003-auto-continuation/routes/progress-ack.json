@@ -803,6 +803,126 @@
       "review_sha256": "fbfc1ec2d6d9a8fb125e335ebf7c48ab497c35bc64e242d061649e90ee59b0b1",
       "acceptance_scope": "NATIVE_NEW_COMMAND_PERMISSION_DENIAL_NOT_EXECUTION_PASS",
       "mission_complete": false
+    },
+    "routes/resume-batch-20261004/selection-authorized-native-qualification/ag.intent.json": {
+      "signature": "409b30d75aeb2eb9d807ced523a32f28ec4b3851ce993d27006d4b04fe78f9ae",
+      "recorded_at": "2026-10-05T01:33:51.244Z",
+      "disposition": "REVIEW_FINDINGS_RETURNED_TO_AUTHOR",
+      "review": "routes/resume-batch-20261004/selection-native-seven-real-failures-rework/ag.intent.json",
+      "review_sha256": "3b6c6cbdc335f811228b41b16081a216398e6385fb083ca5e444caf98a98adbc",
+      "acceptance_scope": "ACTUAL_TEST_FAILED_SOURCE_REWORK_DISPATCHED",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/observer-authorized-native-qualification/ag.intent.json": {
+      "signature": "5b518e01361e37deed3fb2fead6ddc756c6451e8c86ee238dde61eec395064ae",
+      "recorded_at": "2026-10-05T01:33:51.244Z",
+      "disposition": "REVIEW_FINDINGS_RETURNED_TO_AUTHOR",
+      "review": "routes/resume-batch-20261004/observer-native-lock-real-failure-rework/oc.intent.json",
+      "review_sha256": "af0e08c53c547855d30c31a333f03a2f84e6ca4d0e8c6e3ea21be3d46d3fec44",
+      "acceptance_scope": "ACTUAL_TEST_FAILED_SOURCE_REWORK_DISPATCHED",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/native-preflight-caller-muse-repair/oc.intent.json": {
+      "signature": "1a7d9b58f23d2f57b6e87ad836b4989986cde8cdf1148420894a5de12d5887e3",
+      "recorded_at": "2026-10-05T01:33:51.244Z",
+      "disposition": "ACCEPTED_CLOSED",
+      "review": "routes/resume-batch-20261004/native-preflight-luna-final-review/result.json",
+      "review_sha256": "5019614e33eea5337b67168ea2100539f6a03ecdaee0451637d55b05fe1714ed",
+      "acceptance_scope": "EXACT_TWO_ADMINISTRATIVE_FIELDS_DISTINCT_LUNA_STATIC_REVIEW",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/selection-native-seven-real-failures-rework/ag.intent.json": {
+      "signature": "f327ad6562dbc018315d2e3ae0f2b3d193a12668531e89b962fa789793b37a40",
+      "recorded_at": "2026-10-05T01:41:24.024Z",
+      "disposition": "REVIEW_FINDINGS_RETURNED_TO_AUTHOR",
+      "review": "routes/resume-batch-20261004/selection-native-syntax-followup-rework/ag.intent.json",
+      "review_sha256": "edfd5eb63962652e6abb78525cf5a0bb270281f135dc6328e0ecea450938e423",
+      "acceptance_scope": "ACTUAL_IMPORT_FAILURE_ZERO_ASSERTIONS_NOT_ACCEPTED",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/observer-native-lock-real-failure-rework/oc.intent.json": {
+      "signature": "8eeac8517d0d0825e68e3cf6235c4916832a34bbb5b1281ec8e712c42bd37d2b",
+      "recorded_at": "2026-10-05T01:41:24.024Z",
+      "disposition": "REVIEW_FINDINGS_RETURNED_TO_AUTHOR",
+      "review": "routes/resume-batch-20261004/observer-lock-muse-repair-luna-review/result.json",
+      "review_sha256": "ffc6a9528860192d9049850a8409a23c6ea61443cfbcd047603451ee8294cbb8",
+      "acceptance_scope": "LOCAL_SYNTHETIC_PASS_DISTINCT_SOURCE_FINDINGS_NOT_ACCEPTED",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/observer-muse-exact-receipt-correction/oc.intent.json": {
+      "signature": "140d8fbc2d94da092e4923ea07259e15748d9c82d4634a89b87c7e8d84db9b8d",
+      "recorded_at": "2026-10-05T01:41:24.024Z",
+      "disposition": "ACCEPTED_CLOSED",
+      "review": "routes/resume-batch-20261004/observer-muse-exact-receipt-correction/oc.result.json",
+      "review_sha256": "0b262afebd45adb89b6f6717e82a6e1fd1651ffa10c8137025ea87dbab6b39e1",
+      "acceptance_scope": "EXACT_RECEIPT_FIELDS_ONLY_NO_SOURCE_OR_LIVE_ACCEPTANCE",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/observer-lock-muse-repair-luna-review/luna.intent.json": {
+      "signature": "de1df3e72852f36889fb3d6ae5f44be170444c384eb3ca64c202df14d2307cd8",
+      "recorded_at": "2026-10-05T01:41:24.024Z",
+      "disposition": "REVIEW_FINDINGS_RETURNED_TO_AUTHOR",
+      "review": "routes/resume-batch-20261004/observer-lock-muse-repair-luna-review/result.json",
+      "review_sha256": "ffc6a9528860192d9049850a8409a23c6ea61443cfbcd047603451ee8294cbb8",
+      "acceptance_scope": "THREE_EXACT_SOURCE_FINDINGS_READY_FOR_AUTHOR_REWORK",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/selection-native-syntax-followup-rework/ag.intent.json": {
+      "signature": "100f4b268323ed4851932f77b7f92ee2bda5890a50102e8eedddb44f9a67d119",
+      "recorded_at": "2026-10-05T02:02:57.899Z",
+      "disposition": "REVIEW_FINDINGS_RETURNED_TO_AUTHOR",
+      "review": "routes/resume-batch-20261004/dispatch-fixture-and-lock-race-repair.mjs",
+      "review_sha256": "be5136b45782a0c1ae8478095abf89d96f70db30b6c131c253b8b4f08f18036e",
+      "acceptance_scope": "SOURCE_OR_FIXTURE_REWORK_READY_NOT_ACCEPTED",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/selection-peer-muse-complete-repair/oc.intent.json": {
+      "signature": "26dffce5ce9aec66c6bdb4f8c9c0d846ee7010683f7ee328b6cb717bf5967f3e",
+      "recorded_at": "2026-10-05T02:02:57.900Z",
+      "disposition": "REVIEW_FINDINGS_RETURNED_TO_AUTHOR",
+      "review": "routes/resume-batch-20261004/dispatch-fixture-and-lock-race-repair.mjs",
+      "review_sha256": "be5136b45782a0c1ae8478095abf89d96f70db30b6c131c253b8b4f08f18036e",
+      "acceptance_scope": "SOURCE_OR_FIXTURE_REWORK_READY_NOT_ACCEPTED",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/observer-three-closure-distinct-ag-review/ag.intent.json": {
+      "signature": "2bad5f7e8e52b834a3d15482078945e3deb8ecc3765a009901e948215fd0e8c9",
+      "recorded_at": "2026-10-05T02:02:57.901Z",
+      "disposition": "REVIEW_FINDINGS_RETURNED_TO_AUTHOR",
+      "review": "routes/resume-batch-20261004/observer-default-release-race-luna-review/result.json",
+      "review_sha256": "706ee56b015b481382e93e70bdc1c5cc5ec9c9d3fbbdc28279f244186229937b",
+      "acceptance_scope": "SOURCE_OR_FIXTURE_REWORK_READY_NOT_ACCEPTED",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/selection-fixture-setup-muse-repair/oc.intent.json": {
+      "signature": "1b77f53245376ba79f2e8167d55c213f51341e48877da65ffdeb21d6a8547c03",
+      "semantic_signature": "1b77f53245376ba79f2e8167d55c213f51341e48877da65ffdeb21d6a8547c03",
+      "recorded_at": "2026-10-05T02:20:39.272Z",
+      "disposition": "REVIEW_FINDINGS_RETURNED_TO_AUTHOR",
+      "review": "routes/resume-batch-20261004/research126-final-independent-luna-review/result.json",
+      "review_sha256": "cf6a1767f034d3edb6581646c26641a89e3c94880774a48e50605e368a8e38e6",
+      "acceptance_scope": "LOCAL_SOURCE_REWORK_ONLY_NOT_LIVE_OR_MISSION",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/observer-race-cached-source-reentry/ag.intent.json": {
+      "signature": "7a6fbc6f54ce9955488ca81b7564a521b4f4a2cff078b1c7cb2e32855843b594",
+      "semantic_signature": "7a6fbc6f54ce9955488ca81b7564a521b4f4a2cff078b1c7cb2e32855843b594",
+      "recorded_at": "2026-10-05T02:20:39.272Z",
+      "disposition": "REVIEW_FINDINGS_RETURNED_TO_AUTHOR",
+      "review": "routes/resume-batch-20261004/observer-race-cached-source-reentry/ag.result.json",
+      "review_sha256": "270fd024958705e14915504531a6a4809dcd84cb3fddb5c3beb4321042967cf9",
+      "acceptance_scope": "LOCAL_SOURCE_REWORK_ONLY_NOT_LIVE_OR_MISSION",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/research126-final-independent-luna-review/luna.intent.json": {
+      "signature": "f6a51c6ad3f9791970b115c8f6eb9520b464847a0299890a9722fef01f74bec0",
+      "semantic_signature": "f6a51c6ad3f9791970b115c8f6eb9520b464847a0299890a9722fef01f74bec0",
+      "recorded_at": "2026-10-05T02:20:39.272Z",
+      "disposition": "REVIEW_FINDINGS_RETURNED_TO_AUTHOR",
+      "review": "routes/resume-batch-20261004/research126-final-independent-luna-review/result.json",
+      "review_sha256": "cf6a1767f034d3edb6581646c26641a89e3c94880774a48e50605e368a8e38e6",
+      "acceptance_scope": "LOCAL_SOURCE_REWORK_ONLY_NOT_LIVE_OR_MISSION",
+      "mission_complete": false
     }
   }
 }

@@ -3,7 +3,7 @@
   "mode": "SHADOW_PLAN_ONLY",
   "facts_schema": "vnext5.2.operation-facts.v1",
   "catalog_sha256": "sha256:ee769422b5d587e771d09c4e95af1af9a3a7cf0a7c0e493d86071e2df57304de",
-  "facts_sha256": "sha256:71e5f02d93cb9a61f0ef7a4d6f3b29f80bfc4dbf532a4fd80e2ed5bbd2e712f5",
+  "facts_sha256": "sha256:f47ca2850a18b0309bf05f3e753efce74b56fd16f42ad4a0d544c05442d3cffa",
   "facts_fresh": true,
   "input_completeness": "COMPLETE",
   "input_reasons": [],
@@ -135,8 +135,8 @@
   "queue_scope": "FULL_CATALOG",
   "queue_unit_count": 59,
   "full_union_count": 59,
-  "global_exhaustion": "EVALUATED",
-  "global_decision": "GLOBAL_EXHAUSTED",
+  "global_exhaustion": "NOT_EXHAUSTED",
+  "global_decision": "WORK_IN_PROGRESS",
   "units": [
     {
       "id": "B00.RECOVER",
@@ -1303,9 +1303,14 @@
     "scope": "EXACT_SOURCE_REVIEW_AND_RECOVERY_NOT_PARENT_ACCEPTANCE",
     "tasks": [
       {
-        "id": "P52.NEW_BENIGN_NATIVE_CONSOLE_ROUTE_DIAGNOSTIC",
-        "status": "PARKED_NATIVE_PERMISSION_DENIED",
-        "intent": "routes/resume-batch-20261004/native-new-console-probe/ag.intent.json"
+        "id": "P52.RESEARCH_TWO_SEMANTIC_FINDINGS_SOURCE_REWORK",
+        "status": "SUBMITTED_OUTCOME_PENDING",
+        "intent": "routes/resume-batch-20261004/research-two-semantic-findings-muse-rework/oc.intent.json"
+      },
+      {
+        "id": "HUMAN.OBSERVER_REAL_HANDLE_LIFETIME_SOURCE_REWORK",
+        "status": "SUBMITTED_OUTCOME_PENDING",
+        "intent": "routes/resume-batch-20261004/observer-real-handle-lifetime-ag-rework/ag.intent.json"
       }
     ],
     "dispatch_on_source_pass": "DISTINCT_REVIEW_THEN_EXACT_REWORK_OR_FREEZE",
