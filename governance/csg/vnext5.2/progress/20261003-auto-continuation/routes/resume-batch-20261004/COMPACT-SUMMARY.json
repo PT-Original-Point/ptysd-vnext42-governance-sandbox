@@ -1,16 +1,8 @@
 {
   "schema": "vnext5.2.compact-reentry.v1",
-  "observed_at": "2026-10-04T21:45:23.847Z",
+  "observed_at": "2026-10-05T01:05:40.358Z",
   "goal_actual": "paused",
   "mission": "ACTIVE_NOT_COMPLETE",
-  "quota_last_actual": {
-    "observed_at": "2026-10-04T21:23:27.384Z",
-    "five_hour_used_percent": 81,
-    "weekly_used_percent": 84,
-    "scope": "ACCOUNT_SHARED_NOT_PER_SESSION",
-    "ordinary_usage_allowed": true,
-    "reset_or_purchase_performed": false
-  },
   "worker_roles": "ROOT_AUDIT_ONLY_CODEX_GPT6_LUNA_MAX_AG_GEMINI38_FLASH_HIGH_OC_MUSE_FREE_BOUNDED_REAUTHORIZED",
   "tasks": [
     {
@@ -176,23 +168,30 @@
     "model_collection_minutes": 30,
     "free_local_seconds": 30,
     "shared_last_observed_used_percent": 81,
-    "native_next": "routes/resume-batch-20261004/native-test-authorization-route-discovery/ag.intent.json",
-    "latest_source_readback": "SOURCE_EIGHT_STATIC_CLOSED_OBSERVER_PARTIAL_COLLECTED_DISTINCT_STATIC_NO_NEW_FINDING_COMMAND_DENIAL_ROUTE_DOC_RESEARCH_RUNNING",
+    "native_next": "routes/resume-batch-20261004/native-scoped-approval-inert-proposal/ag.intent.json",
+    "latest_source_readback": "NATIVE_SAME_CONVERSATION_DOCS_RECEIPT_COLLECTED_HEADLESS_UNKNOWN_INERT_NATIVE_ALLOWLIST_PROPOSAL_RUNNING",
     "false_unknown_correction": "Fresh native same-conversation activity confirms running; no duplicate review",
     "weekly_used_percent": 84,
     "quota_readback": "routes/resume-batch-20261004/quota-native-readback-20261005.json",
     "root_goal_actual": "paused",
-    "source_luna_daily": "BOUNDED_LOCAL_QUALIFICATION_COMPLETE_NO_MORE_LUNA_SOURCE_DISPATCH"
+    "source_luna_daily": "BOUNDED_LOCAL_QUALIFICATION_COMPLETE_NO_MORE_LUNA_SOURCE_DISPATCH",
+    "route_capability_split": {
+      "root_native_cli": "ACTUAL_SAME_CONVERSATION_RESUME_PROVEN",
+      "monitor_native_cli": "UNAVAILABLE",
+      "monitor_role": "METADATA_OBSERVE_AND_NOTIFY_ONLY",
+      "native_dispatch_owner": "ROOT_EXISTING_CLI_ROUTE"
+    },
+    "callback": "NATIVE_LUNA_CALLBACK_PROVEN_ONE_CASE_EXTERNAL_CLI_TRIGGER_NOT_AVAILABLE"
   },
   "latest_delta": {
     "workers": [
       {
-        "task": "P52.NATIVE_TEST_AUTHORIZATION_ROUTE_DOCUMENTATION_DISCOVERY",
-        "intent": "routes/resume-batch-20261004/native-test-authorization-route-discovery/ag.intent.json",
-        "status": "SUBMITTED_OUTCOME_PENDING",
+        "task": "P52.NEW_BENIGN_NATIVE_CONSOLE_ROUTE_DIAGNOSTIC",
+        "intent": "routes/resume-batch-20261004/native-new-console-probe/ag.intent.json",
+        "status": "PARKED_NATIVE_PERMISSION_DENIED",
         "model": "gemini-3.8-flash-high",
         "actual_model": "gemini-3.8-flash-high",
-        "pid": 33832
+        "pid": 64872
       }
     ],
     "source_qualification": {
@@ -264,6 +263,13 @@
         "parent_operation_complete": false,
         "live_acceptance": "NOT_ACCEPTED",
         "next": "NO_COSMETIC_SOURCE_CHURN_LEGAL_EXECUTION_REENTRY_ONLY"
+      },
+      "native_approval_proposal": {
+        "scope": "INERT_DATA_ACCURACY_ONLY",
+        "status": "TWO_FINDINGS_DISTINCT_CLOSED",
+        "activation": false,
+        "native_permission_enforcement": "NOT_PROVEN",
+        "review": "routes/resume-batch-20261004/native-scoped-approval-boundary-final-review/root-collection.json"
       }
     },
     "mcp_author_tests": "7/7 including2 actual local stdio",
@@ -280,5 +286,33 @@
     "source_delta": "observer94be15…",
     "current_test_acceptance": "PARKED_NOT_PASS",
     "readback": "routes/resume-batch-20261004/observer-fixture15-legacy-ack-rework/native-command-denial-readback.json"
+  },
+  "native_doc_receipt": {
+    "actual_model": "gemini-3.8-flash-high",
+    "native_conversation": "d4f08883-f67e-4c08-a467-97129f97aeb0",
+    "sha256": "a3020a252399e606a820a08c87cede65facca4ca29b0cebbdff272b47de94297",
+    "bytes": 4488,
+    "collected": true,
+    "headless_authorization": "UNKNOWN",
+    "permissions_changed": false,
+    "next": "routes/resume-batch-20261004/native-scoped-approval-inert-proposal/ag.intent.json"
+  },
+  "quota_last_actual": {
+    "observed_at": "2026-10-05 00:51:11 UTC",
+    "five_hour_used_percent": 25,
+    "weekly_used_percent": 91,
+    "scope": "ACCOUNT_SHARED_NOT_PER_SESSION",
+    "ordinary_usage_allowed": true,
+    "reset_or_purchase_performed": false
+  },
+  "native_permission_recovery": {
+    "status": "EXACT_NATIVE_REENTRY_AUTHORIZATION_PENDING",
+    "existing_allow_count": 15,
+    "missing_current_exact_test_rules": 2,
+    "proposal": "routes/resume-batch-20261004/native-permission-two-rule-proposal.json",
+    "workflow": "施工恢復與原生命令許可修正-20261005.md",
+    "permission_changes": false,
+    "retry_performed": false,
+    "native_headless_confirm_inheritance": "NOT_PROVEN"
   }
 }

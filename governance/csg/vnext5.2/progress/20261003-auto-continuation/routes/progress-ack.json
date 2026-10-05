@@ -713,6 +713,96 @@
       "review_sha256": "d69c2c60797d187a5f8957b41f03f81731aa16d2093aaecfa94f9773784abf8e",
       "acceptance_scope": "STATIC_REVIEW_READ_COMPLETE_NO_NEW_FINDINGS_NOT_PASS_EXECUTION_PERMISSION_PARKED",
       "mission_complete": false
+    },
+    "routes/resume-batch-20261004/native-test-authorization-route-discovery/ag.intent.json": {
+      "signature": "5f6e7dcf5fa5b6fdb39d2afbafbc51cee0f4084a6d233eea12011c1236aad591",
+      "semantic_signature": "5f6e7dcf5fa5b6fdb39d2afbafbc51cee0f4084a6d233eea12011c1236aad591",
+      "recorded_at": "2026-10-04T21:56:20.091Z",
+      "disposition": "AUTHOR_BYTES_COLLECTED_REVIEW_PERMISSION_PARKED",
+      "review": "routes/resume-batch-20261004/native-test-authorization-route-discovery/root-denial-readback.json",
+      "review_sha256": "7c823912393d9535e049d163f90f601cf93955fd49afc649ec9c91091d82aea8",
+      "acceptance_scope": "EXACT_DENIED_DOC_URL_READBACK_NOT_ROUTE_QUALIFICATION",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/native-test-route-docs-receipt/ag.intent.json": {
+      "signature": "058e7dfb74d3afb14d8f44e7354775c356497db4f2469f77238c20376b1f4a11",
+      "semantic_signature": "058e7dfb74d3afb14d8f44e7354775c356497db4f2469f77238c20376b1f4a11",
+      "recorded_at": "2026-10-05T00:10:52.816Z",
+      "disposition": "AUTHOR_BYTES_COLLECTED_REVIEW_PERMISSION_PARKED",
+      "review": "routes/resume-batch-20261004/native-test-route-docs-receipt/ag.result.json",
+      "review_sha256": "a3020a252399e606a820a08c87cede65facca4ca29b0cebbdff272b47de94297",
+      "acceptance_scope": "OFFICIAL_SHIPPED_DOCS_PARTIAL_RECEIPT_RECOVERED_HEADLESS_AUTHORITY_UNKNOWN_NO_COMMAND_RETRY",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/native-scoped-approval-inert-proposal/ag.intent.json": {
+      "signature": "9bf70967f1be9b65289e18e5c5554599e8a7838d009c898f369488de4dca3f82",
+      "semantic_signature": "9bf70967f1be9b65289e18e5c5554599e8a7838d009c898f369488de4dca3f82",
+      "recorded_at": "2026-10-05T00:18:39.917Z",
+      "disposition": "REVIEW_FINDINGS_RETURNED_TO_AUTHOR",
+      "review": "routes/resume-batch-20261004/native-scoped-approval-inert-proposal/ag.result.json",
+      "review_sha256": "6a66927ae0e36516368eb7745f19ceb9d1a4ee03e52782ad70e2616f2b29099a",
+      "acceptance_scope": "INERT_PROPOSAL_BINDING_AND_ENFORCEMENT_CLAIMS_REJECTED_NO_ACTIVATION",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/native-scoped-approval-exact-rework/ag.intent.json": {
+      "signature": "343fd775e704cae44caa34859caf3cec3d38ec7ef37e04dab75642846cd9d254",
+      "semantic_signature": "343fd775e704cae44caa34859caf3cec3d38ec7ef37e04dab75642846cd9d254",
+      "recorded_at": "2026-10-05T00:24:03.597Z",
+      "disposition": "RESEARCH_BYTES_COLLECTED_DISTINCT_REVIEW_IN_PROGRESS",
+      "review": "routes/resume-batch-20261004/native-scoped-approval-exact-rework/ag.result.json",
+      "review_sha256": "5569ffc27d875fa180b6fa9b275558ba70bbf513e386c4f8a2f2af9f7f665921",
+      "acceptance_scope": "EXACT_TWO_COMMAND_CWD_INERT_DATA_UNVERIFIED_ROUTE_INDEPENDENT_REVIEW_PENDING",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/native-scoped-approval-muse-inert-review/oc.intent.json": {
+      "signature": "7fcf4e821826768964b311134bca38f3493e106a4cc6d8d1c8a8df3e965bae30",
+      "semantic_signature": "7fcf4e821826768964b311134bca38f3493e106a4cc6d8d1c8a8df3e965bae30",
+      "recorded_at": "2026-10-05T00:30:04.149Z",
+      "disposition": "REVIEW_FINDINGS_RETURNED_TO_AUTHOR",
+      "review": "routes/resume-batch-20261004/native-scoped-approval-muse-inert-review/root-collection.json",
+      "review_sha256": "01f9df292330d6c9c85d66f50a1cf6538047ea95c2cd36af80e7fe158f5e5221",
+      "acceptance_scope": "INERT_DATA_FULL_TWO_FINDINGS_NO_ACTIVATION",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/native-scoped-approval-boundary-rework/ag.intent.json": {
+      "signature": "6e4023478830c24e85f4883a235241872b91c554be25d1e19c564645dc5b57cd",
+      "semantic_signature": "6e4023478830c24e85f4883a235241872b91c554be25d1e19c564645dc5b57cd",
+      "recorded_at": "2026-10-05T00:45:03.593Z",
+      "disposition": "RESEARCH_BYTES_COLLECTED_DISTINCT_REVIEW_IN_PROGRESS",
+      "review": "routes/resume-batch-20261004/native-scoped-approval-boundary-rework/ag.result.json",
+      "review_sha256": "a1db91396d695fd7aaea9a1f276136b3ccd79466cb302d9ca5041987bb49cb9a",
+      "acceptance_scope": "INERT_DATA_RECEIPT_ONLY_DISTINCT_CLOSURE_REVIEW_PENDING",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/native-scoped-approval-boundary-final-review/oc.intent.json": {
+      "signature": "f2e522c5df0ec5ad35add39a696d71a764a5f32c6a4d3229944c689028d91ba7",
+      "semantic_signature": "f2e522c5df0ec5ad35add39a696d71a764a5f32c6a4d3229944c689028d91ba7",
+      "recorded_at": "2026-10-05T00:47:12.412Z",
+      "disposition": "ACCEPTED_CLOSED",
+      "review": "routes/resume-batch-20261004/native-scoped-approval-boundary-final-review/root-collection.json",
+      "review_sha256": "5b330d42de8c501117bb1b80c2c1458fd2ecaf0fda75ff7e550219f829bb4366",
+      "acceptance_scope": "INERT_DATA_ACCURACY_ONLY_NOT_RUNTIME_PERMISSION",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/full59-continuation-consistency-audit/oc.intent.json": {
+      "signature": "bad0b0b3937f26f9e31b9b6a3609db005306dd8b3ff82ca2785b74d1cd194768",
+      "semantic_signature": "bad0b0b3937f26f9e31b9b6a3609db005306dd8b3ff82ca2785b74d1cd194768",
+      "recorded_at": "2026-10-05T00:57:17.597Z",
+      "disposition": "ACCEPTED_CLOSED",
+      "review": "routes/resume-batch-20261004/full59-continuation-consistency-audit/root-collection.json",
+      "review_sha256": "ae47b83a49ae4f5c7caeec7db9d256c365f7c5093261b36833f8ae4cba767849",
+      "acceptance_scope": "FULL59_METADATA_CONSISTENCY_ONLY_NOT_PRODUCT_ACCEPTANCE",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/native-new-console-probe/ag.intent.json": {
+      "signature": "4fce6f4949ccbd69c049ba20dafc5723ae7b5f748f565461e0cca5ab2c9bef41",
+      "semantic_signature": "4fce6f4949ccbd69c049ba20dafc5723ae7b5f748f565461e0cca5ab2c9bef41",
+      "recorded_at": "2026-10-05T00:57:17.597Z",
+      "disposition": "AUTHOR_BYTES_COLLECTED_REVIEW_PERMISSION_PARKED",
+      "review": "routes/resume-batch-20261004/native-new-console-probe/root-collection.json",
+      "review_sha256": "fbfc1ec2d6d9a8fb125e335ebf7c48ab497c35bc64e242d061649e90ee59b0b1",
+      "acceptance_scope": "NATIVE_NEW_COMMAND_PERMISSION_DENIAL_NOT_EXECUTION_PASS",
+      "mission_complete": false
     }
   }
 }

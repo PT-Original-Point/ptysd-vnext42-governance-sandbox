@@ -1,7 +1,7 @@
 {
   "schema": "vnext5.2.construction-progress.v2",
   "project_id": "CHATGPT_GLOBAL_SKILL_GOVERNANCE",
-  "observed_at": "2026-10-04T21:45:23.847Z",
+  "observed_at": "2026-10-05T01:05:40.358Z",
   "model_lock": {
     "codex": {
       "display": "GPT-6 Luna Max",
@@ -118,12 +118,10 @@
   "dispatch_path": "dispatch.json",
   "facts_path": "operation-facts.json",
   "queue_path": "ready-queue.json",
-  "queue_decision": "WORK_IN_PROGRESS",
+  "queue_decision": "GLOBAL_EXHAUSTED",
   "ready_ids": [],
-  "running_ids": [
-    "P52.NATIVE_TEST_AUTHORIZATION_ROUTE_DOCUMENTATION_DISCOVERY"
-  ],
-  "valid_until": "2026-10-04T22:00:23.893Z",
+  "running_ids": [],
+  "valid_until": "2026-10-05T01:20:40.405Z",
   "all_legal_ready_lanes_exhausted": false,
   "canonical_write": false,
   "host_install": false,
@@ -175,17 +173,23 @@
     "known_old_observer_false_alerts": "Five actual already-collected terminal receipts re-ACKed with new raw-byte signatures; old source verdicts not promoted",
     "model_collection_minutes": 30,
     "free_local_seconds": 30,
-    "shared_last_observed_used_percent": 81,
-    "native_next": "routes/resume-batch-20261004/native-test-authorization-route-discovery/ag.intent.json",
-    "latest_source_readback": "SOURCE_EIGHT_STATIC_CLOSED_OBSERVER_PARTIAL_COLLECTED_DISTINCT_STATIC_NO_NEW_FINDING_COMMAND_DENIAL_ROUTE_DOC_RESEARCH_RUNNING",
+    "shared_last_observed_used_percent": 25,
+    "native_next": "routes/resume-batch-20261004/native-new-console-probe/ag.intent.json",
+    "latest_source_readback": "INERT_TWO_FINDINGS_CLOSED_FULL59_METADATA_AUDIT_COLLECTED_NEW_NATIVE_COMMAND_DENIAL_NO_TEST_RETRY",
     "false_unknown_correction": "Fresh native same-conversation activity confirms running; no duplicate review",
-    "weekly_used_percent": 84,
-    "quota_readback": "routes/resume-batch-20261004/quota-native-readback-20261005.json",
+    "weekly_used_percent": 91,
+    "quota_readback": "routes/resume-batch-20261004/quota-control-readback-20261005T005111.json",
     "root_goal_actual": "paused",
-    "source_luna_daily": "BOUNDED_LOCAL_QUALIFICATION_COMPLETE_NO_MORE_LUNA_SOURCE_DISPATCH"
+    "source_luna_daily": "BOUNDED_LOCAL_QUALIFICATION_COMPLETE_NO_MORE_LUNA_SOURCE_DISPATCH",
+    "route_capability_split": {
+      "root_native_cli": "ACTUAL_SAME_CONVERSATION_RESUME_PROVEN",
+      "monitor_native_cli": "ACTUAL_HELP_AND_SAME_CONVERSATION_DISPATCH_PROVEN",
+      "monitor_command_result": "EXACT_NEW_LITERAL_COMMAND_NATIVE_PERMISSION_DENIED",
+      "native_dispatch_owner": "ROOT_AND_AUTHORIZED_EXISTING_LUNA_COLLECTOR_NO_SECOND_BUS"
+    }
   },
   "latest_native_intents": [
-    "routes/resume-batch-20261004/native-test-authorization-route-discovery/ag.intent.json"
+    "routes/resume-batch-20261004/native-new-console-probe/ag.intent.json"
   ],
   "source_qualification": {
     "research": "PR388_EXACT_HEAD_STRUCTURAL_PASS_LOCAL103_DISTINCT17_SEMANTIC_PASS_PREPARATORY_ONLY",
@@ -256,6 +260,13 @@
       "parent_operation_complete": false,
       "live_acceptance": "NOT_ACCEPTED",
       "next": "NO_COSMETIC_SOURCE_CHURN_LEGAL_EXECUTION_REENTRY_ONLY"
+    },
+    "native_approval_proposal": {
+      "scope": "INERT_DATA_ACCURACY_ONLY",
+      "status": "TWO_FINDINGS_DISTINCT_CLOSED",
+      "activation": false,
+      "native_permission_enforcement": "NOT_PROVEN",
+      "review": "routes/resume-batch-20261004/native-scoped-approval-boundary-final-review/root-collection.json"
     }
   },
   "contract_source_map": "CONTRACT-SOURCE-MAP.json",
@@ -268,10 +279,10 @@
     "paid_fallback": false
   },
   "progress_publication": {
-    "sequence": 28,
-    "locator": "54bf4a718453706067481d6fc1d19373a38bf21a",
-    "cold_read": "PASS_FRESH_40_PROVIDER_BYTES",
-    "runtime_install": "NOT_ACCEPTED"
+    "sequence": 33,
+    "status": "PREPARED_NONCANONICAL_CONTENT_NOT_YET_SELECTED",
+    "expected_previous": "05769f99737dd1f1e6ca7a6fad8b2702ddeaa52e",
+    "canonical_write": false
   },
   "preparatory_source_lanes": [
     {
@@ -283,12 +294,6 @@
       "reason": "Source preparation authorized; original59 live/parent acceptance unchanged; do not park whole source work for prior intake review"
     }
   ],
-  "quota_last_actual": {
-    "five_hour_used_percent": 88,
-    "weekly_used_percent": 70,
-    "scope": "SHARED_ACCOUNT_NOT_PER_SESSION",
-    "measurement": "LAST_NATIVE_READ_THIS_CONSTRUCTION_RUN_NOT_REFRESHED_DURING_CALLBACK"
-  },
   "continuation_addendum": "CONTINUATION-20261005.md",
   "goal_actual_status": "paused",
   "newest_authority_readback": "routes/resume-batch-20261004/fresh-authority-20261005.json",
@@ -299,5 +304,32 @@
     "source_delta": "observer94be15…",
     "current_test_acceptance": "PARKED_NOT_PASS",
     "readback": "routes/resume-batch-20261004/observer-fixture15-legacy-ack-rework/native-command-denial-readback.json"
+  },
+  "continuation_workflow": {
+    "terminal_collection": "READ_EXACT_NEW_RECEIPT_ACK_THEN_ROOT_ARBITRATION_NEXT_LEGAL_NONCONFLICTING_SCOPE",
+    "prepared_is_running": false,
+    "missing_api_is_missing_cli": false,
+    "no_activity_filler_or_completed_source_redo": true,
+    "command_denial": "PARK_EXACT_NATIVE_COMMAND_NO_PROXY_RETRY",
+    "metadata_completion_is_not_human_gate": true,
+    "source_acceptance_does_not_allocate_owner_or_promote_canonical": true
+  },
+  "quota_last_actual": {
+    "observed_at": "2026-10-05 00:51:11 UTC",
+    "five_hour_used_percent": 25,
+    "weekly_used_percent": 91,
+    "scope": "ACCOUNT_SHARED_NOT_PER_SESSION",
+    "ordinary_usage_allowed": true,
+    "reset_or_purchase_performed": false
+  },
+  "native_permission_recovery": {
+    "status": "EXACT_NATIVE_REENTRY_AUTHORIZATION_PENDING",
+    "existing_allow_count": 15,
+    "missing_current_exact_test_rules": 2,
+    "proposal": "routes/resume-batch-20261004/native-permission-two-rule-proposal.json",
+    "workflow": "施工恢復與原生命令許可修正-20261005.md",
+    "permission_changes": false,
+    "retry_performed": false,
+    "native_headless_confirm_inheritance": "NOT_PROVEN"
   }
 }

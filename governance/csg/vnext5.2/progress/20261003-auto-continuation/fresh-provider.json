@@ -1,8 +1,8 @@
 {
   "schema": "vnext5.2.resume-fresh-authority.v1",
-  "observed_at": "2026-10-04T21:24:13.973Z",
+  "observed_at": "2026-10-05T01:05:39.997Z",
   "provider_refs": {
-    "refs/heads/codex/vnext5.2-construction-latest": "d1b3d7bc370991e690273d6df7bdc0f9030a6882",
+    "refs/heads/codex/vnext5.2-construction-latest": "05769f99737dd1f1e6ca7a6fad8b2702ddeaa52e",
     "refs/heads/governance/project-directory": "38f4fc7cb2841e2318a97ff7a53e41b2ec07aef1",
     "refs/heads/main": "06da5fa224b65b9346e8b250dcea686d0ed458ee",
     "refs/heads/v45/factory-control": "d39486601d851e31256852a24e9c1393b9046fe5",

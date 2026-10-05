@@ -1,0 +1,26 @@
+{
+  "schema": "vnext5.2.native-permission-delta.v1",
+  "recorded_at": "2026-10-05T01:01:19.4488693Z",
+  "status": "INERT_EXACT_TWO_NATIVE_RULE_ADDITIONS_REQUIRES_HUMAN_REENTRY_AUTHORIZATION",
+  "settings_path": "C:/Users/x/.gemini/antigravity-cli/settings.json",
+  "expected_settings_sha256": "b484be5894dede197add4fe808cf7d5069695b25b2c6b87d73039aae7ac7d398",
+  "existing_allow_count": 15,
+  "add_rules": [
+    "command(node --test tools/csg/v52-research/tests/selection-contract.test.mjs tools/csg/v52-research/tests/shard-integration-contract.test.mjs)",
+    "command(node outputs/HUMAN-DASHBOARD-FINAL7-REWORK/dashboard-regression.fixture.mjs)"
+  ],
+  "exact_cwds": [
+    "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-SELECTION-CONTRACT-AG-WORK-20261005",
+    "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-AUTO-CONTINUATION-20261003\\routes\\resume-batch-20261004\\observer-native-liveness-source\\candidate"
+  ],
+  "native_rule_cwd_enforcement": "NOT_PROVEN_CALLER_MUST_BIND_EXACT_CWD",
+  "reason": "New exact commands absent from existing native CLI allow rules; native headless ERROR user denied",
+  "activation": false,
+  "permission_changes": false,
+  "no_skip_permissions": true,
+  "no_wildcards": true,
+  "no_denied_url_or_host_grant": true,
+  "canonical_write": false,
+  "production": false,
+  "mission_complete": false
+}

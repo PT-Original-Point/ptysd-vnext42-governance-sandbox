@@ -1,0 +1,17 @@
+{
+  "recorded_at": "2026-10-05T00:57:17.597Z",
+  "task": "A00.ADMISSION_RECEIPT_WAIT_REASON_CORRECTION",
+  "receipt_path": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-S-ADS-ANTIGRAVITY-WORK-20261003\\outputs\\S-ADS\\result.json",
+  "receipt_sha256": "2c74f882ca3adacf50038417a8115dd7a41f736835d44ecea38ef99e69c74706",
+  "source_status": "SOURCE_QUALIFIED_LOCAL_REGRESSION_PASS",
+  "read_route": {
+    "d1_read_only_route": "PARKED_SCOPE_NOT_ADMITTED",
+    "google_ads_reporting_route": "PARKED_CREDENTIAL_NOT_IN_LOCAL_ENV",
+    "notes": "Live read route parked due to absence of runtime live credentials and scope receipts in worker environment. Local source and test qualification completed with zero writes."
+  },
+  "root_acceptance": "SOURCE_RECEIPT_EXISTS_LIVE_ADMISSION_NOT_ACCEPTED",
+  "old_reason": "S_ADS_RESULT_NOT_YET_RECEIVED",
+  "state_preserved": "WAITING_EXTERNAL",
+  "credentials_or_scope_granted": false,
+  "canonical_write": false
+}

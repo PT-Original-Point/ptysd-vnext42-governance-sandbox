@@ -1,7 +1,7 @@
 {
   "schema": "vnext5.2.readonly-progress.v2",
-  "observed_at": "2026-10-04T21:46:33.136Z",
-  "revision": "530c96d9f85ddf0197c27f4f6db36cb11e3436791eb28182cb915a5e74fe4456",
+  "observed_at": "2026-10-05T01:06:36.350Z",
+  "revision": "9c097c68e4ce03371de3b676507790babdb4529b6bcdab96bd5d2b0130b76316",
   "delta": false,
   "observer_pid": 35652,
   "observer_mode": "WATCH",
@@ -30,7 +30,7 @@
   "root_goal": "paused",
   "tasks": [
     {
-      "id": "P52.NATIVE_TEST_AUTHORIZATION_ROUTE_DOCUMENTATION_DISCOVERY",
+      "id": "P52.NEW_BENIGN_NATIVE_CONSOLE_ROUTE_DIAGNOSTIC",
       "brand": "Antigravity",
       "requested_model": "gemini-3.8-flash-high",
       "actual_model": "gemini-3.8-flash-high",
@@ -38,18 +38,18 @@
       "denied_action_count": 1,
       "session": "d4f08883-f67e-4c08-a467-97129f97aeb0",
       "status": "PERMISSION_PARKED",
-      "native_status": "CLOSED_REVIEW_REQUIRED",
-      "submitted_at": "2026-10-04T21:45:13.394Z",
-      "last_native_activity": "2026-10-04T21:45:45.646Z",
-      "closed_at": "2026-10-04T21:45:46.507Z",
-      "collected": false,
-      "disposition": null,
+      "native_status": "PARKED_NATIVE_PERMISSION_DENIED",
+      "submitted_at": "2026-10-05T00:47:12.417Z",
+      "last_native_activity": "2026-10-05T00:51:07.238Z",
+      "closed_at": "2026-10-05T00:51:09.412Z",
+      "collected": true,
+      "disposition": "AUTHOR_BYTES_COLLECTED_REVIEW_PERMISSION_PARKED",
       "cost": null,
-      "intent": "routes/resume-batch-20261004/native-test-authorization-route-discovery/ag.intent.json",
-      "result_path": "routes/resume-batch-20261004/native-test-authorization-route-discovery/ag.result.json",
-      "result_sha256": null,
-      "signature": "0988a6b883faa795848f06624e30025149a8c5da9e719e584e3deec88e2728c4",
-      "legacy_signature": "3ea668dea981e6b72dcc5f8eb85a504bd2ff2a7d46c00d71c7ac129faa6d0aa6"
+      "intent": "routes/resume-batch-20261004/native-new-console-probe/ag.intent.json",
+      "result_path": "routes/resume-batch-20261004/native-new-console-probe/root-collection.json",
+      "result_sha256": "fbfc1ec2d6d9a8fb125e335ebf7c48ab497c35bc64e242d061649e90ee59b0b1",
+      "signature": "4fce6f4949ccbd69c049ba20dafc5723ae7b5f748f565461e0cca5ab2c9bef41",
+      "legacy_signature": "b61b34a27ad7288757fac660742bf652238230b6988ee8dfe7df2ed80fbc83f9"
     },
     {
       "id": "P52.SELECTION_CONTRACT_ELEVEN_FINDINGS_REWORK",
@@ -548,9 +548,7 @@
     }
   ],
   "alerts": [],
-  "uncollected": [
-    "routes/resume-batch-20261004/native-test-authorization-route-discovery/ag.intent.json"
-  ],
+  "uncollected": [],
   "running": [],
   "automatic_root_event_trigger": "UNAVAILABLE_DESKTOP_NATIVE_TRIGGER_NOT_CLAIMED",
   "scheduled_recovery_minutes": 30,

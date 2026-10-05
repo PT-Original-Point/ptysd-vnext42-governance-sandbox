@@ -1,0 +1,28 @@
+{
+  "recorded_at": "2026-10-05T00:57:17.597Z",
+  "status": "PARKED_NATIVE_PERMISSION_DENIED",
+  "task": "P52.NEW_BENIGN_NATIVE_CONSOLE_ROUTE_DIAGNOSTIC",
+  "actual_model": "gemini-3.8-flash-high",
+  "conversation_id": "d4f08883-f67e-4c08-a467-97129f97aeb0",
+  "closed_at": "2026-10-05T00:51:09.412Z",
+  "denied_action_count": 1,
+  "events_sha256": "933d4581be027a7b9e8785e283294cfd707e4e3e2a2304e5b25d96c9e9daf75a",
+  "events_bytes": 3499,
+  "actual_command": "echo V52_NATIVE_READONLY_ROUTE_PROBE_20261005",
+  "native_error": {
+    "type": "TOOL_ERROR",
+    "message": "permission check failed for command \"echo V52_NATIVE_READONLY_ROUTE_PROBE_20261005\": user denied permission to run command:\necho V52_NATIVE_READONLY_ROUTE_PROBE_20261005\nDo not attempt to circumvent this denial by rephrasing the command, using alternative tools/scripts (e.g. python, sh, curl), or accessing the same target resource. Proceed without performing this action."
+  },
+  "provider_outcome": "SUCCESS",
+  "response_length": 0,
+  "own_result_missing": true,
+  "scope": "NATIVE_NEW_COMMAND_PERMISSION_DENIAL_NOT_EXECUTION_PASS",
+  "conclusion": "Actual monitor CLI conversation resume succeeded; this specific run_command was rejected by native permission check. Reason beyond native user-denied message unknown. Not proof all commands or all models unavailable.",
+  "reentry": "Change native permission/approval for exact authorized command in original provider; fresh readback before one controlled re-entry. No indirect command/tool/resource retry.",
+  "permission_changes": false,
+  "source_edit": false,
+  "canonical_write": false,
+  "host_dispatch": false,
+  "production": false,
+  "mission_complete": false
+}

@@ -1,13 +1,11 @@
-# 本輪接續施工
+# 本次精確接續入口
 
-更新 2026-10-04T21:45:23.847Z。
+2026-10-05T01:06:42.752Z
 
-- P52.NATIVE_TEST_AUTHORIZATION_ROUTE_DOCUMENTATION_DISCOVERY：SUBMITTED_OUTCOME_PENDING；讀 routes/resume-batch-20261004/native-test-authorization-route-discovery/ag.intent.json
-
-- 穩定來源資格：{"research":"PR388_EXACT_HEAD_STRUCTURAL_PASS_LOCAL103_DISTINCT17_SEMANTIC_PASS_PREPARATORY_ONLY","mcp":"PR385_EXACT_HEAD_STRUCTURAL_PASS_LOCAL7_DISTINCT_FINAL_TEST_PASS_OTHER6_REVIEW_INHERITED_NO_FULL_LEGACY_LIVE","runtime":"PR386_FROZEN_EXACT_HEAD_STRUCTURAL_PASS_SCOPED_TWO_TESTS_STATIC_PASS_CROSS_E2E_PARKED","dashboard":{"prior_pure_fixture":"32/32_PASS","source_sha256":"62e7f882fd958fe5f02591cc9880d42a4045a6b6572d77be7329ffacb8c1dce9","native_handoff":"OWN_PID35652_LOCK_AND_CAPTURE_READBACK_PASS","factory_live":"NOT_ACCEPTED"},"producer_head":"f45ef980a0194c54db6f2e3d5585577154ac5754","research_head":"f4c754ed1e2f256b24c432511c01ae52592dd15f","readback":"routes/resume-batch-20261004/final-source-provider-readback.json","runtime_final":{"recorded_at":"2026-10-04T14:27:42.706Z","scope":"SOURCE_ONLY_EXACT_PROVIDER_HEAD_PARENT_TREE_READBACK","pr":386,"head":"0c8a5bd23d5591571998c18ab49eb1eec0ba7968","tree":"ef2d8b94e92546917579fe1d211312a1ec4d8820","parent":"06da5fa224b65b9346e8b250dcea686d0ed458ee","producer_pr":385,"producer_head":"f45ef980a0194c54db6f2e3d5585577154ac5754","commits":1,"draft":true,"structural":{"status":"PASS","run":37208465422,"job":111454545906},"independent_semantic":"EXACT_TWO_CHANGED_TEST_FILES_STATIC_PASS","bounded_driver":"SKIPPED_NOT_PASS","live_acceptance":"NOT_ACCEPTED","canonical":"CP200","canonical_write":false,"mission_complete":false},"runtime_head":"0c8a5bd23d5591571998c18ab49eb1eec0ba7968","dashboard_status":"REPAIRED_ENTRY_ACTUAL15_ASSERTIONS_EXIT1_LEGACY_ACK_FINDING_NATIVE_AG_REWORK","c1":"C1_PACKET_SCOPED_DISTINCT_STATIC_PASS_SCHEMA_AND_PROMOTION_CONTRACT_STILL_PENDING","c1_schema":{"status":"EXACT_EIGHT_SOURCE_FILES_DISTINCT_STATIC_PASS_DEPENDENCY_AND_EXECUTION_PENDING","author_tests":"UNTESTED","review_intent":"routes/resume-batch-20261004/c1-final-combined-static-review/ag.intent.json","dependency_compilation":"PENDING_EXACT_COMMAND_LANE_PARKED","native_author_model":"gemini-3.8-flash-high","canonical_write":false,"static_review":"routes/resume-batch-20261004/c1-final-combined-static-review/ag.result.json"},"selection_contract":{"status":"CURRENT_EXACT_EIGHT_FILES_DISTINCT_MUSE_STATIC_PASS_ALL8_FINDINGS_CLOSED","review":"routes/resume-batch-20261004/selection-shard-eight-final-muse-review/root-collection.json","regression_design":126,"actual_execution":"PARKED_NATIVE_EXACT_COMMAND_DENIAL_NOT_PASS","historical_local":"111/47PASS/64FAIL_NOT_PORTABLE","source_accepted":false,"parent_operation_complete":false,"live_acceptance":"NOT_ACCEPTED","next":"NO_COSMETIC_SOURCE_CHURN_LEGAL_EXECUTION_REENTRY_ONLY"},"shard_contract":{"status":"CURRENT_EXACT_EIGHT_FILES_DISTINCT_MUSE_STATIC_PASS_ALL8_FINDINGS_CLOSED","review":"routes/resume-batch-20261004/selection-shard-eight-final-muse-review/root-collection.json","regression_design":126,"actual_execution":"PARKED_NATIVE_EXACT_COMMAND_DENIAL_NOT_PASS","historical_local":"111/47PASS/64FAIL_NOT_PORTABLE","source_accepted":false,"parent_operation_complete":false,"live_acceptance":"NOT_ACCEPTED","next":"NO_COSMETIC_SOURCE_CHURN_LEGAL_EXECUTION_REENTRY_ONLY"}}
-- 先回收最新exact結果；全部精確finding一次交原作者返工；沒finding才freeze。一個作者一個result路徑，不重派在途工作。
-- 封存包的repositoryTree/moduleTree/pathset要實際核對；舊CP200樹冒充新來源的封存包已拒絕，保留原報告。
-- 稽核附件不是來源施工必要條件。被拒附件與inspect命令／代理不重讀，原已授權source仍可續做。
-- 30秒本機看板不用模型；15分鐘Luna巡檢仍有shared成本。外部CLI即時喚醒Root尚未證實，不能宣稱無限不中斷。
-- 研究103/103與MCP7/7已有不同作者來源reviewPASS；本機真stdio不等於Web/Host/live/父單元/Production驗收。
-- CP200canonical/V5.2construction/installedUNKNOWN分開；Goalpaused不假ACTIVE；完整59/64/PF30/PRG28未完，局部成果不完Mission。
+- 工廠未完成；CP200 canonical / V5.2 construction / installed UNKNOWN；Goal paused實讀。
+- 原生 allow profile 有15條，當前兩個測試命令不在其中；原生診斷也拒絕。不是人工按拒絕的證明。
+- 讀 native-permission-two-rule-proposal.json 與施工恢復與原生命令許可修正-20261005.md；目前僅提案，Human精確re-entry核准前不改設定或重試。
+- 監控代理 CLI help及同conversation派送已證明，不再因缺專用API停整路線。
+- A00成果已收到，但Ads live scope/credential route未接受。59 metadata稽核已回收，拒絕重做完成source、拒絕把未完phase稱Human gate。
+- Source穩定後只執行新證據所需的review/測試；權限拒絕停exact命令，不用另一個代理/工具繞過。
+- root產品source edits=0；25%五小時、91%週是00:51:11 UTC帳號共用實讀。沒有變更不輪詢模型。

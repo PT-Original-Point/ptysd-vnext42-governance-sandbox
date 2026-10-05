@@ -48,3 +48,8 @@
 - OpenCode 本次已實讀原專案八檔，實際 Muse Spark Free/xhigh、成本 0；指出八項來源 finding。外部 optional 附件不是來源審查前提，被拒附件不複製、不代理讀。Root 比對原檔 bytes；不能借用舊 Session verdict。
 - 只提取 native event 的輸入路徑、完成狀態、message ID、最終小型 verdict；不把工具輸出的整份來源檔印到 SOL 上下文。原完整紀錄留在磁碟。
 - 每批收件立即交全部具體 finding 返工或派下一個独立資格檢查。看板顯示「已交件，等待檢查」而非「沒工作」；只有原生執行確認才能顯示施工中。仍未證明外部 CLI 完成能立即喚醒 Root；保留免模型 30 秒看板與額度節流回收，不作即時、關 App 或重開機存活承諾。
+
+## 2026-10-05 原生命令拒絕根因與續工修正
+以「施工恢復與原生命令許可修正-20261005.md」及其 exact two-rule proposal 為本次新增契約。CLI 專用 API 缺失不等於本機 CLI 不可用；監控代理 actual 同 conversation 派送已證明。15 條舊原生命令允許規則未包含兩個目前測試命令；沒有新規則或原生 re-entry 授權不得重复拒絕動作。精確缺規則僅診斷，不自製比原生 matcher 更強的全域 veto；只有已確認而未改變的同一拒絕停該命令。file-only source lane、既有成果與完整59/64/PF30/PRG28保留。正常 Node 子程序不得全部禁止。
+A00 source receipt 已存在；已更正舊「未收到」理由，live admitted scope/既有憑證讀路線仍未接受。未完成phase不是自動成立Human-reserved gate。歷史交接程式不建立ghost Luna、不改舊intent、不把PREPARED算RUNNING。收據準確ACK後才回收與續派；不可把空SUCCESS、無測試輸出或inert提案當PASS。
+最新共享quota實讀25%五小時、91%週（2026-10-05 00:51:11 UTC），不是本Session帳單；無reset/paid fallback。原生許可修正等待Human精確核准，不能冒稱已套用。30秒metadata看板不叫模型；沒有新evidence不反覆喚醒Luna/SOL。保留CP200canonical／V5.2construction／installedUNKNOWN、Goalpaused實讀與所有Production/成本/身份/不可逆trust保護。

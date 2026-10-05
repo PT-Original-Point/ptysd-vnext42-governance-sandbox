@@ -3,7 +3,7 @@
   "mode": "SHADOW_PLAN_ONLY",
   "facts_schema": "vnext5.2.operation-facts.v1",
   "catalog_sha256": "sha256:ee769422b5d587e771d09c4e95af1af9a3a7cf0a7c0e493d86071e2df57304de",
-  "facts_sha256": "sha256:024f840cf6a2fa2dd19745dcd41de8e994642f85dca8b668c97735f699adc11b",
+  "facts_sha256": "sha256:71e5f02d93cb9a61f0ef7a4d6f3b29f80bfc4dbf532a4fd80e2ed5bbd2e712f5",
   "facts_fresh": true,
   "input_completeness": "COMPLETE",
   "input_reasons": [],
@@ -135,8 +135,8 @@
   "queue_scope": "FULL_CATALOG",
   "queue_unit_count": 59,
   "full_union_count": 59,
-  "global_exhaustion": "NOT_EXHAUSTED",
-  "global_decision": "WORK_IN_PROGRESS",
+  "global_exhaustion": "EVALUATED",
+  "global_decision": "GLOBAL_EXHAUSTED",
   "units": [
     {
       "id": "B00.RECOVER",
@@ -459,7 +459,7 @@
       "completion_dependencies": [],
       "start_blockers": [],
       "completion_blockers": [],
-      "reason": "S_ADS_RESULT_NOT_YET_RECEIVED;REUSE_EXISTING_DATE_SCOPED_GRANT",
+      "reason": "SOURCE_RESULT_RECEIVED_AND_LOCAL_QUALIFIED_LIVE_ADMITTED_SCOPE_AND_EXISTING_READ_CREDENTIAL_ROUTE_NOT_PROVEN",
       "execution_scope": "SHADOW_PLAN_ONLY",
       "effects": [],
       "plan_only": true
@@ -1303,9 +1303,9 @@
     "scope": "EXACT_SOURCE_REVIEW_AND_RECOVERY_NOT_PARENT_ACCEPTANCE",
     "tasks": [
       {
-        "id": "P52.NATIVE_TEST_AUTHORIZATION_ROUTE_DOCUMENTATION_DISCOVERY",
-        "status": "SUBMITTED_OUTCOME_PENDING",
-        "intent": "routes/resume-batch-20261004/native-test-authorization-route-discovery/ag.intent.json"
+        "id": "P52.NEW_BENIGN_NATIVE_CONSOLE_ROUTE_DIAGNOSTIC",
+        "status": "PARKED_NATIVE_PERMISSION_DENIED",
+        "intent": "routes/resume-batch-20261004/native-new-console-probe/ag.intent.json"
       }
     ],
     "dispatch_on_source_pass": "DISTINCT_REVIEW_THEN_EXACT_REWORK_OR_FREEZE",
