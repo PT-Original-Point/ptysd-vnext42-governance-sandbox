@@ -1,0 +1,32 @@
+[
+  {
+    "original": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-AUTO-CONTINUATION-20261003\\routes\\resume-batch-20261004\\observer-native-liveness-source\\candidate\\routes\\progress-observer.mjs",
+    "snapshot": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-AUTO-CONTINUATION-20261003\\routes\\resume-batch-20261004\\weekly-final-source-snapshot\\observer.mjs",
+    "sha256": "a73d3e0a8898bba8a38a14bfa059d1f4762964a48e9b2958e53d38c99e5522a1",
+    "bytes": 57096
+  },
+  {
+    "original": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-AUTO-CONTINUATION-20261003\\routes\\resume-batch-20261004\\observer-native-liveness-source\\candidate\\routes\\progress-observer-lock.ps1",
+    "snapshot": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-AUTO-CONTINUATION-20261003\\routes\\resume-batch-20261004\\weekly-final-source-snapshot\\observer-lock.ps1",
+    "sha256": "9708ff4ba3964af35abc978f15619e45188c9fddbf6a07f5f788683342d8e3a5",
+    "bytes": 3783
+  },
+  {
+    "original": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-AUTO-CONTINUATION-20261003\\routes\\resume-batch-20261004\\observer-native-liveness-source\\candidate\\outputs\\HUMAN-DASHBOARD-FINAL7-REWORK\\dashboard-regression.fixture.mjs",
+    "snapshot": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-AUTO-CONTINUATION-20261003\\routes\\resume-batch-20261004\\weekly-final-source-snapshot\\observer-fixture.mjs",
+    "sha256": "aa99a0cd369d095527f5e44e4fcd275afd112420a5b1093abd4dfb6a90ecc465",
+    "bytes": 105620
+  },
+  {
+    "original": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-SELECTION-CONTRACT-AG-WORK-20261005\\tools\\csg\\v52-research\\src\\selection-contract.mjs",
+    "snapshot": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-AUTO-CONTINUATION-20261003\\routes\\resume-batch-20261004\\weekly-final-source-snapshot\\selection-contract.mjs",
+    "sha256": "85687f0f5de36c6e80be10e436451004da0959fcd9725dcfdada5bfa53e10fbd",
+    "bytes": 48546
+  },
+  {
+    "original": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-SELECTION-CONTRACT-AG-WORK-20261005\\tools\\csg\\v52-research\\tests\\selection-contract.test.mjs",
+    "snapshot": "C:\\Users\\x\\Documents\\ChatGPT\\治理控制-自動軟體工廠\\VNEXT5.2-AUTO-CONTINUATION-20261003\\routes\\resume-batch-20261004\\weekly-final-source-snapshot\\selection-contract.test.mjs",
+    "sha256": "67ddce6237caa83e027fc46f4f2f18b6802ebebfeff09bdc3a348b9c8131d467",
+    "bytes": 47625
+  }
+]

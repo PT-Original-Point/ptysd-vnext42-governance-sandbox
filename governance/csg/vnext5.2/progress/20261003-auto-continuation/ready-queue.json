@@ -3,7 +3,7 @@
   "mode": "SHADOW_PLAN_ONLY",
   "facts_schema": "vnext5.2.operation-facts.v1",
   "catalog_sha256": "sha256:ee769422b5d587e771d09c4e95af1af9a3a7cf0a7c0e493d86071e2df57304de",
-  "facts_sha256": "sha256:f47ca2850a18b0309bf05f3e753efce74b56fd16f42ad4a0d544c05442d3cffa",
+  "facts_sha256": "sha256:0d8e0a8fe43f81b3db9e472a50098b03046292b9d77d747e42e97d9864e7f211",
   "facts_fresh": true,
   "input_completeness": "COMPLETE",
   "input_reasons": [],
@@ -1303,14 +1303,9 @@
     "scope": "EXACT_SOURCE_REVIEW_AND_RECOVERY_NOT_PARENT_ACCEPTANCE",
     "tasks": [
       {
-        "id": "P52.RESEARCH_TWO_SEMANTIC_FINDINGS_SOURCE_REWORK",
-        "status": "SUBMITTED_OUTCOME_PENDING",
-        "intent": "routes/resume-batch-20261004/research-two-semantic-findings-muse-rework/oc.intent.json"
-      },
-      {
-        "id": "HUMAN.OBSERVER_REAL_HANDLE_LIFETIME_SOURCE_REWORK",
-        "status": "SUBMITTED_OUTCOME_PENDING",
-        "intent": "routes/resume-batch-20261004/observer-real-handle-lifetime-ag-rework/ag.intent.json"
+        "id": "B01.EXACT_THREE_ROOT_FINDINGS_INDEPENDENT_LUNA_REVIEW",
+        "status": "IN_PROGRESS_NATIVE_THREAD_READBACK_CONFIRMED",
+        "intent": "routes/resume-batch-20261004/weekly-final-source-snapshot/luna.intent.json"
       }
     ],
     "dispatch_on_source_pass": "DISTINCT_REVIEW_THEN_EXACT_REWORK_OR_FREEZE",

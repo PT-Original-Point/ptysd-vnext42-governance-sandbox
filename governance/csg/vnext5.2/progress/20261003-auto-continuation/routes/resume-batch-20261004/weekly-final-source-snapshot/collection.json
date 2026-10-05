@@ -1,0 +1,25 @@
+{
+  "observed_at": "2026-10-05T03:35:01.8901632Z",
+  "closed": [
+    {
+      "intent": "routes/resume-batch-20261004/native-luna-workflow-efficiency-audit/luna.intent.json",
+      "result_sha256": "9efdbdaef3a08876f18439fc362d023871bde8ada39510dfda935c21a696adf6",
+      "disposition": "ACCEPTED_CLOSED"
+    },
+    {
+      "intent": "routes/resume-batch-20261004/observer-unknown-contention-muse-complete-repair/oc.intent.json",
+      "result_sha256": "b5ad9545131c8bc11cc30579c98c973ae18ae14f6a2b7bafb7651857da05ba3b",
+      "disposition": "RESEARCH_BYTES_COLLECTED_DISTINCT_REVIEW_IN_PROGRESS"
+    },
+    {
+      "intent": "routes/resume-batch-20261004/selection-wrapper-source-only-ag-reentry/ag.intent.json",
+      "result_sha256": "be43de8e3610a56a718fe2b3bf9291a53919e00e180099b7d28ddd70353e366d",
+      "disposition": "RESEARCH_BYTES_COLLECTED_DISTINCT_REVIEW_IN_PROGRESS"
+    }
+  ],
+  "review_intent": "routes/resume-batch-20261004/weekly-final-source-snapshot/luna.intent.json",
+  "root_product_edits": 0,
+  "mission_complete": false,
+  "canonical_write": false,
+  "live_acceptance": "NOT_ACCEPTED"
+}

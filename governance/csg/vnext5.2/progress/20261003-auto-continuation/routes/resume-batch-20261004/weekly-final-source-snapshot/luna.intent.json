@@ -1,0 +1,22 @@
+{
+  "task": "B01.EXACT_THREE_ROOT_FINDINGS_INDEPENDENT_LUNA_REVIEW",
+  "model": "gpt-6-luna",
+  "reasoning_effort": "max",
+  "created_at": "2026-10-05T03:34:03.260799Z",
+  "status": "IN_PROGRESS_NATIVE_THREAD_READBACK_CONFIRMED",
+  "native_thread_id": "01a0fd19-df99-7013-8a8b-eb952c647e3d",
+  "actual_model": "UNVERIFIED_RUNTIME_MODEL_METADATA_UNEXPOSED_REQUEST_FIXED_LUNA_MAX",
+  "source_edit": false,
+  "write_set": [
+    "routes/resume-batch-20261004/weekly-final-source-snapshot/luna-review.json"
+  ],
+  "result_path": "routes/resume-batch-20261004/weekly-final-source-snapshot/luna-review.json",
+  "canonical_write": false,
+  "host_dispatch": false,
+  "production": false,
+  "native_agent_status": "running",
+  "native_status_evidence": "EXACT_NATIVE_THREAD_ACTIVE_TURN_READBACK",
+  "native_thread_turn_id": "01a10a1d-2236-7072-9fa5-0f0449306108",
+  "native_thread_revision": 89,
+  "native_observed_at": "2026-10-05T03:35:55.4551091Z"
+}

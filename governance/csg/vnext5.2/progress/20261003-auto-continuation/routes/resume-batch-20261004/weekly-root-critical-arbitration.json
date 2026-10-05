@@ -1,0 +1,35 @@
+{
+  "observed_at": "2026-10-05T03:12:35.570Z",
+  "root_arbitration": "REJECT_FULL_CLOSURE_KEEP_NARROW_STATIC_EVIDENCE",
+  "research": [
+    {
+      "id": "ROOT-GOT-OUTER",
+      "priority": "P1",
+      "path": "tools/csg/v52-research/src/selection-contract.mjs",
+      "line": 733,
+      "proof": "bindHumanSelection destructures input wrapper before body; wrapper.request getter executes before checkAcyclicAndSafe. AG claims top-level wrapper intercepted too broadly.",
+      "fix": "Preflight original complete wrapper descriptors before destructuring/field reads; retain request nested validation. Add getter never executed regression."
+    }
+  ],
+  "observer": [
+    {
+      "id": "ROOT-NATIVE-ASYNC-START",
+      "priority": "P1",
+      "path": "routes/progress-observer.mjs",
+      "line": 530,
+      "proof": "spawn stdout LOCKED is async, acquireWriterLock synchronously returns acquired=false snapshot; main1255 immediately exits before data event. Mock synchronous handshake masked defect.",
+      "fix": "Actual async readiness awaited by CLI, bounded timeout/failure, no publish before ready."
+    },
+    {
+      "id": "ROOT-HANDSHAKE-EXACT",
+      "priority": "P1",
+      "path": "routes/progress-observer.mjs",
+      "line": 437,
+      "proof": "expected LOCKED:pid:token OR generic LOCKED: accepts wrong identity; parser no explicit bounded frame accumulation visible.",
+      "fix": "Bounded newline framed exact identity check, split chunk handling, reject mismatched/oversized/duplicate frames; helperloss revokes writes."
+    }
+  ],
+  "live_acceptance": "NOT_ACCEPTED",
+  "root_product_edits": 0,
+  "mission_complete": false
+}

@@ -507,7 +507,7 @@
     "routes/resume-batch-20261004/shard-contract-source/ag.intent.json": {
       "signature": "5890bd3d631ad65bf2adca5ae23ced9314a9de9cee1ff7cb5f5a90e84b434349",
       "semantic_signature": "5890bd3d631ad65bf2adca5ae23ced9314a9de9cee1ff7cb5f5a90e84b434349",
-      "recorded_at": "2026-10-04T19:46:45.860Z",
+      "recorded_at": "2026-10-04T19:46:45.86Z",
       "disposition": "AUTHOR_BYTES_COLLECTED_REVIEW_PERMISSION_PARKED",
       "review": "routes/resume-batch-20261004/shard-contract-source/native-denial-readback.json",
       "review_sha256": "eb0aeb55296b880d9f8a26474c9ababa10de8b0a929cbaa7c6ac24d563560107",
@@ -537,7 +537,7 @@
     "routes/resume-batch-20261004/shard-contract-twelve-rework/ag.intent.json": {
       "signature": "fd89f12532575fefd9b1f2443092a66388e9816c28e0d1d7d8be95fe3bd39669",
       "semantic_signature": "fd89f12532575fefd9b1f2443092a66388e9816c28e0d1d7d8be95fe3bd39669",
-      "recorded_at": "2026-10-04T20:12:52.250Z",
+      "recorded_at": "2026-10-04T20:12:52.25Z",
       "disposition": "RESEARCH_BYTES_COLLECTED_DISTINCT_REVIEW_IN_PROGRESS",
       "review": "routes/resume-batch-20261004/shard-contract-twelve-rework/ag.result.json",
       "review_sha256": "d94dce454a6b293fc535e3f4125f54242a64fac6b5ca49cc43c0348e33b35d35",
@@ -567,7 +567,7 @@
     "routes/resume-batch-20261004/observer-native-liveness-review/ag.intent.json": {
       "signature": "b170255378ec3099d3de528f7e359102551a7da51a14a957b4bd9106af2631c7",
       "semantic_signature": "b170255378ec3099d3de528f7e359102551a7da51a14a957b4bd9106af2631c7",
-      "recorded_at": "2026-10-04T20:46:44.310Z",
+      "recorded_at": "2026-10-04T20:46:44.31Z",
       "disposition": "REVIEW_FINDINGS_RETURNED_TO_AUTHOR",
       "review": "routes/resume-batch-20261004/observer-native-liveness-review/ag.result.json",
       "review_sha256": "17d0a76b4073adf723ce2989da51750fa3fdc6d01cbc04aea57eb5e273e7330b",
@@ -617,7 +617,7 @@
     "routes/resume-batch-20261004/observer52-luna-local-audit/luna.intent.json": {
       "signature": "961f6d3ba014c0c994b1ec67ef1d7ff18883bcc4b4adb82e8117d1d51ebaa52a",
       "semantic_signature": "961f6d3ba014c0c994b1ec67ef1d7ff18883bcc4b4adb82e8117d1d51ebaa52a",
-      "recorded_at": "2026-10-04T21:08:52.950Z",
+      "recorded_at": "2026-10-04T21:08:52.95Z",
       "disposition": "REVIEW_FINDINGS_RETURNED_TO_AUTHOR",
       "review": "routes/resume-batch-20261004/observer52-luna-local-audit/result.json",
       "review_sha256": "5872c4bbaea6e92c95c6c358b0a0b43e69f268589610d85b269336b19093475c",
@@ -878,7 +878,7 @@
     },
     "routes/resume-batch-20261004/selection-peer-muse-complete-repair/oc.intent.json": {
       "signature": "26dffce5ce9aec66c6bdb4f8c9c0d846ee7010683f7ee328b6cb717bf5967f3e",
-      "recorded_at": "2026-10-05T02:02:57.900Z",
+      "recorded_at": "2026-10-05T02:02:57.9Z",
       "disposition": "REVIEW_FINDINGS_RETURNED_TO_AUTHOR",
       "review": "routes/resume-batch-20261004/dispatch-fixture-and-lock-race-repair.mjs",
       "review_sha256": "be5136b45782a0c1ae8478095abf89d96f70db30b6c131c253b8b4f08f18036e",
@@ -922,6 +922,123 @@
       "review": "routes/resume-batch-20261004/research126-final-independent-luna-review/result.json",
       "review_sha256": "cf6a1767f034d3edb6581646c26641a89e3c94880774a48e50605e368a8e38e6",
       "acceptance_scope": "LOCAL_SOURCE_REWORK_ONLY_NOT_LIVE_OR_MISSION",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/research-two-semantic-findings-muse-rework/oc.intent.json": {
+      "signature": "74511c003210b60829dffb9e1fe1140f60f605cd7bc0d7ed59570bb119cbbf92",
+      "semantic_signature": "74511c003210b60829dffb9e1fe1140f60f605cd7bc0d7ed59570bb119cbbf92",
+      "recorded_at": "2026-10-05T02:27:44.988Z",
+      "disposition": "REVIEW_FINDINGS_RETURNED_TO_AUTHOR",
+      "review": "routes/resume-batch-20261004/source-scope-and-native-lock-integration-collection.json",
+      "review_sha256": "dfe2ac7e4e0e72f545bcac52da0d0f34d22db0f37051f0259d3eb0dbfed53caa",
+      "acceptance_scope": "COLLECTED_PARTIAL_SOURCE_REQUIRES_CONCRETE_REWORK_NOT_LIVE",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/observer-real-handle-lifetime-ag-rework/ag.intent.json": {
+      "signature": "9bc6e9edc8d9fa67ad7bf7b56d630e5918db90603ac1dc39da56d0b442d8abe7",
+      "semantic_signature": "9bc6e9edc8d9fa67ad7bf7b56d630e5918db90603ac1dc39da56d0b442d8abe7",
+      "recorded_at": "2026-10-05T02:27:44.988Z",
+      "disposition": "REVIEW_FINDINGS_RETURNED_TO_AUTHOR",
+      "review": "routes/resume-batch-20261004/source-scope-and-native-lock-integration-collection.json",
+      "review_sha256": "dfe2ac7e4e0e72f545bcac52da0d0f34d22db0f37051f0259d3eb0dbfed53caa",
+      "acceptance_scope": "COLLECTED_PARTIAL_SOURCE_REQUIRES_CONCRETE_REWORK_NOT_LIVE",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/recommendation-getter-muse-source-repair/oc.intent.json": {
+      "signature": "5a993373d287646f96d7d18b0c62d2f1291719436b5b5e08eee3a39c37d2bfc1",
+      "semantic_signature": "5a993373d287646f96d7d18b0c62d2f1291719436b5b5e08eee3a39c37d2bfc1",
+      "recorded_at": "2026-10-05T03:06:43.585Z",
+      "disposition": "AUTHOR_BYTES_COLLECTED_REVIEW_PERMISSION_PARKED",
+      "review": "routes/resume-batch-20261004/weekly-audit-source-and-native-effects.json",
+      "review_sha256": "aec6794c63bd5155024f6bf0a8e83f64ddde44c0d77220facdec6c0e8c7912a6",
+      "acceptance_scope": "REVIEW_RECOVERY_REQUIRED_UNKNOWN_EFFECT_NOT_ACCEPTED",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/observer-native-entry-lifetime-ag-repair/ag.intent.json": {
+      "signature": "29044e2972ee7b6dc2a72e0a620fc6a53a204cbcaca3b7684d2db50c469898a5",
+      "semantic_signature": "29044e2972ee7b6dc2a72e0a620fc6a53a204cbcaca3b7684d2db50c469898a5",
+      "recorded_at": "2026-10-05T03:06:43.585Z",
+      "disposition": "AUTHOR_BYTES_COLLECTED_REVIEW_PERMISSION_PARKED",
+      "review": "routes/resume-batch-20261004/weekly-audit-source-and-native-effects.json",
+      "review_sha256": "aec6794c63bd5155024f6bf0a8e83f64ddde44c0d77220facdec6c0e8c7912a6",
+      "acceptance_scope": "REVIEW_RECOVERY_REQUIRED_UNKNOWN_EFFECT_NOT_ACCEPTED",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/full59-native-running-luna-audit/luna.intent.json": {
+      "signature": "d074770b7e986ea1389a75878e4ce7821008dd0e1a78136fdafdebbadfc491e5",
+      "semantic_signature": "d074770b7e986ea1389a75878e4ce7821008dd0e1a78136fdafdebbadfc491e5",
+      "recorded_at": "2026-10-05T03:06:43.585Z",
+      "disposition": "AUTHOR_BYTES_COLLECTED_REVIEW_PERMISSION_PARKED",
+      "review": "routes/resume-batch-20261004/weekly-audit-source-and-native-effects.json",
+      "review_sha256": "aec6794c63bd5155024f6bf0a8e83f64ddde44c0d77220facdec6c0e8c7912a6",
+      "acceptance_scope": "REVIEW_RECOVERY_REQUIRED_UNKNOWN_EFFECT_NOT_ACCEPTED",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/workflow-and-lock-fresh-muse-static-review/oc.intent.json": {
+      "signature": "18bce55502d34a0c32e3175dca48ff88aeb0976c18701f2b5f2fc4a464e19adf",
+      "semantic_signature": "18bce55502d34a0c32e3175dca48ff88aeb0976c18701f2b5f2fc4a464e19adf",
+      "recorded_at": "2026-10-05T03:12:35.57Z",
+      "disposition": "REVIEW_FINDINGS_RETURNED_TO_AUTHOR",
+      "review": "routes/resume-batch-20261004/weekly-root-critical-arbitration.json",
+      "review_sha256": "3da54c086a18de1038a882c6f3777a13cdda52a8c868656511f78f17872bc455",
+      "acceptance_scope": "ROOT_REJECTED_FULL_CLOSURE_WITH_CONCRETE_COUNTEREXAMPLE",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/research129-fresh-ag-static-review/ag.intent.json": {
+      "signature": "1eb50e3f251f38c14b37870933274c57281c756e3d43f9f5ad0ec7687d61cd0f",
+      "semantic_signature": "1eb50e3f251f38c14b37870933274c57281c756e3d43f9f5ad0ec7687d61cd0f",
+      "recorded_at": "2026-10-05T03:12:35.57Z",
+      "disposition": "REVIEW_FINDINGS_RETURNED_TO_AUTHOR",
+      "review": "routes/resume-batch-20261004/weekly-root-critical-arbitration.json",
+      "review_sha256": "3da54c086a18de1038a882c6f3777a13cdda52a8c868656511f78f17872bc455",
+      "acceptance_scope": "ROOT_REJECTED_FULL_CLOSURE_WITH_CONCRETE_COUNTEREXAMPLE",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/observer-async-identity-muse-source-repair/oc.intent.json": {
+      "signature": "338a02ba7ffcd99eaede2aadf348da0b323dec3ec24b79b70a6d16dc8c67c924",
+      "semantic_signature": "338a02ba7ffcd99eaede2aadf348da0b323dec3ec24b79b70a6d16dc8c67c924",
+      "recorded_at": "2026-10-05T03:23:24.513Z",
+      "disposition": "REVIEW_FINDINGS_RETURNED_TO_AUTHOR",
+      "review": "routes/resume-batch-20261004/low-token-iteration-closure.json",
+      "review_sha256": "76930fb41f9ed1043e76a9567ef753c6948d59da345bec1dad067a5c7d65eff9",
+      "acceptance_scope": "PARTIAL_SOURCE_FAILURE_OR_DENIAL_REWORK_NOT_ACCEPTED",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/selection-wrapper-fresh-ag-source-repair/ag.intent.json": {
+      "signature": "d20ccea0ba10b381fa1d4525bd81863dd665a035f5d11a958fa84b5a3f70456d",
+      "semantic_signature": "d20ccea0ba10b381fa1d4525bd81863dd665a035f5d11a958fa84b5a3f70456d",
+      "recorded_at": "2026-10-05T03:23:24.513Z",
+      "disposition": "REVIEW_FINDINGS_RETURNED_TO_AUTHOR",
+      "review": "routes/resume-batch-20261004/low-token-iteration-closure.json",
+      "review_sha256": "76930fb41f9ed1043e76a9567ef753c6948d59da345bec1dad067a5c7d65eff9",
+      "acceptance_scope": "PARTIAL_SOURCE_FAILURE_OR_DENIAL_REWORK_NOT_ACCEPTED",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/native-luna-workflow-efficiency-audit/luna.intent.json": {
+      "signature": "09adc52c2f8d2eb15c9cd8948c55f09a4eb47ea9be62abf0827cf6921b712ef9",
+      "semantic_signature": "09adc52c2f8d2eb15c9cd8948c55f09a4eb47ea9be62abf0827cf6921b712ef9",
+      "recorded_at": "2026-10-05T03:35:01.8405046Z",
+      "disposition": "ACCEPTED_CLOSED",
+      "result_sha256": "9efdbdaef3a08876f18439fc362d023871bde8ada39510dfda935c21a696adf6",
+      "acceptance_scope": "ADMIN_AUDIT_OR_SOURCE_BYTES_ONLY_NOT_LIVE_NOT_MISSION",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/observer-unknown-contention-muse-complete-repair/oc.intent.json": {
+      "signature": "7093c2e377ea71ce95487dbcea634c489ceebf247f6380006d02500ef993477a",
+      "semantic_signature": "7093c2e377ea71ce95487dbcea634c489ceebf247f6380006d02500ef993477a",
+      "recorded_at": "2026-10-05T03:35:01.8633082Z",
+      "disposition": "RESEARCH_BYTES_COLLECTED_DISTINCT_REVIEW_IN_PROGRESS",
+      "result_sha256": "b5ad9545131c8bc11cc30579c98c973ae18ae14f6a2b7bafb7651857da05ba3b",
+      "acceptance_scope": "ADMIN_AUDIT_OR_SOURCE_BYTES_ONLY_NOT_LIVE_NOT_MISSION",
+      "mission_complete": false
+    },
+    "routes/resume-batch-20261004/selection-wrapper-source-only-ag-reentry/ag.intent.json": {
+      "signature": "b811fbb36bec4439dc5c8d0a5eba302fa5eddccd4826b0d2d003cff52c3dcf90",
+      "semantic_signature": "b811fbb36bec4439dc5c8d0a5eba302fa5eddccd4826b0d2d003cff52c3dcf90",
+      "recorded_at": "2026-10-05T03:35:01.8687599Z",
+      "disposition": "RESEARCH_BYTES_COLLECTED_DISTINCT_REVIEW_IN_PROGRESS",
+      "result_sha256": "be43de8e3610a56a718fe2b3bf9291a53919e00e180099b7d28ddd70353e366d",
+      "acceptance_scope": "ADMIN_AUDIT_OR_SOURCE_BYTES_ONLY_NOT_LIVE_NOT_MISSION",
       "mission_complete": false
     }
   }

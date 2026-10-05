@@ -123,22 +123,10 @@
       "intent": "routes/resume-batch-20261004/observer-exact-release-race-ag-repair/ag.intent.json"
     },
     {
-      "brand": "OpenCode",
-      "label": "P52.RESEARCH_TWO_SEMANTIC_FINDINGS_SOURCE_REWORK",
-      "intent": "routes/resume-batch-20261004/research-two-semantic-findings-muse-rework/oc.intent.json",
-      "label_zh": "OpenCode修研究來源兩項漏洞（讀取器、副作用）"
-    },
-    {
-      "brand": "Antigravity",
-      "label": "HUMAN.OBSERVER_REAL_HANDLE_LIFETIME_SOURCE_REWORK",
-      "intent": "routes/resume-batch-20261004/observer-real-handle-lifetime-ag-rework/ag.intent.json",
-      "label_zh": "Antigravity修看板鎖定與交件回收生命週期"
-    },
-    {
       "brand": "Codex Luna",
-      "label": "B01.FULL59_NATIVE_RUNNING_FALSE_EXHAUSTION_AUDIT",
-      "label_zh": "檢查為何有合法工作卻被判成全部停工",
-      "intent": "routes/resume-batch-20261004/full59-native-running-luna-audit/luna.intent.json"
+      "label": "B01.EXACT_THREE_ROOT_FINDINGS_INDEPENDENT_LUNA_REVIEW",
+      "label_zh": "Luna檢查觀察器非同步握手與入口getter修復",
+      "intent": "routes/resume-batch-20261004/weekly-final-source-snapshot/luna.intent.json"
     }
   ],
   "luna": "GPT6_LUNA_MAX_ONLY_SOURCE_AND_REVIEW_AUTHORIZED_NATIVE_REVIEW_SCOPE_READBACK_PENDING",

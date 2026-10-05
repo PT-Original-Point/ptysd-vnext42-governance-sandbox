@@ -58,3 +58,8 @@ A00 source receipt 已存在；已更正舊「未收到」理由，live admitted
 ## 原生兩條許可已執行的補正
 
 先前等待精確許可的狀態由 Human 復工授權及實際17規則讀回取代。讀 `原生復工與返工銜接現況-20261005.md` 與最新 `CURRENT.latest_native_intents`；兩條測試拒絕為0，但其來源仍需返工／獨立審查，不升為live接受。禁止重做相同未變更的拒絕命令或要求人類搬運。
+
+
+## 20261005 Human週稽核／低Token續工修正
+
+遵循本機「低Token續工契約-20261005.md」：機械metadata先行、2個完整finding包、精確freeze例外、changedbytes最多2輪、原生route分別判定、免費Source優先、異作者immutable snapshot review、Root入口反例仲裁；不更改模型、canonical或Host權限。
