@@ -1,4 +1,5 @@
 import {createHash} from 'node:crypto';
+import canonicalize from '../tools/csg/node_modules/canonicalize/lib/canonicalize.js';
 
 export const PROJECTOR_VERSION='csg-worklog-projector.v1';
 export const TEMPLATE_SOURCE=[
@@ -14,12 +15,7 @@ export const TEMPLATE_SOURCE=[
 ].join('\n')+'\n';
 
 function sha256(bytes){return `sha256:${createHash('sha256').update(bytes).digest('hex')}`;}
-function stable(v){
-  if(Array.isArray(v)) return '['+v.map(stable).join(',')+']';
-  if(v&&typeof v==='object') return '{'+Object.keys(v).sort().map(k=>JSON.stringify(k)+':'+stable(v[k])).join(',')+'}';
-  return JSON.stringify(v);
-}
-export function stableJson(v){return stable(v);}
+export function stableJson(v){return canonicalize(v);}
 function requireCheckpoint(cp){
   if(!cp||cp.schema_version!=='csg.checkpoint.v1') throw new Error('CHECKPOINT_REQUIRED');
   if(!Number.isSafeInteger(cp.checkpoint_seq)||cp.checkpoint_seq<1) throw new Error('CHECKPOINT_SEQ_INVALID');
