@@ -1,13 +1,12 @@
 import {createHash} from 'node:crypto';
+import canonicalize from '../tools/csg/node_modules/canonicalize/lib/canonicalize.js';
 
 const SHA1=/^[0-9a-f]{40}$/;
 const DIGEST=/^sha256:[0-9a-f]{64}$/;
 function fail(code){const e=new Error(code);e.code=code;throw e;}
 function eq(a,b){return JSON.stringify(a)===JSON.stringify(b);}
 export function stableJson(v){
-  if(Array.isArray(v)) return '['+v.map(stableJson).join(',')+']';
-  if(v&&typeof v==='object') return '{'+Object.keys(v).sort().map(k=>JSON.stringify(k)+':'+stableJson(v[k])).join(',')+'}';
-  return JSON.stringify(v);
+  return canonicalize(v);
 }
 export function sha256Json(v){return 'sha256:'+createHash('sha256').update(Buffer.from(stableJson(v),'utf8')).digest('hex');}
 
