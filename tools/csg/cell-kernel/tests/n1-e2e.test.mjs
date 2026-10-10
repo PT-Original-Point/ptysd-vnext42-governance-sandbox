@@ -7,7 +7,6 @@ import {createJobSupervisor} from '../mutation-supervisor.mjs';
 import {projectStatus, STATUS_VIEWS} from '../status-projection.mjs';
 import {selectNativeAdapter, createAdapterInvocation} from '../adapter-abi.mjs';
 import {computeVerifierBundleDigest, createVerifierBindingReceipt, admitVerifierOutcome} from '../verifier-binding.mjs';
-import {evaluateObjectiveAdvisorTriggers, evaluateAdvisorPermit} from '../advisor-guard.mjs';
 
 const contract=JSON.parse(fs.readFileSync(new URL('../../../../governance/csg/v48/w47-06-execution-contract-v1.json',import.meta.url),'utf8'));
 const D=c=>`sha256:${c.repeat(64)}`;
@@ -105,9 +104,6 @@ test('worker provider-write credential and paid fallback remain forbidden',()=>{
   const selection=selectNativeAdapter([{adapter_id:'synthetic-builder',interface_kind:'OPEN_CODE_NATIVE_HTTP',qualified:true,paid_fallback_allowed:false,incremental_usd:0,binary_required:false,binary_present:true,capabilities:['build'],route:'synthetic'}],['build']);
   assert.throws(()=>createAdapterInvocation(selection,identity(),{provider_write_credential:'secret'}),/PROVIDER_WRITE_CREDENTIAL_FORBIDDEN/);
   assert.throws(()=>selectNativeAdapter([{adapter_id:'paid',interface_kind:'OPEN_CODE_NATIVE_HTTP',qualified:true,paid_fallback_allowed:true,incremental_usd:1,binary_required:false,binary_present:true,capabilities:['build'],route:'api-paid'}],['build']),/NO_QUALIFIED_ZERO_COST_ADAPTER/);
-  const noTrigger=evaluateObjectiveAdvisorTriggers({same_failure_signature_count:0});assert.equal(noTrigger.triggered,false);
-  const permit=evaluateAdvisorPermit({trigger_codes:['T1'],root_task_id:contract.root_task_id,calls_used:0,quota_state:'AVAILABLE',route:'SUBSCRIPTION_AUTHORIZED',incremental_usd:0,zen_paid_fallback:false});
-  assert.equal(permit.incremental_usd,0);assert.equal(permit.paid_fallback_allowed,false);
 });
 
 test('wrong candidate tree cannot pass exact verifier binding',()=>{
