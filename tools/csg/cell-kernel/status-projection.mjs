@@ -2,7 +2,6 @@ import { createHash } from 'node:crypto';
 
 export const STATUS_VIEWS = Object.freeze({ compact:384, standard:2048, debug:4096 });
 const DIGEST_RE = /^sha256:[0-9a-f]{64}$/;
-const ID_RE = /^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$/;
 const STATE_RE = /^[A-Z][A-Z0-9_:-]{0,63}$/;
 const CODE_RE = /^[A-Z][A-Z0-9_:-]{0,95}$/;
 
@@ -76,7 +75,7 @@ export function projectStatus(input,{view='compact',since_revision=0}={}){
   if(view!=='compact')fitList(out,'evidence','hidden_evidence_count',x.evidence.map(v=>evidenceItem(v,view==='debug')),budget);
   if(bytes(out)>budget)fail('PROJECTION_BUDGET_EXCEEDED');
   out.projection_digest=hash(out);
-  if(bytes(out)>budget){delete out.projection_digest;if(bytes(out)>budget)fail('PROJECTION_BUDGET_EXCEEDED');}
+  if(bytes(out)>budget)delete out.projection_digest;
   return out;
 }
 
