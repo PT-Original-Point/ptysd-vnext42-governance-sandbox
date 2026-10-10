@@ -46,13 +46,12 @@ function pathAllowed(cap, req, reasons) {
     }
   } catch (e) { reasons.push(String(e.message)); return; }
   const forbidden = Array.isArray(cap.forbidden_paths) ? cap.forbidden_paths : [];
-  const read = Array.isArray(cap.read_paths) ? cap.read_paths : [];
   const owned = Array.isArray(cap.owned_paths) ? cap.owned_paths : [];
   for (const f of forbidden) {
     try { if (within(req.path, f) || (resolved && within(req.path_resolution?.resolved_repo_relative ?? req.path, f))) { reasons.push('PATH_FORBIDDEN'); return; } }
     catch (e) { reasons.push(String(e.message)); return; }
   }
-  const roots = req.effect_class === 'READ_ONLY' ? [...owned, ...read] : owned;
+  const roots = req.effect_class === 'READ_ONLY' && Array.isArray(cap.read_paths) ? [...owned, ...cap.read_paths] : owned;
   let ok = false;
   for (const root of roots) {
     try {
