@@ -8,8 +8,6 @@ export const INTERFACE_PRECEDENCE = Object.freeze({
   CLI_WRAPPER: 200,
   TERMINAL_SCRAPING: 100,
 });
-export const OPENCODE_VERIFIED_PIN = '1.18.30';
-export const OPENCODE_CANARY_CANDIDATE = '1.18.31';
 export const REQUIRED_CANARY_CASES = Object.freeze([
   'session_load', 'session_resume', 'session_fork', 'model', 'effort',
   'mode', 'reasoning', 'abort_reconnect',
@@ -73,12 +71,12 @@ export function normalizeAdapterResult(result) {
   return structuredClone(result);
 }
 
-export function evaluateOpenCodePinPromotion({ current_pin = OPENCODE_VERIFIED_PIN, candidate_version = OPENCODE_CANARY_CANDIDATE, canary = null } = {}) {
-  if (current_pin !== OPENCODE_VERIFIED_PIN) fail('UNEXPECTED_CURRENT_OPENCODE_PIN');
-  if (candidate_version !== OPENCODE_CANARY_CANDIDATE) fail('UNEXPECTED_OPENCODE_CANARY_VERSION');
-  if (!canary || canary.version !== candidate_version || canary.result !== 'PASS') return { promote:false, pin:current_pin, reason:'CANARY_NOT_PASS' };
-  const cases = canary.cases ?? {};
-  if (!REQUIRED_CANARY_CASES.every(k => cases[k] === true)) return { promote:false, pin:current_pin, reason:'CANARY_INCOMPLETE' };
-  if (canary.incremental_usd !== 0 || canary.paid_fallback_allowed !== false) return { promote:false, pin:current_pin, reason:'ZERO_COST_OR_FALLBACK_GUARD_FAIL' };
-  return { promote:true, pin:candidate_version, reason:'CANARY_PASS' };
+export function evaluateOpenCodePinPromotion({ current_pin, current_version = current_pin, candidate_version, canary = null } = {}) {
+  const pin = typeof current_version === 'string' && current_version.trim() ? current_version.trim() : 'UNKNOWN';
+  if (pin === 'UNKNOWN' || typeof candidate_version !== 'string' || !candidate_version.trim()) return { promote: false, pin, reason: 'DENY' };
+  if (!canary || canary.result !== 'PASS') return { promote: false, pin, reason: 'CANARY_NOT_PASS' };
+  if (canary.version !== candidate_version) return { promote: false, pin, reason: 'VERSION_MISMATCH' };
+  if (!REQUIRED_CANARY_CASES.every(k => canary.cases?.[k] === true)) return { promote: false, pin, reason: 'CANARY_INCOMPLETE' };
+  if (canary.incremental_usd !== 0 || canary.paid_fallback_allowed !== false) return { promote: false, pin, reason: 'ZERO_COST_OR_FALLBACK_GUARD_FAIL' };
+  return { promote: true, pin: candidate_version, reason: 'CANARY_PASS' };
 }
